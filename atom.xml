@@ -1,0 +1,1106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[TIME TO GO]]></title>
+  <link href="http://www.justisit.com/atom.xml" rel="self"/>
+  <link href="http://www.justisit.com/"/>
+  <updated>2016-08-30T00:28:02+08:00</updated>
+  <id>http://www.justisit.com/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby环境搭建教程]]></title>
+    <link href="http://www.justisit.com/Ruby%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html"/>
+    <updated>2016-08-12T00:11:39+08:00</updated>
+    <id>http://www.justisit.com/Ruby%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">安装</h2>
+
+<ul>
+<li>安装Ruby的方式也有多种，比如Ruby安装包、使用Homebrew、使用rbenv或RVM(rbenv和RVM都可进行Ruby版本管理，作用等同于Node.js中的nvm，Python中的pyenv）等；在这里使用rbenv进行Ruby的安装（GitHub中，rbenv的Star比RVM的多）；</li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<ul>
+<li><p>第一步：安装rbenv<br/><br/>
+<img src="media/14709318994406/install_rbenv.png" alt="install_rbenv"/><br/>
+<img src="media/14709318994406/rbenv_init.png" alt="rbenv_init"/></p>
+
+<pre><code>brew install rbenv
+
+vi ~/.bash_profile 输入以下内容
+eval &quot;$(rbenv init -)&quot;
+保存退出
+
+source ~/.bash_profile
+</code></pre></li>
+<li><p>第二步：安装某个版本的Ruby（时间比较长）</p>
+
+<pre><code>rbenv install &lt;VERSION&gt;
+</code></pre></li>
+</ul>
+
+<h3 id="toc_1">rbenv使用</h3>
+
+<ul>
+<li><p>rbenv的原理及使用和Python中的pyenv的原理及使用几乎是一样的；</p>
+
+<pre><code>rbenv --version | -v # 查看当前Ruby版本
+
+rbenv version # 查看当前Ruby版本（以rbenv --version为准）
+rbenv versions # 查看已安装的Ruby版本
+
+rbenv install -l # 查看可以安装的Ruby版本，system为系统默认安装的版本
+rbenv rehash # 刷新shims（有时install或切换版本后需要执行一下）
+rbenv uninstall &lt;VERSION&gt; # 卸载某个版本的Ruby，？问号提示后面输入yes
+
+rbenv global [VERSION] # 查看或设置系统全局的Ruby版本
+rbenv local [VERSION] # 查看或设置当前目录或其子目录的Ruby版本
+rbenv shell [VERSION] # 查看或设置当前shell的Ruby版本
+rbenv &lt;local | shell&gt; --unset # 取消某个级别设置的Ruby版本
+</code></pre></li>
+</ul>
+
+<h2 id="toc_2">gem使用</h2>
+
+<ul>
+<li><p>gem（RubyGems）是Ruby的包管理工具（也是一个包），类似于Node.js的npm、Python的pip；</p>
+
+<pre><code>gem -v # 查看gem版本
+gem environment # 查看gem的环境信息
+gem help [COMMAND] # 查看相关帮助
+
+gem list # 查看已安装的包
+gem search &lt;PACKAGE&gt; # 查找包（比较多），例如gem search rails
+
+gem install &lt;PACKAGE&gt; [-v &lt;VERSION&gt;] # 安装包，例如gem install rails -v 4.0
+gem uninstall &lt;PACKAGE&gt; # 卸载包（不会卸载其依赖的包）
+gem outdated # 查看需要更新的包
+gem update --system # 更新RubyGems（gem）
+gem update [&lt;PACKAGE&gt;] # 更新所有、某个包（会保留老版本的包）
+gem cleanup # 清除所有包的旧版本，保留最新版本
+gem dependency &lt;PACKAGE&gt; # 查看已安装的包所依赖的包
+
+# 注意虽然使用多版本的Ruby/Gem，但是gem的安装源配置在~/.gemrc文件中（所有版本共用）
+gem sources -l # 查看gem的安装源
+gem sources -a &lt;URL&gt; # 增加一个gem的安装源
+gem sources -r &lt;URL&gt; # 删除某个gem的安装源
+gem sources -c # 删除所有gem的安装源
+</code></pre></li>
+</ul>
+
+<h3 id="toc_3">gemset简介</h3>
+
+<ul>
+<li>gemset是根据不同项目设置的一个独立的虚拟的gem环境，每个gemset都是互相独立的；其类似于Python总的virtualenv；</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Node.js环境搭建教程]]></title>
+    <link href="http://www.justisit.com/Node.js%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html"/>
+    <updated>2016-07-26T00:08:47+08:00</updated>
+    <id>http://www.justisit.com/Node.js%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">安装</h2>
+
+<ul>
+<li>安装Node.js的方式有多种多样，比如官网Node.js安装包、使用Homebrew、使用nvm（<a href="https://github.com/creationix/nvm">Node Version Manager </a>，可以很好地进行Node.js多版本管理）等；在这里使用nvm进行安装Node.js；</li>
+<li>安装Node.js时会自动安装一些必要的模块，比如npm模块等；</li>
+<li><p>第一步：安装nvm；安装nvm的方式也有多种，比如使用curl下载执行安装脚本、使用Homebrew等；在这里里使用Homebrew进行安装nvm；<br/>
+<img src="media/14694629279396/nvm_caveats.png" alt="nvm_caveats"/></p>
+
+<span id="more"></span><!-- more -->
+
+<pre><code>brew install nvm # 安装nvm
+
+mkdir ~/.nvm
+
+vi ~/.bash_profile 输入以下内容
+export NVM_DIR=&quot;$HOME/.nvm&quot;
+. &quot;$(brew --prefix nvm)/nvm.sh&quot;
+保存退出
+
+source ~/.bash_profile 
+nvm --version # 验证nvm安装是否正确
+</code></pre></li>
+<li><p>第二步：使用nvm安装Node.js；</p></li>
+</ul>
+
+<h3 id="toc_1">nvm使用</h3>
+
+<ul>
+<li><p>nvm是Mac下的Node.js版本管理工具，类似于Python的pyenv，是一个独立安装的软件；</p>
+
+<pre><code>nvm ls # 查看本地安装的node版本
+nvm ls-remote # 查看远程可以安装的node版本
+nvm install stable # 安装最新稳定版node
+nvm install &lt;VERSION&gt; # 安装指定的node版本，例如nvm install 6.0.0
+nvm use &lt;VERSION&gt; # 切换到某个node版本，例如nvm use 6.0.0
+nvm uninstall &lt;VERSION&gt; # 卸载指定的node版本，例如nvm install 6.0.0；注意卸载后，默认的node版本必须还是可用的
+
+nvm alias default &lt;VERSION&gt; # 修改默认的node版本，例如nvm alias default 6.3.1
+nvm which &lt;VERSION&gt; # 查看指定的node版本的安装路径
+
+node -v 查看当前node版本
+</code></pre>
+
+<p><img src="media/14694629279396/nvm_change_node_version.png" alt="nvm_change_node_version"/></p></li>
+</ul>
+
+<h2 id="toc_2">卸载</h2>
+
+<ul>
+<li>Node.js的卸载方式与其安装方式相关；在这里只说明使用官网Node.js安装包进行安装的卸载方式，相关卸载命令如下；</li>
+<li><p>使用安装包进行安装，会自动安装node命令在/usr/local/bin/node目录中，npm命令在/usr/local/lib/node_modules/npm目录中；</p>
+
+<pre><code>sudo rm -rf /usr/local/lib/node_modules # 删除全局node_modules目录
+sudo rm /usr/local/bin/node # 删除node
+cd  /usr/local/bin &amp;&amp; ls -l | grep &quot;../lib/node_modules/&quot; | awk &#39;{print $9}&#39;| xargs rm # 删除node_modules注册的软链接
+sudo rm /var/db/receipts/org.nodejs.*
+同送还要删除~/.npm、~/.npmrc等相关文件；卸载nvm时，还要删除~/.nvm；
+</code></pre></li>
+</ul>
+
+<h2 id="toc_3">nmp使用</h2>
+
+<ul>
+<li>NPM（node package manager，node包管理器），用于管理Node.js的模块（package，包），比如安装、卸载、更新、查看、搜索、发布等，相当于Python的pip；</li>
+<li>Node.js的模块的安装分两种：本地安装、全局安装；
+
+<ul>
+<li>本地安装：模块会被安装到当前目录下的node_modules中（没有则新建），只能在当前目录下使用；</li>
+<li>全局安装：模块会被安装到到安装Node.js的目录下lib/node_modules中，可以在所有目录下使用；
+<img src="media/14694629279396/npm_install.png" alt="npm_instal"/>
+第一行的路径为安装的路径，@前面的为模块的name，@后面的数字为模块的版本号，下面的模块为所依赖的模块；</li>
+</ul></li>
+<li><p>关于npm的本地安装路径问题：npm的原理是从当前目录往上找，找到哪个目录有node_modules文件夹就认为这才是真正的项目目录，模块被安装到那里；所以需要保证从当前的目录开始一直到根目录都没有node_modules文件夹，npm才会“正常”地把模块安装到到当前目录下的node_modules文件夹中（没有则创建）；<a href="http://www.zhihu.com/question/33302274/">知乎：关于npm的本地安装路径的问题？</a></p>
+
+<pre><code>npm -v # 查看npm版本，检查其是否正确安装
+npm list | ls [-g] # 查看本地或全局已安装模块（会以层级关系显示所依赖的模块）
+npm ls --depth=0 # 查看本地已安装模块（只显示顶层的安装模块）
+
+npm install # 直接根据当前目录中的package.json文件中声明的依赖模块进行安装
+npm install &lt;PACKAGE&gt; # 本地安装模块，例如npm install express
+npm install -g &lt;PACKAGE&gt; # 全局安装模块，例如npm install -g express
+npm install &lt;PACKAGE&gt;[@版本号] # 本地安装某个版本的模块，例如npm install express@4.0
+npm install &lt;PACKAGE&gt; --save # 本地安装某个版本的模块，并且将模块信息增加到package.json文件声明的依赖模块中（这样提交代码到Github就不用提交node_modules这个文件夹了）
+# 例如npm install express --save
+
+npm uninstall [-g] &lt;PACKAGE&gt; # 删除本地模块或全局模块（会删除依赖的包）
+
+npm outdated  [-g] [&lt;PACKAGE&gt;] # 查看本地或全局的某个或所有模块中是否是最新的版本
+npm update [-g] # 更新全部本地或全局模块
+npm update [-g] &lt;PACKAGE&gt; # 更新某个本地或全局模块
+
+npm show | info &lt;PACKAGE&gt; [字段名] # 查看模块详情（不论是否安装）或，例如npm show hexo、npm show hexo dependencies
+npm search &lt;PACKAGE&gt; # 搜索某个模块（不建议使用）
+</code></pre></li>
+<li><p>npm install或uninstall等操作的时候，需要被操作的目录中有一个package.json文件（用于管理项目的依赖项和项目的元数据）；通常情况下本地安装时是没有该文件，需要手动创建，否则会报警告“npm WARN ENOENT ENOENT: no such file or directory, open...”；<br/>
+<img src="media/14694629279396/npm_install_warn.png" alt="npm_install_warn"/></p></li>
+<li><p>为了不提示上面的警告，有两种方式解决：</p>
+
+<ol>
+<li>使用“npm init”命令进行初始化一个，引导模式输入相关数据；或者直接“npm init -y”直接生成相关数据，但还会报少量警告（自动生成的数据不全）；</li>
+<li><p>使用自动生成插件并配置让执行npm指令时执行自动生成命令；但是在使用nvm进行多版本Node.js切换时会报缺少相关文件错误，这是因为不同版本Node.js的npm配置文件都是同一个（~/.npmrc），而自动生成插件只在某个版本Node.js上被安装，解决办法是在切换到的Node.js版本上也安装自动生成插件；</p>
+
+<pre><code>npm install -g npm-autoinit # 安装自动生成插件
+npm config set onload-script npm-autoinit/autoinit # 让执行npm指令时执行自动生成命令
+</code></pre></li>
+</ol></li>
+<li><p>npm配置相关命令</p>
+
+<pre><code>npm config list | ls [-l] # 查看所有配置信息
+npm [config] set XXX # 设置相关配置配置（config关键字可以省略）
+# 设置相关配置也可以直接修改用户目录下.npmrc文件（没有则新建一个）；
+
+# proxy相关
+npm [congfig] set proxy=http://www.abc.com:8080/ # 设置proxy
+npm [config] get proxy # 查看proxy
+npm config delete proxy # 删除proxy（注意这里的config关键字不可省略）
+# 设置代理也可以在install命令后加--registry参数（registry：记录）进行临时配置
+# 比如npm install express --registry=http://registry.npm.taobao.org
+</code></pre></li>
+<li><p>npm发布包相关命令</p>
+
+<pre><code>npm adduser # 注册registry帐号
+npm login # 登录
+npm publish # 发布项目
+</code></pre></li>
+</ul>
+
+<h2 id="toc_4">n使用</h2>
+
+<ul>
+<li>n是一个npm全局的开源包，作为一个Node.js的模块存在，需要使用npm来全局安装；而nvm是一个独立于Node.js/npm的外部shell脚本；</li>
+<li>不使用nvm安装Node.js（直接安装或使用n命令），Node.js被安装在/usr/local/lib/，npm安装的模块路径为/usr/local/lib/node_modules；使用nvm安装的Node.js，npm安装的模块路径为/Users/USERNAE/.nvm/versions/node/VERSION/lib/node_modules；</li>
+<li>当使用n命令切换不同的Node.js版本时，实际上使用相同的全局的npm目录，不能满足“按不同Node.js版本使用不同全局Node.js模块”的要求；强烈建议不使用n；</li>
+<li><p>在使用nvm后再使用n安装Node.js，可以用nvm ls查看通过n安装的Node.js（显示为system版本），但是nvm无法将其卸载；使用n进行卸载，实际上Node.js文件还存在，nvm ls依然有system版本，只能按照卸载以安装包安装的方式进行卸载操作；<br/>
+<img src="media/14694629279396/nvm_n.png" alt="nvm_n"/></p>
+
+<pre><code>npm install -g n # 安装n（也可以不带-g，就是安装后在终端中无法执行n命令）
+
+n # 查看当前通过n安装的Node.js版本
+n stable # 安装最新稳定版Node.js
+n &lt;VERSION&gt; # 安装指定的Node.js版本，例如n 6.2.0
+n use &lt;VERSION&gt; # 切换到某个Node.js版本（测试无效）  n rm &lt;VERSION&gt; # 删除某个Node.js版本（同时安装了nvm，测试无效）
+</code></pre></li>
+</ul>
+
+<h2 id="toc_5">package.json介绍</h2>
+
+<ul>
+<li>package.json的作用就是用于管理项目的依赖项和项目的元数据；该文件中有以下相关必填和非必填字段，下面只列举部分；
+
+<ul>
+<li>name字段为package的名字（不能含有相关关键字或特殊字符，如node、js等；以后若发布的话需要唯一）；</li>
+<li>version字段为package的版本</li>
+<li>dependencies字段为package的依赖模块；devDependencies字段为package的开发依赖模块；</li>
+<li>main字段为模块入口文件的相对路径；</li>
+<li>engines字段为依赖的Node.js版本；</li>
+</ul></li>
+<li>版本号格式为“主版本号(Major).副版本号(Minor).补丁版本号(Patch)”，例如1.2.3；</li>
+<li>~表示使用最接近的版本，比如~1.1表示下载安装1.1.0~1.2.0之间的模块，~1.1.1表示1.1.1~1.2.0，1的版本、~1表示1.0.0~1.1.0；空格、x、*表示任意版本；</li>
+</ul>
+
+<h2 id="toc_6">调试运行</h2>
+
+<ul>
+<li><p>创建一个example.js文件（touch example.js），写入以下内容，并运行（node example.js），打开浏览器访问<a href="http://127.0.0.1:1337/%EF%BC%9B">http://127.0.0.1:1337/；</a></p>
+
+<pre><code>http = require(&#39;http&#39;);
+
+http.createServer(function(req, res) {
+    res.writeHead(200, {&#39;Content-Type&#39;: &#39;text/plain&#39;});
+    res.end(&#39;Hello World\n&#39;);
+}).listen(1337, &#39;127.0.0.1&#39;);
+
+console.log(&#39;Server running at http://127.0.0.1:1337/&#39;);
+</code></pre></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python3学习笔记02 (函数)]]></title>
+    <link href="http://www.justisit.com/Python3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002%20(%E5%87%BD%E6%95%B0).html"/>
+    <updated>2016-08-03T23:19:29+08:00</updated>
+    <id>http://www.justisit.com/Python3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B002%20(%E5%87%BD%E6%95%B0).html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>之前自学的廖雪峰老师的Python3教程的学习笔记，现在整理出来以便回顾。<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">廖雪峰老师的Python3教程</a>是非常通俗易懂、强大的，Python3入门的不二之选。在此感谢廖雪峰老师的无私奉献！</p>
+</blockquote>
+
+<h2 id="toc_0">03. 函数</h2>
+
+<h4 id="toc_1">基本函数</h4>
+
+<ul>
+<li>取绝对值abs()、取最大值max()、min()、sum()，注意传入的参数格式及个数(也可以是一个数组)</li>
+<li>类型转换函数，如int()、float()、str()、bool()</li>
+<li>函数名是要给指向一个函数对象的引用，可以将函数名赋值给一个变量，相当于给函数起个“别名”，如a = abs; a = &#39;abc&#39;</li>
+<li>hex()将一个整数转为十六进制表示的字符串，hex(65) # &#39;0x41&#39;</li>
+<li>注意：&#39;\u4e2d&#39;表示16进制Unicode编码（两个字节）所对应的字符，b&#39;\xe4&#39;表示是一个字节（2位16进制），&#39;0x41&#39;表示一个16进制数</li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h4 id="toc_2">自定义函数</h4>
+
+<ul>
+<li>使用“def”关键字，后面依次是函数名、括号及参数、冒号：，再在下面的缩进块中编写函数体，函数的返回值用return返回</li>
+<li><p>若没有return语句也是有返回结果（为None）；“return None”可简写为“return”</p>
+
+<pre><code class="language-python">def my_abs(x):
+    if x &gt; 0:
+        return x
+    else:
+        return -x
+</code></pre></li>
+<li><p>若在交互模式中定义函数，定义结束后需要按两次回车才能回到“&gt;&gt;&gt;”</p></li>
+<li><p>若将函数m_abs()定义在myfile.py文件中，则应该在该文件目录下启动python解释器，之后使用from myfile import my_abs语句来导入my_abs函数（注意myfile是不包含.py的文件名）</p></li>
+<li><p>空函数：定义一个什么都不做的函数，使用pass语句占位（让程序可以正常运行，否则由于无法识别代码块而报错）</p>
+
+<pre><code class="language-python">def nop():
+    pass
+</code></pre></li>
+<li><p>pass也可以用在其他语句中</p>
+
+<pre><code class="language-python">if age &gt;= 18:
+    pass
+</code></pre></li>
+</ul>
+
+<h4 id="toc_3">参数检查</h4>
+
+<ul>
+<li>调用自定义函数时，参数个数不对，python解释器能自动检查出来，参数类型不对，python无法自动检查出来</li>
+<li><p>可以使用内置函数isinstance()进行数据类型检查，若传入错误参数则手动抛出一个“错误”</p>
+
+<pre><code class="language-python">def my_abs(x):
+    if not isinstance(x, (int, float)):
+        raise TypeError(&#39;Bad Type~~~&#39;)
+    if x &gt; 0:
+        return x
+    else:
+        return -x
+</code></pre></li>
+</ul>
+
+<h4 id="toc_4">返回多值</h4>
+
+<ul>
+<li>python函数返回的始终是单一值，表面为多值的其实是tuple</li>
+<li><p>在语法上，返回一个tuple可以省略括号；多个变量可以同时接收一个tuple，只是按位赋给对应的值</p>
+
+<pre><code class="language-python">import math # 导入math包
+def move(x, y, step, angle = 0):
+    nx = x + step * math.cos(angle)
+    ny = y + step * math.sin(angle)
+    return nx, ny
+
+from abstest import move
+import math
+
+x, y = move(100, 200, 50, math.pi / 6)
+print (x, y) # 143.30127018922195 225.0
+r = move(100, 200, 50, math.pi/6)
+r # (143.30127018922195, 225.0)
+</code></pre></li>
+<li><p>练习：解一元二次方程</p>
+
+<pre><code class="language-python">import math
+def quadratic(a, b, c):
+    if not isinstance(a, (int, float)):
+        raise &#39;a参数错误~~~&#39;
+    if not isinstance(b, (int, float)):
+        raise &#39;b参数错误~~~&#39;
+    if not isinstance(c, (int, float)):
+        raise &#39;c参数错误~~~&#39;
+
+    dl = b * b - 4 * a * c
+    if dl &lt; 0:
+        print(&#39;无解~~~&#39;)
+        return
+
+    x1 = (-b + math.sqrt(dl)) / 2 * a
+    x2 = (-b - math.sqrt(dl)) / 2 * a
+    print(&#39;x1 = %f, x2 = %f&#39; % (x1, x2))
+    return x1, x2
+</code></pre></li>
+</ul>
+
+<h4 id="toc_5">函数的参数</h4>
+
+<ul>
+<li>位置参数
+
+<ul>
+<li>必须传入</li>
+</ul></li>
+<li>默认参数
+
+<ul>
+<li>给位置参数、命名关键字参数添加默认值，简化函数调用</li>
+<li>定义时，位置参数在前，默认参数在后；传入调用时，不按定义时参数顺序需提供参数名</li>
+<li>默认参数必须是不可变对象，否则可能出现数据错误；（扩展：不可变对象在多任务环境下读取不需要加锁）</li>
+</ul></li>
+<li>可变参数
+
+<ul>
+<li>定义时参数名前加*表示接收任意个参数（可以0个），传入的数据先被自动封装成tuple</li>
+<li>在list、tuple、set（dict不可以）前加*表示将其中的元素变为可变参数数据，用于传入使用</li>
+</ul></li>
+<li>关键字参数
+
+<ul>
+<li>有助于扩展函数的功能</li>
+<li>定义时参数名前加**表示接收任意个<strong>必须</strong>含有参数名的参数数据(可以0个)，传入数据先被自动封装成dict</li>
+<li>在dict前使用**表示将其中的元素变为关键字参数数据，用于传入使用（对新封装的dict的修改不会对原dict产生影响）</li>
+<li>传入的参数时参数名不要用“&#39;”括住，否则报错（传入的是变量参数名及值，不是字典，之后才被封装成字典）</li>
+</ul></li>
+<li>命名关键字参数
+
+<ul>
+<li>关键字参数无法限制关键字参数，使用命名关键字参数可以避免此现象</li>
+<li>定义时使用“*,”，后面定义必须传入的关键字参数名，*不是参数是特殊分隔符</li>
+<li>调用时必须传入定义的关键字参数名及值，否则报错</li>
+<li>命名关键字参数也可以使用默认参数，此时调用时可不传入此值</li>
+</ul></li>
+<li><p>参数组合</p>
+
+<ul>
+<li>定义函数时可以使用位置参数、默认参数、可变参数、关键字参数和命名关键字参数，这5种参数可组合使用，但无法混合使用“可变参数”和“命名关键字参数”</li>
+<li>参数定义的顺序是：位置参数、默认参数、可变参数/命名关键字参数、关键字参数，调用函数时传入参数顺序在某种情况下可不一致</li>
+</ul></li>
+<li><p><strong>注意：在调用传入命名关键字参数、关键字参数时，参数名称不要和函数定义时的位置参数、默认参数的名称冲突，否则报错或数据传入的对应位置错误</strong></p>
+
+<pre><code class="language-python">默认参数1:
+&gt;&gt;&gt; def enroll(name, gender, age = 6, city=&#39;Beijing&#39;):
+...     print(&#39;name:&#39;, name)
+...     print(&#39;gender:&#39;, gender)
+...     print(&#39;age:&#39;, age)
+...     print(&#39;city:&#39;, city)
+...
+&gt;&gt;&gt; enroll(&#39;Tom&#39;, &#39;F&#39;)
+name: Tom
+gender: F
+age: 6
+city: Beijing
+&gt;&gt;&gt; enroll(&#39;Tom&#39;, &#39;F&#39;, 7)
+name: Tom
+gender: F
+age: 7
+city: Beijing
+&gt;&gt;&gt; enroll(&#39;Tom&#39;, &#39;F&#39;, city=&#39;Tianjin&#39;)
+name: Tom
+gender: F
+age: 6
+city: Tianjin
+
+默认参数2:（默认参数为可变对象可能导致数据错误）
+&gt;&gt;&gt; def add_end(L=[]):
+...     L.append(&#39;END&#39;)
+...     return L
+...
+&gt;&gt;&gt; add_end([1, 2, 3])  # L指向新的数组
+[1, 2, 3, &#39;END&#39;]
+&gt;&gt;&gt; add_end([1, 2, 3])  # L指向新的数组
+[1, 2, 3, &#39;END&#39;]
+&gt;&gt;&gt; add_end()  # L指向函数定义时系统默认计算出的数组
+[&#39;END&#39;]
+&gt;&gt;&gt; add_end()  # L指向函数定义时系统默认计算出的数组
+[&#39;END&#39;, &#39;END&#39;]
+
+可变参数举例:
+&gt;&gt;&gt; def calc(*nums):
+...     sum = 0
+...     for n in nums:
+...             sum += n * n
+...     return sum
+...
+&gt;&gt;&gt; calc(1, 2, 3)
+14
+&gt;&gt;&gt; calc(1, 2)
+5
+&gt;&gt;&gt; calc()
+0
+&gt;&gt;&gt; ns = [1, 2, 3, 4]
+&gt;&gt;&gt; calc(ns[0], ns[1], ns[2], ns[3])
+30
+&gt;&gt;&gt; calc(*ns)
+30
+&gt;&gt;&gt; s = set([1, 2, 3])
+&gt;&gt;&gt; calc(*s)
+14
+
+关键字参数:
+&gt;&gt;&gt; def person(name, age, **kw):
+...     print(&#39;name:&#39;, name, &#39;age:&#39;, age, &#39;other:&#39;, kw)
+&gt;&gt;&gt; person(&#39;Tom&#39;, 20, city=&#39;Beijing&#39;, job = &#39;Student&#39;)
+name: Tom age: 20 other: {&#39;job&#39;: &#39;Student&#39;, &#39;city&#39;: &#39;Beijing&#39;}
+&gt;&gt;&gt; d = {&#39;A&#39;: 1, &#39;B&#39;: 2}
+&gt;&gt;&gt; person(&#39;Tom&#39;, 20, A=d[&#39;A&#39;], B=d[&#39;B&#39;]) # 传入的是变量参数名不需要加“”
+name: Tom age: 20 other: {&#39;A&#39;: 1, &#39;B&#39;: 2}
+&gt;&gt;&gt; person(&#39;Tom&#39;, 20, **d)
+name: Tom age: 20 other: {&#39;A&#39;: 1, &#39;B&#39;: 2}
+
+命名关键字参数:
+&gt;&gt;&gt; def person(name, age, *, city, job): 
+# 必须添加*,否则city、job就是位置参数了，*,后面的参数名都是命名关键字参数的名称
+...     print(name, age, city, job)
+&gt;&gt;&gt; person(&#39;Tom&#39;, 12, city=&#39;Beijing&#39;, job=&#39;Student&#39;)
+Tom 12 Beijing Student
+&gt;&gt;&gt; person(&#39;Tom&#39;, 12, city=&#39;Beijing&#39;, haha=&#39;Student&#39;) 
+# 报错，TypeError: person() got an unexpected keyword argument &#39;haha&#39;
+&gt;&gt;&gt; person(&#39;Tom&#39;, 12, &#39;Beijing&#39;, &#39;Student&#39;)
+# 报错，TypeError: person() takes 2 positional arguments but 4 were given
+
+组合参数:
+&gt;&gt;&gt; def f1(a, b, c=0, *args, **kw):
+...     print(&#39;a =&#39;, a, &#39;b =&#39;, b, &#39;c =&#39;, c, &#39;args =&#39;, args, &#39;kw =&#39;, kw)
+...
+&gt;&gt;&gt; def f2(a, b, c=0, *, d, **kw):
+...     print(&#39;a =&#39;, a, &#39;b =&#39;, b, &#39;c =&#39;, c, &#39;d =&#39;, d, &#39;kw =&#39;, kw)
+...
+&gt;&gt;&gt;
+&gt;&gt;&gt; f1(1, 2, 3)
+a = 1 b = 2 c = 3 args = () kw = {}
+
+&gt;&gt;&gt; f1(1, 2, c= 4)
+a = 1 b = 2 c = 4 args = () kw = {}
+
+&gt;&gt;&gt; f1(1, 3, 3, 5, d = 4)
+a = 1 b = 3 c = 3 args = (5,) kw = {&#39;d&#39;: 4}
+
+&gt;&gt;&gt; f2(1, 2, c = 3, e = 5, d = 4)
+a = 1 b = 2 c = 3 d = 4 kw = {&#39;e&#39;: 5}
+
+&gt;&gt;&gt; args = (1, 2, 3)
+&gt;&gt;&gt; kw = {&#39;d&#39; : 99, &#39;x&#39; : &#39;#&#39;}
+&gt;&gt;&gt; f1(*args, **kw)
+a = 1 b = 2 c = 3 args = () kw = {&#39;x&#39;: &#39;#&#39;, &#39;d&#39;: 99}
+
+&gt;&gt;&gt; f2(*args, **kw)
+a = 1 b = 2 c = 3 d = 99 kw = {&#39;x&#39;: &#39;#&#39;}
+</code></pre></li>
+</ul>
+
+<h4 id="toc_6">递归函数</h4>
+
+<ul>
+<li>函数内部调用自身</li>
+<li>函数调用是通过栈实现的，当进入一个函数调用时，栈就会加一层栈帧，当函数返回时，栈就会减一层栈帧；使用递归函数要防止栈溢出</li>
+<li>可以通过“尾递归”解决递归调用栈溢出：在函数返回时，调用自身并且return语句不能包含表达式；这样编译器、解释器就可以将尾递归做优化，使递归无论调用多少次都只占用一个栈帧</li>
+<li>多数编程语言没有对尾递归做优化，Python解释器也没有优化</li>
+<li><p>可以将循环看成是一种特殊的尾递归函数；尾递归事实上和循环是等价的，没有循环语句的编程语言只能通过尾递归实现循环</p>
+
+<pre><code class="language-python">递归:
+def fact(n):
+   if n == 1:
+       return 1
+   return n * fact(n - 1)
+
+尾递归:
+def fact(n):
+   return fact_iter(n, 1)
+
+def fact_iter(num, product):
+   if num == 1:
+       return product
+   return fact_iter(num - 1, num * product)
+</code></pre></li>
+<li><p>练习：汉诺塔</p>
+
+<pre><code class="language-python">def move(n, a, b, c):
+   if 1 == n:
+       print(a, &#39;--&gt;&#39;, c) # 直接将从a移到c
+   else:
+       move(n - 1, a, c, b) # 先将前n-1个从a移到b
+       move(1, a, b, c) # 将最后一个从a移到c
+       move(n - 1, b, a, c) # 将前n-1个从b移到c
+</code></pre></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python3学习笔记01 (简介、基础)]]></title>
+    <link href="http://www.justisit.com/Python3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B001%20(%E7%AE%80%E4%BB%8B%E3%80%81%E5%9F%BA%E7%A1%80).html"/>
+    <updated>2016-08-03T23:19:29+08:00</updated>
+    <id>http://www.justisit.com/Python3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B001%20(%E7%AE%80%E4%BB%8B%E3%80%81%E5%9F%BA%E7%A1%80).html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>之前自学的廖雪峰老师的Python3教程的学习笔记，现在整理出来以便回顾。<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">廖雪峰老师的Python3教程</a>是非常通俗易懂、强大的，Python3入门的不二之选。在此感谢廖雪峰老师的无私奉献！</p>
+</blockquote>
+
+<h2 id="toc_0">01.简介</h2>
+
+<h4 id="toc_1">Python模式</h4>
+
+<ul>
+<li>交互模式（终端输入“python3”进入交互模式，输入“exit()”退出）</li>
+<li>命令行模式（终端输入“python3 文件名.py”直接运行）</li>
+</ul>
+
+<h4 id="toc_2">输入、输出</h4>
+
+<ul>
+<li>输出函数print(a1, a2, ...)中遇到“,”（非字符串）会输出一个空格，如print(&#39;hello&#39;,&#39;world&#39;)结果为“hello world”</li>
+<li>输入函数input()，例如name = input()、 name = input(&#39;please enter your name:&#39;), print(&#39;hello,&#39;, name)</li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h4 id="toc_3">细节</h4>
+
+<ul>
+<li>注释是以#开头</li>
+<li><strong>python是区分大小写的</strong></li>
+<li>每一行python代码都是一个语句；当语句以“:”结尾，下面缩进的代码为一个代码块（建议使用4个空格进行缩进）</li>
+</ul>
+
+<h4 id="toc_4">字符转义</h4>
+
+<ul>
+<li>“\”表示转义，例如print(&#39;I\&#39;m learning\nPython.&#39;)</li>
+<li>若字符串中的所有特殊字符都需要转义，则使用r&#39;&#39;，例如print(r&#39;\tabc\r\&#39;&#39;) # \tabc\r\&#39;</li>
+</ul>
+
+<h4 id="toc_5">换行</h4>
+
+<ul>
+<li>若字符串需要输出换行，可以使用\n，也可以使用&#39;&#39;&#39;abc&#39;&#39;&#39;的形式（此时输入显示也是换行样式）</li>
+<li><p>&#39;&#39;&#39;abc&#39;&#39;&#39;的形式：使用3个“&#39;”代替1个“&#39;”，回车换行时“&gt;&gt;&gt;”变成“...”，表示接着上一行内容输入（但内容被加上了换行符），可以多次回车换行，输入完毕以3个“&#39;”结束</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; s = &#39;&#39;&#39;a 
+... b  
+... c  
+...   
+... &#39;&#39;&#39;  
+&gt;&gt;&gt; s  
+&#39;a\nb\nc\n\n&#39;
+</code></pre></li>
+<li><p>注意无论是在&#39; &#39;形式，还是在&#39;&#39;&#39; &#39;&#39;&#39;形式，输入过程中使用“\”，都是显示效果换行（防止单行书写过多，并不是真正的输出换行）</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; s1 = &#39;a&#39;\
+... &#39;b&#39;\
+... &#39;c&#39;
+&gt;&gt;&gt; s1
+&#39;abc&#39;
+&gt;&gt;&gt; s2 = &#39;&#39;&#39;a \
+... b \
+... c
+... 
+... &#39;&#39;&#39;
+&gt;&gt;&gt; s2
+&#39;a b c\n\n&#39;
+</code></pre></li>
+</ul>
+
+<h2 id="toc_6">02.基础</h2>
+
+<h4 id="toc_7">数据类型、变量</h4>
+
+<ul>
+<li>布尔取值：False、True，布尔运算：and、or、not</li>
+<li>空值：python中特殊的值，使用None表示</li>
+<li>python中变量名都是一个引用</li>
+<li>python中通常使用全部大写的变量名表示常量（命名规范，但该变量名所对应的值还是可以被修改的）</li>
+<li>python是动态语言，a = 10之后可以进行a = &quot;ABC&quot;</li>
+<li>除法：/结果为浮点数、//结果为整数（地板除，取整）、%结果为余数</li>
+</ul>
+
+<h4 id="toc_8">字符编码</h4>
+
+<ul>
+<li>ASCII编码为一个字节（表示数字字符、英文字符、特殊字符），GB2312编码为两个字节（表示中文字符）</li>
+<li>为了统一包含所有的语言字符创建了Unicode编码（一个字符使用两个字节，ASCII中的字符是前一个字节补0）</li>
+<li>若文本中都是英文，则使用Unicode编码就浪费一半的字节，故创建了“可变长编码”UTF-8</li>
+<li>在UTF-8中，英文字符为1个字节，中文字符为3个字节，生僻字符为4~6个字节；可以认为ASCII编码是UTF-8编码的一部分</li>
+<li>计算机内存中统一使用Unicode编码，当需要保存到硬盘或传输时就转为UTF-8编码或其他编码（为了节约存储）</li>
+<li>python3中的字符是以Unicode编码的（注意python2不是的）</li>
+<li>ord()函数获取单个字符的Unicode编码值（10进制），例如ord(&#39;A&#39;)为65、ord(&#39;中&#39;)为20013</li>
+<li>chr()函数将Unicode编码值（10进制）转换为对应的字符，例如chr(66)为&#39;B&#39;、chr(20013)为&#39;中&#39;</li>
+<li>也可以直接使用16进制的Unicode编码值表示对应字符，例如&#39;\u4e2d&#39;为&#39;中&#39;</li>
+<li>&#39;\u&#39;开头的16进制字符串表示其对应的“字符（串）”，4e2d的16进制就是10进制的20013</li>
+</ul>
+
+<h4 id="toc_9">字符串</h4>
+
+<ul>
+<li>python中的字符串类型为str；在内存中以Unicode表示，若保存到硬盘或传输时需要将str变成以字节为单位的bytes（需要指定是什么编码）</li>
+<li>python中bytes类型的数据（单、多字节）是带“b”前缀的16进制字符（串），例如x = b&#39;ABC&#39;；显示时，bytes中无法显示为ASCII字符的字节用b&#39;\x##&#39;表示</li>
+<li><p>通过encode()函数可将str转为指定编码的bytes（注意，中文无法使用ascii编码）</p>
+
+<pre><code class="language-python">&#39;ABC&#39;.encode(&#39;ascii&#39;)后为b&#39;ABC&#39;
+&#39;ABC&#39;.encode(&#39;utf-8&#39;)后为b&#39;ABC&#39;
+&#39;中文&#39;.encode(&#39;utf-8&#39;)后为b&#39;\xe4\xb8\xad\xe6\x96\x87&#39;
+</code></pre></li>
+<li><p>decode()函数可将bytes变为str，例如b&#39;\xe4\xb8\xad\xe6\x96\x87&#39;.decode(&#39;utf-8&#39;)为&#39;中文&#39;</p></li>
+<li><p>len()函数可计算str的字符数，也可计算bytes的字节数，例如len(&#39;中文&#39;)为2、len(&#39;中文&#39;.encode(&#39;utf-8&#39;))为6</p></li>
+<li><p>为了让python源代码文件被读取时是以UTF-8编码读取，应该在最前面添加注释：<code># -*- codeing: utf-8 -*-</code>，同时保存python源代码文件时必须以“UTF-8 without BOM”编码保存</p></li>
+</ul>
+
+<h4 id="toc_10">字符串格式化</h4>
+
+<ul>
+<li><p>参数使用%s、%d、%f、%x(十六进制)等代替，格式化语句与实际值之间使用%分割，例如</p>
+
+<pre><code class="language-python">&#39;Hello, %s&#39; % &#39;world&#39;
+&#39;%2d-%02d&#39; % (3, 1)
+&#39;growth rate: %d %%&#39; % 7 
+
+s = &#39;world&#39;
+print(&#39;hello&#39;, s)           # hello world
+print(&#39;hello %s&#39; % s)       # hello world
+&#39;hello %s&#39; % s              # &#39;hello world&#39;
+print(&#39;hello %s&#39; % s, s)    # hello world world
+</code></pre></li>
+</ul>
+
+<h4 id="toc_11">字符串的format()方法</h4>
+
+<ul>
+<li><p>str.format()方法会返回一个新的字符串；在新的字符串中，原字符串的“替换字段（大括号、以及其中的数字为替换字段）”被format()方法中的参数代替</p>
+
+<pre><code class="language-python"># 按照位置
+&gt;&gt;&gt; &#39;{0}, {1}&#39;.format(&#39;tom&#39;, 123)
+&#39;tom, 123&#39;
+&gt;&gt;&gt; &#39;{}, {}&#39;.format(&#39;tom&#39;, 123)
+&#39;tom, 123&#39;
+&gt;&gt;&gt; &#39;{1}, {0}, {1}&#39;.format(&#39;tom&#39;, 123)
+&#39;123, tom, 123&#39;
+&gt;&gt;&gt; &#39;{{{1}}}&#39;.format(&#39;tom&#39;, 123)
+&#39;{123}&#39;
+&gt;&gt;&gt; &#39;{{{1}}}&#39;.format(&#39;tom&#39;, 123)
+&#39;{1}&#39;
+
+# 按照字段名
+&gt;&gt;&gt; &#39;{name}\&#39;age is {age}&#39;.format(name=&#39;Tom&#39;, age=123)
+&quot;Tom&#39;age is 123&quot;
+&gt;&gt;&gt; &#39;{name}\&#39;age is {0}&#39;.format(123, name=&#39;Tom&#39;)  # 可变参数(123)要放在关键字参数(name=&#39;Tom&#39;)前面
+&quot;Tom&#39;age is 123&quot;
+
+# 按照索引
+&gt;&gt;&gt; names = [&#39;Tom&#39;, &#39;Jack&#39;]
+&gt;&gt;&gt; ages = [123, 456, 789, 111]
+&gt;&gt;&gt; &#39;{0[1]}\&#39;age is {1[2]}&#39;.format(names, ages) # 数组
+&quot;Jack&#39;age is 789&quot;
+&gt;&gt;&gt; person = {&#39;name&#39;: &#39;Tom&#39;, &#39;age&#39;: 123}
+&gt;&gt;&gt; &#39;{0[name]}\&#39;age is {0[age]}&#39;.format(person) # 字典
+&quot;Tom&#39;age is 123&quot;
+
+# 按照对象
+&gt;&gt;&gt; import math
+&gt;&gt;&gt; &#39;math.pi = {0.pi}&#39;.format(math)
+&#39;math.pi = 3.141592653589793&#39;
+
+# 格式化：通过“:”后面的内容进行限定
+... &#39;{0:b}&#39;.format(16)  # 转为二进制
+&#39;10000&#39;
+&gt;&gt;&gt; &#39;{0:x}&#39;.format(16)  # 转为十六进制
+&#39;10&#39;
+</code></pre></li>
+</ul>
+
+<h4 id="toc_12">list</h4>
+
+<ul>
+<li>数组，有序可变，同一个数组中的元素的数据类型可以不同（元素可以是&#39;ABC&#39;、123、True、list），</li>
+<li>classmates = [&#39;Tom&#39;, &#39;Jack&#39;, 123, True]创建一个list</li>
+<li>classmates[0]访问第一个元素，classmates[-1]访问最后一个元素，s[1][0]访问s的第二个元素（list）中的第一个元素</li>
+<li>classmates.append(&quot;ABC&quot;)追加一个元素到尾部，classmates.intert(1, &quot;ABC&quot;)将元素插入到指定位置</li>
+<li>classmates.pop()删除最后一个元素，classmates.pop(1)删除第二个元素</li>
+<li>classmates[1] = &#39;TEST&#39;替换第二个元素</li>
+<li>len(classmates)计算list的元素个数，l = []表示l是一个空list</li>
+</ul>
+
+<h5 id="toc_13">tuple</h5>
+
+<ul>
+<li>元组，有序不可变，同一个元组中的元素的数据类型可以不同</li>
+<li>只能访问不能修改，没有append、insert、pop等修改方法，定义tuple时元素就已经确定</li>
+<li>classmates = (&#39;Tom&#39;, &quot;JACK&quot;, 123)创建一个tuple</li>
+<li>t = ()定义一个空元组，t = (1,)定义一个只有一个元素的元组（为避歧义必须增加一个逗号，否则认为是数学计算结果）</li>
+<li>tuple不能被修改是说某个位置元素不能再指向别的对象，但是对象本身是可以被修改的，例如t = (&#39;a&#39;, &#39;b&#39;, [&#39;A&#39;, &#39;B&#39;])之后修改t[2][0] = &#39;X&#39;</li>
+</ul>
+
+<h4 id="toc_14">条件判断、循环</h4>
+
+<ul>
+<li><p>if判断中缩进表示代码块“{}”，注意要写冒号“:” ；elif是“else if”的缩写</p>
+
+<pre><code class="language-python">age = 0
+if age &gt; 18:
+    print(&#39;your age is&#39;, age)
+   print(&#39;adult&#39;)
+print(&#39;haha&#39;)
+</code></pre></li>
+<li><p>input函数返回的数据类型是str，数值判断时必须进行转换，例如age = input(&#39;age:&#39;) if int(age) &lt; 20:</p></li>
+<li><p>循环：for x in Arr:、while BOOL:</p></li>
+<li><p>range()函数可以生产一个整数“序列”，再通过list()函数转为list，例如list(range(5))产生数组[0, 1, 2, 3, 4]</p></li>
+</ul>
+
+<h4 id="toc_15">dict</h4>
+
+<ul>
+<li>根据key找value（查找插入速度快，不会随key的增加而变慢；占用内存多，是一种空间换时间的方法）</li>
+<li>字典，无序可变（key的类型可以不同，value也是）</li>
+<li>dict的key是唯一且不可变，且key对应的value也是唯一的</li>
+<li>dict根据key通过Hash计算value的内存位置，字符串、整数都可作为key，list不可作为key</li>
+<li>d = {&#39;Micheal&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85}创建一个dict，使用len()获取dict的key-vulue对数</li>
+<li>d[&#39;Micheal&#39;]访问&#39;Micheal&#39;对应的value；若不存在此key则报KeyError，可先通过&#39;Micheal&#39; in d的方式判断key是否存在，再取值</li>
+<li>也可以通过get(&#39;Micheal&#39;)取值（不存在返回None，交互命令行不显示结果），同时也可以在key不存在时给默认值：get(&#39;Micheal&#39;, &#39;haha&#39;)</li>
+<li>d.pop(&#39;Micheal&#39;)根据key删除key-value对并返回对应的value</li>
+<li>d[&#39;adam&#39;] = 67添加或重新赋值key-value对</li>
+</ul>
+
+<h4 id="toc_16">set</h4>
+
+<ul>
+<li>由key（类型可以不同）组成的无序唯一的集合（可以认为是只含有key的“特殊”的dict）；</li>
+<li>set中不能存放list，但是可以存放tuple（含有list的tuple不能存放）</li>
+<li>创建：s = set([1, 2, 3])，添加：s.add(&#39;a&#39;)，删除：s.remove(&#39;a&#39;)，交集：s1 &amp; s2，并集：s1 | s2</li>
+</ul>
+
+<h4 id="toc_17">可变、不可变对象</h4>
+
+<ul>
+<li><p>调用不可变对象的任意方法，不会改变对象自身的内容，方法会创建新的对象并进行返回</p>
+
+<pre><code class="language-python">可变：如list
+a = [&#39;d&#39;, &#39;b&#39;, &#39;c&#39;] 
+a.sort()
+a  # [&#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+
+不可变：如str
+a = &#39;abc&#39;  # a是变量，&#39;abc&#39;是字符串对象，a指向&#39;abc&#39;
+a.replace(&#39;a&#39;, &#39;A&#39;)  # &#39;Abc&#39;
+a   # &#39;abc&#39;
+</code></pre></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hexo博客搭建使用]]></title>
+    <link href="http://www.justisit.com/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html"/>
+    <updated>2016-07-31T22:18:50+08:00</updated>
+    <id>http://www.justisit.com/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>2016/08/16更新：补充说明；</li>
+</ul>
+
+<h2 id="toc_0">一. 搭建步骤</h2>
+
+<ol>
+<li><p>安装Git；</p></li>
+<li><p>安装Node.js；</p></li>
+<li><p>通过Node.js安装hexo-cli模块（作用：可以执行hexo命令）；</p>
+
+<pre><code>sudo npm install hexo-cli -g
+</code></pre></li>
+<li><p>Hexo创建博客；</p>
+
+<pre><code>hexo init &lt;BLOG_FOLDER&gt; # 会自动安装Hexo所需要的模块
+
+cd &lt;BLOG_FOLDER&gt;
+npm ls --depth=0 # 查看安装的本地模块
+</code></pre>
+
+<span id="more"></span><!-- more --></li>
+<li><p>启动本地服务器预览；</p>
+
+<pre><code>hexo s # 启动本地Server
+
+# 之后在浏览器中打开“http://localhost:4000/”进行查看
+</code></pre></li>
+<li><p>开启GitHub Pages；</p></li>
+<li><p>配置博客根目录的_config.yml文件（目的：为了部署到远程服务器上，比如GitHub Pages）；</p>
+
+<pre><code># 注意空格
+deploy: 
+  type: git
+  repository: REPO_URL
+  branch: BRANCH_NAME
+</code></pre></li>
+<li><p>安装Hexo部署插件；</p>
+
+<pre><code>npm install hexo-deployer-git --save
+</code></pre></li>
+<li><p>部署至远程服务器；</p>
+
+<pre><code>hexo d # 部署Hexo生成的文件
+
+# 之后在浏览器中打开“http://USERNAME.github.io/”进行查看
+</code></pre></li>
+<li><p>GitHub Pages绑定自定义域名（可选）；</p>
+
+<ul>
+<li>在域名管理处添加CNAME记录，记录值为GitHub Pages地址（USERNAME.github.io）；</li>
+<li>在博客的source文件夹中创建CNAME文件（touch CNAME），写入域名信息（比如www.abc.com），注意不要添加协议前缀，http://、https://）；</li>
+</ul></li>
+</ol>
+
+<h2 id="toc_1">二. Hexo使用</h2>
+
+<ul>
+<li><p>相关命令如下，命令可以简写；</p>
+
+<pre><code>hexo n &lt;POST_NAME&gt; # hexo new &quot;POST_NAME&quot;，新建一篇文章
+hexo g # hexo generate，生成静态文件
+hexo s # hexo server，启动本地服务器预览
+hexo d # hexo deploy，将本地文件发布到远程（如GitHub）
+</code></pre></li>
+</ul>
+
+<h2 id="toc_2">三. 备份管理</h2>
+
+<ul>
+<li><p>由于Hexo将博文的<strong>源文件（.md、配置文件等）</strong>转为<strong>网页文件</strong>”，而操作网页文件是十分麻烦的；为了防止源文件丢失或需要在不同电脑上写作，需要进行备份管理源文件；</p>
+
+<ul>
+<li><p>方案1. 源文件、网页文件使用同一仓库管理</p>
+
+<ul>
+<li>使用GitHub Pages时创建两个Branch，一个Branch用于部署网页文件（通过hexo d命令），一个Branch用于备份源文件（通过git push命令）；</li>
+<li>缺点：由于GitHub免费的仓库是public的，Hexo文件中一些涉及key会被暴露；</li>
+</ul></li>
+<li><p>方案2. 源文件、网页文件使用不同仓库管理</p>
+
+<ul>
+<li>使用GitHub Pages部署网页文件，使用git.oschina的private仓库备份源文件；</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_3">四. 重新安装</h2>
+
+<ul>
+<li>当重新安装Hexo或需要在不同电脑上操作写作，并且此时有源文件，需要执行以下步骤；
+
+<ol>
+<li>按上面“搭建步骤”进行安装；</li>
+<li>将源文件复制到博客的source/_posts文件夹中即可；</li>
+</ol></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CocoaPods使用教程]]></title>
+    <link href="http://www.justisit.com/CocoaPods%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.html"/>
+    <updated>2016-08-17T01:16:55+08:00</updated>
+    <id>http://www.justisit.com/CocoaPods%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.html</id>
+    <content type="html"><![CDATA[
+<ul>
+<li>2016/08/16更新：补充说明；</li>
+</ul>
+
+<h2 id="toc_0">概述</h2>
+
+<ul>
+<li>CocoaPods是iOS平台的第三方框架（类库）管理工具，类似于Android中的Gradle；只不过没有Gradle强大，Gradle不仅可以自动下载配置所需要的类库，而且还可以进行自动化构建；</li>
+<li>CocoaPods基于Ruby，是Ruby的一个包（库）；安装CocoaPods时，需要确保使用最新的Ruby/Gem进行安装；</li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h2 id="toc_1">安装、初始化</h2>
+
+<ol>
+<li>安装最新的Ruby（建议使用rbenv进行安装）；</li>
+<li>更换Ruby的gem的源（建议使用淘宝的<a href="">https://ruby.taobao.org/</a>）；</li>
+<li><p>安装CocoaPods；</p>
+
+<pre><code>gem install cocoapods
+
+之后重启终端，进入相应的Ruby环境；
+pod --version # 执行pod命令检查CocoaPods是否被安装正确
+</code></pre>
+
+<ul>
+<li><p>注意若使用macOS自带的Ruby进行安装CocoaPods时，会报 <strong><code>... Operation not permitted - /usr/bin/fuzzy_match</code></strong> 错误，这是由于OS X 10.11引入了Rootless机制导致的，不仅仅只是对CocoaPods有副作用；解决办法如下：</p>
+
+<pre><code>sudo gem install -n /usr/local/bin cocoapods
+</code></pre></li>
+</ul></li>
+<li><p>（可选）更换CocoaPods镜像索引的源；</p>
+
+<ul>
+<li><p>CocoaPods使用之前必须先将第三方框架的spec repo（镜像索引）文件缓存到本地；该文件存放在GitHub上，若GitHub的下载速度还可以，亦可不进行此步操作。</p>
+
+<pre><code>pod repo remove master # 删除一个spec repo
+pod repo add master https://git.oschina.net/akuandev/Specs.git
+</code></pre></li>
+</ul></li>
+<li><p>获取CocoaPods镜像索引；</p>
+
+<pre><code>pod setup
+</code></pre>
+
+<ul>
+<li>执行该命令后，终端输出并卡在“Setting up CocoaPods master repo”；此时需要稍等片刻，Cocoapods正在将镜像索引下载到 ~/.cocoapods目录中，可到该目录中使用 <strong><code>du -sh *</code></strong> 命令查看此刻下载大小；</li>
+</ul></li>
+</ol>
+
+<h2 id="toc_2">卸载</h2>
+
+<ul>
+<li><p>卸载CocoaPods除了需要使用gem卸载相关的CocoaPods包之外，还需要清理镜像索引缓存、删除pod执行文件、重启终端，一共4步操作；</p>
+
+<pre><code>gem list | grep cocoapods # 查找与cocoapods相关的包
+sudo gem uninstall &lt;PACKAGE&gt; # 删除上面查找到的与cocoapods相关的包
+
+rm -rf ~/.cocoapods # 删除cocoapods本地索引缓存文件
+
+which pod # 查找cocoapods的可执行文件pod的路径
+rm /usr/local/bin/pod # 删除可执行文件pod（上面查询到的路径）
+
+最后：重启终端
+</code></pre></li>
+</ul>
+
+<h2 id="toc_3">pod使用</h2>
+
+<ul>
+<li>使用CocoaPods之前，需要在工程目录下创建一个名为“Podfile”的文本文件；该文件用来描述需要使用哪些第三方框架及使用这些框架的Target；</li>
+<li>执行 <code>pod install 或 pod update</code> 命令时，CocoaPods每次都会先主动更新CocoaPods的镜像索引文件；可在执行命令时加参数 <strong>--no-repo-update</strong> 略过此步，以加速执行速度；</li>
+<li><p>添加参数 <strong>--no-repo-update</strong> 执行相关命令，有时报以下类似错误 <code>Unable to satisfy the following requirements: - `XXXX`, `~&gt; 2.4` required by `Podfile`</code> ，这是由于本地镜像索引文件过时导致的；此时应去除参数 <strong>--no-repo-update</strong> 再进行执行相关命令，或主动更新镜像索引文件（ <code>pod repo update</code> ；若更新失败可以删除镜像索引文件后重新进行 <code>pod setup</code> 操作 ）；</p>
+
+<pre><code>pod [COMMAND] help # 查看命令帮助
+
+pod search &lt;NAME&gt; # 搜索类库，例如pod search AFNetworking
+
+pod install [--no-repo-update] # 根据Podfile文件，初次安装类库时执行
+pod update [--no-repo-update] # 更新工程（修改了Podfile需要进行更新，比如新增、更新、删除类库）
+</code></pre></li>
+<li><p><strong>若执行pod相关命令报以下类似警告 <code>...target overrides the `OTHER_LDFLAGS` build setting defined...</code> ，则说明pod自动生成的一些配置信息没有生效，这是由于工程自身的配置信息覆盖掉pod自动生成的配置信息；</strong></p>
+
+<ul>
+<li><strong>相关原理：</strong>
+
+<ul>
+<li><strong>CocoaPods根据所需要相关类库信息自动生成一个新的名为Pods.xcodeproj工程，然后编译出一个libPods.a的静态库文件，引入到原有工程中，并自动设置相关配置信息（比如Header Search Paths、Library Search Paths、Other Linker Flags），同时也创建一个和原有工程同名的工程组文件*.xcworkspace；</strong></li>
+<li><strong>Xcode工程文件的配置信息（比如经常修改的Header Search Paths等）可以在多个地方可以修改，比如“Project”中的“Configurations”（需创建*.xcconfig文件；有工程级别、Target级别）、“Project”中的“Build Settings”、“Target”中的“Build Settings”，它们的优先级依次变高，相同的配置项优先级高的会覆盖优先级低的，若要继承优先级低的配置则需要使用“$(inherited)”表示；</strong></li>
+<li><strong>pod自动生成的配置信息就是配置在“Project”中的“Configurations”的Target级别*.xcconfig文件；</strong></li>
+</ul></li>
+<li><strong>解决办法：</strong>
+
+<ul>
+<li><strong>方法一：删除是相同项的工程自身的配置信息；</strong></li>
+<li><strong>方法二：使用“$(inherited)”继承优先级低的pod自动生成的配置信息；</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_4">项目中移除CocoaPods</h2>
+
+<ul>
+<li>删除工程文件夹下的Podfile、Podfile.lock、Pods、*.xcworkspace文件（夹）；</li>
+<li>打开原有工程文件，删除Pods文件夹，删除Frameworks文件夹中的libPods.a文件，删除“Build Phases”选项中的“[CP]Check Pods Manifest.lock”、“[CP]Copy Pods Resources”、“[CP]Embeded Pods Frameworks”等与CocoaPods相关项；</li>
+<li>移除使用的相关类库代码；若有必要还需移除相关配置信息（比如Header Search Paths等）；</li>
+</ul>
+
+<h2 id="toc_5">Podfile文件使用</h2>
+
+<ul>
+<li>之前Podfile文件都是需要自己手动创建（ <code>touch Podfile</code> ），现在最新的CocoaPods可以自动创建该文件（执行 <strong><code>pod init</code></strong> 命令；需要当前的目录中有Xcode工程文件）；</li>
+<li><p>Podefile文件的格式，不同版本的CocoaPods所需要的是不一样的；同时要注意空格符、iOS版本等规范；最新的Podefile文件的格式如下：（inhibit_all_warnings!表示消除CocoaPods引入的类库中的警告）</p>
+
+<pre><code>inhibit_all_warnings! 
+platform :ios, &#39;7.0&#39;
+
+target &#39;Sample&#39; do
+    pod &#39;AFNetworking&#39;, &#39;2.4.0&#39;
+    pod &#39;SDWebImage&#39;, &#39;3.7.5&#39;
+end
+</code></pre></li>
+<li><p>类库的版本格式补充：</p>
+
+<pre><code>pod &#39;AFNetworking&#39; # 不指定版本，每次都获取最新版本  
+pod &#39;AFNetworking&#39;, &#39;2.0&#39; # 只使用2.0版本  
+pod &#39;AFNetworking&#39;, &#39;&gt; 2.0&#39; # 使用高于2.0的版本  
+pod &#39;AFNetworking&#39;, &#39;&gt;= 2.0&#39; # 使用大于等于2.0的版本  
+pod &#39;AFNetworking&#39;, &#39;~&gt;0.1&#39; # 使用大于等于0.1但小于1.0的版本  
+pod &#39;AFNetworking&#39;, &#39;~&gt; 0.1.2&#39; # 使用大于等于0.1.2但小于0.2的版本
+</code></pre></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
