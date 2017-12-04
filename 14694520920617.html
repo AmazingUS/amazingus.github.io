@@ -1,0 +1,499 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Homebrew使用教程 - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Homebrew使用教程</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2016/7/25</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">一. 概述</a>
+</li>
+<li>
+<a href="#toc_1">二、安装、卸载</a>
+</li>
+<li>
+<a href="#toc_2">三、brew常用命令</a>
+</li>
+<li>
+<a href="#toc_3">四、Homebrew-cask</a>
+</li>
+<li>
+<a href="#toc_4">五、常用开发工具</a>
+<ul>
+<li>
+<a href="#toc_5">5.1 MySQL</a>
+</li>
+<li>
+<a href="#toc_6">5.2 Oracle Java</a>
+</li>
+<li>
+<a href="#toc_7">5.3 Tomcat</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">六、管理工具</a>
+<ul>
+<li>
+<a href="#toc_9">6.1 Cakebrew</a>
+</li>
+<li>
+<a href="#toc_10">6.2 LaunchRocket</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一. 概述</h4>
+
+<ul>
+<li>Homebrew（简称brew）是macOS中的软件管理工具，可以方便地安装、更新、卸载软件，类似Ubuntu系统中的apt-get；</li>
+<li>macOS默认安装了Python、Ruby、Perl、Apache/PHP等开发程序，但是版本比较旧；若直接使用新版本替换系统的旧版本，会引发一些问题，Homebrew可以很好地将其安装的开发工具与系统默认的隔离开来；</li>
+</ul>
+
+<h4 id="toc_1">二、安装、卸载</h4>
+
+<ul>
+<li>brew是基于Ruby运行的工具，必须先安装Ruby；</li>
+<li><p>在终端中执行以下指令（可在 <code>https://brew.sh/</code> 页面中获取）即可自动安装，路径为/usr/local/Homebrew/，其中/usr/local/Homebrew/Library/是brew系统的自身目录；</p>
+
+<pre><code class="language-ruby">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+
+<span id="more"></span><!-- more -->
+
+<ul>
+<li>brew会创建/usr/local/Cellar/目录，用于存放通过其安装的程序，文件夹结构为“程序名/版本号”；</li>
+<li>/usr/local/bin/目录存放程序的启动链接（相当于快捷方式）；brew也会在此创建通过其安装的程序的启动链接</li>
+<li>brew安装的程序的配置文件默认存放在/usr/local/etc/目录中；</li>
+</ul></li>
+<li><p>在终端中执行以下指令（可在 <code>https://docs.brew.sh/FAQ.html</code> 页面中获取）即可自动卸载；</p>
+
+<pre><code class="language-ruby">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&quot;
+</code></pre></li>
+</ul>
+
+<h4 id="toc_2">三、brew常用命令</h4>
+
+<ul>
+<li><p>可以使用 <code>brew doctor</code> 命令检测操作brew（安装、卸载程序等）后是否有什么问题；比如，若报以下警告，按照提示进行解决，之后再执行 <code>source .bash_profile</code> ；<br/>
+<img src="media/14694520920617/brew_warning.png" alt="brew_warning"/></p></li>
+<li><p>执行 <code>brew install</code> 之后，要注意终端输出日志，从而采取操作的操作（caveats: 警告、附加说明）；<br/>
+<img src="media/14694520920617/caveats.png" alt="caveats"/></p>
+
+<pre><code>brew -h | --help # 查看brew帮助（使用--时，命令要写全）
+brew -v | --version # 查看brew当前的版本
+brew update # 更新brew
+
+brew list # 查看通过brew安装的程序
+brew outdated # 查看哪些程序可以更新
+brew search &lt;NAME&gt; # 搜索某个程序，例如brew search wget；NAME支持正则表达式，例如brew search /wge*/
+
+brew install &lt;NAME&gt; # 安装某个程序，例如brew install wget
+brew uninstall | remove &lt;NAME&gt; # 卸载某个程序（不会卸载相关包依赖），例如brew uninstall wget
+brew upgrade [NAME] # 更新所有程序（或某个程序）
+
+brew info &lt;NAME&gt; # 查看某个程序的相关信息
+brew deps &lt;NAME&gt; # 查看某个程序的包依赖
+brew home [NAME] # 使用浏览器打开brew（或某个程序）的主页
+</code></pre></li>
+</ul>
+
+<h4 id="toc_3">四、Homebrew-cask</h4>
+
+<ul>
+<li>Homebrew-cask是Homebrew的一个扩展，用于安装图形界面程序（例如Chrome、QQMusic等），其命令为 <code>brew cask ...</code> ；</li>
+<li>brew用于安装不带界面的命令行工具，brew cask用于安装带界面的应用软件；</li>
+<li>Homebrew-cask有两个安装索引源，一个是稳定版本 <code>https://github.com/phinze/homebrew-cask</code> ，一个是开发版本 <code>https://github.com/caskroom/homebrew-versions</code> ；安装了Homebrew即可直接使用Homebrew-cask稳定版本的索引源；</li>
+<li><p>Homebrew-cask和Homebrew的搜索、安装、卸载、更新等操作是独立的；</p>
+
+<pre><code>brew cask list # 查看通过Homebrew-cask安装的程序
+brew cask search &lt;NAME&gt; # 搜索某个程序，例如brew cask search qqmusic
+
+brew cask install &lt;NAME&gt; # 安装某个程序（路径为/Applications目录），例如brew cask install qqmusic
+brew cask uninstall | remove &lt;NAME&gt; # 卸载某个程序，例如brew cask uninstall qqmusic
+····
+</code></pre></li>
+<li><p>注意：Homebrew-cask<strong>没有提供<code>brew cask upgrade [NAME]</code>的命令升级程序版本</strong>，只能重新安装程序；</p></li>
+</ul>
+
+<h4 id="toc_4">五、常用开发工具</h4>
+
+<h5 id="toc_5">5.1 MySQL</h5>
+
+<ul>
+<li><p>安装MySQL后，根据相关的信息配置MySQL；</p>
+
+<pre><code>brew install msysql
+</code></pre>
+
+<p><img src="media/14694520920617/brew_install_mysql.png" alt="brew_install_mysq"/></p>
+
+<ul>
+<li>首先执行 <code>mysql.server start</code> 或 <code>brew servers start mysql</code> 启动MySQL（关闭使用stop命令），之后才可以连接数据库（<code>mysql -uroot</code>）；否则会报错：<code>Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (2)</code> ；</li>
+<li>MySQL默认没有设置密码；若需要设置密码，执行 <code>mysql_secure_installation</code> ，此时会提醒安装“VALIDATE PASSWORD PLUGIN”，选择<strong>NO</strong>，否则无法设置简单密码，之后按照后续提示进行操作即可；</li>
+</ul></li>
+<li><p>MySQL的数据库文件默认存放在/usr/local/var/mysql/目录中，可执行SQL语句进行查看：<code>show global variables like &quot;%datadir%&quot;;</code> ；当卸载时，若要完全删除MySQL，必须手动删除该数据库文件；<br/>
+<img src="media/14694520920617/datadir.png" alt="datadi" style="width:373px;"/></p></li>
+<li><p>通过brew安装MySQL，卸载时通过brew卸载即可；若是手动安装，则需要手动卸载（命令如下）；</p>
+
+<pre><code>sudo rm /usr/local/mysql
+sudo rm -rf /usr/local/mysql*
+sudo rm -rf /Library/StartupItems/MySQLCOM
+sudo rm -rf /Library/PreferencePanes/My*
+sudo rm -rf ~/Library/PreferencePanes/My*
+sudo rm -rf /Library/Receipts/mysql*
+sudo rm -rf /Library/Receipts/MySQL*
+sudo rm -rf /var/db/receipts/com.mysql.* 
+vim /etc/hostconfig  (and removed the line MYSQLCOM=-YES-)
+
+sudo rm -rf /usr/local/var/mysql # 删除数据库文件
+</code></pre></li>
+</ul>
+
+<h5 id="toc_6">5.2 Oracle Java</h5>
+
+<ul>
+<li><p>注意是使用Homebrew-cask进行安装（可以执行 <code>brew search java</code> 命令查询安装源是Homebrew，还是Homebrew-cask）；若之前手动安装过Oracle Java，需要先进行手动卸载（命令如下；参考 <code>https://docs.oracle.com/javase/9/install/installation-jdk-and-jre-macos.htm</code> ）；</p>
+
+<pre><code>brew cask install java # 安装Oracle Java
+brew cask uninstall java # 卸载Oracle Java
+</code></pre></li>
+<li><p>Uninstalling the JDK on macOS<br/>
+<img src="media/14694520920617/uninstall_jdk.png" alt="uninstall_jdk"/></p></li>
+<li><p>Uninstalling the JRE on macOS<br/>
+<img src="media/14694520920617/uninstall_jre.png" alt="uninstall_jre"/></p>
+
+<pre><code>sudo rm -rf /Library/Java
+
+sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
+sudo rm -rf /Library/PreferencePanes/JavaControlPanel.prefPane
+
+sudo rm -rf /Library/LaunchAgents/com.oracle.java.Java-Updater.plist
+sudo rm -rf /Library/LaunchDaemons/com.oracle.java.JavaUpdateHelper.plist
+sudo rm -rf /Library/Preferences/com.oracle.java.Helper-Tool.plist
+sudo rm -rf /Library/PrivilegedHelperTools/com.oracle.java.JavaUpdateHelper
+sudo rm /var/db/receipts/com.oracle.*
+...
+</code></pre>
+
+<ul>
+<li><p>Shell命令补充：查找匹配、删除文件</p>
+
+<pre><code># 全盘查找带“编程”的目录（d）、普通文件（f）、链接文件（l）等文件
+find / -name &quot;*编程*&quot;
+# 当前目录查找带“编程”的普通文件
+find . -name &quot;*编程*&quot; -type f
+
+# 当前目录查找带“编程”的普通文件，并删除（不带打印）
+find . -name &quot;*编程*&quot; -type f | xargs rm -rf
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h5 id="toc_7">5.3 Tomcat</h5>
+
+<ul>
+<li><p>Tomcat后运行服务后，默认网址为 <code>http://localhost:8080/</code> ；</p>
+
+<pre><code>brew install tomcat # 安装tomcat
+
+catalina run # 在当前窗口中运行tomcat
+catalina start # 运行tomcat
+catalina stop # 关闭tomcat
+</code></pre></li>
+</ul>
+
+<h4 id="toc_8">六、管理工具</h4>
+
+<h5 id="toc_9">6.1 Cakebrew</h5>
+
+<ul>
+<li>Cakebrew是一个图形化的Homebrew，通过该工具不使用brew命令就可以进行Homebrew的管理；<code>https://www.cakebrew.com/</code>
+<img src="media/14694520920617/cakebrew.png" alt="cakebre" style="width:560px;"/></li>
+</ul>
+
+<h5 id="toc_10">6.2 LaunchRocket</h5>
+
+<ul>
+<li>LaunchRocket可以管理通过Homebrew安装的service，查看service的运行状态；<code>https://github.com/jimbojsb/launchrocket</code></li>
+<li>注意：先将service关闭后，再通过LaunchRocket进行管理；
+<img src="media/14694520920617/launchrocket.png" alt="launchrocket" style="width:664px;"/></li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="14702376488769.html" 
+          title="Previous Post: Python3环境搭建教程">&laquo; Python3环境搭建教程</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="Node.js%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html" 
+          title="Next Post: Node.js环境搭建教程">Node.js环境搭建教程 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="Ruby%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html">Ruby环境搭建教程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14702376488769.html">Python3环境搭建教程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="14694520920617.html">Homebrew使用教程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="Node.js%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html">Node.js环境搭建教程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B.html">Hexo博客搭建使用</a>
+			      </li>
+		     
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>
