@@ -1,0 +1,880 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Python3笔记(13常见内建模块(下)、14常用第三方模块) - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Python3笔记(13常见内建模块(下)、14常用第三方模块)</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/12/7</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">13. 常见内建模块(下)</a>
+<ul>
+<li>
+<a href="#toc_1">13.5 hashlib</a>
+</li>
+<li>
+<a href="#toc_2">13.6 itertools</a>
+</li>
+<li>
+<a href="#toc_3">13.7 ParserCreate（XML）</a>
+</li>
+<li>
+<a href="#toc_4">13.8 HTMLParser（HTML）</a>
+</li>
+<li>
+<a href="#toc_5">13.9 urllib</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">14. 常用第三方模块</a>
+<ul>
+<li>
+<a href="#toc_7">14.1 概述</a>
+</li>
+<li>
+<a href="#toc_8">14.2 PIL</a>
+</li>
+<li>
+<a href="#toc_9">14.3 virturalenv</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">13. 常见内建模块(下)</h4>
+
+<h5 id="toc_1">13.5 hashlib</h5>
+
+<ul>
+<li><p>hashlib提供了常见的摘要算法（如MD5、SHA等）；摘要算法又称为哈希算法、散列算法，通过把任意长度的数据转换为一个长度固定的字符串（16进制表示的字符串）</p>
+
+<pre><code class="language-python">import hashlib
+
+md5 = hashlib.md5()
+# 先转成字节，再进行hash
+md5.update(&#39;how to use md5 in python hashlib?&#39;.encode(&#39;utf-8&#39;))
+m = md5.hexdigest()
+print(m)  # d26a53750bc40b38b65a520292f69306
+
+# 若数据量较大，可分多次调用update()，最后计算的结果是一样的
+md5 = hashlib.md5()
+md5.update(&#39;how to use md5 in &#39;.encode(&#39;utf-8&#39;))
+md5.update(&#39;python hashlib?&#39;.encode(&#39;utf-8&#39;))
+m = md5.hexdigest()
+print(m)  # d26a53750bc40b38b65a520292f69306
+</code></pre></li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<ul>
+<li>MD5生成的结果是固定的128bit，通常用一个32位的16进制字符串表示；SHA1的结果是160bit，通常用一个40位的16进制字符串表示</li>
+<li><p>比SHA1更安全的算法是SHA256和SH512；不过，越安全的算法不仅生成越慢，而且摘要长度更长</p>
+
+<pre><code class="language-python">sha1 = hashlib.sha1()
+sha1.update(&#39;how to use md5 in &#39;.encode(&#39;utf-8&#39;))
+sha1.update(&#39;python hashlib?&#39;.encode(&#39;utf-8&#39;))
+m = sha1.hexdigest()
+print(m)  # b752d34ce353e2916e943dc92501021c8f6bca8c
+</code></pre></li>
+<li><p>摘要算法应用：</p>
+
+<ul>
+<li>网站存储用户登录的用户名和口令信息，其中口令信息是口令的摘要（如MD5），防止数据库泄漏或被人为查看；用户登录时对用户输入的明文口令先进行MD5运算，之后再和数据库存储的MD5进行对比</li>
+<li>常见字符串（如123）的MD5、SHA1容易被破解，一般会对原始口令加一个复杂字符串后再进行MD5、SHA1，俗称“加盐（Salt）”，这样就很难通过MD5、SHA1反推常见字符串明文口令</li>
+<li>若两个用户使用相同口令，则MD5值一样，这时可以使用用户登录名作为Salt，这样相同口令加不同的Salt得到不同的MD5值</li>
+</ul></li>
+<li><p><strong>摘要算法不是加密算法，不能用于加密（因为无法通过摘要反推明文），只能用于防篡改；但是它的单向计算特性决定了可以在不存储明文口令的情况下++验证++用户口令</strong></p>
+
+<pre><code class="language-python"># 举例：模拟用户注册登录
+import hashlib
+
+db = {}
+def calc_md5(password, salt):
+    md5 = hashlib.md5()
+    md5.update(password.encode(&#39;utf-8&#39;))
+    md5.update(salt.encode(&#39;utf-8&#39;))
+    return md5.hexdigest()
+
+def register(username, password):
+    db[username] = calc_md5(password, username)
+    print(&#39;register successfully!&#39;)
+    print(db)
+    login(username, password)
+
+def login(username, password):
+    if username in db:
+        if db[username] == calc_md5(password, username):
+            print(&#39;%s login successfully!&#39; % username)
+        else:
+            print(&#39;password incorrect!&#39;)
+    else:
+        print(&#39;%s don\&#39;t exist!&#39; % username)
+        print(&#39;registing..&#39;)
+        register(username, password)
+
+if __name__ == &#39;__main__&#39;:
+    username = input(&#39;Your username: &#39;)
+    password = input(&#39;Your password: &#39;)
+    login(username, password)
+</code></pre></li>
+</ul>
+
+<h5 id="toc_2">13.6 itertools</h5>
+
+<ul>
+<li>itertools模块提供一些非常有用的处理迭代功能的函数，它们的返回值不是list，而是Iterator，只有进行循环迭代的时候才开始真正计算</li>
+<li><p>“无限”迭代器：count()、cycle()、repeat()</p>
+
+<pre><code class="language-python">import itertools
+
+# count()：创建一个无限的迭代器，遍历时无法停止，只能强行退出
+natuals = itertools.count(1) # 1表示从数字1开始
+for n in natuals:
+    print(n)
+
+# cycle()：把一个序列中的元素无限重复下去（字符串也是序列的一种）
+cs = itertools.cycle(&#39;ABC&#39;)
+for c in cs:
+    print(c)
+
+# repeat()：把一个元素无限重复下去，第2个参数可以限定重复次数
+ns = itertools.repeat(&#39;A&#39;, 3)
+for n in ns:
+    print(n)
+</code></pre>
+
+<pre><code class="language-python">natuals = itertools.count(1)
+# 通常使用takewhile()等函数根据条件判断来截取出一个有限的序列
+ns = itertools.takewhile(lambda x: x &lt; 10, natuals)
+l = list(ns)
+print(l)
+</code></pre></li>
+<li><p>迭代组合：chian()、groupby()</p>
+
+<pre><code class="language-python"># chian()：把一组迭代对象串联起来，形成一个更大的迭代器
+for c in itertools.chain(&#39;ABC&#39;, &#39;XYZ&#39;):
+    print(c) # 迭代效果：&#39;A&#39; &#39;B&#39; &#39;C&#39; &#39;X&#39; &#39;Y&#39; &#39;Z&#39;
+
+# groupby()：把迭代对象中“相邻的”并且重复的元素挑出来放在一起
+for key, group in itertools.groupby(&#39;AAABBBCCAAA&#39;):
+    print(key, list(group))
+# 输出结果
+A [&#39;A&#39;, &#39;A&#39;, &#39;A&#39;]
+B [&#39;B&#39;, &#39;B&#39;, &#39;B&#39;]
+C [&#39;C&#39;, &#39;C&#39;]
+A [&#39;A&#39;, &#39;A&#39;, &#39;A&#39;]
+</code></pre></li>
+<li><p>groupby()的挑选规则实际上是通过函数完成的，只要两个元素的函数返回值相同，这两个元素就被认为是在一组的，函数返回值作为这组的key</p>
+
+<pre><code class="language-python"># 忽略大小写分组
+for key, group in itertools.groupby(&#39;AaaBBbcCAAa&#39;, lambda c: c.upper()):
+    print(key, list(group))
+
+# 输出结果
+A [&#39;A&#39;, &#39;a&#39;, &#39;a&#39;]
+B [&#39;B&#39;, &#39;B&#39;, &#39;b&#39;]
+C [&#39;c&#39;, &#39;C&#39;]
+A [&#39;A&#39;, &#39;A&#39;, &#39;a&#39;]
+</code></pre></li>
+</ul>
+
+<h5 id="toc_3">13.7 ParserCreate（XML）</h5>
+
+<ul>
+<li>操作XML有两种方法：DOM和SAX
+
+<ul>
+<li>DOM：将整个XML读入内存解析为树；优点是可以任意遍历树的节点，缺点是占用内存大解析慢</li>
+<li>SAX：流模式，边读边解析；优点是占用内存小解析快，缺点是需要自己处理事件；一般情况下，优先考虑SAX</li>
+</ul></li>
+<li>在Python中使用SAX解析XML，只需要类似start_element、end_element、char_data三个回调函数（函数名可以任意）就可以解析了</li>
+<li><p>当SAX解析器读到一个节点时，比如，<code>&lt;p name=&quot;p&quot;&gt;python&lt;/p&gt;</code> 会产生3个事件：start_element事件（读取到<code>&lt;p name=&quot;p&quot;&gt;</code>时）、char_data事件（读取到<code>python</code>时）、end_element事件（读取到<code>&lt;/p&gt;</code>时）</p>
+
+<pre><code class="language-python"># 解析XML
+from xml.parsers.expat import ParserCreate
+
+class MySaxHandler(object):
+    def start_element(self, name, attrs):
+        print(&#39;sax:start_element: %s, attrs: %s&#39; % (name, attrs))
+
+    def end_element(self, name):
+        print(&#39;sax:end_element: %s&#39; % name)
+
+    def char_data(self, text):
+        print(&#39;sax:char_data: %s&#39; % text)
+
+xml = r&#39;&#39;&#39;&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;ol&gt;
+    &lt;li&gt;&lt;a href=&quot;/python&quot;&gt;Python&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/ruby&quot;&gt;Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&#39;&#39;&#39;
+
+parser = ParserCreate()
+# 设置处理函数
+handler = MySaxHandler()
+parser.StartElementHandler = handler.start_element
+parser.EndElementHandler = handler.end_element
+parser.CharacterDataHandler = handler.char_data
+parser.Parse(xml)
+
+# 读取大段字符串时，CharacterDataHandler可能被多次调用，
+# 可以人为先保存一下，之后在EndElementHandler中合并
+</code></pre></li>
+<li><p>生成XML最简单有效的方法就是拼接字符串</p>
+
+<pre><code class="language-python"># 生成XML
+l = []
+l.append(r&#39;&lt;?xml version=&quot;1.0&quot;?&gt;&#39;)
+l.append(r&#39;&lt;root&gt;&#39;)
+l.append(&#39;abc&#39;)
+l.append(r&#39;&lt;/root&gt;&#39;)
+s = &#39;&#39;.join(l)
+print(s)
+</code></pre>
+
+<pre><code class="language-python"># 练习：解析天气XML
+data = r&#39;&#39;&#39;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot; ?&gt;
+&lt;rss version=&quot;2.0&quot; xmlns:yweather=&quot;http://xml.weather.yahoo.com/ns/rss/1.0&quot; xmlns:geo=&quot;http://www.w3.org/2003/01/geo/wgs84_pos#&quot;&gt;
+    &lt;channel&gt;
+        &lt;title&gt;Yahoo! Weather - Beijing, CN&lt;/title&gt;
+        &lt;lastBuildDate&gt;Wed, 27 May 2015 11:00 am CST&lt;/lastBuildDate&gt;
+        &lt;yweather:location city=&quot;Beijing&quot; region=&quot;&quot; country=&quot;China&quot;/&gt;
+        &lt;yweather:units temperature=&quot;C&quot; distance=&quot;km&quot; pressure=&quot;mb&quot; speed=&quot;km/h&quot;/&gt;
+        &lt;yweather:wind chill=&quot;28&quot; direction=&quot;180&quot; speed=&quot;14.48&quot; /&gt;
+        &lt;yweather:atmosphere humidity=&quot;53&quot; visibility=&quot;2.61&quot; pressure=&quot;1006.1&quot; rising=&quot;0&quot; /&gt;
+        &lt;yweather:astronomy sunrise=&quot;4:51 am&quot; sunset=&quot;7:32 pm&quot;/&gt;
+        &lt;item&gt;
+            &lt;geo:lat&gt;39.91&lt;/geo:lat&gt;
+            &lt;geo:long&gt;116.39&lt;/geo:long&gt;
+            &lt;pubDate&gt;Wed, 27 May 2015 11:00 am CST&lt;/pubDate&gt;
+            &lt;yweather:condition text=&quot;Haze&quot; code=&quot;21&quot; temp=&quot;28&quot; date=&quot;Wed, 27 May 2015 11:00 am CST&quot; /&gt;
+            &lt;yweather:forecast day=&quot;Wed&quot; date=&quot;27 May 2015&quot; low=&quot;20&quot; high=&quot;33&quot; text=&quot;Partly Cloudy&quot; code=&quot;30&quot; /&gt;
+            &lt;yweather:forecast day=&quot;Thu&quot; date=&quot;28 May 2015&quot; low=&quot;21&quot; high=&quot;34&quot; text=&quot;Sunny&quot; code=&quot;32&quot; /&gt;
+            &lt;yweather:forecast day=&quot;Fri&quot; date=&quot;29 May 2015&quot; low=&quot;18&quot; high=&quot;25&quot; text=&quot;AM Showers&quot; code=&quot;39&quot; /&gt;
+            &lt;yweather:forecast day=&quot;Sat&quot; date=&quot;30 May 2015&quot; low=&quot;18&quot; high=&quot;32&quot; text=&quot;Sunny&quot; code=&quot;32&quot; /&gt;
+            &lt;yweather:forecast day=&quot;Sun&quot; date=&quot;31 May 2015&quot; low=&quot;20&quot; high=&quot;37&quot; text=&quot;Sunny&quot; code=&quot;32&quot; /&gt;
+        &lt;/item&gt;
+    &lt;/channel&gt;
+&lt;/rss&gt;
+&#39;&#39;&#39;
+
+from xml.parsers.expat import ParserCreate
+
+class WeatherSaxHandler(object):
+    def start_element(self, name, attrs):
+        if name == &#39;yweather:location&#39;:
+            self.city = attrs[&#39;city&#39;]
+            self.country = attrs[&#39;country&#39;]
+        elif name == &#39;yweather:forecast&#39;:
+            if not hasattr(self, &#39;today&#39;):  # 要求xml中today的天气在前面
+                self.today = {&#39;text&#39;: attrs[&#39;text&#39;], &#39;low&#39;: int(attrs[&#39;low&#39;]), &#39;high&#39;: int(attrs[&#39;high&#39;])}
+            elif hasattr(self, &#39;today&#39;) and (not hasattr(self, &#39;tomorrow&#39;)):
+                self.tomorrow = {&#39;text&#39;: attrs[&#39;text&#39;], &#39;low&#39;: int(attrs[&#39;low&#39;]), &#39;high&#39;: int(attrs[&#39;high&#39;])}
+
+def parse_weather(xml):
+    handler = WeatherSaxHandler()
+    parser = ParserCreate()
+    parser.StartElementHandler = handler.start_element
+    parser.Parse(xml)
+    return {
+        &#39;city&#39;: handler.city,
+        &#39;country&#39;: handler.country,
+        &#39;today&#39;: {
+            &#39;text&#39;: handler.today[&#39;text&#39;],
+            &#39;low&#39;: handler.today[&#39;low&#39;],
+            &#39;high&#39;: handler.today[&#39;high&#39;]
+        },
+        &#39;tomorrow&#39;: {
+            &#39;text&#39;: handler.tomorrow[&#39;text&#39;],
+            &#39;low&#39;: handler.tomorrow[&#39;low&#39;],
+            &#39;high&#39;: handler.tomorrow[&#39;high&#39;]
+        }
+    }
+
+weather = parse_weather(data)
+assert weather[&#39;city&#39;] == &#39;Beijing&#39;, &#39;%s失败&#39; % weather[&#39;city&#39;]
+assert weather[&#39;country&#39;] == &#39;China&#39;, &#39;%s失败&#39; % weather[&#39;country&#39;]
+assert weather[&#39;today&#39;][&#39;text&#39;] == &#39;Partly Cloudy&#39;, &#39;%s失败&#39; % weather[&#39;today&#39;][&#39;text&#39;]
+assert weather[&#39;today&#39;][&#39;low&#39;] == 20, &#39;%s失败&#39; % weather[&#39;today&#39;][&#39;low&#39;]
+assert weather[&#39;today&#39;][&#39;high&#39;] == 33, &#39;%s失败&#39; % weather[&#39;today&#39;][&#39;high&#39;]
+assert weather[&#39;tomorrow&#39;][&#39;text&#39;] == &#39;Sunny&#39;, &#39;%s失败&#39; % weather[&#39;tomorrow&#39;][&#39;text&#39;]
+assert weather[&#39;tomorrow&#39;][&#39;low&#39;] == 21, &#39;%s失败&#39; % weather[&#39;tomorrow&#39;][&#39;low&#39;]
+assert weather[&#39;tomorrow&#39;][&#39;high&#39;] == 34, &#39;%s失败&#39; % weather[&#39;tomorrow&#39;][&#39;high&#39;]
+print(&#39;pass&#39;)
+print(&#39;Weather:&#39;, str(weather))
+</code></pre></li>
+</ul>
+
+<h5 id="toc_4">13.8 HTMLParser（HTML）</h5>
+
+<ul>
+<li><p>HTML本质上是XML的子集，但是HTML的语法没有XML那么严格，所以不能用标准的DOM或SAX来解析HTML；Python提供了HTMLParser来解析HTML</p>
+
+<pre><code class="language-python">from html.parser import HTMLParser
+
+class MyHTMLParser(HTMLParser):
+    def handle_starttag(self, tag, attrs):
+        print(&#39;&lt;%s&gt;&#39; % tag)
+
+    def handle_endtag(self, tag):
+        print(&#39;&lt;/%s&gt;&#39; % tag)
+
+    def handle_startendtag(self, tag, attrs):
+        print(&#39;&lt;%s/&gt;&#39; % tag)
+
+    def handle_data(self, data):
+        print(data)
+
+    def handle_comment(self, data):
+        print(&#39;&lt;!--&#39;, data, &#39;--&gt;&#39;)
+
+    def handle_entityref(self, name):  # 处理一些特殊字符，以&amp;开头，比如&amp;nbsp
+        print(&#39;&amp;%s:&#39; % name)
+
+    def handle_charref(self, name):  # 处理特殊字符串，以&amp;#开头的，一般是内码表示的字符
+        print(&#39;&amp;#%s:&#39; % name)
+
+html = &#39;&#39;&#39;&lt;html&gt;
+&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;!-- test html parser --&gt;
+    &lt;p&gt;Some &lt;a href=\&quot;#\&quot;&gt;html&lt;/a&gt; HTML&amp;nbsp;tutorial...&lt;br&gt;END&lt;/p&gt;
+&lt;/body&gt;&amp;nbsp;&lt;/html&gt;&#39;&#39;&#39;
+
+parser = MyHTMLParser()
+parser.feed(html)
+</code></pre></li>
+<li><p>feed()方法可以多次调用，不需要一次把整个HTML字符串都传入，可以分批传入</p></li>
+<li><p>特殊字符有两种，一种是英文表示的 <code>&amp;nbsp;</code> ，一种是数字表示的 <code>&amp;#1234;</code> ；它们都可以通过HTMLParser被解析出来</p>
+
+<pre><code class="language-python"> # 练习：解析Python官网发布的会议时间、名称、地点
+from html.parser import HTMLParser
+
+class MyHTMLParser(HTMLParser):
+    def __init__(self):
+        super(MyHTMLParser, self).__init__()
+        self._flag = &#39;&#39;
+
+    def handle_starttag(self, tag, attrs):
+         # 标签的属性被解析成数组（元素为单个属性tuple）
+        if tag == &#39;h3&#39; and (&#39;class&#39;, &#39;event-title&#39;) in attrs:
+            self._flag = &#39;Title: &#39;
+        elif tag == &#39;span&#39; and (&#39;class&#39;, &#39;event-location&#39;) in attrs:
+            self._flag = &#39;Location: &#39;
+        elif tag == &#39;time&#39;:
+            self._flag = &#39;Time: &#39;
+        elif tag == &#39;span&#39; and (&#39;class&#39;, &#39;say-no-more&#39;) in attrs:
+            self._flag = &#39;year&#39;
+
+    def handle_data(self, data):
+        if self._flag == &#39;Title: &#39;:
+            print(&#39;-&#39; * 50)
+            print(self._flag, data.strip())
+        elif self._flag == &quot;Location: &quot;:
+            print(self._flag, data.strip())
+        elif self._flag == &#39;Time: &#39;:
+            # 加参数end，打印之后不换行
+            print(self._flag, data.strip(), end=&#39;~~~&#39;)
+        elif self._flag == &#39;year&#39;:
+            print(data.strip())
+        # 在获取到数据后，必须重置当前读取的标签
+        #（不可以在handle_starttag中重置，可能出现标签嵌套的情况）
+        # &lt;h3 class=&quot;event-title&quot;&gt;&lt;a href=&quot;/events/python-events/360/&quot;&gt;PyCon Namibia 2016
+        self._flag = &#39;&#39;
+
+parser = MyHTMLParser()
+with open(&#39;python-events.htm&#39;, &#39;r&#39;) as html:
+    parser.feed(html.read())
+</code></pre></li>
+</ul>
+
+<h5 id="toc_5">13.9 urllib</h5>
+
+<ul>
+<li><p>urllib的request模块可以指定URL发送HTTP请求，并返回HTTP的响应</p>
+
+<pre><code class="language-python">from urllib import request
+
+with request.urlopen(&#39;https://api.douban.com/v2/book/2129650&#39;) as f:
+    print(&#39;Status:&#39;, f.status, f.reason)
+    for k, v in f.getheaders():  # 打印响应头
+        print(&#39;%s: %s&#39; % (k, v))
+    print(&#39;Data:&#39;, f.read().decode(&#39;utf-8&#39;))
+</code></pre></li>
+<li><p>若要模拟浏览器发送请求需要使用Request对象；通过向Request对象添加HTTP头部相关信息，就可以伪装成浏览器发送请求</p>
+
+<pre><code class="language-python"># 模拟iPhone6去请求豆瓣首页
+from urllib import request
+
+req = request.Request(&#39;http://www.douban.com/&#39;)
+# User-Agent是客户端用来标识浏览器
+req.add_header(&#39;User-Agent&#39;, &#39;Mozilla/6.0 (iPhone; &#39;
+                             &#39;CPU iPhone OS 8_0 like Mac OS X) &#39;
+                             &#39;AppleWebKit/536.26 (KHTML, like Gecko) &#39;
+                             &#39;Version/8.0 Mobile/10A5376e Safari/8536.25&#39;)
+
+with request.urlopen(req) as f:
+    print(&#39;Status:&#39;, f.status, f.reason)
+    for k, v in f.getheaders():
+        print(&#39;%s: %s&#39; % (k, v))
+    print(&#39;Data:&#39;, f.read().decode(&#39;utf-8&#39;))
+</code></pre></li>
+<li><p>若以POST形式发送网络请求，只需要增加参数data，数据以bytes形式传入</p>
+
+<pre><code class="language-python">from urllib import request, parse
+
+req = request.Request(&#39;https://passport.weibo.cn/sso/login&#39;)
+req.add_header(&#39;Referer&#39;, &#39;https://passport.weibo.cn/signin/login?entry=mweibo&#39;
+                          &#39;&amp;res=wel&amp;wm=3349&amp;r=http%3A%2F%2Fm.weibo.cn%2F&#39;)
+
+login_data = parse.urlencode([(&#39;username&#39;, &#39;tom@tom.com&#39;), (&#39;password&#39;, &#39;123&#39;)])
+
+with request.urlopen(req, data=login_data.encode(&#39;utf-8&#39;)) as f:
+    print(&#39;Status:&#39;, f.status, f.reason)
+    for k, v in f.getheaders():
+        print(&#39;%s: %s&#39; % (k, v))
+    print(&#39;Data:&#39;, f.read().decode(&#39;utf-8&#39;))
+</code></pre></li>
+<li><p>若需要更复杂的请求控制，比如通过一个Proxy去访问，就需要使用ProxyHandler来处理</p>
+
+<pre><code class="language-python">proxy_handler = urllib.request.ProxyHandler({&#39;http&#39;: &#39;http://www.example.com:3128/&#39;})
+
+proxy_auth_handler = urllib.request.ProxyBasicAuthHandler()
+proxy_auth_handler.add_password(&#39;realm&#39;, &#39;host&#39;, &#39;username&#39;, &#39;password&#39;)
+
+opener = urllib.request.build_opener(proxy_handler, proxy_auth_handler)
+with opener.open(&#39;http://www.example.com/login.html&#39;) as f:
+    pass
+</code></pre></li>
+</ul>
+
+<h4 id="toc_6">14. 常用第三方模块</h4>
+
+<h5 id="toc_7">14.1 概述</h5>
+
+<ul>
+<li>除了内置模块外，Python还有大量的第三方模块；基本上，所有的第三方模块都会在PyPI - the Python Package Index（<code>https://pypi.python.org/pypi/</code>）上注册，只有找到对应的模块名字，即可用pip安装</li>
+</ul>
+
+<h5 id="toc_8">14.2 PIL</h5>
+
+<ul>
+<li><p>PIL（Python Imaging Library）是Python平台上功能强大使用简单的图像处理标准库</p>
+
+<ul>
+<li>由于PIL仅支持Python2.7，一群志愿者在PIL的基础上创建了支持Python 3的兼容版本Pillow</li>
+<li>安装Pillow：pip3 install pillow</li>
+<li>Pillow支持图像缩放、切片、旋转、滤镜、输出文字、调色板等功能</li>
+</ul>
+
+<pre><code class="language-python"># 图片缩放
+from PIL import Image
+
+img = Image.open(&#39;git.jpg&#39;)  # 打开一个jpge文件，注意路径
+w, h = img.size  # 获取图像尺寸
+print(&#39;Original image size: %sx%s&#39; % (w, h))
+
+img.thumbnail((w // 2, h // 2))  # 缩放到50%，//整除
+print(&#39;Resize image size: %sx%s&#39; % (w // 2, h // 2))
+img.save(&#39;thumbnail.jpg&#39;, &#39;jpeg&#39;)  # 把缩放后的图像用jpeg格式保存
+
+# 模糊效果
+from PIL import Image, ImageFilter
+
+img = Image.open(&#39;git.jpg&#39;)
+img2 = img.filter(ImageFilter.BLUR)  # 应用模糊滤镜
+img2.save(&#39;blur.jpg&#39;, &#39;jpeg&#39;)
+</code></pre></li>
+<li><p>PIL的ImageDraw提供了一系列绘图方法，比如可以用来生成字母验证码图片</p>
+
+<pre><code class="language-python">from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import random
+
+# 随机字母
+def rndChar():
+    return chr(random.randint(65, 90))
+
+# 随机颜色1
+def rndColor():
+    return random.randint(64, 255), random.randint(64, 255), random.randint(64, 255)
+
+# 随机颜色2
+def rndColor2():
+    return random.randint(32, 127), random.randint(32, 127), random.randint(32, 127)
+
+# 240 * 60
+width = 60 * 4
+height = 60
+
+image = Image.new(&#39;RGB&#39;, (width, height), (255, 255, 255))
+draw = ImageDraw.Draw(image)  # 创建Draw对象
+for x in range(width):  # 填充每个像素
+    for y in range(height):
+        draw.point((x, y), fill=rndColor())
+
+font = ImageFont.truetype(&#39;Arial.ttf&#39;, 36)  # 创建Font对象
+for t in range(4):  # 输出文字
+    draw.text((60 * t + 10, 10), rndChar(), font=font, fill=rndColor2())
+
+image = image.filter(ImageFilter.BLUR)  # 模糊
+image.save(&#39;code.jpg&#39;, &#39;jpeg&#39;)
+</code></pre></li>
+</ul>
+
+<h5 id="toc_9">14.3 virturalenv</h5>
+
+<ul>
+<li>在开发Python（比如使用Python3）应用程序时，所有的第三方的包都会被pip3安装到Python3的site-package目录下；比如应用A需要的jinja2.7，应用B需要的jinja2.6，此时，最好让每个应用都各自拥有一套“独立”的Python运行环境</li>
+<li><p>virtualenv就是用来创建一套“隔离”的Python运行环境；安装virtualenv：<code>pip3 install virturalenv</code> ；注意使用pip3进行安装，这样创建的“隔离”的运行环境才是Python3的</p>
+
+<pre><code class="language-python"># 假设开发一个新的项目，需要一套独立的Python运行环境
+# 第一步，创建目录
+XXPro:Desktop xx$ mkdir myproject
+
+# 第二步，创建一个独立的Python运行环境，命名为myvenv
+XXPro:Desktop xx$ cd myproject/
+XXPro:myproject xx$ virtualenv --no-site-packages myvenv
+Using base prefix 。。。。。。 wheel...done.
+XXPro:myproject xx$ ls
+myvenv
+
+# 第三步：进入独立的Python运行环境（使用source命令）
+XXPro:myproject xx$ source myvenv/bin/activate
+# 注意命令提示符变了，有个(myvenv)的前缀，表示当前环境是一个名为myvenv的Python环境
+(myvenv) XXPro:myproject xx$ python  # 直接使用python进入的是Python3
+Python 3.5.1 。。。。。。 for more information.
+&gt;&gt;&gt; from PIL import Image  # 此时发现无法导入之前pip3的PIL
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ImportError: No module named &#39;PIL&#39;
+&gt;&gt;&gt; exit()
+
+# 第四步：为独立的Python运行环境安装第三方库
+(myvenv) XXPro:myproject xx$ pip install pillow  
+Collecting pillow 。。。。。。 installed pillow-3.2.0
+# 在myvenv环境下，用pip安装的包都被安装到myvenv这个环境下，系统Python环境不受影响；
+# 也就是说，myvenv环境是专门针对myproject这个应用创建的
+(myvenv) XXPro:myproject xx$ python
+Python 3.5.1 。。。。。。 for more information.
+&gt;&gt;&gt; from PIL import Image  # 可以使用PIL
+&gt;&gt;&gt; exit()
+
+# 第五步：退出当前的myvenv环境（使用deactivate命令）
+(myvenv) XXPro:myproject xx$ deactivate 
+XXPro:myproject xx$ python  # 进入的是系统的Python2
+Python 2.7.10 。。。。。。 more information.
+&gt;&gt;&gt; exit()
+</code></pre></li>
+<li><p>virtualenv命令创建一个独立的Python运行环境，参数--no-site-packages表示不将系统的安装的第三方模块复制过来</p></li>
+<li><p>独立的Python环境存放在当前目录下的环境名称目录中（比如上面的myvenv），之后使用source命令进入该环境</p></li>
+<li><p>针对每个应用创建独立的Python运行环境，可以解决不同应用间使用的库多版本的冲突问题</p></li>
+<li><p>virturalenv创建“独立”的Python运行环境原理：把系统Python复制一份到virtualenv环境，用命令“source myvenv/bin/activate”进入一个virtualenv环境时，virtualenv会修改环境变量，让命令python和pip均指向当前的virtualenv环境<br/>
+Python3.3开始新增内置的创建虚拟环境的venv，其操作和virtualenv类似，创建一个“隔离环境”：<code>python3 -m venv myvenv</code></p></li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15125773962317.html" 
+          title="Previous Post: Python3笔记(15网络编程、16访问数据库)">&laquo; Python3笔记(15网络编程、16访问数据库)</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15125773962190.html" 
+          title="Next Post: Python3笔记(12正则表达式、13常见内建模块(上))">Python3笔记(12正则表达式、13常见内建模块(上)) &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15129255415379.html">Python3爬虫总结</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

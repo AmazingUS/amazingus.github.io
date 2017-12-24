@@ -1,0 +1,889 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Python3笔记(11进程和线程) - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Python3笔记(11进程和线程)</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/12/7</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">11. 进程和线程</a>
+</li>
+<li>
+<a href="#toc_1">11.1 概述</a>
+</li>
+<li>
+<a href="#toc_2">11.2 多进程</a>
+<ul>
+<li>
+<a href="#toc_3">a. fork()函数</a>
+</li>
+<li>
+<a href="#toc_4">b. Process（multiprocessing模块）</a>
+</li>
+<li>
+<a href="#toc_5">c. Pool（multiprocessing模块）</a>
+</li>
+<li>
+<a href="#toc_6">d. subprocess</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">11.3 进程间通信</a>
+</li>
+<li>
+<a href="#toc_8">11.4 多线程</a>
+<ul>
+<li>
+<a href="#toc_9">a. Lock（线程同步）</a>
+</li>
+<li>
+<a href="#toc_10">b. 多核CPU（多线程执行）</a>
+</li>
+<li>
+<a href="#toc_11">c. ThreadLocal（数据独立）</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_12">11.5 进程 VS 线程</a>
+<ul>
+<li>
+<a href="#toc_13">a. 计算密集型 VS IO密集型</a>
+</li>
+<li>
+<a href="#toc_14">b. 异步IO</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_15">11.6 分布式进程</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">11. 进程和线程</h4>
+
+<h4 id="toc_1">11.1 概述</h4>
+
+<ul>
+<li>多任务：简单地说就是系统可以同时运行多个任务</li>
+<li>对于系统来说，一个任务就是一个进程（Process）
+
+<ul>
+<li>单核CPU：系统轮流让各个任务交替执行，由于CPU的执行速度太快，感觉所有任务都是在同时执行</li>
+<li>多核CPU：真正实现并行执行多任务，由于任务数量远远多于CPU的核心数量，所以系统会自动把多任务轮流调度到每个核心上执行</li>
+</ul></li>
+<li>有些进程要同时干多件事（比如Word，同时进行打字、拼写检查、打印等），就需要同时运行多个“子任务”，进程内的这些“子任务”称之为线程（Thread）
+
+<ul>
+<li>线程是最小的执行单元</li>
+<li>由于每个进程至少要干一件事，所以，一个进程至少有一个线程</li>
+<li>多个线程也是可以同时执行，执行方式和多个进程类似，由系统在多个线程之间快速切换；但真正地同时执行多线程需要多核CPU</li>
+</ul></li>
+<li>同时执行多个任务有以下解决方案：
+
+<ul>
+<li>a. 多进程模式：启动多个进程，每个进程虽然只有一个线程，但多个进程可以一起执行多个任务</li>
+<li>b. 多线程模式：启动一个进程，在一个进程内启动多个线程，这样多个线程可以一起执行多个任务</li>
+<li>c. 多进程+多线程模式：启动多个进程，每个进程再启动多个线程，这样同时执行的任务就更多了；这种模型更复杂，实际很少采用</li>
+</ul></li>
+<li>同时执行多个任务，通常各个任务之间并不是没有关联的，而是需要互相通信和协调的；多进程和多线程的程序涉及到同步、数据共享的问题，编写起来更复杂</li>
+<li>Python既支持多进程，又支持多线程</li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h4 id="toc_2">11.2 多进程</h4>
+
+<h5 id="toc_3">a. fork()函数</h5>
+
+<ul>
+<li>普通的函数调用，调用一次，返回一次</li>
+<li>Uinx/Linux系统提供了一个fork()函数（Windows没有该函数）；但是fork()调用一次，返回两次，系统会自动把当前进程（称为父进程）复制了一份（称为子进程），然后分别在父进程和子进程内返回
+
+<ul>
+<li>父进程返回子进程的ID，子进程永远返回0；一个父进程可以fork出很多子进程，所以父进程要记下每个子进程的ID，而子进程只需要调用getppid()就可以拿到父进程的ID</li>
+<li>Python的os模块封装了常见的系统调用，其中就包含fork</li>
+</ul></li>
+<li><p>有了fork()，一个进程在接到新任务时就可以复制出一个子进程来处理新任务；常见的Apcache Server就是由父进程监听端口，当有新的http请求时，就fork出子进程来处理新的http请求</p>
+
+<pre><code class="language-python">import os
+
+print(&quot;Process (%s) start...&quot;, os.getpid())
+
+pid = os.fork()
+if pid == 0: # child process
+    print(&#39;I am child process (%s) and my parent is %s.&#39; % (os.getpid(), os.getppid()))
+else:
+    print(&#39;I (%s) just created a child process (%s)&#39; % (os.getpid(), pid))
+
+# 输出结果
+Process (%s) start... 1388
+I (1388) just created a child process (1389)
+I am child process (1389) and my parent is 1388.
+</code></pre></li>
+</ul>
+
+<h5 id="toc_4">b. Process（multiprocessing模块）</h5>
+
+<ul>
+<li><p>Python是跨平台的，提供了multiprocessing模块支持跨平台的多进程；其中Process类代表一个子进程</p>
+
+<pre><code class="language-python">import os
+from multiprocessing import Process
+
+# 子进程要执行的代码
+def run_proc(name):
+    print(&#39;Run child process %s (%s)...&#39; % (name, os.getpid()))
+
+if __name__ == &#39;__main__&#39;:
+    print(&quot;Parent process %s.&quot; % os.getpid())
+    # 创建一个子进程（Process实例）
+    p = Process(target=run_proc, args=(&#39;ABC&#39;, )) 
+    print(&#39;Child process will start.&#39;)
+    # start()方法启动子进程
+    p.start()
+    # join()方法等待该子进程结束后再继续往下运行（通常用于进程间的同步）
+    p.join() 
+    print(&#39;Child process end.&#39;)
+
+# 输出结果
+Parent process 1516.
+Child process will start.
+Run child process ABC (1517)...
+Child process end. # 后打印，由于p.join()导致的
+</code></pre></li>
+</ul>
+
+<h5 id="toc_5">c. Pool（multiprocessing模块）</h5>
+
+<ul>
+<li><p>若要启动大量的子进程，可以用进程池Pool批量创建子进程</p>
+
+<pre><code class="language-python">import os, time, random
+from multiprocessing import Pool
+
+def long_time_task(name):
+    print(&#39;Run task %s (%s)...&#39; % (name, os.getpid()))
+    start = time.time()
+    time.sleep(random.random() * 3)
+    end = time.time()
+    print(&#39;Task %s run %.2f seconds.&#39; % (name, (end - start)))
+
+if __name__ == &#39;__main__&#39;:
+    print(&#39;Parent processs %s.&#39; % os.getpid())
+    pl = Pool(4)
+    for i in range(5):
+        pl.apply_async(long_time_task, args=(i,))
+    print(&#39;Waiting for all subprocesses dones...&#39;)
+    # 调用close()之后就不能添加新的Process
+    pl.close()
+    # 调用join()之前必须先调用close()
+    pl.join()
+    print(&#39;All subprocesses done.&#39;)
+
+# 输入结果是task 0, 1, 2, 3是立即执行的，task 4要等待前面某个task完成后才执行
+# 这是因为设置Pool的大小为4（不设置，默认是当前电脑的CPU核数），因此最多同时执行4个子进程
+# 可以设置其他数值，比如5，这样5个子进程可以同时执行
+</code></pre></li>
+</ul>
+
+<h5 id="toc_6">d. subprocess</h5>
+
+<ul>
+<li>很多情况下，其他多进程并不是我们自己创建的子进程，而是外部进程</li>
+<li><p>之前其他进程是自己创建的子进程，很容易控制子进程的输入和输出；对于外部进程，subprocess模块提供启动外部进程、控制其输入和输出的功能</p>
+
+<pre><code class="language-python"># 举例：在python代码中运行命令&quot;nslookup www.python.org&quot;
+import subprocess
+
+# 调用nslookup并添加参数，返回结果码
+r = subprocess.call([&#39;nslookup&#39;, &#39;www.python.org&#39;]) 
+print(&#39;Exit code:&#39;, r)
+
+# 若子进程还需要输入，则可以通过commuicate()方法输入
+proc = subprocess.Popen([&#39;nslookup&#39;], stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+out, err = proc.communicate(b&#39;set q=mx\npython.org\nexit\n&#39;)
+print(out.decode(&#39;utf-8&#39;))
+print(&#39;Exit code&#39;, p.returncode)
+
+# 上面的代码相当于：在命令行执行&quot;nslookup&quot;后，再手动输入以下内容
+set q=mx
+python.org
+exit
+</code></pre></li>
+</ul>
+
+<h4 id="toc_7">11.3 进程间通信</h4>
+
+<ul>
+<li><p>系统提供了很多机制来实现进程间的通信；Python的multiprocessing模块包装了底层的机制，提供了Queue、Pipes等多种方式供进程间交换数据</p>
+
+<pre><code class="language-python"># 以Queue方式交换数据
+# 在父进程中创建两个进程，一个往Queue中写数据，一个从Queue中读数据
+from multiprocessing import Process, Queue
+import os, time, random
+
+# 写数据的进程
+def write(q):
+    print(&#39;Process to write: %s&#39; % os.getpid())
+    for value in [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]:
+        print(&#39;Put %s to queue...&#39; % value)
+        q.put(value)  # 向Queue中写数据
+        time.sleep(random.random())
+
+# 读数据的进程
+def read(q):
+    print(&#39;Process to read: %s&#39; % os.getpid())
+    while True:
+        value = q.get(True)  # 从Queue中读数据
+        print(&#39;Get %s from queue.&#39; % value)
+
+if __name__ == &#39;__main__&#39;:
+    # multiprocess.Queue为跨进程通信队列，各子进程共有
+    q = Queue() 
+    # 父进程创建Queue，并传给各个子进程
+    pw = Process(target=write, args=(q,))
+    pr = Process(target=read, args=(q,))
+    pw.start()  # 启动子进程pw写入
+    pr.start()  # 启动子进程pr读取
+    pw.join()  # 等待进程pw结束
+    pr.terminate()  # 进程pr是死循环，只能强行终止（在pw结束后，此时写入已完毕）
+</code></pre></li>
+</ul>
+
+<h4 id="toc_8">11.4 多线程</h4>
+
+<ul>
+<li>Python的线程是真正的&quot;Posix Thread&quot;，而不是模拟出来的</li>
+<li>Python提供了_thread、threading两个模块支持多线程；_thread是低级模块，threading是高级模块（对_thread进行了封装；绝大多数情况下使用）</li>
+<li><p>启动一个线程：创建Threading实例并把一个函数传入，然后调用start()开始执行</p>
+
+<pre><code class="language-python">import time, threading
+
+# 新线程执行的代码
+def loop():
+    print(&#39;thread %s is running...&#39; % threading.current_thread().name) # current_thread()函数返回当前线程的实例
+    n = 0
+    while n &lt; 5:
+        n += 1
+        print(&#39;thread %s &gt;&gt; %s&#39; % (threading.current_thread().name, n))
+        time.sleep(1)
+    print(&#39;thread %s ended.&#39; % threading.current_thread().name)
+
+print(&#39;thread %s is running...&#39; % threading.current_thread().name)
+t = threading.Thread(target=loop, name=&#39;LoopThread&#39;)
+t.start()
+t.join()  # join()也能阻塞线程
+print(&#39;thread %s ended.&#39; % threading.current_thread().name)
+</code></pre></li>
+<li><p>任何进程默认就会启动一个线程，被称为主线程（线程实例名字叫&quot;MainThread&quot;）；主线程又可以启动新的子线程（线程实例名字在创建时指定，若不指定则自动命名为&quot;Thread-1&quot;、&quot;Thread-2&quot;...）</p></li>
+</ul>
+
+<h5 id="toc_9">a. Lock（线程同步）</h5>
+
+<ul>
+<li><strong>进程间通信主要是指多个进程间的数据交互,而线程间同步主要指维护多个线程之间数据准确、一致性</strong></li>
+<li><p>在多进程中，变量在每个进程各自有一份拷贝，互不影响；而在多线程中，变量是所有线程共享，都可以被任何一个线程修改</p>
+
+<pre><code class="language-python"># 模拟由于多线程，导致的数据错乱
+import time, threading
+
+balance = 0  # 假设银行存款
+
+# 先存后取,结果应该为0
+def change_it(n):
+    # 声明为全局变量，这样可以就在函数内部&#39;修改&#39;变量值；
+    # 否则，Python会认为该变量是函数内局部的，函数之外（主块）
+    # 的同名变量是另一个变量，修改该变量（内部的）不会对外部的产生影响
+    global balance  
+    balance += n
+    balance -= n
+
+def run_thread(n):
+    for i in range(1000000):
+        change_it(n)
+
+t1 = threading.Thread(target=run_thread, args=(2, ))
+t2 = threading.Thread(target=run_thread, args=(8, ))
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+print(balance)
+</code></pre>
+
+<pre><code class="language-python"># 为确保balance计算正确，要给change_it()上一把锁；
+# 当某个线程开始执行change_it()时获取了锁，因此其他线程不能同时
+# 执行change_it()，只能等到锁被释放后，获取到该锁以后才能改
+import time, threading
+
+lock = threading.Lock()
+balance = 0
+
+def change_it(n):
+    global balance
+    balance += n
+    balance -= n
+
+def run_thread(n):
+    for i in range(1000000):
+        # 先要获取锁
+        lock.acquire()
+        try:
+            change_it(n)
+        finally:
+            # 改完后一定要释放锁
+            lock.release()
+
+t1 = threading.Thread(target=run_thread, args=(2, ))
+t2 = threading.Thread(target=run_thread, args=(8, ))
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+print(balance)
+</code></pre></li>
+<li><p>通过threading.Lock()创建一个锁；由于锁只有一个，同一时刻最多只有一个线程持有该锁，所以不会造成修改的冲突</p></li>
+<li><p>获取到锁的线程用完后一定要释放锁，否则那些等待锁的线程将永远等待下去，成为死线程；用try...finally来确保锁一定会被释放</p></li>
+<li><p>锁的好处是确保某段关键代码只能由一个线程从头到尾完整地执行，坏处是阻止了多线程并发执行</p></li>
+<li><p>由于可以存在多个锁，不同的线程持有不同的锁，并试图获取对方持有的锁时，可能会造成<strong>死锁</strong>，导致多个线程全部挂起，既不能执行，也无法结束，只能由系统强制终止</p></li>
+</ul>
+
+<h5 id="toc_10">b. 多核CPU（多线程执行）</h5>
+
+<ul>
+<li><p>若想让N核CPU的核心全部跑满，就必须启动N个死循环线程；比如，在多核CPU中，有2个死循环线程，会监控到占用200%的CPU，也就是占用2个CPU核心</p>
+
+<ul>
+<li>使用Python启动CPU核心数量的多个线程，比如在4核CPU上，会监控到CPU占用率为102%，也就是使用1核</li>
+<li>使用C、C++、Java来改写相同的死循环，却可以把全部核心跑满（4核就用400%，8核就用800%），而Python却不可以</li>
+</ul>
+
+<pre><code class="language-python"># 尝试使用Python编写一个死循环（谨慎使用）
+import threading, multiprocessing
+
+def loop():
+    x = 0
+    while True:
+        x = x ^ 1
+
+for i in range(multiprocessing.cpu_count()):
+    t = threading.Thread(target=loop)
+    t.start()
+</code></pre></li>
+<li><p>Python的线程虽然是真正的线程，但是解释器执行代码时，有一个GIL锁（Gloabal Interpreter Lock)</p></li>
+<li><p>任何线程执行前，必须先获得GIL锁，然后每执行100条字节码，解释器就自动释放GIL锁，让别的线程有机会执行</p></li>
+<li><p>GIL全局锁实际上把所有线程的执行代码都给上了锁，所以多线程在Python中只能交替执行，即使100个线程跑在100核CPU上，也只能用到1个核</p></li>
+<li><p>GIL是Python解释器设计的历史遗留问题，通常我们使用的解释器是官方实现的CPython，要真正利用多核，除非重写一个不带GIL的解释器</p></li>
+<li><p>Python虽然不能利用多线程实现多核任务（即不能并行；但可以并发），但是可以通过多进程实现多核任务；多个Python进程有各自独立的GIL锁，互不影响</p></li>
+</ul>
+
+<h5 id="toc_11">c. ThreadLocal（数据独立）</h5>
+
+<ul>
+<li><p>每个线程都有自己的数据；一个线程使用自己的局部变量比使用全局变量好，因为局部变量只有当前线程可见，不会影响其他线程，而全局变量的修改必须加锁；但是使用局部变量，在函数调用的时候传递起来很麻烦</p>
+
+<pre><code class="language-python">def process_thread():
+    # std是局部变量，每个函数调用都必须传入
+    # 这里不能使用全局变量，因为每个线程（process_thread）要处理不同的Student对象
+    std = Student(name)
+    func1(std)
+    func2(std)
+    func3(std)
+    func4(std)
+</code></pre></li>
+<li><p>解决方案：使用一个全局的dict存放所有的Student对象，然后以thread自身作为key获取该线程对应的Student对象</p>
+
+<pre><code class="language-python">global_dict = {}
+
+def process_thread():
+    std = Student(name)
+    # 把std存放到全局变量globalDict中
+    global_dict[threading.current_thread()] = std
+    func1() 
+    func2()
+    func3()
+    func4()
+# funX()函数中使用s = global_dict[threading.current_thread()]的方式进行获取
+</code></pre></li>
+<li><p>Python的ThreadLocal提供上面的代码的封装，不用人为创建用于查找的dict，ThreadLocal自动做这件事情</p>
+
+<pre><code class="language-python">import threading
+
+class Student(object):
+    def __init__(self, name):
+        self.name = name
+
+# a. 创建一个全局的ThreadLocal对象
+local_student = threading.local()
+
+def process_thread(name):
+    # b. 绑定ThreadLocal的student
+    local_student.std = Student(name)
+    func1()
+
+def func1():
+    # c. 获取当前线程相关的student
+    std = local_student.std
+    print(&#39;Hello, %s, %s&#39; % (std.name, threading.current_thread().name))
+
+t1 = threading.Thread(target=process_thread, args=(&#39;Tom&#39;, ), name=&#39;Thread-A&#39;)
+t2 = threading.Thread(target=process_thread, args=(&#39;Jack&#39;, ), name=&#39;Thread-B&#39;)
+t1.start()
+t2.start()
+# local\_student是全局变量，但是它的每个属性（如std）
+# 是线程的局部变量，可以不用加锁任意读写互不干扰
+</code></pre></li>
+<li><p>ThreadLocal常见使用场景：为每个线程绑定一个数据库连接、HTTP请求、用户身份信息等，这样一个线程的所有调用到的处理函数都可以非常方便地访问这些资源</p></li>
+</ul>
+
+<h4 id="toc_12">11.5 进程 VS 线程</h4>
+
+<ul>
+<li>要实现多任务，通常会设计Master-Worker模式，Master（一个）负责分配任务，Worker（多个）负责执行任务；若用多进程实现Master-Worker，主进程就是Master，其他进程就是Worker；若用多线程实现Master-Worker，主线程就是Master，其他线程就是Worker</li>
+<li>a. 多进程Master-Worker：
+
+<ul>
+<li>优点是稳定性高，一个子进程崩溃不会影响主进程和其他子进程（若主进程挂了则其他子进程也都会挂，但主进程只负责分配任务，挂掉的概率低）</li>
+<li>缺点是创建进程的代价大（在Uinx/Linux使用fork调用还行，在Windows下创建进程开销巨大）；而且系统能同时运行的进程数也是有限制的，大量进程的系统调度也会成问题</li>
+</ul></li>
+<li>b. 多进程Master-Worker：
+
+<ul>
+<li>优点是通常比多进程快（但不明显）</li>
+<li>缺点是任何一个线程挂掉都可能导致整个进程的崩溃，因为所有线程共享进程的内存</li>
+</ul></li>
+<li>无论是多进程还是多线程，只有任务数量一多，系统可能就主要忙着切换任务（保护现场、准备新环境），根本没有多少时间去执行任务，效率就上不去了</li>
+</ul>
+
+<h5 id="toc_13">a. 计算密集型 VS IO密集型</h5>
+
+<ul>
+<li>是否采用多任务还要考虑任务类型，可以任务分为计算密集型和IO密集型</li>
+<li>计算密集型：
+
+<ul>
+<li>需要大量的计算，消耗CPU资源，比如计算圆周率、对视频进行高清解码，要高效利用CPU</li>
+<li>任务同时进行的数量应当等于CPU的核心数；同时代码运行效率也很重要（Python运行效率很低，最好使用C语言编写）</li>
+</ul></li>
+<li>IO密集型：
+
+<ul>
+<li>涉及到网络、硬盘IO任务，消耗CPU很少，任务的大部分时间都在等待IO操作完成（IO速度远远低于CPU和内存速度）；</li>
+<li>任务越多，CPU效率越高，但也有一个限度；最合适的语言就是开发效率高的语言，而不是运行速度极快的语言</li>
+</ul></li>
+</ul>
+
+<h5 id="toc_14">b. 异步IO</h5>
+
+<ul>
+<li>由于CPU和IO之间的巨大速度差异，一个任务在执行的过程中大部分时间都在等待IO操作，单进程、单线程会导致别的任务无法并行执行，因此需要多进程、多线程支持任务并发执行</li>
+<li>现在的系统对IO操作已做了巨大的改进，最大的特点就是支持异步IO</li>
+<li>异步IO
+
+<ul>
+<li>可以用单进程、单线程模型来执行多任务，这种全新的模型称为事件驱动模型</li>
+<li>Nginx就是支持异步IO的Web服务器，在单核CPU上采用单进程模型就可以高效支持多任务，在多核CPU上可以运行和CPU核心数相同的多个进程，充分利用多核CPU</li>
+<li>使用异步IO来实现多任务是一个主要趋势</li>
+</ul></li>
+<li>Python中的<strong>单进程</strong>的<strong>异步编程模型</strong>称为<strong>协程（Coroutine）</strong></li>
+</ul>
+
+<h4 id="toc_15">11.6 分布式进程</h4>
+
+<ul>
+<li>在Process和Thread中应当优选Process，因为Process更稳定，而且Process可以分布在多台机器上，而Thread最多只能分布到同一台机器的多个CPU上</li>
+<li><p>Python的multiprocessing模块不仅支持多进程，而且其managers子模块还支持把多进程分布到多台机器上；一个服务进程可以作为调度者，将任务分布到其他多个进程中，依靠网络通信</p>
+
+<ul>
+<li>之前的Queue不仅可以让两个进程在同一机器上进行通信，也可以让这两个进程在两个机器进行通信；继续使用原来的Queue，使用managers模块把Queue通过网络暴露出去，就可以让其他机器的进程访问该Queue了</li>
+<li>服务进程负责启动Queue，把Queue注册到网络上，然后往Queue里面写入任务</li>
+</ul>
+
+<pre><code class="language-python"># 服务进程：task_master.py
+import random, queue
+from multiprocessing.managers import BaseManager
+
+class QueueManager(BaseManager):  # 从BaseManager继承的QueueManager
+    pass
+
+task_queue = queue.Queue()    # 发送任务的队列
+result_queue = queue.Queue()  # 接收结果的队列
+
+# 把两个Queue都注册到网络上（name、callable参数关联的Queue对象）
+QueueManager.register(&#39;get_task_queue&#39;, callable=lambda: task_queue)
+QueueManager.register(&#39;get_result_queue&#39;, callable=lambda: result_queue)
+
+# 绑定端口5000，设置验证码authkey进行机器验证
+manager = QueueManager(address=(&#39;&#39;, 5000), authkey=b&#39;abc&#39;)
+manager.start()  # 启动
+
+# 获取通过网络访问的Queue对象
+task = manager.get_task_queue()
+result = manager.get_result_queue()
+
+# 放几个任务进去
+for i in range(10):
+    n = random.randint(0, 10000)
+    print(&#39;Put task %d...&#39; % n)
+    task.put(n)
+
+# 从result队列中读取结果
+print(&#39;Try get result...&#39;)
+for i in range(10):
+    r = result.get(timeout=10)
+    print(&#39;Result: %s&#39; % r)
+
+manager.shutdown()  # 关闭
+print(&#39;master exit...&#39;)
+</code></pre></li>
+<li><p>当在一台机器上编写多进程时，创建的Queue可以直接拿来使用；但是在分布式多进程情况下，不可以直接对原始的task_queue进行“添加任务到Queue”操作，必须使用通过manager.get_task_queue()获取Queue，进行添加（否则绕过了QueueManager对Queue的封装，注册Queue也就没有意义）；result_queue同理</p>
+
+<pre><code class="language-python"># 任务进程：task_worker.py
+import time, queue
+from multiprocessing.managers import BaseManager
+
+class QueueManager(BaseManager):  # 创建类似的QueueManager
+    pass
+
+# 由于只能从网络上获取Queue，所以注册时只提供name
+# 注意服务进程和任务进程的注册Queue的名称要一致，否则报错
+QueueManager.register(&#39;get_task_queue&#39;)
+QueueManager.register(&#39;get_result_queue&#39;)
+
+# 连接到服务器，也就是运行task_master.py的机器
+# 任务进程需要通过网络连接到服务进程，要指定服务进程的IP
+server_addr = &#39;127.0.0.1&#39;
+print(&#39;Connect to server %s...&#39; % server_addr)
+# 端口和验证码注意要和task_master.py设置的一致
+manager = QueueManager(address=(server_addr, 5000), authkey=b&#39;abc&#39;)
+manager.connect()  # 网络连接
+
+# 获取通过网络访问的Queue对象
+task = manager.get_task_queue()
+result = manager.get_result_queue()
+
+# 从task队列取任务，并把结果写入result队列
+for i in range(10):
+    try:
+        n = task.get(timeout=1)
+        print(&#39;run task %d...&#39; % n)
+        r = &#39;%d * %d = %d&#39; % (n, n, n * n)
+        time.sleep(1)
+        result.put(r)
+    except Queue.Empty:
+        print(&#39;task queue is empty.&#39;)
+
+# 处理结束，注意不要调用manager.shutdown()
+print(&#39;worker exit...&#39;)
+</code></pre></li>
+<li><p>task_worker.py中并没有创建Queue，Queue对象在task_master.py进程中；使用QueueManager实现能够通过网络访问Queue</p></li>
+<li><p>Queue的作用就是用来传递任务和接收结果，每个任务的描述数量要尽量小；比如，发送一个处理日志文件的任务，就不要发送几百兆的日志文件本身，而是发送日志文件存放的完整路径，再由Worker进程去路径位置读取日志文件</p></li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15125773962190.html" 
+          title="Previous Post: Python3笔记(12正则表达式、13常见内建模块(上))">&laquo; Python3笔记(12正则表达式、13常见内建模块(上))</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15125773962028.html" 
+          title="Next Post: Python3笔记(10IO编程)">Python3笔记(10IO编程) &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15129255415379.html">Python3爬虫总结</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

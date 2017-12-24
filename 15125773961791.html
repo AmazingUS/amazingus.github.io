@@ -1,0 +1,650 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Python3笔记(04特性) - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Python3笔记(04特性)</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/12/7</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">04. 特性</a>
+<ul>
+<li>
+<a href="#toc_1">4.1 切片</a>
+</li>
+<li>
+<a href="#toc_2">4.2 迭代（Iteration）</a>
+</li>
+<li>
+<a href="#toc_3">4.3 列表生成式（List Comprehensions）</a>
+</li>
+<li>
+<a href="#toc_4">4.4 生成器（Generator）</a>
+</li>
+<li>
+<a href="#toc_5">4.5 Generator补充</a>
+</li>
+<li>
+<a href="#toc_6">4.6 迭代器（Iterator）</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">04. 特性</h4>
+
+<h5 id="toc_1">4.1 切片</h5>
+
+<ul>
+<li><p>[A:B:C]截取list、tuple、字符串，从0开始计算</p>
+
+<ul>
+<li>A为起始点（正数为正向找点，负数为逆向找点；缺省值为0）</li>
+<li>B为结束点（和A同理，但不包含该点；缺省值为length）</li>
+<li>C为对截取后的结果进行每隔（C-1）个数据筛选（缺省值为1，即不筛选，第二个&quot;:&quot;可以省略）</li>
+<li>不论A、B是否为负数，截取总是从左向右开始；截取后的数据类型和之前的数据类型相同</li>
+<li>注意无法对数字进行截取</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; L = [&#39;Michael&#39;, &#39;Search&#39;, &#39;Tracy&#39;, &#39;Bob&#39;, &#39;Jack&#39;]
+&gt;&gt;&gt; L[1:3]
+[&#39;Search&#39;, &#39;Tracy&#39;]
+&gt;&gt;&gt; L[-2:-1]
+[&#39;Bob&#39;]
+
+&gt;&gt;&gt; l = list(range(100))
+&gt;&gt;&gt; l[-10:]
+[90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+&gt;&gt;&gt; l[:10:2]
+[0, 2, 4, 6, 8]
+&gt;&gt;&gt; l[::5]
+[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+&gt;&gt;&gt; l[1:10:1]
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+&gt;&gt;&gt; l[:] # 复制l数组
+[0, 1, 2, 3, 4, 5, 略... 
+&gt;&gt;&gt; (0, 1, 2, 3, 4, 5)[:3]
+(0, 1, 2)
+
+&gt;&gt;&gt; &#39;ABCDEFG&#39;[::2]
+&#39;ACEG&#39;
+</code></pre></li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h5 id="toc_2">4.2 迭代（Iteration）</h5>
+
+<ul>
+<li>可以使用 <code>for ... in:</code> 进行遍历就是<strong>“可迭代对象”</strong>，无论被遍历的是什么数据类型；<strong>list、tuple、set、dict、str等对象都是可迭代对象</strong></li>
+<li><strong>可以通过isinstance()函数判断该对象是不是collections模块的Iterable类型，来判断该对象是不是可迭代对象</strong></li>
+<li>enumerate()函数可以将“迭代枚举元素”变成“索引-元素对”，这样就可以知道当前迭代元素的位置角标信息</li>
+<li><p>for迭代中可以同时引入两个变量</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; for ch in &#39;ABC&#39;:
+...    print(ch)
+... 
+A
+B
+C
+
+&gt;&gt;&gt; d = {&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3}
+&gt;&gt;&gt; for key in d: # 字典默认迭代是key
+...     print(key)
+... 
+a
+b
+c
+&gt;&gt;&gt; for value in d.values(): # 迭代value
+...     print(value)
+... 
+1
+2
+3
+&gt;&gt;&gt; for k, v in d.items(): # 迭代key-value
+...     print(k, v)
+... 
+a 1
+b 2
+c 3
+
+&gt;&gt;&gt; for x, y in [(1, 1), (2, 4), (3, 9)]:
+...     print(x, y)
+... 
+1 1
+2 4
+3 9
+
+&gt;&gt;&gt; for (i, value) in enumerate([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]):
+...    print(i, value)
+... 
+0 A
+1 B
+2 C
+
+&gt;&gt;&gt; from collections import Iterable
+&gt;&gt;&gt; isinstance(&#39;abc&#39;, Iterable)
+True
+&gt;&gt;&gt; isinstance(123, Iterable)
+False
+</code></pre></li>
+</ul>
+
+<h5 id="toc_3">4.3 列表生成式（List Comprehensions）</h5>
+
+<ul>
+<li><p>Python内置了简单强大的列表生成式功能（comprehension：理解、理解力）</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; list(range(1, 11))
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+&gt;&gt;&gt; [x * x for x in range(1, 11)]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+&gt;&gt;&gt; [x * x for x in range(1, 11) if x % 2 == 0]
+[4, 16, 36, 64, 100]
+
+&gt;&gt;&gt; [m + n for m in &#39;ABC&#39; for n in &#39;XYZ&#39;]
+[&#39;AX&#39;, &#39;AY&#39;, &#39;AZ&#39;, &#39;BX&#39;, &#39;BY&#39;, &#39;BZ&#39;, &#39;CX&#39;, &#39;CY&#39;, &#39;CZ&#39;]
+
+&gt;&gt;&gt; import os
+&gt;&gt;&gt; [d for d in os.listdir(&#39;.&#39;)]
+略...
+
+&gt;&gt;&gt; d = {&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3}
+&gt;&gt;&gt; [k + &#39;=&#39; + str(v) for k, v in d.items()]
+[&#39;a=1&#39;, &#39;b=2&#39;, &#39;c=3&#39;]
+
+# 字符串转小写，并过滤非字符串数据
+&gt;&gt;&gt; L = [&#39;Hello&#39;, 12, &#39;World1212&#39;, &#39;IBM&#39;]
+&gt;&gt;&gt; [s.lower() for s in L if isinstance(s, str)]
+[&#39;hello&#39;, &#39;world1212&#39;, &#39;ibm&#39;]
+</code></pre></li>
+</ul>
+
+<h5 id="toc_4">4.4 生成器（Generator）</h5>
+
+<ul>
+<li>列表生成式创建的是一个list对象；但受内存限制，list容量是有限的，若只是访问前几个元素，则后续元素占用的空间被浪费</li>
+<li>list对象中的元素按照某种算法推算出来，在循环过程中不断推算出后续元素，不必创建完整的list对象（节约内存），这种边循环边计算的机制称为<strong>生成器（Generator）</strong></li>
+<li><strong>generator保存的是算法，通过next()函数获取返回generator的下一个元素，若无更多的元素则抛出StopIteration错误</strong></li>
+<li><strong>generator对象也是是可迭代对象</strong>，故也可以通过for循环获取返回generator的下一个元素（这种方式不会抛出StopIteration错误）</li>
+<li><p>创建generator</p>
+
+<ul>
+<li><p>a. 方式一：将列表生成式的[]改成()即创建了一个generator</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; g = (x * x for x in range(10))
+&gt;&gt;&gt; g
+&lt;generator object &lt;genexpr&gt; at 0x101a4c438&gt;
+&gt;&gt;&gt; next(g)
+0
+&gt;&gt;&gt; next(g)
+1
+&gt;&gt;&gt; next(g)
+4
+&gt;&gt;&gt; for n in g:
+...     print(n)
+... 
+9
+16
+25
+36
+49
+64
+81
+</code></pre></li>
+<li><p>b. 方式二：若函数定义中包含了 <code>yield</code> 关键字，则该函数是一个generator，而不是一个普通函数</p>
+
+<ul>
+<li>函数式generator在每次调用执行next()函数，遇到 <code>yield</code> 语句返回，再次执行时从上次 <code>yield</code> 语句处继续执行</li>
+<li>对于函数式generator，无法通过函数next()、for循环迭代的方式获取generator的return语句的返回值，只能获取到 <code>yield</code> 语句后面的值</li>
+<li>若要获取return语句的返回值，就必须捕获“StopIteration”错误，返回值包含在“StopIteration”错误的value中</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; def odd():
+...     print(&#39;a&#39;)
+...     yield 1
+...     print(&#39;b&#39;)
+...     yield &#39;haha&#39;
+...     print(&#39;c&#39;)
+...     yield (3)
+... 
+&gt;&gt;&gt; 
+&gt;&gt;&gt; o = odd()
+# **注意，此时odd中的print(&#39;a&#39;)并没有执行，说明odd并不是一个函数**
+
+&gt;&gt;&gt; next(o) # next()函数获取返回generator的下一个元素
+a
+1
+&gt;&gt;&gt; next(o)
+b
+&#39;haha&#39;
+&gt;&gt;&gt; next(o)
+c
+3
+&gt;&gt;&gt; next(o)
+Traceback (most recent call last):
+ File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+StopIteration
+</code></pre></li>
+</ul></li>
+<li><p>练习：费布那切数列</p>
+
+<pre><code class="language-python">def fib(max):
+    n, a, b = 0, 0, 1
+    while n &lt; max:
+        yield b
+        # print(&#39;b&#39;, b)
+        a, b = b, a + b
+        n += 1
+    return &#39;Done&#39;
+
+g = fib(6)
+
+while True:
+    try:
+         x = next(g)
+        print(&#39;g:&#39;, x)
+    except StopIteration as e:
+        print(&#39;Generator return value:&#39;, e.value)
+    break
+
+# 输出结果：
+g: 1
+g: 1
+g: 2
+g: 3
+g: 5
+g: 8
+Generator return value: Done
+</code></pre></li>
+<li><p>练习：杨辉三角</p>
+
+<pre><code class="language-python">def triangles():
+    b = [1]
+    while True:
+        yield b
+        t = [b[i] + b[i+1] for i in range(len(b)-1)]
+        b = [1] + t + [1] # 数组拼接
+
+n = 0
+for t in triangles():
+    print(t)
+    n += 1
+    if n == 10:
+        break
+</code></pre></li>
+</ul>
+
+<h5 id="toc_5">4.5 Generator补充</h5>
+
+<ul>
+<li>&gt; <a href="http://www.cnblogs.com/huxi/archive/2011/07/14/2106863.html">http://www.cnblogs.com/huxi/archive/2011/07/14/2106863.html</a></li>
+<li>从Python2.5开始，<code>yield语句（yield 5）</code>可以写成 <code>yield表达式（m = yield 5）</code>，yield可以有一个值m，这个值由send()方法被调用执行时传入，与yield关键字后面的值无关
+
+<ul>
+<li>next()函数：执行到一个“yield”后，程序挂起返回，状态被保留</li>
+<li>send(msg)方法：从上次程序挂起的“yield”处开始执行，并将msg赋值给该处的yield表达式，然后执行到一个“yield”后，程序挂起返回（例如，在m=yield 5挂起返回后，执行g.send(10)，m将被赋值成10，然后继续执行直到遇到“yield”）；若使用next()函数恢复generator，yield表达式的值为是None</li>
+<li>第一次获取返回Generator的下一个元素，不可以使用带参数的send(msg)方法，此时应当使用next()函数或send(None)方法，否则抛出异常</li>
+<li>close()方法：关闭generator；对关闭的generator再次调用next或send将抛出StopIteration异常</li>
+<li>throw(type, value=None, traceback=None)方法：用于在generator内部（generator的当前挂起处、或未启动时在定义处）抛出一个异常</li>
+</ul></li>
+<li><p>在Python2中，迭代器（Iterator）有一个<code>next()方法</code>用来返回序列中的下一个元素（调用方式为 <code>g.next()</code> ）；在Python3中，则使用 <code>__next__()方法</code> 来实现返回序列中的下一个元素，同时还提供具有相同功能的全局函数<code>next()</code>（调用方式为 <code>next(g)</code> ）</p>
+
+<pre><code class="language-python">def f():
+    print(&#39;A&#39;)
+    a = yield 1
+    print(&#39;a&#39; + a)
+    b = yield 2
+    print(&#39;b&#39; + b)
+
+x = f()
+x.__next__()  # 返回值为1
+x.send(&#39;XXXX&#39;) # 返回值为2
+
+# 输出结果：
+A
+aXXXX
+</code></pre></li>
+</ul>
+
+<h5 id="toc_6">4.6 迭代器（Iterator）</h5>
+
+<ul>
+<li>可以被for循环作用的对象被称为<strong>可迭代对象（Iterable）</strong>，如集合类型（list等）、Genterator</li>
+<li>可以被next()函数作用并不断返回下一个值的对象被称为<strong>迭代器（Iterator）</strong>，如Genterator</li>
+<li>可以使用isinstance()函数进行数据类型检查，进而判断一个对象是否是“Iterable”、“Iterator”</li>
+<li><strong>Genterator既是Iterable对象也是Iterator对象；for循环、next()函数作用于Genterator，直到没有数据时抛出StopIteration错误</strong></li>
+<li><strong>list、dict、str是Iterable对象，但不是Iterator对象（next()函数不能作用于此）</strong></li>
+<li><strong>iter()函数可以将“Iterable对象”转换为“Iterator对象”</strong></li>
+<li><strong>Iterator对象表示的是一个数据流，可看做是一个有序序列，但提前不知道该序列长度只能不断地调用next()函数；故Iterator对象的计算是惰性的，其甚至可以表示一个无限大的数据流，例如全体自然数，而list对象这是不可能存储全体自然数</strong></li>
+<li><p>Python的for循环的本质上是通过不断调用next()函数实现的</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; from collections import Iterable
+&gt;&gt;&gt; isinstance([], Iterable)
+True
+&gt;&gt;&gt; isinstance({}, Iterable)
+True
+&gt;&gt;&gt; isinstance((x for x in range(10)), Iterable)
+True
+
+&gt;&gt;&gt; from collections import Iterator
+&gt;&gt;&gt; isinstance([], Iterator)
+False
+&gt;&gt;&gt; isinstance({}, Iterator)
+False
+&gt;&gt;&gt; isinstance((x for x in range(10)), Iterator)
+True
+
+&gt;&gt;&gt; isinstance(iter([]), Iterator)
+True
+&gt;&gt;&gt; isinstance(iter(&#39;abc&#39;), Iterator)
+True
+</code></pre></li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15125773961836.html" 
+          title="Previous Post: Python3笔记(05函数式编程)">&laquo; Python3笔记(05函数式编程)</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15125773961741.html" 
+          title="Next Post: Python3笔记(03函数)">Python3笔记(03函数) &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15129255415379.html">Python3爬虫总结</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

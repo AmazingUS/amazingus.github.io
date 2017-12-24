@@ -1,0 +1,731 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Python3笔记(09异常、测试) - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Python3笔记(09异常、测试)</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/12/7</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">09. 异常、测试</a>
+</li>
+<li>
+<a href="#toc_1">9.1 异常</a>
+<ul>
+<li>
+<a href="#toc_2">a. 捕获异常</a>
+</li>
+<li>
+<a href="#toc_3">b. 抛出异常</a>
+</li>
+<li>
+<a href="#toc_4">c. 捕获抛出异常</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_5">9.2 调试</a>
+<ul>
+<li>
+<a href="#toc_6">a. 断言</a>
+</li>
+<li>
+<a href="#toc_7">b. logging</a>
+</li>
+<li>
+<a href="#toc_8">c. pdb</a>
+</li>
+<li>
+<a href="#toc_9">d. pdb.set_trace()</a>
+</li>
+<li>
+<a href="#toc_10">e. 使用IDE调试</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_11">9.3 单元测试</a>
+<ul>
+<li>
+<a href="#toc_12">a. 编写单元测试</a>
+</li>
+<li>
+<a href="#toc_13">b. 运行单元测试</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_14">9.4 文档测试</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">09. 异常、测试</h4>
+
+<h4 id="toc_1">9.1 异常</h4>
+
+<h5 id="toc_2">a. 捕获异常</h5>
+
+<ul>
+<li>可以用多个“except”（except：把…除外）来捕获不同类型的异常；但是需要将父类型的异常写在后面，否则父类型的异常会捕获其子类型的所有异常</li>
+<li>所有的异常继承于BaseException，比如Exception； UnicodeError是ValueError的子类</li>
+<li><p>使用“try...except”捕获异常有一个好处，就是可以跨越多层调用；也就是说，不需要在每个可能出错的地方捕获异常错误，只要在合适的层次地方去捕获异常错误就可以</p>
+
+<pre><code class="language-python">try:
+    print(&#39;try...&#39;)
+    # r = 10 / 0
+    # r = 10 / int(&#39;a&#39;)
+    r = 10 / 2
+    print(&#39;result:&#39;, r)
+except ZeroDivisionError as e:
+    print(&#39;ZeroDivisionError, except:&#39;, e)
+except ValueError as e:
+    print(&#39;ValueError, except:&#39;, e)
+else: # 其它情况（没有异常、其它异常）
+    print(&#39;no error&#39;)
+finally:
+    print(&#39;finally...&#39;)  # 最终都会执行（不论是否有异常）
+print(&#39;END&#39;) # 程序会继续执行（不论是否有异常）
+
+# 比如函数的main()调用了fun1()，fun1()调用了fun2()，结果fun2()出错了
+def fun2(s):
+    return 10 / int(s)
+def fun1(s):
+    return fun2(s) * 2
+#   只在main()中捕获到处理  
+def main():
+    try:
+        fun1(&#39;s&#39;)
+    except Exception as e:
+        print(&#39;Error:&#39;, e)
+    finally:
+        print(&#39;finally...&#39;)
+
+main()
+</code></pre></li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<ul>
+<li>调用堆栈：若异常没有被捕获，它就会一直往上抛，最后被Python解释器捕获，打印一个错误信息，然后程序退出（后面的代码不会执行）</li>
+<li>记录异常：import logging、logging.exception(e)</li>
+</ul>
+
+<h5 id="toc_3">b. 抛出异常</h5>
+
+<ul>
+<li><strong>捕获一个异常就是捕获到该异常class的一个实例对象；异常并不是凭空产生的，而是有意创建并抛出的</strong></li>
+<li><p>Python的内置函数会抛出很多类型的异常，我们自己编写的函数也可以抛出异常</p>
+
+<ul>
+<li>若要抛出自定义的异常，首先根据需要定义一个异常的class，选择好继承关系，然后用raise语句抛出一个异常的实例对象</li>
+<li>只有在必要的时候才定义我们自己的异常类型，尽量使用Python内置的异常类型</li>
+</ul>
+
+<pre><code class="language-python">class FooError(ValueError):
+    pass
+
+def fun2(s):
+    n = int(s)
+    if n == 0:
+        raise FooError(&#39;invalid value: %s&#39; % s)
+    return 10 / n
+
+fun2(&#39;0&#39;)
+</code></pre></li>
+</ul>
+
+<h5 id="toc_4">c. 捕获抛出异常</h5>
+
+<ul>
+<li><strong>处理异常的第一种方式：捕获异常；第二种处理异常的方式：先去捕获异常，打印出异常信息后，然后又把异常通过raise语句抛出去</strong></li>
+<li>该处理比较常见，捕获异常的目的只是记录一下便于后续追踪，但是由于当前函数不知道应该怎样处理该异常，所以最恰当的方式是继续往上抛，让顶层调用者去处理</li>
+<li><p><strong>raise语句若不带参数，就会把当前异常错误原样抛出</strong></p>
+
+<pre><code class="language-python">def fun2(s):
+    n = int(s)
+    if n == 0:
+        raise ValueError(&#39;invalid value: %s&#39; % s)
+    return 10 / n
+
+def fun1():
+    try:
+        fun2(&quot;0&quot;)
+    except ValueError as e:  # 捕获记录一下
+        print(&#39;Value Error!&#39;)
+        raise # 再往上原样抛出
+
+fun1()
+print(&#39;END...&#39;)  # 不执行了
+</code></pre></li>
+<li><p>此外，先except后raise一个异常时，还可以把该类型的异常转化成另一种类型的异常；只要是合理的转换逻辑就可以，但决不应该把一个IOError转换成毫不相干的ValueError</p>
+
+<pre><code class="language-python">try:
+    10 / 0
+except ZeroDivisionError:
+    raise ValueError(&#39;input error!&#39;)
+</code></pre></li>
+</ul>
+
+<h4 id="toc_5">9.2 调试</h4>
+
+<h5 id="toc_6">a. 断言</h5>
+
+<ul>
+<li>若断言失败，则assert语句本身就会抛出AssertionError异常（AssertionError继承于Exception）</li>
+<li><p>启动Python解释器时，可以用-O参数来关闭assert，此时assert语句被当成pass来看，比如 <code>python -O err.py</code></p>
+
+<pre><code class="language-python">def foo(s):
+    n = int(s)
+    assert n != 0, &#39;n is zero!&#39;  # 逗号后面的内容（&#39;n is zero!&#39;）为断言失败输出的信息
+    return 10 / n
+
+def main():
+    foo(&#39;0&#39;)
+
+main()
+</code></pre></li>
+</ul>
+
+<h5 id="toc_7">b. logging</h5>
+
+<ul>
+<li>logging的好处就是可以指定日志信息的类别，有debug、info、warning、error等几个级别；</li>
+<li>当指定level=INFO时，logging.debug就不起作用了，当指定level=WARNING后，debug和info就不起作用了；这样就可以设置输出级别，达到统一控制输出哪个级别的信息了</li>
+<li><p>logging的另外一个好处就是通过简单的配置，将日志信息可以同时输出到不同的地方，比如console、文件</p>
+
+<pre><code class="language-python">import logging
+# 加上配置信息，否则除了ZeroDivisionError，无内容输出
+logging.basicConfig(level=logging.INFO)
+
+s = &#39;0&#39;
+n = int(s)
+logging.info(&#39;n = %d&#39; % n)
+print(10 / n)
+</code></pre></li>
+</ul>
+
+<h5 id="toc_8">c. pdb</h5>
+
+<ul>
+<li>启动Python的调试器pdb，让程序以单步方式运行，可以随时查看运行状态</li>
+<li><p>该调试方法不常用；过于麻烦，若有多行代码，执行多少行需要输入多少行代码</p>
+
+<pre><code>python -m pdb helloworld.py  # 加上-m pdb参数，pdb定位到下一步要执行的代码
+&gt;...helloworld.py(111)&lt;module&gt;()
+-&gt; s = &#39;0&#39;
+(Pdb) l  #【1】输入&#39;l&#39;查看代码
+106     # s = &#39;0&#39;
+107     # n = int(s)
+108     # logging.info(&#39;n = %d&#39; % n)
+109     # print(10 / n)
+110
+111  -&gt; s = &#39;0&#39;
+112     n = int(s)
+113     print(10 / n)
+[EOF]
+(Pdb) n  #【2】输入&#39;n&#39;可以单步执行代码
+&gt; ...helloworld.py(112)&lt;module&gt;()
+-&gt; n = int(s)
+(Pdb) n
+&gt; ...helloworld.py(113)&lt;module&gt;()
+-&gt; print(10 / n)
+(Pdb) n
+ZeroDivisionError: division by zero
+&gt; ...helloworld.py(113)&lt;module&gt;()
+-&gt; print(10 / n)
+(Pdb) p s  #【3】输入&#39;p 变量名&#39;来参看变量
+&#39;0&#39;
+(Pdb) p n
+0
+(Pdb) q  #【4】输入&#39;q&#39;结束调试
+</code></pre></li>
+</ul>
+
+<h5 id="toc_9">d. pdb.set_trace()</h5>
+
+<ul>
+<li>该调试方法也是使用pdb，但是不需要单步执行</li>
+<li><p><code>import pdb</code> 后，在可能出错的位置放一个 <code>pdb.set_trace()</code> ，就是设置一个断点，之后输入命令c继续运行</p>
+
+<pre><code class="language-python">import pdb
+
+s = &#39;0&#39;
+n = int(s)
+pdb.set_trace()  # 运行到这里会自动暂停
+print(10 / n)
+</code></pre></li>
+</ul>
+
+<h5 id="toc_10">e. 使用IDE调试</h5>
+
+<h4 id="toc_11">9.3 单元测试</h4>
+
+<ul>
+<li><p>编写一个Dict类，这个类的行为和dict一致，但是可以通过属性来访问</p>
+
+<pre><code class="language-python">class Dict(dict):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(r&quot;&#39;Dict&#39; object has no attribute &#39;%s&#39;&quot; % key)
+
+    def __setattr__(self, key, value):
+        self[key] = value
+</code></pre></li>
+</ul>
+
+<h5 id="toc_12">a. 编写单元测试</h5>
+
+<ul>
+<li><p>编写一个继承于unittest.TestCase（导入unittest模块）的测试类；以test开头的方法被认为是测试方法（测试时会被自动调用），不以test开头的方法被认为不是测试方法（不会被自动调用）</p>
+
+<ul>
+<li>可以调用unitest.TestCase中的内置的断言方法，判断输出是否符合我们的期望；assertEqual()断言传入的两个参数值是否相等，assertRasises()断言抛出指定类型的异常</li>
+<li>可以在单元测试中，编写两个特殊的方法setUp()、tearDown()，这两个方法会分别在每调用一个测试方法的前后分别被执行，通常用于初始化、扫尾操作</li>
+<li>比如测试需要启动一个数据库，可以在setUp()方法中连接数据库，在tearDown()方法中关闭数据库，这样就不必在每一个测试方法中写重复相同的代码</li>
+</ul>
+
+<pre><code class="language-python">import unittest
+
+class TestDict(unittest.TestCase):
+    def test_init(self):
+        d = Dict(a=1, b=&#39;test&#39;)
+        self.assertEqual(d.a, 1)  # 断言相等
+        self.assertEqual(d.b, &#39;test&#39;)
+        self.assertTrue(isinstance(d, dict))  # 断言为True
+
+    def test_key(self):
+        d = Dict()
+        d[&#39;key&#39;] = &#39;value&#39;
+        self.assertEqual(d.key, &#39;value&#39;)
+        self.assertEqual(d[&#39;key&#39;], &#39;value&#39;)
+
+    def test_attr(self):
+        d = Dict()
+        d.key = &#39;value&#39;
+        self.assertTrue(&#39;key&#39; in d)
+        self.assertEqual(d[&#39;key&#39;], &#39;value&#39;)
+
+    def test_keyError(self):
+        d = Dict()
+        with self.assertRaises(KeyError):  # 断言会抛出KeyError
+            value = d[&#39;empty&#39;]
+
+    def test_attrError(self):
+        d = Dict()
+        with self.assertRaises(AttributeError):  # 断言会抛出AttributeError
+            value = d.empty
+
+    def setUp(self):
+        print(&#39;setUp...&#39;)
+
+    def tearDown(self):
+        print(&#39;tearDown...&#39;)
+</code></pre></li>
+</ul>
+
+<h5 id="toc_13">b. 运行单元测试</h5>
+
+<ul>
+<li><p>方式一：在单元测试类中加入以下代码，然后运行 <code>python3 dicttest.py(当前Python文件)</code></p>
+
+<pre><code class="language-python">if __name__ == &#39;__main__&#39;:
+    unittest.main()
+</code></pre></li>
+<li><p>方式二（推荐使用）：命令行运行时加&quot;-m unittest&quot;参数，例如 <code>python -m unittest dicttest.py(当前Python文件)</code></p>
+
+<pre><code class="language-python">&gt;python -m unittest dicttest.py # 测试通过打.，测试不通过打E
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+</code></pre></li>
+</ul>
+
+<h4 id="toc_14">9.4 文档测试</h4>
+
+<ul>
+<li><p>Python内置的“文档测试”（doctest）模块可以直接提取注释中的“代码”并执行测试</p>
+
+<ul>
+<li>将代码在交互命令行中输入并执行，交互命令行中输出显示的“结果内容”后，将“结果内容”粘贴到代码注释中，这些“结果内容”是可以运行的</li>
+<li>doctest严格按照Python交互命令行中的“输入输出”来判断测试结果是否正确；可以用“...”代替测试中出现的大段输出的异常日志</li>
+<li>文档测试通过则什么也不输出，测试失败则打印实际执行结果（注意编写时的空格，比如&gt;&gt;&gt; dl = Dict()）</li>
+</ul>
+
+<pre><code class="language-python"># 用doctest来测试之前编写的Dict类
+class Dict(dict):
+    &#39;&#39;&#39;  # 文档测试开始
+    Simple dict
+
+    &gt;&gt;&gt; dl = Dict()
+    &gt;&gt;&gt; dl[&#39;x&#39;] = 100
+    &gt;&gt;&gt; dl.x
+    100
+    &gt;&gt;&gt; dl[&#39;y&#39;] = 200
+    &gt;&gt;&gt; dl.y
+    200
+    &gt;&gt;&gt; d2 = Dict(a=1, b=2, c=&#39;3&#39;)
+    &gt;&gt;&gt; d2.c
+    &#39;3&#39;
+    &gt;&gt;&gt; d2[&#39;empty&#39;]
+    Traceback (most recent call last):
+        ...
+    KeyError: &#39;empty&#39;
+    &gt;&gt;&gt; d2.empty
+    Traceback (most recent call last):
+        ...
+    AttributeError: &#39;Dict&#39; object has no attribute &#39;empty&#39;
+    &#39;&#39;&#39;  # 文档测试结束
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(r&quot;&#39;Dict&#39; object has no attribute &#39;%s&#39;&quot; % key)
+
+    def __setattr__(self, key, value):
+        self[key] = value
+
+if __name__ == &#39;__main__&#39;:
+    import doctest
+    doctest.testmod()
+</code></pre>
+
+<pre><code class="language-python"># 用doctest来测试fact(n)函数
+def fact(n):
+    &#39;&#39;&#39;
+    &gt;&gt;&gt; fact(0)
+    Traceback (most recent call last):
+        ...
+    ValueError
+    &gt;&gt;&gt; fact(1)
+    1
+    &gt;&gt;&gt; fact(5)
+    120
+    &#39;&#39;&#39;
+
+    if n &lt; 1:
+        raise ValueError()
+    if n == 1:
+        return 1
+    return n * fact(n - 1)
+
+if __name__ == &#39;__main__&#39;:
+    import doctest
+    doctest.testmod()
+</code></pre></li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15125773962028.html" 
+          title="Previous Post: Python3笔记(10IO编程)">&laquo; Python3笔记(10IO编程)</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15125773961928.html" 
+          title="Next Post: Python3笔记(08面向对象高级编程)">Python3笔记(08面向对象高级编程) &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15129255415379.html">Python3爬虫总结</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

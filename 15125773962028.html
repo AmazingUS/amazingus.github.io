@@ -1,0 +1,681 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Python3笔记(10IO编程) - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Python3笔记(10IO编程)</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/12/7</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">10. IO编程</a>
+</li>
+<li>
+<a href="#toc_1">10.1 概述</a>
+</li>
+<li>
+<a href="#toc_2">10.2 读写文件</a>
+<ul>
+<li>
+<a href="#toc_3">a. 读文件</a>
+</li>
+<li>
+<a href="#toc_4">b. 写文件</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_5">10.3 StringIO、BytesIO</a>
+</li>
+<li>
+<a href="#toc_6">10.4 操作文件和目录</a>
+</li>
+<li>
+<a href="#toc_7">10.5 序列化</a>
+<ul>
+<li>
+<a href="#toc_8">a. JSON</a>
+</li>
+<li>
+<a href="#toc_9">b. JSON进阶</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">10. IO编程</h4>
+
+<h4 id="toc_1">10.1 概述</h4>
+
+<ul>
+<li>流只能单向流动；既收又发数据就必须建立两个流（输入流、输出流）</li>
+<li>在IO编程中，存在着速度严重不匹配额问题，解决方式有两种：
+
+<ul>
+<li>a. CPU暂停执行后续代码，等待数据读取或写入完毕后再执行（同步IO模式）</li>
+<li>b. CPU不等待继续执行后续代码，数据读取或写入一边进行着（异步IO模式）</li>
+</ul></li>
+<li>同步IO和异步IO的区别是否等待IO执行的结果；使用异步IO来编写的程序性能远远高于同步IO，但是异步IO的缺点是编程模型复杂，异步IO需要“通知”别人其已执行完毕，“通知”有两种：
+
+<ul>
+<li>a. 回调，IO主动告诉别人</li>
+<li>b. 轮询，别人不断去检查IO是否执行完毕</li>
+</ul></li>
+<li>操作IO的能力是由操作系统提供的，每一种编程语言都会把操作系统提供的低级C接口封装起来方便使用，Python也不例外</li>
+<li>本章讨论的IO编程都是同步模式的</li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h4 id="toc_2">10.2 读写文件</h4>
+
+<ul>
+<li>读写磁盘上的文件的功能都是由操作系统提供的，现代操作系统不允许普通的程序直接操作磁盘</li>
+<li>读写文件就是请求操作系统打开一个文件对象（通常称为文件描述符），然后使用系统提供的接口从这个文件对象中读取数据、或者把数据写入这个文件对象</li>
+</ul>
+
+<h5 id="toc_3">a. 读文件</h5>
+
+<ul>
+<li>打开文件：<code>f = open(&#39;modeltest.py&#39;, &#39;r&#39;)</code> ，传入文件名和标示符（&#39;r&#39;表示读）；若文件不存在，这会抛出一个IOError（FileNotFoundError）异常</li>
+<li>读文件：read()方法可以一次性读取文件的全部内容到内存中</li>
+<li>关闭文件：调用close()方法关闭文件；文件使用完毕后必须关闭，因为文件对象会占用系统的资源，并且系统同一时间能打开的文件数量也是有限的</li>
+<li><p>由于文件读写可能产生IOError，一旦异常错误会导致后面的close()方法不被调用了，所以要处理异常（在此位置关闭文件）</p>
+
+<pre><code class="language-python"># try...finally来实现
+try:
+    f = open(&#39;modeltest.py&#39;, &#39;r&#39;)  # 默认调用read()方法时返回文本字符串（以UTF-8解码）
+    print(f.read())
+finally:
+    if f:
+        f.close()
+</code></pre></li>
+<li><p>Python引入了<code>with</code>语句可以自动调用close()方法，不需要认为调用close()方法，简化代码书写</p>
+
+<pre><code class="language-python">with open(&#39;modeltest.py&#39;, &#39;r&#39;) as f:
+    print(f.read())
+</code></pre></li>
+<li><p>调用read(size)方法，每次最多读取size个字节的内容；不加size参数则读取全部内容</p></li>
+<li><p>调用readline()可以每次读取一行内容；调用readlines()一次读取所有内容并按行返回list</p></li>
+<li><p>若文件小则调用read()，若不确定文件大小则反复调用read(size)比较保险，若是配置文件则调用readlines()最方便</p>
+
+<pre><code class="language-python">with open(&#39;modeltest.py&#39;, &#39;r&#39;) as f:
+    for line in f.readlines():
+        print(line.strip())  # 将末尾的&#39;\n&#39;删掉
+</code></pre></li>
+<li><p>像open()函数返回的这种有read()方法的对象，在Python中统称为file-like Object；file-like Object除了file，还可以是内存的字节流、网络流、自定义流等，其不要求从特定类继承，只要有read()方法即可；比如，StringIO就是内存中创建的file-like Object，常用作临时缓冲</p></li>
+<li><p>上面讲的都是调用read()方法时返回文本字符串（以UTF-8解码），若要调用read()方法时返回二进制数据，比如读取图片、视频等，则使用&#39;rb&#39;模式打开文件即可</p>
+
+<pre><code class="language-python">with open(&#39;git.jpg&#39;, &#39;rb&#39;) as f:
+    print(f.read())
+# 返回数据
+b&#39;\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x00..&#39;
+
+with open(&#39;orm.py&#39;, &#39;r&#39;) as f:
+    print(f.read())  # 返回数据：class Field(object): 
+with open(&#39;orm.py&#39;, &#39;rb&#39;) as f:
+    print(f.read())  # 返回数据：b&#39;class Field(object):\r\n
+</code></pre></li>
+<li><p>字符编码：若要以指定编码读取文本文件，需要给open()函数传入encoding参数（二进制文件不需要encoding参数）；比如，读取UTF-8编码的文件</p>
+
+<pre><code class="language-python">with open(&#39;orm.py&#39;, &#39;r&#39;, encoding=&#39;utf-8&#39;) as f:
+    print(f.read())
+</code></pre></li>
+<li><p>有些编码不规范的文本文件，可能夹杂了一些非法编码的字符，此时打开文件会抛出“UnicodeDecodeError”异常；open()函数还可接收一个errors参数，表示若遇到编码错误后该如何处理，最简单的方式是直接忽略</p>
+
+<pre><code class="language-python">with open(&#39;orm.py&#39;, &#39;r&#39;, errors=&#39;ignore&#39;) as f:
+    print(f.read())
+</code></pre></li>
+</ul>
+
+<h5 id="toc_4">b. 写文件</h5>
+
+<ul>
+<li>在调用open()函数时，写文本文件传入标示符&#39;w&#39;、写二进制文件则传入标示符&#39;wb&#39;、追加文件则传入标示符&#39;a&#39;</li>
+<li>可以反复调用write()写文件，最后必须调用close()关闭文件
+
+<ul>
+<li>当调用write()写文件时，系统不会立即把数据写入磁盘，而是先将数据放到内存缓存起来，空闲的时候再写入磁盘；只有调用close()方法，才能保证系统将数据全部写入磁盘</li>
+</ul></li>
+<li><strong>文件在磁盘中保存都是二进制数据的；有些二进制数据文件通过字符解码可以显示成有意义的文字，这些文字就是文本，那么这个文件就被称为文本文件；另一些二进制数据文件通过字符解码显示成无意义的文字，这个文字就不是文本，那么这个文件就被称为二进制文件，需要按照其他的特殊解码才能有意义，比如图片</strong></li>
+<li><p><strong>编码是为了节约空间、标记数据类型，所以硬盘存储、网页传输都需要先编码</strong></p>
+
+<pre><code class="language-python">with open(&#39;test.txt&#39;, &#39;w&#39;) as f:
+    f.write(&#39;hello world&#39;)
+</code></pre></li>
+</ul>
+
+<h4 id="toc_5">10.3 StringIO、BytesIO</h4>
+
+<ul>
+<li><p>数据的读写操作的不一定是文件，也可以是内存；StringIO就是在内存中读写str</p>
+
+<pre><code class="language-python">from io import StringIO
+
+f = StringIO()
+f.write(&#39;hello&#39;)  # 写入数据
+f.write(&#39; &#39;)
+f.write(&#39;world&#39;)
+print(f.getvalue())  # getValue()获取写入后的数据
+
+# 用一个str初始化StringIO，之后就可以像操作文件的方式操作StringIO
+f = StringIO(&#39;Hello\nWorld&#39;)  
+while True:
+    s = f.readline()
+    if s == &#39;&#39;:
+        break
+    print(s.strip())
+</code></pre></li>
+<li><p>StringIO操作的只能是str，若需要操作二进制数据就需要使用BytesIO</p>
+
+<pre><code class="language-python">from io import BytesIO
+
+f = BytesIO()
+# 注意写入的不是str，而是经过UTF-8编码的bytes
+f.write(&#39;中文&#39;.encode(&#39;utf-8&#39;)) 
+print(f.getvalue())
+
+f = BytesIO(b&#39;\xe4\xb8\xad\xe6\x96\x87&#39;)
+print(f.read())
+</code></pre></li>
+</ul>
+
+<h4 id="toc_6">10.4 操作文件和目录</h4>
+
+<ul>
+<li><p>要操作文件、目录，可以在命令行下输入系统提供的各种命令来完成，比如dir、cp等命令；其实系统提供的命令只是调用了系统提供的接口函数，Python内置的os模块也可以直接调用系统提供的接口函数</p>
+
+<pre><code class="language-python">import os  # 导入os模块，注意os模块的某些函数与特定操作系统相关的
+
+print(os.name)  # 系统类型，Linux、Unix、OSX是posix，Windows是nt
+print(os.uname())  # 详细系统信息（Windows不支持）
+print(os.environ)  # 系统的所有环境变量
+print(os.environ.get(&#39;PATH&#39;))  # 获取环境变量PATH的值
+print(os.environ.get(&#39;X&#39;, &#39;default&#39;))  # 获取环境变量X的值
+</code></pre></li>
+<li><p>操作文件、目录的函数有些在os模块中，有些在os.path模块中</p>
+
+<pre><code class="language-python">os.mkdir(new) # 创建目录
+os.rmdir(new) # 删除目录
+
+base = os.path.abspath(&#39;.&#39;)  # 获取当前的绝对路径
+print(base)
+newpath = os.path.join(base, &#39;test&#39;)  # 拼接路径
+print(newpath)
+</code></pre></li>
+<li><p>操作文件路径时不要直接拼接、拆分字符串，应该使用join()、split()函数，这样可以正确处理不同系统的文件路径分隔符</p></li>
+<li><p>文件路径的拼接、拆分函数并不要求目录和文件真实存在，它们只是对字符串进行操作</p>
+
+<pre><code class="language-python"># split拆分一个路径为两部分，后面一部分为最后级别的目录或文件名
+print(os.path.split(&#39;/Users/scott/Desktop/task_master.py&#39;))  
+# 结果：(&#39;/Users/scott/Desktop&#39;, &#39;task_master.py&#39;)
+
+# splitext拆分一个路径为两部分，后面一部分为文件的扩展名
+print(os.path.splitext(&#39;/Users/scott/Desktop/task_master.py&#39;))  
+# 结果：(&#39;/Users/scott/Desktop/task_master&#39;, &#39;.py&#39;)
+
+os.rename(&#39;test.txt&#39;, &#39;abc.txt&#39;)  # 文件重命名
+os.remove(&quot;abc.txt&quot;)  # 删除文件
+</code></pre></li>
+<li><p>os模块没有提供复制文件的函数</p></li>
+<li><p>shutil模块提供了copyfile()函数用于复制文件；该模块中还有其他实用函数，可以看作是os模块的补充</p>
+
+<pre><code class="language-python">import shutil
+
+shutil.copyfile(&quot;orm.py&quot;, &#39;orm.txt&#39;)  # 复制文件
+</code></pre></li>
+<li><p>os.listdir()函数可以列举文件；并且可以进一步进行过滤</p>
+
+<pre><code class="language-python"># 列出当前目录下的所有目录
+l = [x for x in os.listdir(&#39;.&#39;) if os.path.isdir(x)]
+print(l)
+
+# 列出当前目录下的所有的.py文件
+l = [x for x in os.listdir(&#39;.&#39;) if os.path.isfile(x) and os.path.splitext(x)[1]==&#39;.py&#39;]
+print(l)
+</code></pre>
+
+<pre><code class="language-python"># 练习1：利用os模块编写一个实现ls -l输出程序
+import os
+from datetime import datetime
+
+print(&#39;      Size    Last Modified       Name&#39;)
+print(&#39;--------------------------------------------&#39;)
+for f in os.listdir(os.path.abspath(&#39;.&#39;)):
+    size = os.path.getsize(f)
+    time = datetime.fromtimestamp(os.path.getmtime(f)).strftime(&#39;%Y-%m-%d %H:%M&#39;)
+    flag = &#39;/&#39; if os.path.isdir(f) else &#39;&#39;
+    print(&#39;%10d    %s    %s%s&#39; % (size, time, f, flag))
+
+# 练习2： 打印当前目录及其子目录包含指定字符串的文件
+import os
+
+def search_key(path, key):
+    fs = [x for x in os.listdir(path)]
+    result = []
+    for f in fs:
+        f = os.path.join(path, f)
+        if os.path.isdir(f):
+              # listA.extend(listB)即复制listB中的元素到listA中
+              # 注意这里不能使用append（若用append，则增加的是数组，而不是数组中的元素）
+            result.extend(search_key(f, key))
+        elif key in f:  # 判断字符串中是否包含指定字符串，可以用in来判断
+            result.append(f)
+    return result
+
+l = search_key(os.path.abspath(&#39;.&#39;), &#39;xx&#39;)
+print(l)
+</code></pre></li>
+</ul>
+
+<h4 id="toc_7">10.5 序列化</h4>
+
+<ul>
+<li>把内存中的数据变为可存储数据的过程称之为序列化，在Python中叫pickling（pickle：腌渍泡菜等），其他语言中称为serialization、marshalling、flattening等；<strong>序列化之后，就可以把序列化后的内容写入磁盘或者网络传输到其他设备上</strong></li>
+<li>反过来，把序列化的数据重新读到内存里的过程称之为反序列化，即unpickling</li>
+<li>Python提供了picke模块来实现序列化、反序列化</li>
+<li><p>picke.dump()函数（dump：倾倒、倾销）将对象序列化后写入一个file-like Object；picke.dumps()函数将对象序列化成一个bytes数据</p>
+
+<pre><code class="language-python">import pickle
+
+d = dict(name=&#39;Tom&#39;, age=20, score=99)
+# 方式一：
+with open(&#39;dump.txt&#39;, &#39;wb&#39;) as f:
+    pickle.dump(d, f)
+# dump.txt存放着Python保存的对象内部信息
+
+# 方式二：
+b = pickle.dumps(d)
+print(b)
+</code></pre></li>
+<li><p>pickle.load()函数从一个file-like Object中直接反序列化出对象；pickle.loads()函数将一个bytes数据序列化出对象</p>
+
+<pre><code class="language-python"># 方式一：
+with open(&#39;dump.txt&#39;, &#39;rb&#39;) as f:
+    d = pickle.load(f)      
+print(d)
+
+# 方式二：
+d = pickle.loads(b) 
+print(d)
+</code></pre></li>
+<li><p><strong>反序列化得到的对象只是内容和之前的一样，但是和之前的对象没有任何关系</strong></p></li>
+<li><p>pickle是Python特有的序列化技术，不同语言的序列化后的数据不兼容；并且不同版本Python的pickle的数据可能彼此不兼容</p></li>
+</ul>
+
+<h5 id="toc_8">a. JSON</h5>
+
+<ul>
+<li><p>Python内置的json模块提供了Python对象到JSON字符串的转换</p>
+
+<pre><code class="language-python">import json
+
+# Obj TO Json str方式一：
+# 将Python对象序列化成JSON字符串后写入file-like Object
+with open(&#39;json.txt&#39;, &#39;w&#39;) as f:
+    json.dump(d, f)
+
+# Obj TO Json str方式二：
+# 将对象序列化成JSON字符串，内容是标准的JSON字符串
+d = dict(name=&#39;Tom&#39;, age=20, score=99)
+s = json.dumps(d)  
+print(s)
+
+# Json str TO Obj方式一：
+# 从file-like Object中读取JSON字符串后，反序列化为Python对象
+with open(&#39;json.txt&#39;, &#39;r&#39;) as f:
+    d = json.load(f)  
+    print(d)
+
+# Json str TO Obj方式二：
+# 将JSON字符串反序列化为Python对象
+json_str = &#39;{&quot;score&quot;: 99, &quot;age&quot;: 20, &quot;name&quot;: &quot;Tom&quot;}&#39;
+d = json.loads(json_str) 
+print(d)
+</code></pre></li>
+</ul>
+
+<h5 id="toc_9">b. JSON进阶</h5>
+
+<ul>
+<li><p>对自定义对象进行序列化、反序列化需要设置“转换函数”（告诉dump如何去序列化），否则报TypeError错误</p>
+
+<pre><code class="language-python">import json
+
+class Student(object):
+    def __init__(self, name, age, score):
+        self.name = name
+        self.age = age
+        self.score = score
+
+# 转换函数        
+def student2dict(stu):
+    return {
+        &#39;name&#39;: stu.name,
+        &#39;age&#39;: stu.age,
+        &#39;score&#39;: stu.score
+    }
+def dict2student(d):
+     return Student(d[&#39;name&#39;], d[&#39;age&#39;], d[&#39;score&#39;])
+
+# Obj TO Json str
+# 序列化通过default参数设置转换函数
+s = Student(&#39;Tom&#39;, 20, 10)
+# 方式一：
+print(json.dumps(s, default=student2dict)) 
+# 方式二：
+# 不人为自定义转换函数，使用lambda obj: obj.__dict__
+# 通常class的实例都有一个__dict__属性（dict），
+# 存储着属性name及value（定义了__slots__的class除外）
+print(json.dumps(s, default=lambda obj: obj.__dict__))
+
+# Json str TO Obj
+# 反序列化通过object__hook参数设置转换函数
+json_str = &#39;{&quot;score&quot;: 99, &quot;age&quot;: 20, &quot;name&quot;: &quot;Tom&quot;}&#39;
+s = json.loads(json_str, object_hook=dict2student)
+print(s)
+</code></pre></li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15125773962077.html" 
+          title="Previous Post: Python3笔记(11进程和线程)">&laquo; Python3笔记(11进程和线程)</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15125773961976.html" 
+          title="Next Post: Python3笔记(09异常、测试)">Python3笔记(09异常、测试) &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15129255415379.html">Python3爬虫总结</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

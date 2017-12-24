@@ -1,0 +1,965 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Python3笔记(08面向对象高级编程) - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Python3笔记(08面向对象高级编程)</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/12/7</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">08. 面向对象高级编程</a>
+<ul>
+<li>
+<a href="#toc_1">8.1 动态绑定方法</a>
+</li>
+<li>
+<a href="#toc_2">8.2 使用__slots</a>
+</li>
+<li>
+<a href="#toc_3">8.3. 使用@property</a>
+</li>
+<li>
+<a href="#toc_4">8.4 多重继承</a>
+</li>
+<li>
+<a href="#toc_5">8.5 定制类</a>
+</li>
+<li>
+<a href="#toc_6">8.6 使用枚举类</a>
+</li>
+<li>
+<a href="#toc_7">8.7 使用元类（metaclass）</a>
+</li>
+<li>
+<a href="#toc_8">8.7 自定义ORM框架</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">08. 面向对象高级编程</h4>
+
+<h5 id="toc_1">8.1 动态绑定方法</h5>
+
+<ul>
+<li><p>types模块MethodType()函数可以创建一个方法，给实例变量、类动态绑定方法</p>
+
+<pre><code class="language-python">class Student(object):
+    pass
+
+# 注意是带有self参数的函数，不是方法
+def set_age(self, age):  
+    self.age = age
+
+from types import MethodType
+s = Student()
+s.set_age = MethodType(set_age, s)  # 给一个实例变量动态绑定方法，只能该实例变量可以调用
+s.set_age(25)
+s.age # 25
+
+s2 = Student()
+s2.set_age(25)
+Traceback (most recent call last):
+ File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &#39;Student&#39; object has no attribute &#39;set_age&#39;
+
+def set_score(self, score):
+    self.score = score
+
+# 给类绑定方法，所有实例变量都可以使用
+Student.set_score = MethodType(set_score, Student) 
+s.set_score(100)
+s.score # 100
+
+s2.set_score(99) # 99
+s2.score
+</code></pre></li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h5 id="toc_2">8.2 使用__slots</h5>
+
+<ul>
+<li>默认情况下，可以给实例变量绑定任意属性；使用__slots__则可以限制只能添加指定的属性</li>
+<li><p>注意，__slots__定义的属性仅对当前类的实例限制作用，对继承的子类不起作用；除非在子类中也定义了__slots__，这样子类实例允许定义的属性就是自身的__slots__加上父类的__slots__</p>
+
+<pre><code class="language-python">class Student(object):
+    __slots__ = (&#39;name&#39;, &#39;age&#39;)  # 用tuple定义允许绑定的属性名称
+
+s = Student()
+s.name = &#39;Tom&#39;
+s.age = 25
+s.score = 99
+Traceback (most recent call last):
+ File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &#39;Student&#39; object has no attribute &#39;score&#39;
+
+class GraduateStudent(Student):
+    pass
+
+g = GraduateStudent()
+g.score = 999
+</code></pre></li>
+</ul>
+
+<h5 id="toc_3">8.3. 使用@property</h5>
+
+<ul>
+<li>在绑定属性时，若直接把属性暴露出去，虽然获取、设置属性写法简单，但无法对参数进行校验</li>
+<li>为了对参数进行校验，通常使用方法来进行处理；但是这样调用方法略显复杂，没有直接使用属性那么直接简单</li>
+<li><p>Python内置的 <code>@property装饰器</code> 可以将一个方法变成属性，这样既能进行参数校验，也能直接以“访问属性的形式”去调用方法</p>
+
+<ul>
+<li>把一个getter方法XXX变成属性，只需要加上@property即可；此时@property本身又创建另一个装饰器@XXX.setter，负责把一个setter方法变成属性赋值，这样我们就拥有一个可控的属性操作</li>
+<li>还可以定义只读属性（只定义getter方法，不定义setter方法）</li>
+</ul>
+
+<pre><code class="language-python">class Student(object):
+    @property   
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, value):
+        if not isinstance(value, int):
+            raise ValueError(&#39;score must be an integer&#39;)
+        if value &lt; 0 or value &gt; 100:
+            raise ValueError(&#39;score must between 0 ~ 100!&#39;)
+        self._score = value
+
+from testpy import Student
+stu = Student()
+stu.score = 100
+stu.score # 100 
+stu._score # 100
+stu.score = 200
+Traceback (most recent call last):
+ File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ File &quot;/Users/tom/Desktop/testpy.py&quot;, line 336, in score
+   raise ValueError(&#39;score must between 0 ~ 100!&#39;)
+ValueError: score must between 0 ~ 100!
+
+# get、set方法名不一致
+class Student(object):
+    @property 
+    # 使用stu.gscore进行访问，也可以使用stu.sscore进行访问
+    def gscore(self):
+        return self._score
+
+    @gscore.setter  # 注意，必须是@gscore.setter，而不是@sscore.setter
+    # 只能使用stu.sscore = 20进行设置值，不可以使用stu.gscore = 20
+    def sscore(self, value):  
+        if not isinstance(value, int):
+            raise ValueError(&#39;score must be an integer&#39;)
+        if value &lt; 0 or value &gt; 100:
+            raise ValueError(&#39;score must between 0 ~ 100!&#39;)
+        self._score = value
+
+# 定义只读属性
+class Screen(object):  # 给一个Screen对象加上width和height、resolution属性
+    @property
+    def width(self):
+        return self._width
+    @width.setter
+    def width(self, value):
+        self._width = value
+    @property
+    def height(self):
+        return self._height
+    @height.setter
+    def height(self, value):
+         self._height = value
+    @property
+    def resolution(self):
+        return self._width * self._height
+</code></pre></li>
+</ul>
+
+<h5 id="toc_4">8.4 多重继承</h5>
+
+<ul>
+<li>在设计类的继承关系，通常主线都是单一继承下来的，若需要“混入”额外的功能，可以通过多重继承来实现，这种设计通常称之为MixIn</li>
+<li>MixIn的目的就是给一个类增加多个功能，在设计类的时候优先通过“多重继承“来组合多个功能，而不是设计“多层次的复杂的继承关系”</li>
+<li><p>Python自带很多库也使用了MixIn；比如TCPServer和UDPServer这两类网络服务，而要同时服务多个用户就必须使用多进程或多线程模型，这两种模型由ForkingMixIn和ThreadingMaxIn提供，通过组合可以创造出合适的服务</p>
+
+<pre><code class="language-python">class MyTCPServer(TCPServer, ForkingMixIn):  # 多进程TCP服务
+    pass
+
+class MyUDPServer(UDPServer, ThreadingMixIn):  # 多线程UDP服务
+    pass
+
+class MyTCPServer(TCPServer, CoroutineMixIn):  # 协程TCP服务
+    pass
+</code></pre></li>
+</ul>
+
+<h5 id="toc_5">8.5 定制类</h5>
+
+<ul>
+<li><p>a. 打印对象</p>
+
+<ul>
+<li>print()打印对象，内容就是__str__方法返回的字符串</li>
+<li>直接打印对象（调试中使用），内容就是__repr__方法返回的字符串；通常让__str__和__repr__返回的内容一样</li>
+</ul>
+
+<pre><code class="language-python">class Student(object):
+    def __init__(self, name):
+        self.name = name
+
+&gt;&gt;&gt; print(Student(&#39;Tom&#39;))
+&lt;__main__.Student object at 0x1018b60b8&gt;
+&gt;&gt;&gt; s = Student(&#39;Michael&#39;)
+&gt;&gt;&gt; s
+&lt;__main__.Student object at 0x1018ca860&gt;
+
+class Student(object):
+    def __init__(self, name):
+        self.name = name
+    def __str__(self):  # 重写__str__方法
+        return &#39;Student object (name: %s)&#39; % self.name
+    __repr__ = __str__  # 重写__repr__方法
+
+&gt;&gt;&gt; print(Student(&#39;Michael&#39;))
+Student object (name: Michael)
+&gt;&gt;&gt; s = Student(&#39;Michael&#39;)
+&gt;&gt;&gt; s
+Student object (name: Michael)
+</code></pre>
+
+<ul>
+<li><strong>报错IndentationError: unindent does not match any outer indentation level，表示输入的空格、tab有问题</strong></li>
+</ul></li>
+<li><p>b. 遍历对象、取值、赋值</p>
+
+<ul>
+<li>若一个对象可以被用于“for ... in”循环，类似于list或tuple，就必须实现__iter__()方法和__next__()方法；</li>
+<li>__iter__()方法需要返回一个迭代对象；__next__()方法返回每次循环的结果；Python进行遍历直到遇到StopInteration错误时退出循环</li>
+<li>若一个对象可以像list直接按照位置索引取值，需要实现__getitem__()方法</li>
+<li>若一个对象可以使用切片，也是需要实现__getitem__()方法，只是要做一下参数类型判断，参数是int（位置索引取值）还是切片（切片取值）</li>
+</ul>
+
+<pre><code class="language-python">class Fib(object):
+    def __init__(self):
+        self.a, self.b = 0, 1
+    def __iter__(self):  # 返回需要被循环的对象（self）
+        return self
+    def __next__(self):  # 返回每次循环后的结果
+        self.a, self.b = self.b, self.a + self.b
+        if self.a &gt; 100:
+            raise StopIteration()
+        return self.a
+
+    def __getitem__(self, n):  # 返回位置索引取值、切片取值
+        if isinstance(n, int):  # n是索引
+            a, b = 1, 1
+            for x in range(n):
+                a, b = b, a + b
+            return a
+        if isinstance(n, slice):  # n是切片（slice）
+            start = n.start
+            stop = n.stop
+            if start is None:
+                start = 0
+            a, b = 1, 1
+            L = []
+            for x in range(stop):
+                if x &gt;= start:  # 从start开始
+                    L.append(a)
+                a, b = b, a + b
+            return L
+
+&gt;&gt;&gt; from testpy import Fib
+&gt;&gt;&gt; for n in Fib():
+...     print(n)
+... 
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+
+&gt;&gt;&gt; f = Fib()
+&gt;&gt;&gt; f[20]
+10946
+&gt;&gt;&gt; f[10:20]
+[89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765]
+&gt;&gt;&gt; f[:10]
+[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+</code></pre>
+
+<ul>
+<li>要正确实现一个__getitem__()需要做很多判断；若对象以dict的方式访问，__getitem__()的参数是一个作key的object（例如str）</li>
+<li>实现__setitem__()方法用于对集合（把对象视为list或dict）赋值</li>
+<li>实现__delitem__()方法用于删除某个元素</li>
+<li>通过实现上面的方法，完全可以自定义的一个类，表现得和Python自带的list、tuple、dict没什么区别；这归功于动态语言的“鸭子类型”，不需要强制继承某个类、实现某个接口</li>
+</ul></li>
+<li><p>c. 获取设置属性、方法</p>
+
+<ul>
+<li>正常情况下，当调用对象的属性、方法时，若不存在则报错</li>
+<li>为避免此错误，可以重写__getattr__()方法动态返回一个属性、方法；比如调用不存在的属性score时，Python解释器会试图调用__getattr__(self, &#39;score&#39;)来尝试获得属性，重写该方法就可以控制返回score的值</li>
+</ul>
+
+<pre><code class="language-python"># 返回属性
+class Student(object):
+    def __getattr__(self, attr):
+        if attr == &#39;score&#39;:
+            return 99
+
+&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.score
+99
+
+# 返回函数
+class Student(object):
+    def __getattr__(self, attr):
+        if attr == &#39;age&#39;:
+            return lambda: 25
+
+&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; f = s.age
+&gt;&gt;&gt; f
+&lt;function Student.__getattr__.&lt;locals&gt;.&lt;lambda&gt; at 0x10050cbf8&gt;
+&gt;&gt;&gt; f()
+25
+&gt;&gt;&gt; s.age()
+25
+</code></pre>
+
+<ul>
+<li><strong>注意，只有在没有找到属性、方法的情况下（以obj.x对象方式、getattr(obj, &#39;x&#39;, NO=one)函数方式），才调用__getattr__()；若已存在属性、方法则不会调用__getattr__()</strong></li>
+<li>此外，若重写了__getattr__()时要设置返回默认处理；比如，上面定义的__getattr__()默认返回None，这样将导致调用任何不存在且没有处理的属性、方法时都会返回None；要让class只响应特定的几个不存在的属性、方法，其他不存在的则抛出AttributeError错误</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; s.abc  # 不报任何错误（返回None）
+
+class Student(object):
+    def __getattr__(self, attr):
+        if attr == &#39;age&#39;:
+            return lambda: 25
+        raise AttributeError(&#39;\&#39;Student\&#39; object has no attribute \&#39;%s\&#39;&#39; % attr)
+
+&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.abc
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ File &quot;&lt;stdin&gt;&quot;, line 5, in __getattr__
+AttributeError: &#39;Student&#39; object has no attribute &#39;abc&#39;
+
+# 应用场景：URL动态调用
+class Chain(object):
+    def __init__(self, path=&#39;&#39;):
+        elf._path = path
+    def __getattr__(self, path):
+        return Chain(&#39;%s/%s&#39; % (self._path, path))
+    def __str__(self):
+        return self._path
+    __repr__ = __str__
+
+&gt;&gt;&gt; Chain().stutus.user.timeline.list
+/stutus/user/timeline/list
+&gt;&gt;&gt; Chain().stutus.user.timeline
+/stutus/user/timeline
+</code></pre></li>
+<li><p>d. __call__()方法</p>
+
+<ul>
+<li>一个实例变量可以有自己的属性和方法，当调用实例的方法时使用instance.method()的方式来调用；但是也可以直接调用实例本身上，只需要实现__call__()方法即可</li>
+</ul>
+
+<pre><code class="language-python">class Student(object):
+    def __init__(self, name):
+        self.name = name
+    def __call__(self):
+        print(&#39;My name is %s.&#39; % self.name)
+
+&gt;&gt;&gt; s = Student(&#39;Michael&#39;)
+&gt;&gt;&gt; s()  # 调用实例本身，不是方法调用
+My name is Michael.
+</code></pre>
+
+<ul>
+<li><strong>__call__()方法还可以定义参数，对实例的直接调用相当于对一个函数调用</strong>；完全可以将对象和函数看成一样，函数本身也是运行期动态创建出来的，对象也是运行期创建出来的</li>
+<li>一个对象是若能被调用则该对象是一个Callable对象，可使用callable()函数来判断</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; callable(Student(&#39;Tom&#39;))
+True
+&gt;&gt;&gt; callable(max)
+True
+&gt;&gt;&gt; callable([1, 2, 3])
+False
+&gt;&gt;&gt; callable(None)
+False
+&gt;&gt;&gt; callable(&#39;str&#39;)
+False
+</code></pre></li>
+</ul>
+
+<h5 id="toc_6">8.6 使用枚举类</h5>
+
+<ul>
+<li>当需要定义常量时，一种方式是用大写变量通过整数来定义（例如月份）；好处是简单，缺点是类型是int且仍然是变量</li>
+<li><p>更好的方式是将这样的类型定义一个class类型（枚举类型），然后每一个常量都是class的一个唯一实例；Python提供了Enum类来实现该功能</p>
+
+<pre><code class="language-python">from enum import Enum
+M = Enum(&#39;Month&#39;, (&#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;, &#39;Jun&#39;, &#39;Jul&#39;, &#39;Aug&#39;, &#39;Sep&#39;, &#39;Oct&#39;, &#39;Nov&#39;, &#39;Dec&#39;))
+
+# 获取到Month类型的枚举类，可以直接使用如Month.Jan的方式来引用一个常量
+&gt;&gt;&gt; for name, member in M.__members__.items():
+...      print(name, &#39;,&#39;, member, &#39;,&#39;, member.value)
+... 
+Jan , Month.Jan , 1  # value属性则是自动赋给成员的int常量，默认从1开始
+Feb , Month.Feb , 2
+Mar , Month.Mar , 3
+Apr , Month.Apr , 4
+May , Month.May , 5
+Jun , Month.Jun , 6
+Jul , Month.Jul , 7
+Aug , Month.Aug , 8
+Sep , Month.Sep , 9
+Oct , Month.Oct , 10
+Nov , Month.Nov , 11
+Dec , Month.Dec , 12
+</code></pre></li>
+<li><p>若需要精确控制枚举类型，可以从Enum派生出自定义类</p>
+
+<pre><code class="language-python">from enum import Enum, unique
+@unique  # @unique装饰器可以检查保证没有重复值
+class WeekDay(Enum):
+    Sun = 0  # Sum的value被设定为0
+    Mon = 1
+    Tue = 2
+    Wed = 3
+    Thu = 4
+    Fri = 5
+    Sat = 6
+
+&gt;&gt;&gt; day1 = WeekDay.Mon  # 访问枚举方式一
+&gt;&gt;&gt; day1
+&lt;WeekDay.Mon: 1&gt;
+&gt;&gt;&gt; print(day1)
+WeekDay.Mon
+
+&gt;&gt;&gt; print(WeekDay[&#39;Mon&#39;])  # 访问枚举方式二
+WeekDay.Mon
+
+&gt;&gt;&gt; print(WeekDay(1))  # 访问枚举方式三（根据value获取其对应的枚举常量）
+WeekDay.Mon
+
+&gt;&gt;&gt; print(WeekDay.Mon.value)
+1
+&gt;&gt;&gt; WeekDay(7)
+Traceback (most recent call last):
+ValueError: 7 is not a valid WeekDay
+
+&gt;&gt;&gt; print(day1 == WeekDay.Mon)
+True
+</code></pre></li>
+</ul>
+
+<h5 id="toc_7">8.7 使用元类（metaclass）</h5>
+
+<ul>
+<li>动态语言和静态语言最大的不同，就是函数和类的定义不是编译时定义的，而是运行时动态创建的</li>
+<li><p>type()函数可以获取、判断对象类型，返回对应Class类型；比如，Hello是一个class，它的类型是type，h是一个实例，它的类型是class Hello</p>
+
+<pre><code>class Hello(object):
+    def hello(self, name=&#39;world&#39;):
+        print(&#39;Hello, %s&#39; % name)
+
+&gt;&gt;&gt; print(type(Hello))
+&lt;class &#39;type&#39;&gt;
+&gt;&gt;&gt; print(type(h))
+&lt;class &#39;__main__.Hello&#39;&gt;
+</code></pre></li>
+<li><p><strong>type()函数还可以可以创建出新的数据类型；class的定义就是运行时调用type()函数动态创建的</strong></p>
+
+<ul>
+<li>要创建一个class，type()函数需要依次传入3个参数：class的名称、继承的父类集合（Python支持多继承，若只有一个父类注意单个元素的tuple写法）、class的方法名与函数名绑定的dict</li>
+<li>通过type()函数创建的class和直接代码定义的class是完全一样的；因为Python解释器遇到class定义时，仅仅是扫描一下class定义的语法，然后调用type()函数创建出class</li>
+</ul>
+
+<pre><code>def fn(self, name=&#39;world&#39;):
+     print(&#39;Hello, %s&#39; % name)
+
+# 通过type()函数创建出Hello类，无需通过“class Hello(object)...”的代码方式进行定义
+# hello方法与函数fn进行绑定
+Hello = type(&#39;Hello&#39;, (object,), dict(hello=fn))
+
+&gt;&gt;&gt; h = Hello()
+&gt;&gt;&gt; h.hello()
+Hello, world
+&gt;&gt;&gt; print(type(Hello))
+&lt;class &#39;type&#39;&gt;
+&gt;&gt;&gt; print(type(h))
+&lt;class &#39;__main__.Hello&#39;&gt;
+</code></pre></li>
+<li><p><strong>除了使用type()函数动态创建类以外，还可以，使用metaclass（元类）控制类的创建行为</strong></p>
+
+<ul>
+<li>可以把类看作是metaclass创建出来的“实例”；metaclass是类的模板，所以必须从type类型派生</li>
+<li>先有metaclass，再有类，最后才是实例</li>
+<li>按照默认习惯，metaclass的类名总是以Metaclass结尾，以便清楚地表示这是一个metaclass</li>
+</ul>
+
+<pre><code class="language-python">class ListMetaclass(type):
+    def __new__(cls, name, base, attrs):  # 实现__new__()方法，增加add()方法
+        attrs[&#39;add&#39;] = lambda self, value: self.append(value)
+        return type.__new__(cls, name, base, attrs)
+
+# 定义类时使用关键字参数metaclass，说明使用ListMetaclass来进行定制
+# 给自定义的MyList增加一个add方法
+class MyList(list, metaclass=ListMetaclass): 
+    pass
+
+&gt;&gt;&gt; l = MyList()
+&gt;&gt;&gt; l.add(1)  # 调用增加的add()方法；
+# 虽然是类方法，但是没有对象方法，调用时使用调用类方法，和类属性与对象属性的调用顺序类似
+&gt;&gt;&gt; l
+[1]
+
+&gt;&gt;&gt; l2 = list()
+&gt;&gt;&gt; l2.add(1)  # 普通的list没有add()方法
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &#39;list&#39; object has no attribute &#39;add&#39;
+</code></pre>
+
+<ul>
+<li>在metaclass的__new__()方法中，可以修改类的定义（比如增加新的方法），然后再返回修改后的定义</li>
+<li><strong>__new__()方法接收的参数依次是：当前准备创建的类的对象、类的名字、类继承的父类集合、类属性方法集合（不是对象的；参考类属性与对象属性的调用顺序）</strong></li>
+</ul></li>
+<li><p>动态修改有什么意义？直接在MyList定义时增加add()方法不是更简单吗？正常情况下，确实应该直接在MyLis定义时增加add()方法；但是有需要通过metaclass修改类定义的情景，比如ORM</p></li>
+<li><p>ORM全称“Object Relational Mapping”，即对象-关系映射，就是把关系数据库的一行映射为一个对象，也就是一个类对应一个表；这样写代码更简单，不用直接操作SQL语句</p></li>
+</ul>
+
+<h5 id="toc_8">8.7 自定义ORM框架</h5>
+
+<ul>
+<li><p>编写底层模块的第一步，就是先把接口写出来；比如，定义一个User类来操作对应的数据库User</p>
+
+<pre><code class="language-python"># 使用
+class User(Model): 
+    id = IntegerField(&#39;t_id&#39;) # 类属性
+    name = StringField(&#39;t_username&#39;)
+    email = StringField(&#39;t_email&#39;)
+    password = StringField(&#39;t_password&#39;)
+
+u = User(id=12345, name=&#39;Tom&#39;, email=&#39;tom@tom.com&#39;, password=&#39;123&#39;)  
+# dict语法； Model继承于dict，不需要实现__init__()方法进行绑定属性    
+u.save()
+</code></pre>
+
+<pre><code class="language-python"># Field类负责保存数据库表的字段名和字段类型
+class Field(object):  # IntegerField、StringField的父类
+    def __init__(self, name, col_type):
+        self.name = name
+        self.col_type = col_type
+
+    def __str__(self):
+        return &#39;&lt;%s:%s&gt;&#39; % (self.__class__.__name__, self.name)
+
+# 在Field的基础上，进一步定义各种类型的Field
+class IntegerField(Field):
+    def __init__(self, name):
+        super(IntegerField, self).__init__(name, &#39;bigint&#39;)  # 调用父类的方法
+
+class StringField(Field):
+    def __init__(self, name):
+        super(StringField, self).__init__(name, &#39;varchar(100)&#39;)
+</code></pre>
+
+<pre><code class="language-python">class ModelMetaclass(type):
+    def __new__(cls, name, base, attrs):
+        if name == &#39;Model&#39;:
+            return type.__new__(cls, name, base, attrs)
+
+        # 解析定义类User中定义的映射关系
+        mappings = dict()
+        # attrs.items保存的是类属性方法（如id = IntegerField(&#39;t_id&#39;)），而不是创建对象时传入的dict
+        for k, v in attrs.items(): 
+            if isinstance(v, Field):  # 是自定义的“Field类型”的类属性
+                # print(&#39;Found mapping: %s ==&gt; %s&#39; % (k, v))
+                mappings[k] = v
+
+        # 方式2：删除类属性
+        # 注意，不要在上面迭代过程中修改迭代对象
+        # for k in mappings.keys():
+            # attrs.pop(k) 
+
+        # 增加两个类属性（关系映射、表名）
+        attrs[&#39;__mappings__&#39;] = mappings
+        attrs[&#39;__table__&#39;] = name
+        return type.__new__(cls, name, base, attrs)
+</code></pre>
+
+<pre><code class="language-python"># Model继承于dict，初始化对象时其内部会初始化一个字典
+# m.id访问的是id属性，m[&#39;id&#39;]访问的是字典中‘id’对应的value
+class Model(dict, metaclass=ModelMetaclass):
+    def __init__(self, **kwargs):
+        super(Model, self).__init__(**kwargs)
+
+    # 方式2：重写__getattr__
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(r&quot;&#39;Model&#39; object has no attribute %s&quot; % key)
+
+    def __setattr__(self, key, value):
+        self[key] = value
+
+    def save(self):
+        fields = []
+        params = []
+        types = []
+        args = []
+        # 遍历保存的关系映射（k为类属性名，v.name为表中的字段名，v.col_type为表中的字段类型）
+        for k, v in self.__mappings__.items():
+            fields.append(v.name)
+            params.append(&#39;?&#39;)
+            types.append(v.col_type)
+
+            # 方式1：
+            # 直接读取dict，但是外界访问.k依然返回的是类属性的值（在这里是Field对象）
+            args.append(self[k]) 
+
+            # 方式2：
+            # 要以“.k”的形式读取的dic中的数据，即[&#39;k&#39;]，则必须删除该类属性k，然后重写__getattr__()方法，并在该方法内部读取[&#39;k&#39;]返回
+            # 必须删除，否则__getattr__()方法不会被调用
+            # args.append(getattr(self, k, None))
+
+        fieldsStr = &#39;,&#39;.join(fields)
+        paramsStr = &#39;,&#39;.join(params) 
+
+        sql = &#39;insert into %s (%s) values (%s)&#39; % (self.__table__, fieldsStr, paramsStr)
+        print(&#39;SQL: %s&#39; % sql)
+        print(&#39;TYPES: %s&#39; % str(types))
+        print(&#39;ARGS: %s&#39; % str(args))
+</code></pre>
+
+<pre><code># 输出结果
+Found mapping: id ==&gt; &lt;IntegerField:t_id&gt;
+Found mapping: password ==&gt; &lt;StringField:t_password&gt;
+Found mapping: name ==&gt; &lt;StringField:t_username&gt;
+Found mapping: email ==&gt; &lt;StringField:t_email&gt;
+SQL: insert into User (t_id,t_password,t_username,t_email) values (?,?,?,?)
+TYPES: [&#39;bigint&#39;, &#39;varchar(100)&#39;, &#39;varchar(100)&#39;, &#39;varchar(100)&#39;]
+ARGS: [12345, &#39;123&#39;, &#39;Tom&#39;, &#39;tom@tom.com&#39;]
+</code></pre></li>
+<li><p>当用户定义一个class User(Model)时，Python解释器首先在当前类User的定义中查找metaclass，若没有找到就继续在父类Model中查找metaclass</p></li>
+<li><p>若在父类Model中找到了，就使用父类Model中定义的metaclass（ModelMetaclass）来创建User类；也就是说，metaclass可以隐式地继承到子类，子类自己却不知道</p></li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15125773961976.html" 
+          title="Previous Post: Python3笔记(09异常、测试)">&laquo; Python3笔记(09异常、测试)</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15125773961879.html" 
+          title="Next Post: Python3笔记(06模块、07面向对象编程)">Python3笔记(06模块、07面向对象编程) &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15129255415379.html">Python3爬虫总结</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

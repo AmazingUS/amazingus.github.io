@@ -1,0 +1,807 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Python3笔记(06模块、07面向对象编程) - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Python3笔记(06模块、07面向对象编程)</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/12/7</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">06. 模块</a>
+<ul>
+<li>
+<a href="#toc_1">6.1 概述</a>
+</li>
+<li>
+<a href="#toc_2">6.2 使用模块</a>
+</li>
+<li>
+<a href="#toc_3">6.3 模块中的函数、变量的作用域</a>
+</li>
+<li>
+<a href="#toc_4">6.4 安装第三方模块</a>
+</li>
+<li>
+<a href="#toc_5">6.5 模块搜索路径</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">07. 面向对象编程</a>
+<ul>
+<li>
+<a href="#toc_7">7.1 概述</a>
+</li>
+<li>
+<a href="#toc_8">7.2 类、实例、绑定属性、方法</a>
+</li>
+<li>
+<a href="#toc_9">7.3 属性访问限制</a>
+</li>
+<li>
+<a href="#toc_10">7.4 继承和多态</a>
+</li>
+<li>
+<a href="#toc_11">7.5 获取对象信息</a>
+</li>
+<li>
+<a href="#toc_12">7.6 实例属性、类属性</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">06. 模块</h4>
+
+<h5 id="toc_1">6.1 概述</h5>
+
+<ul>
+<li>在Python中，一个.py文件称之为一个模块（Module），模块可以被其他地方导入使用</li>
+<li>为了避免模块名冲突，Python按照文件夹目录的形式（称为包，Package）来组织各个模块；abc.py的模块名为abc，mycompany目录下的abc.py的模块名为mycompany.abc</li>
+<li>每一个包目录下必须有一个__init__.py的文件（模块），否则Python就把这个目录当成普通目录而不是一个包目录；__init__.py可以是一个空文件，也可以有Python代码</li>
+<li>自己创建的模块要注意命名，不要和Python自带的模块冲突；例如Python自带sys模块，自己的模块就不可命名为sys .py，否则将无法导入Python自带的sys模块</li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h5 id="toc_2">6.2 使用模块</h5>
+
+<ul>
+<li><strong>使用模块中的变量、函数、类等有两种导入方式：</strong>
+
+<ul>
+<li><strong>a. 导入模块：<code>import XX</code></strong>
+
+<ul>
+<li><strong>XX为模块名</strong></li>
+<li><strong>使用模块内的属性、函数、类时需要加模块名前缀，例如 <code>import sys、print(sys.path)</code>、<code>import testpy、print(testpy.say())</code></strong></li>
+<li><strong>++加模块名前缀的语义用法，使得模块看起来很像一个类的实例（testpy.say()感觉是对象调用方法，实际是调用函数）或命名空间++</strong></li>
+</ul></li>
+<li><strong>b. 导入模块内的内容：<code>from XX import YY</code></strong>
+
+<ul>
+<li><strong>XX为模块名，YY为模块内的变量、函数、类</strong></li>
+<li><strong>也可以<code>from xx import \*</code>，一次性导入该模块内的所有的变量、函数、类</strong></li>
+<li><strong>使用模块内的属性、函数、类时不需要加模块名，例如 <code>from sys import path、print(path)</code>、<code>from testpy import say、print(say())</code></strong></li>
+<li><strong>应避免使用此方式导入，这样可以避免名称冲突，也增强程序可读性</strong></li>
+</ul></li>
+</ul></li>
+<li><p>Python文本头部结构信息</p>
+
+<pre><code class="language-python">#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+&#39;a test module&#39;   # 表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释
+
+__author__ = &#39;Tom&#39; # 申明作者
+</code></pre></li>
+<li><p>import sys # 表示导入sys模块，之后变量sys指向该模块；利用该sys变量访问该模块的变量、函数等</p></li>
+<li><p>sys模块有一个argv变量（list）存储命令行执行时的所有参数，argv至少有一个元素（第一个元素永远是该.py文件的名称）</p>
+
+<pre><code class="language-python">def test():
+    args = sys.argv
+    if len(args) == 1:
+        print(&#39;Hello, world!&#39;)
+    elif len(args) == 2:
+        print(&#39;Hello, %s&#39; % args[1])
+    else:
+        print(&#39;Too many arguments!&#39;)
+
+if __name__ == &#39;__main__&#39;:  # 当使用命令行运行该模块时，python解释器把一个特殊变量__name__赋值为&#39;__main__&#39;，若在其他地方导入该模块则不会（if判断将失败不执行test()）
+    test()
+
+# 运行:
+localhost:Desktop $ python3 hello.py
+Hello, world!
+localhost:Desktop $ python3 hello.py Tom
+Hello, Tom
+
+&gt;&gt;&gt; import hello
+&gt;&gt;&gt; hello.test()
+Hello, world!
+</code></pre></li>
+</ul>
+
+<h5 id="toc_3">6.3 模块中的函数、变量的作用域</h5>
+
+<ul>
+<li>正常名称的函数、变量都是公开的（public）,可以被其他模块导入后直接使用，比如abc</li>
+<li>若仅仅让函数、变量在模块内部使用，可以通过给名称加‘_’前缀来表示非公开的（private），比如_abc
+
+<ul>
+<li>但是，类似__xxx__这样名称的变量是有特殊用途的变量，是公开的（public），可以直接使用，如上面的__author__、__name__、__doc__（定义文档注释）</li>
+<li>注意：虽然类似_xxx和__xxx这样名称的函数、变量是非公开的（private）不应该被直接使用，比如_abc、__abc，但是实际上还是可以被访问的；<strong>是按照约定不应该，而不是不可以</strong></li>
+</ul></li>
+<li><p>可以通过在定义公开的函数中，调用私有的函数、变量的方式（在模块中没有私有访问限制的问题），让外界可以间接使用私有的函数、变量</p>
+
+<pre><code class="language-python">def _private_1(name):
+    return &#39;Hello, %s&#39; % name
+def _private_2(name):
+    return &#39;Hi, %s&#39; % name
+def greeting(name):
+    if len(name) &gt; 3:
+        return _private_1(name)
+    else:
+        return _private_2(name)
+
+&gt;&gt;&gt; from testpy import greeting
+&gt;&gt;&gt; greeting(&#39;test&#39;)
+&#39;Hello, test&#39;
+
+&gt;&gt;&gt; from testpy import _private_1
+&gt;&gt;&gt; _private_1(&#39;test&#39;)
+&#39;Hello, test&#39;
+</code></pre></li>
+</ul>
+
+<h5 id="toc_4">6.4 安装第三方模块</h5>
+
+<ul>
+<li>在Python中安装第三方模块是通过包管理工具pip完成的，例如安装Pillow：pip install Pillow</li>
+<li><p>若Python2、3都存在，则python3对应的pip命令为“pip3”</p>
+
+<pre><code class="language-python"># 生成图片缩略图:
+&gt;&gt;&gt; from PIL import Image
+&gt;&gt;&gt; im = Image.open(&#39;/Users/ls/Desktop/a.jpg&#39;)
+&gt;&gt;&gt; print(im.format, im.size, im.mode)
+JPEG (750, 1334) RGB
+&gt;&gt;&gt; im.thumbnail((200, 100))
+&gt;&gt;&gt; im.save(&#39;/Users/ls/Desktop/thumb.jpg&#39;, &#39;JPEG&#39;)
+</code></pre></li>
+</ul>
+
+<h5 id="toc_5">6.5 模块搜索路径</h5>
+
+<ul>
+<li>当我们试图加载一个模块时，Python解释器会在指定路径下搜索对应的.py文件，若找不到则报错</li>
+<li>默认情况下，Python解释器会搜索当前目录、所有已安装的内置模块和第三方模块；搜索路径存放在sys模块的path变量中(import sys、sys.path)</li>
+<li>若需添加自定义的搜索路径有两种方法：a. 直接修改sys.path添加要搜索的目录（sys.path.append(&#39;/.../.../my_py_scripts&#39;)；b. 设置环境变量PYTHONPATH（注意只需要添加自己的搜索路径，Python自己本身的搜索路径不受影响）</li>
+</ul>
+
+<h4 id="toc_6">07. 面向对象编程</h4>
+
+<h5 id="toc_7">7.1 概述</h5>
+
+<ul>
+<li>在Python中所有数据类型都可以视为对象，当然也可以自定义对象</li>
+<li>自定义对象的数据类型就是面向对象中的类（Class）的概念</li>
+</ul>
+
+<h5 id="toc_8">7.2 类、实例、绑定属性、方法</h5>
+
+<ul>
+<li>自定义类格式：依次为 <code>class 类名(CLASS) :</code> ；“(CLASS)”表示从哪个类继承，默认为 <code>object</code> (小写的)</li>
+<li><p>创建实例通过“类()”实现</p>
+
+<pre><code class="language-python">class Student(object):
+    def __init__(self, name, score):  # 这个对象拥有name和score这两属性（Property）
+        self.name = name
+        self.score = score
+    def print_score(self):
+        print(&#39;%s: %s&#39; % (self.name, self.score))
+
+&gt;&gt;&gt; bart = Student(&#39;Bart Simpson&#39;, 59)  # 创建学生对象
+&gt;&gt;&gt; lisa = Student(&#39;Lisa Simpson&#39;, 87)
+&gt;&gt;&gt; bart.print_score()  # 给对象发一个print_score消息（调用对象对应的关联函数）
+Bart Simpson: 59
+&gt;&gt;&gt; lisa.print_score()
+Lisa Simpson: 87
+</code></pre>
+
+<pre><code class="language-python">&gt;&gt;&gt; bart
+&lt;__main__.Student object at 0x1024f82b0&gt;
+&gt;&gt;&gt; Student
+&lt;class &#39;__main__.Student&#39;&gt;
+</code></pre></li>
+<li><p>和静态语言不同，Python允许对实例变量自由地绑定属性；也就是说，对于两个实例，虽然它们都是同一个类的不同实例，但可以让它们拥有的属性可能不同</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; bart.intro = &#39;test&#39;
+&gt;&gt;&gt; bart.intro
+&#39;test&#39;
+&gt;&gt;&gt; lisa.intro
+Traceback (most recent call last):
+ File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &#39;Student&#39; object has no attribute &#39;intro&#39;
+</code></pre></li>
+<li><p>由于类可以起模板的作用，可把必须绑定的属性在定义__init__方法的时候进行绑定</p></li>
+<li><p>__init__方法的第一个参数永远是self，表示创建的实例本身；可以把各种属性绑定到self上</p></li>
+<li><p>在创建实例的时候就不能传入空的参数，必须传入与__init__方法匹配的参数；但是self参数不需要传入，Python解释器会自动把实例变量本身传入</p></li>
+<li><p>定义时将封装数据的函数和类的实例进行关联起来，我们称之为方法</p></li>
+<li><p>方法定义时，除了第一个参数是实例变量self外，其他和普通函数一样；方法调用时，使用“对象.”的形式进行调用，不用传入self参数，其他参数正常传入</p></li>
+</ul>
+
+<h5 id="toc_9">7.3 属性访问限制</h5>
+
+<ul>
+<li><p><strong>在Python中，若让内部属性不被外部访问，在属性的名称前加上两个下划线“__”（加一个不可以），该属性就变成私有的</strong></p>
+
+<ul>
+<li>只能内部可以访问，外部不能直接访问（但是通过特殊手段，还是可以间接访问的）</li>
+<li>上面定义的Student类，外部代码是可以自由地修改一个实例的name、score属性</li>
+<li><strong>注意：模块中的函数、变量只是人为意识上的私有（加一个、两个下划线都是，只要以下划线开始），实际上还是可以直接访问的</strong></li>
+</ul>
+
+<pre><code class="language-python">class Student(object):
+    def __init__(self, name, score):
+        self.__name = name
+        self.__score = score
+    def print_score(self):
+        print(&#39;%s: %s&#39; % (self.__name, self.__score))
+
+&gt;&gt;&gt; bart = Student(&#39;Bart Simpson&#39;, 98)
+&gt;&gt;&gt; bart.__name
+Traceback (most recent call last):
+ File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &#39;Student&#39; object has no attribute &#39;__name&#39;
+</code></pre></li>
+<li><p>若需要在外部代码获取设置私有属性，可以给类增加了get、set方法获取、设置该私有属性</p></li>
+<li><p>通过定义方法去访问私有属性，而不是通过定义属性为公有的去直接访问，可以对参数做检查，避免传入无效的参数</p>
+
+<pre><code class="language-python">class Student(object):
+    def __init__(self, name, score):
+        self.__name = name
+        self._score = score
+    def print_score(self):
+        print(&#39;%s: %s&#39; %s (self.__name, self._score))
+    def get_name(self):
+        return self.__name
+    def set_name(self, name):
+        self.__name = name
+
+&gt;&gt;&gt; from testpy import Student
+&gt;&gt;&gt; bart = Student(&#39;Bart Simpson&#39;, 98)
+&gt;&gt;&gt; bart.get_name()
+&#39;Bart Simpson&#39;
+&gt;&gt;&gt; bart.set_name(&#39;haha&#39;)
+&gt;&gt;&gt; bart.get_name()
+&#39;haha&#39;
+
+# 以一个下划线“_”开头的属性不是私有的，可以直接访问
+&gt;&gt;&gt; bart._score
+98
+</code></pre></li>
+<li><p>通过特殊手段，还是可以间接访问私有属性；比如__name，Python解释器对外把__name修改为_Student__name（不同版本的Python修改的结果可能不一样），所以仍然可以通过_Student__name来访问原来的__name私有属性</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; bart._Student__name
+&#39;Bart Simpson&#39;
+</code></pre></li>
+</ul>
+
+<h5 id="toc_10">7.4 继承和多态</h5>
+
+<ul>
+<li>继承可以让子类获取父类的方法，也可以重写父类的方法</li>
+<li>多态的好处：方法定义时用父类参数接收传入子类实例，当方法调用时需要传入参数时，优先使用实际传入参数的类型中定义的方法，而不是方法定义时参数的类型中定义的方法；这样就可以任意增加新的子类，而不必修改方法的定义</li>
+<li>对于例如Java这样的静态语言，若方法定义需传入A类型参数，则调用时传入的对象必须是A类型或者A的子类类型，否则将无法调用A中定义的方法，比如run()方法</li>
+<li>对于Python这样的动态语言，则不一定需要传入A类型，只需要保证传入的对象有一个run()方法即可；这就是动态语言的“鸭子类型”，并不要求严格的继承体系</li>
+<li><p>Python的“file-like object”就是一种鸭子类型，不需要传入真正的文件对象，只需要是任何实现了read()方法的对象即可</p>
+
+<pre><code class="language-python">class Animal(object):
+    def run(self):
+        print(&#39;Animal is running...&#39;)
+class Dog(Animal):
+    def run(self):
+        print(&#39;Dog is running...&#39;)
+class Cat(Animal):
+    def eat(self):
+        print(&#39;Cat is Eating...&#39;)   
+
+class Timer(object):  # 没有继承Animal父类，只是拥有run方法
+    def run(self):
+        print(&#39;Start...&#39;)
+
+def runtest(animal):
+    animal.run()
+
+&gt;&gt;&gt; runtest(Dog())
+Dog is running...
+&gt;&gt;&gt; runtest(Cat())
+Animal is running...
+&gt;&gt;&gt; runtest(Timer())
+Start...
+</code></pre></li>
+</ul>
+
+<h5 id="toc_11">7.5 获取对象信息</h5>
+
+<ul>
+<li><p>a. type()函数</p>
+
+<ul>
+<li>可以获取、判断对象类型，返回对应Class类型</li>
+<li><p>判断基本数据类型可以直接写int、str；若要判断一个对象是否为函数，需要使用types模块中定义的变量</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; type(123)
+&lt;class &#39;int&#39;&gt;
+&gt;&gt;&gt; type(&#39;123&#39;)
+&lt;class &#39;str&#39;&gt;
+&gt;&gt;&gt; type(None)
+&lt;class &#39;NoneType&#39;&gt;
+&gt;&gt;&gt; type(abs)
+&lt;class &#39;builtin_function_or_method&#39;&gt;
+</code></pre>
+
+<pre><code class="language-python">&gt;&gt;&gt; type(123) == type(456)
+True
+&gt;&gt;&gt; type(123) == int
+True
+&gt;&gt;&gt; type(&#39;abc&#39;) == type(&#39;123&#39;)
+True
+&gt;&gt;&gt; type(&#39;123&#39;) == type(123)
+False
+
+&gt;&gt;&gt; def fn():
+...     pass
+... 
+&gt;&gt;&gt; type(fn) == types.FunctionType
+True
+&gt;&gt;&gt; type(abs) == types.BuiltinFunctionType
+True
+&gt;&gt;&gt; type(lambda x: x) == types.LambdaType
+True
+&gt;&gt;&gt; type((x for x in range(10))) == types.GeneratorType
+True
+</code></pre></li>
+</ul></li>
+<li><p>b. isinstance()函数</p>
+
+<ul>
+<li>对于有class的继承关系的，使用该函数判断一个对象是否是该类型本身，或者位于该类型的父继承链上</li>
+<li><p>比如，进行数据类型检查，判断一个对象是否是“Iterable”、“Iterator”</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; import testpy
+&gt;&gt;&gt; a = Animal()
+&gt;&gt;&gt; d = Dog()
+&gt;&gt;&gt; c = Cat()
+&gt;&gt;&gt; t = Timer()
+
+&gt;&gt;&gt; isinstance(c, Cat)
+True
+&gt;&gt;&gt; isinstance(c, Animal)
+True
+&gt;&gt;&gt; isinstance(a, Cat)
+False
+
+# isinstance()还可以判断一个变量是否是某些类型中的一种
+&gt;&gt;&gt; isinstance([1, 2, 3], (list, tuple)) 
+True
+</code></pre></li>
+</ul></li>
+<li><p>c. dir()函数</p>
+
+<ul>
+<li><p>可以获取一个对象的所有属性和方法，返回一个包含字符串的list</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; dir(&#39;ABC&#39;)
+&gt;&gt;&gt; dir(a)
+</code></pre></li>
+</ul></li>
+<li><p>d. len()函数</p>
+
+<ul>
+<li><p>数获取一个对象的长度，实际上在该函数内部会自动调用该对象的__len__()方法</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; len(&#39;ABC&#39;)
+3
+&gt;&gt;&gt; &#39;ABC&#39;.__len__()
+3
+
+&gt;&gt;&gt; class MyDog(object):
+...     def __len__(self):  # 重写__len__()方法
+...         return 100
+... 
+&gt;&gt;&gt; dog = MyDog()
+&gt;&gt;&gt; len(dog)
+100
+</code></pre></li>
+</ul></li>
+<li><p>e. hasattr()、getattr()、setattr()函数</p>
+
+<ul>
+<li>用来分别判断属性是否存在、获取设置对象的属性值</li>
+<li>只有在不知道对象信息的时候，才以上面函数的方式进行获取对象信息，若知道的话建议直接通过obj.x方式获取</li>
+<li><p>上述的三个函数也可以作用于对象的方法</p>
+
+<pre><code class="language-python">class MyObject(object):
+    def __init__(self):
+        self.x = 9
+    def power(self):
+        return self.x * self.x
+
+&gt;&gt;&gt; obj = MyObject()
+&gt;&gt;&gt; hasattr(obj, &#39;x&#39;)  # obj对象是否有&#39;x&#39;属性
+True
+&gt;&gt;&gt; obj.x
+9
+
+&gt;&gt;&gt; hasattr(obj, &#39;y&#39;)  # obj对象是否有&#39;y&#39;属性
+False
+&gt;&gt;&gt; setattr(obj, &#39;y&#39;, 19)  # 设置obj对象的&#39;y&#39;属性的值，若没有该属性则增加该属性
+&gt;&gt;&gt; hasattr(obj, &#39;y&#39;)
+True
+&gt;&gt;&gt; getattr(obj, &#39;y&#39;)
+19
+&gt;&gt;&gt; obj.y
+19
+
+# 若试图获取不存在的属性，会抛出AttributeError的错误
+# 可以传入default参数，若属性不存在则返回默认值（类似于dict的[&#39;key&#39;]、get(&#39;key&#39;)方式获取value）
+&gt;&gt;&gt; getattr(obj, &#39;z&#39;)
+Traceback (most recent call last):
+ File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: &#39;MyObject&#39; object has no attribute &#39;z&#39;
+&gt;&gt;&gt; getattr(obj, &#39;z&#39;, 404) 
+404
+</code></pre>
+
+<pre><code class="language-python">&gt;&gt;&gt; hasattr(obj, &#39;power&#39;)
+True
+&gt;&gt;&gt; getattr(obj, &#39;power&#39;)
+&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10215e630&gt;&gt;
+
+&gt;&gt;&gt; fn = getattr(obj, &#39;power&#39;)
+&gt;&gt;&gt; fn
+&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10215e630&gt;&gt;
+&gt;&gt;&gt; fn()  # 调用fn()与调用ojc.power()是一样的
+81
+</code></pre></li>
+<li><p>应用：若从文件流对象fp中读取数据，需要先判断fp是否存在read()方法，若存在说明该对象确实是文件流，返回文件流，否则无法读取返回None</p>
+
+<pre><code class="language-python">def readImage(fp):
+    if hasattr(fp, &#39;read&#39;):
+        return readData(fp)
+    return None
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h5 id="toc_12">7.6 实例属性、类属性</h5>
+
+<ul>
+<li>实例属性可以通过给实例变量或self进行任意绑定的方式；若给类本身绑定属性则直接在class中定义属性即可，<strong>此时该类属性归类所有（类属性），但实例变量也是可以访问的（实例方法、类方法同理）</strong></li>
+<li><p><strong>最好不要让实例属性和类属性使用相同的名称，若名称相同，则实例变量访问的是实例属性，而不是类属性（实例方法、类方法同理）</strong></p>
+
+<pre><code class="language-python">class Student(object):
+    name = &#39;Student&#39;  # 绑定类属性
+
+&gt;&gt;&gt; Student.name  # 访问类属性
+&#39;Student&#39;
+
+&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.name  # 实例变量也可以访问类属性
+&#39;Student&#39;
+&gt;&gt;&gt; s.name = &#39;Tom&#39;  # 绑定实例属性
+&gt;&gt;&gt; s.name  # 访问实例属性
+&#39;Tom&#39;
+&gt;&gt;&gt; Student.name  # 访问类属性
+&#39;Student&#39;
+
+&gt;&gt;&gt; del s.name  # 删除实例属性
+&gt;&gt;&gt; s.name  # 访问类属性
+&#39;Student&#39;
+</code></pre></li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15125773961928.html" 
+          title="Previous Post: Python3笔记(08面向对象高级编程)">&laquo; Python3笔记(08面向对象高级编程)</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15125773961836.html" 
+          title="Next Post: Python3笔记(05函数式编程)">Python3笔记(05函数式编程) &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15129255415379.html">Python3爬虫总结</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

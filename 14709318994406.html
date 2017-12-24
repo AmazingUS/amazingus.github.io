@@ -1,0 +1,403 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Ruby环境搭建教程 - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Ruby环境搭建教程</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2016/8/12</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">一、安装</a>
+</li>
+<li>
+<a href="#toc_1">二、rbenv</a>
+</li>
+<li>
+<a href="#toc_2">三、gem模块</a>
+</li>
+<li>
+<a href="#toc_3">四、gemset模块</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、安装</h4>
+
+<ul>
+<li>Ruby安装方式有多种方式，可以通Ruby安装包、Homebrew、rbenv或RVM等；</li>
+<li><p>rbenv和RVM都可进行Ruby多版本管理，等同于Node.js中的nvm、Python中的pyenv；这里使用rbenv进行安装（rbenv的GitHub Star比RVM的多）；</p>
+
+<ul>
+<li><p>第1步：安装rbenv</p>
+
+<pre><code>brew install rbenv
+</code></pre>
+
+<p><img src="media/14709318994406/install_rbenv.png" alt="install_rbenv" style="width:595px;"/></p></li>
+<li><p>第2步：安装某个版本的Ruby；</p>
+
+<pre><code>rbenv install &lt;VERSION&gt;
+</code></pre></li>
+</ul></li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<h4 id="toc_1">二、rbenv</h4>
+
+<ul>
+<li><p>rbenv的原理及使用和Python中的pyenv几乎是一样的；</p>
+
+<pre><code>rbenv version # 查看当前Ruby版本（以ruby --version为准）
+rbenv versions # 查看已安装的Ruby版本（system为系统默认安装的）
+
+rbenv install -l # 查看可以安装的Ruby版本
+rbenv uninstall &lt;VERSION&gt; # 安装某个版本的Ruby
+rbenv rehash # 刷新shims（有时install或切换版本后需要执行一下）
+rbenv uninstall &lt;VERSION&gt; # 卸载某个版本的Ruby
+
+rbenv global [VERSION] # 查看或设置全局的Ruby版本
+rbenv local [VERSION] # 查看或设置目录的Ruby版本
+rbenv shell [VERSION] # 查看或设置当Shell的Ruby版本
+rbenv &lt;local | shell&gt; --unset # 取消某个级别设置的Ruby版本
+</code></pre></li>
+</ul>
+
+<h4 id="toc_2">三、gem模块</h4>
+
+<ul>
+<li><p>gem（RubyGems）是Ruby的包管理工具（其也是一个包），类似于Node.js的npm、Python的pip；</p>
+
+<pre><code>gem -v # 查看gem版本
+gem environment # 查看gem的环境信息
+gem help [COMMAND] # 查看相关帮助
+
+gem list # 查看已安装的包
+gem outdated # 查看需要更新的包
+gem search &lt;PACKAGE&gt; # 查找包，如gem search rails
+
+gem install &lt;PACKAGE&gt; [-v &lt;VERSION&gt;] # 安装包，例如gem install rails -v 4.0
+gem uninstall &lt;PACKAGE&gt; # 卸载包（不会卸载其依赖包）
+gem update --system # 更新RubyGems（gem）
+gem update [&lt;PACKAGE&gt;] # 更新所有、某个包（会保留老版本的包）
+gem cleanup # 清除所有包的旧版本，保留最新版本
+
+gem dependency &lt;PACKAGE&gt; # 查看已安装包的依赖包
+</code></pre>
+
+<pre><code># Gem的安装源配置在~/.gemrc文件中，所有版本的Ruby/Gem共用
+gem sources -l # 查看gem的安装源
+gem sources -a &lt;URL&gt; # 增加一个gem的安装源
+gem sources -r &lt;URL&gt; # 删除某个gem的安装源
+gem sources -c # 删除所有gem的安装源
+</code></pre></li>
+</ul>
+
+<h4 id="toc_3">四、gemset模块</h4>
+
+<ul>
+<li>gemset可以为不同项目设置独立的虚拟的gem环境，其等同于Python中的virtualenv；</li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15002183005563.html" 
+          title="Previous Post: 本地使用多个SSH Key">&laquo; 本地使用多个SSH Key</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="14702376488769.html" 
+          title="Next Post: Python3环境搭建教程">Python3环境搭建教程 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15129255415379.html">Python3爬虫总结</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

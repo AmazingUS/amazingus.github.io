@@ -1,0 +1,844 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Python3笔记(17Web开发、18异步IO) - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Python3笔记(17Web开发、18异步IO)</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2017/12/7</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">17. Web开发</a>
+<ul>
+<li>
+<a href="#toc_1">17.1 HTTP协议</a>
+</li>
+<li>
+<a href="#toc_2">17.2 HTML</a>
+</li>
+<li>
+<a href="#toc_3">17.3 WSGI接口</a>
+</li>
+<li>
+<a href="#toc_4">17.4 使用Web框架</a>
+</li>
+<li>
+<a href="#toc_5">17.5 使用模板</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">18. 异步IO</a>
+<ul>
+<li>
+<a href="#toc_7">18.1 概述</a>
+</li>
+<li>
+<a href="#toc_8">18.2 协程（Coroutine）</a>
+</li>
+<li>
+<a href="#toc_9">18.3 asyncio</a>
+</li>
+<li>
+<a href="#toc_10">18.4 async/await</a>
+</li>
+<li>
+<a href="#toc_11">18.5 aiohttp</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">17. Web开发</h4>
+
+<h5 id="toc_1">17.1 HTTP协议</h5>
+
+<ul>
+<li>在Web应用中，服务器把网页传给浏览器，实际上就是把网页的HTML代码发送给浏览器，让浏览器显示出来；浏览器和服务器之间的传输协议是HTTP</li>
+<li>HTTP是在网络上传输HTML的协议，用于浏览器和服务器的通信；HTML是一种用来定义网页的文本</li>
+<li><p>每个HTTP请求和响应报文都遵循相同的格式，包含Header、Body（可选的）</p>
+
+<pre><code class="language-python"># 1. HTTP GET请求格式
+GET /path HTTP/1.1
+Header1: Value1
+Header2: Value2
+Header3: Value3
+</code></pre>
+
+<ul>
+<li>a. GET为请求方法，类似的有POST、HEADER等</li>
+<li>b. /path表示URL的路径（总是以/开头），/就表示首页</li>
+<li>c. HTTP/1.1表示采用HTTP协议版本为1.1；HTTP/1.1允许多个HTTP请求复用同一个TCP连接，加快传输速度，HTTP/1.0不可以</li>
+<li>d. 每个Header一行一个，换行符为\r\n</li>
+</ul>
+
+<pre><code class="language-python"># 2. HTTP POST请求格式
+POST /path HTTP/1.1
+Header1: Value1
+Header2: Value2
+Header3: Value3
+
+body data goes here...
+</code></pre>
+
+<ul>
+<li>a. 当遇到连续两个\r\n，表示Header部分结束，后面的数据全部是Body</li>
+</ul>
+
+<pre><code class="language-python"># 3. HTTP 响应格式
+200 OK
+Header1: Value1
+Header2: Value2
+Header3: Value3
+
+body data goes here...
+</code></pre>
+
+<ul>
+<li>a. 200表示成功响应，后面的OK为说明；类似的，“404 Not Found”表示网页不存在，“500 Internal Server Error”表示服务器内部出错，等等</li>
+<li>b. Content-Type表示body的数据类型，比如，“text/html”表示HTML网页；浏览器依靠Content-Type来判断响应的内容类型，而不是依靠URL，故即使URL是<a href="http://abc.com/a.jpg%E4%B9%9F%E4%B8%8D%E4%B8%80%E5%AE%9A%E5%B0%B1%E6%98%AF%E5%9B%BE%E7%89%87">http://abc.com/a.jpg也不一定就是图片</a></li>
+<li>c. 当存在Content-Encoding时，说明Body数据被压缩了，需要将Body数据先解压才能使用；最常见的压缩方式是gzip；压缩的目的在于减小Body的大小，加速网络传输</li>
+</ul></li>
+</ul>
+
+<span id="more"></span><!-- more -->   
+
+<h5 id="toc_2">17.2 HTML</h5>
+
+<ul>
+<li>HTML定义了网页的内容，CSS控制网页的内容，JavaScript负责页面的交互逻辑</li>
+<li>当我们用Python或者其他语言开发Web应用时，就是要在服务器端动态创建出HTML；这样，浏览器就会向不同的用户显示不同的Web页面</li>
+</ul>
+
+<h5 id="toc_3">17.3 WSGI接口</h5>
+
+<ul>
+<li><p>一个Web应用的本质：</p>
+
+<ul>
+<li>1). 浏览器发送一个HTTP请求</li>
+<li>2). 服务器收到请求，生成一个HTML文档</li>
+<li>3). 服务器把HTML文档作为HTTP响应的Body发送给浏览器</li>
+<li>4). 浏览器收到HTTP响应，从HTTP Body取出HTML文档并显示</li>
+</ul></li>
+<li><p>最简单的Web应用：先把HTML用文件保存好，使用一个HTTP服务器接收用户请求，从文件中直接读取HTML并返回；Apache、Nginx、Lighttpd等这些常见的静态服务器就是这样做的</p></li>
+<li><p>若要显示动态的HTML，可以由专门的服务器软件实现接收HTTP请求、解析HTTP请求、发送HTTP响应等底层功能，而我们使用Python或者其他语言专注于生成HTML文档；</p></li>
+<li><p>这种让我们专注于编写Web业务的代码，而不必关心TCP连接、HTTP请求响应格式等底层代码的编程接口，称为WSGI（Web Server Gateway Interface）</p></li>
+<li><p>WSGI接口定义非常简单，只需要实现一个HTTP处理函数（名称无所谓）就可以响应HTTP请求</p>
+
+<pre><code class="language-python">def app(environ, start_response):
+    start_response(&#39;200 OK&#39;, [(&#39;Content-Type&#39;, &#39;text/html&#39;)])
+    # 必须返回一个数组（元素必须为字节类型）
+    return [b&#39;&lt;h1&gt;Hello, web!&lt;/h1&gt;&#39;]
+</code></pre>
+
+<ul>
+<li>上面的app()函数就是符合WSGI标准的一个HTTP处理函数，接收两个参数：
+
+<ul>
+<li>environ（包含所有HTTP请求信息的dict对象）</li>
+<li>start_response（发送HTTP响应的函数；接收两个参数：HTTP响应状态字符串、HTTP Header的list，元素为tuple）</li>
+</ul></li>
+<li>在app()函数中，调用start_response(&#39;200 OK&#39;, [(&#39;Content-Type&#39;, &#39;text/html&#39;)])就是发送HTTP响应的Header；Header只能发送一次，也就是只能调用一次start_response()函数</li>
+<li>app()函数的返回值将作为HTTP响应的Body发送给浏览器</li>
+</ul></li>
+<li><p>有了WSGI，就只需要从environ中获取到HTTP请求信息，然后构造HTML，调用start_reponse()类似函数发送Header，最后返回Body</p></li>
+<li><p>HTTP处理函数必须由WSGI服务器来调用，若手动调用则无法提供所需要的参数，且返回的bytes无法发送给浏览器</p></li>
+<li><p>有很多符合WSGI规范的服务器可以使用，Python内置的wsgiref模块就是一个WSGI服务器的参考实现；所谓“参考实现”就是指实现完全符合WSGI标准，但不考虑运行效率，仅供开发测试使用</p>
+
+<pre><code class="language-python"># hello.py，实现Web应用程序的WSGI处理函数
+def app(environ, start_response):
+    start_response(&#39;200 OK&#39;, [(&#39;Content-Type&#39;, &#39;text/html&#39;)])
+    return [b&#39;&lt;h1&gt;Hello, web!&lt;/h1&gt;&#39;]
+
+# server.py，负责启动WSGI服务器
+from wsgiref.simple_server import make_server
+from hello import app
+
+def start_myServer():
+    # 创建一个服务器（IP为空、端口为8000、处理函数为app）
+    httpd = make_server(&#39;&#39;, 8000, app)  
+    print(&#39;Serving HTTP on port 8000...&#39;)
+    # 开始监听HTTP请求
+    httpd.serve_forever()
+
+if __name__ == &#39;__main__&#39;:
+    start_myServer()
+
+# 浏览器输入“http://127.0.0.1:8000”进行访问
+</code></pre>
+
+<pre><code class="language-python"># 从environ中读取PATH_INFO，显示动态内容
+def app(environ, start_response):
+    start_response(&#39;200 OK&#39;, [(&#39;Content-Type&#39;, &#39;text/html&#39;)])
+    # print(environ)
+    body = &#39;&lt;h1&gt;Hello, %s!&lt;/h1&gt;&#39; % (environ[&#39;PATH_INFO&#39;][1:] or &#39;web&#39;)
+    print(body)
+    return [body.encode(&#39;utf-8&#39;), b&#39;appendTest&#39;] 
+
+# 浏览器输入“http://127.0.0.1:8000/Tom”进行访问
+</code></pre></li>
+<li><p>多么复杂的Web应用程序，入口都是WSGI处理函数；但是直接在WSGI处理函数处理太底层了，需要在WSGI之上再抽象出Web框架，进一步简化Web开发</p></li>
+<li><p>补充：</p>
+
+<ul>
+<li>CGI是一种为用户动态提供所需数据的设计思想，不同语言有着各种不同的实现</li>
+<li>WSGI是Python对CGI进行的一种包装，核心使用Python实现</li>
+<li>Django、Google webapp等则是在WSGI基础上抽象出的Web框架</li>
+</ul></li>
+</ul>
+
+<h5 id="toc_4">17.4 使用Web框架</h5>
+
+<ul>
+<li>若直接在WSGI处理函数做判断分别处理多个不同的URL请求，这种处理方式比较低级，且代码无法很好维护</li>
+<li><p>可以在WSGI接口之上进行抽象，专注于用一个函数处理一个URL，URL到函数自动映射</p>
+
+<ul>
+<li>Flask就是这样的Web框架，其通过Python的装饰器在内部把URL和函数给关联起来，简化Web开发</li>
+<li>除了Flask，常见的Python Web框架还有Django、web. py、Bottle、Tornado（异步）</li>
+</ul>
+
+<pre><code class="language-python"># Flask使用，处理3个URL：
+# a. GET /（首页，返回Home）、
+# b. GET /signin（登录页，显示登录表单）、
+# c. POST /signin（处理登录表单，显示登录结果）
+from flask import Flask, request
+
+app = Flask(__name__)
+
+@app.route(&quot;/&quot;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+def home():
+    return &#39;&lt;h1&gt;Home&lt;/h1&gt;&#39;
+
+@app.route(&#39;/signin&#39;, methods=[&#39;GET&#39;]) # /signin的GET
+def signin_form():
+    return &#39;&#39;&#39;&lt;form action=&quot;/signin&quot; method=&quot;post&quot;&gt;
+              &lt;p&gt;&lt;input name=&quot;username&quot;&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;input name=&quot;password&quot; type=&quot;password&quot;&gt;&lt;/p&gt;
+              &lt;p&gt;&lt;button type=&quot;submit&quot;&gt;Sign In&lt;/button&gt;&lt;/p&gt;
+              &lt;/form&gt;&#39;&#39;&#39;
+
+@app.route(&#39;/signin&#39;, methods=[&#39;POST&#39;]) # /signin的POST
+def signin():
+    # 从request对象读取表单内容
+    if request.form[&#39;username&#39;] == &#39;admin&#39; and request.form[&#39;password&#39;] ==&#39;password&#39;:
+        return &#39;&lt;h3&gt;Hello, admin!&lt;/h3&gt;&#39;
+    return &#39;&lt;h3&gt;Bad username or password.&lt;/h3&gt;&#39;
+
+if __name__ == &#39;__main__&#39;:
+    app.run()  # 默认值端口5000，app.run(debug=Ture)则以调试模式启动
+
+# 浏览器输入“http://127.0.0.1:5000/”进行访问首页
+</code></pre></li>
+</ul>
+
+<h5 id="toc_5">17.5 使用模板</h5>
+
+<ul>
+<li>使用拼接字符串来生成HTML页面不合理，所以出现了模板技术</li>
+<li>使用模板，需要预先准备一个特殊的HTML文档，其嵌入一些变量和指令（比如模板HTML中的<code>{{ NAME }}</code>），然后根据我们传入的数据，替换后得到最终的HTML</li>
+<li>Flask默认支持的模板是Jinja2，通过rander_template()函数来实现模板的渲染；<strong>模板HTML一定要放到正确的templates目录，templates和app.py在同级目录下</strong></li>
+<li><p>在Jinja2模板中，用 <code>{{ NAME }}</code> 表示一个需要替换的变量，循环、条件判断等指令语句用 <code>{% ... %}</code> 表示</p>
+
+<pre><code># 循环输出页码
+{% if i in page_list %}
+    &lt;a href=&quot;/page/{{ i }}&quot;&gt;{{ i }}&lt;/a&gt;
+{% endfor %}
+</code></pre></li>
+<li><p>除了Jinja2，常见的Python模板还有Mako、Cheetah、Django</p>
+
+<pre><code class="language-python">from flask import Flask, request, render_template
+
+app = Flask(__name__)
+
+@app.route(&quot;/&quot;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+def home():
+    return render_template(&#39;home.html&#39;)
+
+@app.route(&#39;/signin&#39;, methods=[&#39;GET&#39;])
+def signin_form():
+    return render_template(&#39;form.html&#39;);
+
+@app.route(&#39;/signin&#39;, methods=[&#39;POST&#39;])
+def signin():
+    username = request.form[&#39;username&#39;];
+    password = request.form[&#39;password&#39;];
+    if username == &#39;admin&#39; and password ==&#39;password&#39;:
+        return render_template(&#39;signin-ok.html&#39;, username = username)
+    return render_template(&#39;form.html&#39;, message = &#39;Bad username or password&#39;, username = username)
+
+if __name__ == &#39;__main__&#39;:
+    app.run()   
+</code></pre>
+
+<pre><code class="language-html"># home.html
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Home&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 style=&quot;font-style:italic&quot;&gt;Home&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<pre><code class="language-html"># form.html
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Please Sign In&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  {% if message %}
+  &lt;p style=&quot;color:red&quot;&gt;{{ message }}&lt;/p&gt;
+  {% endif %}
+  &lt;form action=&quot;/signin&quot; method=&quot;post&quot;&gt;
+    &lt;legend&gt;Please sign in:&lt;/legend&gt;
+    &lt;p&gt;&lt;input name=&quot;username&quot; placeholder=&quot;Username&quot; value=&quot;{{ username }}&quot;&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input name=&quot;password&quot; placeholder=&quot;Password&quot; type=&quot;password&quot;&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;button type=&quot;submit&quot;&gt;Sign In&lt;/button&gt;&lt;/p&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<pre><code class="language-html"># signin-ok.html
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Welcome, {{ username }}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Welcome, {{ username }}!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></li>
+<li><p>MVC（Model-View-Controller，模型-视图-控制器）</p>
+
+<ul>
+<li>a. Python处理URL的函数就是C（Controller），负责业务逻辑，比如检查用户名是否存在，取出用户信息等</li>
+<li>b. 包含变量 <code>{{ NAME }}</code> 的模板就是V（View），负责显示逻辑，通过简单地替换一些变量，View最终输出的就是用户看到的HTML</li>
+<li>c. Mode是用来传给View的，View在替换变量的时候，从Model中取出相应的数据</li>
+<li>d. 因为Python支持关键字参数，很多Web框架允许传入关键字参数，然后在框架内部组装出一个dict作为Model</li>
+</ul></li>
+<li><p>在Python代码中处理M（Model）和C（Controller），而V（View）通过模板处理，这样就成功地把Python代码和HTML代码最大限度地分离</p></li>
+<li><p>使用模板的另一大好处是，模板改起来很方便，而且改完保存后，刷新浏览器就能看到最新的效果</p></li>
+</ul>
+
+<h4 id="toc_6">18. 异步IO</h4>
+
+<h5 id="toc_7">18.1 概述</h5>
+
+<ul>
+<li>CPU和IO设备的速度严重不匹配，多进程、多线程是解决这一问题的常用办法；而当进程、线程的数量过多时，效率性能也会严重下降</li>
+<li><p>异步IO也是一种解决该问题的办法；当代码执行一个耗时的IO操作时，它只发出IO指令，并不等待IO结果，然后去执行其他代码，一段时间后，当IO操作返回结果时，再通知CPU进行处理</p>
+
+<ul>
+<li><p>异步IO模型需要一个消息循环，在消息循环中，主线程不断地重复“读取消息-处理消息”这一过程</p>
+
+<pre><code class="language-python">loop = get_event_loop()
+while True:
+    event = loop.get_event()
+    process_event(event)
+</code></pre></li>
+<li><p>消息模型早就出现在桌面应用程序中了；所有的键盘、鼠标等消息都被发送到程序的消息队列中，主线程负责不停地读取消息并处理消息</p></li>
+<li><p>在“发出IO请求”到“IO完成”的这段时间里，同步IO模型下主线程只能挂起，在异步IO模型下主线程并没有休息，而是在消息循环中继续处理其他消息</p></li>
+<li><p>在异步IO模型中，一个线程可以同时处理多个IO请求却没有切换线程，大大提升多任务处理能力</p></li>
+</ul></li>
+</ul>
+
+<h5 id="toc_8">18.2 协程（Coroutine）</h5>
+
+<ul>
+<li>Python中的<strong>单进程</strong>的<strong>异步编程模型</strong>称为<strong>协程（Coroutine）</strong>，又称为微线程</li>
+<li>函数与协程区别：
+
+<ul>
+<li>函数（子程序）在所有语言中都是层级调用，通过栈来实现，并且调用总是一个入口一次返回，调用顺序明确；比如A调用B，B在执行过程中又调用C，C执行完毕返回，B执行完毕返回，最后A执行完毕</li>
+<li>协程看上去像函数，但是其在执行过程中是可以内部中断（类似于CPU的中断）；然后转而执行别的协程（并不是函数调用），之后在适当的时候再返回来接着执行之前的协程；<strong>协程的执行有点类似多线程执行，但实际上是在一个线程上执行</strong></li>
+</ul></li>
+<li>协程的优点：
+
+<ul>
+<li>执行效率高（协程间的切换不是线程切换，而是由程序自身控制）</li>
+<li>不需要多线程的锁机制（一个线程中不存在写变量冲突；共享资源不用加锁，只需判断状态即可）</li>
+</ul></li>
+<li>在多核CPU情况下，使用“多进程+协程”可以获得极高的性能</li>
+<li><strong>Python通过特性generator实现对协程的支持</strong></li>
+<li><strong>yield不仅可以返回一个值，还可以接收调用者发出的参数（通过send()方法发送的，即send()方法可调用协程）</strong></li>
+<li><strong>仅仅只有协程是不够的，还不足以实现异步IO，还需要消息循环和状态的控制</strong></li>
+<li><p>传统的生产者-消费者模型是一个线程写消息，一个线程取消息，通过锁机制控制队列和等待，但是一不小心可能产生死锁；可以通过generator，生产者生产消息后，直接通过send跳转到消费者开始执行，待消费者执行完毕后，yield返回到生产者继续生产</p>
+
+<pre><code class="language-python"># 生产者-消费者模型（注意：这里还不是协程，只是generator）
+def consumer():
+    r = &#39;&#39;
+    while True:
+        # 为了让n接收数据，先yield一下
+        # r将消费结果返回，n记录下一次调用send()方法传递的参数
+        n = yield r
+        if not n:
+            return
+        print(&#39;Consumer consuming %s ...&#39; % n)
+        r = &#39;OK %s&#39; % n
+
+def producer(c):
+    c.send(None)
+    for i in range(1, 4):
+        print(&#39;Producer producing %s ...&#39; % i)
+        r = c.send(i)  # i从1开始
+        print(&#39;Producer, Consumer return: %s&#39; % r)
+    c.close()
+
+c = consumer()
+producer(c)
+
+# 执行结果
+Producer producing 1 ...
+Consumer consuming 1 ...
+Producer, Consumer return: OK 1
+Producer producing 2 ...
+Consumer consuming 2 ...
+Producer, Consumer return: OK 2
+Producer producing 3 ...
+Consumer consuming 3 ...
+Producer, Consumer return: OK 3
+</code></pre></li>
+</ul>
+
+<h5 id="toc_9">18.3 asyncio</h5>
+
+<ul>
+<li>asyncio是Python 3.4引入的标准库，直接内置了对异步IO的支持</li>
+<li><p>asyncio的编程模型就是一个消息循环，从asyncio中直接获取EventLoop，然后把需要执行的协程放到EventLoop中执行，就实现异步IO</p>
+
+<pre><code class="language-python">import asyncio
+import threading
+
+# 这才是一个协程
+@asyncio.coroutine
+def hello():
+    print(&#39;Hello World: (%s)...&#39; % threading.current_thread())
+    # 执行EventLoop中其他可执行的协程
+    r = yield from asyncio.sleep(3) 
+    print(r)
+    print(&#39;Hello Again: (%s)...&#39; % threading.current_thread())
+
+# 获取EventLoop
+loop = asyncio.get_event_loop()
+
+# 将coroutine加入到EventLoop，并
+loop.run_until_complete(asyncio.wait([hello(), hello()]))
+loop.close()
+
+# 执行结果
+Hello World: (&lt;_MainThread(MainThread, started 140735154606080)&gt;)...
+Hello World: (&lt;_MainThread(MainThread, started 140735154606080)&gt;)...
+（暂停了3秒）
+None
+Hello Again: (&lt;_MainThread(MainThread, started 140735154606080)&gt;)...
+None
+Hello Again: (&lt;_MainThread(MainThread, started 140735154606080)&gt;)...
+</code></pre></li>
+<li><p><strong>@asyncio.coroutine: 把一个generator标记为coroutine（协程）类型</strong></p>
+
+<ul>
+<li><strong>协程不能直接运行，需要把协程加入到EventLoop，由其在适当的时候调用</strong></li>
+</ul></li>
+<li><p><strong>yield from asyncio.sleep(3)：中断当前协程并执行下一个消息循环（即去执行EventLoop中其他可执行的协程），当asyncio.sleep(3)返回后，才接着执行之后的代码</strong></p>
+
+<ul>
+<li>yield from XX: XX必须为Iterable，本质是遍历XX并分别yield</li>
+<li>asyncio.sleep(3)也是一个协程（协程也是generator）</li>
+<li>不能使用time模块的sleep，其会阻塞整个线程</li>
+<li><strong>asyncio模块的sleep的内部实现是注册一个定时器在EventLoop中，把CPU的控制权交给其他协程</strong></li>
+<li><strong>在此例中，让出时间为3秒给其他协程执行，3秒后asyncio.sleep(3)执行完，执行结果被yield给EventLoop，EventLoop再调用返回到当前协程中（这里调用参数为None，由r来接收），这里先不关心其他协程有没有执行完；可以把asyncio.sleep(3)看成一个耗时3秒的IO操作</strong></li>
+</ul></li>
+<li><p>asyncio.wait()：多个协程需要使用其包装一下</p></li>
+<li><p>run_until_complete()：将协程加入到EventLoop（本质将协程包装成为了一个任务task），并启动EventLoop</p></li>
+<li><p><strong>异步操作需要在coroutine中通过yield from完成，多个coroutine封装一起然后并发执行</strong></p>
+
+<pre><code class="language-python"># 异步网络连接来获取sina、sohu、163的首页
+import asyncio
+
+@asyncio.coroutine
+def wget(host):
+    print(&#39;wget %s...&#39; % host)
+    # 获取输入、输出流，连接耗时
+    reader, writer = yield from asyncio.open_connection(host, 80)
+
+    # 只请求头部信息
+    header = &#39;HEAD / HTTP/1.0\r\nHost: %s\r\n\r\n&#39; % host  
+    writer.write(header.encode(&#39;utf-8&#39;))
+    # 完全写入耗时（drain:排水、流干）
+    yield from writer.drain() 
+
+    while True:
+        # 读取耗时
+        line = yield from reader.readline()
+        if line == b&#39;\r\n&#39;:
+            break
+
+        # rstrip()删除str末尾的指定字符(默认为空格)
+        print(&#39;%s header &gt; %s&#39; % (host, line.decode(&#39;utf-8&#39;).rstrip()))
+    writer.close()  # close the socket
+
+loop = asyncio.get_event_loop()
+wgetList = [wget(host) for host in [&#39;www.sina.com.cn&#39;, &#39;www.sohu.com&#39;, &#39;www.163.com&#39;]]
+loop.run_until_complete(asyncio.wait(wgetList))
+loop.close()
+</code></pre></li>
+</ul>
+
+<h5 id="toc_10">18.4 async/await</h5>
+
+<ul>
+<li>使用asyncio的@asyncio.coroutine把一个generator标记为coroutline类型，然后在coroutline内部使用yield from调用另一个coroutine实现异步操作</li>
+<li><p>为了简化使用和代码简洁，Python 3.5引入新的语法 <code>async（代替@asyncio.coroutine）</code> 和 <code>await（代替yield from）</code></p>
+
+<pre><code class="language-python">import asyncio
+import threading
+
+async def hello():
+    print(&#39;Hello World: (%s)...&#39; % threading.current_thread())
+    r = await asyncio.sleep(3)
+    print(r)
+    print(&#39;Hello Again: (%s)...&#39; % threading.current_thread())
+</code></pre></li>
+</ul>
+
+<h5 id="toc_11">18.5 aiohttp</h5>
+
+<ul>
+<li>把asyncio（实现单线程并发IO操作）应用在Web服务器，可以实现多用户的高并发支持（HTTP连接就是IO操作）</li>
+<li><p>aiohttp是基于asyncio实现的HTTP框架；asyncio实现了TCP、UDP、SSL等协议，loop_create_server()则利用asyncio创建TCP服务</p>
+
+<pre><code class="language-python"># 编写Web应用：
+# /（首页返回b&#39;&lt;h1&gt;Index&lt;/h1&gt;&#39;）、
+# /hello/{name}（根据URL参数返回文本hello, %s!）
+import asyncio
+from aiohttp import web
+
+async def index(request):
+    await  asyncio.sleep(0.5)
+    return web.Response(body=b&#39;&lt;h1&gt;Index&lt;/h1&gt;&#39;)
+
+async def hello(request):
+    await asyncio.sleep(0.5)
+    text = &#39;&lt;h1&gt;hello, %s!&lt;/h1&gt;&#39; % request.match_info[&#39;name&#39;]
+    return web.Response(body=text.encode(&#39;utf-8&#39;))
+
+async def init(loop):
+    app = web.Application(loop=loop)
+    app.router.add_route(&#39;GET&#39;, &#39;/&#39;, index)
+    app.router.add_route(&#39;GET&#39;, &#39;/hello/{name}&#39;, hello)
+    # 若需要其他设备访问，ip设为0.0.0.0
+    svr = await loop.create_server(app.make_handler(), &#39;127.0.0.1&#39;, 8000)
+    return srv
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(init(loop))
+loop.run_forever()
+</code></pre></li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="15129255415379.html" 
+          title="Previous Post: Python3爬虫总结">&laquo; Python3爬虫总结</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15125773962317.html" 
+          title="Next Post: Python3笔记(15网络编程、16访问数据库)">Python3笔记(15网络编程、16访问数据库) &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15129255415379.html">Python3爬虫总结</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>
