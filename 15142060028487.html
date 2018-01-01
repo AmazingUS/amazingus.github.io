@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  本地使用多个SSH Key - TIME TO GO
+  Swift语法概要(01~02) - TIME TO GO
   
   </title>
   
@@ -97,10 +97,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>本地使用多个SSH Key</h1>
+          <h1>Swift语法概要(01~02)</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2017/7/16</span>
+          <span class="date">2017/12/25</span>
 
           
            
@@ -115,114 +115,15 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <ul>
-<li>
-<a href="#toc_0">一、概述</a>
-</li>
-<li>
-<a href="#toc_1">二、使用多个SSH Key</a>
-</li>
-<li>
-<a href="#toc_2">三、.ssh/config文件</a>
-</li>
-</ul>
+      <h4 id="toc_0">一、基本概念、基础类型(值类型)、控制流</h4>
 
-
-<h4 id="toc_0">一、概述</h4>
-
-<ul>
-<li>执行 <code>ssh-keygen -t rsa -C &quot;xx@email.com&quot;</code>，回车确认，默认在~/.ssh/目录中生成名称为“id_rsa”的private key和“id_rsa_pub”的public key；<strong>注意：每次执行生成的key是不一样的；</strong></li>
-<li>对于所有网站（如github、git.oschina等），一般使用同一个key进行认证；<strong>同一key在同一网站上只能用于一个账号，若需要使用不同的key就需要配置.ssh/config文件；</strong></li>
-<li>使用不同的key可以认证不同网站的账号，也可以认证同一网站的不同账号；</li>
-</ul>
+<h4 id="toc_1">二、函数、闭包(引用类型)</h4>
 
 <span id="more"></span><!-- more -->
 
-<h4 id="toc_1">二、使用多个SSH Key</h4>
+<p><img src="media/15142060028487/%E6%A6%82%E8%A6%81-%E4%B8%80-.svg" /></p>
 
-<ol>
-<li><p>生成第一个key；</p>
-
-<pre><code>## 指定生成的key的名称
-ssh-keygen -t rsa -C &quot;a@email.com&quot; -f ~/.ssh/A_KEYNAME
-</code></pre></li>
-<li><p>生成第二个key；</p>
-
-<pre><code>ssh-keygen -t rsa -C &quot;b@email.com&quot; -f ~/.ssh/B_KEYNAME
-</code></pre></li>
-<li><p>配置.ssh的config文件；</p>
-
-<pre><code>vi ~/.ssh/config
-</code></pre>
-
-<pre><code>Host AA # 要匹配的别名
-Hostname XX.com # 使用的域名
-IdentityFile ~/.ssh/A_KEYNAME # 使用的Key
-
-Host BB 
-Hostname XX.com
-IdentityFile ~/.ssh/B_KEYNAME
-</code></pre></li>
-<li><p>测试；</p>
-
-<pre><code>ssh -T git@AA # 注意：git@别名
-ssh -T git@BB
-</code></pre></li>
-<li><p>修改repo的ssh地址；</p>
-
-<ul>
-<li>github repo的ssh地址结构：<code>git@github.com:USERNAME/REPO_NAME.git</code></li>
-<li><p>比如git@<strong>github.com</strong>:twbs/bootstrap.git需要A_KEY管理，git@<strong>github.com</strong>:hexojs/hexo.git需要B_KEY管理；</p>
-
-<ul>
-<li><p>将ssh地址中的域名改为对应账号使用的域名别名，这样就可以使用该账号对应的key了；</p>
-
-<pre><code># 修改后的ssh地址
-git@AA:twbs/bootstrap.git
-git@BB:hexojs/hexo.git
-</code></pre></li>
-</ul></li>
-</ul></li>
-</ol>
-
-<h4 id="toc_2">三、.ssh/config文件</h4>
-
-<ul>
-<li><p>补充：</p>
-
-<ul>
-<li><strong>a. 可以让config的Host和Hostname相同，这样不修改repo的ssh地址，就使用对应的key</strong>；比如让Host和Hostname都是“github.com”；</li>
-<li>b. Host可以配置通配符*，规则写在最后，匹配前面没有匹配上的别名；</li>
-<li>c. 使用<code>ssh -T git@AA</code>进行测试时，加-v参数会输出测试log，如<code>ssh -T -v git@AA</code> ；</li>
-<li>d. <strong>.ssh/config文件可以加User参数；</strong>对Git服务，User为git，这样 <code>git@别名</code> 就可以简写成 <code>别名</code> 了，如 <code>ssh -T git@AA</code> 简写成 <code>ssh -T AA</code> ；</li>
-</ul></li>
-<li><p>示例</p>
-
-<pre><code>Host blog
-User git
-Hostname github.com
-IdentityFile ~/.ssh/me
-# example: git clone blog:usera/repo.git
-
-Host back
-User git
-Hostname gitee.com
-IdentityFile ~/.ssh/me
-# example: git clone back:usera/repo.git
-
-# &quot;Host&quot; same as &quot;URL&quot;
-Host gitee.com
-Hostname gitee.com
-IdentityFile ~/.ssh/me
-# example: git clone git@gitee.com:usera/repo.git
-
-# other &quot;Host&quot;
-Host *
-IdentityFile ~/.ssh/us
-# example: git clone git@github.com:usera/repo.git、
-#          ssh...
-</code></pre></li>
-</ul>
+<p><img src="media/15142060028487/%E6%A6%82%E8%A6%81-%E4%BA%8C-.svg" /></p>
 
 
     
@@ -233,16 +134,16 @@ IdentityFile ~/.ssh/us
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15125773961684.html" 
-          title="Previous Post: Python3笔记(01简介、02基础)">&laquo; Python3笔记(01简介、02基础)</a>
+          <a href="15147467488941.html" 
+          title="Previous Post: Swift语法概要(03~04)">&laquo; Swift语法概要(03~04)</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="14709318994406.html" 
-          title="Next Post: Ruby环境搭建教程">Ruby环境搭建教程 &raquo;</a>
+          <a  href="15129255415379.html" 
+          title="Next Post: Python3爬虫总结">Python3爬虫总结 &raquo;</a>
       
       </p>
         </div>

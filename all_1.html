@@ -97,6 +97,412 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="15125773962376.html">
+                
+                  <h1>Python3笔记(17Web开发、18异步IO)</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li>
+<a href="#toc_0">17. Web开发</a>
+<ul>
+<li>
+<a href="#toc_1">17.1 HTTP协议</a>
+</li>
+<li>
+<a href="#toc_2">17.2 HTML</a>
+</li>
+<li>
+<a href="#toc_3">17.3 WSGI接口</a>
+</li>
+<li>
+<a href="#toc_4">17.4 使用Web框架</a>
+</li>
+<li>
+<a href="#toc_5">17.5 使用模板</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">18. 异步IO</a>
+<ul>
+<li>
+<a href="#toc_7">18.1 概述</a>
+</li>
+<li>
+<a href="#toc_8">18.2 协程（Coroutine）</a>
+</li>
+<li>
+<a href="#toc_9">18.3 asyncio</a>
+</li>
+<li>
+<a href="#toc_10">18.4 async/await</a>
+</li>
+<li>
+<a href="#toc_11">18.5 aiohttp</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">17. Web开发</h4>
+
+<h5 id="toc_1">17.1 HTTP协议</h5>
+
+<ul>
+<li>在Web应用中，服务器把网页传给浏览器，实际上就是把网页的HTML代码发送给浏览器，让浏览器显示出来；浏览器和服务器之间的传输协议是HTTP</li>
+<li>HTTP是在网络上传输HTML的协议，用于浏览器和服务器的通信；HTML是一种用来定义网页的文本</li>
+<li><p>每个HTTP请求和响应报文都遵循相同的格式，包含Header、Body（可选的）</p>
+
+<pre><code class="language-python"># 1. HTTP GET请求格式
+GET /path HTTP/1.1
+Header1: Value1
+Header2: Value2
+Header3: Value3
+</code></pre>
+
+<ul>
+<li>a. GET为请求方法，类似的有POST、HEADER等</li>
+<li>b. /path表示URL的路径（总是以/开头），/就表示首页</li>
+<li>c. HTTP/1.1表示采用HTTP协议版本为1.1；HTTP/1.1允许多个HTTP请求复用同一个TCP连接，加快传输速度，HTTP/1.0不可以</li>
+<li>d. 每个Header一行一个，换行符为\r\n</li>
+</ul>
+
+<pre><code class="language-python"># 2. HTTP POST请求格式
+POST /path HTTP/1.1
+Header1: Value1
+Header2: Value2
+Header3: Value3
+
+body data goes here...
+</code></pre>
+
+<ul>
+<li>a. 当遇到连续两个\r\n，表示Header部分结束，后面的数据全部是Body</li>
+</ul>
+
+<pre><code class="language-python"># 3. HTTP 响应格式
+200 OK
+Header1: Value1
+Header2: Value2
+Header3: Value3
+
+body data goes here...
+</code></pre>
+
+<ul>
+<li>a. 200表示成功响应，后面的OK为说明；类似的，“404 Not Found”表示网页不存在，“500 Internal Server Error”表示服务器内部出错，等等</li>
+<li>b. Content-Type表示body的数据类型，比如，“text/html”表示HTML网页；浏览器依靠Content-Type来判断响应的内容类型，而不是依靠URL，故即使URL是<a href="http://abc.com/a.jpg%E4%B9%9F%E4%B8%8D%E4%B8%80%E5%AE%9A%E5%B0%B1%E6%98%AF%E5%9B%BE%E7%89%87">http://abc.com/a.jpg也不一定就是图片</a></li>
+<li>c. 当存在Content-Encoding时，说明Body数据被压缩了，需要将Body数据先解压才能使用；最常见的压缩方式是gzip；压缩的目的在于减小Body的大小，加速网络传输</li>
+</ul></li>
+</ul>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15125773962376.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2017/12/7</span>
+                    
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15125773962317.html">
+                
+                  <h1>Python3笔记(15网络编程、16访问数据库)</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li>
+<a href="#toc_0">15. 网络编程</a>
+<ul>
+<li>
+<a href="#toc_1">15.1 TCP/IP简介</a>
+</li>
+<li>
+<a href="#toc_2">15.2 TCP编程</a>
+</li>
+<li>
+<a href="#toc_3">15.3 UDP编程</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_4">16. 访问数据库</a>
+<ul>
+<li>
+<a href="#toc_5">16.1 概述</a>
+</li>
+<li>
+<a href="#toc_6">16.2 SQLite</a>
+</li>
+<li>
+<a href="#toc_7">16.3 MySQL</a>
+</li>
+<li>
+<a href="#toc_8">16.4 使用SQLAlchemy</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">15. 网络编程</h4>
+
+<h5 id="toc_1">15.1 TCP/IP简介</h5>
+
+<ul>
+<li>为了实现把全世界的所有不同类型的计算机都连接起来，规定了一套全球通用的协议（互联网协议簇，Internet Protocol Suite）</li>
+<li>互联网协议簇包含了上百种协议标准，但最重要的两个协议是TCP和IP协议，故把互联网协议簇简称TCP/IP协议</li>
+<li>IP协议负责把包数据从一台计算机通过网络发送到另一台计算机
+
+<ul>
+<li>IP包数据会被按块发送，途径多个路由，但不保证能到达，也不保证顺序到达</li>
+<li>传输数据时，双方必须知道对方的互联网上的唯一标识IP地址</li>
+<li>IPv4地址为32bit位数字，通常使用点分十进制表示（192.168.0.1）</li>
+<li>IPv6地址为128bit为数字，通常使用冒号分十六进制表示（2001:0db8:85a3:0042:1000:8a2e:0370:7334）</li>
+</ul></li>
+<li>TCP协议负责两台计算机之间建立可靠连接，保证数据包按顺序到达
+
+<ul>
+<li>TCP协议是建立在IP协议之上的</li>
+<li>TCP协议通过握手建立连接，然后对每个IP包编号，确保对方按顺序收到，若IP包丢失则自动重发</li>
+<li>许多常用的更高级的协议都是建立在TCP协议基础上的，比如用于浏览器的HTTP协议、发送邮件的SMTP协议等</li>
+</ul></li>
+<li>端口是用来区分同一台计算机上运行的不同网络程序，每个网络程序都会向系统申请可用的端口号
+
+<ul>
+<li>一个IP包除了包含要传输的数据外，还包含源IP和目标IP，源端口和目标端口</li>
+<li>计算机之间的两个进程在建立网络连接，就需要各自的的IP及端口</li>
+<li>一个进程也可能同时与其他多个计算机建立链接，因此可以同时申请多个端口</li>
+<li>一个端口被占用了，就不可以再被使用了；TCP的端口和UDP的端口之间是独立的，可以使用相同的端口号</li>
+</ul></li>
+</ul>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15125773962317.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2017/12/7</span>
+                    
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15125773962250.html">
+                
+                  <h1>Python3笔记(13常见内建模块(下)、14常用第三方模块)</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li>
+<a href="#toc_0">13. 常见内建模块(下)</a>
+<ul>
+<li>
+<a href="#toc_1">13.5 hashlib</a>
+</li>
+<li>
+<a href="#toc_2">13.6 itertools</a>
+</li>
+<li>
+<a href="#toc_3">13.7 ParserCreate（XML）</a>
+</li>
+<li>
+<a href="#toc_4">13.8 HTMLParser（HTML）</a>
+</li>
+<li>
+<a href="#toc_5">13.9 urllib</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">14. 常用第三方模块</a>
+<ul>
+<li>
+<a href="#toc_7">14.1 概述</a>
+</li>
+<li>
+<a href="#toc_8">14.2 PIL</a>
+</li>
+<li>
+<a href="#toc_9">14.3 virturalenv</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">13. 常见内建模块(下)</h4>
+
+<h5 id="toc_1">13.5 hashlib</h5>
+
+<ul>
+<li><p>hashlib提供了常见的摘要算法（如MD5、SHA等）；摘要算法又称为哈希算法、散列算法，通过把任意长度的数据转换为一个长度固定的字符串（16进制表示的字符串）</p>
+
+<pre><code class="language-python">import hashlib
+
+md5 = hashlib.md5()
+# 先转成字节，再进行hash
+md5.update(&#39;how to use md5 in python hashlib?&#39;.encode(&#39;utf-8&#39;))
+m = md5.hexdigest()
+print(m)  # d26a53750bc40b38b65a520292f69306
+
+# 若数据量较大，可分多次调用update()，最后计算的结果是一样的
+md5 = hashlib.md5()
+md5.update(&#39;how to use md5 in &#39;.encode(&#39;utf-8&#39;))
+md5.update(&#39;python hashlib?&#39;.encode(&#39;utf-8&#39;))
+m = md5.hexdigest()
+print(m)  # d26a53750bc40b38b65a520292f69306
+</code></pre></li>
+</ul>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15125773962250.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2017/12/7</span>
+                    
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15125773962190.html">
+                
+                  <h1>Python3笔记(12正则表达式、13常见内建模块(上))</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li>
+<a href="#toc_0">12. 正则表达式</a>
+<ul>
+<li>
+<a href="#toc_1">12.1 基础</a>
+</li>
+<li>
+<a href="#toc_2">12.2 re模块</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">13. 常见内建模块(上)</a>
+<ul>
+<li>
+<a href="#toc_4">13.1 datetime</a>
+</li>
+<li>
+<a href="#toc_5">13.2 collections</a>
+</li>
+<li>
+<a href="#toc_6">13.3 base64</a>
+</li>
+<li>
+<a href="#toc_7">13.4 struct</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">12. 正则表达式</h4>
+
+<h5 id="toc_1">12.1 基础</h5>
+
+<ul>
+<li>匹配字符：
+
+<ul>
+<li>\d匹配一个数字，\D匹配一个非数字</li>
+<li>\w匹配一个数字字母，\W匹配一个非数字字母</li>
+<li>\s匹配一个空白符（包含空格Tab等空白符），\S匹配一个非空白符</li>
+<li>.匹配任意一个字符</li>
+<li>[]表示精确匹配范围，例如[a-zA-Z]匹配一个字母、[0-9a-zA-Z_]匹配找一个数字、字母或下划线</li>
+<li>特殊字符使用\进行转义，例如-</li>
+</ul></li>
+<li>匹配长度：
+
+<ul>
+<li>*表示任意个字符（包含0个）</li>
+<li>+表示至少一个</li>
+<li>?表示0个或1个</li>
+<li>{n}表示n个，{n, m}表示n~m个，例如[a-zA-Z_][0-9a-zA-Z_]{0, 19}匹配长度为1-20个字符（前面1个是字母或下划线，后面最多19个数字、字母或下划线）</li>
+</ul></li>
+<li>^表示行的开头，例如<sup>\d表示必须以数字开头</sup></li>
+<li>\(表示行的结束，\d\)表示必须以数字结束，py可以匹配python，但是<sup>py$就只能匹配py</sup></li>
+<li>A|B表示可以匹配A或B，但有时候需要加小括号()进行限制长度（此时也就会出现了分组）；例如(P|p)ython可以匹配Python或python，P|python只能匹配P或python</li>
+<li>单个字符的或匹配，也可以使用字符集[]来实现，例如[Pp]ython可以匹配Python或python</li>
+</ul>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15125773962190.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2017/12/7</span>
+                    
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="15125773962077.html">
                 
                   <h1>Python3笔记(11进程和线程)</h1>
@@ -214,416 +620,6 @@
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15125773962028.html">
-                
-                  <h1>Python3笔记(10IO编程)</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<ul>
-<li>
-<a href="#toc_0">10. IO编程</a>
-</li>
-<li>
-<a href="#toc_1">10.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">10.2 读写文件</a>
-<ul>
-<li>
-<a href="#toc_3">a. 读文件</a>
-</li>
-<li>
-<a href="#toc_4">b. 写文件</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_5">10.3 StringIO、BytesIO</a>
-</li>
-<li>
-<a href="#toc_6">10.4 操作文件和目录</a>
-</li>
-<li>
-<a href="#toc_7">10.5 序列化</a>
-<ul>
-<li>
-<a href="#toc_8">a. JSON</a>
-</li>
-<li>
-<a href="#toc_9">b. JSON进阶</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">10. IO编程</h4>
-
-<h4 id="toc_1">10.1 概述</h4>
-
-<ul>
-<li>流只能单向流动；既收又发数据就必须建立两个流（输入流、输出流）</li>
-<li>在IO编程中，存在着速度严重不匹配额问题，解决方式有两种：
-
-<ul>
-<li>a. CPU暂停执行后续代码，等待数据读取或写入完毕后再执行（同步IO模式）</li>
-<li>b. CPU不等待继续执行后续代码，数据读取或写入一边进行着（异步IO模式）</li>
-</ul></li>
-<li>同步IO和异步IO的区别是否等待IO执行的结果；使用异步IO来编写的程序性能远远高于同步IO，但是异步IO的缺点是编程模型复杂，异步IO需要“通知”别人其已执行完毕，“通知”有两种：
-
-<ul>
-<li>a. 回调，IO主动告诉别人</li>
-<li>b. 轮询，别人不断去检查IO是否执行完毕</li>
-</ul></li>
-<li>操作IO的能力是由操作系统提供的，每一种编程语言都会把操作系统提供的低级C接口封装起来方便使用，Python也不例外</li>
-<li>本章讨论的IO编程都是同步模式的</li>
-</ul>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15125773962028.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2017/12/7</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15125773961976.html">
-                
-                  <h1>Python3笔记(09异常、测试)</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<ul>
-<li>
-<a href="#toc_0">09. 异常、测试</a>
-</li>
-<li>
-<a href="#toc_1">9.1 异常</a>
-<ul>
-<li>
-<a href="#toc_2">a. 捕获异常</a>
-</li>
-<li>
-<a href="#toc_3">b. 抛出异常</a>
-</li>
-<li>
-<a href="#toc_4">c. 捕获抛出异常</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_5">9.2 调试</a>
-<ul>
-<li>
-<a href="#toc_6">a. 断言</a>
-</li>
-<li>
-<a href="#toc_7">b. logging</a>
-</li>
-<li>
-<a href="#toc_8">c. pdb</a>
-</li>
-<li>
-<a href="#toc_9">d. pdb.set_trace()</a>
-</li>
-<li>
-<a href="#toc_10">e. 使用IDE调试</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_11">9.3 单元测试</a>
-<ul>
-<li>
-<a href="#toc_12">a. 编写单元测试</a>
-</li>
-<li>
-<a href="#toc_13">b. 运行单元测试</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_14">9.4 文档测试</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">09. 异常、测试</h4>
-
-<h4 id="toc_1">9.1 异常</h4>
-
-<h5 id="toc_2">a. 捕获异常</h5>
-
-<ul>
-<li>可以用多个“except”（except：把…除外）来捕获不同类型的异常；但是需要将父类型的异常写在后面，否则父类型的异常会捕获其子类型的所有异常</li>
-<li>所有的异常继承于BaseException，比如Exception； UnicodeError是ValueError的子类</li>
-<li><p>使用“try...except”捕获异常有一个好处，就是可以跨越多层调用；也就是说，不需要在每个可能出错的地方捕获异常错误，只要在合适的层次地方去捕获异常错误就可以</p>
-
-<pre><code class="language-python">try:
-    print(&#39;try...&#39;)
-    # r = 10 / 0
-    # r = 10 / int(&#39;a&#39;)
-    r = 10 / 2
-    print(&#39;result:&#39;, r)
-except ZeroDivisionError as e:
-    print(&#39;ZeroDivisionError, except:&#39;, e)
-except ValueError as e:
-    print(&#39;ValueError, except:&#39;, e)
-else: # 其它情况（没有异常、其它异常）
-    print(&#39;no error&#39;)
-finally:
-    print(&#39;finally...&#39;)  # 最终都会执行（不论是否有异常）
-print(&#39;END&#39;) # 程序会继续执行（不论是否有异常）
-
-# 比如函数的main()调用了fun1()，fun1()调用了fun2()，结果fun2()出错了
-def fun2(s):
-    return 10 / int(s)
-def fun1(s):
-    return fun2(s) * 2
-#   只在main()中捕获到处理  
-def main():
-    try:
-        fun1(&#39;s&#39;)
-    except Exception as e:
-        print(&#39;Error:&#39;, e)
-    finally:
-        print(&#39;finally...&#39;)
-
-main()
-</code></pre></li>
-</ul>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15125773961976.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2017/12/7</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15125773961928.html">
-                
-                  <h1>Python3笔记(08面向对象高级编程)</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<ul>
-<li>
-<a href="#toc_0">08. 面向对象高级编程</a>
-<ul>
-<li>
-<a href="#toc_1">8.1 动态绑定方法</a>
-</li>
-<li>
-<a href="#toc_2">8.2 使用__slots</a>
-</li>
-<li>
-<a href="#toc_3">8.3. 使用@property</a>
-</li>
-<li>
-<a href="#toc_4">8.4 多重继承</a>
-</li>
-<li>
-<a href="#toc_5">8.5 定制类</a>
-</li>
-<li>
-<a href="#toc_6">8.6 使用枚举类</a>
-</li>
-<li>
-<a href="#toc_7">8.7 使用元类（metaclass）</a>
-</li>
-<li>
-<a href="#toc_8">8.7 自定义ORM框架</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">08. 面向对象高级编程</h4>
-
-<h5 id="toc_1">8.1 动态绑定方法</h5>
-
-<ul>
-<li><p>types模块MethodType()函数可以创建一个方法，给实例变量、类动态绑定方法</p>
-
-<pre><code class="language-python">class Student(object):
-    pass
-
-# 注意是带有self参数的函数，不是方法
-def set_age(self, age):  
-    self.age = age
-
-from types import MethodType
-s = Student()
-s.set_age = MethodType(set_age, s)  # 给一个实例变量动态绑定方法，只能该实例变量可以调用
-s.set_age(25)
-s.age # 25
-
-s2 = Student()
-s2.set_age(25)
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;Student&#39; object has no attribute &#39;set_age&#39;
-
-def set_score(self, score):
-    self.score = score
-
-# 给类绑定方法，所有实例变量都可以使用
-Student.set_score = MethodType(set_score, Student) 
-s.set_score(100)
-s.score # 100
-
-s2.set_score(99) # 99
-s2.score
-</code></pre></li>
-</ul>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15125773961928.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2017/12/7</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15125773961879.html">
-                
-                  <h1>Python3笔记(06模块、07面向对象编程)</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<ul>
-<li>
-<a href="#toc_0">06. 模块</a>
-<ul>
-<li>
-<a href="#toc_1">6.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">6.2 使用模块</a>
-</li>
-<li>
-<a href="#toc_3">6.3 模块中的函数、变量的作用域</a>
-</li>
-<li>
-<a href="#toc_4">6.4 安装第三方模块</a>
-</li>
-<li>
-<a href="#toc_5">6.5 模块搜索路径</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_6">07. 面向对象编程</a>
-<ul>
-<li>
-<a href="#toc_7">7.1 概述</a>
-</li>
-<li>
-<a href="#toc_8">7.2 类、实例、绑定属性、方法</a>
-</li>
-<li>
-<a href="#toc_9">7.3 属性访问限制</a>
-</li>
-<li>
-<a href="#toc_10">7.4 继承和多态</a>
-</li>
-<li>
-<a href="#toc_11">7.5 获取对象信息</a>
-</li>
-<li>
-<a href="#toc_12">7.6 实例属性、类属性</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">06. 模块</h4>
-
-<h5 id="toc_1">6.1 概述</h5>
-
-<ul>
-<li>在Python中，一个.py文件称之为一个模块（Module），模块可以被其他地方导入使用</li>
-<li>为了避免模块名冲突，Python按照文件夹目录的形式（称为包，Package）来组织各个模块；abc.py的模块名为abc，mycompany目录下的abc.py的模块名为mycompany.abc</li>
-<li>每一个包目录下必须有一个__init__.py的文件（模块），否则Python就把这个目录当成普通目录而不是一个包目录；__init__.py可以是一个空文件，也可以有Python代码</li>
-<li>自己创建的模块要注意命名，不要和Python自带的模块冲突；例如Python自带sys模块，自己的模块就不可命名为sys .py，否则将无法导入Python自带的sys模块</li>
-</ul>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15125773961879.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2017/12/7</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -691,31 +687,31 @@ s2.score
 	      
 		      
 			      <li class="post">
+			        <a href="15147467512006.html">Swift语法概要(07~08)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15147467504421.html">Swift语法概要(05~06)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15147467488941.html">Swift语法概要(03~04)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15142060028487.html">Swift语法概要(01~02)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="15129255415379.html">Python3爬虫总结</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15125773962376.html">Python3笔记(17Web开发、18异步IO)</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15125773962317.html">Python3笔记(15网络编程、16访问数据库)</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15125773962250.html">Python3笔记(13常见内建模块(下)、14常用第三方模块)</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15125773962190.html">Python3笔记(12正则表达式、13常见内建模块(上))</a>
 			      </li>
 		     
 		  
