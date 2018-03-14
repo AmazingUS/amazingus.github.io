@@ -97,6 +97,129 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="15206830265209.html">
+                
+                  <h1>Swift和ObjcC混合编程</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li>
+<a href="#toc_0">一、Swift调用ObjC</a>
+</li>
+<li>
+<a href="#toc_1">二、ObjC调用Swift</a>
+</li>
+<li>
+<a href="#toc_2">三、Swift项目使用ObjC Pods</a>
+</li>
+<li>
+<a href="#toc_3">四、ObjC项目使用Swift Pods</a>
+</li>
+<li>
+<a href="#toc_4">五、Swift调用C、C++</a>
+</li>
+</ul>
+
+
+<h5 id="toc_0">一、Swift调用ObjC</h5>
+
+<ul>
+<li>实现步骤：
+
+<ul>
+<li>1. 新建Swift项目；</li>
+<li>2. 新建ObjC文件，比如ObjCUtil.h/m；
+
+<ul>
+<li>a. 此时Xcode会提示是否自动创建Bridge头文件（文件名称为<code>#ProjectName#-Bridging-Header.h</code>），选择自动创建；</li>
+<li>b. 也可以手动创建Bridge头文件，只需修改&quot;Build Setting&quot;中的&quot;Objective-C Briding Header&quot;即可；</li>
+</ul></li>
+<li>3. 在Bridge头文件中，进行<code>#import &quot;ObjC文件.h&quot;</code>，之后即可在Swift调用ObjC了；</li>
+<li>4. 新建一个Swift文件（不必继承NSObject）用于测试，比如SwiftUtil.swift；</li>
+</ul></li>
+</ul>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15206830265209.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/3/10</span>
+                    
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="15147939316129.html">
+                
+                  <h1>Carthage使用教程</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<ul>
+<li>
+<a href="#toc_0">一、概述、安装</a>
+</li>
+<li>
+<a href="#toc_1">二、使用</a>
+</li>
+<li>
+<a href="#toc_2">三、其他说明</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、概述、安装</h4>
+
+<ul>
+<li>Carthage类似于CocoaPods，用于iOS、macOS等平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持；Carthage是基于Swift的，Swift只支持Dynamic framework）</strong>，之后手动拖入到项目中；其对项目工程文件的入侵性较小，并且可以与CocoaPods无缝集成，一个项目可以同时拥有CocosPods和Carthage；</li>
+<li><p>可以通过Homebrew进行安装Carthage；</p>
+
+<pre><code># 安装carthage（安装升级carthage，注意可能出现多版本共存bug）
+brew install carthage
+
+carthage version  # 查看安装的版本
+</code></pre></li>
+</ul>
+
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="15147939316129.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/1/1</span>
+                    
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="15147467512006.html">
                 
                   <h1>Swift语法概要(07~08)</h1>
@@ -198,127 +321,6 @@
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="15142060028487.html">
-                
-                  <h1>Swift语法概要(01~02)</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<h4 id="toc_0">一、基本概念、基础类型(值类型)、控制流</h4>
-
-<h4 id="toc_1">二、函数、闭包(引用类型)</h4>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15142060028487.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2017/12/25</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="15129255415379.html">
-                
-                  <h1>Python3爬虫总结</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<ul>
-<li>
-<a href="#toc_0">一、URI、URL</a>
-</li>
-<li>
-<a href="#toc_1">二、urllib库</a>
-</li>
-<li>
-<a href="#toc_2">三、URLError、HTTPError</a>
-</li>
-<li>
-<a href="#toc_3">四、设置header、timeout</a>
-</li>
-<li>
-<a href="#toc_4">五、Opener、Handler</a>
-<ul>
-<li>
-<a href="#toc_5">5.1 HTTPBasicAuthHandler</a>
-</li>
-<li>
-<a href="#toc_6">5.2 ProxyHandler</a>
-</li>
-<li>
-<a href="#toc_7">5.3 HTTPRedirectHandler</a>
-</li>
-<li>
-<a href="#toc_8">5.4 HTTPCoookieProcessor</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_9">六、实战</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">一、URI、URL</h4>
-
-<ul>
-<li>URI（Universal Resource Identifier）：统一资源标识符，一种语义上的抽象概念；可以是绝对的，也可以是相对的</li>
-<li>URL（Uniform Resource Locator）：统一资源定位符，一种具体的绝对的URI，是URI的一个子集；不仅唯一标识资源，而且还提供足够的信息定位该资源的信息</li>
-</ul>
-
-<h4 id="toc_1">二、urllib库</h4>
-
-<ul>
-<li><p>Python 2.x中有urllib、urllib2两个HTTP请求模块；urllib2是urllib的增强，但urllib中有urllib2中所没有的函数，它们一起搭配使用、不可相互替代</p>
-
-<ul>
-<li><p>a). urllib仅仅可以接受url，不可以设置请求的headers，意味着不可以进行伪装“User Agent”等操作</p></li>
-<li><p>b). urllib2可以通过接受一个Request实例，来设置HTTP请求的headers</p></li>
-<li><p>c). urllib提供urlencode函数用来“拼接”请求参数字符串</p></li>
-<li><p>d). urllib2没有“拼接”请求参数字符串功能的函数；</p></li>
-<li><p>urlencode函数是将一个dit或一个含有两个元素tuple的list变成一个url查询字符串（如name=Tom&amp;age=12)，并不是进行字符编码</p></li>
-</ul></li>
-</ul>
-
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="15129255415379.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2017/12/11</span>
-                    
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -386,6 +388,18 @@
 	      
 		      
 			      <li class="post">
+			        <a href="15206830265209.html">Swift和ObjcC混合编程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15147939316129.html">Carthage使用教程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="15147467512006.html">Swift语法概要(07~08)</a>
 			      </li>
 		     
@@ -399,18 +413,6 @@
 		      
 			      <li class="post">
 			        <a href="15147467488941.html">Swift语法概要(03~04)</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15142060028487.html">Swift语法概要(01~02)</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15129255415379.html">Python3爬虫总结</a>
 			      </li>
 		     
 		  

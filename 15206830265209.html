@@ -1,0 +1,573 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Swift和ObjcC混合编程 - TIME TO GO
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="self" href="index.html">Home</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">Archives</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; TIME TO GO</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+       
+       <li><a href="index.html">HOME</a></li>
+    <li><a href="archives.html">Archives</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+
+    <li><label>Categories</label></li>
+
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift和ObjcC混合编程</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/3/10</span>
+
+          
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <ul>
+<li>
+<a href="#toc_0">一、Swift调用ObjC</a>
+</li>
+<li>
+<a href="#toc_1">二、ObjC调用Swift</a>
+</li>
+<li>
+<a href="#toc_2">三、Swift项目使用ObjC Pods</a>
+</li>
+<li>
+<a href="#toc_3">四、ObjC项目使用Swift Pods</a>
+</li>
+<li>
+<a href="#toc_4">五、Swift调用C、C++</a>
+</li>
+</ul>
+
+
+<h5 id="toc_0">一、Swift调用ObjC</h5>
+
+<ul>
+<li>实现步骤：
+
+<ul>
+<li>1. 新建Swift项目；</li>
+<li>2. 新建ObjC文件，比如ObjCUtil.h/m；
+
+<ul>
+<li>a. 此时Xcode会提示是否自动创建Bridge头文件（文件名称为<code>#ProjectName#-Bridging-Header.h</code>），选择自动创建；</li>
+<li>b. 也可以手动创建Bridge头文件，只需修改&quot;Build Setting&quot;中的&quot;Objective-C Briding Header&quot;即可；</li>
+</ul></li>
+<li>3. 在Bridge头文件中，进行<code>#import &quot;ObjC文件.h&quot;</code>，之后即可在Swift调用ObjC了；</li>
+<li>4. 新建一个Swift文件（不必继承NSObject）用于测试，比如SwiftUtil.swift；</li>
+</ul></li>
+</ul>
+
+<span id="more"></span><!-- more -->       
+
+<ul>
+<li><p>示例代码</p>
+
+<pre><code>// ObjCUtil.h
+#import &lt;Foundation/Foundation.h&gt;
+
+@interface ObjCUtil : NSObject
+
++ (void)sayClassMethod;
+- (void)sayObjectMethod;
+
+@end
+
+// ObjCUtil.m
+#import &quot;ObjCUtil.h&quot;
+
+@implementation ObjCUtil
+
++ (void)sayClassMethod {
+    NSLog(@&quot;%s&quot;, __func__);
+}
+
+- (void)sayObjectMethod {
+    NSLog(@&quot;%s&quot;, __func__);
+}
+
+@end
+</code></pre>
+
+<pre><code class="language-Obj-C">// SwiftUseObjC-Bridging-Header.h
+#import &quot;ObjCUtil.h&quot;
+</code></pre>
+
+<pre><code class="language-swift">// SwiftUtil.swift
+import Foundation
+
+class SwiftUtil { // 不必继承NSObject
+
+    static func test() -&gt; Void {
+        ObjCUtil.sayClassMethod()
+
+        let objCUitl = ObjCUtil()
+        objCUitl.sayObjectMethod()
+    }
+
+}
+</code></pre></li>
+</ul>
+
+<h5 id="toc_1">二、ObjC调用Swift</h5>
+
+<ul>
+<li><p>实现步骤：</p>
+
+<ul>
+<li>1. 新建ObjC项目；</li>
+<li>2. 新建一个Swift文件（必须继承NSObject），比如SwiftUtil.swift；
+
+<ul>
+<li>a. 在选择Xcode自动创建Bridge头文件的同时，Xcode还会<strong>自动隐式创建</strong><code>#ProjectName#-Swift.h</code>，用于ObjC调用Swift；该文件中的内容为Xcode动态生成的，不需要编辑；
+<img src="media/15206830265209/Xcode_config.png" alt="Xcode_config" style="width:676px;"/></li>
+<li>b. 若要将Swift类暴露给ObjC使用，则Swift类必须是NSObject的子类；</li>
+<li><strong>c. 从Swift4.0开始，Swift类中的方法必须显示添加@objc修饰符（Swift3.0不需要），否则ObjC无法识别；可以通过设置&quot;Build Setting&quot;中的&quot;Swift 3 @objc inference&quot;决定是否使用新特性；</strong>
+<img src="media/15206830265209/@objc.png" alt="@obj"/></li>
+</ul></li>
+<li>3. 在需要Swift类的ObjC文件中，进行<code>#ProjectName#-swift.h</code>，即可在ObjC调用Swift了；</li>
+<li>4. 新建ObjC文件用于测试，比如ObjCUtil.h/m；</li>
+</ul></li>
+<li><p>示例代码</p>
+
+<pre><code class="language-swift">// SwiftUtil.swift
+import UIKit
+
+class SwiftUtil: NSObject { // 必须继承NSObject
+
+    @objc func sayObjectMethod() -&gt; Void {
+        print(&quot;file: \(#file), func: \(#function), lines: \(#line)&quot;)
+    }
+
+    @objc static func sayClassMethod() -&gt; Void {
+        print(&quot;file: \(#file), func: \(#function), lines: \(#line)&quot;)
+    }
+
+}
+</code></pre>
+
+<pre><code>// ObjCUtil.h
+#import &lt;Foundation/Foundation.h&gt;
+
+@interface ObjcUtil : NSObject
+
++ (void)test;
+
+@end
+
+// ObjCUtil.m
+#import &quot;ObjcUtil.h&quot;
+#import &quot;ObjCUseSwift-Swift.h&quot;
+
+@implementation ObjcUtil
+
++ (void)test {
+    [SwiftUtil sayClassMethod];
+
+    SwiftUtil *swiftUtil = [[SwiftUtil alloc] init];
+    [swiftUtil sayObjectMethod];
+}
+
+@end
+</code></pre></li>
+</ul>
+
+<h5 id="toc_2">三、Swift项目使用ObjC Pods</h5>
+
+<ul>
+<li><p>Swift项目中可以直接使用ObjC Pods，只需要将在Bridge头文件中，进行<code>#import &lt;ObjC文件.h&gt;</code>即可；</p>
+
+<pre><code class="language-ruby"># Podfile
+project &#39;SwiftObjCPods.xcodeproj&#39;
+platform :ios, &#39;11.0&#39;
+
+target &#39;SwiftObjCPods&#39; do
+  use_frameworks!
+
+  # Pods for SwiftObjCPods
+  pod &#39;Alamofire&#39;, &#39;~&gt; 4.7&#39;
+  pod &#39;PureLayout&#39;
+
+end
+</code></pre>
+
+<pre><code>// SwiftObjCPods-Bridging-Header.h
+#import &lt;PureLayout/PureLayout.h&gt;
+</code></pre>
+
+<pre><code class="language-swift">import UIKit
+import Alamofire
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let view = UIView()
+        self.view.addSubview(view)
+        view.backgroundColor = .red
+        view.autoCenterInSuperview()
+        view.autoSetDimensions(to: CGSize(width: 100, height: 100))
+    }
+
+    override func touchesBegan(_ touches: Set&lt;UITouch&gt;, with event: UIEvent?) {
+        Alamofire.request(&quot;https://www.baidu.com/&quot;).responseString { (response) in
+            debugPrint(response)
+        }
+    }
+
+}
+</code></pre></li>
+</ul>
+
+<h5 id="toc_3">四、ObjC项目使用Swift Pods</h5>
+
+<ul>
+<li>一般无法直接使用Swift Pods，需要定义一个Swift中介文件；通过中介文件调用Swift Pods，ObjC项目再调用中介文件；</li>
+<li><p>ObjC项目的Podfile文件若使用Swift Pods，则必须使用<code>use_frameworks!</code>；</p>
+
+<pre><code class="language-ruby"># Podfile
+project &#39;ObjCSwiftPods.xcodeproj&#39;
+platform :ios, &#39;11.0&#39;
+
+target &#39;ObjCSwiftPods&#39; do
+    use_frameworks! # 必须使用
+
+  # Pods for ObjCSwiftPods
+    pod &#39;PureLayout&#39;
+    pod &#39;Alamofire&#39;, &#39;~&gt; 4.7&#39;
+
+end
+</code></pre>
+
+<pre><code class="language-swift">// Swift中介文件
+import Foundation
+import Alamofire
+
+class NetworkingUitl : NSObject {
+
+    @objc class func request() -&gt; Void {
+        Alamofire.request(&quot;https://www.baidu.com/&quot;).responseString { (response) in
+            debugPrint(response)
+        }
+    }
+}
+</code></pre>
+
+<pre><code class="language-obj-c">#import &quot;ViewController.h&quot;
+#import &lt;PureLayout/PureLayout.h&gt;
+#import &quot;ObjCSwiftPods-Swift.h&quot;
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    UIView *view = [[UIView alloc] init];
+    [self.view addSubview:view];
+    view.backgroundColor = [UIColor redColor];
+    [view autoCenterInSuperview];
+    [view autoSetDimensionsToSize:CGSizeMake(100, 100)];
+}
+
+- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event {
+    [NetworkingUitl request];
+}
+
+@end
+</code></pre></li>
+</ul>
+
+<h5 id="toc_4">五、Swift调用C、C++</h5>
+
+<ul>
+<li>Swift无法直接调用C、C++，其可以通过Swift调用ObjC，ObjC再调用C、C++，间接完成Swift调用C、C++；</li>
+</ul>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="15147939316129.html" 
+          title="Next Post: Carthage使用教程">Carthage使用教程 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <h1>TIME TO GO</h1>
+                <div class="site-des">It is just a matter of time.</div>
+                <div class="social">
+
+
+
+
+
+
+
+
+
+
+
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="15206830265209.html">Swift和ObjcC混合编程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15147939316129.html">Carthage使用教程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15147467512006.html">Swift语法概要(07~08)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15147467504421.html">Swift语法概要(05~06)</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15147467488941.html">Swift语法概要(03~04)</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="">ME</a>
+  </p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+
+
+  </body>
+</html>

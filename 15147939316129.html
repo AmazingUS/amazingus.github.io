@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
     
-  Swift语法概要(07~08) - TIME TO GO
+  Carthage使用教程 - TIME TO GO
   
   </title>
   
@@ -97,10 +97,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>Swift语法概要(07~08)</h1>
+          <h1>Carthage使用教程</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2017/12/31</span>
+          <span class="date">2018/1/1</span>
 
           
            
@@ -115,15 +115,117 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <h4 id="toc_0">一、扩展(extension)、协议(protocal)</h4>
+      <ul>
+<li>
+<a href="#toc_0">一、概述、安装</a>
+</li>
+<li>
+<a href="#toc_1">二、使用</a>
+</li>
+<li>
+<a href="#toc_2">三、其他说明</a>
+</li>
+</ul>
 
-<h4 id="toc_1">二、泛型(generic)、访问控制</h4>
+
+<h4 id="toc_0">一、概述、安装</h4>
+
+<ul>
+<li>Carthage类似于CocoaPods，用于iOS、macOS等平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持；Carthage是基于Swift的，Swift只支持Dynamic framework）</strong>，之后手动拖入到项目中；其对项目工程文件的入侵性较小，并且可以与CocoaPods无缝集成，一个项目可以同时拥有CocosPods和Carthage；</li>
+<li><p>可以通过Homebrew进行安装Carthage；</p>
+
+<pre><code># 安装carthage（安装升级carthage，注意可能出现多版本共存bug）
+brew install carthage
+
+carthage version  # 查看安装的版本
+</code></pre></li>
+</ul>
 
 <span id="more"></span><!-- more -->
 
-<p><img src="media/15147467512006/%E6%A6%82%E8%A6%81-%E4%B8%83-.svg" /></p>
+<h4 id="toc_1">二、使用</h4>
 
-<p><img src="media/15147467512006/%E6%A6%82%E8%A6%81-%E5%85%AB-.svg" /></p>
+<ol>
+<li><p>在项目根目录更加一个名称为Cartfile的文件，其作用和Podfile一样，描述所需要的第三方框架；</p>
+
+<pre><code>touch Cartfile
+open -a Xcode Cartfile  # 使用Xcode打开编辑
+
+# Cartfile内容（可以像Podfile一样指定库的版本）
+github &quot;Alamofire/Alamofire&quot; == 4.7.0  
+github &quot;PureLayout/PureLayout&quot;
+</code></pre></li>
+<li><p>执行更新命令，生成framework文件；</p>
+
+<pre><code>carthage update --platform iOS # 只生成iOS平台的framework
+</code></pre>
+
+<p>执行完成后，会生成以下文件目录结构：</p>
+
+<ul>
+<li>Carfile.resolved用于版本控制；</li>
+<li>Build目录为生成的Dynamic framework；</li>
+<li>Checkouts为从github上clone的源代码；
+<img src="media/15147939316129/carthage_files.png" alt="carthage_files" style="width:684px;"/></li>
+</ul></li>
+<li><p>添加Dynamic framework到项目中；</p>
+
+<ul>
+<li><p><strong>方式一：Embedded Binaries（不建议使用）</strong><br/>
+<img src="media/15147939316129/embedded_binaries.png" alt="embedded_binaries" style="width:672px;"/></p>
+
+<ul>
+<li><strong>a. 由于是生成的是Dynamic framework，可以手动直接添加framework到General或Build Phase界面的&quot;Embedded Binaries&quot;中，之后就可以直接使用；</strong></li>
+<li><strong>b. 添加了&quot;Embedded Binaries&quot;后，&quot;Link Binary With Libraries&quot;中会自动添加上面手动添加的framework；</strong></li>
+<li><strong>c. 若只是仅仅手动添加framework到&quot;Link Binary With Libraries&quot;，则该framework只能是Static Framework，不可以为Dynamic framework；</strong></li>
+<li><strong>d. 手动拖拽framework，只会添加framework到&quot;Link Binary With Libraries&quot;中；</strong></li>
+</ul></li>
+<li><p><strong>方式二：Link Binary With Libraries + Run Script；</strong></p>
+
+<ul>
+<li><p><strong>a. 添加添加framework到&quot;Link Binary With Libraries&quot;后，在Build Phase界面点击左上角+按钮，添加一个Run Script，并做以下配置；</strong><br/>
+<img src="media/15147939316129/carthage_run_script.png" alt="carthage_run_script" style="width:491px;"/></p>
+
+<ul>
+<li><strong>a) 添加命令：<code>usr/local/bin/carthage copy-frameworks</code></strong></li>
+<li><p><strong>b) Input Files中添加每一个framework的输入路径（注意避免空格换行符），比如：</strong></p>
+
+<pre><code>$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
+$(SRCROOT)/Carthage/Build/iOS/PureLayout.framework
+</code></pre></li>
+<li><p><strong>c)（可选，建议配置）Output Files中添加每一个framework的输出路径，比如：</strong></p>
+
+<pre><code>$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework
+$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
+</code></pre></li>
+</ul></li>
+<li><p><strong>b. <code>carthage copy-frameworks</code>命令的作用</strong></p>
+
+<ul>
+<li><strong>a) 拷贝Dynamic framework，进而不需要在手动添加到&quot;Embedded Binaries&quot;中了；</strong></li>
+<li><strong>b)（最重要）裁减Dynamic framework；</strong>
+
+<ul>
+<li><strong>Carthage生成的Dynamic framework是包含模拟器和真机平台的，而App Store提交的包内不可以有没有用到的平台的代码（模拟器的），使用该脚本就是自动将无用代码去除；（<code>http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/</code>）</strong></li>
+<li><strong>为了优化编译速度，添加Output Files路径，这样只有在Input Files中的文件修改了或Output Files中的文件丢失的情况下，才会执行命令，否则每次运行都会去执行；（详情查看<code>https://github.com/Carthage/</code>）</strong></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+
+<h4 id="toc_2">三、其他说明</h4>
+
+<ul>
+<li>若更新了Cartfile文件（库的版本、增删库），则只需要重新执行 <code>carthage update</code> 命令即可；</li>
+<li><strong>注意：不要直接删除Xcode Simulator的文件目录(<code>~/Library/Developer/CoreSimulator/Devices/</code>)</strong>；
+
+<ul>
+<li>若需要删除，可以通过<code>Xcode-&gt;Window-&gt;Devices and Simulators</code>进行删除；</li>
+<li><strong>直接删除可能导致执行xcodebuild命令失败，报错<code>xcodebuild: error: Unable to find a destination matching the provided destination specifier: { platform:iOS Simulator, id:</code>，进而导致执行 <code>carthage update</code> 命令失败</strong>；</li>
+<li>解决出现上面的问题，需要将所有模拟器手动删除后再新建一些模拟器可以；</li>
+</ul></li>
+</ul>
 
 
     
@@ -134,16 +236,16 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="15147939316129.html" 
-          title="Previous Post: Carthage使用教程">&laquo; Carthage使用教程</a>
+          <a href="15206830265209.html" 
+          title="Previous Post: Swift和ObjcC混合编程">&laquo; Swift和ObjcC混合编程</a>
       
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="15147467504421.html" 
-          title="Next Post: Swift语法概要(05~06)">Swift语法概要(05~06) &raquo;</a>
+          <a  href="15147467512006.html" 
+          title="Next Post: Swift语法概要(07~08)">Swift语法概要(07~08) &raquo;</a>
       
       </p>
         </div>

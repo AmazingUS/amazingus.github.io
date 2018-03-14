@@ -205,9 +205,19 @@ brew install &lt;NAME&gt; # 安装某个程序，例如brew install wget
 brew uninstall | remove &lt;NAME&gt; # 卸载某个程序（不会卸载相关包依赖），例如brew uninstall wget
 brew upgrade [NAME] # 更新所有程序（或某个程序）
 
-brew info &lt;NAME&gt; # 查看某个程序的相关信息
+brew info &lt;NAME&gt; # 查看某个程序的相关信息（如安装之后需要配置信息）
 brew deps &lt;NAME&gt; # 查看某个程序的包依赖
 brew home [NAME] # 使用浏览器打开brew（或某个程序）的主页
+</code></pre></li>
+<li><p>对于通过Homebrew安装的services（如mysql等），可以使用 <code>brew services</code> 相关命令进行管理；</p>
+
+<pre><code>brew services list # 查看所有services的状态
+brew services cleanup # 清除所有无用的services
+
+brew services run &lt;NAME&gt; # 启动某个services
+brew services start &lt;NAME&gt; # 启动某个services，并将设置开机自启动
+brew services stop &lt;NAME&gt;  # 关闭某个services，并将取消开机自启动
+brew services restart &lt;NAME&gt; # 重启某个services，并将设置开机自启动
 </code></pre></li>
 </ul>
 
@@ -296,6 +306,8 @@ sudo rm /var/db/receipts/com.oracle.*
 find / -name &quot;*编程*&quot;
 # 当前目录查找带“编程”的普通文件
 find . -name &quot;*编程*&quot; -type f
+# -iname: 不区分大小写查找
+find / -iname &quot;*Abc*&quot;
 
 # 当前目录查找带“编程”的普通文件，并删除（不带打印）
 find . -name &quot;*编程*&quot; -type f | xargs rm -rf
@@ -420,6 +432,18 @@ catalina stop # 关闭tomcat
 	      
 		      
 			      <li class="post">
+			        <a href="15206830265209.html">Swift和ObjcC混合编程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="15147939316129.html">Carthage使用教程</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="15147467512006.html">Swift语法概要(07~08)</a>
 			      </li>
 		     
@@ -433,18 +457,6 @@ catalina stop # 关闭tomcat
 		      
 			      <li class="post">
 			        <a href="15147467488941.html">Swift语法概要(03~04)</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15142060028487.html">Swift语法概要(01~02)</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="15129255415379.html">Python3爬虫总结</a>
 			      </li>
 		     
 		  
