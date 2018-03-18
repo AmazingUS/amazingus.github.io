@@ -4,21 +4,20 @@
   <title><![CDATA[TIME TO GO]]></title>
   <link href="http://www.justisit.com/atom.xml" rel="self"/>
   <link href="http://www.justisit.com/"/>
-  <updated>2018-03-14T23:10:35+08:00</updated>
+  <updated>2018-03-18T15:52:46+08:00</updated>
   <id>http://www.justisit.com/</id>
   <author>
     <name><![CDATA[]]></name>
-    
   </author>
   <generator uri="">ME</generator>
+
   
   <entry>
     <title type="html"><![CDATA[Swift和ObjcC混合编程]]></title>
     <link href="http://www.justisit.com/15206830265209.html"/>
     <updated>2018-03-10T19:57:06+08:00</updated>
     <id>http://www.justisit.com/15206830265209.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">一、Swift调用ObjC</a>
 </li>
@@ -43,15 +42,15 @@
 <li>实现步骤：
 
 <ul>
-<li>1. 新建Swift项目；</li>
-<li>2. 新建ObjC文件，比如ObjCUtil.h/m；
+<li>1、新建Swift项目；</li>
+<li>2、新建ObjC文件，比如ObjCUtil.h/m；
 
 <ul>
 <li>a. 此时Xcode会提示是否自动创建Bridge头文件（文件名称为<code>#ProjectName#-Bridging-Header.h</code>），选择自动创建；</li>
 <li>b. 也可以手动创建Bridge头文件，只需修改&quot;Build Setting&quot;中的&quot;Objective-C Briding Header&quot;即可；</li>
 </ul></li>
-<li>3. 在Bridge头文件中，进行<code>#import &quot;ObjC文件.h&quot;</code>，之后即可在Swift调用ObjC了；</li>
-<li>4. 新建一个Swift文件（不必继承NSObject）用于测试，比如SwiftUtil.swift；</li>
+<li>3、在Bridge头文件中，进行<code>#import &quot;ObjC文件.h&quot;</code>，之后即可在Swift调用ObjC了；</li>
+<li>4、新建一个Swift文件（不必继承NSObject）用于测试，比如SwiftUtil.swift；</li>
 </ul></li>
 </ul>
 
@@ -112,18 +111,20 @@ class SwiftUtil { // 不必继承NSObject
 <li><p>实现步骤：</p>
 
 <ul>
-<li>1. 新建ObjC项目；</li>
-<li>2. 新建一个Swift文件（必须继承NSObject），比如SwiftUtil.swift；
+<li>1、新建ObjC项目；</li>
+<li><p>2、新建一个Swift文件（必须继承NSObject），比如SwiftUtil.swift；</p>
 
 <ul>
-<li>a. 在选择Xcode自动创建Bridge头文件的同时，Xcode还会<strong>自动隐式创建</strong><code>#ProjectName#-Swift.h</code>，用于ObjC调用Swift；该文件中的内容为Xcode动态生成的，不需要编辑；
-<img src="media/15206830265209/Xcode_config.png" alt="Xcode_config" style="width:676px;"/></li>
-<li>b. 若要将Swift类暴露给ObjC使用，则Swift类必须是NSObject的子类；</li>
-<li><strong>c. 从Swift4.0开始，Swift类中的方法必须显示添加@objc修饰符（Swift3.0不需要），否则ObjC无法识别；可以通过设置&quot;Build Setting&quot;中的&quot;Swift 3 @objc inference&quot;决定是否使用新特性；</strong>
-<img src="media/15206830265209/@objc.png" alt="@obj"/></li>
+<li><p>a. 在选择Xcode自动创建Bridge头文件的同时，Xcode还会<strong>自动隐式创建</strong><code>#ProjectName#-Swift.h</code>，用于ObjC调用Swift；该文件中的内容为Xcode动态生成的，不需要编辑；</p>
+
+<p><img src="media/15206830265209/Xcode_config.png" alt="Xcode_config" style="width:676px;"/></p></li>
+<li><p>b. 若要将Swift类暴露给ObjC使用，则Swift类必须是NSObject的子类；</p></li>
+<li><p><strong>c. 从Swift4.0开始，Swift类中的方法必须显示添加@objc修饰符（Swift3.0不需要），否则ObjC无法识别；可以通过设置&quot;Build Setting&quot;中的&quot;Swift 3 @objc inference&quot;决定是否使用新特性；</strong></p>
+
+<p><img src="media/15206830265209/@objc.png" alt="@obj" style="width:489px;"/></p></li>
 </ul></li>
-<li>3. 在需要Swift类的ObjC文件中，进行<code>#ProjectName#-swift.h</code>，即可在ObjC调用Swift了；</li>
-<li>4. 新建ObjC文件用于测试，比如ObjCUtil.h/m；</li>
+<li><p>3、在需要Swift类的ObjC文件中，进行<code>#ProjectName#-swift.h</code>，即可在ObjC调用Swift了；</p></li>
+<li><p>4、新建ObjC文件用于测试，比如ObjCUtil.h/m；</p></li>
 </ul></li>
 <li><p>示例代码</p>
 
@@ -284,7 +285,6 @@ class NetworkingUitl : NSObject {
 <ul>
 <li>Swift无法直接调用C、C++，其可以通过Swift调用ObjC，ObjC再调用C、C++，间接完成Swift调用C、C++；</li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -293,8 +293,7 @@ class NetworkingUitl : NSObject {
     <link href="http://www.justisit.com/15147939316129.html"/>
     <updated>2018-01-01T16:05:31+08:00</updated>
     <id>http://www.justisit.com/15147939316129.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">一、概述、安装</a>
 </li>
@@ -324,8 +323,8 @@ carthage version  # 查看安装的版本
 
 <h4 id="toc_1">二、使用</h4>
 
-<ol>
-<li><p>在项目根目录更加一个名称为Cartfile的文件，其作用和Podfile一样，描述所需要的第三方框架；</p>
+<ul>
+<li><p>1、在项目根目录更加一个名称为Cartfile的文件，其作用和Podfile一样，描述所需要的第三方框架；</p>
 
 <pre><code>touch Cartfile
 open -a Xcode Cartfile  # 使用Xcode打开编辑
@@ -334,7 +333,7 @@ open -a Xcode Cartfile  # 使用Xcode打开编辑
 github &quot;Alamofire/Alamofire&quot; == 4.7.0  
 github &quot;PureLayout/PureLayout&quot;
 </code></pre></li>
-<li><p>执行更新命令，生成framework文件；</p>
+<li><p>2、执行更新命令，生成framework文件；</p>
 
 <pre><code>carthage update --platform iOS # 只生成iOS平台的framework
 </code></pre>
@@ -342,16 +341,16 @@ github &quot;PureLayout/PureLayout&quot;
 <p>执行完成后，会生成以下文件目录结构：</p>
 
 <ul>
-<li>Carfile.resolved用于版本控制；</li>
-<li>Build目录为生成的Dynamic framework；</li>
-<li>Checkouts为从github上clone的源代码；
-<img src="media/15147939316129/carthage_files.png" alt="carthage_files" style="width:684px;"/></li>
+<li><p>Carfile.resolved用于版本控制；Build目录为生成的Dynamic framework；Checkouts为从github上clone的源代码；</p>
+
+<p><img src="media/15147939316129/carthage_files.png" alt="carthage_files" style="width:684px;"/></p></li>
 </ul></li>
-<li><p>添加Dynamic framework到项目中；</p>
+<li><p>3、添加Dynamic framework到项目中；</p>
 
 <ul>
-<li><p><strong>方式一：Embedded Binaries（不建议使用）</strong><br/>
-<img src="media/15147939316129/embedded_binaries.png" alt="embedded_binaries" style="width:672px;"/></p>
+<li><p><strong>方式一：Embedded Binaries（不建议使用）</strong></p>
+
+<p><img src="media/15147939316129/embedded_binaries.png" alt="embedded_binaries" style="width:672px;"/></p>
 
 <ul>
 <li><strong>a. 由于是生成的是Dynamic framework，可以手动直接添加framework到General或Build Phase界面的&quot;Embedded Binaries&quot;中，之后就可以直接使用；</strong></li>
@@ -362,8 +361,9 @@ github &quot;PureLayout/PureLayout&quot;
 <li><p><strong>方式二：Link Binary With Libraries + Run Script；</strong></p>
 
 <ul>
-<li><p><strong>a. 添加添加framework到&quot;Link Binary With Libraries&quot;后，在Build Phase界面点击左上角+按钮，添加一个Run Script，并做以下配置；</strong><br/>
-<img src="media/15147939316129/carthage_run_script.png" alt="carthage_run_script" style="width:491px;"/></p>
+<li><p><strong>a. 添加添加framework到&quot;Link Binary With Libraries&quot;后，在Build Phase界面点击左上角+按钮，添加一个Run Script，并做以下配置；</strong></p>
+
+<p><img src="media/15147939316129/carthage_run_script.png" alt="carthage_run_script" style="width:491px;"/></p>
 
 <ul>
 <li><strong>a) 添加命令：<code>usr/local/bin/carthage copy-frameworks</code></strong></li>
@@ -391,7 +391,7 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 </ul></li>
 </ul></li>
 </ul></li>
-</ol>
+</ul>
 
 <h4 id="toc_2">三、其他说明</h4>
 
@@ -405,7 +405,6 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 <li>解决出现上面的问题，需要将所有模拟器手动删除后再新建一些模拟器可以；</li>
 </ul></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -414,8 +413,7 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
     <link href="http://www.justisit.com/15147467512006.html"/>
     <updated>2018-01-01T02:59:11+08:00</updated>
     <id>http://www.justisit.com/15147467512006.html</id>
-    <content type="html"><![CDATA[
-<h4 id="toc_0">一、扩展(extension)、协议(protocal)</h4>
+    <content type="html"><![CDATA[<h4 id="toc_0">一、扩展(extension)、协议(protocal)</h4>
 
 <h4 id="toc_1">二、泛型(generic)、访问控制</h4>
 
@@ -424,7 +422,6 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 <p><img src="media/15147467512006/%E6%A6%82%E8%A6%81-%E4%B8%83-.svg" /></p>
 
 <p><img src="media/15147467512006/%E6%A6%82%E8%A6%81-%E5%85%AB-.svg" /></p>
-
 ]]></content>
   </entry>
   
@@ -433,8 +430,7 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
     <link href="http://www.justisit.com/15147467504421.html"/>
     <updated>2018-01-01T02:59:10+08:00</updated>
     <id>http://www.justisit.com/15147467504421.html</id>
-    <content type="html"><![CDATA[
-<h4 id="toc_0">一、继承、构造</h4>
+    <content type="html"><![CDATA[<h4 id="toc_0">一、继承、构造</h4>
 
 <h4 id="toc_1">二、析构、类型检查及转换、异常</h4>
 
@@ -443,7 +439,6 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 <p><img src="media/15147467504421/%E6%A6%82%E8%A6%81-%E4%BA%94-.svg" /></p>
 
 <p><img src="media/15147467504421/%E6%A6%82%E8%A6%81-%E5%85%AD-.svg" /></p>
-
 ]]></content>
   </entry>
   
@@ -452,8 +447,7 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
     <link href="http://www.justisit.com/15147467488941.html"/>
     <updated>2018-01-01T02:59:08+08:00</updated>
     <id>http://www.justisit.com/15147467488941.html</id>
-    <content type="html"><![CDATA[
-<h4 id="toc_0">一、结构体(值类型)、类(引用类型)</h4>
+    <content type="html"><![CDATA[<h4 id="toc_0">一、结构体(值类型)、类(引用类型)</h4>
 
 <h4 id="toc_1">二、枚举(值类型)、其他</h4>
 
@@ -462,7 +456,6 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 <p><img src="media/15147467488941/%E6%A6%82%E8%A6%81-%E4%B8%89-.svg" /></p>
 
 <p><img src="media/15147467488941/%E6%A6%82%E8%A6%81-%E5%9B%9B-.svg" /></p>
-
 ]]></content>
   </entry>
   
@@ -471,8 +464,7 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
     <link href="http://www.justisit.com/15142060028487.html"/>
     <updated>2017-12-25T20:46:42+08:00</updated>
     <id>http://www.justisit.com/15142060028487.html</id>
-    <content type="html"><![CDATA[
-<h4 id="toc_0">一、基本概念、基础类型(值类型)、控制流</h4>
+    <content type="html"><![CDATA[<h4 id="toc_0">一、基本概念、基础类型(值类型)、控制流</h4>
 
 <h4 id="toc_1">二、函数、闭包(引用类型)</h4>
 
@@ -481,7 +473,6 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 <p><img src="media/15142060028487/%E6%A6%82%E8%A6%81-%E4%B8%80-.svg" /></p>
 
 <p><img src="media/15142060028487/%E6%A6%82%E8%A6%81-%E4%BA%8C-.svg" /></p>
-
 ]]></content>
   </entry>
   
@@ -490,8 +481,7 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
     <link href="http://www.justisit.com/15129255415379.html"/>
     <updated>2017-12-11T01:05:41+08:00</updated>
     <id>http://www.justisit.com/15129255415379.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">一、URI、URL</a>
 </li>
@@ -1046,7 +1036,6 @@ with request.urlopen(req) as f:
         print(&#39;数据保存完毕...&#39;)
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -1055,8 +1044,7 @@ with request.urlopen(req) as f:
     <link href="http://www.justisit.com/15125773962376.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773962376.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">17. Web开发</a>
 <ul>
@@ -1590,7 +1578,6 @@ loop.run_until_complete(init(loop))
 loop.run_forever()
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -1599,8 +1586,7 @@ loop.run_forever()
     <link href="http://www.justisit.com/15125773962317.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773962317.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">15. 网络编程</a>
 <ul>
@@ -2041,7 +2027,6 @@ class Book(Base):
 # 当查询到一个User对象时，其books属性是一个包含若干个Book对象的list
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -2050,8 +2035,7 @@ class Book(Base):
     <link href="http://www.justisit.com/15125773962250.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773962250.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">13. 常见内建模块(下)</a>
 <ul>
@@ -2621,7 +2605,6 @@ Python 2.7.10 。。。。。。 more information.
 <li><p>virturalenv创建“独立”的Python运行环境原理：把系统Python复制一份到virtualenv环境，用命令“source myvenv/bin/activate”进入一个virtualenv环境时，virtualenv会修改环境变量，让命令python和pip均指向当前的virtualenv环境<br/>
 Python3.3开始新增内置的创建虚拟环境的venv，其操作和virtualenv类似，创建一个“隔离环境”：<code>python3 -m venv myvenv</code></p></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -2630,8 +2613,7 @@ Python3.3开始新增内置的创建虚拟环境的venv，其操作和virtualenv
     <link href="http://www.justisit.com/15125773962190.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773962190.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">12. 正则表达式</a>
 <ul>
@@ -3144,7 +3126,6 @@ BMP格式采用小端方式存储数据，文件头的结构按顺序如下：
 一个2字节整数：颜色数。
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -3153,8 +3134,7 @@ BMP格式采用小端方式存储数据，文件头的结构按顺序如下：
     <link href="http://www.justisit.com/15125773962077.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773962077.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">11. 进程和线程</a>
 </li>
@@ -3733,7 +3713,6 @@ print(&#39;worker exit...&#39;)
 <li><p>task_worker.py中并没有创建Queue，Queue对象在task_master.py进程中；使用QueueManager实现能够通过网络访问Queue</p></li>
 <li><p>Queue的作用就是用来传递任务和接收结果，每个任务的描述数量要尽量小；比如，发送一个处理日志文件的任务，就不要发送几百兆的日志文件本身，而是发送日志文件存放的完整路径，再由Worker进程去路径位置读取日志文件</p></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -3742,8 +3721,7 @@ print(&#39;worker exit...&#39;)
     <link href="http://www.justisit.com/15125773962028.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773962028.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">10. IO编程</a>
 </li>
@@ -4114,7 +4092,6 @@ s = json.loads(json_str, object_hook=dict2student)
 print(s)
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -4123,8 +4100,7 @@ print(s)
     <link href="http://www.justisit.com/15125773961976.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773961976.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">09. 异常、测试</a>
 </li>
@@ -4545,7 +4521,6 @@ if __name__ == &#39;__main__&#39;:
     doctest.testmod()
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -4554,8 +4529,7 @@ if __name__ == &#39;__main__&#39;:
     <link href="http://www.justisit.com/15125773961928.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773961928.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">08. 面向对象高级编程</a>
 <ul>
@@ -5210,7 +5184,6 @@ ARGS: [12345, &#39;123&#39;, &#39;Tom&#39;, &#39;tom@tom.com&#39;]
 <li><p>当用户定义一个class User(Model)时，Python解释器首先在当前类User的定义中查找metaclass，若没有找到就继续在父类Model中查找metaclass</p></li>
 <li><p>若在父类Model中找到了，就使用父类Model中定义的metaclass（ModelMetaclass）来创建User类；也就是说，metaclass可以隐式地继承到子类，子类自己却不知道</p></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -5219,8 +5192,7 @@ ARGS: [12345, &#39;123&#39;, &#39;Tom&#39;, &#39;tom@tom.com&#39;]
     <link href="http://www.justisit.com/15125773961879.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773961879.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">06. 模块</a>
 <ul>
@@ -5717,7 +5689,6 @@ True
 &#39;Student&#39;
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -5726,8 +5697,7 @@ True
     <link href="http://www.justisit.com/15125773961836.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773961836.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">05. 函数式编程</a>
 <ul>
@@ -6224,7 +6194,6 @@ with params, end call<br/>
 10
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -6233,8 +6202,7 @@ with params, end call<br/>
     <link href="http://www.justisit.com/15125773961791.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773961791.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">04. 特性</a>
 <ul>
@@ -6574,7 +6542,6 @@ True
 True
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -6583,8 +6550,7 @@ True
     <link href="http://www.justisit.com/15125773961741.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773961741.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">03. 函数</a>
 <ul>
@@ -6913,7 +6879,6 @@ def fact_iter(num, product):
        move(n - 1, b, a, c) # 将前n-1个从b移到c
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
@@ -6922,8 +6887,7 @@ def fact_iter(num, product):
     <link href="http://www.justisit.com/15125773961684.html"/>
     <updated>2017-12-07T00:23:16+08:00</updated>
     <id>http://www.justisit.com/15125773961684.html</id>
-    <content type="html"><![CDATA[
-<ul>
+    <content type="html"><![CDATA[<ul>
 <li>
 <a href="#toc_0">01. 简介</a>
 <ul>
@@ -7242,8 +7206,8 @@ a.replace(&#39;a&#39;, &#39;A&#39;)  # &#39;Abc&#39;
 a   # &#39;abc&#39;
 </code></pre></li>
 </ul>
-
 ]]></content>
   </entry>
   
+
 </feed>
