@@ -521,57 +521,51 @@ def now():
 now.__name__  # &#39;now&#39;
 </code></pre></li>
 <li><p>在OOP的设计模式中，Decorator被称为装饰模式；OOP的装饰模式需要通过继承和组合来实现，而Python除了支持OOP的Decorator（用类实现），还直接从语法层次支持Decorator（用函数实现）</p></li>
-<li><p>练习：编写Decorator，使其能在函数调用前后打印&#39;begin call&#39;和&#39;end call&#39;，并且同时支持@log和@log(&#39;execute&#39;)<br/>
-```<br/>
-import functools<br/>
-def log(msg):<br/>
-     # callable(obj)：检查obj对象是否可以被调用；若可以则obj是函数<br/>
-    if callable(msg): # 可调用，说明此时的log就是不带参数的@log<br/>
-        func = msg<br/>
-        @functools.wraps(func)<br/>
-        def wrapper(*args, *<em>kw):<br/>
-            print(&#39;no params, begin call&#39;)<br/>
-            f = func(</em>args, *<em>kw)<br/>
-            print(&#39;no params, end call&#39;)<br/>
-            return f<br/>
-        return wrapper<br/>
-    else:<br/>
-        text = msg<br/>
-        def decorator(func):<br/>
-            @functools.wraps(func)<br/>
-            def wrapper(</em>args, *<em>kw):<br/>
-                print(&#39;with params, begin call, %s&#39; % text)<br/>
-                f = func(</em>args, **kw)<br/>
-                print(&#39;with params, end call&#39;)<br/>
-                return f<br/>
-            return wrapper<br/>
-        return decorator</p>
+<li><p>练习：编写Decorator，使其能在函数调用前后打印&#39;begin call&#39;和&#39;end call&#39;，并且同时支持@log和@log(&#39;execute&#39;)</p>
 
-<blockquote>
-<blockquote>
-<blockquote>
-<p>from testpy import log<br/>
-@log<br/>
-... def f():<br/>
-...     print(&#39;haha&#39;)<br/>
-... <br/>
-f()<br/>
-no params, begin call<br/>
-haha<br/>
-no params, end call</p>
+<pre><code>import functools
+def log(msg):
+     # callable(obj)：检查obj对象是否可以被调用；若可以则obj是函数
+    if callable(msg): # 可调用，说明此时的log就是不带参数的@log
+        func = msg
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            print(&#39;no params, begin call&#39;)
+            f = func(*args, **kw)
+            print(&#39;no params, end call&#39;)
+            return f
+        return wrapper
+    else:
+        text = msg
+        def decorator(func):
+            @functools.wraps(func)
+            def wrapper(*args, **kw):
+                print(&#39;with params, begin call, %s&#39; % text)
+                f = func(*args, **kw)
+                print(&#39;with params, end call&#39;)
+                return f
+            return wrapper
+        return decorator
 
-<p>@log(&#39;execute&#39;)<br/>
-... def f():<br/>
-...     print(&#39;haha&#39;)<br/>
-... <br/>
-f()<br/>
-with params, begin call, execute<br/>
-haha<br/>
-with params, end call<br/>
-```</p>
-</blockquote>
-</blockquote>
-</blockquote></li>
+&gt;&gt;&gt; from testpy import log
+&gt;&gt;&gt; @log
+... def f():
+...     print(&#39;haha&#39;)
+... 
+&gt;&gt;&gt; f()
+no params, begin call
+haha
+no params, end call
+
+&gt;&gt;&gt; @log(&#39;execute&#39;)
+... def f():
+...     print(&#39;haha&#39;)
+... 
+&gt;&gt;&gt; f()
+with params, begin call, execute
+haha
+with params, end call
+</code></pre></li>
 </ul>
 
 <h5 id="toc_10">5.6 偏函数</h5>
@@ -666,6 +660,12 @@ with params, end call<br/>
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15230908846113.html">Android Studio快捷键</a>
+              </li>
+                 <li class="post">
+              <a href="15219669294797.html">GitBook使用教程</a>
+              </li>
+                 <li class="post">
               <a href="15210408337160.html">iOS的静态库、动态库</a>
               </li>
                  <li class="post">
@@ -673,12 +673,6 @@ with params, end call<br/>
               </li>
                  <li class="post">
               <a href="15147939316129.html">Carthage使用教程</a>
-              </li>
-                 <li class="post">
-              <a href="15147467512006.html">Swift语法概要(07~08)</a>
-              </li>
-                 <li class="post">
-              <a href="15147467504421.html">Swift语法概要(05~06)</a>
               </li>
                                              
           </ul>
