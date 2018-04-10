@@ -4,7 +4,7 @@
   <title><![CDATA[TIME TO GO]]></title>
   <link href="http://www.justisit.com/atom.xml" rel="self"/>
   <link href="http://www.justisit.com/"/>
-  <updated>2018-04-07T16:56:34+08:00</updated>
+  <updated>2018-04-10T23:58:23+08:00</updated>
   <id>http://www.justisit.com/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -301,7 +301,7 @@ sudo ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin
 
 <p><img src="media/15210408337160/xcode_6.png" alt="xcode_6" style="width:300px;"/></p></li>
 </ul></li>
-<li><p>Swift不支持静态库（.a、.framework），只支持动态库（.tdb/.dylib、.framework）；Swift也是在Xcode 6（iOS8）时正式发布的；</p></li>
+<li><p><strong>Xcode 6（iOS8）发布了Swift 1.0，但是Swift不支持静态库（.a、.framework），只支持动态库（.tdb/.dylib、.framework）；从Xcode 9开始，Swift 4.0支持静态库；</strong></p></li>
 <li><p>CocoaPods在纯ObjC项目中，默认将第三方库源码编译成.a静态库集成到项目中；若含有Swift的类库则必须添加 <code>use_frameworks!</code> 标识（纯ObjC项目中也可以使用的），进而生成.framework动态库；</p></li>
 <li><p>Carthage只支持生成.framework动态库（原因：Carthage是通过Swift语言编写而成的），故其支持的项目最低版本为8.0；</p></li>
 </ul>
@@ -451,7 +451,7 @@ open &quot;${INSTALL_DIR}&quot;
 <li>b. 也可以手动创建Bridge头文件，只需修改&quot;Build Setting&quot;中的&quot;Objective-C Briding Header&quot;即可；</li>
 </ul></li>
 <li>3、在Bridge头文件中，进行<code>#import &quot;ObjC文件.h&quot;</code>，之后即可在Swift调用ObjC了；</li>
-<li>4、新建一个Swift文件（不必继承NSObject）用于测试，比如SwiftUtil.swift；</li>
+<li>4、新建一个Swift文件（不必继承NSObject）用于测试，比如SwiftTest.swift；</li>
 </ul></li>
 </ul>
 
@@ -490,10 +490,10 @@ open &quot;${INSTALL_DIR}&quot;
 #import &quot;ObjCUtil.h&quot;
 </code></pre>
 
-<pre><code class="language-swift">// SwiftUtil.swift
+<pre><code class="language-swift">// SwiftTest.swift
 import Foundation
 
-class SwiftUtil { // 不必继承NSObject
+class SwiftTest { // 不必继承NSObject
 
     static func test() -&gt; Void {
         ObjCUtil.sayClassMethod()
@@ -525,7 +525,7 @@ class SwiftUtil { // 不必继承NSObject
 <p><img src="media/15206830265209/@objc.png" alt="@obj" style="width:489px;"/></p></li>
 </ul></li>
 <li><p>3、在需要Swift类的ObjC文件中，进行<code>#ProjectName#-swift.h</code>，即可在ObjC调用Swift了；</p></li>
-<li><p>4、新建ObjC文件用于测试，比如ObjCUtil.h/m；</p></li>
+<li><p>4、新建ObjC文件用于测试，比如ObjCTest.h/m；</p></li>
 </ul></li>
 <li><p>示例代码</p>
 
@@ -545,20 +545,20 @@ class SwiftUtil: NSObject { // 必须继承NSObject
 }
 </code></pre>
 
-<pre><code>// ObjCUtil.h
+<pre><code>// ObjCTest.h
 #import &lt;Foundation/Foundation.h&gt;
 
-@interface ObjcUtil : NSObject
+@interface ObjCTest : NSObject
 
 + (void)test;
 
 @end
 
-// ObjCUtil.m
-#import &quot;ObjcUtil.h&quot;
+// ObjCTest.m
+#import &quot;ObjCTest.h&quot;
 #import &quot;ObjCUseSwift-Swift.h&quot;
 
-@implementation ObjcUtil
+@implementation ObjCTest
 
 + (void)test {
     [SwiftUtil sayClassMethod];
@@ -574,7 +574,7 @@ class SwiftUtil: NSObject { // 必须继承NSObject
 <h5 id="toc_2">三、Swift项目使用ObjC Pods</h5>
 
 <ul>
-<li><p>Swift项目中可以直接使用ObjC Pods，只需要将在Bridge头文件中，进行<code>#import &lt;ObjC文件.h&gt;</code>即可；</p>
+<li><p>Swift项目中可以直接使用ObjC Pods（不需要在Bridge头文件中进行#import），在使用的地方直接<code>imprort 模块名</code>即可，比如<code>import PureLayout</code>；</p>
 
 <pre><code class="language-ruby"># Podfile
 project &#39;SwiftObjCPods.xcodeproj&#39;
@@ -590,12 +590,9 @@ target &#39;SwiftObjCPods&#39; do
 end
 </code></pre>
 
-<pre><code>// SwiftObjCPods-Bridging-Header.h
-#import &lt;PureLayout/PureLayout.h&gt;
-</code></pre>
-
 <pre><code class="language-swift">import UIKit
 import Alamofire
+import PureLayout
 
 class ViewController: UIViewController {
 
@@ -623,7 +620,7 @@ class ViewController: UIViewController {
 
 <ul>
 <li>一般无法直接使用Swift Pods，需要定义一个Swift中介文件；通过中介文件调用Swift Pods，ObjC项目再调用中介文件；</li>
-<li><p>ObjC项目的Podfile文件若使用Swift Pods，则必须使用<code>use_frameworks!</code>；</p>
+<li><p>ObjC项目的Podfile文件若使用Swift Pods，则必须使用<code>use_frameworks!</code>（Cocoapods 1.4.0还不支持Swift静态库）；</p>
 
 <pre><code class="language-ruby"># Podfile
 project &#39;ObjCSwiftPods.xcodeproj&#39;

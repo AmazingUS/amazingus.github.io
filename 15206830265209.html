@@ -141,7 +141,7 @@
 <li>b. 也可以手动创建Bridge头文件，只需修改&quot;Build Setting&quot;中的&quot;Objective-C Briding Header&quot;即可；</li>
 </ul></li>
 <li>3、在Bridge头文件中，进行<code>#import &quot;ObjC文件.h&quot;</code>，之后即可在Swift调用ObjC了；</li>
-<li>4、新建一个Swift文件（不必继承NSObject）用于测试，比如SwiftUtil.swift；</li>
+<li>4、新建一个Swift文件（不必继承NSObject）用于测试，比如SwiftTest.swift；</li>
 </ul></li>
 </ul>
 
@@ -180,10 +180,10 @@
 #import &quot;ObjCUtil.h&quot;
 </code></pre>
 
-<pre><code class="language-swift">// SwiftUtil.swift
+<pre><code class="language-swift">// SwiftTest.swift
 import Foundation
 
-class SwiftUtil { // 不必继承NSObject
+class SwiftTest { // 不必继承NSObject
 
     static func test() -&gt; Void {
         ObjCUtil.sayClassMethod()
@@ -215,7 +215,7 @@ class SwiftUtil { // 不必继承NSObject
 <p><img src="media/15206830265209/@objc.png" alt="@obj" style="width:489px;"/></p></li>
 </ul></li>
 <li><p>3、在需要Swift类的ObjC文件中，进行<code>#ProjectName#-swift.h</code>，即可在ObjC调用Swift了；</p></li>
-<li><p>4、新建ObjC文件用于测试，比如ObjCUtil.h/m；</p></li>
+<li><p>4、新建ObjC文件用于测试，比如ObjCTest.h/m；</p></li>
 </ul></li>
 <li><p>示例代码</p>
 
@@ -235,20 +235,20 @@ class SwiftUtil: NSObject { // 必须继承NSObject
 }
 </code></pre>
 
-<pre><code>// ObjCUtil.h
+<pre><code>// ObjCTest.h
 #import &lt;Foundation/Foundation.h&gt;
 
-@interface ObjcUtil : NSObject
+@interface ObjCTest : NSObject
 
 + (void)test;
 
 @end
 
-// ObjCUtil.m
-#import &quot;ObjcUtil.h&quot;
+// ObjCTest.m
+#import &quot;ObjCTest.h&quot;
 #import &quot;ObjCUseSwift-Swift.h&quot;
 
-@implementation ObjcUtil
+@implementation ObjCTest
 
 + (void)test {
     [SwiftUtil sayClassMethod];
@@ -264,7 +264,7 @@ class SwiftUtil: NSObject { // 必须继承NSObject
 <h5 id="toc_2">三、Swift项目使用ObjC Pods</h5>
 
 <ul>
-<li><p>Swift项目中可以直接使用ObjC Pods，只需要将在Bridge头文件中，进行<code>#import &lt;ObjC文件.h&gt;</code>即可；</p>
+<li><p>Swift项目中可以直接使用ObjC Pods（不需要在Bridge头文件中进行#import），在使用的地方直接<code>imprort 模块名</code>即可，比如<code>import PureLayout</code>；</p>
 
 <pre><code class="language-ruby"># Podfile
 project &#39;SwiftObjCPods.xcodeproj&#39;
@@ -280,12 +280,9 @@ target &#39;SwiftObjCPods&#39; do
 end
 </code></pre>
 
-<pre><code>// SwiftObjCPods-Bridging-Header.h
-#import &lt;PureLayout/PureLayout.h&gt;
-</code></pre>
-
 <pre><code class="language-swift">import UIKit
 import Alamofire
+import PureLayout
 
 class ViewController: UIViewController {
 
@@ -313,7 +310,7 @@ class ViewController: UIViewController {
 
 <ul>
 <li>一般无法直接使用Swift Pods，需要定义一个Swift中介文件；通过中介文件调用Swift Pods，ObjC项目再调用中介文件；</li>
-<li><p>ObjC项目的Podfile文件若使用Swift Pods，则必须使用<code>use_frameworks!</code>；</p>
+<li><p>ObjC项目的Podfile文件若使用Swift Pods，则必须使用<code>use_frameworks!</code>（Cocoapods 1.4.0还不支持Swift静态库）；</p>
 
 <pre><code class="language-ruby"># Podfile
 project &#39;ObjCSwiftPods.xcodeproj&#39;

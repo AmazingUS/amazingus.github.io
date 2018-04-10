@@ -167,7 +167,7 @@
 
 <p><img src="media/15210408337160/xcode_6.png" alt="xcode_6" style="width:300px;"/></p></li>
 </ul></li>
-<li><p>Swift不支持静态库（.a、.framework），只支持动态库（.tdb/.dylib、.framework）；Swift也是在Xcode 6（iOS8）时正式发布的；</p></li>
+<li><p><strong>Xcode 6（iOS8）发布了Swift 1.0，但是Swift不支持静态库（.a、.framework），只支持动态库（.tdb/.dylib、.framework）；从Xcode 9开始，Swift 4.0支持静态库；</strong></p></li>
 <li><p>CocoaPods在纯ObjC项目中，默认将第三方库源码编译成.a静态库集成到项目中；若含有Swift的类库则必须添加 <code>use_frameworks!</code> 标识（纯ObjC项目中也可以使用的），进而生成.framework动态库；</p></li>
 <li><p>Carthage只支持生成.framework动态库（原因：Carthage是通过Swift语言编写而成的），故其支持的项目最低版本为8.0；</p></li>
 </ul>
