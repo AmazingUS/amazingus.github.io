@@ -4,7 +4,7 @@
   <title><![CDATA[TIME TO GO]]></title>
   <link href="http://www.justisit.com/atom.xml" rel="self"/>
   <link href="http://www.justisit.com/"/>
-  <updated>2018-04-10T23:58:23+08:00</updated>
+  <updated>2018-04-10T23:58:51+08:00</updated>
   <id>http://www.justisit.com/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -414,7 +414,7 @@ open &quot;${INSTALL_DIR}&quot;
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Swift和ObjcC混合编程]]></title>
+    <title type="html"><![CDATA[Swift和ObjC混合编程]]></title>
     <link href="http://www.justisit.com/15206830265209.html"/>
     <updated>2018-03-10T19:57:06+08:00</updated>
     <id>http://www.justisit.com/15206830265209.html</id>
