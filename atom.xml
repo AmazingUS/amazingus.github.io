@@ -4,7 +4,7 @@
   <title><![CDATA[TIME TO GO]]></title>
   <link href="http://www.justisit.com/atom.xml" rel="self"/>
   <link href="http://www.justisit.com/"/>
-  <updated>2018-04-10T23:58:51+08:00</updated>
+  <updated>2018-06-01T00:01:43+08:00</updated>
   <id>http://www.justisit.com/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -13,11 +13,2919 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Android Studio快捷键]]></title>
+    <title type="html"><![CDATA[Android编程权威指南 笔记(19~24)]]></title>
+    <link href="http://www.justisit.com/15237039848080.html"/>
+    <updated>2018-04-14T19:06:24+08:00</updated>
+    <id>http://www.justisit.com/15237039848080.html</id>
+    <content type="html"><![CDATA[<ul>
+<li>
+<a href="#toc_0">第19章 Android辅助功能</a>
+</li>
+<li>
+<a href="#toc_1">第20章 数据绑定与MVVM</a>
+<ul>
+<li>
+<a href="#toc_2">20.1 为何要用MVVM架构</a>
+</li>
+<li>
+<a href="#toc_3">20.2 创建BeatBox应用</a>
+</li>
+<li>
+<a href="#toc_4">20.3 导入assets</a>
+</li>
+<li>
+<a href="#toc_5">20.4 处理assets</a>
+</li>
+<li>
+<a href="#toc_6">20.6 绑定数据</a>
+</li>
+<li>
+<a href="#toc_7">20.7 访问assets</a>
+</li>
+<li>
+<a href="#toc_8">20.8 深入学习：数据绑定再探</a>
+</li>
+<li>
+<a href="#toc_9">20.10 深入学习：什么是non-assets</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_10">第21章 音频播放与单元测试</a>
+<ul>
+<li>
+<a href="#toc_11">21.0 概述</a>
+</li>
+<li>
+<a href="#toc_12">21.1 创建SoundPool</a>
+</li>
+<li>
+<a href="#toc_13">21.2 加载音频文件</a>
+</li>
+<li>
+<a href="#toc_14">21.3 播放音频</a>
+</li>
+<li>
+<a href="#toc_15">21.4 ~ 21.7 添加测试依赖、创建测试类、实现测试类、编写测试方法</a>
+</li>
+<li>
+<a href="#toc_16">21.8 数据绑定回调</a>
+</li>
+<li>
+<a href="#toc_17">21.9 释放音频</a>
+</li>
+<li>
+<a href="#toc_18">21.10 设备旋转和对象保存</a>
+</li>
+<li>
+<a href="#toc_19">21.11 深入学习：是否保留fragment</a>
+</li>
+<li>
+<a href="#toc_20">21.12 ~ 21.13 深入学习：Espresson与整合测试、深入学习：虚拟对象与测试</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_21">第22章 样式与主题</a>
+<ul>
+<li>
+<a href="#toc_22">22.1 颜色资源</a>
+</li>
+<li>
+<a href="#toc_23">22.2 样式</a>
+</li>
+<li>
+<a href="#toc_24">22.3 主题</a>
+</li>
+<li>
+<a href="#toc_25">22.4 添加主题颜色</a>
+</li>
+<li>
+<a href="#toc_26">22.5 覆盖主题属性</a>
+</li>
+<li>
+<a href="#toc_27">22.6 修改按钮属性</a>
+</li>
+<li>
+<a href="#toc_28">22.7 深入学习：样式继承拾遗</a>
+</li>
+<li>
+<a href="#toc_29">22.8 深入学习：引用主题属性</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_30">第23章 XML drawable</a>
+<ul>
+<li>
+<a href="#toc_31">23.0 概述</a>
+</li>
+<li>
+<a href="#toc_32">23.2 shape drawable</a>
+</li>
+<li>
+<a href="#toc_33">23.3 state list drawable</a>
+</li>
+<li>
+<a href="#toc_34">23.4 layer list drawable</a>
+</li>
+<li>
+<a href="#toc_35">23.6 深入学习：使用mipmap图像</a>
+</li>
+<li>
+<a href="#toc_36">23.7 深入学习：使用9-patch图像</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_37">第23章 深入学习intent和任务</a>
+<ul>
+<li>
+<a href="#toc_38">24.2 解析隐式intent</a>
+</li>
+<li>
+<a href="#toc_39">24.3 在运行时创建显式intent</a>
+</li>
+<li>
+<a href="#toc_40">24.4 任务与回退栈</a>
+</li>
+<li>
+<a href="#toc_41">24.5 使用NerdLauncher应用作为设备主屏幕</a>
+</li>
+<li>
+<a href="#toc_42">24.7 深入学习：进程与任务</a>
+</li>
+<li>
+<a href="#toc_43">24.8 深入学习：并发文档</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h3 id="toc_0">第19章 Android辅助功能</h3>
+
+<p><strong>略</strong></p>
+
+<h3 id="toc_1">第20章 数据绑定与MVVM</h3>
+
+<h4 id="toc_2">20.1 为何要用MVVM架构</h4>
+
+<ul>
+<li><p>MVVM（Model-View-ViewModel）架构很好地把控制器里的臃肿代码抽到布局文件里，让开发人员很容易看出哪些是动态界面；同时，也抽出部分动态控制器代码放入ViewModel类，这大大方便了开发测试和验证；</p></li>
+<li><p>每个视图模型应控制成多大规模，需要具体情况具体分析，若视图模型过大，还可以继续拆分；都用MVVM架构，但业务不同，场景不一样，每个人的具体实现方法都有差异；</p></li>
+</ul>
+
+<h4 id="toc_3">20.2 创建BeatBox应用</h4>
+
+<ul>
+<li><p><strong>之前，UI布局文件及其中的组件，都是使用LayoutInflater类去<code>inflate()</code>布局文件，之后通过<code>findByID()</code>去将布局实例化后组件对象与控件变量进行关联；</strong></p></li>
+<li><p><strong>现在，通过数据绑定（Data Binding）技术，可以使用DataBindingUtil类去<code>inflate()</code>布局文件，自动获得XXXBinding对象（Android Stuido自动生成该绑定类，BindingClass），之后通过该XXXBinding对象就可以直接访问UI布局内的组件对象，即通过数据绑定获取视图，省略手动去调用findByID()；</strong></p></li>
+<li><p><strong>在app模块的build.gradle文件里增加以下内容，启用数据绑定；</strong></p>
+
+<pre><code>buildTypes {
+    // 打开IDE的整合功能，允许你使用数据绑定产生的类，并把它们整合到编译
+    dataBinding {
+        enabled true
+    }
+}
+</code></pre></li>
+<li><p><strong>要在布局中使用数据绑定：首先要把一般布局改造为<code>数据绑定布局</code>，具体做法就是把整个布局定义放入<layout>标签中；</strong></p>
+
+<pre><code>// 之前：把一般布局
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;android.support.v7.widget.RecyclerView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:id=&quot;@+id/fragment_beat_box_recycler_view&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; /&gt;
+</code></pre>
+
+<pre><code>// 现在：数据绑定布局
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;android.support.v7.widget.RecyclerView
+        android:id=&quot;@+id/fragment_beat_box_recycler_view&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot; /&gt;
+&lt;/layout&gt;
+</code></pre>
+
+<ul>
+<li><strong><layout>：让数据绑定工具处理该布局；数据绑定工具会自动生成一个绑定类（binding class），类名默认以布局文件命名（不是snake_case这种格式，是CamelCase格式）；比如上面的布局文件名为<code>fragment_beat_box.xml</code>，生成的绑定类类名为<code>FragmentBeatBoxBinding</code>；</strong></li>
+<li><strong>绑定类有一个<code>getRoot()</code>方法，可以获取布局视图结构的根元素对应的UI对象；</strong></li>
+<li><strong>绑定类还会为布局文件中带android:id标签的元素，自动生成一些属性，引用着对应的UI对象；比如布局文件中id为<code>fragment_beat_box_recycler_viev</code>的RecyclerView，绑定类自动生成<code>fragmentBeatBoxRecyclerView</code>属性；</strong></li>
+<li><strong>若绑定类没有正常生成，需要重新编译一些项目；</strong></li>
+</ul></li>
+<li><p><strong>通过数据绑定获取视图：</strong></p>
+
+<pre><code class="language-java">@Override
+public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    // 绑定类
+    FragmentBeatBoxBinding binding = DataBindingUtil.
+            inflate(inflater, R.layout.fragment_beat_box, container, false);
+    binding.fragmentBeatBoxRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+    binding.fragmentBeatBoxRecyclerView.setAdapter(new SoundAdapter(mBeatBox.getSounds()));
+
+    return binding.getRoot();
+}
+</code></pre></li>
+</ul>
+
+<h4 id="toc_4">20.3 导入assets</h4>
+
+<ul>
+<li><p><strong>资源系统（resources system）可以用来打包应用所需的图片、XML文件以及其他非Java资源；</strong></p></li>
+<li><p><strong>assets是另外一种资源打包方式，其也可以像资源系统那样打入APK包；可以将其看作随应用打包的微型文件系统，支持任意层次的文件目录结构，没有配置管理，无法自动响应屏幕显示密度、语言等设备配置变更，自然也就无法在布局或其他资源里自动使用它们；通常类似游戏这样需要加载大量图片和声音资源的应用使用assets；</strong></p></li>
+<li><p><strong>resource资源也可以存储声音资源，比如在res/raw目录保存79_scream.wav这样的文件，就可以使用R.raw.79_scream这样的ID获取它，而且还可以根据屏幕显示密度、语言等设备配置使用不同的声音资源；但是这样的话，Android资源系统处理的效率低；</strong></p></li>
+<li><p><strong>创建assets目录：右键app模块 -&gt; 选择New -&gt; Folder -&gt; Assets Folder，取消Change Folder Location选项，保持Target Source Set为main，即完成创建；</strong>之后将声音文件（夹）加入即可；assets目录中的所有文件都是会随着应用打包；</p></li>
+</ul>
+
+<h4 id="toc_5">20.4 处理assets</h4>
+
+<ul>
+<li><p><strong>访问assets需要使用AssetManager类，其可以从context中获取到；通常在访问assets时，不用关心究竟使用哪个Context对象，因为所有Context对象的AssetManager管理的都是同一套assets资源；</strong></p>
+
+<pre><code class="language-java">AssetManager mAssets = context.getAssets();
+</code></pre></li>
+<li><p>使用assetManager的list(String)方法，能获取assets中的资源清单中，指定目录中的所有文件名；</p>
+
+<pre><code class="language-java">String[] soundNames = mAssets.list(SOUNDS_FOLDER);
+</code></pre></li>
+</ul>
+
+<h4 id="toc_6">20.6 绑定数据</h4>
+
+<ul>
+<li><p>使用数据绑定，我们还可以在布局文件中声明数据对象<code>（data、variable）</code>；</p>
+
+<pre><code>&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
+    &lt;data&gt;
+        &lt;variable
+            name=&quot;crime&quot;
+            type=&quot;com.bignerdranch.android.criminalintent.Crime&quot;/&gt;
+    &lt;/data&gt;
+    ....
+&lt;/layout&gt;
+</code></pre></li>
+<li><p>之后，使用绑定操作符<code>@{}</code>，可以在布局文件中直接使用这些数据对象的值；</p>
+
+<pre><code>&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
+    &lt;data&gt;
+        &lt;variable
+            name=&quot;crime&quot;
+            type=&quot;com.bignerdranch.android.criminalintent.Crime&quot;/&gt;
+    &lt;/data&gt;
+
+    &lt;!-- 使用crime variable --&gt;
+    &lt;CheckBox android:id=&quot;@+id/list_item_crime_solved_check_box&quot;
+        android:checked=&quot;@{crime.isSolved()}&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;/&gt;
+&lt;/layout&gt;
+</code></pre>
+
+<ul>
+<li><strong>上面的数据绑定（绑定了list_item_sound.xml布局文件中的Sound对象），破坏了责任划分，Sound模型对象不可避免地需要关心显示的问题；</strong></li>
+<li><strong>为了避免上述问题，引入一种叫作<code>视图模型</code>的新对象（SoundViewModel），其负责如何显示视图，这种架构称为MVVM；之前，控制器对象<code>格式化提供</code>视图所需要的数据，现在，视图模型对象<code>格式化提供</code>视图所需要的数据；</strong></li>
+<li><strong>并且现在使用了数据绑定，关联数据直接在布局文件里处理；控制器负责初始化布局绑定类和视图模型对象，同时也是它们之间的联系纽带；</strong></li>
+<li><strong>MVVM和数据绑定是独立的；若使用了数据绑定，MVVM更简洁；但是若只使用数据绑定，则会出现模型对象不可避免地需要关心显示的问题，而使用MVVM是可以避免此问题；</strong></li>
+</ul></li>
+<li><p>使用了数据绑定和MVVM：</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
+    &lt;Button
+        android:id=&quot;@+id/list_item_sound_button&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;120dp&quot;
+        tools:text=&quot;Sound name&quot;
+        android:text=&quot;@{viewModel.title}&quot;/&gt;
+    &lt;data&gt;
+        &lt;variable
+            name=&quot;viewModel&quot;
+            type=&quot;com.example.scott.beatbox.SoundVewModel&quot; /&gt;
+    &lt;/data&gt;
+&lt;/layout&gt;
+</code></pre>
+
+<ul>
+<li><code>@{viewModel.title}</code>：使用了”语法糖“，viewModel.title就是viewModel.getTitle()的简写；</li>
+<li><strong>之后需要创建一个数据对象，将其设置给该布局对应的绑定类；在这里数据对象为SoundViewModel视图模型对象；</strong></li>
+<li><strong>若数据对象中的数据变化了，最好调用绑定对象的<code>executePendingBindings()</code>方法，强制立即刷新改变；比如在RecyclerView中需要更新绑定数据；</strong></li>
+</ul></li>
+<li><p><strong>数据对象中的数据变化了，布局文件是不知道哪些数据变化了、需要刷新；</strong></p>
+
+<ul>
+<li><strong><code>绑定类是数据对象和布局文件之间的桥梁（数据绑定） ；</code>可以让数据对象的类实现数据绑定的<code>Observable</code>接口，绑定类在数据对象的类上设置监听器，这样，只要数据对象有变化，绑定类立即会收到回调；但该方式工作量过大；</strong></li>
+<li><strong>数据绑定提供了BaseObservable类简化上述操作：</strong>
+
+<ul>
+<li><strong>a. 数据对象的类继承BaseObservable；</strong></li>
+<li><strong>b. 使用<code>@Bindable</code>注解数据对象中需要监听的属性、get方法；</strong></li>
+<li><strong>c. 当数据对象中的数据变化时，手动调用<code>notifyChange()</code>方法或<code>notifyPropertyChanged(int)</code>方法，通知绑定类，数据对象中的数据已更新，绑定类会再次运行<code>绑定表达式</code>更新视图；</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_7">20.7 访问assets</h4>
+
+<ul>
+<li><p>使用File对象是无法打开资源文件，需要使用AssetManager，这样才能得到标准的InputStream数据流（和Java中的InputStream使用方式一样）；</p>
+
+<pre><code class="language-java">InputStream soundData = mAssets.open(assetPath);
+</code></pre></li>
+<li><p>有些API需要的是FileDescriptor类（比如SoundPool类），调用AssetManager.openFd(String)可以获取到类型的对象；</p>
+
+<pre><code class="language-java">String assetPath = sound.getAssetPath();
+AssetFileDescriptor assetFd = mAssets.openFd(assetPath);
+FileDescriptor fd = assetFd.getFileDescriptor();
+</code></pre></li>
+</ul>
+
+<h4 id="toc_8">20.8 深入学习：数据绑定再探</h4>
+
+<ul>
+<li><p>在布局文件里，还可以使用lambda表达式（与Java 8 lambda表达式有些差异）进行回调，比如 <code>android:onClick=&quot;@{(view) -&gt; viewModel.onButtonClick()}&quot;</code>；</p></li>
+<li><p><strong>在数据绑定中，可以使用单引号代替双引号，常用于字符串中；而且其还有null自动处理机制，若数据为null会自动转为字符串&quot;null&quot;；比如<code>android:text=&quot;@{`File name: ` + viewModel.title}&quot;</code>;</strong></p></li>
+<li><p>数据绑定默认会把绑定表达式解读为属性方法调用；</p></li>
+</ul>
+
+<h4 id="toc_9">20.10 深入学习：什么是non-assets</h4>
+
+<ul>
+<li><p>Android有assets和resources两大资源系统；resources资源系统设计有很好的检索机制，但它无法处理图形和声音这样的大资源，这些大资源实际上保存在assets系统中；</p></li>
+<li><p>在后台，Android就是使用AssetManager类的openNonAssetFd()方法来打开这些大资源的（这些方法对外没有开放，在外面直接使用open()方法）；</p></li>
+</ul>
+
+<h3 id="toc_10">第21章 音频播放与单元测试</h3>
+
+<h4 id="toc_11">21.0 概述</h4>
+
+<ul>
+<li>SoundPool能加载一批声音资源到内存中，并支持同时播放多个音频文件；</li>
+</ul>
+
+<h4 id="toc_12">21.1 创建SoundPool</h4>
+
+<ul>
+<li><p>Lollipop引入新的创建SoundPool的方式：使用<code>SoundPool.Builder</code>；为了兼容低版本，还可以使用<code>SoundPool(int, int, int)</code>构造方法：</p>
+
+<ul>
+<li>参数一：同时播放的音频数；</li>
+<li>参数二：音频流类型，AudioManager类中的常量；Android有很多不同的音频流，它们都有各自独立的音量控制选项；这就是调低音乐音量，闹钟音量却不受影响的原因；STREAM_MUSIC是音乐和游戏常用的音量控制常量；</li>
+<li>参数三：采样率转换品质（参数不起作用，传入0即可）；</li>
+</ul>
+
+<pre><code class="language-java">SoundPool mSoundPool = new SoundPool(MAX_SOUNDS, AudioManager.STREAM_MUSIC, 0);
+</code></pre></li>
+</ul>
+
+<h4 id="toc_13">21.2 加载音频文件</h4>
+
+<ul>
+<li><p><strong>使用SoundPool播放前必须预加载音频，SoundPool加载的音频文件都有int类型的ID；注意保存时使用Integer类型而不是int，这样在ID没有值时可以设置为null值；</strong></p></li>
+<li><p>调用<code>soundPool.load(AssetFileDescriptor, int)</code>可以把音频文件载入SoundPool中等待播放，返回值为int类型的ID；使用该ID可以方便管理、重播或卸载音频文件；</p>
+
+<pre><code class="language-java">AssetFileDescriptor afd = mAssetManager.openFd(assetPath); // 资源描述对象
+int soundId = mSoundPool.load(afd, 1);
+</code></pre></li>
+</ul>
+
+<h4 id="toc_14">21.3 播放音频</h4>
+
+<ul>
+<li>播放之前需要检查soundId是否为null值，之后调用<code>soundPool.play(int, float, float, int, int, float)</code>播放音频，参数依次为音频ID、左音量、右音量、优先级（无效）、是否循环播放、速率；最大音量和常速播放的值为1.0，不循环播放值为0，无限循环播放值为-1；</li>
+</ul>
+
+<h4 id="toc_15">21.4 ~ 21.7 添加测试依赖、创建测试类、实现测试类、编写测试方法</h4>
+
+<p><strong>略</strong></p>
+
+<h4 id="toc_16">21.8 数据绑定回调</h4>
+
+<ul>
+<li><p>和前面使用数据绑定关联数据和UI控件一样，也可以使用lambda表达式，让数据绑定关联点击监听器和按钮；</p>
+
+<pre><code>&lt;Button
+    android:layout_width=&quot;match_parent&quot; 
+    android:layout_height=&quot;120dp&quot;
+    android:onClick=&quot;@{() -&gt; viewModel.onButtonClicked()}&quot; 
+    android:text=&quot;@{viewModel.title}&quot;
+    tools:text=&quot;Sound name&quot;/&gt;
+</code></pre></li>
+</ul>
+
+<h4 id="toc_17">21.9 释放音频</h4>
+
+<ul>
+<li>音频播放完毕后，需要调用<code>soundPool.release()</code>来释放SoundPool；</li>
+</ul>
+
+<h4 id="toc_18">21.10 设备旋转和对象保存</h4>
+
+<ul>
+<li><p><strong>当设备旋转时，Activity会被销毁，同时FragmentManager也会销毁与之相关的Fragment；</strong></p>
+
+<ul>
+<li><strong>对于基本数据类型、Serializable、Parcelable等<code>可保存的数据</code>可以使用onSaveInstanceState(Bundle)方法进行保存恢复；</strong></li>
+<li><strong>对于像播放中断进度等<code>不可保存的数据</code>无法使用onSaveInstanceState(Bundle)方法进行保存恢复；</strong></li>
+</ul></li>
+<li><p>若一个对象重度依赖另一个不可保存的对象，那么这个对象很可能也无法保存恢复；</p></li>
+<li><p><strong>为了解决由于设备配置发生变化导致fragment被销毁，而且其中的<code>不可保存的数据</code>无法使用onSaveInstanceState(Bundle)方法进行保存的问题：</strong></p>
+
+<ul>
+<li><strong>fragment提供了setRetainInstance(bool)方法，可以让其在设备配置变化，activity销毁时，fragment不被销毁，进而fragment中不可保存的对象不被销毁；</strong></li>
+<li><strong>fragment的retainInstance属性值默认为false，表示其不会被保留；因此设备配置发生变化时，fragment会随托管activity一起被销毁并重建；</strong></li>
+<li><strong>在fragment的onCreate()方法中调用<code>setRetainInstance(true)</code>可保留fragment；</strong></li>
+</ul></li>
+<li><p><strong>设备配置发生变化时，会销毁fragment的视图、activity的视图、fragmentManager、activity，而fragment则会根据其retainInstance属性值，决定是否保留该fragment；新的activity创建后，新fragmentManager会找到已保留的fragment后会重新创建其对于的视图；</strong></p></li>
+<li><p><strong>需要销毁与重建fragment的的视图、activity的视图的原因是：新的设备配置可能需要新的资源来匹配，应使用更合适的资源重建视图；</strong></p></li>
+<li><p><strong>虽然保留的fragment没有被销毁，但是其已经脱离了activity并处于<code>保留状态</code>（销毁时只销毁fragment的视图，不销毁fragment本身）；fragment进入保留状态必须满足：设置setRetainInstance(true)、设备配置改变导致托管activity正在被销毁；</strong></p></li>
+</ul>
+
+<h4 id="toc_19">21.11 深入学习：是否保留fragment</h4>
+
+<ul>
+<li><p><strong>不建议使用保留fragment：</strong></p>
+
+<ul>
+<li>a. 相对于非保留fragment，保留fragment用起来更复杂，出现问题不容易排查；</li>
+<li>b. <strong>保留fragment只能处理activity因设备旋转销毁的情况；若activity因系统回收内存而销毁，则所有保留的fragment也会随之销毁，数据也就随之丢失；</strong></li>
+</ul></li>
+<li><p>onSaveInstanceState与setRetainInstance比较：</p>
+
+<ul>
+<li><strong>onSaveInstanceState默认保存view的状态，并且可以长久保存；</strong></li>
+<li><strong>setRetainInstance无法长久保存，若因系统回收销毁activity，则fragment及相关数据则无法进行恢复；</strong></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_20">21.12 ~ 21.13 深入学习：Espresson与整合测试、深入学习：虚拟对象与测试</h4>
+
+<p><strong>略</strong></p>
+
+<h3 id="toc_21">第22章 样式与主题</h3>
+
+<h4 id="toc_22">22.1 颜色资源</h4>
+
+<ul>
+<li><p><strong><code>颜色资源</code>定义在<code>res/values/colors.xml</code>中；可以应用在视图组件的textColor、backgroundColor等属性上（<code>@color/xxx</code>），也可以被样式资源引用；</strong></p>
+
+<pre><code>&lt;resources&gt;
+    &lt;color name=&quot;colorPrimary&quot;&gt;#3F51B5&lt;/color&gt;
+    &lt;color name=&quot;dark_blue&quot;&gt;#005A8A&lt;/color&gt;
+&lt;/resources&gt;
+</code></pre></li>
+</ul>
+
+<h4 id="toc_23">22.2 样式</h4>
+
+<ul>
+<li><p><strong><code>样式资源</code>定义在<code>res/values/styles.xml</code>中，可以应用在视图组件的style属性，其是一套属性集合；</strong></p>
+
+<pre><code>&lt;style name=&quot;BeatBoxButton&quot;&gt;
+    &lt;item name=&quot;android:background&quot;&gt;@color/dark_blue&lt;/item&gt;
+&lt;/style&gt;
+</code></pre>
+
+<pre><code>&lt;Button style=&quot;@style/BeatBoxButton&quot;/&gt;
+</code></pre></li>
+<li><p>样式支持继承；一个样式能继承并覆盖其他样式的属性；有两种继承方式，一种是NAME加样式名前缀点（表示继承该样式），另一种是使用parent属性指明；</p>
+
+<pre><code>&lt;style name=&quot;BeatBoxButton.Strong&quot;&gt;
+    &lt;item name=&quot;android:textStyle&quot;&gt;bold&lt;/item&gt; 
+&lt;/style&gt;
+</code></pre>
+
+<pre><code>&lt;style name=&quot;StrongBeatBoxButton&quot; parent=&quot;@style/BeatBoxButton&quot;&gt;
+    &lt;item name=&quot;android:textStyle&quot;&gt;bold&lt;/item&gt;
+&lt;/style&gt;
+</code></pre></li>
+</ul>
+
+<h4 id="toc_24">22.3 主题</h4>
+
+<ul>
+<li><p><strong>主题可看作样式的进化加强版；同样是定义一套属性，<br/>
+样式属性需要逐个添加，而主题属性则会自动应用于整个应用；</strong></p></li>
+<li><p><strong>定义时的方式和样式一模一样，只是使用时应用在AndroidManifest.xml的application标签的<code>theme</code>属性上；主题属性能引用颜色这样的外部资源，也能引用其他样式；</strong></p>
+
+<pre><code>&lt;application android:theme=&quot;@style/AppTheme&quot;&gt;
+</code></pre></li>
+<li><p><strong>主题实际就是一种样式，但是主题指定的属性有别于样式，样式指定的属性仅适用于单个组件</strong></p></li>
+<li><p>AppCompat库自带三大主题：Theme.AppCompat（深色主题）、Theme.AppCompat.Light（浅色主题）、Theme.AppCompat.Light.DarkActionBar（带深色工具栏的浅色主题）</p></li>
+</ul>
+
+<h4 id="toc_25">22.4 添加主题颜色</h4>
+
+<ul>
+<li><p>虽然这主题属性看上去和前面的样式属性差不多，但它们的应用范围不一样；样式属性仅适用于单个组件，主题属性则适用所有使用同一主题的组件；</p>
+
+<pre><code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat&quot;&gt;
+    &lt;item name=&quot;colorPrimary&quot;&gt;@color/red&lt;/item&gt;
+    &lt;item name=&quot;colorPrimaryDark&quot;&gt;@color/dark_red&lt;/item&gt;
+    &lt;item name=&quot;colorAccent&quot;&gt;@color/gray&lt;/item&gt;
+&lt;/style&gt;
+</code></pre>
+
+<ul>
+<li>colorPrimary：用于设置工具栏的背景色，该颜色也被称为应用品牌色；</li>
+<li>colorPrimaryDark：用于设置屏幕顶部状态栏的背景色，其是深色版colorPrimary；注意，只有Lollipop之后的系统支持状态栏颜色，对于之前的系统，状态栏都是不变的黑底色；</li>
+<li>colorAccent：该颜色应该和colorPrimary形成反差效果，主要给EditTextView这样的组件着色；按钮组件不支持着色；</li>
+<li>建议这三个主题颜色都一起设置，因为继承自父主题的默认值可能与自己设置的其他主题颜色不搭；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_26">22.5 覆盖主题属性</h4>
+
+<ul>
+<li><p>寻找主题中可以覆盖的属性，需要根据主题的继承关系，一层层向上查询研究该属性的定义，直找到目标为止，没有其他办法；</p></li>
+<li><p><strong>有些主题有不同的版本（比如v4、v7、v21版本），对应版本有不同的主题属性；且相同的版本在不同的SDK中的定义可能有差异；</strong></p></li>
+<li><p><strong>有些主题的名称带android:前缀，该前缀不可忽略，这说明该主题包含在Android操作系统中，引用时必须加上命名空间；而不带前缀则说明该资源是应用的一部分，编译项目时工具会引入相关的Java和XML文件；</strong></p>
+
+<ul>
+<li><p>比如，主题的背景色属性，定义为<code>&lt;item name=&quot;android:colorBackground&quot;&gt;@color/background_material_dark&lt;/item&gt;</code>，在style.xml文件中覆盖该主题属性即可修改；</p>
+
+<pre><code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat&quot;&gt;
+    &lt;!-- Customize your theme here. --&gt;
+    &lt;item name=&quot;colorPrimary&quot;&gt;@color/colorPrimary&lt;/item&gt;
+    &lt;item name=&quot;colorPrimaryDark&quot;&gt;@color/colorPrimaryDark&lt;/item&gt;
+    &lt;item name=&quot;colorAccent&quot;&gt;@color/colorAccent&lt;/item&gt;
+
+    &lt;item name=&quot;android:colorBackground&quot;&gt;@color/soothing_blue&lt;/item&gt;
+&lt;/style&gt;
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_27">22.6 修改按钮属性</h4>
+
+<ul>
+<li><p><strong>通过查看主题的定义，观察到关于按钮的主题属性为buttonStyle（<code>&lt;item name=&quot;buttonStyle&quot;&gt;@style/Widget.AppCompat.Button&lt;/item&gt;</code>），该属性没有设置值，而是指向了一个样式资源（多个属性）；</strong></p>
+
+<ul>
+<li><strong>之前覆盖android:colorBackground属性时直接传入了颜色值（只有一个属性）；</strong></li>
+<li><p><strong>现在buttonStyle应该指向另一个样式，且继承于之前的父样式（点击进去之前的样式查看其父样式）并覆盖想要修改的属性；</strong></p>
+
+<pre><code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat&quot;&gt;
+    &lt;!-- Customize your theme here. --&gt;
+    &lt;item name=&quot;colorPrimary&quot;&gt;@color/colorPrimary&lt;/item&gt;
+    &lt;item name=&quot;colorPrimaryDark&quot;&gt;@color/colorPrimaryDark&lt;/item&gt;
+    &lt;item name=&quot;colorAccent&quot;&gt;@color/colorAccent&lt;/item&gt;
+
+    &lt;item name=&quot;android:colorBackground&quot;&gt;@color/soothing_blue&lt;/item&gt;
+
+    &lt;item name=&quot;buttonStyle&quot;&gt;@style/BeatBoxBtn&lt;/item&gt;
+&lt;/style&gt;
+
+&lt;style name=&quot;BeatBoxBtn&quot; parent=&quot;Widget.AppCompat.Button&quot;&gt;
+    &lt;item name=&quot;android:background&quot;&gt;@color/dark_blue&lt;/item&gt;
+&lt;/style&gt;
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_28">22.7 深入学习：样式继承拾遗</h4>
+
+<ul>
+<li><p><strong>以主题名的形式指定父主题，父子主题都应处于同一个包中，Android操作系统内部主题间的继承、、AppCompat库内部主题间的继承，都可以直接使用主题名继承表示法；若一旦AppCompat库要跨库继承，就一定要明确使用parent属性；</strong></p></li>
+<li><p><strong>在开发自己的应用时应遵守同样的规则；若是继承自己内部的主题使用主题名指定父主题，若是继承Android操作系统中的样式或主题使用parent属性；</strong></p></li>
+</ul>
+
+<h4 id="toc_29">22.8 深入学习：引用主题属性</h4>
+
+<ul>
+<li><p>在引用资源时使用@符号，比如<code>@color/gray</code>；也可以使用?符号，比如<code>android:background=&quot;?attr/colorAccent&quot;</code>，表示使用colorAccent属性指向的资源；也可以使用相关的代码进行引用；</p>
+
+<pre><code class="language-java">Resources.Theme theme = getActivity().getTheme();
+int[] attrsToFetch = { R.attr.colorAccent };
+TypedArray a = theme.obtainStyledAttributes(R.style.AppTheme, attrsToFetch);
+int accentColor = a.getInt(0, 0);
+a.recycle();
+</code></pre></li>
+</ul>
+
+<h3 id="toc_30">第23章 XML drawable</h3>
+
+<h4 id="toc_31">23.0 概述</h4>
+
+<ul>
+<li><p><strong>Android中在屏幕上绘制的东西都可以叫做drawable，比如抽象图形、Drawable类的子类代码、位图图形；</strong></p></li>
+<li><p><strong>之前使用的BitmapDrawable就是一种drawable；还有其他类型的drawable，比如<code>state list drawable</code>、<code>shape drawable</code>、<code>layer list drawable</code>，这三种drawable都定义在XML文件中，统称为<code>XML drawable</code>；</strong></p></li>
+</ul>
+
+<h4 id="toc_32">23.2 shape drawable</h4>
+
+<ul>
+<li><p><strong><code>XML drawable</code>和屏幕像素密度无关，无需创建特定像素密度目录，直接将其放入默认的drawable文件夹中即可；</strong></p></li>
+<li><p>可以使用shape drawable将图片变形（比如变为圆形等）、修改颜色等；</p>
+
+<pre><code>// 新建res/drawable/button_beat_box_normal.xml，定义了一个背景为深蓝色的圆形
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+       android:shape=&quot;oval&quot;&gt;
+    &lt;solid android:color=&quot;@color/dark_blue&quot;/&gt;
+&lt;/shape&gt;
+</code></pre>
+
+<pre><code>// 使用
+&lt;style name=&quot;BeatBoxBtn&quot; parent=&quot;android:style/Widget.Holo.Button&quot;&gt;
+    &lt;item name=&quot;android:background&quot;&gt;@drawable/button_beat_box_normal&lt;/item&gt;
+&lt;/style&gt;
+</code></pre></li>
+</ul>
+
+<h4 id="toc_33">23.3 state list drawable</h4>
+
+<ul>
+<li><p><code>state list drawable</code>可以解决按钮的不同状态下（如点击状态）的图形显示需求，其会根据按钮的状态，切换指向不同的drawable；注意，默认状态值必须要声明，或者将默认状态放在最后，否则状态设置无效；</p>
+
+<pre><code>// 新建res/drawable/button_beat_box.xml，每个item都是shape drawable文件
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;item android:drawable=&quot;@drawable/button_beat_box_normal&quot; android:state_pressed=&quot;false&quot;/&gt;
+    &lt;item android:drawable=&quot;@drawable/button_beat_box_pressed&quot; android:state_pressed=&quot;true&quot;/&gt;
+&lt;/selector&gt;
+</code></pre>
+
+<pre><code>// 使用时
+&lt;style name=&quot;BeatBoxBtn&quot; parent=&quot;android:style/Widget.Holo.Button&quot;&gt;
+    &lt;item name=&quot;android:background&quot;&gt;@drawable/button_beat_box&lt;/item&gt;
+&lt;/style&gt;
+</code></pre></li>
+</ul>
+
+<h4 id="toc_34">23.4 layer list drawable</h4>
+
+<ul>
+<li><p><code>layer list drawable</code>可以将两个<code>XML drawable</code>合二为一；比如，借助此工具可以再添加一个边框；</p>
+
+<pre><code>// 修改res/drawable/button_beat_box_pressed.xml，
+&lt;layer-list xmlns:app=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;item&gt;
+        &lt;shape app:shape=&quot;oval&quot;&gt;
+            &lt;solid app:color=&quot;@color/red&quot;/&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+
+    &lt;item&gt;
+        &lt;shape app:shape=&quot;oval&quot;&gt;
+            &lt;stroke app:width=&quot;4dp&quot; app:color=&quot;@color/dark_red&quot;/&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+&lt;/layer-list&gt;
+</code></pre></li>
+</ul>
+
+<h4 id="toc_35">23.6 深入学习：使用mipmap图像</h4>
+
+<ul>
+<li><p>drawable子目录下的drawable-mdpi、drawable-hdpi等目录针对不同屏幕使用不同的图片；对于确定的屏幕来说，其中一些目录下的图片从来就不会被用到；为了解决此问题，可以针对设备定制APK，如mdpi APK、hdpi APK；</p></li>
+<li><p>但是针对设备定制APK在某种情况下，需要包含所有分辨率的图片（比如应用启动图标），这时可以将这些图片放在mipmap子目录中，此时mipmap子目录中的资源会被全部打包到APK文件中；建议把应用启动器图标放在mipmap子目录中，其他图片都放在drawable子目录中；</p></li>
+</ul>
+
+<h4 id="toc_36">23.7 深入学习：使用9-patch图像</h4>
+
+<ul>
+<li><p>9-patch图像是一种特别处理过的文件，其能够让Android知道图像的哪些部分可以拉伸，哪些部分不可以拉伸；</p></li>
+<li><p>9-patch图像分成3X3的网格，即有9部分或9 patch组成的网格；网格的角落部分不会被缩放，边缘部分的4个patch只按一个维度缩放，而中间部分则按两个维度缩放；</p></li>
+<li><p>9-patch图像和普通PNG图像十分相似，只有两处不同：</p>
+
+<ul>
+<li>9-patch图像文件名以.9.png结尾；</li>
+<li>图像边缘具有1像素宽度的边框，该边框用以指定9-patch图像的中间位置；</li>
+</ul></li>
+<li><p>将.png文件重命名为.9.png文件，打开9-patch工具即可创建修改9-patch图像；</p></li>
+<li><p>把图像顶部、左边框填充为黑色，分别标记图像的水平方向、竖直方向的可拉伸区域；为让图片更醒目，可勾选上<code>Show patches</code>选项；</p></li>
+<li><p>图像底部以及右边框定义了9-patch图像的可选的内容区；</p>
+
+<ul>
+<li>内容区是绘制内容（通常是文字）的地方；</li>
+<li>若不标记内容区，则默认与可拉伸区域一样；</li>
+<li>为让预览器高亮显示图片的文字显示区，可勾选上<code>Show content</code>选项；</li>
+</ul></li>
+</ul>
+
+<h3 id="toc_37">第23章 深入学习intent和任务</h3>
+
+<h4 id="toc_38">24.2 解析隐式intent</h4>
+
+<ul>
+<li><p>可以使用PackageManager获取所有<code>可启动主activity</code>；可启动主activity都带有包含MAIN操作和LAUNCHER类别的intent过滤器；</p>
+
+<pre><code>&lt;intent-filter&gt;
+  &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+  &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+&lt;/intent-filter&gt;
+</code></pre>
+
+<pre><code class="language-java">Intent startupIntent = new Intent(Intent.ACTION_MAIN);
+startupIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+PackageManager pm = getActivity().getPackageManager();
+List&lt;ResolveInfo&gt; activities = pm.queryIntentActivities(startupIntent, 0);
+</code></pre></li>
+<li><p><strong><code>MAIN/LAUNCHER intent过滤器</code>可能无法与<code>通过startActivity()方法发送的MAIN/LAUNCHER隐式intent</code>相匹配；</strong></p>
+
+<ul>
+<li><strong>startActivity()方法表示启动<code>匹配隐式intent的默认activity</code>，而不是启动<code>匹配隐式intent的activity</code>；</strong></li>
+<li><strong>调用startActivity、startActivityForResult方法发送隐式intent时，操作系统会自动给该intent再添加Intent.CATEGORY_DEFAULT类别；</strong></li>
+<li><strong>若希望<code>intent过滤器</code>匹配<code>startActivity()方法发送的隐式intent</code>，则必须在该intent过滤器上添加Intent.CATEGORY_DEFAULT类别；</strong></li>
+</ul></li>
+<li><p><strong>定义了<code>MAIN/LAUNCHER intent过滤器</code>的activity是应用的主要入口点，其只负责作为应用主要入口点要处理的工作，其通常不关心自己是否为默认的主要入口点，所以可以不包含CATEGORY_DEFAULT类别；</strong></p></li>
+<li><p>在PackageManager返回的<code>ResolveInfo</code>对象中，可以获取activity标签和其他一些元数据，如resolveInfo.loadLabel()方法；</p>
+
+<pre><code class="language-java">List&lt;ResolveInfo&gt; activities = pm.queryIntentActivities(startupIntent, 0);
+Collections.sort(activities, new Comparator&lt;ResolveInfo&gt;() {
+    @Override
+    public int compare(ResolveInfo o1, ResolveInfo o2) {
+        return String.CASE_INSENSITIVE_ORDER.compare(
+                o1.loadLabel(pm).toString(),
+                o2.loadLabel(pm).toString());
+    }
+});
+</code></pre></li>
+</ul>
+
+<h4 id="toc_39">24.3 在运行时创建显式intent</h4>
+
+<ul>
+<li><p>要创建启动activity的显示intent，需要从ResolveInfo对象中获取activity的包名与类名，这些可从ResolveInfo对象的<code>ActivityInfo</code>对象中获取；</p></li>
+<li><p><strong>之前创建显式Intent，使用<code>public Intent(Context packageContext, Class&lt;?&gt; cls)</code>方法；该方法会根据传入的参数获取Intent所需要的ComponentName（由包名和类名组成）；</strong></p></li>
+<li><p><strong>也可以自己通过包名和类名创建ComponentName，然后使用<code>public Intent setComponent(ComponentName component)</code>方法创建显式intent；</strong></p></li>
+<li><p><strong>也可以直接通过包名和类名使用<code>public Intent setClassName(String packageName, String className)</code>方法创建显式intent，省略创建ComponentName对象了；</strong></p>
+
+<pre><code class="language-java">ActivityInfo activityInfo = mResolveInfo.activityInfo;
+
+Intent i = new Intent(Intent.ACTION_MAIN)
+        .setClassName(activityInfo.applicationInfo.packageName, activityInfo.name);
+startActivity(i);
+</code></pre></li>
+</ul>
+
+<h4 id="toc_40">24.4 任务与回退栈</h4>
+
+<ul>
+<li><p><strong>任务是一个activity栈；</strong>栈最底部的activity称为基activity，用户可以看到栈顶的activity；</p></li>
+<li><p>点击后退键，栈顶的activity会弹出栈外；若当前屏幕上显示的就是基activity，则系统会回到主屏幕；</p></li>
+<li><p><strong>默认情况下，新activity都会被添加到当前任务中，即使启动的activity不属于当前应用；</strong>在当前任务中启动activity的好处是，用户可以在任务内而不是应用层级间进行导航返回；</p></li>
+<li><p>overview screen（最近任务列表）可以让我们在任务间切换；每个应用显示项就代表着一个应用任务；移除应用显示项就是清除任务，其会从应用回退栈中清除所有activity；</p></li>
+<li><p>为了在启动新activity时启动新任务，需要为intent添加一个标志<code>Intent.FLAG_ACTIVITY_NEW_TASK</code>，该标志控制每个activity仅创建一个任务（若任务不存在则新建，若任务存在则切换到原来的任务）；</p>
+
+<pre><code class="language-java">ActivityInfo activityInfo = mResolveInfo.activityInfo;
+
+Intent i = new Intent(Intent.ACTION_MAIN)
+        .setClassName(activityInfo.applicationInfo.packageName, activityInfo.name)
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+startActivity(i);
+</code></pre></li>
+</ul>
+
+<h4 id="toc_41">24.5 使用NerdLauncher应用作为设备主屏幕</h4>
+
+<ul>
+<li><p><strong>给activity的拦截器添加HOME、DEFAULT类别，可以让该activity成为可选的桌面；</strong>恢复成系统默认桌面，需要打开Settings进行修改；</p>
+
+<pre><code>&lt;intent-filter&gt;
+    &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+    &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt; 
+
+    &lt;category android:name=&quot;android.intent.category.HOME&quot; /&gt;
+    &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;
+&lt;/intent-filter&gt;
+</code></pre></li>
+</ul>
+
+<h4 id="toc_42">24.7 深入学习：进程与任务</h4>
+
+<ul>
+<li><p>对象需要内存和虚拟机的支持才能生存；</p></li>
+<li><p><code>进程</code>是操作系统创建的、供应用对象生存以及应用运行的地方；</p>
+
+<ul>
+<li>进程通常会占用由操作系统管理着的系统资源（如内存等），其还拥有至少一个(可能多个）线程；</li>
+<li><strong>在Android系统中，每个应用组件（如activity等）都仅与一个进程相关联；</strong></li>
+<li><strong>一般情况下，应用伴随着自己的进程一起完成创建，该进程同时也是应用中所有组件的默认进程；</strong></li>
+</ul></li>
+<li><p><strong>每个activity实例仅与一个<code>任务</code>关联，这时进程与任务的唯一相似之处；</strong></p></li>
+<li><p><strong>进程则包含了应用的全部运行代码和对象；任务只包含activity，这些activity通常来自于<code>不同的应用进程</code>；</strong></p></li>
+<li><p><strong>打开CriminalIntent应用选择目标联系人，进程、任务示意图：</strong></p>
+
+<p><img src="media/15237039848080/progress_task_01.png" alt="progress_task_01" style="width:327px;"/></p>
+
+<ul>
+<li><strong>此时按后退键在不同activity间切换，其实是在进程间切换；</strong></li>
+</ul></li>
+<li><p><strong>打开CriminalIntent应用选择目标联系人，按Home键启动联系人应用，进程、任务示意图：</strong></p>
+
+<p><img src="media/15237039848080/progress_task_02.png" alt="progress_task_02" style="width:316px;"/></p></li>
+<li><p><strong>那些自称为任务终止器的应用，实际上都是进程终止器；</strong></p></li>
+</ul>
+
+<h4 id="toc_43">24.8 深入学习：并发文档</h4>
+
+<ul>
+<li><p><strong>在Lollipop设备上，对于以<code>android.intent.action.SEND</code>、<code>action.intent.action.SEND_ MULTIPLE</code>启动的activity，隐式intent选择器会创建独立的新任务（之前的系统不是这样的，将其添加到当前应用的任务栈中）；这是因为Lollipop中有<code>并发文档（concurrent documents）</code>的概念；</strong></p></li>
+<li><p><strong>有了并发文档，就可以在应用运行时动态创建任意数目的任务；在Lollipop之前，应用任务只能预先定义好，并且还要在manifest文件中明确指定；</strong></p></li>
+<li><p>Google Drive应用就是并发文档的最好实例，用户可以用它打开并编辑多份文档，这些文档编辑activity都处在独立的任务中；</p></li>
+<li><p>在Lollipop设备上，若需要启动多个任务，可以采用两种方式：</p>
+
+<ul>
+<li><strong>a. 给intent加上<code>Intent. FLAG_ACTIVITY_NEW_DOCUMENT</code>标志，再调用startActivity()方法；</strong></li>
+<li><p><strong>b. 在manifest文件中，为activity设置<code>documentLaunchMode</code>为<code>intoExisting</code>；</strong></p>
+
+<pre><code>&lt;activity
+    android:name=&quot;.CrimePagerActivity&quot;
+    android:label=&quot;@string/app_name&quot;
+    android:parentActivityName=&quot;.CrimeListActivity&quot;
+    android:documentLaunchMode=&quot;intoExisting&quot; /&gt;
+</code></pre></li>
+</ul></li>
+<li><p>使用上述方法，一份文档只会对应一个任务，若已存（发送带有和已存在任务相同数据的intent）在就不再新建任务；若无论如何都新建任务，就给intent打上<code>Intent.FLAG_ACTIVITY_NEW_DOCUMENT</code>和<code>Intent.FLAG_ACTIVITY_MULTIPLE_TASK</code>标志、或者修改manifest中的<code>documentLaunchMode</code>为<code>always</code>；</p></li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android编程权威指南 笔记(13~18)]]></title>
+    <link href="http://www.justisit.com/15230916186418.html"/>
+    <updated>2018-04-07T17:00:18+08:00</updated>
+    <id>http://www.justisit.com/15230916186418.html</id>
+    <content type="html"><![CDATA[<ul>
+<li>
+<a href="#toc_0">第13章 工具栏</a>
+<ul>
+<li>
+<a href="#toc_1">13.1 AppCompat</a>
+</li>
+<li>
+<a href="#toc_2">13.2 工具栏菜单</a>
+</li>
+<li>
+<a href="#toc_3">13.3 实现层级式导航</a>
+</li>
+<li>
+<a href="#toc_4">13.4 可选菜单项</a>
+</li>
+<li>
+<a href="#toc_5">13.5 深入学习：工具栏和操作栏</a>
+</li>
+<li>
+<a href="#toc_6">13.6、13.7 调整练习：删除crime记录、复数字符串资源</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">第14章 SQLite数据库</a>
+<ul>
+<li>
+<a href="#toc_8">14.0 概述</a>
+</li>
+<li>
+<a href="#toc_9">14.1 定义schema</a>
+</li>
+<li>
+<a href="#toc_10">14.2 创建初始数据库</a>
+</li>
+<li>
+<a href="#toc_11">14.4 写入数据库</a>
+</li>
+<li>
+<a href="#toc_12">14.5 读取数据库</a>
+</li>
+<li>
+<a href="#toc_13">14.7 深入学习：应用上下文</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_14">第15章 隐式Intent</a>
+<ul>
+<li>
+<a href="#toc_15">15.0 概述</a>
+</li>
+<li>
+<a href="#toc_16">15.4 使用隐式intent</a>
+</li>
+<li>
+<a href="#toc_17">15.5 挑战练习：ShareCompat</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_18">第16章 使用intent拍照</a>
+<ul>
+<li>
+<a href="#toc_19">16.2 文件存储</a>
+</li>
+<li>
+<a href="#toc_20">16.3 使用相机intent</a>
+</li>
+<li>
+<a href="#toc_21">16.4 缩放和显示位图</a>
+</li>
+<li>
+<a href="#toc_22">16.5 功能声明</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_23">第17章 双版面主从用户界面</a>
+<ul>
+<li>
+<a href="#toc_24">17.1 增加布局灵活性</a>
+</li>
+<li>
+<a href="#toc_25">17.2 activity：fragment的托管者</a>
+</li>
+<li>
+<a href="#toc_26">17.3 深入学习：设备屏幕尺寸的确定</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_27">第18章 应用本地化</a>
+<ul>
+<li>
+<a href="#toc_28">18.1 资源本地化</a>
+</li>
+<li>
+<a href="#toc_29">18.2 配置修饰符</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h3 id="toc_0">第13章 工具栏</h3>
+
+<h4 id="toc_1">13.1 AppCompat</h4>
+
+<ul>
+<li><p><strong><code>工具栏</code>可以安置菜单选项、提供应用导航；Android 5.0（Lollipop）引入了工具栏，在Lollipop之前用于导航、提供菜单操作的是<code>操作栏</code>， 工具栏和操作栏有些类似，其基于操作栏进化而来，界面更美观，使用更方便；</strong></p></li>
+<li><p>为了兼容低版本系统，Google将工具栏集成到AppCompat库中；</p></li>
+<li><p><strong>使用AppCompat库需要进行以下三步：添加AppCompat库、使用一种AppCompat主题、确保所有的activity都是AppCompatActivity子类；现在Android Studio新建项目都会默认使用该库；</strong></p></li>
+<li><p>AppCompat库自带三种主题：Theme.AppCompat（黑色主题）、Theme.AppCompat.Light（浅色主题）、Theme.AppCompat.Light.DarkActionBar（带黑色工具栏的浅色主题）；</p></li>
+<li><p>主题可以给应用配置，也可以给activity配置，都是配置在AndroidManifest.xml文件中；主题定义在res/values/styles.xml文件中，若在多个版本的style.xml文件中定义了相同名称的主题，则是为了适配不同设备系统；</p></li>
+<li><p>为了让我们自定义的Activity都继承AppCompatActivity，并且同时支持fragment，Google让AppCompatActivity继承于FragmentActivity；</p></li>
+</ul>
+
+<h4 id="toc_2">13.2 工具栏菜单</h4>
+
+<ul>
+<li><p>工具栏菜单由菜单项（操作项）组成，位于工具栏的右上方；</p></li>
+<li><p><strong>菜单是一种类似于布局的资源文件，定义在res/menu目录下，Android会自动生成相应的资源ID（实例化菜单时使用）；右击res目录，New -&gt; <code>Android resource file</code>，<code>Resource type</code>选择 <code>Menu类型</code> 即定义创建XML菜单文件；</strong></p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+      xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;
+    &lt;item
+        android:id=&quot;@+id/menu_item_new_crime&quot;
+        android:icon=&quot;@android:drawable/ic_menu_add&quot;
+        android:title=&quot;@string/new_crime&quot;
+        app:showAsAction=&quot;ifRoom|withText&quot;/&gt;
+&lt;/menu&gt;
+</code></pre>
+
+<ul>
+<li><p>app:showAsAction属性指示菜单项是显示在工具栏上，还是隐藏于<code>溢出菜单(overflow menu，三个小点)</code>；该属性取值有：</p>
+
+<ul>
+<li>a. always：总是显示在工具栏上；</li>
+<li>b. never：总是隐藏于溢出菜单；</li>
+<li>c. ifRoom：有空间则显示在工具栏上；</li>
+<li>withText：让title和icon一起显示出来（但是不一定）；</li>
+</ul></li>
+<li><p>组合值<code>ifRoom|withText</code>：a. 若有足够大的空间则菜单项的图标和标题都显示在工具栏上；b. 若有图标大小范围的空间则仅显示图标，标题不显示（若长按图标提示出标题）；c. 若空间不能够显示任何项，则整个菜单隐藏于溢出菜单；</p></li>
+<li><p>出于兼容性考虑，AppCompat库需要使用app命名空间；由于早期的AppCompat库使用了该属性用在了操作栏（工具栏的前身）中；</p></li>
+</ul></li>
+<li><p>应用使用的图标有两种：系统图标（使用@android:drawable/XXX引用）、项目资源图标；建议不要使用系统图标，因为不同的系统的系统图标的显示风格差异比较大；</p></li>
+<li><p>项目资源图标的来源有三种方案：定制图标、将系统图标拷贝到项目中、使用Android Studio内置的<code>Android Asset Studio</code>工具定制（右击drawable目录，选择New -&gt; Image Asset，Asset Type选择<code>Action Bar and Tab Icons</code>进行定制）；</p></li>
+<li><p>Activity提供了管理菜单的相关回调方法；需要选项菜单时，Android会调用activity的onCreateOptionsMenu(Menu)方法；</p></li>
+<li><p><strong>在fragment中使用选项菜单时，有以下管理菜单的相关回调方法：</strong></p>
+
+<ul>
+<li><strong><code>public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)</code>：创建菜单，由FragmentManager来调用；在此函数中执行inflater.inflate(R.menu.fragment_crime_list, menu)将定义的XML菜单填充到Menu实例中；</strong></li>
+<li><strong><code>public void setHasOptionsMenu(boolean hasMenu)</code>：在fragment的onCreate()方法中调用该方法，指明该fragment是否需要接收管理菜单的相关回调方法（onCreateOptionsMenu方法）；需要菜单则调用setHasOptionsMenu(true);</strong></li>
+</ul></li>
+<li><p><strong>用户点击菜单中的菜单项时，fragment会收到<code>onOptionsItemSelected(MenuItem)</code>方法的回调请求，传入该方法的参数是一个描述用户选择的MenuItem实例，返回值为布尔值表示相应的响应是否已经完成；在该方法可以通过检查菜单项ID确定被选中的是哪个菜单项，进而做出相应的响应；</strong></p></li>
+</ul>
+
+<h4 id="toc_3">13.3 实现层级式导航</h4>
+
+<ul>
+<li><p><strong><code>后退键导航</code>又称为临时性导航，只能返回到上一次浏览过的用户界面；而<code>层级式导航</code>（hierarchical navigation，又称为ancestral navigation）可在应用内逐级向上导航；有了层级式导航，用户可点击工具栏左边的向上按钮向上导航；</strong></p></li>
+<li><p>从Android 4.1（API 16）开始，在AndroidManifest.xml中，给相关的activity添加parentActivityName属性就开启层级式导航；</p>
+
+<pre><code>&lt;activity android:name=&quot;.CrimePagerActivity&quot; android:parentActivityName=&quot;.CrimeListActivity&quot;&gt;
+&lt;/activity&gt;
+</code></pre></li>
+<li><p>层级式导航的工作原理（和点击后退键不同）：当用户点击工具栏的向上按钮时，会执行以下操作：</p>
+
+<pre><code class="language-java">Intent intent = new Intent(this, CrimeListActivity.class);
+intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+startActivity(intent);
+finish();
+</code></pre>
+
+<ul>
+<li><code>FLAG_ACTIVITY_CLEAR_TOP</code>：表示Android在回退栈中寻找指定的activity实例，若存在则弹出栈内所有其他activity，让启动的目标activity出现在栈顶（显示在屏幕上）；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_4">13.4 可选菜单项</h4>
+
+<ul>
+<li><p><code>getString(int resId, Object...formatArgs)</code>方法接受字符串资源中占位符的替换值；格式<code>%[index]$[type]</code>：index表示替换资源中第index个资源对应的位置，type表示所要替换的资源的类型（d为整型格式，s为字符串格式）；</p>
+
+<pre><code class="language-java">&lt;string name=&quot;subtitle_format&quot;&gt;%1$d crimes&lt;/string&gt;
+
+String subtitle = getString(R.string.subtitle_format, crimeCount);
+</code></pre></li>
+<li><p><code>((AppCompatActivity) activity).getSupportActionBar().setSubtitle(subtitle)</code>设置工具栏子标题（在工具栏的左侧主标题的下面）；由于兼容性问题，在AppCompat库中工具栏在很多地方仍被称为操作栏；</p></li>
+<li><p><strong>调用<code>getActivity().invalidateOptionsMenu();</code>主动重建工具栏；</strong></p></li>
+<li><p><strong><code>按向上按钮</code>和<code>按返回键</code>是有区别的；按向上按钮回退到的目标activity会被完全重建，故其中的实例变量值会丢失；解决方案有两种（但都不太理想）：覆盖向上导航的机制、父子控制器传递数据（子activity覆盖getParentActivityIntent()方法，用附带了extra信息的intent重建父activity）；</strong></p></li>
+<li><p><strong>设备旋转也会导致重建工具栏，可以通过onSaveInstanceState()方法实例状态保存机制解决工具栏状态的问题；</strong></p></li>
+</ul>
+
+<h4 id="toc_5">13.5 深入学习：工具栏和操作栏</h4>
+
+<ul>
+<li><p>操作栏的使用限制多，整个应用只能配置一个操作栏且位置及尺寸必须固定（在屏幕顶部）；</p></li>
+<li><p>工具栏的左边不再放置图标，右边菜单项的间距也更小；工具栏更灵活，没有上述限制；，其可以在同一屏配置多个，并且可以在任意位置摆放，尺寸可以定制；让每个fragment都有自己的工具栏，这比所有fragment共享一个位于屏幕顶部的工具栏方便多；</p>
+
+<p><img src="media/15230916186418/toolbar.png" alt="toolbar" style="width:370px;"/></p></li>
+</ul>
+
+<h4 id="toc_6">13.6、13.7 调整练习：删除crime记录、复数字符串资源</h4>
+
+<ul>
+<li><p>添加击删除菜单项，用户点后要调用子fragment的finish()方法回退到前一个activity界面；</p></li>
+<li><p>复数字符串资源（又称为量化字符串）：</p>
+
+<pre><code class="language-java">// 在strings.xml文件中定义复数字符串资源
+&lt;plurals name=&quot;subtitle_plural&quot;&gt;
+    &lt;item quantity=&quot;one&quot;&gt;%1$d crime&lt;/item&gt;
+    &lt;item quantity=&quot;other&quot;&gt;%1$d crimes&lt;/item&gt;
+&lt;/plurals&gt;
+
+// 使用getQuantityString方法正确处理单复数问题
+int crimeSize = crimeLab.getCrimes().size();
+String subtitle = getResources()
+        .getQuantityString(R.plurals.subtitle_plural, crimeSize, crimeSize);
+</code></pre></li>
+</ul>
+
+<h3 id="toc_7">第14章 SQLite数据库</h3>
+
+<h4 id="toc_8">14.0 概述</h4>
+
+<ul>
+<li>Android设备上的每个应用都有一个独立的沙盒目录；将文件保存在沙盒中可阻止其他应用甚至设备用户的访问；若设备被root就可以随意访问各种目录和文件了；应用的沙盒目录是<code>/data/data/[your package name]/</code>；</li>
+</ul>
+
+<h4 id="toc_9">14.1 定义schema</h4>
+
+<ul>
+<li><p>为了复用代码和简单（不用书写太多的sql语句），可以使用ORM（对象关系映射）；但在这里先不使用ORM，直接在Java代码中定义database schema（描述表名和数据字段）；</p></li>
+<li><p>以内部类的方式定义组织database schema，该类中描述定义表名、字段名的String常量，可用于sql语句的拼接、ContentValue中的键；</p>
+
+<pre><code class="language-java">public class XXDbSchema {
+    public static final class YYTable {
+        public static final String NAME = &quot;aa&quot;;
+        public static final class Cols {
+            public static final String UUID = &quot;uuid&quot;;
+            public static final String TITLE = &quot;title&quot;;
+        }
+    }
+
+    public static final class ZZTable {
+        public static final String NAME = &quot;bb&quot;;
+        public static final class Cols {
+            public static final String UUID = &quot;uuid&quot;;
+            public static final String TITLE = &quot;name&quot;;
+        }
+    }
+}
+</code></pre></li>
+</ul>
+
+<h4 id="toc_10">14.2 创建初始数据库</h4>
+
+<ul>
+<li><p>有了database schema就可以创建数据库了；<code>openOrCreateDatabase()</code>、<code>databaseList()</code>是Android提供的Context底层方法，用来打开数据库文件并将其转换为<code>SQLiteDatabase</code>实例；</p></li>
+<li><p>在实践中，建议使用数据库应遵循以下步骤：</p>
+
+<ul>
+<li>1) 确认目标数据库是否存在；</li>
+<li>2) 若不存在则先创建数据库，然后创建数据表并初始化数据；</li>
+<li>3) 若存在则打开并确认database schema是否为最新的；</li>
+<li>4) 若schema是旧版本，则先升级到最新版本；</li>
+</ul></li>
+<li><p><strong>以上工作可借助Android的<code>SQLiteOpenHelper</code>类处理；使用该类打开SQLiteDatabase的繁杂工作就简单多了；</strong></p></li>
+<li><p><strong>具体操作就是创建XXDateBaseHelper类继承于SQLiteOpenHelper，构造方法需要传入context对象、数据库文件名、数据库版本号参数，重写onCreate（首次创建数据库调用）、onUpgrade（XXDateBaseHelper中的版本高时，升级数据库调用），并在这些方法中执行执行相关sql语句操作</strong>；</p></li>
+<li><p><strong>调用sqliteOpenHelper的<code>getWritableDatabase()</code>方法获取<code>SQLiteDatabase</code>对象，并且会自动判断是否需要调用自身的onCreate、onUpgrade方法；之后可以使用该对象执行增删改查操作；</strong></p></li>
+<li><p>SQLite数据库创建表字段时，可以不指定表字段数据类型；</p></li>
+<li><p>数据库文件保存在<code>/data/data/[your package name]/databases/</code>中；</p></li>
+</ul>
+
+<h4 id="toc_11">14.4 写入数据库</h4>
+
+<ul>
+<li><p><strong>可以调用sqliteDatabase的<code>execSQL()</code>方法直接执行sql语句完成相关操作，需要书写sql语句，也可以使用封装好的insert、update等方法；</strong></p></li>
+<li><p>负责处理数据库写入和更新操作的辅助类是<code>ContentValues</code>，其是一个键值存储类，类似于之前的Bundle；ContentValues的键就是数据表的字段名，值为数据表的字段值；</p></li>
+<li><p>sqliteDatabase的<code>insert(String, String, ContentValues)</code>方法：</p>
+
+<ul>
+<li>用于插入记录，参数依次为数据库表名、nullColumnHack、ContentValues；</li>
+<li>nullColumnHack用于处理ContentValues空值的情况；正常情况下，若ContentValues空值则insert()方法调用失败；此时若设置nullColumnHack为某个字段名，则可以插入一条该字段值为null的记录；</li>
+<li>一般情况下，nullColumnHack传入null；</li>
+</ul></li>
+<li><p>sqliteDatabase的<code>update(String, ContentValues, String, String[])</code>方法：</p>
+
+<ul>
+<li>用于更新记录，参数与insert的类似；</li>
+<li>第三个参数为创建where子句，第四个参数String[]为where子句的参数值；比如<code>update(CrimeTable.NAME, values, &quot;uuid = ?&quot;, new String[]{ uuidString })；</code></li>
+<li>使用where参数形式而不是直接拼接where参数到sql语句中：可以防止SQL注入，使用where参数形式，会格式化传入的参数字符串；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_12">14.5 读取数据库</h4>
+
+<ul>
+<li><p>sqliteDatabase的<code>public Cursor query(String table, String[] columns, tring where, String[] whereArgs, String groupBy, String having, String orderBy, String limit)</code>方法：</p>
+
+<ul>
+<li>用于查询记录，不需要的参数传入null即可；</li>
+<li>该方法返回一个Cursor对象（游标），可以通过该对象获取某条记录的某个字段的值，比如<code>cursor.getString(cursor.getColumnIndex(CrimeTable.Cols.UUID));</code>；</li>
+</ul></li>
+<li><p><strong>通过遍历cursor取出需要字段的值构造模型对象；为了复用代码，可以将cursor到模型对象的转换过程封装起来；</strong></p>
+
+<ul>
+<li><strong>可以直接定义使用一个转换方法，也可以定义一个Cursor子类，并添加转换方法，使用时直接通过cursor获取模型对象；</strong></li>
+<li><strong>Cursor是接口，系统提供实现了默认实现Cursor的CursorWrapper类；创建定义Cursor子类继承CursorWrapper类最简单；</strong></li>
+</ul>
+
+<pre><code class="language-java">try {
+    cursor.moveToFirst(); // 将游标移到第一条记录位置
+    while (!cursor.isAfterLast()) { // 判断当前游标是否是在最后的数据的之后（没有数据）
+        crimes.add(cursor.getCrime());
+        cursor.moveToNext(); // 将游标移到下一条记录位置
+    }
+} finally {
+    cursor.close(); // 关闭游标（一定）
+}
+</code></pre></li>
+<li><p><strong>之前使用单例提供数据，RecyclerView可以直接刷新数据（notifyDataSetChanged()）；现在使用数据库提供数据，RecyclerView的的mAdapter需要<code>重新设置数据</code>才能刷新数据；</strong></p></li>
+</ul>
+
+<h4 id="toc_13">14.7 深入学习：应用上下文</h4>
+
+<ul>
+<li><strong>在使用单例、数据库时，需要使用context对象的地方需要不能直接传入activity（context），而应该是application（<code>context.getApplicationContext()</code>）；因为在不同页面间进行导航，activity可能会被销毁而application对象不会被销毁；</strong></li>
+</ul>
+
+<h3 id="toc_14">第15章 隐式Intent</h3>
+
+<h4 id="toc_15">15.0 概述</h4>
+
+<ul>
+<li><p>Intent对象用来向操作系统说明需要处理的任务；</p></li>
+<li><p><strong>在Android系统中，可以利用<code>隐式intent</code>启动其他应用的activity；</strong></p>
+
+<ul>
+<li><strong>只需要描述要完成的任务，操作系统会找到合适的应用并启动相应的activity；</strong></li>
+<li><strong>若找到多个符合的activity，会提供一个可选应用列表供用户选择；</strong></li>
+<li><strong>使用隐式intent可以利用其他应用完成常见任务；</strong></li>
+</ul></li>
+<li><p><strong>在<code>显式intent</code>中，需要指定要启动的activity类，之后操作系统会负责启动它；</strong></p></li>
+</ul>
+
+<h4 id="toc_16">15.4 使用隐式intent</h4>
+
+<ul>
+<li><p>隐式intent的主要组成部分：</p>
+
+<ul>
+<li><strong>a. 要执行的操作</strong>
+
+<ul>
+<li>通常以Intent类中的常量表示；比如，要访问URL使用Intent.ACTION_VIEW，要发邮件使用Intent.ACTION_SEND；</li>
+</ul></li>
+<li><strong>b. 要访问数据的位置</strong>
+
+<ul>
+<li>可能是设备之外的资源，比如网页URL、某个文件URI，或ContentProvider中某条记录的某个内容URI（content URI）；</li>
+</ul></li>
+<li><strong>c. 操作涉及的数据的类型（MIME形式）</strong>
+
+<ul>
+<li>比如text/html、audio/mpeg3；</li>
+<li>若一个intent包含数据的位置，通常可以从中推测出数据的类型；</li>
+</ul></li>
+<li><strong>d. 可选的类别</strong>
+
+<ul>
+<li><strong><code>操作</code>用于描述具体做什么，而<code>类别</code>通常用来描述何时何地或者如何使用某个activity；</strong></li>
+<li>比如，Android的<code>android.intent.category.LAUNCHER类别</code>表明activity应该显示在顶级应用启动器中，<code>android.intent.category.INFO类别</code>表明activity向用户显示了包信息，但其不应该出现在启动器中；</li>
+</ul></li>
+</ul></li>
+<li><p><strong>一个查看某个网址的简单隐式intent会包括一个Intent.ACTION_VIEW操作，以及某个具体URL网址；</strong></p></li>
+<li><p><strong>让某个activity对外宣称可以处理某些操作，需要在AndroidManifest.xml文件中给该activity配置intent-filter子标签；</strong>比如，处理打开URL的操作：</p>
+
+<pre><code>&lt;activityandroid:name=&quot;.BrowserActivity&quot; &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.VIEW&quot; /&gt;
+        &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;
+        &lt;data android:scheme=&quot;http&quot; android:host=&quot;www.bignerdranch.com&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre>
+
+<ul>
+<li><strong>action：告诉操作系统，该activity能够胜任指定任务；</strong></li>
+<li><strong>category：可选的类别；但必须明确声明一下<code>DEFAULT类别</code>告诉操作系统，该activity愿意处理该任务；绝大多数的隐式intent都隐含有DEFAULT类别；</strong></li>
+</ul></li>
+<li><p><strong>隐式intent也可以包含extra信息，但是操作系统在寻找合适的activity时是不会使用该信息的；</strong></p></li>
+<li><p><strong>显式intent也可以使用<code>隐式intent的操作和数据部分</code>，这相当于要求特定activity去处理特定任务；</strong></p></li>
+<li><p>隐式intent（发送消息）：</p>
+
+<pre><code class="language-java">Intent i = new Intent(Intent.ACTION_SEND);
+i.setType(&quot;text/plain&quot;);
+i.putExtra(Intent.EXTRA_TEXT, getCrimeReport());
+i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.crime_report_subject));
+startActivity(i);
+</code></pre>
+
+<ul>
+<li><strong>传入的是一个定义操作的常量创建的隐式intent类别；还有一些其他形式的构造方法可用，这取决于要创建的隐式intent的类别；</strong></li>
+<li><strong><code>Intent.EXTRA_TEXT</code>、<code>Intent.EXTRA_SUBJECT</code>指定附加在intent的extra上的消息的内容、主题；这些key是Intent类中定义的常量，因此任何响应该intent的activity都知道如何使用这些常量所对应的值；</strong></li>
+</ul></li>
+<li><p>若响应隐式intent时没有出现activity列表，可能是该设备上仅有一个activity可以响应，也有可能是用户针对该隐式intent设置了<code>默认响应应用</code>；</p></li>
+<li><p><strong>让用户的默认响应应用的设置无效，每次都是显示activity列表，可以调用Intent的<code>public static Intent createChooser(Intent target, String title)</code>方法，传入之前创建的隐式intent、选择器标题，包装返回一个新的隐式intent，之后再调用startActivity()即可；</strong></p></li>
+<li><p><strong>从联系人应用中选择获取联系人信息，该隐式intent由操作以及数据获取位置组成，操作为Intent.ACTION_PICK，数据获取位置为ContactsContract.Contacts.CONTENT_URI；</strong></p></li>
+<li><p><strong>与显式intent一样，隐式Intent若获取启动activity的返回结果，需要调用startActivityForResult()方法并传入该隐式intent、请求码，之后再在onActivityResult()方法中接收数据；</strong></p></li>
+<li><p><strong>很多应用都会共享联系人信息，因此Android提供了一个深度定制的ContentProvider类用于处理联系人信息，该类实际上是对联系人的数据库的操作封装，屏蔽了数据库的内部结构，但是其也有query、Cursor等概念操作；</strong></p></li>
+<li><p><strong>上面以ACTION_PICK操作启动activity并要求返回结果，会在调onActivityResult()方法中接收到一个intent；该intent包括了数据URI（一个数据定位符，指向用户所选的联系人），可以使用ContentProvider类完成对联系人URI的访问，从而获取到实际的联系人数据；</strong></p>
+
+<pre><code class="language-java">Uri contactUri = data.getData();
+String[] queryFields = new String[]{ ContactsContract.Contacts.DISPLAY_NAME };
+Cursor c = getActivity().getContentResolver().query(contactUri, queryFields, null, null, null);
+
+try {
+    if (c.getCount() == 0) {
+        return;
+    }
+    c.moveToFirst();
+    String suspect = c.getString(0);
+    mCrime.setSuspect(suspect);
+    mSuspectButton.setText(suspect);
+} finally {
+    c.close();
+}
+</code></pre></li>
+<li><p><strong>由于使用<code>联系人应用</code>获取联系人的URI，<code>联系人应用</code>又有使用联系人数据库的全部权限，<code>联系人应用</code>会给返回intent中的URI数据添加<code>Intent.FLAG_GRANT_READ_URI_PERMISSION标志</code>（表示原activity可以获取使用联系人数据一次），故原activity不需要主动声明读取联系人数据库的权限；</strong></p></li>
+<li><p><strong>操作系统响应隐式intent时，若没有找到匹配的activity则应用会崩溃；解决办法是使用<code>PackageManager</code>类可以自检；</strong></p>
+
+<pre><code>PackageManager packageManager = getActivity().getPackageManager();
+if (packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAULT_ONLY) == null) {
+    // 无合适的activity
+}
+</code></pre>
+
+<ul>
+<li><strong>Android设备上安装了哪些组件以及包括哪些activity，PackageManager类全都知道；</strong></li>
+<li><strong>调用resolveActivity(Intent, int)方法，查找匹配给定Intent任务的activity；flag标志MATCH_DEFAULT_ONLY限定只搜索带CATEGORY_DEFAULT标志的activity；</strong></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_17">15.5 挑战练习：ShareCompat</h4>
+
+<ul>
+<li>Android支持库有个ShareCompat的类，其有一个内部类 IntentBuilder，使用该内部类创建发送消息的Intent略微方便一些；</li>
+</ul>
+
+<h3 id="toc_18">第16章 使用intent拍照</h3>
+
+<h4 id="toc_19">16.2 文件存储</h4>
+
+<ul>
+<li><p><strong>内部存储</strong></p>
+
+<ul>
+<li><p><strong>沙盒目录存储在<code>/data/data/&lt;packageName&gt;/</code>，仅供应用内部访问，使用context的以下方法进行访问；</strong></p>
+
+<ul>
+<li><p><strong><code>File getDir(String name, int mode)</code>：获取/data/data/<packageName>/中的子目录，需要传入子目录名称，不存在则创建；</strong></p></li>
+<li><p><strong><code>File getCacheDir()</code>：获取/data/data/<packageName>/cache目录，注意及时清理该目录；</strong></p></li>
+<li><p><strong><code>File getFilesDir()</code>：获取/data/data/<packageName>/files目录；</strong></p></li>
+<li><p><strong><code>String[] fileList()</code>：获取/data/data/<packageName>/files目录下的文件列表；之后可与其他方法配合使用，如openFileInput(String)；</strong></p></li>
+<li><p><strong><code>FileInputStream openFileInput(String name)</code>： 打开现有文件进行读取；</strong></p></li>
+<li><p><strong><code>FileOutputStream openFileOutput(String name, int mode)</code>：打开文件进行写入，若不存在则创建；</strong></p></li>
+</ul></li>
+</ul></li>
+<li><p><strong>若要共享文件给其他应用，或接受其他应用的文件有以下途径：</strong></p>
+
+<ul>
+<li><strong>a. openFileOutput(String name, int mode)方法：❎</strong>
+
+<ul>
+<li><strong>mode设置为Context.MODE_WORLD_READABLE，但该mode早已废弃，即使强制使用也是无效的；</strong></li>
+</ul></li>
+<li>b. <strong>外部存储：❎</strong>
+
+<ul>
+<li><strong>出于安全考虑，从Android 7.0开始已经禁止方式；</strong></li>
+<li><strong>Android 7.0禁止应用间通过<code>file:// URI</code>形式互访应用私有目录（主要是外部存储的；内部存储的默认就是无法访问的）</strong></li>
+<li><strong>同时，Android 7.0 SDK的StrictMode禁止在应用外部公开<code>file:// URI</code>，外部存储中的公共目录也不可以；比如，在应用中使用包含 file:// URI的Intent离开当前应用时会发生Crash；</strong></li>
+</ul></li>
+<li>c. <strong>ContentProvider：✅</strong>
+
+<ul>
+<li><strong>ContentProvider允许我们将内容URL暴露给其他应用；</strong></li>
+<li><strong>其他应用从内容URL下载或向其中写入文件，我们可以控制读或写；</strong></li>
+</ul></li>
+</ul></li>
+<li><p><strong>外部存储：</strong></p>
+
+<ul>
+<li><strong>Android 2时代，手机内置的存储空间有限，可以使用<code>外置SD卡</code>作为存储空间；故此时的外部存储就是外置SD卡，内部存储就是手机内置的存储空间；</strong></li>
+<li><strong>Android 4时代，手机厂商将之前<code>外置SD卡</code>内置到手机内部，此时的手机内置的存储空间包含两部分：内部存储和外部存储（更确切称为主外部存储），比如说手机存储空间为8G、16G、32G等都是包含这两部分的；</strong></li>
+<li><strong>但是即使是Android 4时代，有些手机在内置了SD卡的同时，还支持<code>外置TF卡</code>，此时该外置存储被Google称为<code>其他各类存储</code>；但是Google对该类型的存储<code>没有提供直接的API支持</code>，而且其也不建议手机支持外置TF卡，也不允许有相关的访问操作；但是系统是开源的，有些系统厂商修改原始API行为进而支持访问外置TF卡；</strong></li>
+<li><strong>为了从Android 2平滑过渡到Android 4，Google从Android 2提供访问外部存储的API的接口没有变化，虽然都是外部存储，但实现时访问的位置变了，之前外置SD卡，现在是内置的SD卡；比如<code>Environment.getExternalStorageDirectory()</code>方法这个Android 2时代遗留下的接口，现在返回的是<code>主外部存储</code>目录；</strong></li>
+<li><strong>对于开发者来说，API还都是外部存储，只是存储设备的位置的变化，其他没有任何区别；<code>其他各类存储</code>对于文件管理类型的App有意义，但对于其他类型的APP没有太大意义；</strong></li>
+</ul></li>
+<li><p><strong>内部存储、外部存储比较</strong></p>
+
+<ul>
+<li><p><strong>内部存储</strong></p>
+
+<ul>
+<li><strong>a. 空间是有限的；</strong></li>
+<li><strong>b. 该位置有每个应用的沙盒目录，其中有一些经常被访问到的文件，如Sqlite、SharedPreferences，也可以放置文件、缓存，但不建议存放；</strong></li>
+<li><strong>c. 而且APP的安装文件存放于此，内部存储不足将导致无法安装新的APP；</strong></li>
+</ul></li>
+<li><p><strong>外部存储</strong></p>
+
+<ul>
+<li><strong>a. 所有的Android设备至少都有一个外部存储（而且建议就一个）；</strong></li>
+<li>b. <strong>其中的文件目录可分为两种类型：一个是公共文件Public files、私有文件Private file；</strong></li>
+<li><strong>c. Public file：比如Picturs（Camera应用生成的照片就存放于此）、Movies等常见九大目录；文件可以被自由访问，其他应用共享该文件；若应用被卸载但产生的数据（比如在外部存储的根目录下创建一个文件夹存储数据）不被删除；</strong></li>
+<li><strong>d. Private files：位置在/Android/data/packageName&gt;/，就是应用存在于外部存储上的沙盒目录，可以放置应用的文件、缓存，若应用被卸载该目录也是一同被删除；在Android 7.0之前，虽然该目录是沙盒，但是由于是外部存储的原因，其他应用也是能访问的；</strong></li>
+</ul></li>
+</ul></li>
+<li><p><strong>访问外部存储</strong></p>
+
+<ul>
+<li><p><strong>context也提供了一些访问外部存储的方法（都是访问特定应用沙盒目录下的）：</strong></p>
+
+<ul>
+<li><strong><code>File getExternalCacheDir()</code>：获取主外部存储上的cache目录；</strong></li>
+<li><strong><code>File[] getExternalCacheDirs()</code>：获取多个外部存储上的cache目录（一般情况下就一个，可根据该方法判断手机是否有外置TF卡）；</strong></li>
+<li><strong><code>File getExternalFilesDir(String)</code>：获取主外部存储上的文件目录；字符串可以可以传入Environment的DIRECTORY_前缀字符串常量，如Environment.DIRECTORY_ PICTURES；</strong></li>
+<li><strong><code>File[] getExternalFilesDirs(String)</code>：获取多个外部存储上的文件目录；</strong></li>
+<li><strong><code>File[] getExternalMediaDirs()</code>：获取主外部存储上的Android存储图片、视频、音乐文件的所有目录；</strong></li>
+</ul></li>
+<li><p><strong>注意：外部存储的Public file可以通过调用<code>Environment.getExternalStorageDirectory()</code>后拼接相关路径的方式去访问；</strong></p></li>
+<li><p><strong>权限声明</strong></p>
+
+<ul>
+<li><p>为了安全控管，Android要求应用申请各类权限；比如读写外部存储需要获取相关权限，在manifest文件中声明uses-permission标签，比如</p>
+
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; android:maxSdkVersion=&quot;18&quot;/&gt;
+</code></pre></li>
+<li><p><strong>Android4.4(API19）放宽了一些权限管控的限制，比如context.getExternalFilesDir()返回的是该应用专用的文件目录，就没有必要再申请该目录的权限了使用其他的外部存储仍然需要）；</strong></p></li>
+<li><p><strong>uses-permission的maxSdkVersion属性，表示适用API级别最大为18，大于该版本时不再声明相关权限（否则在API 19时，应用也能访问其他的外部存储）；</strong></p></li>
+<li><p>通过其他应用访问相关目录，本应用不用申请权限；比如调用相机应用拍照存储，就不用再申请READ_EXTERNAL_STORAGE权限；</p></li>
+</ul></li>
+</ul></li>
+<li><p><strong>FileProvider</strong></p>
+
+<ul>
+<li><strong>若应用间仅仅共享文件，自己实现ContentProvider比较麻烦，Google提供了FileProvider便利类，只要做做参数配置就成完成一切；</strong></li>
+<li><p>使用步骤：</p>
+
+<ul>
+<li><p>a. 在AndroidManifes.xml中声明FileProvider为ContentProvider，并给与一个指定权限（这里为文件存储位置）；</p>
+
+<pre><code>&lt;provider
+android:name=&quot;android.support.v4.content.FileProvider&quot;
+android:authorities=&quot;com.bignerdranch.android.criminalintent.fileprovider&quot;
+android:exported=&quot;false&quot;
+android:grantUriPermissions=&quot;true&quot;&gt;
+&lt;/provider&gt;
+</code></pre>
+
+<ul>
+<li><strong><code>exported = &quot;false&quot;</code>：表示除了自己以及自己给予授权的人，其他任何人都不允许使用该FileProvider；</strong></li>
+<li><strong><code>grantUriPermissions=&quot;true&quot;</code>：给其他应用授权允许它们向你指定位置的URI写入文件；</strong></li>
+</ul></li>
+<li><p><strong>b. 使用一个XML资源文件配置FileProvider，告诉其应该暴露哪些文件；</strong></p>
+
+<pre><code>&lt;paths&gt;
+    &lt;files-path name=&quot;crime_photos&quot; path=&quot;.&quot;/&gt;
+&lt;/paths&gt;   
+</code></pre>
+
+<ul>
+<li>创建方式：右击app/res目录，选择New -&gt; Android resource file -&gt; 资源类型选XML；</li>
+<li><strong>上述XML表示把<code>私有存储空间的根路径path=&quot;.&quot;</code>映射为crime_photos，这个名字仅是供FileProvider内部使用，没有意义；</strong></li>
+<li><p><strong>在paths节点内部支持以下几个子节点：</strong></p>
+
+<pre><code>&lt;files-path/&gt;：代表context.getFilesDir()
+&lt;cache-path/&gt;：代表context.getCacheDir()
+&lt;external-files-path/&gt;：代表context.getExternalFilesDirs()
+&lt;external-cache-path/&gt;：代表getExternalCacheDirs()
+&lt;root-path/&gt;：代表设备的根目录new File(&quot;/&quot;)
+&lt;external-path/&gt;：代表Environment.getExternalStorageDirectory()
+</code></pre></li>
+</ul></li>
+<li><p>c. <strong>给AndroidManifes.xml中的FileProvider添加<code>meta-data</code>标签，让FileProvider能找到文件；</strong></p>
+
+<pre><code>&lt;provider
+    ......&gt;
+    &lt;meta-data
+     android:name=&quot;android.support.FILE_PROVIDER_PATHS&quot;
+     android:resource=&quot;@xml/files&quot;/&gt;
+&lt;/provider&gt;
+</code></pre></li>
+<li><p><strong>d. 通过FileProvider的</strong>getUriForFile()<strong>方法生成ContentProvider形式的URI，之后就能使用了；</strong></p>
+
+<pre><code class="language-java">Uri uri = FileProvider.getUriForFile(getActivity(),
+&quot;com.bignerdranch.android.criminalintent.fileprovider&quot;, mPhotoFile);
+captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+</code></pre></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_20">16.3 使用相机intent</h4>
+
+<ul>
+<li><p>相机intent定义在MediaStore类中，该类负责处理所有与多媒体相关的任务，其定义了一些公共接口，可用于处理图像、视频、音乐等多媒体任务；发送一个带<code>MediaStore.ACTION_IMAGE_CAPTURE</code>操作的intent，Android会启动相机activity拍照；</p></li>
+<li><p><strong>ACTION_CAPTURE_IMAGE打开相机应用，默认认只能拍摄低分辨率照片，照片会保存在onActivityResult()返回的Intent对象中；</strong></p></li>
+<li><p><strong>若要获取全尺寸照片，需要使用文件系统进行存储照片；可以通过给intent设置键为MediaStore.EXTRA_OUTPUT，值为存储路径的uri的extra来完成；为适配Android 7.0，这里存储路径的uri为FileProvider提供的位置；</strong></p></li>
+<li><p>拍照之前需要检测是否安装了相机应用，是否有地方存储照片；</p></li>
+<li><p><strong>查询是否有activity可以匹配我们指定intent任务的三种方式：</strong></p>
+
+<ul>
+<li><strong>a. packageManager的resolveActivity()：返回获得最适合intent的一个activity，没有返回null；</strong></li>
+<li><strong>b. intent的resolveActivity()： 同上，其内部调用了packageManager的resolveActivity()；</strong></li>
+<li><strong>c. packageManager的queryIntentActivities()：会返回所有成功匹配intent的activity；</strong></li>
+</ul></li>
+<li><p><strong>调用<code>FileProvider.getUriForFile()</code>会把本地文件路径转换为相机能看见的URI形式（ContentProvider形式的URI）；</strong></p></li>
+<li><p><strong>调用<code>context.grantUriPermission()</code>方法，传入<code>相机应用的activity信息</code>及<code>FLAG_GRANT_WRITE_URI_ PERMISSION</code>，给相机应用授予写入文件的权限，以此允许其在指定位置URI写文件（前提：声明FileProvider时要添加android:grantUriPermissions属性）；</strong></p>
+
+<pre><code class="language-java">@Override
+public void onClick(View v) {
+    Uri uri = FileProvider.getUriForFile(getActivity(), fileProviderAuthorityStr, mPhotoFile);
+    Log.e(TAG, &quot;file uri: &quot; + uri);
+    captureImageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+    List&lt;ResolveInfo&gt; cameraActivities = packageManager.queryIntentActivities(captureImageIntent,
+            PackageManager.MATCH_DEFAULT_ONLY);
+    // 对所有的可拍照应用都授权，因为不确定用户选择了哪一个
+    for (ResolveInfo activity: cameraActivities) {
+        // 写入授权
+        getActivity().grantUriPermission(activity.activityInfo.packageName, uri,
+                Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+    }
+    startActivityForResult(captureImageIntent, REQUEST_PHOTO);
+}
+</code></pre></li>
+<li><p><strong>相机已保存了文件，需要关闭文件写入权限;</strong></p>
+
+<pre><code class="language-java">} else if (requestCode == REQUEST_PHOTO) {
+    Uri uri = FileProvider.getUriForFile(getActivity(), fileProviderAuthorityStr, mPhotoFile);
+    // 对所有应用取消授权；（也有取消单个应用的授权的方法）
+    getActivity().revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+    updatePhotoView();
+}
+</code></pre></li>
+</ul>
+
+<h4 id="toc_21">16.4 缩放和显示位图</h4>
+
+<ul>
+<li><p><strong>若要从文件生成Bitmap对象需要使用BitmapFactory类；Bitmap是个简单对象，只存储实际像素数据；即使图片被压缩成小的jpg格式的文件，一旦被载入成Bitmap对象就会还原成最原始的空间大小；</strong></p>
+
+<pre><code class="language-java">Bitmap bitmap = BitmapFactory.decodeFile(mPhotoFile.getPath());
+</code></pre></li>
+<li><p>借助BitmapFactory.Options类获取图片尺寸信息，之后可以手动缩放图片；</p>
+
+<pre><code class="language-java">public static Bitmap getScaleBitmap(String path, int destWidth, int destHeight) {
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inJustDecodeBounds = true; // 只解析图片尺寸信息
+
+    float srcWidth = options.outWidth;
+    float srcHeight = options.outHeight;
+
+    // inSampleSize表示表示宽、高的缩放比例
+    int inSampleSize = 1;
+    if (srcHeight &gt; destHeight || srcWidth &gt; destWidth) {
+        float heightScale = srcHeight / destHeight;
+        float widthScale = srcWidth / destWidth;
+
+        inSampleSize = Math.round(heightScale &gt; widthScale ? heightScale: widthScale);
+    }
+
+    options = new BitmapFactory.Options();
+    options.inSampleSize = inSampleSize;
+
+    return BitmapFactory.decodeFile(path, options);
+}
+</code></pre></li>
+<li><p><strong>缩放图片需要根据<code>显示图片控件的尺寸</code>决定缩放比例，而只有显示在屏幕的视图才有大小尺寸；如何确定<code>显示图片控件的尺寸</code>的尺寸，有两种解决方案：等布局实例化完成并显示，或者使用一个保守估计值（极端情况下，<code>显示图片控件的尺寸</code>和屏幕尺寸一样大，可以按照此大小缩放图片）；</strong></p>
+
+<pre><code class="language-java">Point size = new Point();
+// 获取屏幕尺寸
+activity.getWindowManager().getDefaultDisplay().getSize(size);
+</code></pre></li>
+</ul>
+
+<h4 id="toc_22">16.5 功能声明</h4>
+
+<ul>
+<li><p><strong>若应用要使用诸如相机、NFC、或者其他的随设备相关的功能时，都应该让Android系统知道；这样，若设备缺少这样的功能时，类似Google Play商店的安装程序就会拒绝安装该应用；</strong></p></li>
+<li><p><strong>在AndroidManifest.xml文件中声明uses-feature标签进行所需要的功能声明；默认情况下，缺少相关功能就无法使用该应用；添加required属性为false，则表示缺少相关功能也可以使用该应用；</strong></p>
+
+<pre><code>&lt;uses-feature android:name=&quot;android.hardware.camera&quot; android:required=&quot;false&quot;/&gt;
+</code></pre></li>
+</ul>
+
+<h3 id="toc_23">第17章 双版面主从用户界面</h3>
+
+<h4 id="toc_24">17.1 增加布局灵活性</h4>
+
+<ul>
+<li><p>在手机设备上，CrimeListActivity生成的是单版面（single-pane）布局，托管CrimeListFragment；在平板设备上，为了同时显示主从视图需要生成双版面（two-pane）布局，CrimeListActivity将同时托管CrimeListFragment和CrimeFragment；</p></li>
+<li><p>要实现双版面布局，需完成如下任务：修改SingleFragmentActivity不再硬编码实例化<code>包含fragment容器的布局</code>、创建<code>包含两个fragment容器的布局</code>、修改CrimeListActivity，实现在手机设备上实例化包含<code>单版面容器的布局</code>，在平板设备上实例化<code>双版面容器的布局</code>；</p></li>
+<li><p>在方法上使用<code>@LayoutRes</code>注解，表示告诉Android Studio该方法应该返回有效的布局资源ID，否则编译报错；</p></li>
+<li><p><code>别名资源</code>是一种指向其他资源的特殊资源，存放在<code>res/values/</code>目录下，并按照约定定义在refs.xml文件中；</p></li>
+<li><p><strong>为了让activity基于不同的设备使用的不同布局文件，可以像之前的使用<code>资源修饰符</code>对竖直、水平（land）布局的选择和控制，使用资源修饰符；但是以下缺点：</strong></p>
+
+<ul>
+<li><strong>a. 必须将不同的布局文件分别放置到规定的布局文件夹目录中（如res/layout/、res/layout-sw600dp/）；</strong></li>
+<li><strong>b. 同一activity对于不同设备的不同布局文件的文件名必须一样；</strong></li>
+</ul></li>
+<li><p><strong>也可以使用别名资源，让activity基于不同的设备使用的不同布局文件；</strong></p>
+
+<ul>
+<li><strong>此时同一activity对于不同设备的布局文件的名称可以不一样，而且布局文件可以不放置到规定的布局文件夹目录中；</strong></li>
+<li><strong>别名资源相当于给其他资源起个别名；为了适配不同的设备，需要新建不同的别名资源放置到不同的value文件夹目录中（比如<code>res/values/</code>、<code>res/values-sw600dp/</code>），这相当于将设备判断后所要加载的不同的文件转移到别名资源文件上了，别名资源起到一个中介作用；</strong></li>
+</ul></li>
+<li><p>右击res/目录 -&gt; 选择New -&gt; Android resource file -&gt; 选择资源类型为Values，文件命名为refs.xml -&gt; 确认新建的文件不带任何修饰符；</p>
+
+<pre><code>// res/values/refs.xml，别名资源activity_masterdetail指向了activity_fragment布局资源文件
+&lt;resources&gt;
+    &lt;item name=&quot;activity_masterdetail&quot; type=&quot;layout&quot;&gt;@layout/activity_fragment&lt;/item&gt;
+&lt;/resources&gt;
+</code></pre>
+
+<ul>
+<li><strong>上面的别名资源指向了activity_fragment布局资源文件，别名资源自身也有资源ID（R.layout.activity_masterdetail)；</strong></li>
+<li><strong>type属性决定资源ID属于什么内部类，即使别名资源文件自身在res/values/目录中，但是它的资源ID依然属于R.layout内部类；别名资源可以配置多个item，type根据指向的资源而定；</strong></li>
+</ul></li>
+<li><p><strong>需要创建一个大屏幕设备使用的别名资源，此时创建时将<code>Available qualifiers</code>中<code>Smallest Screen Width</code>选到右边窗口中，并且输入相关数值（如600），这样创建的refs.xml文件会在特定的values-XX目录中（如res/values-sw600dp/）；</strong></p>
+
+<pre><code>// res/values-sw600dp/refs.xml，别名资源activity_masterdetail指向了activity_twopane布局资源文件
+&lt;resources&gt;
+    &lt;item name=&quot;activity_masterdetail&quot; type=&quot;layout&quot;&gt;@layout/activity_twopane&lt;/item&gt;
+&lt;/resources&gt;
+</code></pre></li>
+<li><p><strong>这样对于不同尺寸的设备，代码都使用activity_masterdetail布局，但是运行时activity_masterdetail指向的资源不一样，进而加载不同类型的布局；类似于之前的<code>不同屏幕方向加载不同布局</code>（不同布局文件夹，相同布局文件名）；</strong></p></li>
+<li><p><strong><code>配置修饰符</code>：比如-sw600dp表示smallest width（最小宽度，实际上是最小尺寸，不考虑屏幕方向）大于等于600dp的设备，使用该目录下的资源，若小于则使用默认的资源（没有其他的修饰符的情况下）；</strong></p></li>
+</ul>
+
+<h4 id="toc_25">17.2 activity：fragment的托管者</h4>
+
+<ul>
+<li><p><strong>一个activity中同时展示两个fragment，若这两个fragment间有关联（比如点击fragmentA不同的内容，fragmentB也需要跟着变化、fragmentA的内容变化了，fragmentB也需要跟着变化），处理这种逻辑有两种方式：</strong></p>
+
+<ul>
+<li><p><strong>a. 直接操控fragmentManager：</strong></p>
+
+<ul>
+<li><strong>当fragmentA变化时，在fragmentA中获取托管activity的fragmentManager，在fragmentA中直接操控fragmentManager更新fragmentB；</strong></li>
+<li><strong>这种方式可行，但是耦合性太强；fragmentA需要知道托管activity的包含fragment容器的布局是什么样的，fragmentA与托管activity耦合在一起；</strong></li>
+<li><strong>fragmentA应该是可以作为独立的开发构件使用的；包含fragment容器的布局是什么样的，应该是托管activity所应该单独处理的，fragmentA不应该知道；</strong></li>
+</ul></li>
+<li><p><strong>b. 定义实现回调接口回调</strong></p>
+
+<ul>
+<li><strong>为了保持fragmentA的独立性，可以在fragmentA中定义回调接口方法，让托管activity去实现回调接口方法，处理具体的逻辑（如更新fragmentB）；</strong></li>
+<li><strong>接口定义了fragment委托给托管activity处理的工作任务，任何打算托管目标fragment的activity都必须实现它；</strong></li>
+<li><strong>当fragmentA变化时，调用activity的具体回调接口方法，进而在activity中完成了对fragmentB的更新操作；</strong></li>
+<li><strong>fragmentA需要定义一个变量mCallbacks，用于存放实现Callbacks接口的对象（就是activity）；activity赋值给变量mCallbacks是在fragment的生命周期方法中处理的：在<code>onAttach(Context context)</code>方法中进行赋值（不要在onAttach(Activity activity)方法中，这个方法已废弃），在<code>public void onDetach()</code>中置为null；</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_26">17.3 深入学习：设备屏幕尺寸的确定</h4>
+
+<ul>
+<li><p>在Android 3.2之前，屏幕大小修饰符是基于设备的屏幕大小来提供可选资源的，分为small（最低屏幕大小320<em>426dp）、normal(320</em>470dp)、large、xlarge；</p></li>
+<li><p><strong>在Android 3.2之后，屏幕大小修饰符废弃，使用了独立的屏<code>幕尺寸修饰符</code>，分为wXXXdp（有效宽度：宽度大于或等于XXXdp）、hXXXdp（有效高度：高度大于或等于XXXdp）、swXXXdp（最小宽度：宽度高度两者中最小的那个大于或等于XXXdp）；</strong></p></li>
+<li><p><strong>若想指定某个布局仅适用于屏幕宽度至少为300dp的设备，可以使用宽度修饰符，并将布局文件放入res/layout-w300dp/目录下；</strong></p></li>
+</ul>
+
+<h3 id="toc_27">第18章 应用本地化</h3>
+
+<h4 id="toc_28">18.1 资源本地化</h4>
+
+<ul>
+<li><p><strong>语言设置是<code>设备配置</code>的一部分，和处理屏幕方向、屏幕尺寸以及其他配置因素改变一样，Android也提供了用于不同语言的配置修饰符；只需要创建带目标语言配置修饰符的资源子目录，并放入备选资源，其余工作就交给Android资源系统自动处理；</strong></p></li>
+<li><p><strong>右击res/目录 -&gt; New -&gt; Android resource file菜单项，文件名为strings.xml：Source set选择main，Directory name设为values，在<code>Available qualifiers</code>列表选中Locale，使用&gt;&gt;按钮把其移入<code>Chosen qualifiers</code>中，在Language列表中选zh: Chinese，右边的Specific Region Only中选中Any Region；Android Studio会自动设置Directory name为values-zh；</strong></p></li>
+<li><p>语言配置修饰符来自于ISO 639-1标准代码，每个修饰符都由两个字符组成，比如中文的修饰符为zh；</p></li>
+<li><p>英文语言的配置修饰符为en，英文版字符串资源为values-en/ strings.xml；</p></li>
+<li><p>若Android无法找到匹配当前语言设置的资源，则不匹配的字符串资源，用在XML布局文件中应用会显示资源ID数值，用在Java代码中应用就会崩溃；</p></li>
+<li><p>没有配置修饰符的资源就是Android的默认资源；提供默认资源非常重要，若无法找到匹配当前配置的资源，Android就会使用默认资源，其能保证应用正常运行；</p></li>
+<li><p><strong>Android的默认资源使用规则并不适用于<code>屏幕显示密度</code>；</strong>项目的drawable目录通常按屏幕显示密度，带有-mdpi、-xxhdpi这样的修饰符；Android决定使用哪一类drawable资源并不是简单地匹配设备的屏幕显示密度，也不是在没有匹配的资源时直接使用默认资源，而是综合考虑屏幕尺寸和显示密度；<strong>故不要在res/drawable/目录下放置<code>所谓的默认的drawable资源</code>；</strong></p></li>
+<li><p><strong>检查资源本地化完成情况：在Android Studio选择<code>Android窗口</code>查看文件（不是Project窗口），打开res/values/文件夹，右击默认字符串资源strings.xml，选择<code>Open Translations Editor</code>进行查看；若没有改选项将Android窗口的文件目录先收起再展开；</strong></p></li>
+<li><p>修饰资源目录还可以使用<code>语言加区域修饰符</code>，这样可以让资源使用更有针对性；比如-es-rMX表示墨西哥地区的西班牙语，r代表区域；配置修饰符对大小写不敏感，但最好遵守Android命名约定：语言代码小写，区域代码大写，前面加个小写的r；</p></li>
+<li><p>语言和区域修饰同时匹配用户的locale，若没有匹配上，系统会去除区域修饰仅以语言去匹配；<strong>建议：最好仅用语言的修饰目录，少用区域修饰，这样资源应尽可能通用；</strong></p></li>
+</ul>
+
+<h4 id="toc_29">18.2 配置修饰符</h4>
+
+<ul>
+<li><p>Android提供配置修饰符以更好地匹配资源，有移动国家码、语言代码、布局方向、最小宽度、可用宽度...API级别等等好多修饰符；</p></li>
+<li><p>旧版本Android系统，并非支持所有配置修饰符，故出现了API级别修饰符，如圆形屏幕修饰符自API 23级别引入，若使用它则系统会自动加上v23，这样就不用担心在旧系统会遇到问题；</p></li>
+<li><p>考虑到有那么多匹配资源的配置修饰符，有时会出现设备配置与好几个可选资源都匹配的情况，此时Android会根据<code>修饰符的优先级</code>使用；比如，同时有values-w600dp/strings.xml、values-zh/strings.xml；</p></li>
+<li><p><strong>可以在同一资源目录上使用多个配置修饰符，各配置修饰符需要按照优先级别顺序排列；新建资源文件对话框中，工具会自动配置正确的目录名；</strong>比如，values-zh-land是一个有效的资源目录名，而values-land-zh则是无效的资源目录名；</p></li>
+<li><p><strong>寻找最匹配的资源：Android首先排除不兼容<code>当前设备配置</code>的资源目录，之后按配置修饰符的优先级排除不兼容的目录（有高优先级的目录，低优先级的目录会被排除）；</strong></p></li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android编程权威指南 笔记(07~12)]]></title>
+    <link href="http://www.justisit.com/15225894269717.html"/>
+    <updated>2018-04-01T21:30:26+08:00</updated>
+    <id>http://www.justisit.com/15225894269717.html</id>
+    <content type="html"><![CDATA[<ul>
+<li>
+<a href="#toc_0">第7章 UI fragment与fragment管理器</a>
+<ul>
+<li>
+<a href="#toc_1">7.2 引入fragment</a>
+</li>
+<li>
+<a href="#toc_2">7.3 着手开发CriminalIntent</a>
+</li>
+<li>
+<a href="#toc_3">7.4 托管UI fragment</a>
+</li>
+<li>
+<a href="#toc_4">7.5 创建UI fragment</a>
+</li>
+<li>
+<a href="#toc_5">7.6 向FragmentManager添加UI fragment</a>
+</li>
+<li>
+<a href="#toc_6">7.8 深入学习：fragment与支持库</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">第8章 使用RecyclerView显示列表</a>
+<ul>
+<li>
+<a href="#toc_8">8.3 RecyclerView、ViewHolder和Adapter</a>
+</li>
+<li>
+<a href="#toc_9">8.5 响应点击</a>
+</li>
+<li>
+<a href="#toc_10">8.6 深入学习：ListView和GridView</a>
+</li>
+<li>
+<a href="#toc_11">8.7 深入学习：单例</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_12">第9章 使用布局与组件创建用户界面</a>
+<ul>
+<li>
+<a href="#toc_13">9.2 引入ConstraintLayout</a>
+</li>
+<li>
+<a href="#toc_14">9.3 深入学习布局属性</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_15">第10章 使用fragment argument</a>
+<ul>
+<li>
+<a href="#toc_16">10.1 从fragment中启动activity</a>
+</li>
+<li>
+<a href="#toc_17">10.2 fragment argument</a>
+</li>
+<li>
+<a href="#toc_18">10.3 刷新显示列表项</a>
+</li>
+<li>
+<a href="#toc_19">10.4 通过fragment获取返回结果</a>
+</li>
+<li>
+<a href="#toc_20">10.5 深入学习：为何要用fragment argument</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_21">第11章 使用ViewPager</a>
+<ul>
+<li>
+<a href="#toc_22">11.1 创建CrimePagerActivity</a>
+</li>
+<li>
+<a href="#toc_23">11.2 FragmentStatePagerAdapter与FragmentPagerAdapter</a>
+</li>
+<li>
+<a href="#toc_24">11.3 深入学习：ViewPager的工作原理</a>
+</li>
+<li>
+<a href="#toc_25">11.4 深入学习：以代码的方式创建视图</a>
+</li>
+<li>
+<a href="#toc_26">11.5 挑战练习：恢复CrimeFragment的边距</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_27">第12章 使用对话框</a>
+<ul>
+<li>
+<a href="#toc_28">12.0 概述</a>
+</li>
+<li>
+<a href="#toc_29">12.1 创建DialogFragment</a>
+</li>
+<li>
+<a href="#toc_30">12.2 fragment间的数据传递</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h3 id="toc_0">第7章 UI fragment与fragment管理器</h3>
+
+<h4 id="toc_1">7.2 引入fragment</h4>
+
+<ul>
+<li><p><strong>采用fragment而不是activity来管理应用UI，可绕开activity使用规则的限制，比如列表明细类应用（明细视图切换时不需要再销毁activity）；其还适用于其他类型的应用，比如可以更方便地构建分页界面、动画侧边栏等定制界面；</strong></p></li>
+<li><p><strong>fragment是一种控制器对象，activity可委派其完成一些任务，如管理用户界面（一整屏、整屏的一部分）等；</strong></p>
+
+<ul>
+<li><strong>管理用户界面的fragment又称为UI fragment，其包含了用户可以交互的视图UI元素；</strong></li>
+<li><strong>activity视图可预留位置供fragment视图插入；若有多个fragment要插入，activity视图也可提供多个位置；</strong></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_2">7.3 着手开发CriminalIntent</h4>
+
+<ul>
+<li><p>首先设计一个名为CrimeFragment的UI fragment来管理用户界面（与activity在GeoQuiz应用中的作用差不多），再设计一个名为CrimeActivity的activity来<strong>托管</strong>CrimeFragment实例；</p>
+
+<ul>
+<li><strong>activity在其视图层级里提供一处位置用来放置fragment的视图，fragment本身不具有在屏幕上显示视图的能力；只有将fragment视图放置在activity的视图层级结构中，fragment视图才能显示在屏幕上；</strong></li>
+</ul></li>
+<li><p>Google在API 11引入了fragment，并有两个版本的fragment实现可以使用：原生版本、支持库版本；</p>
+
+<ul>
+<li>原始版本的实现内置在设备系统中，在不同版本设备上运行可能有不同的表现；</li>
+<li>支持库版本的实现会打包到应用中，在不同版本设备上运行有着相同的表现；</li>
+<li>支持库版fragment来自于AppCompat库（<code>compile &#39;com.android.support:appcompat-v7:25.0.1&#39;</code>）；使用时需要将其加入到项目的依赖关系中；</li>
+</ul></li>
+<li><p>添加依赖关系的方式：</p>
+
+<ul>
+<li>修改应用模块的build.gradle的<code>dependencies</code>；</li>
+<li>File -&gt; Project Structure -&gt; 选择应用模块 -&gt; 点击右边的Dependencies选项页 -&gt; 点击+号 -&gt; Library dependency；</li>
+</ul></li>
+<li><p>对于未复制到项目中的依赖项，应用编译时Gradle会下载依赖包并自动导入到项目中； </p></li>
+<li><p>依赖项字符使用了Maven坐标模式：<code>groupId:artifactId:version</code>；</p>
+
+<ul>
+<li>groupId通常是类库的包名，Maven仓库中的唯一标识；</li>
+<li><strong>artifactId是特定库名，比如support-v4、support-v13、appcompat-v7、gridlayout-v7；-vX标识所支持的最低API级别；</strong></li>
+<li>version标识类库的的版本；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_3">7.4 托管UI fragment</h4>
+
+<ul>
+<li><p><strong>activity托管UI fragment必须做到<code>两件事</code>：</strong></p>
+
+<ul>
+<li><strong>a. 在布局中为fragment的视图安排位置；</strong></li>
+<li><strong>b. 管理fragment实例的生命周期；</strong></li>
+</ul></li>
+<li><p>activity托管UI fragment有两种方式：</p>
+
+<ul>
+<li>a. 在activity布局文件中添加fragment控件元素：
+
+<ul>
+<li>简单但不灵活，activity的视图绑定了fragment及其视图，无法替换fragment视图；</li>
+<li>这种方式无需添加别的配置就已经做到上面的<code>两件事</code>；</li>
+</ul></li>
+<li>b. 在activity代码中添加fragment对象：
+
+<ul>
+<li>复杂但灵活，但也是唯一可以动态控制fragment的方式，可随时添加移除替换fragment；一般都使用该方式；</li>
+<li>这种方式需要我们自己处理上面的<code>两件事</code>；</li>
+</ul></li>
+</ul></li>
+<li><p>虽然是在托管activity代码中添加UI fragment，但还是要在activity视图层级结构中为fragment视图安排位置；</p>
+
+<ul>
+<li><strong>为了在布局中为fragment视图安排位置，需要定义个<code>容器视图</code>（比如FrameLayout控件元素）；这个<code>容器视图</code>是通用的，不局限于托管某一个fragment；</strong></li>
+<li>CrimeActivity视图由FrameLayout组件组成，FrameLayout组件为CrimeFragment视图安排了显示位置；</li>
+</ul></li>
+<li><p><strong>fragment生命周期与activity生命周期类似，覆盖相应的方法完成相应的任务；一个关键区别在于，fragment的生命周期方法（public的，activity需要调用；activity是protected的）由托管activity而不是操作系统调用；操作系统不关心activity用来管理视图的fragment，fragment的使用是activity内部的事情；</strong></p></li>
+</ul>
+
+<h4 id="toc_4">7.5 创建UI fragment</h4>
+
+<ul>
+<li><p><strong>创建UI fragment和创建activity的步骤是一样的：定义布局文件、创建fragment并设置布局文件，配置布局文件中的组件；</strong></p></li>
+<li><p>fragment也有onCreate、onSaveInstanceState等方法，但是fragment的视图并不是在onCreate方法中生成，而是在onCreateView方法中完成的；  </p></li>
+<li><p><strong>fragment的<code>public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</code>：</strong></p>
+
+<ul>
+<li>该方法由托管activity调用， 实例化fragment视图的布局，然后将实例化的View返回给托管activity；</li>
+<li><p>LayoutInflater、ViewGroup是实例化布局的必要参数，Bundle用来存储恢复数据，可供该方法从保存状态下重建视图；</p>
+
+<pre><code class="language-java">@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+View v = inflater.inflate(R.layout.fragment_crime, container, false);
+return v; 
+}
+</code></pre></li>
+</ul></li>
+<li><p><strong>在onCreateView()方法中，fragment的视图是直接通过用<code>LayoutInflater.inflate(...)</code>方法生成的，之后完成布局中组件的设置（如给组件添加监听等）；</strong></p></li>
+<li><p><code>LayoutInflater.inflate(...)</code>方法参数：</p>
+
+<ul>
+<li>第一个参数为布局资源ID；</li>
+<li>第二个参数为视图的父视图；</li>
+<li>第三个参数为是否将生成的视图添加到父视图中；</li>
+</ul></li>
+<li><p><strong>fragment的onCreateView几乎等同于activity的onCreate；唯一区别只是：在获取内部的组件时，activity中是调用activity的findViewById（本质还是调用view的findViewById），fragment中是调用view的findViewById；</strong></p></li>
+</ul>
+
+<h4 id="toc_5">7.6 向FragmentManager添加UI fragment</h4>
+
+<ul>
+<li><p><strong>FragmentManager负责管理fragment并将它们的视图添加到activity的视图层级结构中；FragmentManager的具体管理：fragment队列、fragment事务回退栈（之后会学习）；</strong></p>
+
+<ul>
+<li><strong>a. 先调用activity的<code>getSupportFragmentManager()</code>获取FragmentManager对象；</strong></li>
+<li><strong>b. 通过调用fragmentManager的<code>findFragmentById()</code>方法获取该fragment；</strong></li>
+<li><p>c. <strong>若获取失败，则创建一个fragment对象；</strong></p>
+
+<ul>
+<li><strong>a). 之后调用fragmentManager.beginTransaction()开启fragment事务，返回FragmentTransaction对象；</strong></li>
+<li><strong>b). 将相关操作（比如add()、delete()等）添加到fragment事务（FragmentTransaction对象）中；</strong></li>
+<li><strong>c). 提交fragment事务；</strong></li>
+</ul>
+
+<pre><code class="language-java">@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_crime);
+
+    FragmentManager fm = getSupportFragmentManager();
+    Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+
+    if (fragment == null) {
+        fragment = new CrimeFragment();
+        fm.beginTransaction()
+            .add(R.id.fragment_container, fragment)
+            .commit();
+    }
+}
+</code></pre></li>
+</ul></li>
+<li><p><strong>fragment事务被用来添加、移除、附加、分离或替换fragment队列中的fragment，这是使用fragment动态组装和重新组装用户界面的关键；而FragmentManager管理着fragment事务回退栈；</strong></p></li>
+<li><p>add()方法有两个参数：容器视图资源ID（定义在activity的布局文件中的FrameLayout组件的资源ID）、新建的fragment对象；</p></li>
+<li><p>容器视图资源ID有两个作用：</p>
+
+<ul>
+<li>a. 告诉FragmentManager对象，fragment的视图应该放置在activity的视图的什么位置；</li>
+<li>b. 唯一标识FragmentManager队列中的fragment；可以从fragmentManager中获取相关的fragment；</li>
+</ul></li>
+<li><p><strong>当设备旋转或回收内存时，Android系统销毁activity，其FragmentManager对象会保存fragment队列；而当activity重建时，新的FragmentManager会首先获取保存的队列，然后重建fragment队列，从而恢复到原来的状态；故需要先判断fragment是否已存在<code>fm.findFragmentById(R.id.fragment_container</code>，若存在则直接返回，否则走添加fragment的流程；</strong></p></li>
+<li><p>activity的FragmentManager负责调用队列中fragment的生命周期方法；</p>
+
+<ul>
+<li><strong>a. 添加fragment供FragmentManager管理时，onAttach(Context)、onCreate(Bundle)、onCreateView(...)方法被调用；</strong></li>
+<li>b. 在托管的activity的onCreate()方法中添加fragment后，fragment的onActivityCreated()方法会被调用；</li>
+<li>c. 若在托管的activity处于运行时添加fragment，FragmentManager立即驱赶fragment，调用一系列必要的生命周期方法，与activity的最新状态保持同步；依次调用onAttach(Context)、onCreate(Bundle)、onCreateView(...)、onActivityCreated(Bundle)、onStart()、onResume()；</li>
+<li>d. fragment与activity的状态一旦同步完成后，托管activity的FragmentManager就会边接收操作系统的调用指令，边调用fragment的其他生命周期方法，继续保持状态一致；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_6">7.8 深入学习：fragment与支持库</h4>
+
+<ul>
+<li><p>support-v4库支持实现fragment功能，可以在该库中找到android.support.v4.app.Fragment；support-v4库中也有一个FragmentActivity（android.support.v4.app.FragmentActivity）；<strong>若要使用支持库版fragment，应用的activity必须继承FragmentActivity；</strong></p></li>
+<li><p><strong>AppCompatActivity就是FragmentActivity的子类；引入了AppCompat库，就能使用支持库版fragment；若只想用support-v4库也可以，在项目里引入该库后，把各个activity的父类从AppCompatActivity改为FragmentActivity即可；</strong></p></li>
+</ul>
+
+<h3 id="toc_7">第8章 使用RecyclerView显示列表</h3>
+
+<h4 id="toc_8">8.3 RecyclerView、ViewHolder和Adapter</h4>
+
+<ul>
+<li><p>RecyclerView是ViewGroup的子类，每个列表项都是作为一个独立的View子对象显示的；</p></li>
+<li><p>RecyclerView的任务仅限于回收和定位屏幕上的View；列表项View能够显示数据还离不开另外两个类的支持：ViewHolder子类和Adapter子类；</p>
+
+<ul>
+<li>ViewHolder是每个列表项的View布局的容器；该view布局（ViewHolder通过itemView属性引用着）可以是系统内置的（比如simple_list_item_1），也可以是自定义的；view布局都会被封装到ViewHolder中，这样对adapter来说统一了接口；</li>
+<li>RecyclerView自己不创建ViewHolder，该任务实际是由Adapter来完成的；Adapter从模型层获取数据，绑定到ViewHolder上，然后提供给RecyclerView显示；</li>
+</ul></li>
+<li><p>Adapter工作流程：</p>
+
+<ul>
+<li><p>a. 首先，RecyclerView调用adapter的<code>getItemCount()</code>方法，告诉RecyclerView列表中有多少个列表项；</p></li>
+<li><p>b. 接着，RecyclerView调用adapter的<code>createViewHolder(ViewGroup, int)</code>方法创建ViewHolder及其要显示的视图，告诉RecyclerView每个列表项的View的样子；</p></li>
+<li><p>c. 最后，RecyclerView调用<code>onBindViewHolder(ViewHolder, int)</code>方法，根据参数信息，将列表位置对应的模型数据<strong>绑定（填充）</strong>到ViewHolder视图上；</p>
+
+<pre><code class="language-java">private class CrimeAdapter extends RecyclerView.Adapter&lt;CrimeHolder&gt; {
+    ...
+    @Override
+    public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+        return new CrimeHolder(layoutInflater, parent);
+    }
+
+    @Override
+    public void onBindViewHolder(CrimeHolder holder, int position) {
+        Crime crime = mCrimes.get(position);
+        holder.bind(crime); // 自定义bind方法，绑定数据（给子控件设置属性值）
+    }
+
+    @Override
+    public int getItemCount() {
+        return mCrimes.size();
+    }
+}
+</code></pre></li>
+</ul></li>
+</ul>
+
+<ul>
+<li><p><strong>为节约时间和内存，一旦创建了够用的ViewHolder，RecyclerView就会停止调用createViewHolder()方法创建新的ViewHolder，之后使用ViewHolder时（执行onBindViewHolder()时）回收利用旧的ViewHolder；</strong></p></li>
+<li><p>RecyclerView类来自于Google支持库（recyclerview-v7）；</p></li>
+<li><p>RecyclerView还需要LayoutManager的支持；RecyclerView负责显示视图，LayoutManager负责摆放列表项、定义屏幕滚动行为；</p></li>
+<li><p>LayoutManager有系统内置的实现，比如LinearLayoutManager是以竖直列表的形式展示列表项，GridLayoutManager是以网格的形式展示列表项，也可以使用第三方的实现；</p>
+
+<pre><code class="language-java">@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_crime_list, container, false);
+    mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
+    mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    return view;
+}
+</code></pre></li>
+</ul>
+
+<h4 id="toc_9">8.5 响应点击</h4>
+
+<ul>
+<li>每个列表项视图都关联着ViewHolder，可以让ViewHolder监听用户的触摸、点击事件（实现OnClickListener接口）；</li>
+</ul>
+
+<h4 id="toc_10">8.6 深入学习：ListView和GridView</h4>
+
+<ul>
+<li><p>Android操作系统核心库包含ListView、GridView、Adapter，Android 5.0之前创建列表项或网格项使用这些类；</p></li>
+<li><p>ListView、GridView、Adapter这些类的API与RecyclerView非常相似，但是这些类不完善，需要进行额外的定制工作才能完成一些任务；比如ListView不支持创建水平滚动的列表，ListView和GridView不支持删除添加列表项的动画效果；</p>
+
+<pre><code class="language-java">// 将位置0处的列表项移动到位置5处
+mRecyclerView.getAdapter().notifyItemMoved(0, 5);
+</code></pre></li>
+</ul>
+
+<h4 id="toc_11">8.7 深入学习：单例</h4>
+
+<ul>
+<li><p>Android开发中常用到单例的一大原因是其生命比fragment、activity久，屏幕旋转单例不受影响；并且单例也能方便地存储控制模型层对象；但是其缺点是无法进行长久持久化、不利于单元测试；</p></li>
+<li><p>请确保有充足的理由使用单例模式存储要共享的数据；</p></li>
+</ul>
+
+<h3 id="toc_12">第9章 使用布局与组件创建用户界面</h3>
+
+<h4 id="toc_13">9.2 引入ConstraintLayout</h4>
+
+<ul>
+<li><p><strong>ConstraintLayout是一种进化版的RelativeLayout，比RelativeLayout功能更强大、性能更好，而且在图形布局工具中操作更方便（不用再手动输入XML布局了）；其使用约束布置组件的位置，而组件的大小尺寸则提供三种选项：手动调整、让组件自己决定(wrap_content)、让组件充满约束布局；</strong></p></li>
+<li><p>和RecyclerView类似， ConstraintLayout来自于约束布局依赖库（constraint-layout），使用时需要添加该依赖库；</p></li>
+<li><p>布局预览窗口顶部的约束编辑选项工具栏，依次为显示所有约束、自动连接切换开关（当拖拽组件时，Android Studio自动配置约束）、清除全部约束、猜测约束（与自动连接类似）；</p>
+
+<p><img src="media/15225894269717/constraintlayout_tools.png" alt="constraintlayout_tools" style="width:709px;"/></p></li>
+<li><p><strong>控件的大小尺寸由宽度、高度的设置值决定，设置值有三种选项，可以通过点击示例图进行切换，也可以设置layout_width(layout_height)；</strong></p>
+
+<ul>
+<li><p><strong>固定大小：Xdp，为视图指定固定值；</strong></p></li>
+<li><p><strong>包裹内容：wrap_content，设置视图想尺寸根据内容而定；</strong></p></li>
+<li><p><strong>动态适应：match_constraint（0dp）， 允许视图缩放以满足指定约束；与match_parent不等价；</strong></p>
+
+<p><img src="media/15225894269717/constraintlayout_size_types.png" alt="constraintlayout_size_types" style="width:444px;"/></p></li>
+</ul></li>
+<li><p><strong>控件的四边的中心有都有圆点，表示约束柄；</strong></p>
+
+<ul>
+<li><strong>圆点为空心则说明没有约束，点击该点（变绿色），拖拽移动箭头到<code>相对控件的某边上</code>即创建约束；</strong></li>
+<li><strong>圆点为实心则说明已添加约束，光标移动到该圆点上（变红色），点击即删除该约束；</strong></li>
+</ul>
+
+<p><img src="media/15225894269717/constraintlayout_attributes.png" alt="constraintlayout_attributes" style="width:537px;"/></p></li>
+<li><p><strong>凡是以layout_开头的属性都属于布局参数（layout parameter）属性；<code>app:layout_constraintTop_toTopOf=&quot;parent&quot;</code>：</strong></p>
+
+<ul>
+<li><strong>约束的属性的命名空间为app，而不是android；</strong></li>
+<li><strong>属性名以<code>layout_constraint</code>开始；</strong></li>
+<li><strong>toTopOf=&quot;parent&quot;表示约束连接到父组件的顶部；</strong></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_14">9.3 深入学习布局属性</h4>
+
+<ul>
+<li><p><strong>对于图片，Android会使用不同像素密度drawable自动适配不同像素密度的屏幕；对于对距离尺寸、文字大小，Android提供了与密度无关的尺寸单位，让其在不同屏幕像素密度的设备上获得同样的尺寸，而在应用运行时，Android会自动将这种单位转换成像素单位；</strong></p>
+
+<p><img src="media/15225894269717/px%E3%80%81dp%E3%80%81sp.png" alt="px、dp、sp" style="width:343px;"/></p>
+
+<ul>
+<li>px（pixel，像素）：无论屏幕密度多少，一个像素单位对应一个屏幕像素单位；不推荐使用px，因为它不会根据屏幕密度自动缩放；</li>
+<li><strong>dp（dip，density-independent pixel，密度无关像素）：无论屏幕密度如何，总能获得同样的尺寸，1dp在设备屏幕上总是等于1/160英寸；通常用来设置内边距、边距等；</strong></li>
+<li><strong>sp（scale-independent pixel，缩放无关像素）：一种与密度无关的像素，会受<code>用户字体偏好设置</code>的影响，通常来设置屏幕上的字体大小；</strong></li>
+<li>pt、mm、in：类似于dp的缩放单位，但不建议使用，并非所有设备都能正常缩放配置；</li>
+</ul></li>
+<li><p>边距属性（android:layout_margin）是布局参数，决定了组件间的距离，Android Studio默认使用的值是16dp或8dp（遵循Material Design原则）；内边距属性（android:padding）不是布局参数，表示的是组件在绘制组件自身时，要比所含内容大多少；</p></li>
+<li><p><code>样式</code>资源文件style.xml是用来描述组件行为和外观的属性定义，其位于res/values目录下；在该文件中可以添加创建自己的样式，之后在布局文件中中以<code>@style/STYLE_NAME</code>的形式进行引用（与string类似）；</p>
+
+<pre><code class="language-xml">&lt;style name=&quot;BigTextStyle&quot;&gt;
+    &lt;item name=&quot;android:textSize&quot;&gt;20sp&lt;/item&gt;
+    &lt;item name=&quot;android:padding&quot;&gt;3dp&lt;/item&gt; 
+&lt;/style&gt;
+</code></pre></li>
+<li><p>主题（theme）是各种样式的集合，其也是一种样式资源，只不过其的属性指向了其他样式资源；<strong>Android自带了一些供应用使用的平台主题，创建应用时Android Studio会自动设置默认主题（在manifest文件的application标签下，<code>android:theme=&quot;@style/AppTheme</code>）；</strong></p></li>
+<li><p>使用<code>主题的属性引用</code>：将预定的应用主题样式添加给相应的组件；</p>
+
+<ul>
+<li>比如<code>style=&quot;?android:listSeparatorTextViewStyle&quot;</code>，就让Android运行资源管理器在应用主题中找名为listSeparatorTextViewStyle的属性，并将该属性指向的样式资源设置到该组件上；</li>
+<li>所有的Android主题都包含名为listSeparatorTextViewStyle的属性，只不过对于不同的主题，其定义不一样；</li>
+</ul></li>
+<li><p>补充</p>
+
+<ul>
+<li><p>以<code>layout_</code>开头的属性则用于组件的父组件，这些属性称为布局参数，其告诉父局部如何在内部安排自己的子元素；不以<code>layout_</code>开头的属性用于组件，组件实例化时会调用方法按照属性及值进行自我配置；如边距（android:layout_margin）、内边距（android:padding）；</p></li>
+<li><p>LinearLayout在决定子视图的宽度时，使用的是layout_width（height）与layout_weight参数的混合值；</p>
+
+<ul>
+<li>第一步根据layout_width（height）绘制控件大小，第二步根据layout_weight属性值进行额外的空间分配；各个组件的layout_weight值的比例和为1；</li>
+<li>若让各个控件的宽度相同，则可以设置layout_width为0dp，layout_weight为均分值；</li>
+</ul></li>
+<li><p>若一个组件只存在于一个布局上，则应先进行空值检查再进行配置；定义在水平或垂直布局文件中的同一个组件必须有相同的android:id属性，这样代码才能引用到它；</p>
+
+<pre><code class="language-java">Button landscapeOnlyButton = (Button)v.findViewById(R.id.landscapeOnlyButton); 
+if (landscapeOnlyButton != null) {
+    // Set it up
+}
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h3 id="toc_15">第10章 使用fragment argument</h3>
+
+<h4 id="toc_16">10.1 从fragment中启动activity</h4>
+
+<ul>
+<li><p><strong>从fragment中启动activity类似于从activity中启动activity；调动fragment的startActivity()，其会在后台再调用对应的activity的方法；</strong></p></li>
+<li><p><strong>通过给intent附加extra信息（UUID是Serializable的，也可以被putExtra），子activity是可以获取到intent的extra信息；而子activity中的fragment若要获取该intent的extra信息，则有两种方式：</strong></p>
+
+<ul>
+<li><p><strong>a. 直接获取：</strong></p>
+
+<ul>
+<li><strong>在fragment的onCreate()方法中先获取其托管的activity，之后通过activity获取相关信息；如<code>getActivity().getIntent().getSerializableExtra(KEY)</code>；</strong></li>
+<li><strong>该方式的缺点是破坏fragment的封装性，fragment不可被复用；</strong></li>
+<li><strong>所需要的extra数据被保存在activity中；应该将所需要的extra数据保存在fragment中，这个地方就是<code>argument bundle</code>；</strong></li>
+</ul></li>
+<li><p><strong>b. 使用fragment argument获取；</strong></p></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_17">10.2 fragment argument</h4>
+
+<ul>
+<li><p>每个fragment都可附加一个Bundle对象，该对象含有键值对，一个键值对就是一个argument；使用方式和附加extra到intent中一样；</p>
+
+<pre><code class="language-java">Bundle args = new Bundle();
+args.putSerializable(EXTRA_MY_OBJECT, myObject);
+args.putInt(EXTRA_MY_INT, myInt);
+</code></pre></li>
+<li><p><strong>若将argument bundle附加给fragment，可调用fragment的setArguments(Bundle)方法；</strong></p>
+
+<ul>
+<li><strong>该方法必须在fragment创建后、添加给activity前完成；</strong> </li>
+<li><strong>为了满足此要求，通常在Fragment中添加一个静态方法newInstance，该方法中完成fragment、bundle及setArguments()的操作，参数为需要保存fragment中的数据；</strong></li>
+<li><strong>托管activity需要fragment时，调用该静态方法并传入必要的数据；</strong></li>
+</ul></li>
+<li><p><strong>fragment中获取argument，可调用fragment的getArguments获取Bunlde对象，之后再调用相关get方法（在onCreate()方法中进行调用）进而获取传递过来的数据；</strong></p></li>
+</ul>
+
+<h4 id="toc_18">10.3 刷新显示列表项</h4>
+
+<ul>
+<li><p>当activity恢复运行时，系统会发出调用onResume()方法的指令，activity收到指令后，它的FragmentManager会调用当前activity托管的fragment的onResume()方法；</p></li>
+<li><p><strong>一般在onResume()方法中操作刷新数据；</strong>因为当有其他 activity位于你的activity之上时，无法确定自己的activity是否会被停止，有可能最上面的activity是透明的，此时自己的activity只是暂停，恢复时不会调用onStart()方法；</p></li>
+</ul>
+
+<h4 id="toc_19">10.4 通过fragment获取返回结果</h4>
+
+<ul>
+<li><p><strong>若fragment需要从被启动的activity中获取返回数据，则和之前的activity的处理方式类似；调用fragment的startActivityForResult()方法，同时重写fragment的onActivityResult()方法（不是activity的）；</strong></p></li>
+<li><p><strong>fragment没有setResult()方法，无法设置返回数据，只能通过托管的activity间接进行设置，即<code>getActivity().setResult(Activity.RESULT_OK,intent);</code></strong></p></li>
+</ul>
+
+<h4 id="toc_20">10.5 深入学习：为何要用fragment argument</h4>
+
+<ul>
+<li><p>使用fragment argument而不是直接在fragment定义变量进行保存数据，可以避免系统重建fragmen时的数据保存问题；</p></li>
+<li><p>对上述情况也可以使用onSaveInstanceState(Bundle)进行状态保存，但是维护起来麻烦，还需要再从onCreate(Bundle)的Bundle中获取；</p></li>
+</ul>
+
+<h3 id="toc_21">第11章 使用ViewPager</h3>
+
+<h4 id="toc_22">11.1 创建CrimePagerActivity</h4>
+
+<ul>
+<li><p>和RecyclerView、ConstraintLayout类似，ViewPager来自于支持库（android.support.v4.view.ViewPager）；在SDK的后续版本，Google没有在标准库中实现ViewPager类；</p></li>
+<li><p>ViewPager在某种程度上类似于RecyclerView；ViewPager也需要Adapter（<code>PagerAdapter</code>）的支持提供视图，只不过PagerAdapter的处理比较复杂；</p></li>
+<li><p><strong>Google提供了PagerAdapter简易的子类<code>FragmentStatePagerAdapter</code>：</strong></p>
+
+<ul>
+<li><strong>提供了有两个方法<code>getCount()</code>、<code>getItem(int)</code>；</strong></li>
+<li><p><strong>在getItem(int)方法中可以获取指定位置的数据，并配置到相关的fragment上，并返回该fragment；该fragment会被添加到activity上（现在使用viewpager显示fragment，之前使用的是framelayout）；</strong></p></li>
+<li><p>FragmentStatePagerAdapter构造时需要传入FragmentManager对象；</p>
+
+<pre><code class="language-java">mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) { 
+    // ... 
+});
+</code></pre></li>
+</ul></li>
+<li><p>ViewPager默认加载当前屏幕上的列表项以及左右相邻的数据，因此响应迅速；调用<code>setOffscreenPageLimit(int)</code>方法定制预加载相邻页面的数目；</p></li>
+<li><p>ViewPager默认显示PagerAdapter中的第一个列表项；调用<code>mViewPager.setCurrentItem(i)</code>方法则可以从显示特定位置的page；</p></li>
+</ul>
+
+<h4 id="toc_23">11.2 FragmentStatePagerAdapter与FragmentPagerAdapter</h4>
+
+<ul>
+<li>FragmentPagerAdapter是另外一种可用的PagerAdapter，其用法与FragmentStatePagerAdapter基本一样；唯一的区别在于，卸载不再需要的fragment时，各自采用的处理方法有所不同；
+
+<ul>
+<li>FragmentStatePagerAdapter会销毁不需要的fragment；在销毁fragment时，可在onSaveInstanceState(Bundle)方法中保存fragment的Bundle信息，用户切换回来时，保存的实例状态可用来生成新的fragment；</li>
+<li>FragmentPagerAdapter不会销毁不需要的fragment，而是调用事务的detach(Fragment)方法处理，只是销毁了fragment的视图，fragment实例还保留在FragmentManager中，永远不会被销毁；其消耗内存但更安全些；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_24">11.3 深入学习：ViewPager的工作原理</h4>
+
+<ul>
+<li><p><strong>当ViewPager托管的不是fragment视图时，就需要实现原生的PagerAdapter接口，比如在ViewPager中托管图片这样的常见视图对象；</strong></p></li>
+<li><p><strong>使用ViewPager而不是RecyclerView的原因：当RecyclerView要求Adapter提供fragment视图时，我们无法立即创建fragment并提供其视图（决定fragment视图何时创建的是FragmentManager）；</strong></p></li>
+<li><p>ViewPager使用的是PagerAdapter，PagerAdapter比原来的Adapter复杂得多，它要处理更多视图工作；其内部原理是不使用可返回视图的<code>onBindViewHolder(...)</code>方法，而是使用下列方法：</p>
+
+<ul>
+<li>a. <code>public Object instantiateItem(ViewGroup container, int position)</code>：告诉pager adapter创建指定位置的列表项视图，并将其添加到ViewGroup视图容器中；该方法并不要求<code>立即</code>创建视图，pager adapter可自行决定何时创建；</li>
+<li>b. <code>public void destroyItem(ViewGroup container, int position, Object object)</code>：告诉pager adapter销毁已建视图；</li>
+<li><p>c. <code>public abstract boolean isViewFromObject(View view, Object object)</code>：视图创建完成后，ViewPager会在某个时间注意到它；为确定视图视图所属于的对象，ViewPager会会调用该方法；参数object是instantiateItem(ViewGroup,int)方法返回的对象；若view对象是object对象的视图则应该返回true，否则返回false；</p>
+
+<pre><code class="language-java">@Override
+public boolean isViewFromObject(View view, Object object) {
+    return ((Fragment)object).getView() == view;
+}
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_25">11.4 深入学习：以代码的方式创建视图</h4>
+
+<ul>
+<li><p>通过布局文件创建视图，也可以在代码里创建视图；以代码的方式创建视图很简单：调用视图类的构造方法，并传入Context参数；但是不建议使用代码创建，不利于控制层和视图层分离、Android的资源系统适配（横竖屏）；</p>
+
+<pre><code class="language-java">@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState); ViewPager viewPager = new ViewPager(this); setContentView(viewPager);
+    ...
+}
+</code></pre></li>
+</ul>
+
+<h4 id="toc_26">11.5 挑战练习：恢复CrimeFragment的边距</h4>
+
+<ul>
+<li>ViewPager的布局参数是不支持边距设置<code>android:layout_margin</code>；</li>
+</ul>
+
+<h3 id="toc_27">第12章 使用对话框</h3>
+
+<h4 id="toc_28">12.0 概述</h4>
+
+<ul>
+<li>AppCompat库就是能将部分最新系统的特色功能移植到旧版本的Android系统中；比如让新旧系统展示风格一致的对话框（AlertDialog），AppCompat库和系统都有该类的实现，为了能兼容旧版本系统可以引入<code>android.support.v7.app.AlertDialog</code>依赖项；</li>
+</ul>
+
+<h4 id="toc_29">12.1 创建DialogFragment</h4>
+
+<ul>
+<li><p><strong>建议将<code>AlertDialog</code>封装到<code>DialogFragment</code>（Fragment子类）实例中使用，而不是直接使用AlertDialog；因为使用FragmentManager可以更灵活地管理对话框；另外当设备旋转时，单独使用的AlertDialog会消失，而封装到fragment中的AlertDialog会被重建恢复；</strong></p></li>
+<li><p>DialogFragment的<code>public Dialog onCreateDialog(Bundle savedInstanceState)</code>方法：需要重写该方法返回一个Dialog对象；</p>
+
+<pre><code class="language-java">public class DatePickerFragment extends DialogFragment { 
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        // TODO
+    }
+}
+</code></pre></li>
+<li><p><strong><code>AlertDialog.Builder</code>类传入context构造一个AlertDialog.Builder实例，之后可以调用以下相关配置方法，最后调用create()方法返回配置完成的AlertDialog实例，完成对话框的创建；</strong></p>
+
+<pre><code class="language-java">View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_date, null);
+AlertDialog dialog = new AlertDialog.Builder(getActivity())
+        .setView(v)
+        .setTitle(R.string.date_picker_title)
+        .setPositiveButton(android.R.string.ok, null)
+        .create();
+</code></pre>
+
+<ul>
+<li>a. <code>public AlertDialog.Builder setTitle(int titleId)</code>：设置标题；</li>
+<li>b. <code>public AlertDialog.Builder setPositiveButton(int textId, DialogInterface.OnClickListener listener)</code>：设置positive按钮，参数为字符串资源（Android的OK常量）和实现DialogInterface. OnClickListener接口的对象；</li>
+<li>c. <code>public AlertDialog.Builder setView(View view)</code>：在标题栏与按钮之间显示传入的View对象，比如DatePicker布局；view对象可以直接创建，也可以定义XML布局文件后通过LayoutInflater创建（该方式调整显示内容更灵活）；</li>
+</ul></li>
+<li><p>Android有3种可用于对话框的按钮：positive按钮、negative按钮、neutral按钮；若同一对话框上放置有多个按钮，按钮的类型与命名决定着它们在对话框上显示的位置；</p></li>
+<li><p>和其他fragment一样，DialogFragment实例也是由托管activity的FragmentManager管理的；要将DialogFragment添加给FragmentManager管理并放置到屏幕上，可调用该fragment实例的以下方法：</p>
+
+<pre><code class="language-java">public void show(FragmentManager manager, String tag)
+public void show(FragmentTransaction transaction, String tag)
+
+// String参数可唯一识别FragmentManager队列中的DialogFragment
+// 若传入manager参数则是系统自动创建提交事务，若传入transaction参数则是手动创建并提交事务
+</code></pre></li>
+<li><p><strong><code>onSaveInstanceState(...)方</code>法默认情况自动只保存具有ID属性的视图的运行状态；为了应对旋转屏幕导致view销毁重建的问题，必须设置ID属性（即使不调用findViewById方法去获取配置该view）；比如AlertDialog对象中设置的view；</strong></p></li>
+</ul>
+
+<h4 id="toc_30">12.2 fragment间的数据传递</h4>
+
+<ul>
+<li><p><strong>之前已经实现了activity之间、基于fragment的activity之间的数据传递，现在需要实现在同一activity托管的不同fragment间的数据传递；</strong></p></li>
+<li><p><strong>数据的正向传递：</strong></p>
+
+<ul>
+<li><strong>处理方式和<code>基于fragment的activity之间的数据传递</code>的一样，使用<code>fragment argument</code>；</strong></li>
+<li>在fragment中添加一个静态方法，该方法中完成fragment、bundle及setArguments()的操作，参数为需要保存fragment中的参数；需要该fragment时使用该静态方法进行创建并传入必要的数据；</li>
+</ul></li>
+<li><p><strong>数据的逆向传递：</strong></p>
+
+<ul>
+<li><strong>之前的场景的处理方式是：我们先调用父activity或fragment的startActivityForResult()方法，<code>Activity Manager负责跟踪管理activity父子关系</code>，之后数据逆向传递时子activity被销毁，系统知道接收数据收数据的是哪个activity，<code>主动回调</code>父activity（ActivityManager）和fragment（FragmentManager）的onActivityResult()方法；</strong></li>
+<li><p><strong>当前场景下（同一activity托管的不同fragment间）：无法调用startActivityForResult()方法；类似于activity间的关联，可以<code>人为的给不同fragment设置关联关系（目标fragment）</code>，之后数据逆向传递时子fragment被销毁，我们知道接收数据收数据的是哪个fragment，再<code>人为手动调用</code>父fragment（目标fragment）的onActivityResult()方法（参数所需要的信息我们都有）；</strong></p>
+
+<pre><code class="language-java">public void setTargetFragment(Fragment fragment, int requestCode)
+// requestCode: 目标fragment（父fragment）用来区分是哪个fragment在回传数据
+</code></pre>
+
+<pre><code class="language-java">FragmentManager manager = getFragmentManager();
+DatePickerFragment dialog = DatePickerFragment
+    .newInstance(mCrime.getDate());
+dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE); // 设置目标fragment，用于回传数据
+dialog.show(manager, DIALOG_DATE);
+</code></pre></li>
+<li><p><strong>目标fragment和requestCode由FragmentManager负责跟踪管理，可调用fragment(子fragment，设置了<code>目标fragment</code>的fragment)的<code>getTargetFragment()</code>方法和<code>getTargetRequestCode()</code>方法获取；</strong></p></li>
+</ul></li>
+<li><p><strong>使用<code>人为手动调用</code>父fragment（目标fragment）的onActivityResult()方法回传数据的方式视图展示更具灵活性、数据处理更具统一性；不论启动子activity还是显示对话框，fragment的onActivityResult(...)方法总会被调用；</strong></p></li>
+<li><p><strong>为了更灵活地展示DialogFragment的视图，比如全屏形式展示，可以覆盖DialogFragment的onCreateView()方法，而不是onCreateDialog()方法来实现；</strong></p></li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android编程权威指南 笔记(01~06)]]></title>
+    <link href="http://www.justisit.com/15221600755364.html"/>
+    <updated>2018-03-27T22:14:35+08:00</updated>
+    <id>http://www.justisit.com/15221600755364.html</id>
+    <content type="html"><![CDATA[<ul>
+<li>
+<a href="#toc_0">第1章 Android开发初体验</a>
+<ul>
+<li>
+<a href="#toc_1">1.4 用户界面设计</a>
+</li>
+<li>
+<a href="#toc_2">1.5 从布局XML到视图对象</a>
+</li>
+<li>
+<a href="#toc_3">1.6 组件的实际应用</a>
+</li>
+<li>
+<a href="#toc_4">1.7 创建提示消息</a>
+</li>
+<li>
+<a href="#toc_5">1.9 深入学习：Android编译过程</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">第2章 Android与MVC设计模式</a>
+<ul>
+<li>
+<a href="#toc_7">2.1 创建新类</a>
+</li>
+<li>
+<a href="#toc_8">2.2 Android与MVC设计模式</a>
+</li>
+<li>
+<a href="#toc_9">2.6 添加图标资源</a>
+</li>
+<li>
+<a href="#toc_10">2.9 挑战练习：从按钮到图标按钮</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_11">第3章 activity的生命周期</a>
+<ul>
+<li>
+<a href="#toc_12">3.0. 概述</a>
+</li>
+<li>
+<a href="#toc_13">3.1 日志跟踪理解activity生命周期</a>
+</li>
+<li>
+<a href="#toc_14">3.2 设备旋转与activity生命周期</a>
+</li>
+<li>
+<a href="#toc_15">3.3 保存数据以应对设备旋转</a>
+</li>
+<li>
+<a href="#toc_16">3.4 再探activity生命周期</a>
+</li>
+<li>
+<a href="#toc_17">3.5 深入学习：activity内存清理现状</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_18">第4章 Android应用的调试</a>
+<ul>
+<li>
+<a href="#toc_19">4.1 异常与栈跟踪</a>
+</li>
+<li>
+<a href="#toc_20">4.2 Android特有的调试工具</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_21">第5章 第二个activity</a>
+<ul>
+<li>
+<a href="#toc_22">5.1 创建第二个activity</a>
+</li>
+<li>
+<a href="#toc_23">5.2 启动activity</a>
+</li>
+<li>
+<a href="#toc_24">5.3 activity间传递数据</a>
+</li>
+<li>
+<a href="#toc_25">5.4 activity的使用与管理</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_26">第6章 第Android SDK版本与兼容</a>
+<ul>
+<li>
+<a href="#toc_27">6.1 Android SDK版本</a>
+</li>
+<li>
+<a href="#toc_28">6.2 Android编程与兼容性问题</a>
+</li>
+<li>
+<a href="#toc_29">6.3 使用Android开发者文档</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->   
+
+<h3 id="toc_0">第1章 Android开发初体验</h3>
+
+<h4 id="toc_1">1.4 用户界面设计</h4>
+
+<ul>
+<li><p>布局XML文件的根元素组件必须指定Android XML资源文件的命名空间属性xmlns:android（此处属性值为<code>http://schemas.android.com/apk/res/android</code>）；</p></li>
+<li><p>android:layout_width、layout_height属性：</p>
+
+<ul>
+<li>match_parent：视图与其父视图大小相同，(之前已废弃的fill_parent等价于此）；</li>
+<li>wrap_content：视图根据其显示内容自动调整大小；</li>
+</ul></li>
+<li><p>字符串资源</p>
+
+<ul>
+<li><p>一个默认名称为string.xml（可取其他名称）的XML文件，存放在app/res/valus/目录下；</p>
+
+<pre><code>&lt;/resources&gt;&lt;string name=&quot;true_button&quot;&gt;True&lt;/string&gt;&lt;/resources&gt;
+</code></pre></li>
+<li><p>一个项目也可以有多个字符串文件，只需将这些文件放app/res/valus/目录下，含有一个resources根元素及多个string子元素即可，应用就能找到并正确使用它们；</p></li>
+<li><p>定义好后，引用时使用@string/NAME；</p></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_2">1.5 从布局XML到视图对象</h4>
+
+<ul>
+<li><p>AppCompatActivity是Activity的一个子类，为了Android旧系统提供兼容性支持；</p></li>
+<li><p>Activity的<code>public void setContentView(int layoutResID)</code>方法：根据传入的布局资源ID，生成该布局的视图，其包含的组件也随之实例化，并放置在屏幕上；</p></li>
+<li><p>资源是应用非代码形式的内容（如图片、音频、XML文件），都放置app/res的子目录下，布局资源文件在app/res/layout下，字符串资源文件在res/values下；</p></li>
+<li><p><strong>可以使用资源ID在代码中获取相应的资源，如R.layout.activity_quiz（activity_quiz.xml的资源ID）、R.string.app_name</strong>；</p></li>
+<li><p>R.java文件是项目中自动生成的包含所有资源ID；修改相关资源后，R.java会自动更新（有时失效）；</p></li>
+<li><p><strong>Android自动为布局文件、各个字符串生成资源ID，但是布局文件中的组件需要手动设置<code>android:id</code>属性后才生成相应的资源ID；</strong></p>
+
+<ul>
+<li><strong>在设置该属性值时，需要添加+标示，如android:id=&quot;@+id/true_button&quot;；</strong></li>
+<li><strong>布局文件中引用时则不需要添加+，如@id/true_button；</strong></li>
+<li><strong>代码中引用时使用<code>R.id.xxx</code>，如R.id.true_button；</strong></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_3">1.6 组件的实际应用</h4>
+
+<ul>
+<li><p>Activity的<code>public View findViewById(int id)</code>：根据资源ID返回已生成的组件视图对象（注意要类型转换）；</p></li>
+<li><p>Android应用属于典型的事件驱动类型，应用启动后即开始等待行为事件的发生；为响应某个事件而创建的对象叫作监听器，监听器就是实现特定监听接口的对象，比如监听点击事件，需要实现View.OnClickListenter接口；</p></li>
+<li><p><code>btn.setOnClickListener(OnClickListener)</code>就是给btn设置监听对象，建议使用<code>匿名内部类</code>来实现监听对象；</p></li>
+</ul>
+
+<h4 id="toc_4">1.7 创建提示消息</h4>
+
+<ul>
+<li><p>Toast类的<code>public static Toast makeText(Context context, int resId, int duration)</code>：</p>
+
+<ul>
+<li>context参数通常是Activity的一个实例（Activity本身就是Context的子类）；</li>
+<li>resId参数是toast要显示字符串消息的资源ID（Toast必须借助context才能找到并使用字符串的资源ID）；</li>
+<li>duration参数同时是两个Toast常量的一个，用来指定停留时间；</li>
+<li>创建一个toast；之后再调用show()方法在屏幕上显示Toast消息；</li>
+</ul></li>
+<li><p><strong>在匿名内部类中调用Toast的makeText()方法时，注意传入的context参数不能是this（此时的this是匿名类监听器），应该是XXActivity.this；</strong></p></li>
+</ul>
+
+<h4 id="toc_5">1.9 深入学习：Android编译过程</h4>
+
+<ul>
+<li><p>在XXActivity类的onCreate()方法中调用setContentView()方法时：XXActivity会使用LayoutInflater类实例化布局文件中定义的每一个View对象（基于反射机制）；</p></li>
+<li><p>处理在XML文件中定义视图外，也可以在Activity中使用代码创建视图类（但是建议展现层与逻辑层分离）；</p></li>
+</ul>
+
+<h3 id="toc_6">第2章 Android与MVC设计模式</h3>
+
+<h4 id="toc_7">2.1 创建新类</h4>
+
+<ul>
+<li>生成getter、setter方法注意事项：
+
+<ul>
+<li>Android的命名规范是变量以m前缀、静态量以s前缀；若直接Generate Getter and Setter则生成getter、setter方法时会带相关前缀，如getMText()、setMText()；</li>
+<li>Setting-&gt;Editor-&gt;Code Style-&gt;Java-&gt;Code Generation勾选“Prefer longer names”并在相应项输入m、s，取消生成代码时带相关m、s前缀；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_8">2.2 Android与MVC设计模式</h4>
+
+<ul>
+<li>Android中的MVC
+
+<ul>
+<li>M通常是我们创建的定制类，V是Android自带的视图类和我们定制开发的视图类，C是Activity、Fragment、Service子类；</li>
+<li>M对象与V对象是不能直接交互的；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_9">2.6 添加图标资源</h4>
+
+<ul>
+<li><p>图标资源主要分为以下像素密度屏幕：mdpi（约160dpi）、hdpi（约240dpi）、xhdpi（约320dpi）、xxhdpi（约480dpi）；</p></li>
+<li><p>所有大小的图片资源都会被安装在设备中，Android系统知道如何为不同设备提供最佳匹配；若应用不包含设备对应的像素密度的图片，Android系统在运行时会自动找可到可用的图片资源，并针对该设备进行适配；</p></li>
+<li><p>将不同像素密度的图片资源（文件名必须是小写且无空格，后缀名为png、jpg、gif）放到对应的res/drawable-mdpi、drawable-hdpi、drawable-xhdpi、drawable-xxhdpi目录中，Android会自动为其分配资源ID；图片资源ID不需要按照屏幕密度匹配引用，系统知道如何显示，直接引用即可；</p></li>
+<li><p><strong>在XML资源文件中，通过资源类型和资源名称，可引用其他资源；比如，以@string/开头的定义是引用字符串资源，以@drawable/开头的定义是引用drawable资源；</strong></p></li>
+</ul>
+
+<h4 id="toc_10">2.9 挑战练习：从按钮到图标按钮</h4>
+
+<ul>
+<li>ImageButton继承于ImageView，Button继承于TextView；</li>
+</ul>
+
+<h3 id="toc_11">第3章 activity的生命周期</h3>
+
+<h4 id="toc_12">3.0. 概述</h4>
+
+<ul>
+<li><p>每个Activity实例都有其生命周期，其在运行（前台可见）、暂停（可见）、停止（不可见）状态间进行转换；</p></li>
+<li><p>每次状态转换都会有对应的Activity方法将状态改变的消息通知给activity（onCreate、onStart、onResume、onPause、onStop、onDestroy这些方法由系统调用，不可自己手动调用；覆盖这些方法时需先调用super方法）；</p></li>
+<li><p>通常重写onCreate(Bundle)方法，进行实例化组件并将它们放置在屏幕上（调用setContentView(int)方法）、引用已实例化的组件、为组件设置监听器以处理用户交互、访问外部模型数据；</p>
+
+<p><img src="media/15221600755364/activity_life.png" alt="activity_life" style="width:423px;"/></p></li>
+</ul>
+
+<h4 id="toc_13">3.1 日志跟踪理解activity生命周期</h4>
+
+<ul>
+<li><p>Android的android.util.Log类能够发送日志信息到系统级别的共享日志中心，其有几个日志记录方法，比如<code>public static int d(String tag, String msg)</code></p></li>
+<li><p>实例解析</p>
+
+<ul>
+<li>a. Activity启动时，依次调用<code>onCreate、onStart、onResume方法</code>；</li>
+<li>b. 按Home键后，依次调用<code>onPause、onStop方法</code>；（Activity不销毁，能存活多久无法保证，系统回收内存时会先销毁那些停止的Activity；系统Settings中启用Don’t keep activities选项，此时也会调用onDestroy方法）</li>
+<li>c. 从最近应用列表中启动，依次调用<code>onStart、onResume方法</code>；</li>
+<li>d. 按退出键，依次调用<code>onPause、onStop、onDestroy方法</code>，Activity被销毁；</li>
+<li>e. 关闭屏幕，处理方式和按Home键一样；</li>
+</ul></li>
+<li><p><strong>若当前Activity界面被完全或部分遮挡（如弹出窗口），那么其会被系统暂停，用户无法同其交互，弹出窗口关闭后会继续运行；</strong></p></li>
+</ul>
+
+<h4 id="toc_14">3.2 设备旋转与activity生命周期</h4>
+
+<ul>
+<li><p>旋转设备会改变<code>设备配置（Device Configuration）</code>；设备配置是用来描述设备当前状态的一系列特征（屏幕方向、密度、尺寸、键盘类型、底座模式、语言等）；</p></li>
+<li><p>为匹配不同的设备配置，应用会提供不同的备选资源，如适配屏幕分辨率添加多套图片资源；</p></li>
+<li><p>在运行过程中，设备配置发生改变会触发使用<strong>可能存在的更合适的资源</strong>来匹配新的设备配置，如旋转屏幕会加载新的布局文件，即当前的Activity被销毁并重新创建；注意有些设备配置是固定的，比如屏幕密度；</p></li>
+<li><p>创建水平模式布局：</p>
+
+<ul>
+<li><strong>a. 右键点击res目录后，选择新建<code>Android resource directory</code>，<code>Resource type</code>选择<code>layout</code>，<code>Source Set</code>保持<code>main</code>不变；</strong></li>
+<li><strong>b. 将<code>Available qulifiers</code>中的<code>Orientation</code>移到选择区中，之后<code>Screen Orientation</code>选择<code>Landscape</code>，并确保目录名显示为<code>layout-land</code>；</strong></li>
+<li><strong>c. 点击OK即创建了res/layout-land，land后缀名是配置修饰符的一个例子；</strong></li>
+<li><strong>d. 之后就可以在res/layout-land创建水平模式的布局文件了（或者从res/layout中复制布局文件再修改）；</strong></li>
+</ul></li>
+<li><p>当设备处于水平方向时，系统会在res/layout-land目录中寻找布局资源，若没有则使用res/layout目录下的；其他情况在res/layout目录下寻找；</p></li>
+<li><p><strong>不同屏幕方向的布局资源文件必须是相同的文件名，这样才能以同一资源ID被引用；</strong></p></li>
+<li><p>FrameLayout子视图的位置排列取决于它们各自的android:layout_gravity属性；</p></li>
+</ul>
+
+<h4 id="toc_15">3.3 保存数据以应对设备旋转</h4>
+
+<ul>
+<li><p>在应用运行中，只要设备配置发生变化，Android就销毁当前activity并再创建新的activity；</p></li>
+<li><p><strong>activity的<code>protected void onSaveInstanceState(Bundle outState)</code>方法（注意别重写错了）：</strong></p>
+
+<ul>
+<li><strong>在按Home键、设置配置发生变化后两种情况下，activity在调用onStop()方法之前系统都会调用此方法；</strong></li>
+<li><strong>按后退键不会，按后退键表示告诉Android该activity完了要将其从内存中抹掉，自然也就没有必要重建保存数据了；</strong></li>
+<li><strong>该方法的默认实现就是将所有activity视图的状态数据保存在Bundle对象中；</strong></li>
+</ul></li>
+<li><p>Bunle是存储字符串键与限定类型（基本数据类型、实现Serializable/Parcelable接口的对象）值之间映射关系（键值对）的一种结构，相关方法如putInt、getInt；</p></li>
+<li><p><strong>不建议在Bundle中保存定制类对象，因为取回的对象可能已经过时了</strong>；</p></li>
+<li><p><strong>可通过覆盖onSaveInstanceState()方法，将一些数据保存在bundle中，然后在onCreate()方法中取回这些数据；比如处理屏幕旋转的数据保存；</strong></p></li>
+</ul>
+
+<h4 id="toc_16">3.4 再探activity生命周期</h4>
+
+<ul>
+<li><p><strong>重写onSaveInstanceState()方法不仅仅用于处理与设备旋转相关的问题</strong>，也可以处理以下场景：</p>
+
+<ul>
+<li>当用户离开当前activity用户界面，或Android需要回收内存时activity被销毁（如用户按了HOME后播放视频或玩游戏）；</li>
+<li>Android从不会为了回收内存去销毁正在运行的activity（处于运行或暂停状态），而是会销毁处于停止状态的activity；</li>
+<li><strong>此时不用担心数据丢失，系统会调用onSaveInstanceState()方法将用户数据保存到Bundle对象中，之后系统会将该Bundle对象放入<code>activity记录</code>中；</strong></li>
+<li><strong>在需要恢复activity时，操作系统可以使用暂存的<code>activity记录</code>重新激活activity；</strong></li>
+</ul></li>
+<li><p><strong>注意，activity进入<code>暂存状态</code>并不一定需要调用onDestroy()方法；因此常见的做法是：</strong></p>
+
+<ul>
+<li><strong>重写onSaveInstanceState()方法，在Bundle对象中保存当前activity的小的或暂存状态的数据；</strong></li>
+<li><strong>重写onStop()方法，保存永久性数据，如用户编辑的文字等；onStop()方法被调用后，activity随时可能会被系统销毁，所以用它保存永久性数据；</strong></li>
+</ul></li>
+<li><p><strong>当用户按了后退键后，系统会彻底销毁当前的activity，此时暂存的activity记录也被清除；此外系统重启，暂存的activity记录也会被清除；</strong></p></li>
+</ul>
+
+<h4 id="toc_17">3.5 深入学习：activity内存清理现状</h4>
+
+<ul>
+<li><strong>低内存状态下，Android直接从内存清除整个应用进程（包含所有的activity），目前还做不到只销毁单个activity；</strong></li>
+</ul>
+
+<h3 id="toc_18">第4章 Android应用的调试</h3>
+
+<h4 id="toc_19">4.1 异常与栈跟踪</h4>
+
+<ul>
+<li>调试方法
+
+<ul>
+<li>a. 查看异常调用栈；</li>
+<li>b. 使用Log；</li>
+<li>c. 使用断点（Run-&gt;View Breakpoints管理断点，
+也可以设置异常断点捕获特定类型的异常）;</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_20">4.2 Android特有的调试工具</h4>
+
+<ul>
+<li><p>Android Lint：</p>
+
+<ul>
+<li>静态分析器，检查所有潜在的问题，比如使用错误的资源ID导致错误的类型转换， <code>mButton= (Button)findViewById(R.id.a_text_view);</code>；</li>
+<li>Anylyze-&gt;Inspect Code手动运行Android Lint；</li>
+</ul></li>
+<li><p>R文件错误处理方式：</p>
+
+<ul>
+<li>a. 检查资源文件XML的有效性；</li>
+<li>b. 清理工程；</li>
+<li>c. 使用Gradle同步项目；</li>
+<li>d. 运行Android Lint检查；</li>
+</ul></li>
+</ul>
+
+<h3 id="toc_21">第5章 第二个activity</h3>
+
+<h4 id="toc_22">5.1 创建第二个activity</h4>
+
+<ul>
+<li><p>创建新的activity至少涉及三个文件：Java类、XML布局和应用的manifest文件；</p></li>
+<li><p><code>tools:text属性</code>用于在Android Studio中预览TextView的显示，运行时显示还是使用<code>android:text属性</code>；</p></li>
+<li><p>项目的app/manifest目录中的AndroidManifest.xml是用来向Android操作系统描述应用信息，比如声明activity：<code>&lt;activity android:name=&quot;.XXActivity&quot;&gt;&lt;/activity&gt;</code>，name可取完整包路径，也可取.类名；</p></li>
+</ul>
+
+<h4 id="toc_23">5.2 启动activity</h4>
+
+<ul>
+<li><p>activity的<code>public void startActivity(Intent intent)</code></p>
+
+<ul>
+<li>一个activity启动另外一个activity的最简单的方式；</li>
+<li>调用请求会发给了操作系统的ActivityManager，ActivityManager负责创建Activity实例并调用其onCreate()方法；</li>
+<li>参数intent标示启动哪个Activity；</li>
+</ul></li>
+<li><p><strong>Intent对象是Component用于与操作系统通信的一种媒介工具；Component有activity、service、broadcast receiver、content provider；</strong></p></li>
+<li><p>构造函数<code>public Intent(Context packageContext, Class&lt;?&gt; cls)</code>：</p>
+
+<ul>
+<li>Class参数告诉ActivityManager启动哪个activity（其会先检查指定的Class是否在manifest配置文件中声明过，若没有则抛出ActivityNotFoundException异常）；</li>
+<li>Context参数告诉ActivityManager在哪里可以找到它；</li>
+</ul></li>
+<li><p><strong>显式与隐式Intent</strong></p>
+
+<ul>
+<li><strong>通过指定Context与Class对象，然后调用intent的构造方法来创建Intent，则创建的是显式Intent；同一应用中使用显式Intent来启动activity；</strong></li>
+<li><strong>一个应用的activity若需要启动另一个应用的activity，可以通过创建隐式Intent来处理；</strong></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_24">5.3 activity间传递数据</h4>
+
+<ul>
+<li><p><strong>intent extra（传递数据的媒介）：</strong></p>
+
+<ul>
+<li>extra可以是任意数据，其为包含在Intent中的键值结构数据；</li>
+<li>可以添加多个extra到同一个intent上；</li>
+<li><strong>调用intent的<code>public Intent putExtra(String name, boolean value)</code>给intent添加数据，一个参数是固定的String类型的键，另一个参数值可以是多种数据类型，该方法返回intent自身（可以进行链式编程）；</strong></li>
+<li><strong>调用intent的<code>public boolean getBooleanExtra(String name, boolean defaultValue)</code>获取extra中的数据；</strong></li>
+</ul></li>
+<li><p><strong>子activity从父activity获取信息：</strong></p>
+
+<ul>
+<li><strong>调用子activity的<code>getIntent()</code>方法获取由startActivity(Intent)、startActivityForResult(Intent intent, int requestCode)方法转发的Intent对象；之后从中获取信息；</strong></li>
+<li><strong>常用场景技巧：在子activity中创建一个生成intent的静态方法，来提供给父activity调用，这样就不用关心父activity的来源及extra中键的定义，也提高了封装性；</strong></li>
+</ul></li>
+<li><p><strong>父activity从子activity获取返回信息：</strong></p>
+
+<ul>
+<li><p><strong>第一步、调用父activity的<code>public void startActivityForResult(Intent intent, int requestCode)</code>方法启动子activity；</strong></p>
+
+<ul>
+<li><strong>第一参数Inttent同上述；</strong></li>
+<li><strong>第二个参数为<code>请求代码</code>；请求代码是先发送给子 activity，然后再返回给父activity的整数值，由用户定义；在一个activity启动多个不同类型的子activity，且需要判断消息回馈方时就会用请求代码requestCode；</strong></li>
+</ul></li>
+<li><p><strong>第二步、实现子activity发送返回信息给父activity，有以下两种方法可用：</strong></p>
+
+<ul>
+<li><strong>a. 子activity调用<code>public final void setResult(int resultCode)</code>方法；</strong></li>
+<li><strong>b. 子activity调用<code>public final void setResult(int resultCode, Intent data)</code>方法；</strong></li>
+</ul></li>
+<li><p><strong>resultCode</strong></p>
+
+<ul>
+<li><strong>用于父activity区分子activity的不同操作（如取消、确定等）；</strong></li>
+<li>可以是预定义的常量<code>Activity.RESULT_OK</code>（-1，默认值）、<code>Activity.RESULT_CANCELED</code>（0），也可以是自定义的resultCode（写<code>Activity.RESULT_FIRST_USER</code>（1））；</li>
+<li>子activity可以不调用setResult()方法；
+
+<ul>
+<li>若没有调用，则操作系统发送默认的resultCode（Activity.RESULT_OK）；</li>
+<li>若没有调用且按了后退按钮，则操作系统发送Activity.RESULT_CANCELED；</li>
+</ul></li>
+</ul></li>
+<li><p><strong>第三步、重写onActivityResult()方法来处理返回结果；点击返回键返回时，ActivityManager会调用父activity的<code>protected void onActivityResult(int requestCode, int resultCode, Intent data)</code>方法，参数来自于之前启动子activity设置的requestCode和子activity设置的resultCode、intent；</strong></p></li>
+</ul></li>
+<li><p><strong>startActivity与startActivityForResult的区别：</strong></p>
+
+<ul>
+<li><strong>startActivity：仅仅是启动另一个Activity，不会回退到原来的Activity；若想跳回则必须再次调用startActivity来启动原来的Activity；</strong></li>
+<li><strong>startActivityForResult：按返回键可直接回退到原来的Activity，当子Activity执行完finish()方法后，会自动回调<code>父Activity的onActivityResult()</code>方法；</strong></li>
+</ul></li>
+<li><p>除了点击返回键退出外，还可以调用activity的finish()方法也能将子activity回退（回退栈弹出）；</p></li>
+</ul>
+
+<h4 id="toc_25">5.4 activity的使用与管理</h4>
+
+<ul>
+<li><p>manifest中，XXActivity声明intent-filter子元素被设置为<code>launcher activity</code>；</p>
+
+<pre><code>&lt;intent-filter&gt; 
+    &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt; 
+    &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+&lt;/intent-filter&gt;
+</code></pre></li>
+<li><p>ActivityManager维护则一个非特定应用独享的<code>回退栈</code>，所有应用的activity都共享该回退栈；这也是ActivityManager被设计成操作系统级的activity管理器来负责启动应用activity的原因之一；</p></li>
+<li><p>不局限于单个应用，回退栈作为一个整体共享给操作系统及设备使用；</p></li>
+</ul>
+
+<h3 id="toc_26">第6章 第Android SDK版本与兼容</h3>
+
+<h4 id="toc_27">6.1 Android SDK版本</h4>
+
+<ul>
+<li>API版本与设备固件版本：
+
+<ul>
+<li>API 19：KitKat，Android 4.4；</li>
+<li>API 21：Lollipop，Android 5.0；</li>
+<li>API 22：Lollipop，Android 5.1；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_28">6.2 Android编程与兼容性问题</h4>
+
+<ul>
+<li><p>应用模块的build.gradle文件有三个属性值：compileSdkVersion、minSdkVersion、targetSdkVersion；</p>
+
+<ul>
+<li>compileSdkVersion：独占该文件；</li>
+<li>minSdkVersion、targetSdkVersion虽然也设置在该文件中，但它们的作用是覆盖和设置配置文件AndroidManifest.xml；</li>
+</ul></li>
+<li><p><strong>SDK最低版本（minSdkVersion）：</strong></p>
+
+<ul>
+<li>若设备上的系统版本低于该值，系统将拒绝该应用的安装；</li>
+</ul></li>
+<li><p><strong>SDK目标版本（targetSdkVersion）：</strong></p>
+
+<ul>
+<li>应用是为哪个API级别设计的，多数情况下目标版本就是最新发布的Android版本；</li>
+<li>新发布的SDK版本可能会改变应用在设备上的显示方式，甚至连操作系统后台运行行为都会受到影响；</li>
+<li><strong>降低SDK目标版本可以保证，即便运行在高于目标版本的设备上，应用的运行行为仍然和SDK目标版本保持一致，新版本的变化会被忽略；</strong></li>
+</ul></li>
+<li><p><strong>SDK编译版本（compileSdkVersion）：</strong></p>
+
+<ul>
+<li>该设置不会出现在AndroidManifest中；</li>
+<li>minSdkVersion、targetSdkVersion会通知给操作系统，而compileSdkVersion只是开发者与编译器之间的私有信息，用于使用时、编译时查找SDK中的类和方法；</li>
+<li><strong>当Android新版本发布时，更新SDK编译版本，就可以使用新版本引入的方法和类了；</strong></li>
+</ul></li>
+<li><p>修改build.gradle文件后，需要同步一下Gradle才能生效（Tools -&gt; Android -&gt; Sync Project with Gradle Files），之后项目重新编译；</p></li>
+<li><p><strong>若minSdkVersion和compileSdkVersion的差异较大，由此带来兼容问题需要处理；比如，调用了KitKat（API 19）以后的SDK代码的应用，运行在KitKat设备上会崩溃；</strong></p></li>
+<li><p>受益用于<code>Android Lint</code>，在低版本系统上调用高版本的API，Android Lint会提示编译错误；Analyze -&gt; Inspect Code手动触发Lint；解决办法：</p>
+
+<ul>
+<li>提高minSdkVersion；</li>
+<li><p>将高版本API置于检查Android设备版本的条件语句中（运行时检查）；</p>
+
+<pre><code class="language-java">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) {
+    // TODO
+} else {
+    // TODO
+}
+</code></pre></li>
+</ul></li>
+<li><p><strong>Build.VERSION.SDK_INT为当前运行的设备的版本， Build.VERSION_CODES.LOLLIPOP等常量表示常见的Android版本号；</strong> 版本号清单参看网页<code>http://developer.android.com/reference/android/os/Build. VERSION_CODES.html</code>；</p></li>
+</ul>
+
+<h4 id="toc_29">6.3 使用Android开发者文档</h4>
+
+<ul>
+<li><p>Android开发文档：分为设计（UI设计规范）、开发（SDK文档）、发布（应用市场发布），<code>http://developer.android.com/</code>；</p></li>
+<li><p>开发参考文档左侧，可以选择<code>API level</code>进行高版本API的过滤；</p></li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android Studio配置使用]]></title>
     <link href="http://www.justisit.com/15230908846113.html"/>
     <updated>2018-04-07T16:48:04+08:00</updated>
     <id>http://www.justisit.com/15230908846113.html</id>
-    <content type="html"><![CDATA[<table>
+    <content type="html"><![CDATA[<ul>
+<li>
+<a href="#toc_0">一、配置</a>
+</li>
+<li>
+<a href="#toc_1">二、使用</a>
+</li>
+<li>
+<a href="#toc_2">三、快捷键</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、配置</h4>
+
+<ul>
+<li><p>配置文件目录</p>
+
+<ul>
+<li>Configuration Path：~/Library/Preferences/<PRODUCT><VERSION>，删除该目录即还原默认配置</li>
+<li>Caches Path：~/Library/Caches/<PRODUCT><VERSION></li>
+<li>Logs Path：~/Library/Logs/<PRODUCT><VERSION></li>
+</ul></li>
+<li><p>禁止AS首次启动下载SDK：显示包内容，bin目录下的idea.properties增加<code>disable.android.first.run=true</code></p></li>
+</ul>
+
+<span id="more"></span><!-- more -->
+
+<ul>
+<li><p>Apperance&amp;Behavior</p>
+
+<ul>
+<li>主题（程序外观、文本编辑器）： Appearance --&gt; 修改Themes为Darcula</li>
+<li>显示内存使用：Appearance --&gt; 勾选Show memory indicator</li>
+<li>关闭打开上次工程：System Settings --&gt; 取消Reopen last...</li>
+<li>关闭自动更新：System Settings --&gt; Updates --&gt; 取消Automatically check updates...</li>
+</ul></li>
+<li><p>Editor</p>
+
+<ul>
+<li>API文档悬浮提示：General --&gt; 勾选Show quick documentation...</li>
+<li>自动导包：General --&gt; Auto Import --&gt; 勾选Add unambigous...、Optimize...</li>
+<li>显示代码行数：General --&gt; Appearance --&gt; 勾选Show line numbers</li>
+<li>代码自动提示（新版已默认）：General --&gt; Code Completion --&gt; Autopopup code completion，取消大小写敏感，设置Case sensitive completion为None</li>
+<li>禁止代码自动折叠：General --&gt; Code Folding --&gt; 取消One-line methods、Closues...、Generic constructor...</li>
+<li>文本编辑器字体：Colors&amp;Fonts --&gt; 修改Font（新版的内置Scheme也可直接修改不需要复制了）</li>
+<li>Console字体：Colors&amp;Fonts --&gt;  修改Console Font</li>
+<li>主题（文本编辑器）：Colors&amp;Fonts --&gt; 修改Scheme，第三方主题<a href="https://github.com/rainglow/jetbrains">https://github.com/rainglow/jetbrains</a></li>
+<li>文件编码：File Endcodings（默认UTF-8）</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_1">二、使用</h4>
+
+<ul>
+<li>工程区别（AS --&gt; Eclipse）：project --&gt; workspace、module --&gt; project</li>
+<li>AS 2.1版本开始，新建的Activity默认继承AppCompatActivity</li>
+<li>修改grandle配置后，需要进行手动同步</li>
+<li>引入第三方库
+
+<ul>
+<li>a. 通过将第三方jar包复制到工程的libs目录下，然后选中jar包，之后进行grandle同步</li>
+<li>b. 通过配置grandle导入（易于升级）：右键Open Module Settings --&gt; Dependencies，点击 + 后，选择Library dependency，其会自动下载相关的lib</li>
+</ul></li>
+<li>删除module：需要先Open Module Settings删除对应module，之后右键才有delete选项，之后进行删除</li>
+<li>Gradle使用：略</li>
+<li>APK签名：略</li>
+<li>APK混淆：略</li>
+</ul>
+
+<h4 id="toc_2">三、快捷键</h4>
+
+<table>
 <thead>
 <tr>
 <th>KeyMap名称</th>
@@ -800,7 +3708,7 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 <ul>
 <li>若需要删除，可以通过<code>Xcode-&gt;Window-&gt;Devices and Simulators</code>进行删除；</li>
 <li><strong>直接删除可能导致执行xcodebuild命令失败，报错<code>xcodebuild: error: Unable to find a destination matching the provided destination specifier: { platform:iOS Simulator, id:</code>，进而导致执行 <code>carthage update</code> 命令失败</strong>；</li>
-<li>解决出现上面的问题，需要将所有模拟器手动删除后再新建一些模拟器可以；</li>
+<li>解决出现上面的问题，需要将所有模拟器手动删除后再新建一些模拟器即可；</li>
 </ul></li>
 </ul>
 ]]></content>
@@ -4488,2102 +7396,6 @@ print(json.dumps(s, default=lambda obj: obj.__dict__))
 json_str = &#39;{&quot;score&quot;: 99, &quot;age&quot;: 20, &quot;name&quot;: &quot;Tom&quot;}&#39;
 s = json.loads(json_str, object_hook=dict2student)
 print(s)
-</code></pre></li>
-</ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python3笔记(09异常、测试)]]></title>
-    <link href="http://www.justisit.com/15125773961976.html"/>
-    <updated>2017-12-07T00:23:16+08:00</updated>
-    <id>http://www.justisit.com/15125773961976.html</id>
-    <content type="html"><![CDATA[<ul>
-<li>
-<a href="#toc_0">09. 异常、测试</a>
-</li>
-<li>
-<a href="#toc_1">9.1 异常</a>
-<ul>
-<li>
-<a href="#toc_2">a. 捕获异常</a>
-</li>
-<li>
-<a href="#toc_3">b. 抛出异常</a>
-</li>
-<li>
-<a href="#toc_4">c. 捕获抛出异常</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_5">9.2 调试</a>
-<ul>
-<li>
-<a href="#toc_6">a. 断言</a>
-</li>
-<li>
-<a href="#toc_7">b. logging</a>
-</li>
-<li>
-<a href="#toc_8">c. pdb</a>
-</li>
-<li>
-<a href="#toc_9">d. pdb.set_trace()</a>
-</li>
-<li>
-<a href="#toc_10">e. 使用IDE调试</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_11">9.3 单元测试</a>
-<ul>
-<li>
-<a href="#toc_12">a. 编写单元测试</a>
-</li>
-<li>
-<a href="#toc_13">b. 运行单元测试</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_14">9.4 文档测试</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">09. 异常、测试</h4>
-
-<h4 id="toc_1">9.1 异常</h4>
-
-<h5 id="toc_2">a. 捕获异常</h5>
-
-<ul>
-<li>可以用多个“except”（except：把…除外）来捕获不同类型的异常；但是需要将父类型的异常写在后面，否则父类型的异常会捕获其子类型的所有异常</li>
-<li>所有的异常继承于BaseException，比如Exception； UnicodeError是ValueError的子类</li>
-<li><p>使用“try...except”捕获异常有一个好处，就是可以跨越多层调用；也就是说，不需要在每个可能出错的地方捕获异常错误，只要在合适的层次地方去捕获异常错误就可以</p>
-
-<pre><code class="language-python">try:
-    print(&#39;try...&#39;)
-    # r = 10 / 0
-    # r = 10 / int(&#39;a&#39;)
-    r = 10 / 2
-    print(&#39;result:&#39;, r)
-except ZeroDivisionError as e:
-    print(&#39;ZeroDivisionError, except:&#39;, e)
-except ValueError as e:
-    print(&#39;ValueError, except:&#39;, e)
-else: # 其它情况（没有异常、其它异常）
-    print(&#39;no error&#39;)
-finally:
-    print(&#39;finally...&#39;)  # 最终都会执行（不论是否有异常）
-print(&#39;END&#39;) # 程序会继续执行（不论是否有异常）
-
-# 比如函数的main()调用了fun1()，fun1()调用了fun2()，结果fun2()出错了
-def fun2(s):
-    return 10 / int(s)
-def fun1(s):
-    return fun2(s) * 2
-#   只在main()中捕获到处理  
-def main():
-    try:
-        fun1(&#39;s&#39;)
-    except Exception as e:
-        print(&#39;Error:&#39;, e)
-    finally:
-        print(&#39;finally...&#39;)
-
-main()
-</code></pre></li>
-</ul>
-
-<span id="more"></span><!-- more -->
-
-<ul>
-<li>调用堆栈：若异常没有被捕获，它就会一直往上抛，最后被Python解释器捕获，打印一个错误信息，然后程序退出（后面的代码不会执行）</li>
-<li>记录异常：import logging、logging.exception(e)</li>
-</ul>
-
-<h5 id="toc_3">b. 抛出异常</h5>
-
-<ul>
-<li><strong>捕获一个异常就是捕获到该异常class的一个实例对象；异常并不是凭空产生的，而是有意创建并抛出的</strong></li>
-<li><p>Python的内置函数会抛出很多类型的异常，我们自己编写的函数也可以抛出异常</p>
-
-<ul>
-<li>若要抛出自定义的异常，首先根据需要定义一个异常的class，选择好继承关系，然后用raise语句抛出一个异常的实例对象</li>
-<li>只有在必要的时候才定义我们自己的异常类型，尽量使用Python内置的异常类型</li>
-</ul>
-
-<pre><code class="language-python">class FooError(ValueError):
-    pass
-
-def fun2(s):
-    n = int(s)
-    if n == 0:
-        raise FooError(&#39;invalid value: %s&#39; % s)
-    return 10 / n
-
-fun2(&#39;0&#39;)
-</code></pre></li>
-</ul>
-
-<h5 id="toc_4">c. 捕获抛出异常</h5>
-
-<ul>
-<li><strong>处理异常的第一种方式：捕获异常；第二种处理异常的方式：先去捕获异常，打印出异常信息后，然后又把异常通过raise语句抛出去</strong></li>
-<li>该处理比较常见，捕获异常的目的只是记录一下便于后续追踪，但是由于当前函数不知道应该怎样处理该异常，所以最恰当的方式是继续往上抛，让顶层调用者去处理</li>
-<li><p><strong>raise语句若不带参数，就会把当前异常错误原样抛出</strong></p>
-
-<pre><code class="language-python">def fun2(s):
-    n = int(s)
-    if n == 0:
-        raise ValueError(&#39;invalid value: %s&#39; % s)
-    return 10 / n
-
-def fun1():
-    try:
-        fun2(&quot;0&quot;)
-    except ValueError as e:  # 捕获记录一下
-        print(&#39;Value Error!&#39;)
-        raise # 再往上原样抛出
-
-fun1()
-print(&#39;END...&#39;)  # 不执行了
-</code></pre></li>
-<li><p>此外，先except后raise一个异常时，还可以把该类型的异常转化成另一种类型的异常；只要是合理的转换逻辑就可以，但决不应该把一个IOError转换成毫不相干的ValueError</p>
-
-<pre><code class="language-python">try:
-    10 / 0
-except ZeroDivisionError:
-    raise ValueError(&#39;input error!&#39;)
-</code></pre></li>
-</ul>
-
-<h4 id="toc_5">9.2 调试</h4>
-
-<h5 id="toc_6">a. 断言</h5>
-
-<ul>
-<li>若断言失败，则assert语句本身就会抛出AssertionError异常（AssertionError继承于Exception）</li>
-<li><p>启动Python解释器时，可以用-O参数来关闭assert，此时assert语句被当成pass来看，比如 <code>python -O err.py</code></p>
-
-<pre><code class="language-python">def foo(s):
-    n = int(s)
-    assert n != 0, &#39;n is zero!&#39;  # 逗号后面的内容（&#39;n is zero!&#39;）为断言失败输出的信息
-    return 10 / n
-
-def main():
-    foo(&#39;0&#39;)
-
-main()
-</code></pre></li>
-</ul>
-
-<h5 id="toc_7">b. logging</h5>
-
-<ul>
-<li>logging的好处就是可以指定日志信息的类别，有debug、info、warning、error等几个级别；</li>
-<li>当指定level=INFO时，logging.debug就不起作用了，当指定level=WARNING后，debug和info就不起作用了；这样就可以设置输出级别，达到统一控制输出哪个级别的信息了</li>
-<li><p>logging的另外一个好处就是通过简单的配置，将日志信息可以同时输出到不同的地方，比如console、文件</p>
-
-<pre><code class="language-python">import logging
-# 加上配置信息，否则除了ZeroDivisionError，无内容输出
-logging.basicConfig(level=logging.INFO)
-
-s = &#39;0&#39;
-n = int(s)
-logging.info(&#39;n = %d&#39; % n)
-print(10 / n)
-</code></pre></li>
-</ul>
-
-<h5 id="toc_8">c. pdb</h5>
-
-<ul>
-<li>启动Python的调试器pdb，让程序以单步方式运行，可以随时查看运行状态</li>
-<li><p>该调试方法不常用；过于麻烦，若有多行代码，执行多少行需要输入多少行代码</p>
-
-<pre><code>python -m pdb helloworld.py  # 加上-m pdb参数，pdb定位到下一步要执行的代码
-&gt;...helloworld.py(111)&lt;module&gt;()
--&gt; s = &#39;0&#39;
-(Pdb) l  #【1】输入&#39;l&#39;查看代码
-106     # s = &#39;0&#39;
-107     # n = int(s)
-108     # logging.info(&#39;n = %d&#39; % n)
-109     # print(10 / n)
-110
-111  -&gt; s = &#39;0&#39;
-112     n = int(s)
-113     print(10 / n)
-[EOF]
-(Pdb) n  #【2】输入&#39;n&#39;可以单步执行代码
-&gt; ...helloworld.py(112)&lt;module&gt;()
--&gt; n = int(s)
-(Pdb) n
-&gt; ...helloworld.py(113)&lt;module&gt;()
--&gt; print(10 / n)
-(Pdb) n
-ZeroDivisionError: division by zero
-&gt; ...helloworld.py(113)&lt;module&gt;()
--&gt; print(10 / n)
-(Pdb) p s  #【3】输入&#39;p 变量名&#39;来参看变量
-&#39;0&#39;
-(Pdb) p n
-0
-(Pdb) q  #【4】输入&#39;q&#39;结束调试
-</code></pre></li>
-</ul>
-
-<h5 id="toc_9">d. pdb.set_trace()</h5>
-
-<ul>
-<li>该调试方法也是使用pdb，但是不需要单步执行</li>
-<li><p><code>import pdb</code> 后，在可能出错的位置放一个 <code>pdb.set_trace()</code> ，就是设置一个断点，之后输入命令c继续运行</p>
-
-<pre><code class="language-python">import pdb
-
-s = &#39;0&#39;
-n = int(s)
-pdb.set_trace()  # 运行到这里会自动暂停
-print(10 / n)
-</code></pre></li>
-</ul>
-
-<h5 id="toc_10">e. 使用IDE调试</h5>
-
-<h4 id="toc_11">9.3 单元测试</h4>
-
-<ul>
-<li><p>编写一个Dict类，这个类的行为和dict一致，但是可以通过属性来访问</p>
-
-<pre><code class="language-python">class Dict(dict):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-    def __getattr__(self, key):
-        try:
-            return self[key]
-        except KeyError:
-            raise AttributeError(r&quot;&#39;Dict&#39; object has no attribute &#39;%s&#39;&quot; % key)
-
-    def __setattr__(self, key, value):
-        self[key] = value
-</code></pre></li>
-</ul>
-
-<h5 id="toc_12">a. 编写单元测试</h5>
-
-<ul>
-<li><p>编写一个继承于unittest.TestCase（导入unittest模块）的测试类；以test开头的方法被认为是测试方法（测试时会被自动调用），不以test开头的方法被认为不是测试方法（不会被自动调用）</p>
-
-<ul>
-<li>可以调用unitest.TestCase中的内置的断言方法，判断输出是否符合我们的期望；assertEqual()断言传入的两个参数值是否相等，assertRasises()断言抛出指定类型的异常</li>
-<li>可以在单元测试中，编写两个特殊的方法setUp()、tearDown()，这两个方法会分别在每调用一个测试方法的前后分别被执行，通常用于初始化、扫尾操作</li>
-<li>比如测试需要启动一个数据库，可以在setUp()方法中连接数据库，在tearDown()方法中关闭数据库，这样就不必在每一个测试方法中写重复相同的代码</li>
-</ul>
-
-<pre><code class="language-python">import unittest
-
-class TestDict(unittest.TestCase):
-    def test_init(self):
-        d = Dict(a=1, b=&#39;test&#39;)
-        self.assertEqual(d.a, 1)  # 断言相等
-        self.assertEqual(d.b, &#39;test&#39;)
-        self.assertTrue(isinstance(d, dict))  # 断言为True
-
-    def test_key(self):
-        d = Dict()
-        d[&#39;key&#39;] = &#39;value&#39;
-        self.assertEqual(d.key, &#39;value&#39;)
-        self.assertEqual(d[&#39;key&#39;], &#39;value&#39;)
-
-    def test_attr(self):
-        d = Dict()
-        d.key = &#39;value&#39;
-        self.assertTrue(&#39;key&#39; in d)
-        self.assertEqual(d[&#39;key&#39;], &#39;value&#39;)
-
-    def test_keyError(self):
-        d = Dict()
-        with self.assertRaises(KeyError):  # 断言会抛出KeyError
-            value = d[&#39;empty&#39;]
-
-    def test_attrError(self):
-        d = Dict()
-        with self.assertRaises(AttributeError):  # 断言会抛出AttributeError
-            value = d.empty
-
-    def setUp(self):
-        print(&#39;setUp...&#39;)
-
-    def tearDown(self):
-        print(&#39;tearDown...&#39;)
-</code></pre></li>
-</ul>
-
-<h5 id="toc_13">b. 运行单元测试</h5>
-
-<ul>
-<li><p>方式一：在单元测试类中加入以下代码，然后运行 <code>python3 dicttest.py(当前Python文件)</code></p>
-
-<pre><code class="language-python">if __name__ == &#39;__main__&#39;:
-    unittest.main()
-</code></pre></li>
-<li><p>方式二（推荐使用）：命令行运行时加&quot;-m unittest&quot;参数，例如 <code>python -m unittest dicttest.py(当前Python文件)</code></p>
-
-<pre><code class="language-python">&gt;python -m unittest dicttest.py # 测试通过打.，测试不通过打E
-.....
-----------------------------------------------------------------------
-Ran 5 tests in 0.001s
-
-OK
-</code></pre></li>
-</ul>
-
-<h4 id="toc_14">9.4 文档测试</h4>
-
-<ul>
-<li><p>Python内置的“文档测试”（doctest）模块可以直接提取注释中的“代码”并执行测试</p>
-
-<ul>
-<li>将代码在交互命令行中输入并执行，交互命令行中输出显示的“结果内容”后，将“结果内容”粘贴到代码注释中，这些“结果内容”是可以运行的</li>
-<li>doctest严格按照Python交互命令行中的“输入输出”来判断测试结果是否正确；可以用“...”代替测试中出现的大段输出的异常日志</li>
-<li>文档测试通过则什么也不输出，测试失败则打印实际执行结果（注意编写时的空格，比如&gt;&gt;&gt; dl = Dict()）</li>
-</ul>
-
-<pre><code class="language-python"># 用doctest来测试之前编写的Dict类
-class Dict(dict):
-    &#39;&#39;&#39;  # 文档测试开始
-    Simple dict
-
-    &gt;&gt;&gt; dl = Dict()
-    &gt;&gt;&gt; dl[&#39;x&#39;] = 100
-    &gt;&gt;&gt; dl.x
-    100
-    &gt;&gt;&gt; dl[&#39;y&#39;] = 200
-    &gt;&gt;&gt; dl.y
-    200
-    &gt;&gt;&gt; d2 = Dict(a=1, b=2, c=&#39;3&#39;)
-    &gt;&gt;&gt; d2.c
-    &#39;3&#39;
-    &gt;&gt;&gt; d2[&#39;empty&#39;]
-    Traceback (most recent call last):
-        ...
-    KeyError: &#39;empty&#39;
-    &gt;&gt;&gt; d2.empty
-    Traceback (most recent call last):
-        ...
-    AttributeError: &#39;Dict&#39; object has no attribute &#39;empty&#39;
-    &#39;&#39;&#39;  # 文档测试结束
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-    def __getattr__(self, key):
-        try:
-            return self[key]
-        except KeyError:
-            raise AttributeError(r&quot;&#39;Dict&#39; object has no attribute &#39;%s&#39;&quot; % key)
-
-    def __setattr__(self, key, value):
-        self[key] = value
-
-if __name__ == &#39;__main__&#39;:
-    import doctest
-    doctest.testmod()
-</code></pre>
-
-<pre><code class="language-python"># 用doctest来测试fact(n)函数
-def fact(n):
-    &#39;&#39;&#39;
-    &gt;&gt;&gt; fact(0)
-    Traceback (most recent call last):
-        ...
-    ValueError
-    &gt;&gt;&gt; fact(1)
-    1
-    &gt;&gt;&gt; fact(5)
-    120
-    &#39;&#39;&#39;
-
-    if n &lt; 1:
-        raise ValueError()
-    if n == 1:
-        return 1
-    return n * fact(n - 1)
-
-if __name__ == &#39;__main__&#39;:
-    import doctest
-    doctest.testmod()
-</code></pre></li>
-</ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python3笔记(08面向对象高级编程)]]></title>
-    <link href="http://www.justisit.com/15125773961928.html"/>
-    <updated>2017-12-07T00:23:16+08:00</updated>
-    <id>http://www.justisit.com/15125773961928.html</id>
-    <content type="html"><![CDATA[<ul>
-<li>
-<a href="#toc_0">08. 面向对象高级编程</a>
-<ul>
-<li>
-<a href="#toc_1">8.1 动态绑定方法</a>
-</li>
-<li>
-<a href="#toc_2">8.2 使用__slots</a>
-</li>
-<li>
-<a href="#toc_3">8.3. 使用@property</a>
-</li>
-<li>
-<a href="#toc_4">8.4 多重继承</a>
-</li>
-<li>
-<a href="#toc_5">8.5 定制类</a>
-</li>
-<li>
-<a href="#toc_6">8.6 使用枚举类</a>
-</li>
-<li>
-<a href="#toc_7">8.7 使用元类（metaclass）</a>
-</li>
-<li>
-<a href="#toc_8">8.7 自定义ORM框架</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">08. 面向对象高级编程</h4>
-
-<h5 id="toc_1">8.1 动态绑定方法</h5>
-
-<ul>
-<li><p>types模块MethodType()函数可以创建一个方法，给实例变量、类动态绑定方法</p>
-
-<pre><code class="language-python">class Student(object):
-    pass
-
-# 注意是带有self参数的函数，不是方法
-def set_age(self, age):  
-    self.age = age
-
-from types import MethodType
-s = Student()
-s.set_age = MethodType(set_age, s)  # 给一个实例变量动态绑定方法，只能该实例变量可以调用
-s.set_age(25)
-s.age # 25
-
-s2 = Student()
-s2.set_age(25)
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;Student&#39; object has no attribute &#39;set_age&#39;
-
-def set_score(self, score):
-    self.score = score
-
-# 给类绑定方法，所有实例变量都可以使用
-Student.set_score = MethodType(set_score, Student) 
-s.set_score(100)
-s.score # 100
-
-s2.set_score(99) # 99
-s2.score
-</code></pre></li>
-</ul>
-
-<span id="more"></span><!-- more -->
-
-<h5 id="toc_2">8.2 使用__slots</h5>
-
-<ul>
-<li>默认情况下，可以给实例变量绑定任意属性；使用__slots__则可以限制只能添加指定的属性</li>
-<li><p>注意，__slots__定义的属性仅对当前类的实例限制作用，对继承的子类不起作用；除非在子类中也定义了__slots__，这样子类实例允许定义的属性就是自身的__slots__加上父类的__slots__</p>
-
-<pre><code class="language-python">class Student(object):
-    __slots__ = (&#39;name&#39;, &#39;age&#39;)  # 用tuple定义允许绑定的属性名称
-
-s = Student()
-s.name = &#39;Tom&#39;
-s.age = 25
-s.score = 99
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;Student&#39; object has no attribute &#39;score&#39;
-
-class GraduateStudent(Student):
-    pass
-
-g = GraduateStudent()
-g.score = 999
-</code></pre></li>
-</ul>
-
-<h5 id="toc_3">8.3. 使用@property</h5>
-
-<ul>
-<li>在绑定属性时，若直接把属性暴露出去，虽然获取、设置属性写法简单，但无法对参数进行校验</li>
-<li>为了对参数进行校验，通常使用方法来进行处理；但是这样调用方法略显复杂，没有直接使用属性那么直接简单</li>
-<li><p>Python内置的 <code>@property装饰器</code> 可以将一个方法变成属性，这样既能进行参数校验，也能直接以“访问属性的形式”去调用方法</p>
-
-<ul>
-<li>把一个getter方法XXX变成属性，只需要加上@property即可；此时@property本身又创建另一个装饰器@XXX.setter，负责把一个setter方法变成属性赋值，这样我们就拥有一个可控的属性操作</li>
-<li>还可以定义只读属性（只定义getter方法，不定义setter方法）</li>
-</ul>
-
-<pre><code class="language-python">class Student(object):
-    @property   
-    def score(self):
-        return self._score
-
-    @score.setter
-    def score(self, value):
-        if not isinstance(value, int):
-            raise ValueError(&#39;score must be an integer&#39;)
-        if value &lt; 0 or value &gt; 100:
-            raise ValueError(&#39;score must between 0 ~ 100!&#39;)
-        self._score = value
-
-from testpy import Student
-stu = Student()
-stu.score = 100
-stu.score # 100 
-stu._score # 100
-stu.score = 200
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
- File &quot;/Users/tom/Desktop/testpy.py&quot;, line 336, in score
-   raise ValueError(&#39;score must between 0 ~ 100!&#39;)
-ValueError: score must between 0 ~ 100!
-
-# get、set方法名不一致
-class Student(object):
-    @property 
-    # 使用stu.gscore进行访问，也可以使用stu.sscore进行访问
-    def gscore(self):
-        return self._score
-
-    @gscore.setter  # 注意，必须是@gscore.setter，而不是@sscore.setter
-    # 只能使用stu.sscore = 20进行设置值，不可以使用stu.gscore = 20
-    def sscore(self, value):  
-        if not isinstance(value, int):
-            raise ValueError(&#39;score must be an integer&#39;)
-        if value &lt; 0 or value &gt; 100:
-            raise ValueError(&#39;score must between 0 ~ 100!&#39;)
-        self._score = value
-
-# 定义只读属性
-class Screen(object):  # 给一个Screen对象加上width和height、resolution属性
-    @property
-    def width(self):
-        return self._width
-    @width.setter
-    def width(self, value):
-        self._width = value
-    @property
-    def height(self):
-        return self._height
-    @height.setter
-    def height(self, value):
-         self._height = value
-    @property
-    def resolution(self):
-        return self._width * self._height
-</code></pre></li>
-</ul>
-
-<h5 id="toc_4">8.4 多重继承</h5>
-
-<ul>
-<li>在设计类的继承关系，通常主线都是单一继承下来的，若需要“混入”额外的功能，可以通过多重继承来实现，这种设计通常称之为MixIn</li>
-<li>MixIn的目的就是给一个类增加多个功能，在设计类的时候优先通过“多重继承“来组合多个功能，而不是设计“多层次的复杂的继承关系”</li>
-<li><p>Python自带很多库也使用了MixIn；比如TCPServer和UDPServer这两类网络服务，而要同时服务多个用户就必须使用多进程或多线程模型，这两种模型由ForkingMixIn和ThreadingMaxIn提供，通过组合可以创造出合适的服务</p>
-
-<pre><code class="language-python">class MyTCPServer(TCPServer, ForkingMixIn):  # 多进程TCP服务
-    pass
-
-class MyUDPServer(UDPServer, ThreadingMixIn):  # 多线程UDP服务
-    pass
-
-class MyTCPServer(TCPServer, CoroutineMixIn):  # 协程TCP服务
-    pass
-</code></pre></li>
-</ul>
-
-<h5 id="toc_5">8.5 定制类</h5>
-
-<ul>
-<li><p>a. 打印对象</p>
-
-<ul>
-<li>print()打印对象，内容就是__str__方法返回的字符串</li>
-<li>直接打印对象（调试中使用），内容就是__repr__方法返回的字符串；通常让__str__和__repr__返回的内容一样</li>
-</ul>
-
-<pre><code class="language-python">class Student(object):
-    def __init__(self, name):
-        self.name = name
-
-&gt;&gt;&gt; print(Student(&#39;Tom&#39;))
-&lt;__main__.Student object at 0x1018b60b8&gt;
-&gt;&gt;&gt; s = Student(&#39;Michael&#39;)
-&gt;&gt;&gt; s
-&lt;__main__.Student object at 0x1018ca860&gt;
-
-class Student(object):
-    def __init__(self, name):
-        self.name = name
-    def __str__(self):  # 重写__str__方法
-        return &#39;Student object (name: %s)&#39; % self.name
-    __repr__ = __str__  # 重写__repr__方法
-
-&gt;&gt;&gt; print(Student(&#39;Michael&#39;))
-Student object (name: Michael)
-&gt;&gt;&gt; s = Student(&#39;Michael&#39;)
-&gt;&gt;&gt; s
-Student object (name: Michael)
-</code></pre>
-
-<ul>
-<li><strong>报错IndentationError: unindent does not match any outer indentation level，表示输入的空格、tab有问题</strong></li>
-</ul></li>
-<li><p>b. 遍历对象、取值、赋值</p>
-
-<ul>
-<li>若一个对象可以被用于“for ... in”循环，类似于list或tuple，就必须实现__iter__()方法和__next__()方法；</li>
-<li>__iter__()方法需要返回一个迭代对象；__next__()方法返回每次循环的结果；Python进行遍历直到遇到StopInteration错误时退出循环</li>
-<li>若一个对象可以像list直接按照位置索引取值，需要实现__getitem__()方法</li>
-<li>若一个对象可以使用切片，也是需要实现__getitem__()方法，只是要做一下参数类型判断，参数是int（位置索引取值）还是切片（切片取值）</li>
-</ul>
-
-<pre><code class="language-python">class Fib(object):
-    def __init__(self):
-        self.a, self.b = 0, 1
-    def __iter__(self):  # 返回需要被循环的对象（self）
-        return self
-    def __next__(self):  # 返回每次循环后的结果
-        self.a, self.b = self.b, self.a + self.b
-        if self.a &gt; 100:
-            raise StopIteration()
-        return self.a
-
-    def __getitem__(self, n):  # 返回位置索引取值、切片取值
-        if isinstance(n, int):  # n是索引
-            a, b = 1, 1
-            for x in range(n):
-                a, b = b, a + b
-            return a
-        if isinstance(n, slice):  # n是切片（slice）
-            start = n.start
-            stop = n.stop
-            if start is None:
-                start = 0
-            a, b = 1, 1
-            L = []
-            for x in range(stop):
-                if x &gt;= start:  # 从start开始
-                    L.append(a)
-                a, b = b, a + b
-            return L
-
-&gt;&gt;&gt; from testpy import Fib
-&gt;&gt;&gt; for n in Fib():
-...     print(n)
-... 
-1
-1
-2
-3
-5
-8
-13
-21
-34
-55
-89
-
-&gt;&gt;&gt; f = Fib()
-&gt;&gt;&gt; f[20]
-10946
-&gt;&gt;&gt; f[10:20]
-[89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765]
-&gt;&gt;&gt; f[:10]
-[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-</code></pre>
-
-<ul>
-<li>要正确实现一个__getitem__()需要做很多判断；若对象以dict的方式访问，__getitem__()的参数是一个作key的object（例如str）</li>
-<li>实现__setitem__()方法用于对集合（把对象视为list或dict）赋值</li>
-<li>实现__delitem__()方法用于删除某个元素</li>
-<li>通过实现上面的方法，完全可以自定义的一个类，表现得和Python自带的list、tuple、dict没什么区别；这归功于动态语言的“鸭子类型”，不需要强制继承某个类、实现某个接口</li>
-</ul></li>
-<li><p>c. 获取设置属性、方法</p>
-
-<ul>
-<li>正常情况下，当调用对象的属性、方法时，若不存在则报错</li>
-<li>为避免此错误，可以重写__getattr__()方法动态返回一个属性、方法；比如调用不存在的属性score时，Python解释器会试图调用__getattr__(self, &#39;score&#39;)来尝试获得属性，重写该方法就可以控制返回score的值</li>
-</ul>
-
-<pre><code class="language-python"># 返回属性
-class Student(object):
-    def __getattr__(self, attr):
-        if attr == &#39;score&#39;:
-            return 99
-
-&gt;&gt;&gt; s = Student()
-&gt;&gt;&gt; s.score
-99
-
-# 返回函数
-class Student(object):
-    def __getattr__(self, attr):
-        if attr == &#39;age&#39;:
-            return lambda: 25
-
-&gt;&gt;&gt; s = Student()
-&gt;&gt;&gt; f = s.age
-&gt;&gt;&gt; f
-&lt;function Student.__getattr__.&lt;locals&gt;.&lt;lambda&gt; at 0x10050cbf8&gt;
-&gt;&gt;&gt; f()
-25
-&gt;&gt;&gt; s.age()
-25
-</code></pre>
-
-<ul>
-<li><strong>注意，只有在没有找到属性、方法的情况下（以obj.x对象方式、getattr(obj, &#39;x&#39;, NO=one)函数方式），才调用__getattr__()；若已存在属性、方法则不会调用__getattr__()</strong></li>
-<li>此外，若重写了__getattr__()时要设置返回默认处理；比如，上面定义的__getattr__()默认返回None，这样将导致调用任何不存在且没有处理的属性、方法时都会返回None；要让class只响应特定的几个不存在的属性、方法，其他不存在的则抛出AttributeError错误</li>
-</ul>
-
-<pre><code class="language-python">&gt;&gt;&gt; s.abc  # 不报任何错误（返回None）
-
-class Student(object):
-    def __getattr__(self, attr):
-        if attr == &#39;age&#39;:
-            return lambda: 25
-        raise AttributeError(&#39;\&#39;Student\&#39; object has no attribute \&#39;%s\&#39;&#39; % attr)
-
-&gt;&gt;&gt; s = Student()
-&gt;&gt;&gt; s.abc
-Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
- File &quot;&lt;stdin&gt;&quot;, line 5, in __getattr__
-AttributeError: &#39;Student&#39; object has no attribute &#39;abc&#39;
-
-# 应用场景：URL动态调用
-class Chain(object):
-    def __init__(self, path=&#39;&#39;):
-        elf._path = path
-    def __getattr__(self, path):
-        return Chain(&#39;%s/%s&#39; % (self._path, path))
-    def __str__(self):
-        return self._path
-    __repr__ = __str__
-
-&gt;&gt;&gt; Chain().stutus.user.timeline.list
-/stutus/user/timeline/list
-&gt;&gt;&gt; Chain().stutus.user.timeline
-/stutus/user/timeline
-</code></pre></li>
-<li><p>d. __call__()方法</p>
-
-<ul>
-<li>一个实例变量可以有自己的属性和方法，当调用实例的方法时使用instance.method()的方式来调用；但是也可以直接调用实例本身上，只需要实现__call__()方法即可</li>
-</ul>
-
-<pre><code class="language-python">class Student(object):
-    def __init__(self, name):
-        self.name = name
-    def __call__(self):
-        print(&#39;My name is %s.&#39; % self.name)
-
-&gt;&gt;&gt; s = Student(&#39;Michael&#39;)
-&gt;&gt;&gt; s()  # 调用实例本身，不是方法调用
-My name is Michael.
-</code></pre>
-
-<ul>
-<li><strong>__call__()方法还可以定义参数，对实例的直接调用相当于对一个函数调用</strong>；完全可以将对象和函数看成一样，函数本身也是运行期动态创建出来的，对象也是运行期创建出来的</li>
-<li>一个对象是若能被调用则该对象是一个Callable对象，可使用callable()函数来判断</li>
-</ul>
-
-<pre><code class="language-python">&gt;&gt;&gt; callable(Student(&#39;Tom&#39;))
-True
-&gt;&gt;&gt; callable(max)
-True
-&gt;&gt;&gt; callable([1, 2, 3])
-False
-&gt;&gt;&gt; callable(None)
-False
-&gt;&gt;&gt; callable(&#39;str&#39;)
-False
-</code></pre></li>
-</ul>
-
-<h5 id="toc_6">8.6 使用枚举类</h5>
-
-<ul>
-<li>当需要定义常量时，一种方式是用大写变量通过整数来定义（例如月份）；好处是简单，缺点是类型是int且仍然是变量</li>
-<li><p>更好的方式是将这样的类型定义一个class类型（枚举类型），然后每一个常量都是class的一个唯一实例；Python提供了Enum类来实现该功能</p>
-
-<pre><code class="language-python">from enum import Enum
-M = Enum(&#39;Month&#39;, (&#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;, &#39;Jun&#39;, &#39;Jul&#39;, &#39;Aug&#39;, &#39;Sep&#39;, &#39;Oct&#39;, &#39;Nov&#39;, &#39;Dec&#39;))
-
-# 获取到Month类型的枚举类，可以直接使用如Month.Jan的方式来引用一个常量
-&gt;&gt;&gt; for name, member in M.__members__.items():
-...      print(name, &#39;,&#39;, member, &#39;,&#39;, member.value)
-... 
-Jan , Month.Jan , 1  # value属性则是自动赋给成员的int常量，默认从1开始
-Feb , Month.Feb , 2
-Mar , Month.Mar , 3
-Apr , Month.Apr , 4
-May , Month.May , 5
-Jun , Month.Jun , 6
-Jul , Month.Jul , 7
-Aug , Month.Aug , 8
-Sep , Month.Sep , 9
-Oct , Month.Oct , 10
-Nov , Month.Nov , 11
-Dec , Month.Dec , 12
-</code></pre></li>
-<li><p>若需要精确控制枚举类型，可以从Enum派生出自定义类</p>
-
-<pre><code class="language-python">from enum import Enum, unique
-@unique  # @unique装饰器可以检查保证没有重复值
-class WeekDay(Enum):
-    Sun = 0  # Sum的value被设定为0
-    Mon = 1
-    Tue = 2
-    Wed = 3
-    Thu = 4
-    Fri = 5
-    Sat = 6
-
-&gt;&gt;&gt; day1 = WeekDay.Mon  # 访问枚举方式一
-&gt;&gt;&gt; day1
-&lt;WeekDay.Mon: 1&gt;
-&gt;&gt;&gt; print(day1)
-WeekDay.Mon
-
-&gt;&gt;&gt; print(WeekDay[&#39;Mon&#39;])  # 访问枚举方式二
-WeekDay.Mon
-
-&gt;&gt;&gt; print(WeekDay(1))  # 访问枚举方式三（根据value获取其对应的枚举常量）
-WeekDay.Mon
-
-&gt;&gt;&gt; print(WeekDay.Mon.value)
-1
-&gt;&gt;&gt; WeekDay(7)
-Traceback (most recent call last):
-ValueError: 7 is not a valid WeekDay
-
-&gt;&gt;&gt; print(day1 == WeekDay.Mon)
-True
-</code></pre></li>
-</ul>
-
-<h5 id="toc_7">8.7 使用元类（metaclass）</h5>
-
-<ul>
-<li>动态语言和静态语言最大的不同，就是函数和类的定义不是编译时定义的，而是运行时动态创建的</li>
-<li><p>type()函数可以获取、判断对象类型，返回对应Class类型；比如，Hello是一个class，它的类型是type，h是一个实例，它的类型是class Hello</p>
-
-<pre><code>class Hello(object):
-    def hello(self, name=&#39;world&#39;):
-        print(&#39;Hello, %s&#39; % name)
-
-&gt;&gt;&gt; print(type(Hello))
-&lt;class &#39;type&#39;&gt;
-&gt;&gt;&gt; print(type(h))
-&lt;class &#39;__main__.Hello&#39;&gt;
-</code></pre></li>
-<li><p><strong>type()函数还可以可以创建出新的数据类型；class的定义就是运行时调用type()函数动态创建的</strong></p>
-
-<ul>
-<li>要创建一个class，type()函数需要依次传入3个参数：class的名称、继承的父类集合（Python支持多继承，若只有一个父类注意单个元素的tuple写法）、class的方法名与函数名绑定的dict</li>
-<li>通过type()函数创建的class和直接代码定义的class是完全一样的；因为Python解释器遇到class定义时，仅仅是扫描一下class定义的语法，然后调用type()函数创建出class</li>
-</ul>
-
-<pre><code>def fn(self, name=&#39;world&#39;):
-     print(&#39;Hello, %s&#39; % name)
-
-# 通过type()函数创建出Hello类，无需通过“class Hello(object)...”的代码方式进行定义
-# hello方法与函数fn进行绑定
-Hello = type(&#39;Hello&#39;, (object,), dict(hello=fn))
-
-&gt;&gt;&gt; h = Hello()
-&gt;&gt;&gt; h.hello()
-Hello, world
-&gt;&gt;&gt; print(type(Hello))
-&lt;class &#39;type&#39;&gt;
-&gt;&gt;&gt; print(type(h))
-&lt;class &#39;__main__.Hello&#39;&gt;
-</code></pre></li>
-<li><p><strong>除了使用type()函数动态创建类以外，还可以，使用metaclass（元类）控制类的创建行为</strong></p>
-
-<ul>
-<li>可以把类看作是metaclass创建出来的“实例”；metaclass是类的模板，所以必须从type类型派生</li>
-<li>先有metaclass，再有类，最后才是实例</li>
-<li>按照默认习惯，metaclass的类名总是以Metaclass结尾，以便清楚地表示这是一个metaclass</li>
-</ul>
-
-<pre><code class="language-python">class ListMetaclass(type):
-    def __new__(cls, name, base, attrs):  # 实现__new__()方法，增加add()方法
-        attrs[&#39;add&#39;] = lambda self, value: self.append(value)
-        return type.__new__(cls, name, base, attrs)
-
-# 定义类时使用关键字参数metaclass，说明使用ListMetaclass来进行定制
-# 给自定义的MyList增加一个add方法
-class MyList(list, metaclass=ListMetaclass): 
-    pass
-
-&gt;&gt;&gt; l = MyList()
-&gt;&gt;&gt; l.add(1)  # 调用增加的add()方法；
-# 虽然是类方法，但是没有对象方法，调用时使用调用类方法，和类属性与对象属性的调用顺序类似
-&gt;&gt;&gt; l
-[1]
-
-&gt;&gt;&gt; l2 = list()
-&gt;&gt;&gt; l2.add(1)  # 普通的list没有add()方法
-Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;list&#39; object has no attribute &#39;add&#39;
-</code></pre>
-
-<ul>
-<li>在metaclass的__new__()方法中，可以修改类的定义（比如增加新的方法），然后再返回修改后的定义</li>
-<li><strong>__new__()方法接收的参数依次是：当前准备创建的类的对象、类的名字、类继承的父类集合、类属性方法集合（不是对象的；参考类属性与对象属性的调用顺序）</strong></li>
-</ul></li>
-<li><p>动态修改有什么意义？直接在MyList定义时增加add()方法不是更简单吗？正常情况下，确实应该直接在MyLis定义时增加add()方法；但是有需要通过metaclass修改类定义的情景，比如ORM</p></li>
-<li><p>ORM全称“Object Relational Mapping”，即对象-关系映射，就是把关系数据库的一行映射为一个对象，也就是一个类对应一个表；这样写代码更简单，不用直接操作SQL语句</p></li>
-</ul>
-
-<h5 id="toc_8">8.7 自定义ORM框架</h5>
-
-<ul>
-<li><p>编写底层模块的第一步，就是先把接口写出来；比如，定义一个User类来操作对应的数据库User</p>
-
-<pre><code class="language-python"># 使用
-class User(Model): 
-    id = IntegerField(&#39;t_id&#39;) # 类属性
-    name = StringField(&#39;t_username&#39;)
-    email = StringField(&#39;t_email&#39;)
-    password = StringField(&#39;t_password&#39;)
-
-u = User(id=12345, name=&#39;Tom&#39;, email=&#39;tom@tom.com&#39;, password=&#39;123&#39;)  
-# dict语法； Model继承于dict，不需要实现__init__()方法进行绑定属性    
-u.save()
-</code></pre>
-
-<pre><code class="language-python"># Field类负责保存数据库表的字段名和字段类型
-class Field(object):  # IntegerField、StringField的父类
-    def __init__(self, name, col_type):
-        self.name = name
-        self.col_type = col_type
-
-    def __str__(self):
-        return &#39;&lt;%s:%s&gt;&#39; % (self.__class__.__name__, self.name)
-
-# 在Field的基础上，进一步定义各种类型的Field
-class IntegerField(Field):
-    def __init__(self, name):
-        super(IntegerField, self).__init__(name, &#39;bigint&#39;)  # 调用父类的方法
-
-class StringField(Field):
-    def __init__(self, name):
-        super(StringField, self).__init__(name, &#39;varchar(100)&#39;)
-</code></pre>
-
-<pre><code class="language-python">class ModelMetaclass(type):
-    def __new__(cls, name, base, attrs):
-        if name == &#39;Model&#39;:
-            return type.__new__(cls, name, base, attrs)
-
-        # 解析定义类User中定义的映射关系
-        mappings = dict()
-        # attrs.items保存的是类属性方法（如id = IntegerField(&#39;t_id&#39;)），而不是创建对象时传入的dict
-        for k, v in attrs.items(): 
-            if isinstance(v, Field):  # 是自定义的“Field类型”的类属性
-                # print(&#39;Found mapping: %s ==&gt; %s&#39; % (k, v))
-                mappings[k] = v
-
-        # 方式2：删除类属性
-        # 注意，不要在上面迭代过程中修改迭代对象
-        # for k in mappings.keys():
-            # attrs.pop(k) 
-
-        # 增加两个类属性（关系映射、表名）
-        attrs[&#39;__mappings__&#39;] = mappings
-        attrs[&#39;__table__&#39;] = name
-        return type.__new__(cls, name, base, attrs)
-</code></pre>
-
-<pre><code class="language-python"># Model继承于dict，初始化对象时其内部会初始化一个字典
-# m.id访问的是id属性，m[&#39;id&#39;]访问的是字典中‘id’对应的value
-class Model(dict, metaclass=ModelMetaclass):
-    def __init__(self, **kwargs):
-        super(Model, self).__init__(**kwargs)
-
-    # 方式2：重写__getattr__
-    def __getattr__(self, key):
-        try:
-            return self[key]
-        except KeyError:
-            raise AttributeError(r&quot;&#39;Model&#39; object has no attribute %s&quot; % key)
-
-    def __setattr__(self, key, value):
-        self[key] = value
-
-    def save(self):
-        fields = []
-        params = []
-        types = []
-        args = []
-        # 遍历保存的关系映射（k为类属性名，v.name为表中的字段名，v.col_type为表中的字段类型）
-        for k, v in self.__mappings__.items():
-            fields.append(v.name)
-            params.append(&#39;?&#39;)
-            types.append(v.col_type)
-
-            # 方式1：
-            # 直接读取dict，但是外界访问.k依然返回的是类属性的值（在这里是Field对象）
-            args.append(self[k]) 
-
-            # 方式2：
-            # 要以“.k”的形式读取的dic中的数据，即[&#39;k&#39;]，则必须删除该类属性k，然后重写__getattr__()方法，并在该方法内部读取[&#39;k&#39;]返回
-            # 必须删除，否则__getattr__()方法不会被调用
-            # args.append(getattr(self, k, None))
-
-        fieldsStr = &#39;,&#39;.join(fields)
-        paramsStr = &#39;,&#39;.join(params) 
-
-        sql = &#39;insert into %s (%s) values (%s)&#39; % (self.__table__, fieldsStr, paramsStr)
-        print(&#39;SQL: %s&#39; % sql)
-        print(&#39;TYPES: %s&#39; % str(types))
-        print(&#39;ARGS: %s&#39; % str(args))
-</code></pre>
-
-<pre><code># 输出结果
-Found mapping: id ==&gt; &lt;IntegerField:t_id&gt;
-Found mapping: password ==&gt; &lt;StringField:t_password&gt;
-Found mapping: name ==&gt; &lt;StringField:t_username&gt;
-Found mapping: email ==&gt; &lt;StringField:t_email&gt;
-SQL: insert into User (t_id,t_password,t_username,t_email) values (?,?,?,?)
-TYPES: [&#39;bigint&#39;, &#39;varchar(100)&#39;, &#39;varchar(100)&#39;, &#39;varchar(100)&#39;]
-ARGS: [12345, &#39;123&#39;, &#39;Tom&#39;, &#39;tom@tom.com&#39;]
-</code></pre></li>
-<li><p>当用户定义一个class User(Model)时，Python解释器首先在当前类User的定义中查找metaclass，若没有找到就继续在父类Model中查找metaclass</p></li>
-<li><p>若在父类Model中找到了，就使用父类Model中定义的metaclass（ModelMetaclass）来创建User类；也就是说，metaclass可以隐式地继承到子类，子类自己却不知道</p></li>
-</ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python3笔记(06模块、07面向对象编程)]]></title>
-    <link href="http://www.justisit.com/15125773961879.html"/>
-    <updated>2017-12-07T00:23:16+08:00</updated>
-    <id>http://www.justisit.com/15125773961879.html</id>
-    <content type="html"><![CDATA[<ul>
-<li>
-<a href="#toc_0">06. 模块</a>
-<ul>
-<li>
-<a href="#toc_1">6.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">6.2 使用模块</a>
-</li>
-<li>
-<a href="#toc_3">6.3 模块中的函数、变量的作用域</a>
-</li>
-<li>
-<a href="#toc_4">6.4 安装第三方模块</a>
-</li>
-<li>
-<a href="#toc_5">6.5 模块搜索路径</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_6">07. 面向对象编程</a>
-<ul>
-<li>
-<a href="#toc_7">7.1 概述</a>
-</li>
-<li>
-<a href="#toc_8">7.2 类、实例、绑定属性、方法</a>
-</li>
-<li>
-<a href="#toc_9">7.3 属性访问限制</a>
-</li>
-<li>
-<a href="#toc_10">7.4 继承和多态</a>
-</li>
-<li>
-<a href="#toc_11">7.5 获取对象信息</a>
-</li>
-<li>
-<a href="#toc_12">7.6 实例属性、类属性</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">06. 模块</h4>
-
-<h5 id="toc_1">6.1 概述</h5>
-
-<ul>
-<li>在Python中，一个.py文件称之为一个模块（Module），模块可以被其他地方导入使用</li>
-<li>为了避免模块名冲突，Python按照文件夹目录的形式（称为包，Package）来组织各个模块；abc.py的模块名为abc，mycompany目录下的abc.py的模块名为mycompany.abc</li>
-<li>每一个包目录下必须有一个__init__.py的文件（模块），否则Python就把这个目录当成普通目录而不是一个包目录；__init__.py可以是一个空文件，也可以有Python代码</li>
-<li>自己创建的模块要注意命名，不要和Python自带的模块冲突；例如Python自带sys模块，自己的模块就不可命名为sys .py，否则将无法导入Python自带的sys模块</li>
-</ul>
-
-<span id="more"></span><!-- more -->
-
-<h5 id="toc_2">6.2 使用模块</h5>
-
-<ul>
-<li><strong>使用模块中的变量、函数、类等有两种导入方式：</strong>
-
-<ul>
-<li><strong>a. 导入模块：<code>import XX</code></strong>
-
-<ul>
-<li><strong>XX为模块名</strong></li>
-<li><strong>使用模块内的属性、函数、类时需要加模块名前缀，例如 <code>import sys、print(sys.path)</code>、<code>import testpy、print(testpy.say())</code></strong></li>
-<li><strong>++加模块名前缀的语义用法，使得模块看起来很像一个类的实例（testpy.say()感觉是对象调用方法，实际是调用函数）或命名空间++</strong></li>
-</ul></li>
-<li><strong>b. 导入模块内的内容：<code>from XX import YY</code></strong>
-
-<ul>
-<li><strong>XX为模块名，YY为模块内的变量、函数、类</strong></li>
-<li><strong>也可以<code>from xx import \*</code>，一次性导入该模块内的所有的变量、函数、类</strong></li>
-<li><strong>使用模块内的属性、函数、类时不需要加模块名，例如 <code>from sys import path、print(path)</code>、<code>from testpy import say、print(say())</code></strong></li>
-<li><strong>应避免使用此方式导入，这样可以避免名称冲突，也增强程序可读性</strong></li>
-</ul></li>
-</ul></li>
-<li><p>Python文本头部结构信息</p>
-
-<pre><code class="language-python">#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-&#39;a test module&#39;   # 表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释
-
-__author__ = &#39;Tom&#39; # 申明作者
-</code></pre></li>
-<li><p>import sys # 表示导入sys模块，之后变量sys指向该模块；利用该sys变量访问该模块的变量、函数等</p></li>
-<li><p>sys模块有一个argv变量（list）存储命令行执行时的所有参数，argv至少有一个元素（第一个元素永远是该.py文件的名称）</p>
-
-<pre><code class="language-python">def test():
-    args = sys.argv
-    if len(args) == 1:
-        print(&#39;Hello, world!&#39;)
-    elif len(args) == 2:
-        print(&#39;Hello, %s&#39; % args[1])
-    else:
-        print(&#39;Too many arguments!&#39;)
-
-if __name__ == &#39;__main__&#39;:  # 当使用命令行运行该模块时，python解释器把一个特殊变量__name__赋值为&#39;__main__&#39;，若在其他地方导入该模块则不会（if判断将失败不执行test()）
-    test()
-
-# 运行:
-localhost:Desktop $ python3 hello.py
-Hello, world!
-localhost:Desktop $ python3 hello.py Tom
-Hello, Tom
-
-&gt;&gt;&gt; import hello
-&gt;&gt;&gt; hello.test()
-Hello, world!
-</code></pre></li>
-</ul>
-
-<h5 id="toc_3">6.3 模块中的函数、变量的作用域</h5>
-
-<ul>
-<li>正常名称的函数、变量都是公开的（public）,可以被其他模块导入后直接使用，比如abc</li>
-<li>若仅仅让函数、变量在模块内部使用，可以通过给名称加‘_’前缀来表示非公开的（private），比如_abc
-
-<ul>
-<li>但是，类似__xxx__这样名称的变量是有特殊用途的变量，是公开的（public），可以直接使用，如上面的__author__、__name__、__doc__（定义文档注释）</li>
-<li>注意：虽然类似_xxx和__xxx这样名称的函数、变量是非公开的（private）不应该被直接使用，比如_abc、__abc，但是实际上还是可以被访问的；<strong>是按照约定不应该，而不是不可以</strong></li>
-</ul></li>
-<li><p>可以通过在定义公开的函数中，调用私有的函数、变量的方式（在模块中没有私有访问限制的问题），让外界可以间接使用私有的函数、变量</p>
-
-<pre><code class="language-python">def _private_1(name):
-    return &#39;Hello, %s&#39; % name
-def _private_2(name):
-    return &#39;Hi, %s&#39; % name
-def greeting(name):
-    if len(name) &gt; 3:
-        return _private_1(name)
-    else:
-        return _private_2(name)
-
-&gt;&gt;&gt; from testpy import greeting
-&gt;&gt;&gt; greeting(&#39;test&#39;)
-&#39;Hello, test&#39;
-
-&gt;&gt;&gt; from testpy import _private_1
-&gt;&gt;&gt; _private_1(&#39;test&#39;)
-&#39;Hello, test&#39;
-</code></pre></li>
-</ul>
-
-<h5 id="toc_4">6.4 安装第三方模块</h5>
-
-<ul>
-<li>在Python中安装第三方模块是通过包管理工具pip完成的，例如安装Pillow：pip install Pillow</li>
-<li><p>若Python2、3都存在，则python3对应的pip命令为“pip3”</p>
-
-<pre><code class="language-python"># 生成图片缩略图:
-&gt;&gt;&gt; from PIL import Image
-&gt;&gt;&gt; im = Image.open(&#39;/Users/ls/Desktop/a.jpg&#39;)
-&gt;&gt;&gt; print(im.format, im.size, im.mode)
-JPEG (750, 1334) RGB
-&gt;&gt;&gt; im.thumbnail((200, 100))
-&gt;&gt;&gt; im.save(&#39;/Users/ls/Desktop/thumb.jpg&#39;, &#39;JPEG&#39;)
-</code></pre></li>
-</ul>
-
-<h5 id="toc_5">6.5 模块搜索路径</h5>
-
-<ul>
-<li>当我们试图加载一个模块时，Python解释器会在指定路径下搜索对应的.py文件，若找不到则报错</li>
-<li>默认情况下，Python解释器会搜索当前目录、所有已安装的内置模块和第三方模块；搜索路径存放在sys模块的path变量中(import sys、sys.path)</li>
-<li>若需添加自定义的搜索路径有两种方法：a. 直接修改sys.path添加要搜索的目录（sys.path.append(&#39;/.../.../my_py_scripts&#39;)；b. 设置环境变量PYTHONPATH（注意只需要添加自己的搜索路径，Python自己本身的搜索路径不受影响）</li>
-</ul>
-
-<h4 id="toc_6">07. 面向对象编程</h4>
-
-<h5 id="toc_7">7.1 概述</h5>
-
-<ul>
-<li>在Python中所有数据类型都可以视为对象，当然也可以自定义对象</li>
-<li>自定义对象的数据类型就是面向对象中的类（Class）的概念</li>
-</ul>
-
-<h5 id="toc_8">7.2 类、实例、绑定属性、方法</h5>
-
-<ul>
-<li>自定义类格式：依次为 <code>class 类名(CLASS) :</code> ；“(CLASS)”表示从哪个类继承，默认为 <code>object</code> (小写的)</li>
-<li><p>创建实例通过“类()”实现</p>
-
-<pre><code class="language-python">class Student(object):
-    def __init__(self, name, score):  # 这个对象拥有name和score这两属性（Property）
-        self.name = name
-        self.score = score
-    def print_score(self):
-        print(&#39;%s: %s&#39; % (self.name, self.score))
-
-&gt;&gt;&gt; bart = Student(&#39;Bart Simpson&#39;, 59)  # 创建学生对象
-&gt;&gt;&gt; lisa = Student(&#39;Lisa Simpson&#39;, 87)
-&gt;&gt;&gt; bart.print_score()  # 给对象发一个print_score消息（调用对象对应的关联函数）
-Bart Simpson: 59
-&gt;&gt;&gt; lisa.print_score()
-Lisa Simpson: 87
-</code></pre>
-
-<pre><code class="language-python">&gt;&gt;&gt; bart
-&lt;__main__.Student object at 0x1024f82b0&gt;
-&gt;&gt;&gt; Student
-&lt;class &#39;__main__.Student&#39;&gt;
-</code></pre></li>
-<li><p>和静态语言不同，Python允许对实例变量自由地绑定属性；也就是说，对于两个实例，虽然它们都是同一个类的不同实例，但可以让它们拥有的属性可能不同</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; bart.intro = &#39;test&#39;
-&gt;&gt;&gt; bart.intro
-&#39;test&#39;
-&gt;&gt;&gt; lisa.intro
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;Student&#39; object has no attribute &#39;intro&#39;
-</code></pre></li>
-<li><p>由于类可以起模板的作用，可把必须绑定的属性在定义__init__方法的时候进行绑定</p></li>
-<li><p>__init__方法的第一个参数永远是self，表示创建的实例本身；可以把各种属性绑定到self上</p></li>
-<li><p>在创建实例的时候就不能传入空的参数，必须传入与__init__方法匹配的参数；但是self参数不需要传入，Python解释器会自动把实例变量本身传入</p></li>
-<li><p>定义时将封装数据的函数和类的实例进行关联起来，我们称之为方法</p></li>
-<li><p>方法定义时，除了第一个参数是实例变量self外，其他和普通函数一样；方法调用时，使用“对象.”的形式进行调用，不用传入self参数，其他参数正常传入</p></li>
-</ul>
-
-<h5 id="toc_9">7.3 属性访问限制</h5>
-
-<ul>
-<li><p><strong>在Python中，若让内部属性不被外部访问，在属性的名称前加上两个下划线“__”（加一个不可以），该属性就变成私有的</strong></p>
-
-<ul>
-<li>只能内部可以访问，外部不能直接访问（但是通过特殊手段，还是可以间接访问的）</li>
-<li>上面定义的Student类，外部代码是可以自由地修改一个实例的name、score属性</li>
-<li><strong>注意：模块中的函数、变量只是人为意识上的私有（加一个、两个下划线都是，只要以下划线开始），实际上还是可以直接访问的</strong></li>
-</ul>
-
-<pre><code class="language-python">class Student(object):
-    def __init__(self, name, score):
-        self.__name = name
-        self.__score = score
-    def print_score(self):
-        print(&#39;%s: %s&#39; % (self.__name, self.__score))
-
-&gt;&gt;&gt; bart = Student(&#39;Bart Simpson&#39;, 98)
-&gt;&gt;&gt; bart.__name
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;Student&#39; object has no attribute &#39;__name&#39;
-</code></pre></li>
-<li><p>若需要在外部代码获取设置私有属性，可以给类增加了get、set方法获取、设置该私有属性</p></li>
-<li><p>通过定义方法去访问私有属性，而不是通过定义属性为公有的去直接访问，可以对参数做检查，避免传入无效的参数</p>
-
-<pre><code class="language-python">class Student(object):
-    def __init__(self, name, score):
-        self.__name = name
-        self._score = score
-    def print_score(self):
-        print(&#39;%s: %s&#39; %s (self.__name, self._score))
-    def get_name(self):
-        return self.__name
-    def set_name(self, name):
-        self.__name = name
-
-&gt;&gt;&gt; from testpy import Student
-&gt;&gt;&gt; bart = Student(&#39;Bart Simpson&#39;, 98)
-&gt;&gt;&gt; bart.get_name()
-&#39;Bart Simpson&#39;
-&gt;&gt;&gt; bart.set_name(&#39;haha&#39;)
-&gt;&gt;&gt; bart.get_name()
-&#39;haha&#39;
-
-# 以一个下划线“_”开头的属性不是私有的，可以直接访问
-&gt;&gt;&gt; bart._score
-98
-</code></pre></li>
-<li><p>通过特殊手段，还是可以间接访问私有属性；比如__name，Python解释器对外把__name修改为_Student__name（不同版本的Python修改的结果可能不一样），所以仍然可以通过_Student__name来访问原来的__name私有属性</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; bart._Student__name
-&#39;Bart Simpson&#39;
-</code></pre></li>
-</ul>
-
-<h5 id="toc_10">7.4 继承和多态</h5>
-
-<ul>
-<li>继承可以让子类获取父类的方法，也可以重写父类的方法</li>
-<li>多态的好处：方法定义时用父类参数接收传入子类实例，当方法调用时需要传入参数时，优先使用实际传入参数的类型中定义的方法，而不是方法定义时参数的类型中定义的方法；这样就可以任意增加新的子类，而不必修改方法的定义</li>
-<li>对于例如Java这样的静态语言，若方法定义需传入A类型参数，则调用时传入的对象必须是A类型或者A的子类类型，否则将无法调用A中定义的方法，比如run()方法</li>
-<li>对于Python这样的动态语言，则不一定需要传入A类型，只需要保证传入的对象有一个run()方法即可；这就是动态语言的“鸭子类型”，并不要求严格的继承体系</li>
-<li><p>Python的“file-like object”就是一种鸭子类型，不需要传入真正的文件对象，只需要是任何实现了read()方法的对象即可</p>
-
-<pre><code class="language-python">class Animal(object):
-    def run(self):
-        print(&#39;Animal is running...&#39;)
-class Dog(Animal):
-    def run(self):
-        print(&#39;Dog is running...&#39;)
-class Cat(Animal):
-    def eat(self):
-        print(&#39;Cat is Eating...&#39;)   
-
-class Timer(object):  # 没有继承Animal父类，只是拥有run方法
-    def run(self):
-        print(&#39;Start...&#39;)
-
-def runtest(animal):
-    animal.run()
-
-&gt;&gt;&gt; runtest(Dog())
-Dog is running...
-&gt;&gt;&gt; runtest(Cat())
-Animal is running...
-&gt;&gt;&gt; runtest(Timer())
-Start...
-</code></pre></li>
-</ul>
-
-<h5 id="toc_11">7.5 获取对象信息</h5>
-
-<ul>
-<li><p>a. type()函数</p>
-
-<ul>
-<li>可以获取、判断对象类型，返回对应Class类型</li>
-<li><p>判断基本数据类型可以直接写int、str；若要判断一个对象是否为函数，需要使用types模块中定义的变量</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; type(123)
-&lt;class &#39;int&#39;&gt;
-&gt;&gt;&gt; type(&#39;123&#39;)
-&lt;class &#39;str&#39;&gt;
-&gt;&gt;&gt; type(None)
-&lt;class &#39;NoneType&#39;&gt;
-&gt;&gt;&gt; type(abs)
-&lt;class &#39;builtin_function_or_method&#39;&gt;
-</code></pre>
-
-<pre><code class="language-python">&gt;&gt;&gt; type(123) == type(456)
-True
-&gt;&gt;&gt; type(123) == int
-True
-&gt;&gt;&gt; type(&#39;abc&#39;) == type(&#39;123&#39;)
-True
-&gt;&gt;&gt; type(&#39;123&#39;) == type(123)
-False
-
-&gt;&gt;&gt; def fn():
-...     pass
-... 
-&gt;&gt;&gt; type(fn) == types.FunctionType
-True
-&gt;&gt;&gt; type(abs) == types.BuiltinFunctionType
-True
-&gt;&gt;&gt; type(lambda x: x) == types.LambdaType
-True
-&gt;&gt;&gt; type((x for x in range(10))) == types.GeneratorType
-True
-</code></pre></li>
-</ul></li>
-<li><p>b. isinstance()函数</p>
-
-<ul>
-<li>对于有class的继承关系的，使用该函数判断一个对象是否是该类型本身，或者位于该类型的父继承链上</li>
-<li><p>比如，进行数据类型检查，判断一个对象是否是“Iterable”、“Iterator”</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; import testpy
-&gt;&gt;&gt; a = Animal()
-&gt;&gt;&gt; d = Dog()
-&gt;&gt;&gt; c = Cat()
-&gt;&gt;&gt; t = Timer()
-
-&gt;&gt;&gt; isinstance(c, Cat)
-True
-&gt;&gt;&gt; isinstance(c, Animal)
-True
-&gt;&gt;&gt; isinstance(a, Cat)
-False
-
-# isinstance()还可以判断一个变量是否是某些类型中的一种
-&gt;&gt;&gt; isinstance([1, 2, 3], (list, tuple)) 
-True
-</code></pre></li>
-</ul></li>
-<li><p>c. dir()函数</p>
-
-<ul>
-<li><p>可以获取一个对象的所有属性和方法，返回一个包含字符串的list</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; dir(&#39;ABC&#39;)
-&gt;&gt;&gt; dir(a)
-</code></pre></li>
-</ul></li>
-<li><p>d. len()函数</p>
-
-<ul>
-<li><p>数获取一个对象的长度，实际上在该函数内部会自动调用该对象的__len__()方法</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; len(&#39;ABC&#39;)
-3
-&gt;&gt;&gt; &#39;ABC&#39;.__len__()
-3
-
-&gt;&gt;&gt; class MyDog(object):
-...     def __len__(self):  # 重写__len__()方法
-...         return 100
-... 
-&gt;&gt;&gt; dog = MyDog()
-&gt;&gt;&gt; len(dog)
-100
-</code></pre></li>
-</ul></li>
-<li><p>e. hasattr()、getattr()、setattr()函数</p>
-
-<ul>
-<li>用来分别判断属性是否存在、获取设置对象的属性值</li>
-<li>只有在不知道对象信息的时候，才以上面函数的方式进行获取对象信息，若知道的话建议直接通过obj.x方式获取</li>
-<li><p>上述的三个函数也可以作用于对象的方法</p>
-
-<pre><code class="language-python">class MyObject(object):
-    def __init__(self):
-        self.x = 9
-    def power(self):
-        return self.x * self.x
-
-&gt;&gt;&gt; obj = MyObject()
-&gt;&gt;&gt; hasattr(obj, &#39;x&#39;)  # obj对象是否有&#39;x&#39;属性
-True
-&gt;&gt;&gt; obj.x
-9
-
-&gt;&gt;&gt; hasattr(obj, &#39;y&#39;)  # obj对象是否有&#39;y&#39;属性
-False
-&gt;&gt;&gt; setattr(obj, &#39;y&#39;, 19)  # 设置obj对象的&#39;y&#39;属性的值，若没有该属性则增加该属性
-&gt;&gt;&gt; hasattr(obj, &#39;y&#39;)
-True
-&gt;&gt;&gt; getattr(obj, &#39;y&#39;)
-19
-&gt;&gt;&gt; obj.y
-19
-
-# 若试图获取不存在的属性，会抛出AttributeError的错误
-# 可以传入default参数，若属性不存在则返回默认值（类似于dict的[&#39;key&#39;]、get(&#39;key&#39;)方式获取value）
-&gt;&gt;&gt; getattr(obj, &#39;z&#39;)
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;MyObject&#39; object has no attribute &#39;z&#39;
-&gt;&gt;&gt; getattr(obj, &#39;z&#39;, 404) 
-404
-</code></pre>
-
-<pre><code class="language-python">&gt;&gt;&gt; hasattr(obj, &#39;power&#39;)
-True
-&gt;&gt;&gt; getattr(obj, &#39;power&#39;)
-&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10215e630&gt;&gt;
-
-&gt;&gt;&gt; fn = getattr(obj, &#39;power&#39;)
-&gt;&gt;&gt; fn
-&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10215e630&gt;&gt;
-&gt;&gt;&gt; fn()  # 调用fn()与调用ojc.power()是一样的
-81
-</code></pre></li>
-<li><p>应用：若从文件流对象fp中读取数据，需要先判断fp是否存在read()方法，若存在说明该对象确实是文件流，返回文件流，否则无法读取返回None</p>
-
-<pre><code class="language-python">def readImage(fp):
-    if hasattr(fp, &#39;read&#39;):
-        return readData(fp)
-    return None
-</code></pre></li>
-</ul></li>
-</ul>
-
-<h5 id="toc_12">7.6 实例属性、类属性</h5>
-
-<ul>
-<li>实例属性可以通过给实例变量或self进行任意绑定的方式；若给类本身绑定属性则直接在class中定义属性即可，<strong>此时该类属性归类所有（类属性），但实例变量也是可以访问的（实例方法、类方法同理）</strong></li>
-<li><p><strong>最好不要让实例属性和类属性使用相同的名称，若名称相同，则实例变量访问的是实例属性，而不是类属性（实例方法、类方法同理）</strong></p>
-
-<pre><code class="language-python">class Student(object):
-    name = &#39;Student&#39;  # 绑定类属性
-
-&gt;&gt;&gt; Student.name  # 访问类属性
-&#39;Student&#39;
-
-&gt;&gt;&gt; s = Student()
-&gt;&gt;&gt; s.name  # 实例变量也可以访问类属性
-&#39;Student&#39;
-&gt;&gt;&gt; s.name = &#39;Tom&#39;  # 绑定实例属性
-&gt;&gt;&gt; s.name  # 访问实例属性
-&#39;Tom&#39;
-&gt;&gt;&gt; Student.name  # 访问类属性
-&#39;Student&#39;
-
-&gt;&gt;&gt; del s.name  # 删除实例属性
-&gt;&gt;&gt; s.name  # 访问类属性
-&#39;Student&#39;
-</code></pre></li>
-</ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python3笔记(05函数式编程)]]></title>
-    <link href="http://www.justisit.com/15125773961836.html"/>
-    <updated>2017-12-07T00:23:16+08:00</updated>
-    <id>http://www.justisit.com/15125773961836.html</id>
-    <content type="html"><![CDATA[<ul>
-<li>
-<a href="#toc_0">05. 函数式编程</a>
-<ul>
-<li>
-<a href="#toc_1">5.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">5.2 高阶函数（Higher-order function）</a>
-</li>
-<li>
-<a href="#toc_3">a. map()函数</a>
-</li>
-<li>
-<a href="#toc_4">b. reduce()函数</a>
-</li>
-<li>
-<a href="#toc_5">c. filter()函数</a>
-</li>
-<li>
-<a href="#toc_6">d. sorted()函数</a>
-</li>
-<li>
-<a href="#toc_7">5.3 返回函数</a>
-</li>
-<li>
-<a href="#toc_8">5.4 匿名函数</a>
-</li>
-<li>
-<a href="#toc_9">5.5 装饰器（Decorator）</a>
-</li>
-<li>
-<a href="#toc_10">5.6 偏函数</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">05. 函数式编程</h4>
-
-<h5 id="toc_1">5.1 概述</h5>
-
-<ul>
-<li>函数式编程是一种抽象度很高的编程范式，其一个特点是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数</li>
-<li>使用纯粹的函数式编程语言编写的函数是没有变量；由于Python允许使用变量，因此Python不是纯粹的函数式编程语言，对函数式编程提供部分支持</li>
-<li>变量可以指向函数，例如 <code>f = abs、f(-10)</code></li>
-<li>函数名也是变量名，例如 <code>abs = 10</code>，此时再调用<code>abs(-10)</code>报错“TypeError: &#39;int&#39; object is not callable”（abs指向了整数10不是求绝对值函数），若要恢复其作用需重启Python交互环境</li>
-</ul>
-
-<span id="more"></span><!-- more -->
-
-<h5 id="toc_2">5.2 高阶函数（Higher-order function）</h5>
-
-<ul>
-<li>高阶函数就是让函数的参数能够接收别的函数</li>
-</ul>
-
-<h5 id="toc_3">a. map()函数</h5>
-
-<ul>
-<li>接收两个参数（一个是函数，一个是可迭代对象Iterable），将传入的函数参数依次作用到可迭代对象参数的每个元素，并将结果放到一个新创建的迭代器Iterator中，最后返回该迭代器Iterator</li>
-<li><p>函数返回的结果是一个是Iterator（惰性序列），可以通过list()函数将转换为list对象（注：iter()函数可以将Iterable转换为Iterator）</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; l = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-&gt;&gt;&gt; def f(x):
-...     return x * x
-... 
-&gt;&gt;&gt; r = map(f, l)
-&gt;&gt;&gt; r
-&lt;map object at 0x101aa1cc0&gt;
-&gt;&gt;&gt; list(r)
-[1, 4, 9, 16, 25, 36, 49, 64, 81]
-&gt;&gt;&gt; list(map(str, l))
-[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;]
-</code></pre></li>
-</ul>
-
-<h5 id="toc_4">b. reduce()函数</h5>
-
-<ul>
-<li>接收的参数数量及类型与map()函数的相同，但是“函数参数”必须是只能接收两个参数的函数</li>
-<li><p>取可迭代对象的中的前两个元素，传入到函数参数中计算结果，之后使用该结果和可迭代对象的中的后续元素，再次传入到函数参数中计算结果，循环之前的步骤；其效果是reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)</p>
-
-<pre><code class="language-python"># 将[1, 3, 5, 7, 9]变成整数13579:
-from functools import reduce
-def fn(x, y):
-    return x * 10 + y
-
-reduce(fn, [1, 3, 5, 7, 9])
-13579
-
-# 将str转为int:
-from functools import reduce
-def str2int(s):
-    def fn(x, y):  # 函数可以嵌套定义
-        return x * 10 + y
-    def char2num(s):
-        return {&#39;0&#39;: 0, &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4, &#39;5&#39;: 5, &#39;6&#39;: 6, &#39;7&#39;: 7, &#39;8&#39;: 8, &#39;9&#39;: 9}[s]
-    return reduce(fn, map(char2num, s))
-
-str2int(&#39;13579&#39;)
-13579
-
-# 将str转为int（使用lambda函数）:
-from functools import reduc
-def str2int(s):
-    def char2num(s):
-        return {&#39;0&#39;: 0, &#39;1&#39;: 1, &#39;2&#39;: 2, &#39;3&#39;: 3, &#39;4&#39;: 4, &#39;5&#39;: 5, &#39;6&#39;: 6, &#39;7&#39;: 7, &#39;8&#39;: 8, &#39;9&#39;: 9}[s]
-    return reduce(lambda x, y: x * 10 + y, map(char2num, s))
-
-str2int(&#39;13579&#39;)
-13579
-
-# 字符串格式化:
-def normalize(name):
-    if isinstance(name, str):
-        return name[:1].upper() + name[1:].lower()
-    else:
-        return name
-
-list(map(normalize, [&#39;adam&#39;, &#39;LISA&#39;, &#39;barT&#39;, &#39;&#39;, &#39;123&#39;, 456]))
-[&#39;Adam&#39;, &#39;Lisa&#39;, &#39;Bart&#39;, &#39;&#39;, &#39;123&#39;, 456]
-
-# 将str转float:
-from functools import reduce
-def str2float(s):
-    s1, s2 = s.split(&#39;.&#39;)
-    num = reduce(lambda x, y: x * 10 + y, map(int, s1 + s2))
-    return num / (10 ** len(s2)) # **表示幂运算，*表示乘法
-
-str2float(&#39;123.456&#39;)
-123.456
-</code></pre></li>
-</ul>
-
-<h5 id="toc_5">c. filter()函数</h5>
-
-<ul>
-<li>用于过滤序列；接收的参数数量及类型与map()函数的相同，函数参数依次作用于序列参数中的每个元素，然后根据其返回值是True还是False决定保留还是丢弃该元素</li>
-<li><p>函数返回的结果是一个是Iterator（惰性序列），可以通过list()函数将转换为list对象</p>
-
-<pre><code class="language-python"># 过滤序列中的空字符串:
-&gt;&gt;&gt; def no_empty(s):
-...     return s and s.strip()
-...
-&gt;&gt;&gt; l = [&#39;A&#39;, &#39;&#39;, &#39;B&#39;, None, &#39;C&#39;, &#39; &#39;]
-&gt;&gt;&gt; list(filter(no_empty, l))
-[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]
-
-# 求100以内的素数（埃氏筛法：筛选掉2、3、5的倍数）:
-def print100():
-    for n in primes():
-        if n &lt; 100:
-            print(n)
-        else:
-            break
-
-def primes():  # 返回素数生成器
-    yield 2
-    it = _odd_iter()
-        while True:
-           n = next(it)
-           print(&#39;primes...&#39;)
-           yield n
-           # 注意每次都会根据n动态生成新的筛选函数；it对自身进行过滤，每次过滤也会将前面的质数及其倍数过滤掉
-           it = filter(_not_divisible(n), it)
-
-def _odd_iter():  # 构建一个从3开始的奇数序列
-   n = 1
-   while True:
-           n += 2
-           print(&#39;_odd_iter...&#39;)
-           yield n
-
-def _not_divisible(n):  # 筛选函数
-    return lambda x: x % n &gt; 0
-
-# 回数（从左向右和从右向左都一样，如12321）:
-def is_palindrome(n):
-    s = str(n)
-    return s == s[::-1] # str没有反转reverse()方法，但可使用反向切片s[::-1]实现
-
-list(filter(is_palindrome, range(1, 1000)))
-</code></pre></li>
-</ul>
-
-<h5 id="toc_6">d. sorted()函数</h5>
-
-<ul>
-<li>用于排序list；可接受一个函数参数key实现自定义排序，还可接收Bool参数reverse实现反向排序，参数key和reverse可以省略</li>
-<li><p>两个元素x和y，若x&lt;y则返回-1，若x==y则返回0，若x&gt;y则返回1</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21])
-[-21, -12, 5, 9, 36]
-
-&gt;&gt;&gt; sorted([36, 5, -12, 9, -21], key=abs)
-[5, 9, -12, -21, 36]
-
-&gt;&gt;&gt; sorted([&#39;bob&#39;, &#39;about&#39;, &#39;Zoo&#39;, &#39;Credit&#39;], key=str.lower)
-[&#39;about&#39;, &#39;bob&#39;, &#39;Credit&#39;, &#39;Zoo&#39;]
-
-&gt;&gt;&gt; sorted([&#39;bob&#39;, &#39;about&#39;, &#39;Zoo&#39;, &#39;Credit&#39;], key=str.lower, reverse=True)
-[&#39;Zoo&#39;, &#39;Credit&#39;, &#39;bob&#39;, &#39;about&#39;]
-</code></pre></li>
-</ul>
-
-<h5 id="toc_7">5.3 返回函数</h5>
-
-<ul>
-<li>函数也可以作为返回值</li>
-<li><strong>在外部函数lazy_sum中定义了内部函数sum，内部函数sum可以引用外部函数lazy_sum的参数和局部变量；当外部函数lazy_sum返回的是内部函数sum时，相关参数、变量将保存在返回的函数中，这种情况称为“闭包”</strong></li>
-<li>注意：每次调用外部函数lazy_sum，即使传入相同的参数都是返回一个内部函数sum对象</li>
-<li>闭包返回的函数并没有立即执行，直到调用了 <code>返回值()</code> 才执行</li>
-<li><p><strong>闭包返回的函数不要引用循环变量或后续会发生变化的变量；若一定要引用则应该再创建一个内部函数，用新创建的内部函数的参数 <code>绑定</code> 该循环变量的当前值，这样无论该循环变量后续发生变化，已绑定到内部函数的参数的当前值不会受影响</strong></p>
-
-<pre><code class="language-python">def lazy_sum(*args):
-    def sum():
-        ax = 0
-        for n in args:  # 引用了外部函数lazy_sum的参数args
-              ax += n
-        return ax
-    return sum
-
-&gt;&gt;&gt; f = lazy_sum(1, 3, 5, 7, 9)
-&gt;&gt;&gt; f
-&lt;function lazy_sum.&lt;locals&gt;.sum at 0x0000000000D108C8&gt;
-&gt;&gt;&gt; f()
-25
-&gt;&gt;&gt; f1 = lazy_sum(1, 3, 5, 7, 9)
-&gt;&gt;&gt; f2 = lazy_sum(1, 3, 5, 7, 9)
-&gt;&gt;&gt; f1 == f2
-False
-
-# 循环变量问题（闭包）:
-def count():
-    fs = []
-    for i in range(1, 4):
-        def f():
-            return i * i
-        fs.append(f)  # 仅仅添加f函数到数组中，f函数没有执行
-    return fs
-
-&gt;&gt;&gt; f1, f2, f3 = count()  # 取前三个元素依次赋值给f1、f2、f3
-&gt;&gt;&gt; f1()
-9
-&gt;&gt;&gt; f2()
-9
-&gt;&gt;&gt; f3()
-9
-
-# 解决循环变量问题（闭包）:
-def count():
-    fs = []
-    for i in range(1, 4):
-        def g(j): # 再包装一层函数
-            def f():
-                return j * j
-            return f
-        fs.append(g(i)) # g(i)立即执行，当前的i值被传递到f函数中了（虽然还是仅仅添加f函数到数组中，f函数没有执行）
-    return fs
-
-&gt;&gt;&gt; f1, f2, f3 = count()
-&gt;&gt;&gt; f1()
-1
-&gt;&gt;&gt; f2()
-4
-&gt;&gt;&gt; f3()
-9
-# 或者将g函数提取出来
-def count():
-     def g(j):
-         def f():
-             return j * j
-         return f
-     fs = []
-     for i in range(1, 4):
-         fs.append(g(i))
-     return fs
-
-&gt;&gt;&gt; f1, f2, f3 = count()
-&gt;&gt;&gt; f1()
-1
-&gt;&gt;&gt; f2()
-4
-&gt;&gt;&gt; f3()
-9
-</code></pre></li>
-</ul>
-
-<h5 id="toc_8">5.4 匿名函数</h5>
-
-<ul>
-<li>使用关键字<code>lambda</code>表示匿名函数，其格式为 <code>lambda 函数的形参列表 : 函数的返回值表达式语句</code> ，返回值表达式语句就是使用该表达式的运算结果作为该匿名函数的返回值，不需要写return</li>
-<li><strong>lambda可以省略函数的形参列表，注意此时lambda与:之间不能有空格</strong></li>
-<li>匿名函数没有名字，不必担心函数名冲突</li>
-<li><p>匿名函数也是一个函数对象；可以把匿名函数赋值给要给一个变量，也可以把匿名函数作为返回值返回</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; list(map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
-[1, 4, 9, 16, 25, 36, 49, 64, 81]
-&gt;&gt;&gt; f = lambda x: x * x
-&gt;&gt;&gt; f
-&lt;function &lt;lambda&gt; at 0x0000000000D10B70&gt;
-&gt;&gt;&gt; f(5)
-25
-
-# lambda省略函数参数
-&gt;&gt;&gt; r = lambda: 5
-&gt;&gt;&gt; r
-&lt;function &lt;lambda&gt; at 0x1032f5f28&gt;
-&gt;&gt;&gt; r()
-5
-</code></pre></li>
-</ul>
-
-<h5 id="toc_9">5.5 装饰器（Decorator）</h5>
-
-<ul>
-<li>若要增强函数的功能，但又不希望修改函数的定义，这种在代码运行期间动态增加功能（比如在now()函数调前后增加自动打印日志功能）的方式称为“装饰器（Decorator）”</li>
-<li><strong>装饰器（Decorator）是一个返回值为函数的高阶函数；接收一个函数作为参数并返回一个新的函数，附加了新功能</strong></li>
-<li><p>函数对象都有一个__name__属性表示该函数的名称</p>
-
-<pre><code class="language-python">def now():
-    print(&#39;2015-3-25&#39;)
-
-f = now
-now.__name__  # &#39;now&#39;
-f.__name__  # &#39;now&#39;
-
-# 增强now函数功能（常规方式）:
-def log(func):
-    print(&#39;call %s()&#39; % func.__name__) # 这里只是打印日志，还可以有其它操作
-    return func
-# 调用：f = log(now)、f()
-# 有缺陷：a. 执行log(now)时，f()还未执行时，但日志（增强功能）打印了；
-#        b. 当now函数是有参数时，log函数无法获取now调用时传入的参数
-</code></pre>
-
-<pre><code class="language-python"># 增强now函数功能（使用装饰器，完美解决上述两个问题）:
-#  a. 因为要延迟执行日志（增强功能）打印，所以需要新建内部函数，将相关代码加到内部函数中，之后并返回该内部函数
-#  b. wrapper(*args, **kw)中的*args, **kw表示接受任意参数，可以为空；
-
-# 因为返回的需要还是原来的func函数对象（这样就不用修改调用方式），但是本质是wrapper函数对象，
-# 所以wrapper的参数列表应该和func一致，但是func是不确定的（任何函数都可以是func），所以参数列表需要写为任意参数的格式
-def log(func):
-        def wrapper(*args, **kw):
-            print(&#39;call %s()&#39; % func.__name__)
-            print(&#39;%s, %s&#39; % (args, kw))
-            return func(*args, **kw) 
-            # wrapper函数执行时，调用执行原来的func函数，返回值为func函数的返回值
-        return wrapper
-# 调用：f= log(now)、f()
-
-# 最好借助python的@语法，把Decorator置于“要被增强”函数的定义处，
-# 这样“要被增强”函数就被当做参数传入到Decorator中，并且被增强后的函数wrapper会被自动赋值给定义时的函数的名称变量
-@log # log就是一个Decorator，相当于执行了now = log(now)
-def now():
-    print(&#39;2015-3-25&#39;)
-
-now.__name__  # &#39;wrapper&#39;   
-now()
-# 输出结果：
-call now()
-(), {}
-2015-3-25
-</code></pre>
-
-<pre><code class="language-python"># 增强now函数功能（Decorator带参数）:
-# 因为@log(&#39;xx&#39;)相当于now = log(&#39;xx&#39;)(now)，执行了两次，所以需要再包装一层函数，
-def log(text): # 该text参数为Decorator的参数
-    def decorator(func): # 这一块相当于之前（Decorator不带参数）的log
-        print(&#39;test...&#39;)
-        def wrapper(*args, **kw):
-            print(&#39;%s %s()&#39; % (text, func.__name__)) 
-            print(&#39;%s, %s&#39; % (args, kw))
-            return func(*args, **kw)
-        return wrapper
-    return decorator
-
-@log(&#39;xx&#39;) # 相当于now = log(&#39;xx&#39;)(now)
-def now():
-    print(&#39;2015-3-25&#39;)
-
-test... # 此时只是定义now，还没有调用now()，打印test...
-
-now()
-# 输出结果：
-xx now()
-(), {}
-2015-3-25
-</code></pre></li>
-<li><p><strong>@log等价于func = log(func)，@log(&#39;xx&#39;)等价于func = log(&#39;xx&#39;)(func)</strong></p></li>
-<li><p><strong>@log()和@log是不一样的，@log()等价于func = log()(func)</strong></p></li>
-<li><p>经过Decorator装饰后的函数，其的__name__已经发生了变化；若Decorator返回的函数名称为&#39;xyz&#39;（原来为&#39;now&#39;），则now.__name__就为&#39;xyz&#39;</p></li>
-<li><p>有些依赖函数签名的代码，需要保留原始函数的__name__等属性，否则执行就会出错</p></li>
-<li><p>保留原始函数的__name__的方式：a. 手动赋值，wrapper.__name__ = func.__name__；b. 使用Python内置的functools.wraps(func)</p>
-
-<pre><code class="language-python">import functools
-def log(func):
-    @functools.wraps(func) 
-    # 在定义wrapper()的前面添加此代码，相当于wrapper.__name__ = func.__name__
-    def wrapper(*args, **kw):
-        print(&#39;call %s()&#39; % func.__name__)
-        return func(*args, **kw)
-    return wrapper
-
-@log
-def now():
-    print(&#39;2015-3-25&#39;)
-
-now.__name__  # &#39;now&#39;
-</code></pre></li>
-<li><p>在OOP的设计模式中，Decorator被称为装饰模式；OOP的装饰模式需要通过继承和组合来实现，而Python除了支持OOP的Decorator（用类实现），还直接从语法层次支持Decorator（用函数实现）</p></li>
-<li><p>练习：编写Decorator，使其能在函数调用前后打印&#39;begin call&#39;和&#39;end call&#39;，并且同时支持@log和@log(&#39;execute&#39;)</p>
-
-<pre><code>import functools
-def log(msg):
-     # callable(obj)：检查obj对象是否可以被调用；若可以则obj是函数
-    if callable(msg): # 可调用，说明此时的log就是不带参数的@log
-        func = msg
-        @functools.wraps(func)
-        def wrapper(*args, **kw):
-            print(&#39;no params, begin call&#39;)
-            f = func(*args, **kw)
-            print(&#39;no params, end call&#39;)
-            return f
-        return wrapper
-    else:
-        text = msg
-        def decorator(func):
-            @functools.wraps(func)
-            def wrapper(*args, **kw):
-                print(&#39;with params, begin call, %s&#39; % text)
-                f = func(*args, **kw)
-                print(&#39;with params, end call&#39;)
-                return f
-            return wrapper
-        return decorator
-
-&gt;&gt;&gt; from testpy import log
-&gt;&gt;&gt; @log
-... def f():
-...     print(&#39;haha&#39;)
-... 
-&gt;&gt;&gt; f()
-no params, begin call
-haha
-no params, end call
-
-&gt;&gt;&gt; @log(&#39;execute&#39;)
-... def f():
-...     print(&#39;haha&#39;)
-... 
-&gt;&gt;&gt; f()
-with params, begin call, execute
-haha
-with params, end call
-</code></pre></li>
-</ul>
-
-<h5 id="toc_10">5.6 偏函数</h5>
-
-<ul>
-<li>Python的functools.partial提供了偏函数（Partical function）功能；偏函数就是把一个函数的某些参数固定住（设置默认值），然后返回一个新的函数，这样调用新函数更简单</li>
-<li><p>创建偏函数时，可以接收函数对象、*args和**kw三个参数</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; int(&#39;12345&#39;)  # int()函数默认按照10进制转换
-12345
-&gt;&gt;&gt; int(&#39;12345&#39;, base=8)  # 可以设置int()函数的base默认关键字参数，按照base参数进制进行转换
-5349
-&gt;&gt;&gt; int(&#39;12345&#39;, 16)
-74565
-
-# 若需要进行大量二进制字符串转换，每次都传入base=2比较麻烦；可以自定义一个int2函数，默认将base=2传入
-&gt;&gt;&gt; def int2(x, base=2):
-...     return int(x, base)
-... 
-&gt;&gt;&gt; int2(&#39;1000000&#39;)
-64
-
-# functools.partial可以自动创建一个这样的函数（偏函数），不需要我们自己定义int2()函数
-&gt;&gt;&gt; import functools 
-&gt;&gt;&gt; int22 = functools.partial(int, base=2)  
-&gt;&gt;&gt; int22(&#39;1000000&#39;)
-64
-
-&gt;&gt;&gt; max22 = functools.partial(max, 10)
-&gt;&gt;&gt; max22(5, 6, 7)
-10
 </code></pre></li>
 </ul>
 ]]></content>

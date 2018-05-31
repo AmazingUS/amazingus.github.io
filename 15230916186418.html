@@ -1,0 +1,1032 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+     Android编程权威指南 笔记(13~18) - TIME TO GO 
+  </title>
+   
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+  <link rel="stylesheet" href="asset/css/foundation.min.css" />
+  <link rel="stylesheet" href="asset/css/docs.css" />
+  <script src="asset/js/vendor/modernizr.js"></script>
+  <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script type="text/javascript">
+    function before_search() {
+      var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+      document.getElementById('search_q').value = searchVal;
+      return true;
+    }
+  </script>
+</head>
+
+<body class="antialiased hide-extras">
+  <div class="marketing off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+
+
+      <nav class="top-bar docs-bar hide-for-small" data-topbar>
+        <section class="top-bar-section">
+          <div class="row">
+            <div style="position: relative;width:100%;">
+              <div style="position: absolute; width:100%;">
+                <ul id="main-menu" class="left">
+                  
+                  <li id="">
+                    <a target="self" href="index.html">Home</a>
+                  </li>
+                  
+                  <li id="">
+                    <a target="_self" href="archives.html">Archives</a>
+                  </li>
+                  
+                </ul>
+                <ul class="right" id="search-wrap">
+                  <li>
+                    <form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+                      <input type="hidden" id="search_q" name="q" value="" />
+                      <input tabindex="1" type="search" id="search_input" placeholder="Search" />
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </nav>
+
+      <nav class="tab-bar show-for-small">
+        <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+          <span> &nbsp; TIME TO GO</span>
+        </a>
+      </nav>
+
+      <aside class="left-off-canvas-menu">
+        <ul class="off-canvas-list">
+          <li>
+            <a href="index.html">HOME</a>
+          </li>
+          <li>
+            <a href="archives.html">Archives</a>
+          </li>
+          <li>
+            <a href="about.html">ABOUT</a>
+          </li>
+          <li>
+            <label>Categories</label>
+          </li>
+          
+        </ul>
+      </aside>
+      <a class="exit-off-canvas" href="#"></a>
+      <section id="main-content" role="main" class="scroll-container"> <script type="text/javascript">
+  $(function () {
+    $('#menu_item_index').addClass('is_active');
+    $('#sidebar').parent().parent().hide();
+  });
+</script>
+
+<div class="row">
+  <div class="large-12 medium-12 columns">
+    <div class="markdown-body article-wrap">
+
+      <div class="article">
+        
+        <h1>Android编程权威指南 笔记(13~18)</h1>
+        <div class="read-more clearfix">
+          <span class="date">2018/4/7</span>
+           
+          <span class="comments">
+             
+          </span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <ul>
+<li>
+<a href="#toc_0">第13章 工具栏</a>
+<ul>
+<li>
+<a href="#toc_1">13.1 AppCompat</a>
+</li>
+<li>
+<a href="#toc_2">13.2 工具栏菜单</a>
+</li>
+<li>
+<a href="#toc_3">13.3 实现层级式导航</a>
+</li>
+<li>
+<a href="#toc_4">13.4 可选菜单项</a>
+</li>
+<li>
+<a href="#toc_5">13.5 深入学习：工具栏和操作栏</a>
+</li>
+<li>
+<a href="#toc_6">13.6、13.7 调整练习：删除crime记录、复数字符串资源</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">第14章 SQLite数据库</a>
+<ul>
+<li>
+<a href="#toc_8">14.0 概述</a>
+</li>
+<li>
+<a href="#toc_9">14.1 定义schema</a>
+</li>
+<li>
+<a href="#toc_10">14.2 创建初始数据库</a>
+</li>
+<li>
+<a href="#toc_11">14.4 写入数据库</a>
+</li>
+<li>
+<a href="#toc_12">14.5 读取数据库</a>
+</li>
+<li>
+<a href="#toc_13">14.7 深入学习：应用上下文</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_14">第15章 隐式Intent</a>
+<ul>
+<li>
+<a href="#toc_15">15.0 概述</a>
+</li>
+<li>
+<a href="#toc_16">15.4 使用隐式intent</a>
+</li>
+<li>
+<a href="#toc_17">15.5 挑战练习：ShareCompat</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_18">第16章 使用intent拍照</a>
+<ul>
+<li>
+<a href="#toc_19">16.2 文件存储</a>
+</li>
+<li>
+<a href="#toc_20">16.3 使用相机intent</a>
+</li>
+<li>
+<a href="#toc_21">16.4 缩放和显示位图</a>
+</li>
+<li>
+<a href="#toc_22">16.5 功能声明</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_23">第17章 双版面主从用户界面</a>
+<ul>
+<li>
+<a href="#toc_24">17.1 增加布局灵活性</a>
+</li>
+<li>
+<a href="#toc_25">17.2 activity：fragment的托管者</a>
+</li>
+<li>
+<a href="#toc_26">17.3 深入学习：设备屏幕尺寸的确定</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_27">第18章 应用本地化</a>
+<ul>
+<li>
+<a href="#toc_28">18.1 资源本地化</a>
+</li>
+<li>
+<a href="#toc_29">18.2 配置修饰符</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<span id="more"></span><!-- more -->
+
+<h3 id="toc_0">第13章 工具栏</h3>
+
+<h4 id="toc_1">13.1 AppCompat</h4>
+
+<ul>
+<li><p><strong><code>工具栏</code>可以安置菜单选项、提供应用导航；Android 5.0（Lollipop）引入了工具栏，在Lollipop之前用于导航、提供菜单操作的是<code>操作栏</code>， 工具栏和操作栏有些类似，其基于操作栏进化而来，界面更美观，使用更方便；</strong></p></li>
+<li><p>为了兼容低版本系统，Google将工具栏集成到AppCompat库中；</p></li>
+<li><p><strong>使用AppCompat库需要进行以下三步：添加AppCompat库、使用一种AppCompat主题、确保所有的activity都是AppCompatActivity子类；现在Android Studio新建项目都会默认使用该库；</strong></p></li>
+<li><p>AppCompat库自带三种主题：Theme.AppCompat（黑色主题）、Theme.AppCompat.Light（浅色主题）、Theme.AppCompat.Light.DarkActionBar（带黑色工具栏的浅色主题）；</p></li>
+<li><p>主题可以给应用配置，也可以给activity配置，都是配置在AndroidManifest.xml文件中；主题定义在res/values/styles.xml文件中，若在多个版本的style.xml文件中定义了相同名称的主题，则是为了适配不同设备系统；</p></li>
+<li><p>为了让我们自定义的Activity都继承AppCompatActivity，并且同时支持fragment，Google让AppCompatActivity继承于FragmentActivity；</p></li>
+</ul>
+
+<h4 id="toc_2">13.2 工具栏菜单</h4>
+
+<ul>
+<li><p>工具栏菜单由菜单项（操作项）组成，位于工具栏的右上方；</p></li>
+<li><p><strong>菜单是一种类似于布局的资源文件，定义在res/menu目录下，Android会自动生成相应的资源ID（实例化菜单时使用）；右击res目录，New -&gt; <code>Android resource file</code>，<code>Resource type</code>选择 <code>Menu类型</code> 即定义创建XML菜单文件；</strong></p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+      xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;
+    &lt;item
+        android:id=&quot;@+id/menu_item_new_crime&quot;
+        android:icon=&quot;@android:drawable/ic_menu_add&quot;
+        android:title=&quot;@string/new_crime&quot;
+        app:showAsAction=&quot;ifRoom|withText&quot;/&gt;
+&lt;/menu&gt;
+</code></pre>
+
+<ul>
+<li><p>app:showAsAction属性指示菜单项是显示在工具栏上，还是隐藏于<code>溢出菜单(overflow menu，三个小点)</code>；该属性取值有：</p>
+
+<ul>
+<li>a. always：总是显示在工具栏上；</li>
+<li>b. never：总是隐藏于溢出菜单；</li>
+<li>c. ifRoom：有空间则显示在工具栏上；</li>
+<li>withText：让title和icon一起显示出来（但是不一定）；</li>
+</ul></li>
+<li><p>组合值<code>ifRoom|withText</code>：a. 若有足够大的空间则菜单项的图标和标题都显示在工具栏上；b. 若有图标大小范围的空间则仅显示图标，标题不显示（若长按图标提示出标题）；c. 若空间不能够显示任何项，则整个菜单隐藏于溢出菜单；</p></li>
+<li><p>出于兼容性考虑，AppCompat库需要使用app命名空间；由于早期的AppCompat库使用了该属性用在了操作栏（工具栏的前身）中；</p></li>
+</ul></li>
+<li><p>应用使用的图标有两种：系统图标（使用@android:drawable/XXX引用）、项目资源图标；建议不要使用系统图标，因为不同的系统的系统图标的显示风格差异比较大；</p></li>
+<li><p>项目资源图标的来源有三种方案：定制图标、将系统图标拷贝到项目中、使用Android Studio内置的<code>Android Asset Studio</code>工具定制（右击drawable目录，选择New -&gt; Image Asset，Asset Type选择<code>Action Bar and Tab Icons</code>进行定制）；</p></li>
+<li><p>Activity提供了管理菜单的相关回调方法；需要选项菜单时，Android会调用activity的onCreateOptionsMenu(Menu)方法；</p></li>
+<li><p><strong>在fragment中使用选项菜单时，有以下管理菜单的相关回调方法：</strong></p>
+
+<ul>
+<li><strong><code>public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)</code>：创建菜单，由FragmentManager来调用；在此函数中执行inflater.inflate(R.menu.fragment_crime_list, menu)将定义的XML菜单填充到Menu实例中；</strong></li>
+<li><strong><code>public void setHasOptionsMenu(boolean hasMenu)</code>：在fragment的onCreate()方法中调用该方法，指明该fragment是否需要接收管理菜单的相关回调方法（onCreateOptionsMenu方法）；需要菜单则调用setHasOptionsMenu(true);</strong></li>
+</ul></li>
+<li><p><strong>用户点击菜单中的菜单项时，fragment会收到<code>onOptionsItemSelected(MenuItem)</code>方法的回调请求，传入该方法的参数是一个描述用户选择的MenuItem实例，返回值为布尔值表示相应的响应是否已经完成；在该方法可以通过检查菜单项ID确定被选中的是哪个菜单项，进而做出相应的响应；</strong></p></li>
+</ul>
+
+<h4 id="toc_3">13.3 实现层级式导航</h4>
+
+<ul>
+<li><p><strong><code>后退键导航</code>又称为临时性导航，只能返回到上一次浏览过的用户界面；而<code>层级式导航</code>（hierarchical navigation，又称为ancestral navigation）可在应用内逐级向上导航；有了层级式导航，用户可点击工具栏左边的向上按钮向上导航；</strong></p></li>
+<li><p>从Android 4.1（API 16）开始，在AndroidManifest.xml中，给相关的activity添加parentActivityName属性就开启层级式导航；</p>
+
+<pre><code>&lt;activity android:name=&quot;.CrimePagerActivity&quot; android:parentActivityName=&quot;.CrimeListActivity&quot;&gt;
+&lt;/activity&gt;
+</code></pre></li>
+<li><p>层级式导航的工作原理（和点击后退键不同）：当用户点击工具栏的向上按钮时，会执行以下操作：</p>
+
+<pre><code class="language-java">Intent intent = new Intent(this, CrimeListActivity.class);
+intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+startActivity(intent);
+finish();
+</code></pre>
+
+<ul>
+<li><code>FLAG_ACTIVITY_CLEAR_TOP</code>：表示Android在回退栈中寻找指定的activity实例，若存在则弹出栈内所有其他activity，让启动的目标activity出现在栈顶（显示在屏幕上）；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_4">13.4 可选菜单项</h4>
+
+<ul>
+<li><p><code>getString(int resId, Object...formatArgs)</code>方法接受字符串资源中占位符的替换值；格式<code>%[index]$[type]</code>：index表示替换资源中第index个资源对应的位置，type表示所要替换的资源的类型（d为整型格式，s为字符串格式）；</p>
+
+<pre><code class="language-java">&lt;string name=&quot;subtitle_format&quot;&gt;%1$d crimes&lt;/string&gt;
+
+String subtitle = getString(R.string.subtitle_format, crimeCount);
+</code></pre></li>
+<li><p><code>((AppCompatActivity) activity).getSupportActionBar().setSubtitle(subtitle)</code>设置工具栏子标题（在工具栏的左侧主标题的下面）；由于兼容性问题，在AppCompat库中工具栏在很多地方仍被称为操作栏；</p></li>
+<li><p><strong>调用<code>getActivity().invalidateOptionsMenu();</code>主动重建工具栏；</strong></p></li>
+<li><p><strong><code>按向上按钮</code>和<code>按返回键</code>是有区别的；按向上按钮回退到的目标activity会被完全重建，故其中的实例变量值会丢失；解决方案有两种（但都不太理想）：覆盖向上导航的机制、父子控制器传递数据（子activity覆盖getParentActivityIntent()方法，用附带了extra信息的intent重建父activity）；</strong></p></li>
+<li><p><strong>设备旋转也会导致重建工具栏，可以通过onSaveInstanceState()方法实例状态保存机制解决工具栏状态的问题；</strong></p></li>
+</ul>
+
+<h4 id="toc_5">13.5 深入学习：工具栏和操作栏</h4>
+
+<ul>
+<li><p>操作栏的使用限制多，整个应用只能配置一个操作栏且位置及尺寸必须固定（在屏幕顶部）；</p></li>
+<li><p>工具栏的左边不再放置图标，右边菜单项的间距也更小；工具栏更灵活，没有上述限制；，其可以在同一屏配置多个，并且可以在任意位置摆放，尺寸可以定制；让每个fragment都有自己的工具栏，这比所有fragment共享一个位于屏幕顶部的工具栏方便多；</p>
+
+<p><img src="media/15230916186418/toolbar.png" alt="toolbar" style="width:370px;"/></p></li>
+</ul>
+
+<h4 id="toc_6">13.6、13.7 调整练习：删除crime记录、复数字符串资源</h4>
+
+<ul>
+<li><p>添加击删除菜单项，用户点后要调用子fragment的finish()方法回退到前一个activity界面；</p></li>
+<li><p>复数字符串资源（又称为量化字符串）：</p>
+
+<pre><code class="language-java">// 在strings.xml文件中定义复数字符串资源
+&lt;plurals name=&quot;subtitle_plural&quot;&gt;
+    &lt;item quantity=&quot;one&quot;&gt;%1$d crime&lt;/item&gt;
+    &lt;item quantity=&quot;other&quot;&gt;%1$d crimes&lt;/item&gt;
+&lt;/plurals&gt;
+
+// 使用getQuantityString方法正确处理单复数问题
+int crimeSize = crimeLab.getCrimes().size();
+String subtitle = getResources()
+        .getQuantityString(R.plurals.subtitle_plural, crimeSize, crimeSize);
+</code></pre></li>
+</ul>
+
+<h3 id="toc_7">第14章 SQLite数据库</h3>
+
+<h4 id="toc_8">14.0 概述</h4>
+
+<ul>
+<li>Android设备上的每个应用都有一个独立的沙盒目录；将文件保存在沙盒中可阻止其他应用甚至设备用户的访问；若设备被root就可以随意访问各种目录和文件了；应用的沙盒目录是<code>/data/data/[your package name]/</code>；</li>
+</ul>
+
+<h4 id="toc_9">14.1 定义schema</h4>
+
+<ul>
+<li><p>为了复用代码和简单（不用书写太多的sql语句），可以使用ORM（对象关系映射）；但在这里先不使用ORM，直接在Java代码中定义database schema（描述表名和数据字段）；</p></li>
+<li><p>以内部类的方式定义组织database schema，该类中描述定义表名、字段名的String常量，可用于sql语句的拼接、ContentValue中的键；</p>
+
+<pre><code class="language-java">public class XXDbSchema {
+    public static final class YYTable {
+        public static final String NAME = &quot;aa&quot;;
+        public static final class Cols {
+            public static final String UUID = &quot;uuid&quot;;
+            public static final String TITLE = &quot;title&quot;;
+        }
+    }
+
+    public static final class ZZTable {
+        public static final String NAME = &quot;bb&quot;;
+        public static final class Cols {
+            public static final String UUID = &quot;uuid&quot;;
+            public static final String TITLE = &quot;name&quot;;
+        }
+    }
+}
+</code></pre></li>
+</ul>
+
+<h4 id="toc_10">14.2 创建初始数据库</h4>
+
+<ul>
+<li><p>有了database schema就可以创建数据库了；<code>openOrCreateDatabase()</code>、<code>databaseList()</code>是Android提供的Context底层方法，用来打开数据库文件并将其转换为<code>SQLiteDatabase</code>实例；</p></li>
+<li><p>在实践中，建议使用数据库应遵循以下步骤：</p>
+
+<ul>
+<li>1) 确认目标数据库是否存在；</li>
+<li>2) 若不存在则先创建数据库，然后创建数据表并初始化数据；</li>
+<li>3) 若存在则打开并确认database schema是否为最新的；</li>
+<li>4) 若schema是旧版本，则先升级到最新版本；</li>
+</ul></li>
+<li><p><strong>以上工作可借助Android的<code>SQLiteOpenHelper</code>类处理；使用该类打开SQLiteDatabase的繁杂工作就简单多了；</strong></p></li>
+<li><p><strong>具体操作就是创建XXDateBaseHelper类继承于SQLiteOpenHelper，构造方法需要传入context对象、数据库文件名、数据库版本号参数，重写onCreate（首次创建数据库调用）、onUpgrade（XXDateBaseHelper中的版本高时，升级数据库调用），并在这些方法中执行执行相关sql语句操作</strong>；</p></li>
+<li><p><strong>调用sqliteOpenHelper的<code>getWritableDatabase()</code>方法获取<code>SQLiteDatabase</code>对象，并且会自动判断是否需要调用自身的onCreate、onUpgrade方法；之后可以使用该对象执行增删改查操作；</strong></p></li>
+<li><p>SQLite数据库创建表字段时，可以不指定表字段数据类型；</p></li>
+<li><p>数据库文件保存在<code>/data/data/[your package name]/databases/</code>中；</p></li>
+</ul>
+
+<h4 id="toc_11">14.4 写入数据库</h4>
+
+<ul>
+<li><p><strong>可以调用sqliteDatabase的<code>execSQL()</code>方法直接执行sql语句完成相关操作，需要书写sql语句，也可以使用封装好的insert、update等方法；</strong></p></li>
+<li><p>负责处理数据库写入和更新操作的辅助类是<code>ContentValues</code>，其是一个键值存储类，类似于之前的Bundle；ContentValues的键就是数据表的字段名，值为数据表的字段值；</p></li>
+<li><p>sqliteDatabase的<code>insert(String, String, ContentValues)</code>方法：</p>
+
+<ul>
+<li>用于插入记录，参数依次为数据库表名、nullColumnHack、ContentValues；</li>
+<li>nullColumnHack用于处理ContentValues空值的情况；正常情况下，若ContentValues空值则insert()方法调用失败；此时若设置nullColumnHack为某个字段名，则可以插入一条该字段值为null的记录；</li>
+<li>一般情况下，nullColumnHack传入null；</li>
+</ul></li>
+<li><p>sqliteDatabase的<code>update(String, ContentValues, String, String[])</code>方法：</p>
+
+<ul>
+<li>用于更新记录，参数与insert的类似；</li>
+<li>第三个参数为创建where子句，第四个参数String[]为where子句的参数值；比如<code>update(CrimeTable.NAME, values, &quot;uuid = ?&quot;, new String[]{ uuidString })；</code></li>
+<li>使用where参数形式而不是直接拼接where参数到sql语句中：可以防止SQL注入，使用where参数形式，会格式化传入的参数字符串；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_12">14.5 读取数据库</h4>
+
+<ul>
+<li><p>sqliteDatabase的<code>public Cursor query(String table, String[] columns, tring where, String[] whereArgs, String groupBy, String having, String orderBy, String limit)</code>方法：</p>
+
+<ul>
+<li>用于查询记录，不需要的参数传入null即可；</li>
+<li>该方法返回一个Cursor对象（游标），可以通过该对象获取某条记录的某个字段的值，比如<code>cursor.getString(cursor.getColumnIndex(CrimeTable.Cols.UUID));</code>；</li>
+</ul></li>
+<li><p><strong>通过遍历cursor取出需要字段的值构造模型对象；为了复用代码，可以将cursor到模型对象的转换过程封装起来；</strong></p>
+
+<ul>
+<li><strong>可以直接定义使用一个转换方法，也可以定义一个Cursor子类，并添加转换方法，使用时直接通过cursor获取模型对象；</strong></li>
+<li><strong>Cursor是接口，系统提供实现了默认实现Cursor的CursorWrapper类；创建定义Cursor子类继承CursorWrapper类最简单；</strong></li>
+</ul>
+
+<pre><code class="language-java">try {
+    cursor.moveToFirst(); // 将游标移到第一条记录位置
+    while (!cursor.isAfterLast()) { // 判断当前游标是否是在最后的数据的之后（没有数据）
+        crimes.add(cursor.getCrime());
+        cursor.moveToNext(); // 将游标移到下一条记录位置
+    }
+} finally {
+    cursor.close(); // 关闭游标（一定）
+}
+</code></pre></li>
+<li><p><strong>之前使用单例提供数据，RecyclerView可以直接刷新数据（notifyDataSetChanged()）；现在使用数据库提供数据，RecyclerView的的mAdapter需要<code>重新设置数据</code>才能刷新数据；</strong></p></li>
+</ul>
+
+<h4 id="toc_13">14.7 深入学习：应用上下文</h4>
+
+<ul>
+<li><strong>在使用单例、数据库时，需要使用context对象的地方需要不能直接传入activity（context），而应该是application（<code>context.getApplicationContext()</code>）；因为在不同页面间进行导航，activity可能会被销毁而application对象不会被销毁；</strong></li>
+</ul>
+
+<h3 id="toc_14">第15章 隐式Intent</h3>
+
+<h4 id="toc_15">15.0 概述</h4>
+
+<ul>
+<li><p>Intent对象用来向操作系统说明需要处理的任务；</p></li>
+<li><p><strong>在Android系统中，可以利用<code>隐式intent</code>启动其他应用的activity；</strong></p>
+
+<ul>
+<li><strong>只需要描述要完成的任务，操作系统会找到合适的应用并启动相应的activity；</strong></li>
+<li><strong>若找到多个符合的activity，会提供一个可选应用列表供用户选择；</strong></li>
+<li><strong>使用隐式intent可以利用其他应用完成常见任务；</strong></li>
+</ul></li>
+<li><p><strong>在<code>显式intent</code>中，需要指定要启动的activity类，之后操作系统会负责启动它；</strong></p></li>
+</ul>
+
+<h4 id="toc_16">15.4 使用隐式intent</h4>
+
+<ul>
+<li><p>隐式intent的主要组成部分：</p>
+
+<ul>
+<li><strong>a. 要执行的操作</strong>
+
+<ul>
+<li>通常以Intent类中的常量表示；比如，要访问URL使用Intent.ACTION_VIEW，要发邮件使用Intent.ACTION_SEND；</li>
+</ul></li>
+<li><strong>b. 要访问数据的位置</strong>
+
+<ul>
+<li>可能是设备之外的资源，比如网页URL、某个文件URI，或ContentProvider中某条记录的某个内容URI（content URI）；</li>
+</ul></li>
+<li><strong>c. 操作涉及的数据的类型（MIME形式）</strong>
+
+<ul>
+<li>比如text/html、audio/mpeg3；</li>
+<li>若一个intent包含数据的位置，通常可以从中推测出数据的类型；</li>
+</ul></li>
+<li><strong>d. 可选的类别</strong>
+
+<ul>
+<li><strong><code>操作</code>用于描述具体做什么，而<code>类别</code>通常用来描述何时何地或者如何使用某个activity；</strong></li>
+<li>比如，Android的<code>android.intent.category.LAUNCHER类别</code>表明activity应该显示在顶级应用启动器中，<code>android.intent.category.INFO类别</code>表明activity向用户显示了包信息，但其不应该出现在启动器中；</li>
+</ul></li>
+</ul></li>
+<li><p><strong>一个查看某个网址的简单隐式intent会包括一个Intent.ACTION_VIEW操作，以及某个具体URL网址；</strong></p></li>
+<li><p><strong>让某个activity对外宣称可以处理某些操作，需要在AndroidManifest.xml文件中给该activity配置intent-filter子标签；</strong>比如，处理打开URL的操作：</p>
+
+<pre><code>&lt;activityandroid:name=&quot;.BrowserActivity&quot; &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.VIEW&quot; /&gt;
+        &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;
+        &lt;data android:scheme=&quot;http&quot; android:host=&quot;www.bignerdranch.com&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre>
+
+<ul>
+<li><strong>action：告诉操作系统，该activity能够胜任指定任务；</strong></li>
+<li><strong>category：可选的类别；但必须明确声明一下<code>DEFAULT类别</code>告诉操作系统，该activity愿意处理该任务；绝大多数的隐式intent都隐含有DEFAULT类别；</strong></li>
+</ul></li>
+<li><p><strong>隐式intent也可以包含extra信息，但是操作系统在寻找合适的activity时是不会使用该信息的；</strong></p></li>
+<li><p><strong>显式intent也可以使用<code>隐式intent的操作和数据部分</code>，这相当于要求特定activity去处理特定任务；</strong></p></li>
+<li><p>隐式intent（发送消息）：</p>
+
+<pre><code class="language-java">Intent i = new Intent(Intent.ACTION_SEND);
+i.setType(&quot;text/plain&quot;);
+i.putExtra(Intent.EXTRA_TEXT, getCrimeReport());
+i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.crime_report_subject));
+startActivity(i);
+</code></pre>
+
+<ul>
+<li><strong>传入的是一个定义操作的常量创建的隐式intent类别；还有一些其他形式的构造方法可用，这取决于要创建的隐式intent的类别；</strong></li>
+<li><strong><code>Intent.EXTRA_TEXT</code>、<code>Intent.EXTRA_SUBJECT</code>指定附加在intent的extra上的消息的内容、主题；这些key是Intent类中定义的常量，因此任何响应该intent的activity都知道如何使用这些常量所对应的值；</strong></li>
+</ul></li>
+<li><p>若响应隐式intent时没有出现activity列表，可能是该设备上仅有一个activity可以响应，也有可能是用户针对该隐式intent设置了<code>默认响应应用</code>；</p></li>
+<li><p><strong>让用户的默认响应应用的设置无效，每次都是显示activity列表，可以调用Intent的<code>public static Intent createChooser(Intent target, String title)</code>方法，传入之前创建的隐式intent、选择器标题，包装返回一个新的隐式intent，之后再调用startActivity()即可；</strong></p></li>
+<li><p><strong>从联系人应用中选择获取联系人信息，该隐式intent由操作以及数据获取位置组成，操作为Intent.ACTION_PICK，数据获取位置为ContactsContract.Contacts.CONTENT_URI；</strong></p></li>
+<li><p><strong>与显式intent一样，隐式Intent若获取启动activity的返回结果，需要调用startActivityForResult()方法并传入该隐式intent、请求码，之后再在onActivityResult()方法中接收数据；</strong></p></li>
+<li><p><strong>很多应用都会共享联系人信息，因此Android提供了一个深度定制的ContentProvider类用于处理联系人信息，该类实际上是对联系人的数据库的操作封装，屏蔽了数据库的内部结构，但是其也有query、Cursor等概念操作；</strong></p></li>
+<li><p><strong>上面以ACTION_PICK操作启动activity并要求返回结果，会在调onActivityResult()方法中接收到一个intent；该intent包括了数据URI（一个数据定位符，指向用户所选的联系人），可以使用ContentProvider类完成对联系人URI的访问，从而获取到实际的联系人数据；</strong></p>
+
+<pre><code class="language-java">Uri contactUri = data.getData();
+String[] queryFields = new String[]{ ContactsContract.Contacts.DISPLAY_NAME };
+Cursor c = getActivity().getContentResolver().query(contactUri, queryFields, null, null, null);
+
+try {
+    if (c.getCount() == 0) {
+        return;
+    }
+    c.moveToFirst();
+    String suspect = c.getString(0);
+    mCrime.setSuspect(suspect);
+    mSuspectButton.setText(suspect);
+} finally {
+    c.close();
+}
+</code></pre></li>
+<li><p><strong>由于使用<code>联系人应用</code>获取联系人的URI，<code>联系人应用</code>又有使用联系人数据库的全部权限，<code>联系人应用</code>会给返回intent中的URI数据添加<code>Intent.FLAG_GRANT_READ_URI_PERMISSION标志</code>（表示原activity可以获取使用联系人数据一次），故原activity不需要主动声明读取联系人数据库的权限；</strong></p></li>
+<li><p><strong>操作系统响应隐式intent时，若没有找到匹配的activity则应用会崩溃；解决办法是使用<code>PackageManager</code>类可以自检；</strong></p>
+
+<pre><code>PackageManager packageManager = getActivity().getPackageManager();
+if (packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAULT_ONLY) == null) {
+    // 无合适的activity
+}
+</code></pre>
+
+<ul>
+<li><strong>Android设备上安装了哪些组件以及包括哪些activity，PackageManager类全都知道；</strong></li>
+<li><strong>调用resolveActivity(Intent, int)方法，查找匹配给定Intent任务的activity；flag标志MATCH_DEFAULT_ONLY限定只搜索带CATEGORY_DEFAULT标志的activity；</strong></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_17">15.5 挑战练习：ShareCompat</h4>
+
+<ul>
+<li>Android支持库有个ShareCompat的类，其有一个内部类 IntentBuilder，使用该内部类创建发送消息的Intent略微方便一些；</li>
+</ul>
+
+<h3 id="toc_18">第16章 使用intent拍照</h3>
+
+<h4 id="toc_19">16.2 文件存储</h4>
+
+<ul>
+<li><p><strong>内部存储</strong></p>
+
+<ul>
+<li><p><strong>沙盒目录存储在<code>/data/data/&lt;packageName&gt;/</code>，仅供应用内部访问，使用context的以下方法进行访问；</strong></p>
+
+<ul>
+<li><p><strong><code>File getDir(String name, int mode)</code>：获取/data/data/<packageName>/中的子目录，需要传入子目录名称，不存在则创建；</strong></p></li>
+<li><p><strong><code>File getCacheDir()</code>：获取/data/data/<packageName>/cache目录，注意及时清理该目录；</strong></p></li>
+<li><p><strong><code>File getFilesDir()</code>：获取/data/data/<packageName>/files目录；</strong></p></li>
+<li><p><strong><code>String[] fileList()</code>：获取/data/data/<packageName>/files目录下的文件列表；之后可与其他方法配合使用，如openFileInput(String)；</strong></p></li>
+<li><p><strong><code>FileInputStream openFileInput(String name)</code>： 打开现有文件进行读取；</strong></p></li>
+<li><p><strong><code>FileOutputStream openFileOutput(String name, int mode)</code>：打开文件进行写入，若不存在则创建；</strong></p></li>
+</ul></li>
+</ul></li>
+<li><p><strong>若要共享文件给其他应用，或接受其他应用的文件有以下途径：</strong></p>
+
+<ul>
+<li><strong>a. openFileOutput(String name, int mode)方法：❎</strong>
+
+<ul>
+<li><strong>mode设置为Context.MODE_WORLD_READABLE，但该mode早已废弃，即使强制使用也是无效的；</strong></li>
+</ul></li>
+<li>b. <strong>外部存储：❎</strong>
+
+<ul>
+<li><strong>出于安全考虑，从Android 7.0开始已经禁止方式；</strong></li>
+<li><strong>Android 7.0禁止应用间通过<code>file:// URI</code>形式互访应用私有目录（主要是外部存储的；内部存储的默认就是无法访问的）</strong></li>
+<li><strong>同时，Android 7.0 SDK的StrictMode禁止在应用外部公开<code>file:// URI</code>，外部存储中的公共目录也不可以；比如，在应用中使用包含 file:// URI的Intent离开当前应用时会发生Crash；</strong></li>
+</ul></li>
+<li>c. <strong>ContentProvider：✅</strong>
+
+<ul>
+<li><strong>ContentProvider允许我们将内容URL暴露给其他应用；</strong></li>
+<li><strong>其他应用从内容URL下载或向其中写入文件，我们可以控制读或写；</strong></li>
+</ul></li>
+</ul></li>
+<li><p><strong>外部存储：</strong></p>
+
+<ul>
+<li><strong>Android 2时代，手机内置的存储空间有限，可以使用<code>外置SD卡</code>作为存储空间；故此时的外部存储就是外置SD卡，内部存储就是手机内置的存储空间；</strong></li>
+<li><strong>Android 4时代，手机厂商将之前<code>外置SD卡</code>内置到手机内部，此时的手机内置的存储空间包含两部分：内部存储和外部存储（更确切称为主外部存储），比如说手机存储空间为8G、16G、32G等都是包含这两部分的；</strong></li>
+<li><strong>但是即使是Android 4时代，有些手机在内置了SD卡的同时，还支持<code>外置TF卡</code>，此时该外置存储被Google称为<code>其他各类存储</code>；但是Google对该类型的存储<code>没有提供直接的API支持</code>，而且其也不建议手机支持外置TF卡，也不允许有相关的访问操作；但是系统是开源的，有些系统厂商修改原始API行为进而支持访问外置TF卡；</strong></li>
+<li><strong>为了从Android 2平滑过渡到Android 4，Google从Android 2提供访问外部存储的API的接口没有变化，虽然都是外部存储，但实现时访问的位置变了，之前外置SD卡，现在是内置的SD卡；比如<code>Environment.getExternalStorageDirectory()</code>方法这个Android 2时代遗留下的接口，现在返回的是<code>主外部存储</code>目录；</strong></li>
+<li><strong>对于开发者来说，API还都是外部存储，只是存储设备的位置的变化，其他没有任何区别；<code>其他各类存储</code>对于文件管理类型的App有意义，但对于其他类型的APP没有太大意义；</strong></li>
+</ul></li>
+<li><p><strong>内部存储、外部存储比较</strong></p>
+
+<ul>
+<li><p><strong>内部存储</strong></p>
+
+<ul>
+<li><strong>a. 空间是有限的；</strong></li>
+<li><strong>b. 该位置有每个应用的沙盒目录，其中有一些经常被访问到的文件，如Sqlite、SharedPreferences，也可以放置文件、缓存，但不建议存放；</strong></li>
+<li><strong>c. 而且APP的安装文件存放于此，内部存储不足将导致无法安装新的APP；</strong></li>
+</ul></li>
+<li><p><strong>外部存储</strong></p>
+
+<ul>
+<li><strong>a. 所有的Android设备至少都有一个外部存储（而且建议就一个）；</strong></li>
+<li>b. <strong>其中的文件目录可分为两种类型：一个是公共文件Public files、私有文件Private file；</strong></li>
+<li><strong>c. Public file：比如Picturs（Camera应用生成的照片就存放于此）、Movies等常见九大目录；文件可以被自由访问，其他应用共享该文件；若应用被卸载但产生的数据（比如在外部存储的根目录下创建一个文件夹存储数据）不被删除；</strong></li>
+<li><strong>d. Private files：位置在/Android/data/packageName&gt;/，就是应用存在于外部存储上的沙盒目录，可以放置应用的文件、缓存，若应用被卸载该目录也是一同被删除；在Android 7.0之前，虽然该目录是沙盒，但是由于是外部存储的原因，其他应用也是能访问的；</strong></li>
+</ul></li>
+</ul></li>
+<li><p><strong>访问外部存储</strong></p>
+
+<ul>
+<li><p><strong>context也提供了一些访问外部存储的方法（都是访问特定应用沙盒目录下的）：</strong></p>
+
+<ul>
+<li><strong><code>File getExternalCacheDir()</code>：获取主外部存储上的cache目录；</strong></li>
+<li><strong><code>File[] getExternalCacheDirs()</code>：获取多个外部存储上的cache目录（一般情况下就一个，可根据该方法判断手机是否有外置TF卡）；</strong></li>
+<li><strong><code>File getExternalFilesDir(String)</code>：获取主外部存储上的文件目录；字符串可以可以传入Environment的DIRECTORY_前缀字符串常量，如Environment.DIRECTORY_ PICTURES；</strong></li>
+<li><strong><code>File[] getExternalFilesDirs(String)</code>：获取多个外部存储上的文件目录；</strong></li>
+<li><strong><code>File[] getExternalMediaDirs()</code>：获取主外部存储上的Android存储图片、视频、音乐文件的所有目录；</strong></li>
+</ul></li>
+<li><p><strong>注意：外部存储的Public file可以通过调用<code>Environment.getExternalStorageDirectory()</code>后拼接相关路径的方式去访问；</strong></p></li>
+<li><p><strong>权限声明</strong></p>
+
+<ul>
+<li><p>为了安全控管，Android要求应用申请各类权限；比如读写外部存储需要获取相关权限，在manifest文件中声明uses-permission标签，比如</p>
+
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; android:maxSdkVersion=&quot;18&quot;/&gt;
+</code></pre></li>
+<li><p><strong>Android4.4(API19）放宽了一些权限管控的限制，比如context.getExternalFilesDir()返回的是该应用专用的文件目录，就没有必要再申请该目录的权限了使用其他的外部存储仍然需要）；</strong></p></li>
+<li><p><strong>uses-permission的maxSdkVersion属性，表示适用API级别最大为18，大于该版本时不再声明相关权限（否则在API 19时，应用也能访问其他的外部存储）；</strong></p></li>
+<li><p>通过其他应用访问相关目录，本应用不用申请权限；比如调用相机应用拍照存储，就不用再申请READ_EXTERNAL_STORAGE权限；</p></li>
+</ul></li>
+</ul></li>
+<li><p><strong>FileProvider</strong></p>
+
+<ul>
+<li><strong>若应用间仅仅共享文件，自己实现ContentProvider比较麻烦，Google提供了FileProvider便利类，只要做做参数配置就成完成一切；</strong></li>
+<li><p>使用步骤：</p>
+
+<ul>
+<li><p>a. 在AndroidManifes.xml中声明FileProvider为ContentProvider，并给与一个指定权限（这里为文件存储位置）；</p>
+
+<pre><code>&lt;provider
+android:name=&quot;android.support.v4.content.FileProvider&quot;
+android:authorities=&quot;com.bignerdranch.android.criminalintent.fileprovider&quot;
+android:exported=&quot;false&quot;
+android:grantUriPermissions=&quot;true&quot;&gt;
+&lt;/provider&gt;
+</code></pre>
+
+<ul>
+<li><strong><code>exported = &quot;false&quot;</code>：表示除了自己以及自己给予授权的人，其他任何人都不允许使用该FileProvider；</strong></li>
+<li><strong><code>grantUriPermissions=&quot;true&quot;</code>：给其他应用授权允许它们向你指定位置的URI写入文件；</strong></li>
+</ul></li>
+<li><p><strong>b. 使用一个XML资源文件配置FileProvider，告诉其应该暴露哪些文件；</strong></p>
+
+<pre><code>&lt;paths&gt;
+    &lt;files-path name=&quot;crime_photos&quot; path=&quot;.&quot;/&gt;
+&lt;/paths&gt;   
+</code></pre>
+
+<ul>
+<li>创建方式：右击app/res目录，选择New -&gt; Android resource file -&gt; 资源类型选XML；</li>
+<li><strong>上述XML表示把<code>私有存储空间的根路径path=&quot;.&quot;</code>映射为crime_photos，这个名字仅是供FileProvider内部使用，没有意义；</strong></li>
+<li><p><strong>在paths节点内部支持以下几个子节点：</strong></p>
+
+<pre><code>&lt;files-path/&gt;：代表context.getFilesDir()
+&lt;cache-path/&gt;：代表context.getCacheDir()
+&lt;external-files-path/&gt;：代表context.getExternalFilesDirs()
+&lt;external-cache-path/&gt;：代表getExternalCacheDirs()
+&lt;root-path/&gt;：代表设备的根目录new File(&quot;/&quot;)
+&lt;external-path/&gt;：代表Environment.getExternalStorageDirectory()
+</code></pre></li>
+</ul></li>
+<li><p>c. <strong>给AndroidManifes.xml中的FileProvider添加<code>meta-data</code>标签，让FileProvider能找到文件；</strong></p>
+
+<pre><code>&lt;provider
+    ......&gt;
+    &lt;meta-data
+     android:name=&quot;android.support.FILE_PROVIDER_PATHS&quot;
+     android:resource=&quot;@xml/files&quot;/&gt;
+&lt;/provider&gt;
+</code></pre></li>
+<li><p><strong>d. 通过FileProvider的</strong>getUriForFile()<strong>方法生成ContentProvider形式的URI，之后就能使用了；</strong></p>
+
+<pre><code class="language-java">Uri uri = FileProvider.getUriForFile(getActivity(),
+&quot;com.bignerdranch.android.criminalintent.fileprovider&quot;, mPhotoFile);
+captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+</code></pre></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_20">16.3 使用相机intent</h4>
+
+<ul>
+<li><p>相机intent定义在MediaStore类中，该类负责处理所有与多媒体相关的任务，其定义了一些公共接口，可用于处理图像、视频、音乐等多媒体任务；发送一个带<code>MediaStore.ACTION_IMAGE_CAPTURE</code>操作的intent，Android会启动相机activity拍照；</p></li>
+<li><p><strong>ACTION_CAPTURE_IMAGE打开相机应用，默认认只能拍摄低分辨率照片，照片会保存在onActivityResult()返回的Intent对象中；</strong></p></li>
+<li><p><strong>若要获取全尺寸照片，需要使用文件系统进行存储照片；可以通过给intent设置键为MediaStore.EXTRA_OUTPUT，值为存储路径的uri的extra来完成；为适配Android 7.0，这里存储路径的uri为FileProvider提供的位置；</strong></p></li>
+<li><p>拍照之前需要检测是否安装了相机应用，是否有地方存储照片；</p></li>
+<li><p><strong>查询是否有activity可以匹配我们指定intent任务的三种方式：</strong></p>
+
+<ul>
+<li><strong>a. packageManager的resolveActivity()：返回获得最适合intent的一个activity，没有返回null；</strong></li>
+<li><strong>b. intent的resolveActivity()： 同上，其内部调用了packageManager的resolveActivity()；</strong></li>
+<li><strong>c. packageManager的queryIntentActivities()：会返回所有成功匹配intent的activity；</strong></li>
+</ul></li>
+<li><p><strong>调用<code>FileProvider.getUriForFile()</code>会把本地文件路径转换为相机能看见的URI形式（ContentProvider形式的URI）；</strong></p></li>
+<li><p><strong>调用<code>context.grantUriPermission()</code>方法，传入<code>相机应用的activity信息</code>及<code>FLAG_GRANT_WRITE_URI_ PERMISSION</code>，给相机应用授予写入文件的权限，以此允许其在指定位置URI写文件（前提：声明FileProvider时要添加android:grantUriPermissions属性）；</strong></p>
+
+<pre><code class="language-java">@Override
+public void onClick(View v) {
+    Uri uri = FileProvider.getUriForFile(getActivity(), fileProviderAuthorityStr, mPhotoFile);
+    Log.e(TAG, &quot;file uri: &quot; + uri);
+    captureImageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+    List&lt;ResolveInfo&gt; cameraActivities = packageManager.queryIntentActivities(captureImageIntent,
+            PackageManager.MATCH_DEFAULT_ONLY);
+    // 对所有的可拍照应用都授权，因为不确定用户选择了哪一个
+    for (ResolveInfo activity: cameraActivities) {
+        // 写入授权
+        getActivity().grantUriPermission(activity.activityInfo.packageName, uri,
+                Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+    }
+    startActivityForResult(captureImageIntent, REQUEST_PHOTO);
+}
+</code></pre></li>
+<li><p><strong>相机已保存了文件，需要关闭文件写入权限;</strong></p>
+
+<pre><code class="language-java">} else if (requestCode == REQUEST_PHOTO) {
+    Uri uri = FileProvider.getUriForFile(getActivity(), fileProviderAuthorityStr, mPhotoFile);
+    // 对所有应用取消授权；（也有取消单个应用的授权的方法）
+    getActivity().revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+    updatePhotoView();
+}
+</code></pre></li>
+</ul>
+
+<h4 id="toc_21">16.4 缩放和显示位图</h4>
+
+<ul>
+<li><p><strong>若要从文件生成Bitmap对象需要使用BitmapFactory类；Bitmap是个简单对象，只存储实际像素数据；即使图片被压缩成小的jpg格式的文件，一旦被载入成Bitmap对象就会还原成最原始的空间大小；</strong></p>
+
+<pre><code class="language-java">Bitmap bitmap = BitmapFactory.decodeFile(mPhotoFile.getPath());
+</code></pre></li>
+<li><p>借助BitmapFactory.Options类获取图片尺寸信息，之后可以手动缩放图片；</p>
+
+<pre><code class="language-java">public static Bitmap getScaleBitmap(String path, int destWidth, int destHeight) {
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inJustDecodeBounds = true; // 只解析图片尺寸信息
+
+    float srcWidth = options.outWidth;
+    float srcHeight = options.outHeight;
+
+    // inSampleSize表示表示宽、高的缩放比例
+    int inSampleSize = 1;
+    if (srcHeight &gt; destHeight || srcWidth &gt; destWidth) {
+        float heightScale = srcHeight / destHeight;
+        float widthScale = srcWidth / destWidth;
+
+        inSampleSize = Math.round(heightScale &gt; widthScale ? heightScale: widthScale);
+    }
+
+    options = new BitmapFactory.Options();
+    options.inSampleSize = inSampleSize;
+
+    return BitmapFactory.decodeFile(path, options);
+}
+</code></pre></li>
+<li><p><strong>缩放图片需要根据<code>显示图片控件的尺寸</code>决定缩放比例，而只有显示在屏幕的视图才有大小尺寸；如何确定<code>显示图片控件的尺寸</code>的尺寸，有两种解决方案：等布局实例化完成并显示，或者使用一个保守估计值（极端情况下，<code>显示图片控件的尺寸</code>和屏幕尺寸一样大，可以按照此大小缩放图片）；</strong></p>
+
+<pre><code class="language-java">Point size = new Point();
+// 获取屏幕尺寸
+activity.getWindowManager().getDefaultDisplay().getSize(size);
+</code></pre></li>
+</ul>
+
+<h4 id="toc_22">16.5 功能声明</h4>
+
+<ul>
+<li><p><strong>若应用要使用诸如相机、NFC、或者其他的随设备相关的功能时，都应该让Android系统知道；这样，若设备缺少这样的功能时，类似Google Play商店的安装程序就会拒绝安装该应用；</strong></p></li>
+<li><p><strong>在AndroidManifest.xml文件中声明uses-feature标签进行所需要的功能声明；默认情况下，缺少相关功能就无法使用该应用；添加required属性为false，则表示缺少相关功能也可以使用该应用；</strong></p>
+
+<pre><code>&lt;uses-feature android:name=&quot;android.hardware.camera&quot; android:required=&quot;false&quot;/&gt;
+</code></pre></li>
+</ul>
+
+<h3 id="toc_23">第17章 双版面主从用户界面</h3>
+
+<h4 id="toc_24">17.1 增加布局灵活性</h4>
+
+<ul>
+<li><p>在手机设备上，CrimeListActivity生成的是单版面（single-pane）布局，托管CrimeListFragment；在平板设备上，为了同时显示主从视图需要生成双版面（two-pane）布局，CrimeListActivity将同时托管CrimeListFragment和CrimeFragment；</p></li>
+<li><p>要实现双版面布局，需完成如下任务：修改SingleFragmentActivity不再硬编码实例化<code>包含fragment容器的布局</code>、创建<code>包含两个fragment容器的布局</code>、修改CrimeListActivity，实现在手机设备上实例化包含<code>单版面容器的布局</code>，在平板设备上实例化<code>双版面容器的布局</code>；</p></li>
+<li><p>在方法上使用<code>@LayoutRes</code>注解，表示告诉Android Studio该方法应该返回有效的布局资源ID，否则编译报错；</p></li>
+<li><p><code>别名资源</code>是一种指向其他资源的特殊资源，存放在<code>res/values/</code>目录下，并按照约定定义在refs.xml文件中；</p></li>
+<li><p><strong>为了让activity基于不同的设备使用的不同布局文件，可以像之前的使用<code>资源修饰符</code>对竖直、水平（land）布局的选择和控制，使用资源修饰符；但是以下缺点：</strong></p>
+
+<ul>
+<li><strong>a. 必须将不同的布局文件分别放置到规定的布局文件夹目录中（如res/layout/、res/layout-sw600dp/）；</strong></li>
+<li><strong>b. 同一activity对于不同设备的不同布局文件的文件名必须一样；</strong></li>
+</ul></li>
+<li><p><strong>也可以使用别名资源，让activity基于不同的设备使用的不同布局文件；</strong></p>
+
+<ul>
+<li><strong>此时同一activity对于不同设备的布局文件的名称可以不一样，而且布局文件可以不放置到规定的布局文件夹目录中；</strong></li>
+<li><strong>别名资源相当于给其他资源起个别名；为了适配不同的设备，需要新建不同的别名资源放置到不同的value文件夹目录中（比如<code>res/values/</code>、<code>res/values-sw600dp/</code>），这相当于将设备判断后所要加载的不同的文件转移到别名资源文件上了，别名资源起到一个中介作用；</strong></li>
+</ul></li>
+<li><p>右击res/目录 -&gt; 选择New -&gt; Android resource file -&gt; 选择资源类型为Values，文件命名为refs.xml -&gt; 确认新建的文件不带任何修饰符；</p>
+
+<pre><code>// res/values/refs.xml，别名资源activity_masterdetail指向了activity_fragment布局资源文件
+&lt;resources&gt;
+    &lt;item name=&quot;activity_masterdetail&quot; type=&quot;layout&quot;&gt;@layout/activity_fragment&lt;/item&gt;
+&lt;/resources&gt;
+</code></pre>
+
+<ul>
+<li><strong>上面的别名资源指向了activity_fragment布局资源文件，别名资源自身也有资源ID（R.layout.activity_masterdetail)；</strong></li>
+<li><strong>type属性决定资源ID属于什么内部类，即使别名资源文件自身在res/values/目录中，但是它的资源ID依然属于R.layout内部类；别名资源可以配置多个item，type根据指向的资源而定；</strong></li>
+</ul></li>
+<li><p><strong>需要创建一个大屏幕设备使用的别名资源，此时创建时将<code>Available qualifiers</code>中<code>Smallest Screen Width</code>选到右边窗口中，并且输入相关数值（如600），这样创建的refs.xml文件会在特定的values-XX目录中（如res/values-sw600dp/）；</strong></p>
+
+<pre><code>// res/values-sw600dp/refs.xml，别名资源activity_masterdetail指向了activity_twopane布局资源文件
+&lt;resources&gt;
+    &lt;item name=&quot;activity_masterdetail&quot; type=&quot;layout&quot;&gt;@layout/activity_twopane&lt;/item&gt;
+&lt;/resources&gt;
+</code></pre></li>
+<li><p><strong>这样对于不同尺寸的设备，代码都使用activity_masterdetail布局，但是运行时activity_masterdetail指向的资源不一样，进而加载不同类型的布局；类似于之前的<code>不同屏幕方向加载不同布局</code>（不同布局文件夹，相同布局文件名）；</strong></p></li>
+<li><p><strong><code>配置修饰符</code>：比如-sw600dp表示smallest width（最小宽度，实际上是最小尺寸，不考虑屏幕方向）大于等于600dp的设备，使用该目录下的资源，若小于则使用默认的资源（没有其他的修饰符的情况下）；</strong></p></li>
+</ul>
+
+<h4 id="toc_25">17.2 activity：fragment的托管者</h4>
+
+<ul>
+<li><p><strong>一个activity中同时展示两个fragment，若这两个fragment间有关联（比如点击fragmentA不同的内容，fragmentB也需要跟着变化、fragmentA的内容变化了，fragmentB也需要跟着变化），处理这种逻辑有两种方式：</strong></p>
+
+<ul>
+<li><p><strong>a. 直接操控fragmentManager：</strong></p>
+
+<ul>
+<li><strong>当fragmentA变化时，在fragmentA中获取托管activity的fragmentManager，在fragmentA中直接操控fragmentManager更新fragmentB；</strong></li>
+<li><strong>这种方式可行，但是耦合性太强；fragmentA需要知道托管activity的包含fragment容器的布局是什么样的，fragmentA与托管activity耦合在一起；</strong></li>
+<li><strong>fragmentA应该是可以作为独立的开发构件使用的；包含fragment容器的布局是什么样的，应该是托管activity所应该单独处理的，fragmentA不应该知道；</strong></li>
+</ul></li>
+<li><p><strong>b. 定义实现回调接口回调</strong></p>
+
+<ul>
+<li><strong>为了保持fragmentA的独立性，可以在fragmentA中定义回调接口方法，让托管activity去实现回调接口方法，处理具体的逻辑（如更新fragmentB）；</strong></li>
+<li><strong>接口定义了fragment委托给托管activity处理的工作任务，任何打算托管目标fragment的activity都必须实现它；</strong></li>
+<li><strong>当fragmentA变化时，调用activity的具体回调接口方法，进而在activity中完成了对fragmentB的更新操作；</strong></li>
+<li><strong>fragmentA需要定义一个变量mCallbacks，用于存放实现Callbacks接口的对象（就是activity）；activity赋值给变量mCallbacks是在fragment的生命周期方法中处理的：在<code>onAttach(Context context)</code>方法中进行赋值（不要在onAttach(Activity activity)方法中，这个方法已废弃），在<code>public void onDetach()</code>中置为null；</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_26">17.3 深入学习：设备屏幕尺寸的确定</h4>
+
+<ul>
+<li><p>在Android 3.2之前，屏幕大小修饰符是基于设备的屏幕大小来提供可选资源的，分为small（最低屏幕大小320<em>426dp）、normal(320</em>470dp)、large、xlarge；</p></li>
+<li><p><strong>在Android 3.2之后，屏幕大小修饰符废弃，使用了独立的屏<code>幕尺寸修饰符</code>，分为wXXXdp（有效宽度：宽度大于或等于XXXdp）、hXXXdp（有效高度：高度大于或等于XXXdp）、swXXXdp（最小宽度：宽度高度两者中最小的那个大于或等于XXXdp）；</strong></p></li>
+<li><p><strong>若想指定某个布局仅适用于屏幕宽度至少为300dp的设备，可以使用宽度修饰符，并将布局文件放入res/layout-w300dp/目录下；</strong></p></li>
+</ul>
+
+<h3 id="toc_27">第18章 应用本地化</h3>
+
+<h4 id="toc_28">18.1 资源本地化</h4>
+
+<ul>
+<li><p><strong>语言设置是<code>设备配置</code>的一部分，和处理屏幕方向、屏幕尺寸以及其他配置因素改变一样，Android也提供了用于不同语言的配置修饰符；只需要创建带目标语言配置修饰符的资源子目录，并放入备选资源，其余工作就交给Android资源系统自动处理；</strong></p></li>
+<li><p><strong>右击res/目录 -&gt; New -&gt; Android resource file菜单项，文件名为strings.xml：Source set选择main，Directory name设为values，在<code>Available qualifiers</code>列表选中Locale，使用&gt;&gt;按钮把其移入<code>Chosen qualifiers</code>中，在Language列表中选zh: Chinese，右边的Specific Region Only中选中Any Region；Android Studio会自动设置Directory name为values-zh；</strong></p></li>
+<li><p>语言配置修饰符来自于ISO 639-1标准代码，每个修饰符都由两个字符组成，比如中文的修饰符为zh；</p></li>
+<li><p>英文语言的配置修饰符为en，英文版字符串资源为values-en/ strings.xml；</p></li>
+<li><p>若Android无法找到匹配当前语言设置的资源，则不匹配的字符串资源，用在XML布局文件中应用会显示资源ID数值，用在Java代码中应用就会崩溃；</p></li>
+<li><p>没有配置修饰符的资源就是Android的默认资源；提供默认资源非常重要，若无法找到匹配当前配置的资源，Android就会使用默认资源，其能保证应用正常运行；</p></li>
+<li><p><strong>Android的默认资源使用规则并不适用于<code>屏幕显示密度</code>；</strong>项目的drawable目录通常按屏幕显示密度，带有-mdpi、-xxhdpi这样的修饰符；Android决定使用哪一类drawable资源并不是简单地匹配设备的屏幕显示密度，也不是在没有匹配的资源时直接使用默认资源，而是综合考虑屏幕尺寸和显示密度；<strong>故不要在res/drawable/目录下放置<code>所谓的默认的drawable资源</code>；</strong></p></li>
+<li><p><strong>检查资源本地化完成情况：在Android Studio选择<code>Android窗口</code>查看文件（不是Project窗口），打开res/values/文件夹，右击默认字符串资源strings.xml，选择<code>Open Translations Editor</code>进行查看；若没有改选项将Android窗口的文件目录先收起再展开；</strong></p></li>
+<li><p>修饰资源目录还可以使用<code>语言加区域修饰符</code>，这样可以让资源使用更有针对性；比如-es-rMX表示墨西哥地区的西班牙语，r代表区域；配置修饰符对大小写不敏感，但最好遵守Android命名约定：语言代码小写，区域代码大写，前面加个小写的r；</p></li>
+<li><p>语言和区域修饰同时匹配用户的locale，若没有匹配上，系统会去除区域修饰仅以语言去匹配；<strong>建议：最好仅用语言的修饰目录，少用区域修饰，这样资源应尽可能通用；</strong></p></li>
+</ul>
+
+<h4 id="toc_29">18.2 配置修饰符</h4>
+
+<ul>
+<li><p>Android提供配置修饰符以更好地匹配资源，有移动国家码、语言代码、布局方向、最小宽度、可用宽度...API级别等等好多修饰符；</p></li>
+<li><p>旧版本Android系统，并非支持所有配置修饰符，故出现了API级别修饰符，如圆形屏幕修饰符自API 23级别引入，若使用它则系统会自动加上v23，这样就不用担心在旧系统会遇到问题；</p></li>
+<li><p>考虑到有那么多匹配资源的配置修饰符，有时会出现设备配置与好几个可选资源都匹配的情况，此时Android会根据<code>修饰符的优先级</code>使用；比如，同时有values-w600dp/strings.xml、values-zh/strings.xml；</p></li>
+<li><p><strong>可以在同一资源目录上使用多个配置修饰符，各配置修饰符需要按照优先级别顺序排列；新建资源文件对话框中，工具会自动配置正确的目录名；</strong>比如，values-zh-land是一个有效的资源目录名，而values-land-zh则是无效的资源目录名；</p></li>
+<li><p><strong>寻找最匹配的资源：Android首先排除不兼容<code>当前设备配置</code>的资源目录，之后按配置修饰符的优先级排除不兼容的目录（有高优先级的目录，低优先级的目录会被排除）；</strong></p></li>
+</ul>
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <p class="text-left" style="padding:15px 0px;">
+            
+            <a href="15237039848080.html" title="Previous Post: Android编程权威指南 笔记(19~24)">&laquo; Android编程权威指南 笔记(19~24)</a>
+            
+          </p>
+        </div>
+        <div class="large-6 columns">
+          <p class="text-right" style="padding:15px 0px;">
+            
+            <a href="15225894269717.html" title="Next Post: Android编程权威指南 笔记(07~12)">Android编程权威指南 笔记(07~12) &raquo;</a>
+            
+          </p>
+        </div>
+      </div>
+
+      <div class="comments-wrap">
+        <div class="share-comments">
+            
+        </div>
+      </div>
+
+    </div>
+  </div> <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+
+      <div id="site-info" class="site-info">
+        
+        <h1>TIME TO GO</h1>
+        <div class="site-des">It is just a matter of time.</div>
+        <div class="social">
+                    
+          <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+        </div>
+      </div>
+
+      
+
+      <div id="site-categories" class="side-item ">
+        <div class="side-header">
+          <h2>Categories</h2>
+        </div>
+        <div class="side-content">
+          <p class="cat-list">
+            
+          </p>
+        </div>
+      </div>
+
+      <div id="site-categories" class="side-item">
+        <div class="side-header">
+          <h2>Recent Posts</h2>
+        </div>
+        <div class="side-content">
+          <ul class="posts-list">
+              <li class="post">
+              <a href="15237039848080.html">Android编程权威指南 笔记(19~24)</a>
+              </li>
+                 <li class="post">
+              <a href="15230916186418.html">Android编程权威指南 笔记(13~18)</a>
+              </li>
+                 <li class="post">
+              <a href="15225894269717.html">Android编程权威指南 笔记(07~12)</a>
+              </li>
+                 <li class="post">
+              <a href="15221600755364.html">Android编程权威指南 笔记(01~06)</a>
+              </li>
+                 <li class="post">
+              <a href="15230908846113.html">Android Studio配置使用</a>
+              </li>
+                                             
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div> <div class="page-bottom clearfix">
+  <div class="row">
+    <p class="copyright">Copyright &copy; 2015 Powered by
+      <a target="_blank" href="">ME</a>
+    </p>
+  </div>
+</div>
+</section>
+
+</div>
+</div>
+
+ 
+<script src="asset/js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+  function fixSidebarHeight() {
+    var w1 = $('.markdown-body').height();
+    var w2 = $('#sidebar').height();
+    if (w1 > w2) { $('#sidebar').height(w1); };
+  }
+  $(function () {
+    fixSidebarHeight();
+  })
+  $(window).load(function () {
+    fixSidebarHeight();
+  });
+</script>   
+</body>
+
+</html>
