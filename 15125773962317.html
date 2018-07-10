@@ -18,7 +18,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
   <script type="text/javascript">
     function before_search() {
-      var searchVal = 'site:www.justisit.com ' + document.getElementById('search_input').value;
+      var searchVal = 'site: ' + document.getElementById('search_input').value;
       document.getElementById('search_q').value = searchVal;
       return true;
     }
@@ -438,7 +438,7 @@ describe 表名;  # 显示表的数据结构
 </code></pre></li>
 <li><p>MySQL服务器以独立的进程运行，并通过网络对外服务，所以Python需要MySQL驱动来连接MySQL服务器</p></li>
 <li><p>MySQL提供了官方驱动mysql-connector-python，但是在安装的时候需要给pip命令添加参数-allow-external，安装命令为<code>pip install mysql-connector-python --allow-external mysql-connector-python</code>，或者手动安装</p></li>
-<li><p>Python的DB API定义都是通用的，所以操作MySQL和SQLite类似；不过，MySQL使用的占位符是%s，SQLite使用的是?</p>
+<li><p>Python的DB API定义都是通用的，所以操作MySQL和SQLite类似；<strong>不过，MySQL使用的占位符是%s，SQLite使用的是?</strong></p>
 
 <pre><code class="language-python">import mysql.connector
 
@@ -610,6 +610,12 @@ class Book(Base):
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15285683833705.html">错误、异常的处理（Java、OC、Swift）</a>
+              </li>
+                 <li class="post">
+              <a href="15312301698124.html">Swift版本间差异</a>
+              </li>
+                 <li class="post">
               <a href="15237039848080.html">Android编程权威指南 笔记(19~24)</a>
               </li>
                  <li class="post">
@@ -617,12 +623,6 @@ class Book(Base):
               </li>
                  <li class="post">
               <a href="15225894269717.html">Android编程权威指南 笔记(07~12)</a>
-              </li>
-                 <li class="post">
-              <a href="15221600755364.html">Android编程权威指南 笔记(01~06)</a>
-              </li>
-                 <li class="post">
-              <a href="15230908846113.html">Android Studio配置使用</a>
               </li>
                                              
           </ul>
