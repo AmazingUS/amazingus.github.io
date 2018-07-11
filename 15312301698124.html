@@ -122,15 +122,26 @@
 <a href="#toc_3">2. 方法定义规定</a>
 </li>
 <li>
-<a href="#toc_4">3. 注意self</a>
+<a href="#toc_4">3. self</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_5">三、单例实现</a>
+<a href="#toc_5">三、懒加载</a>
+<ul>
+<li>
+<a href="#toc_6">1. 懒加载情景</a>
 </li>
 <li>
-<a href="#toc_6">四、懒加载</a>
+<a href="#toc_7">2. 延迟属性与闭包</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">四、dispatch_once</a>
+</li>
+<li>
+<a href="#toc_9">五、单例模式</a>
 </li>
 </ul>
 
@@ -138,13 +149,13 @@
 <h4 id="toc_0">一、@objc</h4>
 
 <ul>
-<li>作用：将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</li>
+<li>将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</li>
 </ul>
 
 <p><strong>1). Swift 3.0</strong></p>
 
 <ul>
-<li><p>a. 编译器默认给继承于NSObject的类的所有方法都隐式添加@objc；缺点：大量@objc导致二进制文件增大；</p>
+<li><p>a. 编译器默认给继承于NSObject的类的所有方法都隐式添加@objc；缺点是大量@objc导致二进制文件增大；</p>
 
 <pre><code class="language-swift">class MyClass: NSObject {
     func print() { } // 包含隐式的 @objc
@@ -182,7 +193,7 @@ extension MyClass {
     func a() { } // 包含隐式的 @objc
 }
 </code></pre></li>
-<li><p>e. 若扩展名前加@noobjc，则该扩展的所有方法都不会隐式添加@objc（为防止类名前加@objcMembers）；</p>
+<li><p>e. 若扩展名前加@noobjc，则该扩展的所有方法都不会隐式添加@objc（排除类名前加@objcMembers的影响）；</p>
 
 <pre><code class="language-swift">@objcMembers class MyClass : NSObject {
     func print() { } // 包含隐式的 @objc
@@ -232,7 +243,7 @@ Selector(&quot;btnDidClick:&quot;)
 <p><strong>1). Swift 3.0</strong></p>
 
 <ul>
-<li><strong>只有当方法的权限为private，才需要加@objc修饰符，否则不需要加（注意NSObject子类会隐式添加）；</strong></li>
+<li><strong>只有当方法的权限为<code>private</code>，才需要加@objc修饰符，否则不需要添加；</strong></li>
 </ul>
 
 <p><strong>2). Swift 4.0</strong></p>
@@ -241,14 +252,118 @@ Selector(&quot;btnDidClick:&quot;)
 <li>所有的方法都要加@objc修饰符，不论其权限是否为private；</li>
 </ul>
 
-<h5 id="toc_4">3. 注意self</h5>
+<h5 id="toc_4">3. self</h5>
 
 <ul>
 <li><p><strong><code>btn.addTarget(self, action: #selector()...</code>中的self是动态的；比如在A中初始化了B，B中的btn初始化时进行了<code>addTarget(self...</code>，则此时self为A而不是B；</strong></p></li>
 <li><p><strong>解决上述问题的方式有两种：一种是不在A中初始化B，一种是写成<code>btn.addTarget(B.self, action: #selector()...</code></strong>；</p></li>
 </ul>
 
-<h4 id="toc_5">三、单例实现</h4>
+<h4 id="toc_5">三、懒加载</h4>
+
+<h5 id="toc_6">1. 懒加载情景</h5>
+
+<ul>
+<li><strong>全局的常/变量都是懒加载的，不需要标记lazy；</strong></li>
+<li><strong>标记为<code>static</code>的常/变量存储属性（类属性）也都是懒加载的，不需要标记lazy；（补充：class只能修饰计算属性，而计算属性只能使用var修饰）</strong></li>
+<li><strong>延迟属性，必须使用<code>lazy var</code>标记；（延迟属性只能使用var修饰，不能使用let修饰）</strong></li>
+</ul>
+
+<h5 id="toc_7">2. 延迟属性与闭包</h5>
+
+<ul>
+<li><p><strong>延迟属性使用<code>lazy var</code>标记声明，其初始值可以是直接创建，也可以使用闭包创建；</strong></p>
+
+<pre><code class="language-swift">// 直接创建
+lazy var person1: Person = Person()
+
+// 闭包创建
+lazy var person2: Person = {
+    let person = Person()
+    p.name = &quot;Tom&quot;
+    print(&quot;Tom...&quot;)
+    return person
+}()
+</code></pre></li>
+<li><p><strong>使用闭包不仅仅可以给延迟属性（lazy var）设置初始值，也可以给全局的常/变量、类的属性、对象的属性进行初始值，计算属性本质通过闭包实现的；</strong></p>
+
+<pre><code class="language-swift">let i = {
+    return 0
+}()
+
+class Person {
+    static let a = {
+        return 1
+    }()
+    var b = {
+        return 2
+    }()
+}
+</code></pre></li>
+<li><p>在布局UI控件的时候也可以使用闭包来完成初始化赋值，这样更便于复用、更简洁；</p>
+
+<pre><code class="language-swift">let leftButton: UIButton = {
+    let button = UIButton(frame: buttonSize)
+    button.backgroundColor = .black
+    button.titleLabel?.text = &quot;left&quot;
+    return button
+}()
+
+let rightButton: UIButton = {
+    let button = UIButton(frame: buttonSize)
+    button.backgroundColor = .black
+    button.titleLabel?.text = &quot;right&quot;
+    return button
+}()
+</code></pre></li>
+<li><p><strong>延迟属性使用闭包创建，在闭包中使用self不会产生循环引用；全局的常/变量、类的属性、对象的属性使用闭包创建，无在闭包中使用self；</strong></p></li>
+</ul>
+
+<h4 id="toc_8">四、dispatch_once</h4>
+
+<ul>
+<li><p>Swift 3.0废弃了dispatch_once，但是<strong>全局的常/变量</strong>和<strong>标记为<code>static</code>的常/变量存储属性</strong>底层实现都是使用dispatch_once机制且线程安全的，它们都是只会执行一次；延迟属性是对象属性，会被执行多次；</p></li>
+<li><p>也可以通过手动给DispatchQueue扩展一个方法实现dispatch_once的功能；<code>objc_sync_enter、objc_sync_exit</code>等价于OC中的<code>@synchronized(TOKEN) { }</code>；</p>
+
+<pre><code class="language-swift">public extension DispatchQueue {
+    private static var _onceTracker = [String]()
+
+    public static func once(token: String, block: ()-&gt;Void) {
+        objc_sync_enter(self)
+        defer {
+            objc_sync_exit(self)
+        }
+
+        if _onceTracker.contains(token) {
+            return
+        }
+        _onceTracker.append(token)
+        block()
+    }
+
+    public static func once(block: ()-&gt;Void) {
+        let token = #file + &quot;:&quot; + #function + &quot;:&quot; + String(#line)
+        self.once(token: token, block: block)
+    }
+}
+</code></pre>
+
+<pre><code class="language-swift">// usage1
+private let _onceToken = UUID().uuidString
+
+print(_onceToken)
+DispatchQueue.once(token: _onceToken) {
+    // TODO
+}
+
+// usage2
+DispatchQueue.once {
+    // TODO
+}
+</code></pre></li>
+</ul>
+
+<h4 id="toc_9">五、单例模式</h4>
 
 <p><strong>1). Swift 1.2之前</strong></p>
 
@@ -421,14 +536,6 @@ static id _instance;
 - (id)retain { return self; }
 - (NSUInteger)retainCount { return 1; }
 </code></pre>
-
-<h4 id="toc_6">四、懒加载</h4>
-
-<ul>
-<li><strong>全局的常、变量都是懒加载的，不需要标记lazy；</strong></li>
-<li><strong>标记为<code>static</code>的常、变量存储属性也都是懒加载的，不需要标记lazy；（补充：class只能修饰计算属性，而计算属性只能使用var修饰）</strong></li>
-<li><strong>延迟属性，明确使用<code>var lazy</code>标记的；（延迟属性只能使用var修饰，不能使用let修饰）</strong></li>
-</ul>
 
       </div>
 

@@ -188,15 +188,26 @@
 <a href="#toc_3">2. 方法定义规定</a>
 </li>
 <li>
-<a href="#toc_4">3. 注意self</a>
+<a href="#toc_4">3. self</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_5">三、单例实现</a>
+<a href="#toc_5">三、懒加载</a>
+<ul>
+<li>
+<a href="#toc_6">1. 懒加载情景</a>
 </li>
 <li>
-<a href="#toc_6">四、懒加载</a>
+<a href="#toc_7">2. 延迟属性与闭包</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">四、dispatch_once</a>
+</li>
+<li>
+<a href="#toc_9">五、单例模式</a>
 </li>
 </ul>
 
@@ -204,13 +215,13 @@
 <h4 id="toc_0">一、@objc</h4>
 
 <ul>
-<li>作用：将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</li>
+<li>将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</li>
 </ul>
 
 <p><strong>1). Swift 3.0</strong></p>
 
 <ul>
-<li><p>a. 编译器默认给继承于NSObject的类的所有方法都隐式添加@objc；缺点：大量@objc导致二进制文件增大；</p>
+<li><p>a. 编译器默认给继承于NSObject的类的所有方法都隐式添加@objc；缺点是大量@objc导致二进制文件增大；</p>
 
 <pre><code class="language-swift">class MyClass: NSObject {
     func print() { } // 包含隐式的 @objc
