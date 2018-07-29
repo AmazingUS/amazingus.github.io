@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     GitBook使用教程 - TIME TO GO 
+     Python中的常见问题 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,9 +97,9 @@
 
       <div class="article">
         
-        <h1>GitBook使用教程</h1>
+        <h1>Python中的常见问题</h1>
         <div class="read-more clearfix">
-          <span class="date">2018/3/25</span>
+          <span class="date">2018/7/28</span>
            
           <span class="comments">
              
@@ -110,85 +110,89 @@
       <div class="article-content">
         <ul>
 <li>
-<a href="#toc_0">一、简介</a>
-</li>
-<li>
-<a href="#toc_1">二、安装使用</a>
-</li>
-<li>
-<a href="#toc_2">三、补充</a>
-</li>
-</ul>
+<a href="#toc_0">一、is、==、对象的布尔值（if ObjA）、None、not</a>
 
 
-<h4 id="toc_0">一、简介</h4>
+<h4 id="toc_0">一、is、==、对象的布尔值（if ObjA）、None、not</h4>
 
 <ul>
-<li>GitBook是一个可以将Markdown文本一键生成为HTML、PDF、EPUB格式图书（需要安装安装calibre）的工具，其也内置使用Git对Markdown文件做版本控制；</li>
-<li>可以在本地离线生成各种格式的图书，也可以在GitBook官网在线生成，便于共享；并且其也提供了一键导入GitHub仓库生成图书的便捷功能（一本图书就是一个Git仓库）；</li>
-</ul>
+<li><p><strong>1. <code>is</code>：</strong></p>
+
+<ul>
+<li><p><strong>比较两个对象的内存地址(<code>id(a)</code>)是否相同，若是相同则返回True，否则为False；</strong></p></li>
+<li><p><strong>注意：由于Python会对较小的对象进行缓存（比如str、int等，自定义类不会进行缓存），所以有时并不会创建新的对象，而是从缓存中进行查找返回，没有才创建；</strong></p></li>
+<li><p><strong><code>is not</code>表示is的相反结果，内存地址不相同时返回True</strong>；</p>
 
 <span id="more"></span><!-- more -->
 
-<h4 id="toc_1">二、安装使用</h4>
+<pre><code class="language-python"># case 1:
+s1 = &#39;Hello&#39;
+s2 = &#39;Hello&#39;  # 会使用缓存
+print(id(s1))
+print(id(s2))
+print(s1 is s2)  # True
 
-<ul>
-<li><p>1、安装Node.js、Git（可选；若需要版本控制、上传到GitBook则要安装）；</p></li>
-<li><p>2、安装GitBook；</p>
+# case 2:
+a = 2
+b = 1 * 2  # 会使用缓存
+print(id(a))
+print(id(b)) 
+print(a is b)  # True
 
-<pre><code>npm install -g gitbook-cli
+# case 3:
+print(1000 is 10 ** 3)  # False，不会使用缓存
 
-gitbook -V # 查看当前GitBook版本（注意是大写的V）
+# case 4:
+class A:
+    pass
+
+print(A() is A()) # False
 </code></pre></li>
-<li><p>3、创建一本图书（本地）；</p>
-
-<pre><code>gitbook init BOOK_NAME
-</code></pre>
-
-<ul>
-<li>目录中自动生成README.md、SUMMARY.md两个文件；这两个文件是必须存在的，README.md为对图书的介绍，SUMMARY.md是对书籍目录的描述，之后就是根据该文件生成图书目录结构的；</li>
-<li><p>SUMMARY.md格式如如下：</p>
-
-<pre><code># Summary
-
-* [简介](README.md)
-* [第一章 基础](chapter1/chapter1_0.md)
-    * [第一小节 基础概述](chapter1/chapter1_1.md)
-    * [第二小节 基础介绍](chapter1/chapter1_2.md)
-* [第二章 进阶](chapter2/chapter2_0.md)
-    * [第一小节 进阶概述](chapter2/chapter2_1.md)
-    * [第二小节 进阶介绍](chapter2/chapter2_2.md)
-</code></pre></li>
-<li><p>手动修改SUMMARY.md后，再执行 <code>gitbook init</code> 命令，会自动生成相应的文件及目录；</p></li>
 </ul></li>
-<li><p>4、书写相关Markdown文本；</p></li>
-<li><p>5、编译、预览图书；</p>
-
-<pre><code>gitbook serve # 在图片文件夹目录中执行
-</code></pre>
+<li><p><strong>2. <code>==</code></strong></p>
 
 <ul>
-<li><code>gitbook serve</code> 会先调用 <code>gitbook build</code> 命令编译图书，之后会打开一个本地WEB服务器，打开网页即可预览图书HTML；</li>
+<li><p><strong>返回对象的<code>__eq__</code>函数的结果（布尔值）；</strong></p></li>
+<li><p><strong><code>==</code>、<code>!=</code>、<code>&gt;</code>、<code>&lt;</code>等值比较都可以通过重写<code>__eq__</code>、<code>__ne__</code>等函数来改变；</strong></p></li>
+<li><p><strong>str的<code>__eq__</code>函数会比较字符串的内容是否一致；自定义类的<code>__eq__</code>函数会返回父类的默认值；</strong></p></li>
+<li><p><strong>若需要重写自定义类的<code>__eq__</code>，一般也需要重写其<code>__hash__</code>，否则该自定义类不可以在哈希集合中使用；</strong>若没有重写<code>__eq__</code>，则此时不应该重写<code>__hash__</code>；对象放到哈希集合中时，先调用__hash_进行定位其集合中的位置，再调用<code>__eq__</code>决定是否应该将该对象访问集合中；</p></li>
 </ul></li>
-<li><p>6、安装calibre工具，生成PDF、EPUB格式图书；</p>
+<li><p><strong>3. 对象的布尔值（if ObjA）</strong></p>
 
 <ul>
-<li>a. 下载安装Calibre（<code>https://calibre-ebook.com/download</code>）；</li>
-<li><p>b. 配置ebook-convert的路径；</p>
-
-<pre><code>// macOS
-sudo ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin  
-</code></pre></li>
-<li><p>c. 执行<code>gitbook pdf</code>、<code>gitbook epub</code>分别生成PDF、EPUB格式图书；</p></li>
+<li><p><strong>当一个对象的<code>__bool__()</code>函数返回True并且<code>__len()__</code>不返回0时，该对象的布尔值为True，否则为False；</strong> 比如0、0.0、0L、&quot;&quot;（空字符串）、[]、()、{}、False、None等；</p></li>
+<li><p><strong>注意：None的布尔值为False；</strong></p></li>
+<li><p><strong><code>对象的布尔值</code>在if判断、布尔运算时（<code>and</code>、<code>or</code>、<code>not</code>）会用到；</strong></p></li>
 </ul></li>
-</ul>
-
-<h4 id="toc_2">三、补充</h4>
+<li><p><strong>4. None</strong></p>
 
 <ul>
-<li>第3、4步操作可以通过 <code>Gitbook Editor</code> 桌面编辑器更便捷地进行文本书写（其会自动更新修改SUMMARY.md文件）；但是生成图书还是需要在终端下通过GitBook完成；</li>
-<li>可以使用 <code>book.json</code> 文件定义GitBook在编译图书时的配置信息（如定义图书名称、显示效果等）；</li>
-<li>执行 <code>gitbook install</code> 命令可以安装一些第三方的插件，如disqus等；</li>
+<li><p><strong>一个特殊的常量，含义为空，相当于C语言中的NULL，其可以赋值给任意变量；None的数据类型为NoneType；</strong></p></li>
+<li><p>注意：空列表、空字符串、空字典都不是None；</p></li>
+</ul></li>
+<li><p><strong>5. not</strong></p>
+
+<ul>
+<li><p>布尔运算符非，可以和is、in连用组成<code>is not</code>、<code>not in</code>语句；</p></li>
+<li><p><strong>Python的<code>布尔运算符使用的是not而不是!</code>，<code>关系运算符!=</code>（不等于）才用到了!；</strong></p></li>
+</ul></li>
+<li><p>举例：</p>
+
+<ul>
+<li><strong><code>if a == None</code></strong>：（不常用，写法不Pythonic）判断a是否为空，等价于<code>if a is None</code>；</li>
+<li><strong><code>if a != None</code></strong>：（不常用，写法不Pythonic）判断a是否不为空，等价于<code>if a is not None</code>；</li>
+<li><strong><code>if a is None</code></strong>：判断a是否为空；<strong>None只有一个，不存在另一个值为None但id(None)不相等的对象；</strong></li>
+<li><strong><code>if a is not None</code></strong>：判断a是否不为空；</li>
+<li><strong><code>if a</code></strong>：判断对象的布尔值是否为True；</li>
+<li><strong><code>if not a</code></strong>：判断对象的布尔值是否为False；</li>
+<li><strong>注意：当判断一个对象是否为None时，使用<code>if a is None</code>和<code>if not a</code>是没有区别；当判断一个对象是否False时，就只使用<code>if not a</code>；</strong></li>
+</ul></li>
+<li><p>参考：</p>
+
+<ul>
+<li>if foobar != None 和 if foobar is not None 是完全等价的吗？(<a href="https://www.v2ex.com/t/443096">https://www.v2ex.com/t/443096</a>)</li>
+<li>python里None 表示False吗(<a href="https://www.zhihu.com/question/48707732">https://www.zhihu.com/question/48707732</a>)</li>
+</ul></li>
 </ul>
 
       </div>
@@ -197,14 +201,12 @@ sudo ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15230908846113.html" title="Previous Post: Android Studio配置使用">&laquo; Android Studio配置使用</a>
-            
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15210408337160.html" title="Next Post: iOS的静态库、动态库">iOS的静态库、动态库 &raquo;</a>
+            <a href="15285683833705.html" title="Next Post: 错误、异常的处理（Java、ObjC、Swift）">错误、异常的处理（Java、ObjC、Swift） &raquo;</a>
             
           </p>
         </div>
