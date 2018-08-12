@@ -1,0 +1,454 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+     Ubuntu使用教程 - TIME TO GO 
+  </title>
+   
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+  <link rel="stylesheet" href="asset/css/foundation.min.css" />
+  <link rel="stylesheet" href="asset/css/docs.css" />
+  <script src="asset/js/vendor/modernizr.js"></script>
+  <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script type="text/javascript">
+    function before_search() {
+      var searchVal = 'site: ' + document.getElementById('search_input').value;
+      document.getElementById('search_q').value = searchVal;
+      return true;
+    }
+  </script>
+</head>
+
+<body class="antialiased hide-extras">
+  <div class="marketing off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+
+
+      <nav class="top-bar docs-bar hide-for-small" data-topbar>
+        <section class="top-bar-section">
+          <div class="row">
+            <div style="position: relative;width:100%;">
+              <div style="position: absolute; width:100%;">
+                <ul id="main-menu" class="left">
+                  
+                  <li id="">
+                    <a target="self" href="index.html">Home</a>
+                  </li>
+                  
+                  <li id="">
+                    <a target="_self" href="archives.html">Archives</a>
+                  </li>
+                  
+                </ul>
+                <ul class="right" id="search-wrap">
+                  <li>
+                    <form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+                      <input type="hidden" id="search_q" name="q" value="" />
+                      <input tabindex="1" type="search" id="search_input" placeholder="Search" />
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </nav>
+
+      <nav class="tab-bar show-for-small">
+        <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+          <span> &nbsp; TIME TO GO</span>
+        </a>
+      </nav>
+
+      <aside class="left-off-canvas-menu">
+        <ul class="off-canvas-list">
+          <li>
+            <a href="index.html">HOME</a>
+          </li>
+          <li>
+            <a href="archives.html">Archives</a>
+          </li>
+          <li>
+            <a href="about.html">ABOUT</a>
+          </li>
+          <li>
+            <label>Categories</label>
+          </li>
+          
+        </ul>
+      </aside>
+      <a class="exit-off-canvas" href="#"></a>
+      <section id="main-content" role="main" class="scroll-container"> <script type="text/javascript">
+  $(function () {
+    $('#menu_item_index').addClass('is_active');
+    $('#sidebar').parent().parent().hide();
+  });
+</script>
+
+<div class="row">
+  <div class="large-12 medium-12 columns">
+    <div class="markdown-body article-wrap">
+
+      <div class="article">
+        
+        <h1>Ubuntu使用教程</h1>
+        <div class="read-more clearfix">
+          <span class="date">2018/8/11</span>
+           
+          <span class="comments">
+             
+          </span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <ul>
+<li>
+<a href="#toc_0">一、apt-get、存储空间管理</a>
+</li>
+<li>
+<a href="#toc_1">二、内核管理</a>
+</li>
+<li>
+<a href="#toc_2">三、系统时间</a>
+</li>
+<li>
+<a href="#toc_3">四、安装MySQL</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、apt-get、存储空间管理</h4>
+
+<ul>
+<li>概述
+
+<ul>
+<li>Linux软件包按封装类型分为：<strong>.deb</strong>（Debian/Ubuntu等系列使用）、<strong>.rpm</strong>（RedHat等系列使用）、Tarball源码压缩包（<strong>.tar.gz、.tar.bz2</strong>）；</li>
+<li>软件仓库：存放软件包的地方；Ubuntu通过特定的命令（<code>apt-get</code>）就能完成软件的索引、安装、更新等操作，让相关步骤更简单、更安全；</li>
+<li>软件依赖：安装的一个软件需要依赖其他的软件或某些函数，才能实现该软件的功能；使用<code>apt-get</code>维护软件时，其会自动识别下载并安装相应的依赖软件；</li>
+<li>为了解决命令过于分散的问题，Ubuntu 16.04 引入了apt命令，其包括了apt-get中使用最广泛的功能选项，以及apt-cache、apt-config命令中很少用到的功能；<strong>简单来说，apt = apt-get + apt-cache + apt-config；可以用apt替换部分apt-get系列命令（不是全部，低级操作仍然需要apt-get）</strong>；</li>
+</ul></li>
+</ul>
+
+<span id="more"></span><!-- more -->       
+
+<ul>
+<li><p>apt-get命令</p>
+
+<pre><code class="language-shell">// 安装软件（会自动安装依赖软件）
+apt-get install XXX
+
+// 若安装软件时，发现安装的其他软件包不兼容可能导致安装出错时，
+// 可以根据以下命令解决此问题
+apt-get install -f
+</code></pre>
+
+<pre><code class="language-shell">// 更新软件源中的索引记录
+//（/etc/apt/sources.list配置了软件源）
+apt-get update
+// 更新软件
+apt-get upgrade XXX
+</code></pre>
+
+<pre><code class="language-shell">// 卸载软件，不会卸载依赖软件（保留配置文件）
+apt-get remove XXX
+// 卸载软件，不会卸载依赖软件（不保留配置文件）
+apt-get &lt;remove --purge | purge&gt; XXX 
+
+// 卸载软件及不再需要的依赖软件（保留配置文件）
+apt-get autoremove XXX
+// 卸载软件及不再需要的依赖软件（不保留配置文件）
+apt-get autoremove --purge XXX
+// 卸载系统不再使用的孤立软件 
+apt-get autoremove --purge
+</code></pre>
+
+<pre><code class="language-shell">// 查询相关的软件安装卸载状态
+dpkg --get-selection | grep XXX
+</code></pre>
+
+<pre><code class="language-shell">// apt-get的底层是dpkg，而dpkg安装包时会将*.deb放在/var/cache/apt/archives/中
+// 删除/var/cache/apt/archives/中所有deb
+apt-get clean
+// 删除/var/cache/apt/archives/中已过期的deb
+apt-get autoclean
+</code></pre></li>
+<li><p>存储空间管理命令</p>
+
+<pre><code class="language-shell">// 查看磁盘空间使用状况
+df -h
+
+// 查看当前目录内中的文件目录的使用大小
+du -h --max-depth=1 
+
+// 查看/root目录内中的文件目录的使用大小
+du -h --max-depth=1 /root
+</code></pre></li>
+</ul>
+
+<h4 id="toc_1">二、内核管理</h4>
+
+<ul>
+<li><p>清理多余的Linux内核</p>
+
+<ul>
+<li><p>当系统升级的时，旧的内核版本并不会被清理，之后就会导致/boot空间不足；卸载旧的内核版本可解决此问题；</p>
+
+<pre><code class="language-shell">// 查看系统已经安装的内核版本
+// 状态install说明已安装的版本
+dpkg --get-selections | grep linux
+dpkg --list | grep linux
+
+// 查看系统当前使用的内核版本
+uname -r
+</code></pre>
+
+<pre><code class="language-shell">// 使用purge命令删除相应的内核
+// Ubuntu内核镜像包含: linux-headers-(内核头文件)、linux-image-(内核镜像)、linux-image-extra-（额外的内核模块）
+apt-get purge linux-image-4.4.0-103-generic
+// 或
+apt-get purge linux-image-4.4.0*
+
+// 若删除时，出现类似以下错误
+// “linux-headers-generic : Depends: linux-headers
+// -XXX-generic but it is not going to be installed”
+// 进入/boot目录，将把4.4.0版本的config-4.4.0-*、vmlinuz-4.4.0-*、
+// initrd.img-4.4.0-*、abi-4.4.0-*、System.map-4.4.0-*、retpoline-4.4.0-*都删除
+// 然后执行apt-get install -f命令进行修复
+// 最后，再次使用purge命令删除相应的内核
+
+// 若GRUB配置在删除旧内核后没有正确升级，执行以下命令更新配置
+update-grub2 或 update-grub
+
+清理/usr/src目录，删除已经卸载的内核目录
+</code></pre></li>
+</ul></li>
+</ul>
+
+<ul>
+<li><p>升级Linux内核</p>
+
+<pre><code class="language-shell">uname -r
+
+apt-get update
+
+// 查看可用的Linux内核版本
+apt-cache showpkg linux-image
+
+// 安装想要升级的Linux内核版本，如inux-image-4.10.0-22-generic
+apt-get install linux-image-4.10.0-22-generic
+
+// 更新GRUB
+update-grub
+
+// 安装完成后重启
+sudo reboot
+</code></pre></li>
+</ul>
+
+<h4 id="toc_2">三、系统时间</h4>
+
+<ul>
+<li>格林尼治标准时：GMT，Greenwish Mean Time，指位于伦敦郊区的皇家格林尼治天文台（本初子午线）的标准时间，因为地球自转的速度是不均衡的，该时间不够精确；</li>
+<li>协调世界时：UTC，Coordinated Universal Time ，基于原子物理学的特性，更加精确基本不会产生误差，被应用在互联网标准中；</li>
+<li><p><strong>基本上可以认为GMT=UTC，例如北京时间=UTC+8=GMT+8；</strong></p>
+
+<pre><code class="language-shell">// 查看当前系统时间
+date -R   
+
+// 执行以下命令，按提示操作，修改时区到UTC
+dpkg-reconfigure tzdata
+
+// 同步网络时间
+apt-get install ntpdate // 安装ntpdate工具
+ntpdate cn.pool.ntp.org
+
+// 将时间写入硬件（防止重启时间被还原）
+hwclock --systohc
+</code></pre></li>
+</ul>
+
+<h4 id="toc_3">四、安装MySQL</h4>
+
+<ul>
+<li><p>MySQL的安装可以通过apt、.deb离线安装包、tar.gz压缩包三种方式进行安装；其中通过tar.gz压缩包进行安装，需要手动配置启动服务、环境变量等操作，而且其他两种方式则会自动配置所需要的；</p></li>
+<li><p>安装步骤</p>
+
+<ul>
+<li><p>a. 安装mysql</p>
+
+<ul>
+<li><strong>会自动安装mysql-server、mysql-server-core、mysql-client等相关包，且默认安装完成就启动了mysql</strong></li>
+<li><p><strong>注意：在Ubuntu 18.0.4中安装mysql 5.7，不会像之前的版本会在安装过程中提示设置密码</strong></p>
+
+<pre><code class="language-shell">apt-get install mysql-server 
+</code></pre></li>
+</ul></li>
+<li><p>b. 配置mysql</p>
+
+<ul>
+<li>注意：若选择了安装“Validate Password Plugin”，这个设置的密码必须符合一定的安全要求；</li>
+<li><p><strong>Note that even though you’ve set a password for the root MySQL user, this user is not configured to authenticate with a password when connecting to the MySQL shell.</strong></p>
+
+<pre><code class="language-shell">mysql_secure_installation 
+</code></pre></li>
+</ul></li>
+<li><p>c. 调整用户认证方式（可选）</p>
+
+<ul>
+<li><strong>在Ubuntu 18.0.4中安装mysql 5.7，mysql的root用户默认使用<code>auth_socket plugin</code>去认证而不是密码，这导致在终端中直接<code>mysql -uroot</code>不用密码就能登陆（即使在<code>配置mysql</code>中设置了密码也没有效果）</strong></li>
+<li><p>In Ubuntu systems running MySQL 5.7 (and later versions), the root MySQL user is set to authenticate using the auth_socket plugin by default rather than with a password. This allows for some greater security and usability in many cases, but it can also complicate things when you need to allow an external program (e.g., phpMyAdmin) to access the user.（参考<code>https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04</code>）</p>
+
+<pre><code>SELECT user,authentication_string,plugin,host FROM mysql.user;
+
+ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;
+FLUSH PRIVILEGES;
+
+SELECT user,authentication_string,plugin,host FROM mysql.user;
+</code></pre></li>
+</ul></li>
+<li><p>d. 开启远程访问（可选）</p>
+
+<pre><code>**默认情况下mysql只允许本地连接访问；**
+
+// 开启远程访问
+nano /etc/mysql/mysql.conf.d/mysqld.cnf，
+将bind-address = 127.0.0.1注释
+
+// 授权用户(没有该用户就创建)
+// 也可以授权给root用户，但是和mysql安装时创建的root是两条记录
+GRANT ALL PRIVILEGES ON *.* TO &#39;username&#39;@&#39;%&#39; IDENTIFIED BY &#39;password&#39; WITH GRANT OPTION;
+SELECT user,authentication_string,plugin,host FROM mysql.user;
+</code></pre></li>
+</ul></li>
+<li><p>管理命令</p>
+
+<pre><code class="language-shell">// 检查MySQL是否运行
+netstat -tap | grep mysql
+service mysql status
+systemctl status mysql.service 
+
+// 重启/打开/关闭MySQL
+service mysql restart/start/stop
+</code></pre></li>
+</ul>
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <p class="text-left" style="padding:15px 0px;">
+            
+          </p>
+        </div>
+        <div class="large-6 columns">
+          <p class="text-right" style="padding:15px 0px;">
+            
+            <a href="15332159757050.html" title="Next Post: 证书、SSL、HTTPS">证书、SSL、HTTPS &raquo;</a>
+            
+          </p>
+        </div>
+      </div>
+
+      <div class="comments-wrap">
+        <div class="share-comments">
+            
+        </div>
+      </div>
+
+    </div>
+  </div> <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+
+      <div id="site-info" class="site-info">
+        
+        <h1>TIME TO GO</h1>
+        <div class="site-des">It is just a matter of time.</div>
+        <div class="social">
+                    
+          <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+        </div>
+      </div>
+
+      
+
+      <div id="site-categories" class="side-item ">
+        <div class="side-header">
+          <h2>Categories</h2>
+        </div>
+        <div class="side-content">
+          <p class="cat-list">
+            
+          </p>
+        </div>
+      </div>
+
+      <div id="site-categories" class="side-item">
+        <div class="side-header">
+          <h2>Recent Posts</h2>
+        </div>
+        <div class="side-content">
+          <ul class="posts-list">
+              <li class="post">
+              <a href="15339807662944.html">Ubuntu使用教程</a>
+              </li>
+                 <li class="post">
+              <a href="15332159757050.html">证书、SSL、HTTPS</a>
+              </li>
+                 <li class="post">
+              <a href="15327896998795.html">Python中的常见问题</a>
+              </li>
+                 <li class="post">
+              <a href="15288255574523.html">Python3笔记(19实战)</a>
+              </li>
+                 <li class="post">
+              <a href="15285683833705.html">错误、异常的处理（Java、ObjC、Swift）</a>
+              </li>
+                                             
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div> <div class="page-bottom clearfix">
+  <div class="row">
+    <p class="copyright">Copyright &copy; 2015 Powered by
+      <a target="_blank" href="">ME</a>
+    </p>
+  </div>
+</div>
+</section>
+
+</div>
+</div>
+
+ 
+<script src="asset/js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+  function fixSidebarHeight() {
+    var w1 = $('.markdown-body').height();
+    var w2 = $('#sidebar').height();
+    if (w1 > w2) { $('#sidebar').height(w1); };
+  }
+  $(function () {
+    fixSidebarHeight();
+  })
+  $(window).load(function () {
+    fixSidebarHeight();
+  });
+</script>   
+</body>
+
+</html>

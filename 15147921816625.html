@@ -1,0 +1,628 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+     iOS Notification推送 - TIME TO GO 
+  </title>
+   
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+  <link rel="stylesheet" href="asset/css/foundation.min.css" />
+  <link rel="stylesheet" href="asset/css/docs.css" />
+  <script src="asset/js/vendor/modernizr.js"></script>
+  <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script type="text/javascript">
+    function before_search() {
+      var searchVal = 'site: ' + document.getElementById('search_input').value;
+      document.getElementById('search_q').value = searchVal;
+      return true;
+    }
+  </script>
+</head>
+
+<body class="antialiased hide-extras">
+  <div class="marketing off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+
+
+      <nav class="top-bar docs-bar hide-for-small" data-topbar>
+        <section class="top-bar-section">
+          <div class="row">
+            <div style="position: relative;width:100%;">
+              <div style="position: absolute; width:100%;">
+                <ul id="main-menu" class="left">
+                  
+                  <li id="">
+                    <a target="self" href="index.html">Home</a>
+                  </li>
+                  
+                  <li id="">
+                    <a target="_self" href="archives.html">Archives</a>
+                  </li>
+                  
+                </ul>
+                <ul class="right" id="search-wrap">
+                  <li>
+                    <form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+                      <input type="hidden" id="search_q" name="q" value="" />
+                      <input tabindex="1" type="search" id="search_input" placeholder="Search" />
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </nav>
+
+      <nav class="tab-bar show-for-small">
+        <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+          <span> &nbsp; TIME TO GO</span>
+        </a>
+      </nav>
+
+      <aside class="left-off-canvas-menu">
+        <ul class="off-canvas-list">
+          <li>
+            <a href="index.html">HOME</a>
+          </li>
+          <li>
+            <a href="archives.html">Archives</a>
+          </li>
+          <li>
+            <a href="about.html">ABOUT</a>
+          </li>
+          <li>
+            <label>Categories</label>
+          </li>
+          
+        </ul>
+      </aside>
+      <a class="exit-off-canvas" href="#"></a>
+      <section id="main-content" role="main" class="scroll-container"> <script type="text/javascript">
+  $(function () {
+    $('#menu_item_index').addClass('is_active');
+    $('#sidebar').parent().parent().hide();
+  });
+</script>
+
+<div class="row">
+  <div class="large-12 medium-12 columns">
+    <div class="markdown-body article-wrap">
+
+      <div class="article">
+        
+        <h1>iOS Notification推送</h1>
+        <div class="read-more clearfix">
+          <span class="date">2018/1/1</span>
+           
+          <span class="comments">
+             
+          </span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <ul>
+<li>
+<a href="#toc_0">一. iOS 7之前特性</a>
+<ul>
+<li>
+<a href="#toc_1">本地推送</a>
+</li>
+<li>
+<a href="#toc_2">远程推送</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_3">二. iOS 7新增特性</a>
+</li>
+<li>
+<a href="#toc_4">三. iOS 8新增特性</a>
+</li>
+<li>
+<a href="#toc_5">四. iOS 9新增特性</a>
+</li>
+<li>
+<a href="#toc_6">五. iOS 10新增特性</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一. iOS 7之前特性</h4>
+
+<h5 id="toc_1">本地推送</h5>
+
+<ul>
+<li><p>不需要注册通知类型（授权），直接可以Push；</p></li>
+<li><p>发送Push</p>
+
+<pre><code class="language-objc">UILocalNotification *notification = [[UILocalNotification alloc] init];
+[[UIApplication sharedApplication] scheduleLocalNotification:notification];
+</code></pre></li>
+<li><p>处理Push</p>
+
+<pre><code class="language-objc">// 完全退出：有横幅等提示，点击横幅启动，才能从launchOptions中获取到push内容，否则无法获取
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+
+// 前台：无横幅等提示，回调下面的方法，立即获取到push内容
+// 后台：有横幅等提示，只有点击横幅，才会回调下面的方法，获取到push内容
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+</code></pre></li>
+</ul>
+
+<span id="more"></span><!-- more -->   
+
+<h5 id="toc_2">远程推送</h5>
+
+<ul>
+<li><p>需要注册推送提醒类型（授权），才可以Push；</p>
+
+<pre><code class="language-objc">UIRemoteNotificationType type = UIRemoteNotificationTypeAlert | 
+                                    UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound;
+[application registerForRemoteNotificationTypes:type];
+</code></pre></li>
+<li><p>获取DeviceToken（以供后台发送Push）</p>
+
+<pre><code class="language-objc">- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+
+// 获取deviceTokenStr
+NSString *deviceTokenStr  = [[[[deviceToken description] 
+                                stringByReplacingOccurrencesOfString:@&quot;&lt;&quot; withString:@&quot;&quot;] 
+                                stringByReplacingOccurrencesOfString:@&quot;&gt;&quot; withString:@&quot;&quot;] 
+                                stringByReplacingOccurrencesOfString:@&quot; &quot; withString:@&quot;&quot;];
+</code></pre></li>
+<li><p>Push消息格式</p>
+
+<pre><code class="language-objc">{
+  &quot;aps&quot; : {
+    &quot;alert&quot; : {
+      &quot;title&quot; : &quot;Title&quot;,
+      &quot;body&quot; : &quot;Your message here.&quot; },
+    &quot;sound&quot; : &quot;default&quot;,
+    &quot;badge&quot; : 9
+  }
+}
+</code></pre></li>
+<li><p>处理Push</p>
+
+<pre><code class="language-objc">// 完全退出：有横幅等提示，点击横幅启动，才能从launchOptions中获取到push内容，否则无法获取
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+
+// 前台：无横幅等提示，回调下面的方法，立即获取到push内容
+// 后台：有横幅等提示，只有点击横幅，才会回调下面的方法，之后获取到push内容
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+</code></pre></li>
+</ul>
+
+<h4 id="toc_3">二. iOS 7新增特性</h4>
+
+<ul>
+<li><p>1.新增 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (<sup>)(UIBackgroundFetchResult))completionHandler</sup> 方法；该方法有以下两个作用：</p>
+
+<ul>
+<li><p><strong>1）. 不启用“后台推送模式”情况下，用于替换之前的处理push的方法（didReceiveRemoteNotification和didFinishLaunchingWithOptions）；</strong></p>
+
+<ul>
+<li>a. 若同时存在didReceiveRemoteNotification和fetchCompletionHandler，则fetchCompletionHandler被调用（场景处理方式和didReceiveRemoteNotification一样），didReceiveRemoteNotification被忽略；</li>
+<li>b. 若同时存在didFinishLaunchingWithOptions和fetchCompletionHandler，完全退出时，点击横幅启动，则连个方法都会被调用；</li>
+<li>c. 若实现了fetchCompletionHandler，则<strong>不需要再</strong>在didFinishLaunchingWithOptions中处理推送消息，否则fetchCompletionHandler就重复处理推送消息了；</li>
+</ul></li>
+<li><p><strong>2）. 启用“后台推送模式”情况下，可以用于进行“后台推送”和“静默推送”；也需要注意避免重复处理推送消息现象；</strong></p>
+
+<ul>
+<li><p>a. “后台推送模式”被启用的四大条件（必须同时满足，否则不被启用）：</p>
+
+<ul>
+<li>a). 服务器推送push内容包含&quot;content-available&quot;=1字段；</li>
+<li>b). Xcode打开Background Modes:Remote notifications选项；</li>
+<li>c). App处于后台；</li>
+<li>d). 实现fetchCompletionHandler方法；</li>
+</ul></li>
+<li><p>b. “后台推送模式”被启用后：</p>
+
+<ul>
+<li>收到推送消息时，系统会立即主动调用fetchCompletionHandler（此时状态为UIApplicationStateBackground），不需要点击横幅，可以在该方法中执行一些后台代码；</li>
+<li>若之后还点击横幅，fetchCompletionHandler会被再次调用（此时状态为UIApplicationStateInactive）；</li>
+<li>为了避免重复执行代码，需要在该方法中根据[UIApplication sharedApplication].applicationState进行判断处理；</li>
+</ul></li>
+<li><p>c. App处于“前台”、“完全退出”，就不会启用“后台推送模式”，场景处理方式和上面的不启用‘后台推送模式’的一样；</p></li>
+<li><p>d. 注意在“完全退出”场景下，避免didFinishLaunchingWithOptions和fetchCompletionHandler重复处理推送消息，即实现了fetchCompletionHandler后，就不要在didFinishLaunchingWithOptions中再处理推送消息了；不论是否启用“后台推送模式”；</p></li>
+<li><p>e. 若满足“后台推送模式”的四大条件的前三个条件，使用didReceiveRemoteNotification代替fetchCompletionHandler方法，也是可以执行后台任务的，只是执行时长没有fetchCompletionHandler长（通过观察打印日志可以看到）；</p></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_4">三. iOS 8新增特性</h4>
+
+<ul>
+<li><p>1.新增注册推送提醒类型（授权）[application registerUserNotificationSettings:setting]方法，废弃之前的[application registerForRemoteNotificationTypes:type]方法； 该方法给用户提供了与Push“快速回复”的交互功能；</p>
+
+<pre><code class="language-objc">UIUserNotificationType type = UIUserNotificationTypeAlert | 
+                                UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+UIUserNotificationSettings *setting = [UIUserNotificationSettings 
+                                                settingsForTypes:type categories:nil];
+[application registerUserNotificationSettings:setting];
+</code></pre>
+
+<ul>
+<li><p>categories参数设置：</p>
+
+<pre><code class="language-objc">// Call category
+UIMutableUserNotificationAction *acceptAct = [[UIMutableUserNotificationAction alloc] init];
+acceptAct.identifier = @&quot;acceptAct&quot;; // 行为标识符（用于在代理方法中区分哪种action）
+acceptAct.title = @&quot;Accept&quot;; // 按钮显示名称
+acceptAct.activationMode = UIUserNotificationActivationModeForeground; // 是否打开App（UIUserNotificationActivationModeForeground会打开App）
+acceptAct.destructive = YES; // 按钮显示颜色，YES为红色
+
+UIMutableUserNotificationAction *rejectAct = [[UIMutableUserNotificationAction alloc] init];
+rejectAct.identifier = @&quot;rejectAct&quot;;
+rejectAct.title = @&quot;Reject&quot;;
+rejectAct.activationMode = UIUserNotificationActivationModeBackground;
+rejectAct.authenticationRequired = NO; // 是否需要解锁（在UIUserNotificationActivationModeBackground模式下有效）
+
+UIMutableUserNotificationCategory *callCate = [[UIMutableUserNotificationCategory alloc] init];
+callCate.identifier = @&quot;callCate&quot;;
+[callCate setActions:@[ acceptAct, rejectAct ] forContext:UIUserNotificationActionContextDefault];
+
+// Message category
+UIMutableUserNotificationAction *readAct = [[UIMutableUserNotificationAction alloc] init];
+readAct.identifier = @&quot;readAct&quot;;
+readAct.title = @&quot;Read&quot;;
+readAct.activationMode = UIUserNotificationActivationModeForeground;
+readAct.destructive = YES;
+
+UIMutableUserNotificationAction *ignoreAct = [[UIMutableUserNotificationAction alloc] init];
+ignoreAct.identifier = @&quot;ignoreAct&quot;;
+ignoreAct.title = @&quot;Ignore&quot;;
+ignoreAct.activationMode = UIUserNotificationActivationModeBackground;
+ignoreAct.authenticationRequired = NO;
+
+UIMutableUserNotificationCategory *messageCate = [[UIMutableUserNotificationCategory alloc] init];
+messageCate.identifier = @&quot;messageCate&quot;;
+[messageCate setActions:@[ readAct, ignoreAct ] forContext:UIUserNotificationActionContextDefault];
+
+// set type、categorey
+UIUserNotificationType type = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+NSSet *categories = [NSSet setWithObjects: callCate, messageCate, nil];
+UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:type categories:categories];
+[application registerUserNotificationSettings:setting];     ```
+</code></pre></li>
+</ul>
+
+<ul>
+<li><p>在push的内容中加上 <code>&quot;category&quot;: &quot;callCate&quot;</code> 参数，即可以显示不同category下的action按钮；若没有发送的Push的category与注册的匹配不上，则无action按钮；</p></li>
+<li><p>点击不同的Action，会执行本地、远程push的Action按钮的处理代理方法，之前的Push处理方法不会被再调用；</p>
+
+<pre><code class="language-objc">// local
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier 
+            forLocalNotification:(UILocalNotification *)notification completionHandler:(void(^)())completionHandler 
+// remote
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier 
+            forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler 
+</code></pre></li>
+<li><p>UIUserNotificationActionContext：有UIUserNotificationActionContextDefault、UIUserNotificationActionContextMinimal两种类型，一般使用Default；</p></li>
+</ul></li>
+<li><p>2.新增注册推送提醒类型（授权）状态回调方法：</p>
+
+<pre><code class="language-objc">- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+</code></pre></li>
+<li><p><strong>3. 本地Push 也需要进行注册推送提醒类型（授权）；</strong></p></li>
+<li><p><strong>4.远程Push必须手动调用“注册远程推送方法” <code>[application registerForRemoteNotifications]</code>（iOS 8新增的方法），否则无法获取deviceToken；</strong></p></li>
+<li><p>5.可以使用本地字符串strings中自定义键值参数动态配置Push内容，以用于推送内容国际化，并且还优化流量：</p>
+
+<ul>
+<li><p>a. 在Localizable.strings中添加国际化字符串，比如：</p>
+
+<pre><code class="language-objc">&quot;push_con&quot; = &quot;iOS%@ 开发指南（第%@版）&quot;;
+</code></pre></li>
+<li><p>b. 配置推送内容，比如：</p>
+
+<pre><code class="language-objc">{
+  &quot;aps&quot; : {
+    &quot;alert&quot; : {
+       &quot;local-key&quot; : &quot;push_con&quot;,
+       &quot;local-args&quot; [&quot;10&quot;, &quot;二&quot;] },
+    &quot;sound&quot; : &quot;default&quot;,
+    &quot;badge&quot; : 9
+  }
+}
+</code></pre></li>
+</ul></li>
+<li><p>6.UILocalNotification新增CLRegion类型的region属性，可以用于基于地理位置进行本地Push；</p></li>
+</ul>
+
+<h4 id="toc_5">四. iOS 9新增特性</h4>
+
+<ul>
+<li><p>1.新增UIUserNotificationActionBehaviorTextInput文字输入类型的UIMutableUserNotificationAction，用于快速回复文字；通过设置action的behavior属性（iOS 9新增）设置该值，默认值为UIUserNotificationActionBehaviorDefault；</p>
+
+<pre><code class="language-objc">// for iOS 9 Reply Text
+UIMutableUserNotificationAction *replyAct = [[UIMutableUserNotificationAction alloc] init];
+replyAct.identifier = @&quot;replyAct&quot;;
+replyAct.title = @&quot;Reply&quot;;
+replyAct.activationMode = UIUserNotificationActivationModeBackground;
+replyAct.behavior = UIUserNotificationActionBehaviorTextInput; // 回复文字
+</code></pre></li>
+<li><p>2.新增新的处理点击Push的Action按钮的处理方法；</p>
+
+<pre><code class="language-objc">// local
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier 
+    forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler
+// remote
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier 
+    forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler
+</code></pre>
+
+<ul>
+<li><p>iOS9新增的代理方法与iOS8的代理方法，主要加了一个类型为Dict的responseInfo参数；该参数用了获取（通过UIUserNotificationActionResponseTypedTextKey键）快速回复文字时，回复的文字；</p></li>
+<li><p>若同时实现了iOS8和iOS9的新增代理方法，则只有iOS9的代理方法有效；</p></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_6">五. iOS 10新增特性</h4>
+
+<ul>
+<li><p><strong>iOS 10废弃了之前在UIKit框架中的UILocalNotification、UIUserNotificationType、UIMutableUserNotificationAction等一系列的Push类型，单独使用一个框架（UserNotifications）来实现Push；</strong></p>
+
+<ul>
+<li><p>1). 使用UNUserNotificationCenter去请求授权，option（type）和category分别设置；</p></li>
+<li><p>2). 请求注册获取token的请求方法和获取代理方法都没有变化；</p></li>
+<li><p><strong>3). 处理Push的代理方法不是APPDelete的代理方法了，是UNUserNotificationCenter代理方法，必须设置UNUserNotificationCenter对象的delete，否则无法处理Push；</strong></p></li>
+<li><p><strong>4). 处理本地Push、远程Push、本地Push的Action、远程Push的Action的代理方法合并成一个方法，使用UNNotification.request.trigger的类型区分是本地的还是远程的；</strong></p></li>
+<li><p><strong>5). 单独一个方法处理在前台接收到的Push，在前台接收到Push也可以显示横幅、提示音、角标；</strong></p></li>
+</ul>
+
+<pre><code class="language-objc">// 1. 注册推送提醒类型（授权）
+UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    UNAuthorizationOptions options = UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert;
+// 请求授权
+[center requestAuthorizationWithOptions:options completionHandler:^(BOOL granted, NSError * _Nullable error) {
+    if (granted) {
+        NSLog(@&quot;requestAuthorization, granted...&quot;);
+    } else {
+        NSLog(@&quot;requestAuthorization, no granted...&quot;);
+    }
+
+    // 获取用户的授权信息
+    [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+        NSLog(@&quot;settings: %@&quot;, settings);
+    }];
+}];
+
+// 必须设置代理，否则无法回调Push处理代理方法
+center.delegate = self;
+
+// for romote push；请求注册获取token（请求方法和获取代理方法都没有变化）
+[[UIApplication sharedApplication] registerForRemoteNotifications];
+</code></pre>
+
+<pre><code class="language-objc">// 2. 获取DeviceToken
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *deviceTokenStr  = [[[[deviceToken description] stringByReplacingOccurrencesOfString:@&quot;&lt;&quot; withString:@&quot;&quot;] stringByReplacingOccurrencesOfString:@&quot;&gt;&quot; withString:@&quot;&quot;] stringByReplacingOccurrencesOfString:@&quot; &quot; withString:@&quot;&quot;];
+    NSLog(@&quot;%s, %@&quot;, __func__, deviceTokenStr);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@&quot;%s, %@&quot;, __func__, error);
+}
+</code></pre>
+
+<pre><code class="language-objc">// 3. 处理Push
+#pragma mark - UNUserNotificationCenterDelegate
+
+// 在前台收到Push回调
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+
+    NSLog(@&quot;%s, %@&quot;, __func__, notification);
+    [self handleNtf:notification];
+
+    // 配置在前台情况下，有哪些提示信息（iOS10之前不会提示）
+    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionAlert);
+}
+
+// 后台、退出：点击横幅（或Action）时回调
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+
+    NSLog(@&quot;%s, %@&quot;, __func__, response);
+
+    UNNotification *notification = response.notification;
+    [self handleNtf:notification];
+
+    completionHandler();
+}
+
+- (void)handleNtf:(UNNotification *)notification {
+    UNNotificationRequest *ntfRequest = notification.request; // Push的请求
+
+    UNNotificationTrigger *ntfTrigger = ntfRequest.trigger; // Push的请求 类型（用于区分本地、远程Push）
+    UNNotificationContent *ntfContent = ntfRequest.content; // Push的请求 内容
+
+    // Push内容的具体数据
+    NSNumber *badge = ntfContent.badge;
+    UNNotificationSound *sound = ntfContent.sound;
+    NSString *title = ntfContent.title;
+    NSString *subTitle = ntfContent.subtitle;
+    NSString *body = ntfContent.body;
+
+    if ([ntfTrigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        NSLog(@&quot;%s, remote push....&quot;, __func__);
+    } else {
+        NSLog(@&quot;%s, local push....&quot;, __func__);
+    }
+}
+</code></pre></li>
+<li><p>iOS 10中，Apple将本地Push和远程Push合二为一，使用UNNotificationTrigger类来区分，所有的Push类型都是该类型的子类；</p>
+
+<ul>
+<li>UNPushNotificationTrigger：远程Push；</li>
+<li>UNTimeIntervalNotificationTrigger：本地Push，可以设置timeInterval、repeats；</li>
+<li>UNCalendarNotificationTrigger：本地Push，可以设置dateComponents；</li>
+<li>UNLocationNotificationTrigger：本地Push，基于地理位置；</li>
+</ul>
+
+<pre><code class="language-objc">// 发送本地Push
+// 1). 创建trigger
+UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.5 repeats:NO];
+
+// 2). 创建Push的内容
+UNMutableNotificationContent *mNtfContent = [[UNMutableNotificationContent alloc] init];
+mNtfContent.title = @&quot;提醒&quot;;
+mNtfContent.subtitle = @&quot;提醒~~~&quot;;
+mNtfContent.body = @&quot;This is a message!!!&quot;;
+mNtfContent.sound = [UNNotificationSound defaultSound];
+mNtfContent.userInfo = @{ @&quot;a&quot;: @&quot;123&quot; };
+
+// 3). 创建Push请求
+NSString *identifier = @&quot;com.meme.push.local.ios10&quot;; // Push标识
+UNNotificationRequest *ntfRequest = [UNNotificationRequest requestWithIdentifier:identifier content:mNtfContent trigger:trigger];
+
+// 4). 将Push添加到Push管理中心（UNUserNotificationCenter）
+UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+[center addNotificationRequest:ntfRequest withCompletionHandler:^(NSError * _Nullable error) {
+    NSLog(@&quot;completionHandler, %@&quot;, error);
+}];
+</code></pre></li>
+<li><p>iOS 10也提供了对Push进行删除、修改、查询的便捷的方法（UNUserNotificationCenter的），本地Push、远程Push都可以的，远程的需要push的内容中加apps-collapse-id字段作为唯一标识；</p>
+
+<ul>
+<li>之前只能对本地Push做删除，且没有直接方法，必须先给特定Push的userInfo中设置一个标记，然后遍历所有的Push，找到匹配的Push才能进行删除；</li>
+<li>现在可以通过Push的identifier直接进行删除；</li>
+<li>相同标识的Push会更新之前的Push；</li>
+</ul>
+
+<pre><code class="language-objc">// 获取、删除未送达的
+- (void)getPendingNotificationRequestsWithCompletionHandler:(void(^)(NSArray&lt;UNNotificationRequest *&gt; *requests))completionHandler;
+- (void)removePendingNotificationRequestsWithIdentifiers:(NSArray&lt;NSString *&gt; *)identifiers;
+- (void)removeAllPendingNotificationRequests;
+
+// 获取、删除已送达的
+- (void)getDeliveredNotificationsWithCompletionHandler:(void(^)(NSArray&lt;UNNotification *&gt; *notifications))completionHandler;
+- (void)removeDeliveredNotificationsWithIdentifiers:(NSArray&lt;NSString *&gt; *)identifiers;
+- (void)removeAllDeliveredNotifications;
+</code></pre></li>
+<li><p><strong>使用Xcode 8编译远程推送相关代码，必须要打开Capabilities中的Push Notification，生成entitlements文件，否则获取的DeviceToken是无效的，服务端无法向该设备推送消息；Xcode 7无此问题；</strong></p></li>
+<li><p>使用Xcode 8编译远程推送相关代码，最好也打开Background Modes:Remote notifications选项，否则Xcode报警告log；（只要推送消息不包含&quot;content-available&quot;=1字段，就不是后台推送了）；Xcode 7无此问题；</p></li>
+</ul>
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <p class="text-left" style="padding:15px 0px;">
+            
+            <a href="15147939316129.html" title="Previous Post: Carthage使用教程">&laquo; Carthage使用教程</a>
+            
+          </p>
+        </div>
+        <div class="large-6 columns">
+          <p class="text-right" style="padding:15px 0px;">
+            
+            <a href="15147467512006.html" title="Next Post: Swift语法概要(07~08)">Swift语法概要(07~08) &raquo;</a>
+            
+          </p>
+        </div>
+      </div>
+
+      <div class="comments-wrap">
+        <div class="share-comments">
+            
+        </div>
+      </div>
+
+    </div>
+  </div> <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+
+      <div id="site-info" class="site-info">
+        
+        <h1>TIME TO GO</h1>
+        <div class="site-des">It is just a matter of time.</div>
+        <div class="social">
+                    
+          <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+        </div>
+      </div>
+
+      
+
+      <div id="site-categories" class="side-item ">
+        <div class="side-header">
+          <h2>Categories</h2>
+        </div>
+        <div class="side-content">
+          <p class="cat-list">
+            
+          </p>
+        </div>
+      </div>
+
+      <div id="site-categories" class="side-item">
+        <div class="side-header">
+          <h2>Recent Posts</h2>
+        </div>
+        <div class="side-content">
+          <ul class="posts-list">
+              <li class="post">
+              <a href="15339807662944.html">Ubuntu使用教程</a>
+              </li>
+                 <li class="post">
+              <a href="15332159757050.html">证书、SSL、HTTPS</a>
+              </li>
+                 <li class="post">
+              <a href="15327896998795.html">Python中的常见问题</a>
+              </li>
+                 <li class="post">
+              <a href="15288255574523.html">Python3笔记(19实战)</a>
+              </li>
+                 <li class="post">
+              <a href="15285683833705.html">错误、异常的处理（Java、ObjC、Swift）</a>
+              </li>
+                                             
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div> <div class="page-bottom clearfix">
+  <div class="row">
+    <p class="copyright">Copyright &copy; 2015 Powered by
+      <a target="_blank" href="">ME</a>
+    </p>
+  </div>
+</div>
+</section>
+
+</div>
+</div>
+
+ 
+<script src="asset/js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+  function fixSidebarHeight() {
+    var w1 = $('.markdown-body').height();
+    var w2 = $('#sidebar').height();
+    if (w1 > w2) { $('#sidebar').height(w1); };
+  }
+  $(function () {
+    fixSidebarHeight();
+  })
+  $(window).load(function () {
+    fixSidebarHeight();
+  });
+</script>   
+</body>
+
+</html>

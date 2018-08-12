@@ -95,6 +95,400 @@
 
       
       <div class="article">
+        <a class="clearlink" href="15312301698124.html">
+          
+          <h1>Swift版本间差异</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <ul>
+<li>
+<a href="#toc_0">一、@objc</a>
+</li>
+<li>
+<a href="#toc_1">二、 #selector</a>
+<ul>
+<li>
+<a href="#toc_2">1. 定义格式</a>
+</li>
+<li>
+<a href="#toc_3">2. 方法定义规定</a>
+</li>
+<li>
+<a href="#toc_4">3. self</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_5">三、懒加载</a>
+<ul>
+<li>
+<a href="#toc_6">1. 懒加载情景</a>
+</li>
+<li>
+<a href="#toc_7">2. 延迟属性与闭包</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">四、dispatch_once</a>
+</li>
+<li>
+<a href="#toc_9">五、单例模式</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、@objc</h4>
+
+<ul>
+<li>将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</li>
+</ul>
+
+<p><strong>1). Swift 3.0</strong></p>
+
+<ul>
+<li><p>a. 编译器默认给继承于NSObject的类的所有方法都隐式添加@objc；缺点是大量@objc导致二进制文件增大；</p>
+
+<pre><code class="language-swift">class MyClass: NSObject {
+    func print() { } // 包含隐式的 @objc
+}
+</code></pre></li>
+</ul>
+
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15312301698124.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2018/5/10</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
+        <a class="clearlink" href="15237039848080.html">
+          
+          <h1>Android编程权威指南 笔记(19~24)</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <ul>
+<li>
+<a href="#toc_0">第19章 Android辅助功能</a>
+</li>
+<li>
+<a href="#toc_1">第20章 数据绑定与MVVM</a>
+<ul>
+<li>
+<a href="#toc_2">20.1 为何要用MVVM架构</a>
+</li>
+<li>
+<a href="#toc_3">20.2 创建BeatBox应用</a>
+</li>
+<li>
+<a href="#toc_4">20.3 导入assets</a>
+</li>
+<li>
+<a href="#toc_5">20.4 处理assets</a>
+</li>
+<li>
+<a href="#toc_6">20.6 绑定数据</a>
+</li>
+<li>
+<a href="#toc_7">20.7 访问assets</a>
+</li>
+<li>
+<a href="#toc_8">20.8 深入学习：数据绑定再探</a>
+</li>
+<li>
+<a href="#toc_9">20.10 深入学习：什么是non-assets</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_10">第21章 音频播放与单元测试</a>
+<ul>
+<li>
+<a href="#toc_11">21.0 概述</a>
+</li>
+<li>
+<a href="#toc_12">21.1 创建SoundPool</a>
+</li>
+<li>
+<a href="#toc_13">21.2 加载音频文件</a>
+</li>
+<li>
+<a href="#toc_14">21.3 播放音频</a>
+</li>
+<li>
+<a href="#toc_15">21.4 ~ 21.7 添加测试依赖、创建测试类、实现测试类、编写测试方法</a>
+</li>
+<li>
+<a href="#toc_16">21.8 数据绑定回调</a>
+</li>
+<li>
+<a href="#toc_17">21.9 释放音频</a>
+</li>
+<li>
+<a href="#toc_18">21.10 设备旋转和对象保存</a>
+</li>
+<li>
+<a href="#toc_19">21.11 深入学习：是否保留fragment</a>
+</li>
+<li>
+<a href="#toc_20">21.12 ~ 21.13 深入学习：Espresson与整合测试、深入学习：虚拟对象与测试</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_21">第22章 样式与主题</a>
+<ul>
+<li>
+<a href="#toc_22">22.1 颜色资源</a>
+</li>
+<li>
+<a href="#toc_23">22.2 样式</a>
+</li>
+<li>
+<a href="#toc_24">22.3 主题</a>
+</li>
+<li>
+<a href="#toc_25">22.4 添加主题颜色</a>
+</li>
+<li>
+<a href="#toc_26">22.5 覆盖主题属性</a>
+</li>
+<li>
+<a href="#toc_27">22.6 修改按钮属性</a>
+</li>
+<li>
+<a href="#toc_28">22.7 深入学习：样式继承拾遗</a>
+</li>
+<li>
+<a href="#toc_29">22.8 深入学习：引用主题属性</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_30">第23章 XML drawable</a>
+<ul>
+<li>
+<a href="#toc_31">23.0 概述</a>
+</li>
+<li>
+<a href="#toc_32">23.2 shape drawable</a>
+</li>
+<li>
+<a href="#toc_33">23.3 state list drawable</a>
+</li>
+<li>
+<a href="#toc_34">23.4 layer list drawable</a>
+</li>
+<li>
+<a href="#toc_35">23.6 深入学习：使用mipmap图像</a>
+</li>
+<li>
+<a href="#toc_36">23.7 深入学习：使用9-patch图像</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_37">第23章 深入学习intent和任务</a>
+<ul>
+<li>
+<a href="#toc_38">24.2 解析隐式intent</a>
+</li>
+<li>
+<a href="#toc_39">24.3 在运行时创建显式intent</a>
+</li>
+<li>
+<a href="#toc_40">24.4 任务与回退栈</a>
+</li>
+<li>
+<a href="#toc_41">24.5 使用NerdLauncher应用作为设备主屏幕</a>
+</li>
+<li>
+<a href="#toc_42">24.7 深入学习：进程与任务</a>
+</li>
+<li>
+<a href="#toc_43">24.8 深入学习：并发文档</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15237039848080.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2018/4/14</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
+        <a class="clearlink" href="15230916186418.html">
+          
+          <h1>Android编程权威指南 笔记(13~18)</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <ul>
+<li>
+<a href="#toc_0">第13章 工具栏</a>
+<ul>
+<li>
+<a href="#toc_1">13.1 AppCompat</a>
+</li>
+<li>
+<a href="#toc_2">13.2 工具栏菜单</a>
+</li>
+<li>
+<a href="#toc_3">13.3 实现层级式导航</a>
+</li>
+<li>
+<a href="#toc_4">13.4 可选菜单项</a>
+</li>
+<li>
+<a href="#toc_5">13.5 深入学习：工具栏和操作栏</a>
+</li>
+<li>
+<a href="#toc_6">13.6、13.7 调整练习：删除crime记录、复数字符串资源</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7">第14章 SQLite数据库</a>
+<ul>
+<li>
+<a href="#toc_8">14.0 概述</a>
+</li>
+<li>
+<a href="#toc_9">14.1 定义schema</a>
+</li>
+<li>
+<a href="#toc_10">14.2 创建初始数据库</a>
+</li>
+<li>
+<a href="#toc_11">14.4 写入数据库</a>
+</li>
+<li>
+<a href="#toc_12">14.5 读取数据库</a>
+</li>
+<li>
+<a href="#toc_13">14.7 深入学习：应用上下文</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_14">第15章 隐式Intent</a>
+<ul>
+<li>
+<a href="#toc_15">15.0 概述</a>
+</li>
+<li>
+<a href="#toc_16">15.4 使用隐式intent</a>
+</li>
+<li>
+<a href="#toc_17">15.5 挑战练习：ShareCompat</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_18">第16章 使用intent拍照</a>
+<ul>
+<li>
+<a href="#toc_19">16.2 文件存储</a>
+</li>
+<li>
+<a href="#toc_20">16.3 使用相机intent</a>
+</li>
+<li>
+<a href="#toc_21">16.4 缩放和显示位图</a>
+</li>
+<li>
+<a href="#toc_22">16.5 功能声明</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_23">第17章 双版面主从用户界面</a>
+<ul>
+<li>
+<a href="#toc_24">17.1 增加布局灵活性</a>
+</li>
+<li>
+<a href="#toc_25">17.2 activity：fragment的托管者</a>
+</li>
+<li>
+<a href="#toc_26">17.3 深入学习：设备屏幕尺寸的确定</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_27">第18章 应用本地化</a>
+<ul>
+<li>
+<a href="#toc_28">18.1 资源本地化</a>
+</li>
+<li>
+<a href="#toc_29">18.2 配置修饰符</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15230916186418.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2018/4/7</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
         <a class="clearlink" href="15225894269717.html">
           
           <h1>Android编程权威指南 笔记(07~12)</h1>
@@ -367,175 +761,6 @@
         </div>
       </div>
       
-      <div class="article">
-        <a class="clearlink" href="15230908846113.html">
-          
-          <h1>Android Studio配置使用</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">一、配置</a>
-</li>
-<li>
-<a href="#toc_1">二、使用</a>
-</li>
-<li>
-<a href="#toc_2">三、快捷键</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">一、配置</h4>
-
-<ul>
-<li><p>配置文件目录</p>
-
-<ul>
-<li>Configuration Path：~/Library/Preferences/<PRODUCT><VERSION>，删除该目录即还原默认配置</li>
-<li>Caches Path：~/Library/Caches/<PRODUCT><VERSION></li>
-<li>Logs Path：~/Library/Logs/<PRODUCT><VERSION></li>
-</ul></li>
-<li><p>禁止AS首次启动下载SDK：显示包内容，bin目录下的idea.properties增加<code>disable.android.first.run=true</code></p></li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15230908846113.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/3/25</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
-        <a class="clearlink" href="15219669294797.html">
-          
-          <h1>GitBook使用教程</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">一、简介</a>
-</li>
-<li>
-<a href="#toc_1">二、安装使用</a>
-</li>
-<li>
-<a href="#toc_2">三、补充</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">一、简介</h4>
-
-<ul>
-<li>GitBook是一个可以将Markdown文本一键生成为HTML、PDF、EPUB格式图书（需要安装安装calibre）的工具，其也内置使用Git对Markdown文件做版本控制；</li>
-<li>可以在本地离线生成各种格式的图书，也可以在GitBook官网在线生成，便于共享；并且其也提供了一键导入GitHub仓库生成图书的便捷功能（一本图书就是一个Git仓库）；</li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15219669294797.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/3/25</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
-        <a class="clearlink" href="15210408337160.html">
-          
-          <h1>iOS的静态库、动态库</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">一、类库分类</a>
-</li>
-<li>
-<a href="#toc_1">二、类库类型支持</a>
-</li>
-<li>
-<a href="#toc_2">三、设备CPU架构</a>
-</li>
-<li>
-<a href="#toc_3">四、资源文件处理</a>
-</li>
-<li>
-<a href="#toc_4">五、补充知识</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">一、类库分类</h4>
-
-<ul>
-<li>静态库：
-
-<ul>
-<li>.a二进制库：使用时还需要将.h头文件及资源文件（比如图片等）拖入到工程项目中，配置一些header、lib路径之类的；使用起来比较麻烦；</li>
-<li>.framework库：Apple平台独有的，其本质是将.a库文件、.h头文件及资源文件打包在一起的包文件；使用时直接将其拖到工程项目中即可（或在 <code>Link Binary With Libraries</code> 中添加即可使用）；</li>
-</ul></li>
-<li>动态库：
-
-<ul>
-<li>.tdb库：Xcode 7（iOS9）开始使用，之前名称为.dylib；在 <code>Link Binary With Libraries</code> 中添加即可使用；</li>
-<li>.framework库文件：在 <code>Link Binary With Libraries</code> 中添加即可使用；</li>
-</ul></li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15210408337160.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/3/14</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
 
       <div class="row">
         <div class="large-6 columns">
@@ -588,19 +813,19 @@
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15339807662944.html">Ubuntu使用教程</a>
+              </li>
+                 <li class="post">
+              <a href="15332159757050.html">证书、SSL、HTTPS</a>
+              </li>
+                 <li class="post">
               <a href="15327896998795.html">Python中的常见问题</a>
               </li>
                  <li class="post">
+              <a href="15288255574523.html">Python3笔记(19实战)</a>
+              </li>
+                 <li class="post">
               <a href="15285683833705.html">错误、异常的处理（Java、ObjC、Swift）</a>
-              </li>
-                 <li class="post">
-              <a href="15312301698124.html">Swift版本间差异</a>
-              </li>
-                 <li class="post">
-              <a href="15237039848080.html">Android编程权威指南 笔记(19~24)</a>
-              </li>
-                 <li class="post">
-              <a href="15230916186418.html">Android编程权威指南 笔记(13~18)</a>
               </li>
                                              
           </ul>
