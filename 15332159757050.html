@@ -164,13 +164,13 @@
 <li><p>三）加密算法的使用</p>
 
 <ul>
-<li><p>a. 非对称加密中，一般将公钥公开给其他人，私钥自己保存；其他使用公钥加密相关内容，自己使用私钥解密出相关内容；</p>
+<li><p>a. 非对称加密中，一般将公钥公开给其他人，私钥自己保存；其他人使用公钥加密相关内容，自己使用私钥解密出相关内容；</p>
 
 <ul>
 <li>当A和B需要互发消息时，需要将A和B的公钥互相公开，当一端需要向另一端发送消息时，使用对端的公钥进行加密，对端再使用自己的私钥进行解密，反之亦然；</li>
 <li>在实际使用中，由于非对称加密速度比较慢，一般先使用其传递对称加密的秘钥，然后再用该对称加密的秘钥加密真正的数据；这样就集成两种加密算法的优点，既加密可靠又加密速度快；</li>
 </ul></li>
-<li><p>b. 但是也可以自己将消息内容使用私钥进行加密，其他人使用公钥进行解密，此方式可用于其他人验证消息是否来自于私钥的持有者（自己）；</p>
+<li><p>b. 但是也可以自己将消息内容使用私钥进行加密，让其他人使用公钥进行解密，此方式可用于其他人验证消息是否来自于私钥的持有者（自己）；</p>
 
 <ul>
 <li><strong>公钥加密/私钥解密用于<code>加密</code>，私钥加密/公钥解密用于<code>认证</code>；</strong></li>
@@ -180,7 +180,7 @@
 
 <ul>
 <li><strong>本端先使用散列算法生成<code>摘要</code>，然后再对摘要使用私钥进行加密，生成的内容称为<code>数字签名（signature）</code>；</strong></li>
-<li><strong>对端收到原始内容和数字签名，先解密数字签名进行认证，然后自己对原始内容进行散列生成摘要，比较接受的和生成的摘要进行防篡改校验；</strong></li>
+<li><strong>对端收到原始内容和数字签名，先解密数字签名进行认证，然后自己对原始内容进行散列生成摘要，比较接收的和生成的摘要，进行防篡改校验；</strong></li>
 </ul></li>
 </ul></li>
 <li><p>四）Base64编码</p>
@@ -196,7 +196,7 @@
 <li><p><strong>一）CA、证书</strong></p>
 
 <ul>
-<li><p>A、B通信时互相使用对方的公钥加密消息，可能会出现一个冒充A的C，给B发送自己的公钥（冒充A的公钥）及消息，这样A、B间的加密通讯就被破解了；</p>
+<li><p>A、B通信时互相使用对方的公钥加密消息，可能会出现一个冒充A的C，给B发送自己的C公钥（冒充A的公钥）及消息，这样A、B间的加密通讯就被破解了；</p>
 
 <ul>
 <li><strong>a). 为了解决上述问题，需要一个机构对A的公钥进行认证，保证A的公钥的正确可靠性，该机构被称为<code>CA（certificate authority，证书中心）</code>；</strong></li>
@@ -234,7 +234,7 @@
 <li><p><strong>b）. RSA数据安全公司的PKCS</strong></p>
 
 <ul>
-<li>定义了一组公钥密码学标准，其中包括证书申请、证书更新、证书作废表发布、扩展证书内容以及数字签名、数字信封的格式等方面的一系列相关协议；比较常见的有
+<li>定义了一组公钥密码学标准，其中包括证书申请、证书更新、证书作废发布、扩展证书内容以及数字签名、数字信封的格式等方面的一系列相关协议；比较常见的有
 
 <ul>
 <li>PKCS#1：定义RSA公开密钥算法加密和签名机制，主要用于组织PKCS#7中所描述的数字签名和数字信封；</li>
@@ -464,13 +464,13 @@ openssl x509 -req -in server_req.csr -CA rootca.crt -CAkey ca_private.key -out s
 <li>macOS Sierra（10.12.*）默认自带OpenSSL，版本为<code>0.9.8zh 14 Jan 2016</code>；</li>
 <li><strong>macOS High Sierra（10.13.*）开始替换成LibreSSL（比OpenSSL更安全），版本为<code>2.2.7</code>；</strong></li>
 <li><strong>在OpenSSL中，通过<code>openssl req -new -x509</code>一步生成的证书被称为<code>Root certificate authority</code>（默认不被信任），而通过<code>openssl x509 -req</code>两步命令生成的证书为<code>Self-signed root certificate</code>（默认被信任）；</strong></li>
-<li><strong>在LibreSSL中，无论是一步还是两步命令生成的证书，都是<code>Self-signed root certificate</code>（默认被信任）；</strong></li>
+<li><strong>在LibreSSL中，无论是一步命令还是两步命令生成的证书，都是<code>Self-signed root certificate</code>（默认被信任）；</strong></li>
 </ul></li>
 <li><p>私钥位数、系统信任</p>
 
 <ul>
 <li><strong><code>openssl genrsa</code>命令若不主动添加私钥位数，OpenSSL 0.9默认生成512位的私钥，OpenSSL 1.0及LibreSSL默认生成2048位的私钥；</strong></li>
-<li><strong>在macOS系统中，若使用私自的CA签名一些证书，相关的私钥的位数必须大于1024位，否则CA被系统信任，被签名也不会被信任；</strong></li>
+<li><strong>在macOS系统中，若使用私自的CA签名一些证书，相关的私钥的位数必须大于等于1024位，否则即使CA根证书被系统信任，被签名的证书也不会被信任；</strong></li>
 </ul></li>
 <li><p>浏览器信任</p>
 

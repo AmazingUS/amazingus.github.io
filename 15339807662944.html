@@ -230,9 +230,6 @@ update-grub2 或 update-grub
 清理/usr/src目录，删除已经卸载的内核目录
 </code></pre></li>
 </ul></li>
-</ul>
-
-<ul>
 <li><p>升级Linux内核</p>
 
 <pre><code class="language-shell">uname -r
@@ -306,7 +303,7 @@ hwclock --systohc
 <li><strong>在Ubuntu 18.0.4中安装mysql 5.7，mysql的root用户默认使用<code>auth_socket plugin</code>去认证而不是密码，这导致在终端中直接<code>mysql -uroot</code>不用密码就能登陆（即使在<code>配置mysql</code>中设置了密码也没有效果）</strong></li>
 <li><p>In Ubuntu systems running MySQL 5.7 (and later versions), the root MySQL user is set to authenticate using the auth_socket plugin by default rather than with a password. This allows for some greater security and usability in many cases, but it can also complicate things when you need to allow an external program (e.g., phpMyAdmin) to access the user.（参考<code>https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04</code>）</p>
 
-<pre><code>SELECT user,authentication_string,plugin,host FROM mysql.user;
+<pre><code class="language-sql">SELECT user,authentication_string,plugin,host FROM mysql.user;
 
 ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;
 FLUSH PRIVILEGES;
@@ -316,7 +313,7 @@ SELECT user,authentication_string,plugin,host FROM mysql.user;
 </ul></li>
 <li><p>d. 开启远程访问（可选）</p>
 
-<pre><code>**默认情况下mysql只允许本地连接访问；**
+<pre><code class="language-shell">**默认情况下mysql只允许本地连接访问；**
 
 // 开启远程访问
 nano /etc/mysql/mysql.conf.d/mysqld.cnf，

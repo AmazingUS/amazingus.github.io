@@ -1,0 +1,419 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+     iOS视图布局方式 - TIME TO GO 
+  </title>
+   
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+  <link rel="stylesheet" href="asset/css/foundation.min.css" />
+  <link rel="stylesheet" href="asset/css/docs.css" />
+  <script src="asset/js/vendor/modernizr.js"></script>
+  <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script type="text/javascript">
+    function before_search() {
+      var searchVal = 'site: ' + document.getElementById('search_input').value;
+      document.getElementById('search_q').value = searchVal;
+      return true;
+    }
+  </script>
+</head>
+
+<body class="antialiased hide-extras">
+  <div class="marketing off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+
+
+      <nav class="top-bar docs-bar hide-for-small" data-topbar>
+        <section class="top-bar-section">
+          <div class="row">
+            <div style="position: relative;width:100%;">
+              <div style="position: absolute; width:100%;">
+                <ul id="main-menu" class="left">
+                  
+                  <li id="">
+                    <a target="self" href="index.html">Home</a>
+                  </li>
+                  
+                  <li id="">
+                    <a target="_self" href="archives.html">Archives</a>
+                  </li>
+                  
+                </ul>
+                <ul class="right" id="search-wrap">
+                  <li>
+                    <form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+                      <input type="hidden" id="search_q" name="q" value="" />
+                      <input tabindex="1" type="search" id="search_input" placeholder="Search" />
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </nav>
+
+      <nav class="tab-bar show-for-small">
+        <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+          <span> &nbsp; TIME TO GO</span>
+        </a>
+      </nav>
+
+      <aside class="left-off-canvas-menu">
+        <ul class="off-canvas-list">
+          <li>
+            <a href="index.html">HOME</a>
+          </li>
+          <li>
+            <a href="archives.html">Archives</a>
+          </li>
+          <li>
+            <a href="about.html">ABOUT</a>
+          </li>
+          <li>
+            <label>Categories</label>
+          </li>
+          
+        </ul>
+      </aside>
+      <a class="exit-off-canvas" href="#"></a>
+      <section id="main-content" role="main" class="scroll-container"> <script type="text/javascript">
+  $(function () {
+    $('#menu_item_index').addClass('is_active');
+    $('#sidebar').parent().parent().hide();
+  });
+</script>
+
+<div class="row">
+  <div class="large-12 medium-12 columns">
+    <div class="markdown-body article-wrap">
+
+      <div class="article">
+        
+        <h1>iOS视图布局方式</h1>
+        <div class="read-more clearfix">
+          <span class="date">2018/1/1</span>
+           
+          <span class="comments">
+             
+          </span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <ul>
+<li>
+<a href="#toc_0">一、基本尺寸</a>
+</li>
+<li>
+<a href="#toc_1">二、iOS 7之前特性</a>
+</li>
+<li>
+<a href="#toc_2">三、iOS 7特性</a>
+</li>
+<li>
+<a href="#toc_3">四、iOS 11特性</a>
+</li>
+<li>
+<a href="#toc_4">五、补充</a>
+</li>
+<li>
+<a href="#toc_5">六、参考</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、基本尺寸</h4>
+
+<ul>
+<li><p>控件尺寸</p>
+
+<ul>
+<li>iPhone、iPad：StatusBar的高度为20，NavBar为44，TabBar为49；</li>
+<li>iPhoneX：StatusBar的高度为44，NavBar为44，TabBar为83；</li>
+</ul></li>
+<li><p>屏幕尺寸</p>
+
+<ul>
+<li>iPhone4s：屏幕尺寸为320x480，iPhone5s屏幕尺寸为320*568；</li>
+<li>iPhone8屏幕尺寸为375x667，iPhone8Plus屏幕尺寸为414*736，3X；</li>
+<li>iPhoneX屏幕尺寸为375x812，3X；</li>
+</ul></li>
+</ul>
+
+<span id="more"></span><!-- more -->   
+
+<h4 id="toc_1">二、iOS 7之前特性</h4>
+
+<ul>
+<li><p>视图特性</p>
+
+<ul>
+<li>VC的view尺寸不是全屏幕尺寸，尺寸不包含StatusBar、NavBar、TabBar的高度；</li>
+<li>可以通过VC的wantsFullScreenLayout属性（iOS7 deprecated）设置全屏幕尺寸；</li>
+</ul></li>
+<li><p>布局特性</p>
+
+<ul>
+<li>iOS 6之前有两种布局方式：设置控件的Frame、Autoresizing；</li>
+<li>iOS 6（2012，iPhone5），苹果推出AutoLayout用于代替Autoresizing；View有个属性translatesAutoresizingMaskIntoConstraints用于自动将Autoresizing转为AutoLayout，默认值为YES；</li>
+<li>AutoLayout使用约束进行布局，约束创建有两种方式：<code>constraintWithItem:(id)view1 attribute:...</code>、<code>constraintsWithVisualFormat:(NSString *)format options</code>（VFL）；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_2">三、iOS 7特性</h4>
+
+<ul>
+<li><p>视图特性</p>
+
+<ul>
+<li>VC的view尺寸默认是全屏幕尺寸，尺寸包含StatusBar、NavBar、TabBar的高度，不论其是否被包裹在NavVC、TabBarVC；</li>
+<li><p><strong>UIViewController新增以下属性控制VC的view及其子控件的显示效果：</strong></p>
+
+<ul>
+<li><p><strong>a. <code>edgesForExtendedLayout</code></strong></p>
+
+<ul>
+<li><strong>当有StatusBar、NavBar、TabBar时，并且NavBar、TabBar的translucent为YES，VC的view的四个边和父view（window）的贴合情况；</strong></li>
+<li><strong>默认值为UIRectEdgeAll（枚举值），即四边都贴合；</strong></li>
+</ul></li>
+<li><p><strong>b. <code>extendedLayoutIncludesOpaqueBars</code></strong></p>
+
+<ul>
+<li><strong>当有StatusBar、NavBar、TabBar时，并且NavBar、TabBar的translucent为NO（直接设置为NO、设置backgroundImage间接导致），会导致VC的view不是全屏幕尺寸；</strong></li>
+<li><strong>默认值为NO，即不是全屏幕尺寸；</strong></li>
+<li><strong>注意要点</strong>
+
+<ul>
+<li><strong>NavVC、TabBarVC的view始终都是全屏幕尺寸，需要设置被包裹的VC的该属性；</strong></li>
+</ul></li>
+</ul></li>
+<li><p><strong>c. <code>automaticallyAdjustsScrollViewInsets</code></strong></p>
+
+<ul>
+<li><strong>表示若VC的view有被StatusBar、NavBar、TabBar遮挡住，并且view中有ScrollView类型的子控件，是否自动设置ScrollView类型子控件的contentInset；</strong></li>
+<li><strong>默认值为YES，即会自动设置；（<code>注意：ScrollView类型子控件不被遮挡住也会被设置</code>）</strong></li>
+<li><p><strong>VC的view必须被StatusBar、NavBar、TabBar遮挡住，否则即使automaticallyAdjustsScrollViewInsets为YES，也不会自动设置contentInset；</strong></p></li>
+<li><p>VC的view没有被遮挡住，有以下4种情况下：</p>
+
+<ul>
+<li>a). StatusBar、NavBar、TabBar被隐藏，此时view的尺寸是全屏幕尺寸；</li>
+<li>b). 设置edgesForExtendedLayout让view不是全屏幕尺寸；比如设置为UIRectEdgeNone，此时View的尺寸需要减去StatusBar、NavBar、TabBar的尺寸（哪个有显示减去哪个的尺寸）；</li>
+<li><strong>c). 设置NavBar、TabBar的translucent为NO，此时view的尺寸需要减去StatusBar、NavBar、TabBar的尺寸；</strong></li>
+<li><strong>d). 设置NavBar、TabBar的backgroundImage，其translucent会被自动设置为NO，此时view的尺寸需要减去StatusBar、NavBar、TabBar的尺寸；</strong></li>
+</ul></li>
+<li><p><strong>ScrollView类型子控件必须是view的第一个子控件，或者view就是ScrollView类型的，否则即使automaticallyAdjustsScrollViewInsets为YES，也不会自动设置contentInset；</strong></p></li>
+<li><p><strong>注意要点</strong>：</p>
+
+<ul>
+<li><strong>VC的view尺寸对view的子控件的影响；</strong></li>
+<li><strong>view的子控件为非ScrollView类型：注意子控件在布局时（使用Frame、使用AutoLayout设置与父控件的边距）不要被遮挡住；</strong></li>
+<li><strong>view的子控件为ScrollView类型：由于<code>automaticallyAdjustsScrollViewInsets</code>的原因，子控件的可见区域和尺寸会不一致，内容不会被遮挡住；</strong></li>
+<li><strong>StatusBar、NavBar、TabBar的显示与隐藏，会影响到contentInset的值；</strong></li>
+</ul></li>
+</ul></li>
+<li><p><strong>d. <code>topLayoutGuide、bottomLayoutGuide</code></strong></p>
+
+<ul>
+<li><strong>表示当有StatusBar、NavBar、TabBar时，它们的占位区域，没有时表示VC的顶部、底部；</strong></li>
+<li><p>LayoutGuide的length属性表示VC的view被遮挡区域的高度；需要在viewDidLayoutSubviews、layoutSubviews方法中获取，否则获取的值可能不准确；</p></li>
+<li><p>使用方式</p>
+
+<pre><code class="language-objc">id bottomGuide = self.bottomLayoutGuide;
+NSDictionary *dict = NSDictionaryOfVariableBindings(btn, bottomGuide);
+NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&quot;V:[btn]-20-[bottomGuide]&quot;
+[self.view addConstraints:constr options:0 metrics:nil views: dict]];
+</code></pre>
+
+<pre><code class="language-objc">// PureLayout也提供了相关方法
+- (NSLayoutConstraint *)autoPinToTopLayoutGuideOfViewControl
+  ler:(UIViewController *)viewController withInset:(CGFloat)inset;
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>NavVC、TabBarVC的NavBar、TabBar增加<code>translucent</code>属性：</p>
+
+<ul>
+<li>表示是否有穿透效果，有穿透效果则VC的view尺寸为全屏幕尺寸，否则不是；默认值为YES，有穿透效果；</li>
+<li><strong>给NavBar、TabBar设置backgroundImage将会间接导致translucent为NO（若还需要穿透效果，需要手动设置为YES还原回去）；</strong></li>
+<li><strong>给NavBar、TabBar设置backgroundColor不会影响translucent；</strong></li>
+<li><strong>若设置了shadowImage，还必须设置backgroundImage才有效果，这样也进而导致translucent为NO；</strong><br/></li>
+</ul></li>
+<li><p>总结</p>
+
+<ul>
+<li>edgesForExtendedLayout、extendedLayoutIncludesOpaqueBars、translucent影响VC的view尺寸；</li>
+<li>automaticallyAdjustsScrollViewInsets影响view中的ScrollView类型子控件的可见区域；</li>
+<li><strong>VC的view尺寸全屏幕的条件：</strong>
+
+<ul>
+<li><strong>NavBar、TabBar的translucent为YES，并且edgesForExtendedLayout为UIRectEdgeAll；</strong></li>
+<li><strong>NavBar、TabBar的translucent为NO，并且extendedLayoutIncludesOpaqueBars为YES；</strong></li>
+</ul></li>
+<li>对于view的子控件不是ScrollView类型的，当view为全屏幕尺寸时，为了让其不被StatusBar、NavBar、TabBar遮挡，除了设置与父控件View的边距值（Bar的高度）外，还可以设置让其与topLayoutGuide、bottomLayoutGuide对齐；</li>
+<li><strong>设置topLayoutGuide、bottomLayoutGuide对齐的方式最好不要用于ScrollView类型子控件，因为此时VC的view是全屏幕尺寸，子控件被遮挡但是依然调整了contentInset；</strong></li>
+<li><strong>StatusBar需要配合NavBar才会进行遮挡，否则其背景色为透明色；</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_3">四、iOS 11特性</h4>
+
+<ul>
+<li>当iPhoneX横屏显示时，topLayoutGuide、bottomLayoutGuide就不能处理左右两边的不可用区域了；为了适配iPhoneX，引入<code>Safe Area</code>的概念；</li>
+<li><p>topLayoutGuide、bottomLayoutGuide与Safe Area的区别：</p>
+
+<ul>
+<li><strong>topLayoutGuide、bottomLayoutGuide表示的是不可见区域；Safe Area表示的是可用区域（去掉了不可见区域和不规则区域）；</strong></li>
+<li><strong>topLayoutGuide、bottomLayoutGuide是VC的属性，只能判断VC的view的不可见区域；Safe Area是View的概念，任何view都有，可以比较快捷地获取当前view的可用区域；</strong></li>
+</ul></li>
+<li><p>UIView新增有以下属性：</p>
+
+<ul>
+<li><strong>a. <code>safeAreaLayoutGuide</code></strong>
+
+<ul>
+<li>view的可用区域，其有layoutFrame属性；当view是Root ViewController的View时，类似于之前VC的topLayoutGuide、bottomLayoutGuide（iOS11 被deprecated）；</li>
+</ul></li>
+<li><strong>b. <code>safeAreaInsets</code></strong>
+
+<ul>
+<li>表示view不在Safe Area范围的inset；<strong>view的frame等于safeAreaLayoutGuide加上safeAreaInsets的四边；</strong></li>
+</ul></li>
+</ul></li>
+<li><p>UIViewController新增<code>additionalSafeAreaInsets</code>属；可以用于手动调整safeAreaInsets；</p></li>
+</ul>
+
+<h4 id="toc_4">五、补充</h4>
+
+<ul>
+<li>在viewDidLoad方法中获取self.view的尺寸不一定准确；不同iOS版本的运行结果不一样，有的是屏幕的大小，有的是StoryBoard的大小（比如之前Xcode 7）；</li>
+</ul>
+
+<h4 id="toc_5">六、参考</h4>
+
+<ul>
+<li>Safe Area Layout Guide<code>http://www.cnblogs.com/6duxz/p/7591103.html</code></li>
+</ul>
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <p class="text-left" style="padding:15px 0px;">
+            
+            <a href="15147939316129.html" title="Previous Post: Carthage使用教程">&laquo; Carthage使用教程</a>
+            
+          </p>
+        </div>
+        <div class="large-6 columns">
+          <p class="text-right" style="padding:15px 0px;">
+            
+            <a href="15147921816625.html" title="Next Post: iOS Notification推送">iOS Notification推送 &raquo;</a>
+            
+          </p>
+        </div>
+      </div>
+
+      <div class="comments-wrap">
+        <div class="share-comments">
+            
+        </div>
+      </div>
+
+    </div>
+  </div> <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+
+      <div id="site-info" class="site-info">
+        
+        <h1>TIME TO GO</h1>
+        <div class="site-des">It is just a matter of time.</div>
+        <div class="social">
+                    
+          <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+        </div>
+      </div>
+
+      
+
+      <div id="site-categories" class="side-item ">
+        <div class="side-header">
+          <h2>Categories</h2>
+        </div>
+        <div class="side-content">
+          <p class="cat-list">
+            
+          </p>
+        </div>
+      </div>
+
+      <div id="site-categories" class="side-item">
+        <div class="side-header">
+          <h2>Recent Posts</h2>
+        </div>
+        <div class="side-content">
+          <ul class="posts-list">
+              <li class="post">
+              <a href="15339807662944.html">Ubuntu使用教程</a>
+              </li>
+                 <li class="post">
+              <a href="15332159757050.html">证书、SSL、HTTPS</a>
+              </li>
+                 <li class="post">
+              <a href="15327896998795.html">Python中的常见问题</a>
+              </li>
+                 <li class="post">
+              <a href="15288255574523.html">Python3笔记(19实战)</a>
+              </li>
+                 <li class="post">
+              <a href="15285683833705.html">错误、异常的处理（Java、ObjC、Swift）</a>
+              </li>
+                                             
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div> <div class="page-bottom clearfix">
+  <div class="row">
+    <p class="copyright">Copyright &copy; 2015 Powered by
+      <a target="_blank" href="">ME</a>
+    </p>
+  </div>
+</div>
+</section>
+
+</div>
+</div>
+
+ 
+<script src="asset/js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+  function fixSidebarHeight() {
+    var w1 = $('.markdown-body').height();
+    var w2 = $('#sidebar').height();
+    if (w1 > w2) { $('#sidebar').height(w1); };
+  }
+  $(function () {
+    fixSidebarHeight();
+  })
+  $(window).load(function () {
+    fixSidebarHeight();
+  });
+</script>   
+</body>
+
+</html>
