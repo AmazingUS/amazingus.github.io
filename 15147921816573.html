@@ -119,13 +119,16 @@
 <a href="#toc_2">三、iOS 7特性</a>
 </li>
 <li>
-<a href="#toc_3">四、iOS 11特性</a>
+<a href="#toc_3">四、iOS 9特性</a>
 </li>
 <li>
-<a href="#toc_4">五、补充</a>
+<a href="#toc_4">五、iOS 11特性</a>
 </li>
 <li>
-<a href="#toc_5">六、参考</a>
+<a href="#toc_5">六、补充</a>
+</li>
+<li>
+<a href="#toc_6">七、参考</a>
 </li>
 </ul>
 
@@ -153,13 +156,9 @@
 <h4 id="toc_1">二、iOS 7之前特性</h4>
 
 <ul>
-<li><p>视图特性</p>
-
-<ul>
 <li>VC的view尺寸不是全屏幕尺寸，尺寸不包含StatusBar、NavBar、TabBar的高度；</li>
-<li>可以通过VC的wantsFullScreenLayout属性（iOS7 deprecated）设置全屏幕尺寸；</li>
-</ul></li>
-<li><p>布局特性</p>
+<li><p>可以通过VC的wantsFullScreenLayout属性（iOS7 deprecated）设置全屏幕尺寸；</p></li>
+<li><p>布局方式</p>
 
 <ul>
 <li>iOS 6之前有两种布局方式：设置控件的Frame、Autoresizing；</li>
@@ -171,10 +170,7 @@
 <h4 id="toc_2">三、iOS 7特性</h4>
 
 <ul>
-<li><p>视图特性</p>
-
-<ul>
-<li>VC的view尺寸默认是全屏幕尺寸，尺寸包含StatusBar、NavBar、TabBar的高度，不论其是否被包裹在NavVC、TabBarVC；</li>
+<li><p>VC的view尺寸默认是全屏幕尺寸，尺寸包含StatusBar、NavBar、TabBar的高度，不论其是否被包裹在NavVC、TabBarVC；</p></li>
 <li><p><strong>UIViewController新增以下属性控制VC的view及其子控件的显示效果：</strong></p>
 
 <ul>
@@ -222,8 +218,8 @@
 <li><p><strong>d. <code>topLayoutGuide、bottomLayoutGuide</code></strong></p>
 
 <ul>
-<li><strong>表示当有StatusBar、NavBar、TabBar时，它们的占位区域，没有时表示VC的顶部、底部；</strong></li>
-<li><p>LayoutGuide的length属性表示VC的view被遮挡区域的高度；需要在viewDidLayoutSubviews、layoutSubviews方法中获取，否则获取的值可能不准确；</p></li>
+<li><strong>表示当有StatusBar、NavBar、TabBar时，它们的占位区域（虚拟占位的View），没有时表示VC的顶部、底部；可用于在自动布局时帮助开发者避开StatusBar、NavBar、TabBar；</strong></li>
+<li>LayoutGuide的length属性表示VC的view被遮挡区域的高度；需要在viewDidLayoutSubviews、layoutSubviews方法中获取，否则获取的值可能不准确；</li>
 <li><p>使用方式</p>
 
 <pre><code class="language-objc">id bottomGuide = self.bottomLayoutGuide;
@@ -259,12 +255,13 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 </ul></li>
 <li>对于view的子控件不是ScrollView类型的，当view为全屏幕尺寸时，为了让其不被StatusBar、NavBar、TabBar遮挡，除了设置与父控件View的边距值（Bar的高度）外，还可以设置让其与topLayoutGuide、bottomLayoutGuide对齐；</li>
 <li><strong>设置topLayoutGuide、bottomLayoutGuide对齐的方式最好不要用于ScrollView类型子控件，因为此时VC的view是全屏幕尺寸，子控件被遮挡但是依然调整了contentInset；</strong></li>
-<li><strong>StatusBar需要配合NavBar才会进行遮挡，否则其背景色为透明色；</strong></li>
-</ul></li>
+<li>StatusBar默认背景色为透明色，配合NavBar后才有背景色；</li>
 </ul></li>
 </ul>
 
-<h4 id="toc_3">四、iOS 11特性</h4>
+<h4 id="toc_3">四、iOS 9特性</h4>
+
+<h4 id="toc_4">五、iOS 11特性</h4>
 
 <ul>
 <li>当iPhoneX横屏显示时，topLayoutGuide、bottomLayoutGuide就不能处理左右两边的不可用区域了；为了适配iPhoneX，引入<code>Safe Area</code>的概念；</li>
@@ -288,19 +285,78 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 <li>表示view不在Safe Area范围的inset；<strong>view的frame等于safeAreaLayoutGuide加上safeAreaInsets的四边；</strong></li>
 </ul></li>
 </ul></li>
-<li><p>UIViewController新增<code>additionalSafeAreaInsets</code>属；可以用于手动调整safeAreaInsets；</p></li>
-</ul>
-
-<h4 id="toc_4">五、补充</h4>
+<li><p>UIViewController新增<code>additionalSafeAreaInsets</code>属性，可以用于手动调整safeAreaInsets；</p></li>
+<li><p>UIScrollView及子类添加<code>adjustedContentInset</code>和<code>contentInsetAdjustmentBehavior</code>：</p>
 
 <ul>
-<li>在viewDidLoad方法中获取self.view的尺寸不一定准确；不同iOS版本的运行结果不一样，有的是屏幕的大小，有的是StoryBoard的大小（比如之前Xcode 7）；</li>
-</ul>
-
-<h4 id="toc_5">六、参考</h4>
+<li><p><strong>iOS 11之前</strong></p>
 
 <ul>
+<li><strong>ScrollView及子类的<code>内容边界与尺寸边界间的距离</code>由ScrollView及子类的<code>contentInset</code>决定；</strong></li>
+<li><strong>系统会根据<code>automaticallyAdjustsScrollViewInsets</code>自己计算一个inset，然后再加上用户手动设置的<code>contentInset</code>，最后将该结果赋值给<code>contentInset</code>；</strong></li>
+</ul></li>
+<li><p><strong>iOS 11开始</strong></p>
+
+<ul>
+<li><strong>ScrollView及子类的<code>内容边界与尺寸边界间的距离</code>由ScrollView及子类的<code>adjustedContentInset（新增属性）</code>决定；</strong></li>
+<li><strong>adjustedContentInset也是一个计算值，其由<code>contentInsetAdjustmentBehavior</code>、<code>safeAreaInset</code>、<code>contentInset</code>、<code>automaticallyAdjustsScrollViewInsets</code>等来共同决定；</strong></li>
+</ul></li>
+<li><p><strong>adjustedContentInset的计算规则，contentInsetAdjustmentBehavior为以下情况时</strong>：</p>
+
+<ul>
+<li>a) <code>UIScrollViewContentInsetAdjustmentAutomatic（默认值）</code>
+
+<ul>
+<li><strong>automaticallyAdjustsScrollViewInsets为YES，并且VC是被NavVC包裹着：adjustedContentInset = safeAreaInset + contentInset，不论ScrollView及子类是否可滚动；</strong></li>
+<li><strong>其他情况：可滚动方向上adjustedContentInset = safeAreaInset + contentInset，不可滚动方向上adjustedContentInset = contentInset；</strong></li>
+<li><strong>该方向是否可滚动由<code>scrollEnabled</code>、<code>alwaysBounceHorizontal / vertical</code> 决定；</strong></li>
+</ul></li>
+<li>b）<code>UIScrollViewContentInsetAdjustmentScrollableAxes</code>
+
+<ul>
+<li>可滚动方向上adjustedContentInset = safeAreaInset + contentInset，不可滚动方向上adjustedContentInset = contentInset；</li>
+</ul></li>
+<li>c）<code>UIScrollViewContentInsetAdjustmentNever</code>
+
+<ul>
+<li>adjustedContentInset = contentInset，不受safeAreaInset影响；</li>
+</ul></li>
+<li>d）<code>UIScrollViewContentInsetAdjustmentAlways</code>
+
+<ul>
+<li>adjustedContentInset = safeAreaInset + contentInset；</li>
+</ul></li>
+</ul></li>
+<li><p>注意：</p>
+
+<ul>
+<li><strong>VC新增<code>additionalSafeAreaInsets</code>属性是直接影响ScrollView及子类的<code>safeAreaInset</code>，若safeAreaInset不参与adjustedContentInset的计算，additionalSafeAreaInsets对adjustedContentInset没有任何影响；</strong></li>
+<li><strong>iOS 11的UITableView默认开启估算行高</strong>；对于UITableViewStyleGrouped类型的TableView，若代码只实现了相关heightForHeaderInSection等方法（返回一个较小值，如0.1）而没有实现viewForHeaderInSection等方法，则height不生效依然有间隔；<strong>解决方式有两种：一种是将viewFor方法实现，另一种就是关闭TableView的估算行高；</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_5">六、补充</h4>
+
+<ul>
+<li><p>在viewDidLoad方法中获取self.view的尺寸不一定准确；不同iOS版本的运行结果不一样，有的是屏幕的大小，有的是StoryBoard的大小（比如之前Xcode 7）；</p></li>
+<li><p>UISearchBar的高度是固定的（不可以修改，若需要需改需要自定义SearchBar），iOS 11之前的高度为44，iOS 11的高度为56；</p></li>
+<li><p>NavBar可以设置backgroundColor，也可以设置backgroundImage，而且其上面有一个backgroundView（穿透的背景图，尺寸包含StatusBar）；</p>
+
+<ul>
+<li>设置backgroundColor不影响backgroundView，范围只有NavBar，而且由于backgroundView存在，显示有磨砂效果；</li>
+<li>设置backgroundImage影响backgroundView，范围包含StatusBar和NavVar；</li>
+<li>TabBar同理；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_6">七、参考</h4>
+
+<ul>
+<li>iOS 11 安全区域适配总结
+<code>https://mp.weixin.qq.com/s/W1_0VrchCO50owhJNmJnuQ</code></li>
 <li>Safe Area Layout Guide<code>http://www.cnblogs.com/6duxz/p/7591103.html</code></li>
+<li>iOS开发-LayoutGuide的前世今生（从top/bottom LayoutGuide到Safe Area）<code>https://www.jianshu.com/p/f2cb5f8e747f</code></li>
 </ul>
 
       </div>
