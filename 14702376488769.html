@@ -122,7 +122,10 @@
 <a href="#toc_3">四、pyenv、virtualenv配合</a>
 </li>
 <li>
-<a href="#toc_4">五、参考</a>
+<a href="#toc_4">五、pipenv模块</a>
+</li>
+<li>
+<a href="#toc_5">六、参考</a>
 </li>
 </ul>
 
@@ -279,7 +282,58 @@ pyenv uninstall &lt;ENV_NAME&gt; # 卸载（删除）虚拟环境
 </ul></li>
 </ul>
 
-<h4 id="toc_4">五、参考</h4>
+<h4 id="toc_4">五、pipenv模块</h4>
+
+<ul>
+<li><p><strong>pipenv模块可以认为是更简便的virtualenv，但是其比virtualenv更强大；其整合了virtualenv、pip、pipfile，可以更方便地为项目建立虚拟环境并管理虚拟环境中的第三方模块；</strong></p></li>
+<li><p><strong>同时pipenv可以配合pyenv安装需要的Python版本；</strong>Besides, if pyenv is available, pipenv will automatically use it to install the required version.</p></li>
+<li><p>Pipfile是模块依赖管理文件，用于替代过于简陋的requirements.txt；Pipfile文件是TOML格式，并且使用Pipfile.lock提供版本锁定支持；</p>
+
+<pre><code>// 安装
+pip install pipenv
+</code></pre>
+
+<pre><code>// 使用当前系统的Python3版本创建虚拟环境
+pipenv --three 
+// 使用指定Python版本创建虚拟环境
+pipenv --python VERSION 
+
+// 激活虚拟环境
+pipenv shell
+// 退出虚拟环境
+exit
+</code></pre>
+
+<pre><code>// 安装flask模块并加入到Pipfile
+pipenv install flask 
+// 安装固定版本flask模块并加入到Pipfile
+pipenv install flak==1.0
+// 卸载flask模块并从Pipfile中清理
+pipenv uninstall flask 
+// 更新flask模块
+pipenv update flask 
+
+// 查看目前安装的模块及其依赖
+pipenv graph 
+
+// 查看目录信息
+pipenv --where
+// 查看虚拟环境信息
+pipenv --venv
+// 查看Python解释器信息
+pipenv --py 
+</code></pre>
+
+<ul>
+<li><p><strong>macOS执行<code>pipenv install</code>报错<code>ValueError: unknown locale: UTF-8</code>；解决方法：在~/.bash_profile中添加以下内容：</strong></p>
+
+<pre><code>export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_5">六、参考</h4>
 
 <ul>
 <li>1. pyenv的安装和使用：<code>http://v2in.com/pyenv-installation-and-usage.html</code></li>
