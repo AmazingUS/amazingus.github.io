@@ -1,0 +1,520 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+     Ubuntu常见命令 - TIME TO GO 
+  </title>
+   
+  <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
+  <link rel="stylesheet" href="asset/css/foundation.min.css" />
+  <link rel="stylesheet" href="asset/css/docs.css" />
+  <script src="asset/js/vendor/modernizr.js"></script>
+  <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script type="text/javascript">
+    function before_search() {
+      var searchVal = 'site: ' + document.getElementById('search_input').value;
+      document.getElementById('search_q').value = searchVal;
+      return true;
+    }
+  </script>
+</head>
+
+<body class="antialiased hide-extras">
+  <div class="marketing off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+
+
+      <nav class="top-bar docs-bar hide-for-small" data-topbar>
+        <section class="top-bar-section">
+          <div class="row">
+            <div style="position: relative;width:100%;">
+              <div style="position: absolute; width:100%;">
+                <ul id="main-menu" class="left">
+                  
+                  <li id="">
+                    <a target="self" href="index.html">Home</a>
+                  </li>
+                  
+                  <li id="">
+                    <a target="_self" href="archives.html">Archives</a>
+                  </li>
+                  
+                </ul>
+                <ul class="right" id="search-wrap">
+                  <li>
+                    <form target="_blank" onsubmit="return before_search();" action="http://google.com/search" method="get">
+                      <input type="hidden" id="search_q" name="q" value="" />
+                      <input tabindex="1" type="search" id="search_input" placeholder="Search" />
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </nav>
+
+      <nav class="tab-bar show-for-small">
+        <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+          <span> &nbsp; TIME TO GO</span>
+        </a>
+      </nav>
+
+      <aside class="left-off-canvas-menu">
+        <ul class="off-canvas-list">
+          <li>
+            <a href="index.html">HOME</a>
+          </li>
+          <li>
+            <a href="archives.html">Archives</a>
+          </li>
+          <li>
+            <a href="about.html">ABOUT</a>
+          </li>
+          <li>
+            <label>Categories</label>
+          </li>
+          
+        </ul>
+      </aside>
+      <a class="exit-off-canvas" href="#"></a>
+      <section id="main-content" role="main" class="scroll-container"> <script type="text/javascript">
+  $(function () {
+    $('#menu_item_index').addClass('is_active');
+    $('#sidebar').parent().parent().hide();
+  });
+</script>
+
+<div class="row">
+  <div class="large-12 medium-12 columns">
+    <div class="markdown-body article-wrap">
+
+      <div class="article">
+        
+        <h1>Ubuntu常见命令</h1>
+        <div class="read-more clearfix">
+          <span class="date">2018/8/30</span>
+           
+          <span class="comments">
+             
+          </span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <ul>
+<li>
+<a href="#toc_0">一、管理命令</a>
+<ul>
+<li>
+<a href="#toc_1">1. apt-get</a>
+</li>
+<li>
+<a href="#toc_2">2、netstat</a>
+</li>
+<li>
+<a href="#toc_3">3、ps</a>
+</li>
+<li>
+<a href="#toc_4">4、lsof</a>
+</li>
+<li>
+<a href="#toc_5">5、kill</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">二、工具命令</a>
+<ul>
+<li>
+<a href="#toc_7">1、scp</a>
+</li>
+<li>
+<a href="#toc_8">2、tar</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、管理命令</h4>
+
+<h5 id="toc_1">1. apt-get</h5>
+
+<ul>
+<li>概述
+
+<ul>
+<li>Linux软件包按封装类型分为：<strong>.deb</strong>（Debian/Ubuntu等系列使用）、<strong>.rpm</strong>（RedHat等系列使用）、Tarball源码压缩包（<strong>.tar.gz、.tar.bz2</strong>）；</li>
+<li>软件仓库：存放软件包的地方；Ubuntu通过特定的命令（<code>apt-get</code>）就能完成软件的索引、安装、更新等操作，让相关步骤更简单、更安全；</li>
+<li>软件依赖：安装的一个软件需要依赖其他的软件或某些函数，才能实现该软件的功能；使用<code>apt-get</code>维护软件时，其会自动识别下载并安装相应的依赖软件；</li>
+<li>为了解决命令过于分散的问题，Ubuntu 16.04 引入了<code>apt</code>命令，其包括了apt-get中使用最广泛的功能选项，以及apt-cache、apt-config命令中很少用到的功能；<strong>简单来说，apt = apt-get + apt-cache + apt-config；可以用apt替换部分apt-get系列命令（不是全部，低级操作仍然需要apt-get）</strong>；</li>
+</ul></li>
+</ul>
+
+<span id="more"></span><!-- more -->       
+
+<ul>
+<li><p>参数说明</p>
+
+<pre><code class="language-shell">// 安装软件（会自动安装依赖软件）
+apt-get install XXX
+
+// 若安装软件时，发现安装的其他软件包不兼容可能导致安装出错时，
+// 可以根据以下命令解决此问题
+apt-get install -f
+</code></pre>
+
+<pre><code class="language-shell">// 更新软件源中的索引记录
+//（/etc/apt/sources.list配置了软件源）
+apt-get update
+// 更新软件
+apt-get upgrade XXX
+</code></pre>
+
+<pre><code class="language-shell">// 卸载软件，不会卸载依赖软件（保留配置文件）
+apt-get remove XXX
+// 卸载软件，不会卸载依赖软件（不保留配置文件）
+apt-get &lt;remove --purge | purge&gt; XXX 
+
+// 卸载软件及不再需要的依赖软件（保留配置文件）
+apt-get autoremove XXX
+// 卸载软件及不再需要的依赖软件（不保留配置文件）
+apt-get autoremove --purge XXX
+// 卸载系统不再使用的孤立软件 
+apt-get autoremove --purge
+</code></pre>
+
+<pre><code class="language-shell">// 查询相关的软件安装卸载状态
+dpkg --get-selections | grep XXX
+</code></pre>
+
+<pre><code class="language-shell">// apt-get的底层是dpkg，而dpkg安装包时会将*.deb放在/var/cache/apt/archives/中
+// 删除/var/cache/apt/archives/中所有deb
+apt-get clean
+// 删除/var/cache/apt/archives/中已过期的deb
+apt-get autoclean
+</code></pre></li>
+<li><p>存储空间管理命令</p>
+
+<pre><code class="language-shell">// 查看磁盘空间使用状况
+df -h
+
+// 查看当前目录内中的文件目录的使用大小
+du -h --max-depth=1 
+
+// 查看/root目录内中的文件目录的使用大小
+du -h --max-depth=1 /root
+</code></pre></li>
+</ul>
+
+<h5 id="toc_2">2、netstat</h5>
+
+<ul>
+<li><p>netstat命令可以用来显示各种网络相关信息，如网络连接、路由表、接口状态等；执行netstat后的输出结果分为两部分：</p>
+
+<ul>
+<li>a. Active Internet connections (w/o servers)：网络连接；
+
+<ul>
+<li>Proto：连接使用的协议；</li>
+<li>Recv-Q、Send-Q：接收队列和发送队列中的堆积数，一般都应该是0；若接收队列持续处于阻塞状态，则很可能受到拒绝式服务的攻击；若发送队列不为0则说明数据还未发送完全；</li>
+<li>Local Address：本机IP及端口号；</li>
+<li>Foreign Address：所连接的IP及端口号；</li>
+<li>State：连接的状态（UDP是无状态的，故其State总为空白）；LISTEN（监听、等待接收连接）、ESTABLISHED（活跃状态的连接）、TIME_WAIT（刚被终止的连接）等；</li>
+</ul></li>
+<li>b. Active UNIX domain sockets (w/o servers)：Unix域套接口，用于本地内部进程之间的通信，不是网络连接；
+
+<ul>
+<li>RefCnt：连接到本套接口上的进程号；</li>
+<li>Types：套接口的类型；</li>
+<li>Path：连接到套接口的其它进程的路径；</li>
+</ul></li>
+</ul></li>
+<li><p>参数说明</p>
+
+<pre><code class="language-shell">-a：显示所有选项，默认不显示LISTEN状态的；
+-l：仅显示处于Listen状态的；
+-t：仅显示tcp相关；
+-u：仅显示udp相关；
+-x：仅显示unix相关；
+-n：将别名转换为数字显示；(不转换时，输出速度快)
+-p：显示相关的PID和进程名称；
+-c：每隔一秒时间，执行netstat命令；
+</code></pre>
+
+<pre><code class="language-shell">netstat
+
+netstat -at
+netstat -au
+netstat -lt
+netstat -lu
+netstat -lx
+
+netstat -tp
+netstat -tpn
+netstat -tupn
+
+netstat -atpn # 包含LISTEN状态的
+netstat -ltpn # 只有LISTEN状态的
+netstat -ltpnc
+
+netstat -tpn | grep ssh
+netstat -tpn | grep 443
+
+netstat -r # 显示核心路由
+</code></pre></li>
+</ul>
+
+<h5 id="toc_3">3、ps</h5>
+
+<ul>
+<li><p>显示当前系统的进程运行状态及占用资源等信息；可以搭配kill指令随时中断不需要的进程；</p></li>
+<li><p>Linux上进程有5种状态：</p>
+
+<ul>
+<li>R：运行（正在运行，或在运行队列中等待）</li>
+<li>S：中断（休眠，受阻，在等待某个条件的形成，或接受到信号）</li>
+<li>D：不可中断（收到信号不唤醒，不可运行，必须等待直到有中断发生）</li>
+<li>Z：僵死（进程已终止，但进程描述符存在，直到父进程调用wait4()系统调用后释放）</li>
+<li>T：停止（进程收到SIGSTOP、SIGSTP、SIGTIN、SIGTOU信号后停运行）</li>
+</ul></li>
+<li><p>参数说明</p>
+
+<pre><code class="language-shell">// 都会显示PID
+-a：显示当前终端下的所有进程
+-u：显示用户、内存、CPU使用情况
+-l：显示PPID
+-x：显示所有进程
+
+ps -ef # 使用标准格式，显示所有进程信息（用户信息）
+ps -ax # 使用BSD格式，显示所有进程信息
+ps -axu # 显示所有进程信息（用户、内存、CPU使用情况信息）
+
+ps -aux | more # 分页查看内容
+ps -axu | grep ssh
+</code></pre></li>
+</ul>
+
+<h5 id="toc_4">4、lsof</h5>
+
+<ul>
+<li><p>在Linux中，任何事物都是以文件的形式存在，通过文件不仅可以访问常规数据，还可以访问网络连接、硬件等；所以比如传输控制协议（TCP）、用户数据报协议（UDP）套接字等，系统都为该程序分配了一个文件描述符；</p></li>
+<li><p>lsof（list open files）可用来列出当前系统打开文件、打开文件的进程、端口（TCP、UDP）等；</p></li>
+<li><p><strong>lsof打开的文件可以为：普通文件、目录、符号链接、网络文件系统的文件、管道、设备文件、网络文件（如socket）等；</strong></p></li>
+<li><p>命令说明</p>
+
+<pre><code class="language-shell">// 列出某个用户打开的文件信息
+lsof -u username
+
+// 列出网络连接的文件信息
+lsof -i
+列出tcp网络连接的文件信息
+lsof -i tcp
+// 列出使用端口3306的文件
+lsof -i :3306
+// 列出使用TCP端口3306的文件
+lsof -i tcp:80
+</code></pre></li>
+</ul>
+
+<h5 id="toc_5">5、kill</h5>
+
+<ul>
+<li><p>该命令用于向某个PID传送一个信号，通常通常与ps命令一起使用，基本语法为 <code>kill -signal PID</code> ；</p></li>
+<li><p>signal的常用参数（前为信号的代号数字，可以用来代替相应的信号）：</p>
+
+<ul>
+<li>9、SIGKILL：强制终止进程</li>
+<li>15、SIGTERM：以正常的方式终止进程</li>
+<li>2、SIGINT：相当于输入Ctrl+c，中断进程</li>
+<li>17、SIGSTOP：相当于输入Ctrl+z，暂停进程</li>
+</ul></li>
+<li><p>命令说明</p>
+
+<pre><code class="language-shell">// 正常结束进程
+kill -SIGTER PID
+kill -15 PID
+
+// 强制结束进程
+kill -SIGKILL PID
+kill -9 PID
+</code></pre></li>
+</ul>
+
+<h4 id="toc_6">二、工具命令</h4>
+
+<h5 id="toc_7">1、scp</h5>
+
+<ul>
+<li><p>SCP（Secure Copy）是用来定义“本地机器和远端机器之间”或者“远端机器和远端机器之间”传输文件的过程的协议，SCP协议分为SCP Client、SCP Server；</p></li>
+<li><p><strong>SCP基于SSH协议，使用建立的SSH连接隧道作为数据传输通道，因而文件传输是安全的；</strong></p></li>
+<li><p>命令说明</p>
+
+<pre><code class="language-shell">**scp的-P参数为大写，ssh的为小写；**
+**ssh端口若为默认值，则-P参数可省略；**
+
+// 将本地文件拷贝到远程主机上
+scp -P PORT LOCAL_FILE USERNAME@DOMAIN:REMOTE_FILE
+// 将本地文件夹目录拷贝到远程主机上
+scp -P PORT -r LOCAL_FOLDER USERNAME@DOMAIN:REMOTE_FOLDER
+
+// 将远程主机上的文件拷贝到本地
+scp -P PORT USERNAME@DOMAIN:REMOTE_FILE LOCAL_FILE
+// 将远程主机上的文件夹目录拷贝到本地
+scp -P PORT -r USERNAME@DOMAIN:REMOTE_FOLDER LOCAL_FOLDER
+</code></pre></li>
+</ul>
+
+<h5 id="toc_8">2、tar</h5>
+
+<ul>
+<li><p>该命令用于对文件进行打包；默认不会压缩，若指定相应的参数调用相应的压缩程序，如gzip、bzip等进行压缩和解压；</p></li>
+<li><p>命令说明</p>
+
+<pre><code class="language-shell">-c：新建打包文件
+-x：解打包或解压缩，可搭配-C（大写）指定解压的目录
+-t：查看打包文件包含的文件；
+
+-j：通过bzip2进行压缩/解压
+-z：通过gzip进行压缩/解压
+
+-f filename：指定要处理的文件
+-C dir：指定压缩/解压的目录
+
+-v：在压缩/解压过程中，显示正在处理的文件名
+
+注意：-c、-x、-t不可在同一条命令中同时出现；
+压缩时需要指定使用何种压缩程序，解压时tar会自动识别，故可以不指定压缩程序；
+</code></pre>
+
+<pre><code class="language-shell">// 打包
+tar -cv -f a.tar
+// 压缩（体积会小）
+tar -cjv -f a.tar
+// 解压
+tar -xjv -f a.tar -c aa
+tar -xv -f a.tar -c aa
+// 查看
+tar -tjv -f a.tar
+</code></pre></li>
+</ul>
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <p class="text-left" style="padding:15px 0px;">
+            
+          </p>
+        </div>
+        <div class="large-6 columns">
+          <p class="text-right" style="padding:15px 0px;">
+            
+            <a href="15354658906894.html" title="Next Post: Redis配置使用（Linux）">Redis配置使用（Linux） &raquo;</a>
+            
+          </p>
+        </div>
+      </div>
+
+      <div class="comments-wrap">
+        <div class="share-comments">
+            
+        </div>
+      </div>
+
+    </div>
+  </div> <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+
+      <div id="site-info" class="site-info">
+        
+        <h1>TIME TO GO</h1>
+        <div class="site-des">It is just a matter of time.</div>
+        <div class="social">
+                    
+          <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+        </div>
+      </div>
+
+      
+
+      <div id="site-categories" class="side-item ">
+        <div class="side-header">
+          <h2>Categories</h2>
+        </div>
+        <div class="side-content">
+          <p class="cat-list">
+            
+          </p>
+        </div>
+      </div>
+
+      <div id="site-categories" class="side-item">
+        <div class="side-header">
+          <h2>Recent Posts</h2>
+        </div>
+        <div class="side-content">
+          <ul class="posts-list">
+              <li class="post">
+              <a href="15355589911528.html">Ubuntu常见命令</a>
+              </li>
+                 <li class="post">
+              <a href="15354658906894.html">Redis配置使用（Linux）</a>
+              </li>
+                 <li class="post">
+              <a href="15354658894867.html">Nginx配置使用（Linux）</a>
+              </li>
+                 <li class="post">
+              <a href="15354665260298.html">MySQL配置使用（Linux）</a>
+              </li>
+                 <li class="post">
+              <a href="15339807662944.html">Ubuntu使用教程</a>
+              </li>
+                                             
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div> <div class="page-bottom clearfix">
+  <div class="row">
+    <p class="copyright">Copyright &copy; 2015 Powered by
+      <a target="_blank" href="">ME</a>
+    </p>
+  </div>
+</div>
+</section>
+
+</div>
+</div>
+
+ 
+<script src="asset/js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+  function fixSidebarHeight() {
+    var w1 = $('.markdown-body').height();
+    var w2 = $('#sidebar').height();
+    if (w1 > w2) { $('#sidebar').height(w1); };
+  }
+  $(function () {
+    fixSidebarHeight();
+  })
+  $(window).load(function () {
+    fixSidebarHeight();
+  });
+</script>   
+</body>
+
+</html>
