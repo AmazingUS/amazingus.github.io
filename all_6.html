@@ -95,6 +95,102 @@
 
       
       <div class="article">
+        <a class="clearlink" href="15125773962317.html">
+          
+          <h1>Python3笔记(15网络编程、16访问数据库)</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <ul>
+<li>
+<a href="#toc_0">15. 网络编程</a>
+<ul>
+<li>
+<a href="#toc_1">15.1 TCP/IP简介</a>
+</li>
+<li>
+<a href="#toc_2">15.2 TCP编程</a>
+</li>
+<li>
+<a href="#toc_3">15.3 UDP编程</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_4">16. 访问数据库</a>
+<ul>
+<li>
+<a href="#toc_5">16.1 概述</a>
+</li>
+<li>
+<a href="#toc_6">16.2 SQLite</a>
+</li>
+<li>
+<a href="#toc_7">16.3 MySQL</a>
+</li>
+<li>
+<a href="#toc_8">16.4 使用SQLAlchemy</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">15. 网络编程</h4>
+
+<h5 id="toc_1">15.1 TCP/IP简介</h5>
+
+<ul>
+<li>为了实现把全世界的所有不同类型的计算机都连接起来，规定了一套全球通用的协议（互联网协议簇，Internet Protocol Suite）</li>
+<li>互联网协议簇包含了上百种协议标准，但最重要的两个协议是TCP和IP协议，故把互联网协议簇简称TCP/IP协议</li>
+<li>IP协议负责把包数据从一台计算机通过网络发送到另一台计算机
+
+<ul>
+<li>IP包数据会被按块发送，途径多个路由，但不保证能到达，也不保证顺序到达</li>
+<li>传输数据时，双方必须知道对方的互联网上的唯一标识IP地址</li>
+<li>IPv4地址为32bit位数字，通常使用点分十进制表示（192.168.0.1）</li>
+<li>IPv6地址为128bit为数字，通常使用冒号分十六进制表示（2001:0db8:85a3:0042:1000:8a2e:0370:7334）</li>
+</ul></li>
+<li>TCP协议负责两台计算机之间建立可靠连接，保证数据包按顺序到达
+
+<ul>
+<li>TCP协议是建立在IP协议之上的</li>
+<li>TCP协议通过握手建立连接，然后对每个IP包编号，确保对方按顺序收到，若IP包丢失则自动重发</li>
+<li>许多常用的更高级的协议都是建立在TCP协议基础上的，比如用于浏览器的HTTP协议、发送邮件的SMTP协议等</li>
+</ul></li>
+<li>端口是用来区分同一台计算机上运行的不同网络程序，每个网络程序都会向系统申请可用的端口号
+
+<ul>
+<li>一个IP包除了包含要传输的数据外，还包含源IP和目标IP，源端口和目标端口</li>
+<li>计算机之间的两个进程在建立网络连接，就需要各自的的IP及端口</li>
+<li>一个进程也可能同时与其他多个计算机建立链接，因此可以同时申请多个端口</li>
+<li>一个端口被占用了，就不可以再被使用了；TCP的端口和UDP的端口之间是独立的，可以使用相同的端口号</li>
+</ul></li>
+</ul>
+
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15125773962317.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/7</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
         <a class="clearlink" href="15125773962250.html">
           
           <h1>Python3笔记(13常见内建模块(下)、14常用第三方模块)</h1>
@@ -481,135 +577,6 @@ print(m)  # d26a53750bc40b38b65a520292f69306
         </div>
       </div>
       
-      <div class="article">
-        <a class="clearlink" href="15125773961976.html">
-          
-          <h1>Python3笔记(09异常、测试)</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">09. 异常、测试</a>
-</li>
-<li>
-<a href="#toc_1">9.1 异常</a>
-<ul>
-<li>
-<a href="#toc_2">a. 捕获异常</a>
-</li>
-<li>
-<a href="#toc_3">b. 抛出异常</a>
-</li>
-<li>
-<a href="#toc_4">c. 捕获抛出异常</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_5">9.2 调试</a>
-<ul>
-<li>
-<a href="#toc_6">a. 断言</a>
-</li>
-<li>
-<a href="#toc_7">b. logging</a>
-</li>
-<li>
-<a href="#toc_8">c. pdb</a>
-</li>
-<li>
-<a href="#toc_9">d. pdb.set_trace()</a>
-</li>
-<li>
-<a href="#toc_10">e. 使用IDE调试</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_11">9.3 单元测试</a>
-<ul>
-<li>
-<a href="#toc_12">a. 编写单元测试</a>
-</li>
-<li>
-<a href="#toc_13">b. 运行单元测试</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_14">9.4 文档测试</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">09. 异常、测试</h4>
-
-<h4 id="toc_1">9.1 异常</h4>
-
-<h5 id="toc_2">a. 捕获异常</h5>
-
-<ul>
-<li>可以用多个“except”（except：把…除外）来捕获不同类型的异常；但是需要将父类型的异常写在后面，否则父类型的异常会捕获其子类型的所有异常</li>
-<li>所有的异常继承于BaseException，比如Exception； UnicodeError是ValueError的子类</li>
-<li><p>使用“try...except”捕获异常有一个好处，就是可以跨越多层调用；也就是说，不需要在每个可能出错的地方捕获异常错误，只要在合适的层次地方去捕获异常错误就可以</p>
-
-<pre><code class="language-python">try:
-    print(&#39;try...&#39;)
-    # r = 10 / 0
-    # r = 10 / int(&#39;a&#39;)
-    r = 10 / 2
-    print(&#39;result:&#39;, r)
-except ZeroDivisionError as e:
-    print(&#39;ZeroDivisionError, except:&#39;, e)
-except ValueError as e:
-    print(&#39;ValueError, except:&#39;, e)
-else: # 其它情况（没有异常、其它异常）
-    print(&#39;no error&#39;)
-finally:
-    print(&#39;finally...&#39;)  # 最终都会执行（不论是否有异常）
-print(&#39;END&#39;) # 程序会继续执行（不论是否有异常）
-
-# 比如函数的main()调用了fun1()，fun1()调用了fun2()，结果fun2()出错了
-def fun2(s):
-    return 10 / int(s)
-def fun1(s):
-    return fun2(s) * 2
-#   只在main()中捕获到处理  
-def main():
-    try:
-        fun1(&#39;s&#39;)
-    except Exception as e:
-        print(&#39;Error:&#39;, e)
-    finally:
-        print(&#39;finally...&#39;)
-
-main()
-</code></pre></li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15125773961976.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2017/12/7</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
 
       <div class="row">
         <div class="large-6 columns">
@@ -662,6 +629,9 @@ main()
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15365964361279.html">NCE2 Unit 01（Lesson09 ~ 16）</a>
+              </li>
+                 <li class="post">
               <a href="15359820779641.html">NCE2 Unit 01（Lesson01 ~ 08）</a>
               </li>
                  <li class="post">
@@ -672,9 +642,6 @@ main()
               </li>
                  <li class="post">
               <a href="15354658894867.html">Nginx配置使用（Linux）</a>
-              </li>
-                 <li class="post">
-              <a href="15354665260298.html">MySQL配置使用（Linux）</a>
               </li>
                                              
           </ul>
