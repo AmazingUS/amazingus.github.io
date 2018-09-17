@@ -300,10 +300,10 @@ carthage version  # 查看安装的版本
 <a href="#toc_0">一. iOS 7之前特性</a>
 <ul>
 <li>
-<a href="#toc_1">本地推送</a>
+<a href="#toc_1">1、本地推送</a>
 </li>
 <li>
-<a href="#toc_2">远程推送</a>
+<a href="#toc_2">2、远程推送</a>
 </li>
 </ul>
 </li>
@@ -324,7 +324,7 @@ carthage version  # 查看安装的版本
 
 <h4 id="toc_0">一. iOS 7之前特性</h4>
 
-<h5 id="toc_1">本地推送</h5>
+<h5 id="toc_1">1、本地推送</h5>
 
 <ul>
 <li><p>不需要注册通知类型（授权），直接可以收到Push；</p></li>
@@ -335,11 +335,11 @@ carthage version  # 查看安装的版本
 </code></pre></li>
 <li><p>处理Push</p>
 
-<pre><code class="language-objc">// 完全退出：有横幅等提示，点击横幅启动，才能从launchOptions中获取到push内容，否则无法获取
+<pre><code class="language-objc">// a. 完全退出：有横幅等提示；只有点击横幅启动，才能从launchOptions中获取到push内容，否则无法获取
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
-// 前台：无横幅等提示，回调下面的方法，立即获取到push内容
-// 后台：有横幅等提示，只有点击横幅，才会回调下面的方法，获取到push内容
+// a. 前台：无横幅等提示；自动回调下面的方法，立即获取到push内容
+// b. 后台：有横幅等提示；只有点击横幅，才会回调下面的方法，获取到push内容
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 </code></pre></li>
 </ul>

@@ -113,10 +113,10 @@
 <a href="#toc_0">一. iOS 7之前特性</a>
 <ul>
 <li>
-<a href="#toc_1">本地推送</a>
+<a href="#toc_1">1、本地推送</a>
 </li>
 <li>
-<a href="#toc_2">远程推送</a>
+<a href="#toc_2">2、远程推送</a>
 </li>
 </ul>
 </li>
@@ -137,7 +137,7 @@
 
 <h4 id="toc_0">一. iOS 7之前特性</h4>
 
-<h5 id="toc_1">本地推送</h5>
+<h5 id="toc_1">1、本地推送</h5>
 
 <ul>
 <li><p>不需要注册通知类型（授权），直接可以收到Push；</p></li>
@@ -148,18 +148,18 @@
 </code></pre></li>
 <li><p>处理Push</p>
 
-<pre><code class="language-objc">// 完全退出：有横幅等提示，点击横幅启动，才能从launchOptions中获取到push内容，否则无法获取
+<pre><code class="language-objc">// a. 完全退出：有横幅等提示；只有点击横幅启动，才能从launchOptions中获取到push内容，否则无法获取
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
-// 前台：无横幅等提示，回调下面的方法，立即获取到push内容
-// 后台：有横幅等提示，只有点击横幅，才会回调下面的方法，获取到push内容
+// a. 前台：无横幅等提示；自动回调下面的方法，立即获取到push内容
+// b. 后台：有横幅等提示；只有点击横幅，才会回调下面的方法，获取到push内容
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 </code></pre></li>
 </ul>
 
 <span id="more"></span><!-- more -->   
 
-<h5 id="toc_2">远程推送</h5>
+<h5 id="toc_2">2、远程推送</h5>
 
 <ul>
 <li><p>需要注册推送提醒类型（授权），才可以收到Push；</p>
@@ -194,11 +194,11 @@ NSString *deviceTokenStr  = [[[[deviceToken description]
 </code></pre></li>
 <li><p>处理Push</p>
 
-<pre><code class="language-objc">// 完全退出：有横幅等提示，点击横幅启动，才能从launchOptions中获取到push内容，否则无法获取
+<pre><code class="language-objc">// a. 完全退出：有横幅等提示；只有点击横幅启动，才能从launchOptions中获取到push内容，否则无法获取
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
-// 前台：无横幅等提示，回调下面的方法，立即获取到push内容
-// 后台：有横幅等提示，只有点击横幅，才会回调下面的方法，之后获取到push内容
+// a. 前台：无横幅等提示；自动回调下面的方法，立即获取到push内容
+// b. 后台：有横幅等提示；只有点击横幅，才会回调下面的方法，之后获取到push内容
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 </code></pre></li>
 </ul>
@@ -209,10 +209,10 @@ NSString *deviceTokenStr  = [[[[deviceToken description]
 <li><p>1.新增 <code>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code> 方法，该方法有以下两个作用：</p>
 
 <ul>
-<li><p><strong>1）. 不启用“后台推送模式”情况下，用于替换之前的处理push的方法（<code>didFinishLaunchingWithOptions</code>和<code>didReceiveRemoteNotification</code>）；</strong></p>
+<li><p><strong>1）. 不启用“后台推送模式”情况下，用于替换之前的处理push的方法（<code>didFinishLaunchingWithOptions</code>和<code>didReceiveRemoteNotification</code>）；需要注意避免重复处理推送消息现象；</strong></p>
 
 <ul>
-<li>a. 若同时存在didReceiveRemoteNotification和fetchCompletionHandler，则fetchCompletionHandler被调用（场景处理方式和didReceiveRemoteNotification一样），didReceiveRemoteNotification被忽略；</li>
+<li>a. 若同时存在didReceiveRemoteNotification和fetchCompletionHandler，则fetchCompletionHandler被调用（场景处理方式和didReceiveRemoteNotification一样），didReceiveRemoteNotification方法被忽略；</li>
 <li>b. 若同时存在didFinishLaunchingWithOptions和fetchCompletionHandler，完全退出时点击横幅启动，则两个方法都会被调用；</li>
 <li><strong>c. 若实现了fetchCompletionHandler，则<code>不需要</code>再在didFinishLaunchingWithOptions中处理推送消息，否则fetchCompletionHandler就重复处理推送消息了；</strong></li>
 </ul></li>
@@ -223,18 +223,18 @@ NSString *deviceTokenStr  = [[[[deviceToken description]
 
 <ul>
 <li>a). 服务器推送push内容包含<code>&quot;content-available&quot;: 1</code>参数信息；</li>
-<li>b). Xcode打开Background Modes:Remote notifications选项；</li>
-<li>c). App处于后台；</li>
+<li>b). Xcode打开<code>Background Modes:Remote notifications</code>选项；</li>
+<li>c). <strong>App处于后台；</strong></li>
 <li>d). 实现fetchCompletionHandler方法；</li>
 </ul></li>
 <li><p>b. “后台推送模式”被启用后：</p>
 
 <ul>
-<li>收到推送消息时，系统会立即主动调用fetchCompletionHandler（此时状态为<code>UIApplicationStateBackground</code>），不需要点击横幅，就可以在该方法中执行一些后台代码；</li>
+<li>收到推送消息时，系统会立即主动调用fetchCompletionHandler（此时状态为<code>UIApplicationStateBackground</code>），不需要点击横幅，就可以在该方法中执行一些后台代码（30s）；</li>
 <li>若之后还点击横幅，fetchCompletionHandler会被再次调用（此时状态为<code>UIApplicationStateInactive</code>）；</li>
 <li><strong>为了避免重复执行代码，需要在该方法中根据[UIApplication sharedApplication].applicationState进行判断处理；</strong></li>
 </ul></li>
-<li><p>c. App处于“前台”、“完全退出”，是不会启用“后台推送模式”，场景下的处理方式和上面的不启用“后台推送模式”的一样；</p></li>
+<li><p>c. <strong>App处于“前台”、“完全退出”，是不会启用“后台推送模式”，场景下的处理方式和上面的不启用“后台推送模式”的一样</strong>；</p></li>
 <li><p>d. 注意在“完全退出”场景下，避免didFinishLaunchingWithOptions和fetchCompletionHandler重复处理推送消息，即实现了fetchCompletionHandler后，就不要在didFinishLaunchingWithOptions中再处理推送消息了；不论是否启用“后台推送模式”；</p></li>
 <li><p>e. 若满足“后台推送模式”的四大条件的前三个条件，使用didReceiveRemoteNotification代替fetchCompletionHandler方法，也是可以执行后台任务的，只是执行时长没有fetchCompletionHandler长（通过观察打印日志可以看到）；</p></li>
 </ul></li>
@@ -379,7 +379,7 @@ replyAct.behavior = UIUserNotificationActionBehaviorTextInput; // 回复文字
 <li><p>2). 请求注册获取token的请求方法和获取代理方法都没有变化；</p></li>
 <li><p><strong>3). 处理Push的代理方法不是APPDelete的代理方法了，而是UNUserNotificationCenter代理方法，必须设置UNUserNotificationCenter对象的delete，否则无法处理Push；</strong></p></li>
 <li><p><strong>4). 处理本地Push、远程Push、本地Push的Action、远程Push的Action的代理方法合并成一个方法，使用UNNotification.request.trigger的类型区分是本地的还是远程的；</strong></p></li>
-<li><p><strong>5). 单独一个方法处理在前台接收到的Push，在前台接收到Push也可以显示横幅、提示音、角标；</strong></p></li>
+<li><p><strong>5). 新增一个单独方法处理在前台接收到的Push，在前台接收到Push也可以显示横幅、提示音、角标；</strong></p></li>
 </ul>
 
 <pre><code class="language-objc">// 1. 注册推送提醒类型（授权）
@@ -420,13 +420,13 @@ center.delegate = self;
 <pre><code class="language-objc">// 3. 处理Push
 #pragma mark - UNUserNotificationCenterDelegate
 
-// 在前台收到Push回调
+// 在前台收到Push，自动回调
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
 
     NSLog(@&quot;%s, %@&quot;, __func__, notification);
     [self handleNtf:notification];
 
-    // 配置在前台情况下，有哪些提示信息（iOS10之前不会提示）
+    // 配置在前台情况下，有哪些提示信息（前台情况下，iOS10之前不会出现横幅）
     completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionAlert);
 }
 
@@ -510,6 +510,23 @@ UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotification
 - (void)removeDeliveredNotificationsWithIdentifiers:(NSArray&lt;NSString *&gt; *)identifiers;
 - (void)removeAllDeliveredNotifications;
 </code></pre></li>
+<li><p>iOS 7增加的后台推送处理方法<code>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code>，在iOS 10中依然有效；</p>
+
+<ul>
+<li>a. 非后台模式：
+
+<ul>
+<li>同时实现withCompletionHandler和fetchCompletionHandler方法，则点击横幅时只回调withCompletionHandler；</li>
+<li>未实现withCompletionHandler，则回调fetchCompletionHandler；</li>
+</ul></li>
+<li>b. 后台模式：
+
+<ul>
+<li>收到通知，首先自动回调fetchCompletionHandler；</li>
+<li>之后若同时实现withCompletionHandler和fetchCompletionHandler方法，则点击横幅时只回调withCompletionHandler；</li>
+<li>未实现withCompletionHandler，则回调fetchCompletionHandler</li>
+</ul></li>
+</ul></li>
 <li><p><strong>使用Xcode 8（iOS 10）编译远程推送相关代码，必须要打开Capabilities中的Push Notification，生成entitlements文件，否则获取的DeviceToken是无效的，服务端无法向该设备推送消息；Xcode 7无此问题；</strong></p></li>
 <li><p>使用Xcode 8（iOS 10）编译远程推送相关代码，最好也打开<code>Background Modes:Remote notifications</code>选项，否则Xcode报警告log；（只要推送消息不包含&quot;content-available&quot;=1字段，就不是后台推送了）；Xcode 7无此问题；</p></li>
 </ul>

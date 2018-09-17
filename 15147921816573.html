@@ -299,7 +299,7 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 
 <ul>
 <li><strong>ScrollView及子类的<code>内容边界与尺寸边界间的距离</code>由ScrollView及子类的<code>adjustedContentInset（新增属性）</code>决定；</strong></li>
-<li><strong>adjustedContentInset也是一个计算值，其由<code>contentInsetAdjustmentBehavior</code>、<code>safeAreaInset</code>、<code>contentInset</code>、<code>automaticallyAdjustsScrollViewInsets</code>等来共同决定；</strong></li>
+<li><strong>adjustedContentInset也是一个计算值，其由<code>contentInsetAdjustmentBehavior</code>、<code>safeAreaInsets</code>、<code>contentInset</code>、<code>automaticallyAdjustsScrollViewInsets</code>等来共同决定；</strong></li>
 </ul></li>
 <li><p><strong>adjustedContentInset的计算规则，contentInsetAdjustmentBehavior为以下情况时</strong>：</p>
 
@@ -307,14 +307,14 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 <li>a) <code>UIScrollViewContentInsetAdjustmentAutomatic（默认值）</code>
 
 <ul>
-<li><strong>automaticallyAdjustsScrollViewInsets为YES，并且VC是被NavVC包裹着：adjustedContentInset = safeAreaInset + contentInset，不论ScrollView及子类是否可滚动；</strong></li>
-<li><strong>其他情况：可滚动方向上adjustedContentInset = safeAreaInset + contentInset，不可滚动方向上adjustedContentInset = contentInset；</strong></li>
+<li><strong>automaticallyAdjustsScrollViewInsets为YES，并且VC是被NavVC包裹着：adjustedContentInset = safeAreaInsets + contentInset，不论ScrollView及子类是否可滚动；</strong></li>
+<li><strong>其他情况：可滚动方向上adjustedContentInset = safeAreaInsets + contentInset，不可滚动方向上adjustedContentInset = contentInset；</strong></li>
 <li><strong>该方向是否可滚动由<code>scrollEnabled</code>、<code>alwaysBounceHorizontal / vertical</code> 决定；</strong></li>
 </ul></li>
 <li>b）<code>UIScrollViewContentInsetAdjustmentScrollableAxes</code>
 
 <ul>
-<li>可滚动方向上adjustedContentInset = safeAreaInset + contentInset，不可滚动方向上adjustedContentInset = contentInset；</li>
+<li>可滚动方向上adjustedContentInset = safeAreaInsets + contentInset，不可滚动方向上adjustedContentInset = contentInset；</li>
 </ul></li>
 <li>c）<code>UIScrollViewContentInsetAdjustmentNever</code>
 
@@ -324,13 +324,13 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 <li>d）<code>UIScrollViewContentInsetAdjustmentAlways</code>
 
 <ul>
-<li>adjustedContentInset = safeAreaInset + contentInset；</li>
+<li>adjustedContentInset = safeAreaInsets + contentInset；</li>
 </ul></li>
 </ul></li>
 <li><p>注意：</p>
 
 <ul>
-<li><strong>VC新增<code>additionalSafeAreaInsets</code>属性是直接影响ScrollView及子类的<code>safeAreaInset</code>，若safeAreaInset不参与adjustedContentInset的计算，additionalSafeAreaInsets对adjustedContentInset没有任何影响；</strong></li>
+<li><strong>VC新增<code>additionalSafeAreaInsets</code>属性是直接影响<code>safeAreaInsets</code>；若safeAreaInsets不参与adjustedContentInset的计算，additionalSafeAreaInsets对adjustedContentInset没有任何影响；</strong></li>
 <li><strong>iOS 11的UITableView默认开启估算行高</strong>；对于UITableViewStyleGrouped类型的TableView，若代码只实现了相关heightForHeaderInSection等方法（返回一个较小值，如0.1）而没有实现viewForHeaderInSection等方法，则height不生效依然有间隔；<strong>解决方式有两种：一种是将viewFor方法实现，另一种就是关闭TableView的估算行高；</strong></li>
 </ul></li>
 </ul></li>
