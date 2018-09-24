@@ -118,6 +118,9 @@
 <li>
 <a href="#toc_2">三、配置文件nginx.conf</a>
 </li>
+<li>
+<a href="#toc_3">四、虚拟主机匹配及禁止直接访问IP</a>
+</li>
 </ul>
 
 
@@ -398,6 +401,90 @@ access_log /var/log/nginx/access_${year}_${month}_${day}.log;
 </ul></li>
 </ul>
 
+<h4 id="toc_3">四、虚拟主机匹配及禁止直接访问IP</h4>
+
+<ul>
+<li><p>虚拟主机匹配规则</p>
+
+<ul>
+<li>1) 当一个网络请求到来时，Nginx检查请求头部的“Host”，以决定该请求应由哪个虚拟主机来处理；</li>
+<li>2) 若“Host”没有匹配任意一个虚拟主机（“server_name”指令参数），或请求头部没有“Host”，那么Nginx会将该请求分发到定义在此端口上的默认虚拟主机；</li>
+<li>3) 若没有显式地设置某个主机为默认虚拟主机（即在&quot;listen&quot;指令中设置&quot;default_server&quot;参数，之前版本为&quot;default&quot;参数），则此端口上的从上至下第一个被列出的虚拟主机，即为默认虚拟主机（Nginx的默认行为）；</li>
+<li>注意：&quot;default_server&quot;参数在同一IP:Port下只能有一个，否则报错“nginx: [emerg] a duplicate default server for 0.0.0.0:80 in /etc/nginx/m...”</li>
+</ul>
+
+<pre><code class="language-shell">server {
+    listen      80;
+    server_name www.example.com;
+    ...
+}
+</code></pre>
+
+<pre><code class="language-shell">// 显式地设置某个主机为默认虚拟主机
+server {
+    listen      80 default_server;
+    server_name www.example.com;
+    ...
+}
+</code></pre></li>
+<li><p>若不允许请求头中缺少“Host”，可以定义如下主机，丢弃这些请求；<strong>返回了一个nginx特有的、非http标准的返回码444，可以用来关闭连接；</strong></p>
+
+<pre><code class="language-shell">server {
+    listen       80;
+    server_name  &quot;&quot;; # 默认值（可以不配置）
+    return       444; 
+}
+</code></pre></li>
+<li><p>&quot;listen&quot;指令中也可以设置IP（即可同时监听该设备上的不同网卡IP上的请求），不是从该网卡IP上来的请求，设置的虚拟主机不参与匹配；</p>
+
+<pre><code class="language-shell">server {
+    listen      192.168.1.1:80;
+    server_name www.example.com;
+    ...
+}
+
+server {
+    listen      192.168.1.2:80;
+    server_name www.example.org;
+    ...
+}
+</code></pre></li>
+<li><p>禁止IP直接访问</p>
+
+<ul>
+<li><p>方式一：</p>
+
+<pre><code class="language-shell">server_name _;
+if ($host ~ &quot;\d+\.\d+\.\d+\.\d+&quot;) {
+    return 444;
+}
+# 该方式有个缺点：其他人可以绑定其他域名到该IP上进行访问；
+</code></pre></li>
+<li><p>方式二：</p>
+
+<pre><code class="language-shell">server_name _;
+if ($host != &quot;www.example.com&quot;) {
+    return 444;
+}
+</code></pre></li>
+<li><p>方式三：</p>
+
+<pre><code class="language-shell"># 新增server
+server {
+    listen 80 default_server;
+    return 404;
+}
+
+# 原来的server
+server {
+    listen 80;
+    server_name  www.example.com blog.example.com;
+    ....
+}
+</code></pre></li>
+</ul></li>
+</ul>
+
       </div>
 
       <div class="row">
@@ -458,6 +545,9 @@ access_log /var/log/nginx/access_${year}_${month}_${day}.log;
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15377973431694.html">Logrotate使用教程</a>
+              </li>
+                 <li class="post">
               <a href="15365964361279.html">NCE2 Unit 01（Lesson09 ~ 16）</a>
               </li>
                  <li class="post">
@@ -468,9 +558,6 @@ access_log /var/log/nginx/access_${year}_${month}_${day}.log;
               </li>
                  <li class="post">
               <a href="15354658906894.html">Redis配置使用（Linux）</a>
-              </li>
-                 <li class="post">
-              <a href="15354658894867.html">Nginx配置使用（Linux）</a>
               </li>
                                              
           </ul>

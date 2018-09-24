@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     iOS Notification推送 - TIME TO GO 
+     iOS Notification总结 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,7 +97,7 @@
 
       <div class="article">
         
-        <h1>iOS Notification推送</h1>
+        <h1>iOS Notification总结</h1>
         <div class="read-more clearfix">
           <span class="date">2018/1/1</span>
            
@@ -234,9 +234,10 @@ NSString *deviceTokenStr  = [[[[deviceToken description]
 <li>若之后还点击横幅，fetchCompletionHandler会被再次调用（此时状态为<code>UIApplicationStateInactive</code>）；</li>
 <li><strong>为了避免重复执行代码，需要在该方法中根据[UIApplication sharedApplication].applicationState进行判断处理；</strong></li>
 </ul></li>
-<li><p>c. <strong>App处于“前台”、“完全退出”，是不会启用“后台推送模式”，场景下的处理方式和上面的不启用“后台推送模式”的一样</strong>；</p></li>
+<li><p><strong>c. App处于“前台”、“完全退出”，是不会启用“后台推送模式”（即收到通知后，不会自动回调相关方法），场景下的处理方式和上面的不启用“后台推送模式”的一样；</strong></p></li>
 <li><p>d. 注意在“完全退出”场景下，避免didFinishLaunchingWithOptions和fetchCompletionHandler重复处理推送消息，即实现了fetchCompletionHandler后，就不要在didFinishLaunchingWithOptions中再处理推送消息了；不论是否启用“后台推送模式”；</p></li>
 <li><p>e. 若满足“后台推送模式”的四大条件的前三个条件，使用didReceiveRemoteNotification代替fetchCompletionHandler方法，也是可以执行后台任务的，只是执行时长没有fetchCompletionHandler长（通过观察打印日志可以看到）；</p></li>
+<li><p><strong>f. 测试后台推送，需要手机打开“后台应用刷新”，否则回调函数不会自动运行；若使用Xcode运行应用进行测试，却可以自动回调的；</strong></p></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -510,7 +511,7 @@ UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotification
 - (void)removeDeliveredNotificationsWithIdentifiers:(NSArray&lt;NSString *&gt; *)identifiers;
 - (void)removeAllDeliveredNotifications;
 </code></pre></li>
-<li><p>iOS 7增加的后台推送处理方法<code>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code>，在iOS 10中依然有效；</p>
+<li><p><strong>iOS 7增加的后台推送处理方法<code>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler</code>，在iOS 10中依然有效，而且需要必须满足“四个条件”；</strong></p>
 
 <ul>
 <li>a. 非后台模式：
@@ -524,7 +525,7 @@ UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotification
 <ul>
 <li>收到通知，首先自动回调fetchCompletionHandler；</li>
 <li>之后若同时实现withCompletionHandler和fetchCompletionHandler方法，则点击横幅时只回调withCompletionHandler；</li>
-<li>未实现withCompletionHandler，则回调fetchCompletionHandler</li>
+<li>未实现withCompletionHandler，则回调fetchCompletionHandler；</li>
 </ul></li>
 </ul></li>
 <li><p><strong>使用Xcode 8（iOS 10）编译远程推送相关代码，必须要打开Capabilities中的Push Notification，生成entitlements文件，否则获取的DeviceToken是无效的，服务端无法向该设备推送消息；Xcode 7无此问题；</strong></p></li>
@@ -591,6 +592,9 @@ UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotification
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15377973431694.html">Logrotate使用教程</a>
+              </li>
+                 <li class="post">
               <a href="15365964361279.html">NCE2 Unit 01（Lesson09 ~ 16）</a>
               </li>
                  <li class="post">
@@ -601,9 +605,6 @@ UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotification
               </li>
                  <li class="post">
               <a href="15354658906894.html">Redis配置使用（Linux）</a>
-              </li>
-                 <li class="post">
-              <a href="15354658894867.html">Nginx配置使用（Linux）</a>
               </li>
                                              
           </ul>

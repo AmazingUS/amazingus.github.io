@@ -95,6 +95,131 @@
 
       
       <div class="article">
+        <a class="clearlink" href="15125773962376.html">
+          
+          <h1>Python3笔记(17Web开发、18异步IO)</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <ul>
+<li>
+<a href="#toc_0">17. Web开发</a>
+<ul>
+<li>
+<a href="#toc_1">17.1 HTTP协议</a>
+</li>
+<li>
+<a href="#toc_2">17.2 HTML</a>
+</li>
+<li>
+<a href="#toc_3">17.3 WSGI接口</a>
+</li>
+<li>
+<a href="#toc_4">17.4 使用Web框架</a>
+</li>
+<li>
+<a href="#toc_5">17.5 使用模板</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_6">18. 异步IO</a>
+<ul>
+<li>
+<a href="#toc_7">18.1 概述</a>
+</li>
+<li>
+<a href="#toc_8">18.2 协程（Coroutine）</a>
+</li>
+<li>
+<a href="#toc_9">18.3 asyncio</a>
+</li>
+<li>
+<a href="#toc_10">18.4 async/await</a>
+</li>
+<li>
+<a href="#toc_11">18.5 aiohttp</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h4 id="toc_0">17. Web开发</h4>
+
+<h5 id="toc_1">17.1 HTTP协议</h5>
+
+<ul>
+<li>在Web应用中，服务器把网页传给浏览器，实际上就是把网页的HTML代码发送给浏览器，让浏览器显示出来；浏览器和服务器之间的传输协议是HTTP</li>
+<li>HTTP是在网络上传输HTML的协议，用于浏览器和服务器的通信；HTML是一种用来定义网页的文本</li>
+<li><p>每个HTTP请求和响应报文都遵循相同的格式，包含Header、Body（可选的）</p>
+
+<pre><code class="language-python"># 1. HTTP GET请求格式
+GET /path HTTP/1.1
+Header1: Value1
+Header2: Value2
+Header3: Value3
+</code></pre>
+
+<ul>
+<li>a. GET为请求方法，类似的有POST、HEADER等</li>
+<li>b. /path表示URL的路径（总是以/开头），/就表示首页</li>
+<li>c. HTTP/1.1表示采用HTTP协议版本为1.1；HTTP/1.1允许多个HTTP请求复用同一个TCP连接，加快传输速度，HTTP/1.0不可以</li>
+<li>d. 每个Header一行一个，换行符为\r\n</li>
+</ul>
+
+<pre><code class="language-python"># 2. HTTP POST请求格式
+POST /path HTTP/1.1
+Header1: Value1
+Header2: Value2
+Header3: Value3
+
+body data goes here...
+</code></pre>
+
+<ul>
+<li>a. 当遇到连续两个\r\n，表示Header部分结束，后面的数据全部是Body</li>
+</ul>
+
+<pre><code class="language-python"># 3. HTTP 响应格式
+200 OK
+Header1: Value1
+Header2: Value2
+Header3: Value3
+
+body data goes here...
+</code></pre>
+
+<ul>
+<li>a. 200表示成功响应，后面的OK为说明；类似的，“404 Not Found”表示网页不存在，“500 Internal Server Error”表示服务器内部出错，等等</li>
+<li>b. Content-Type表示body的数据类型，比如，“text/html”表示HTML网页；浏览器依靠Content-Type来判断响应的内容类型，而不是依靠URL，故即使URL是<code>http://abc.com/a.jpg</code>也不一定就是图片</li>
+<li>c. 当存在Content-Encoding时，说明Body数据被压缩了，需要将Body数据先解压才能使用；最常见的压缩方式是gzip；压缩的目的在于减小Body的大小，加速网络传输</li>
+</ul></li>
+</ul>
+
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15125773962376.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/7</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
         <a class="clearlink" href="15125773962317.html">
           
           <h1>Python3笔记(15网络编程、16访问数据库)</h1>
@@ -488,95 +613,6 @@ print(m)  # d26a53750bc40b38b65a520292f69306
         </div>
       </div>
       
-      <div class="article">
-        <a class="clearlink" href="15125773962028.html">
-          
-          <h1>Python3笔记(10IO编程)</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">10. IO编程</a>
-</li>
-<li>
-<a href="#toc_1">10.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">10.2 读写文件</a>
-<ul>
-<li>
-<a href="#toc_3">a. 读文件</a>
-</li>
-<li>
-<a href="#toc_4">b. 写文件</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_5">10.3 StringIO、BytesIO</a>
-</li>
-<li>
-<a href="#toc_6">10.4 操作文件和目录</a>
-</li>
-<li>
-<a href="#toc_7">10.5 序列化</a>
-<ul>
-<li>
-<a href="#toc_8">a. JSON</a>
-</li>
-<li>
-<a href="#toc_9">b. JSON进阶</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">10. IO编程</h4>
-
-<h4 id="toc_1">10.1 概述</h4>
-
-<ul>
-<li>流只能单向流动；既收又发数据就必须建立两个流（输入流、输出流）</li>
-<li>在IO编程中，存在着速度严重不匹配额问题，解决方式有两种：
-
-<ul>
-<li>a. CPU暂停执行后续代码，等待数据读取或写入完毕后再执行（同步IO模式）</li>
-<li>b. CPU不等待继续执行后续代码，数据读取或写入一边进行着（异步IO模式）</li>
-</ul></li>
-<li>同步IO和异步IO的区别是否等待IO执行的结果；使用异步IO来编写的程序性能远远高于同步IO，但是异步IO的缺点是编程模型复杂，异步IO需要“通知”别人其已执行完毕，“通知”有两种：
-
-<ul>
-<li>a. 回调，IO主动告诉别人</li>
-<li>b. 轮询，别人不断去检查IO是否执行完毕</li>
-</ul></li>
-<li>操作IO的能力是由操作系统提供的，每一种编程语言都会把操作系统提供的低级C接口封装起来方便使用，Python也不例外</li>
-<li>本章讨论的IO编程都是同步模式的</li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15125773962028.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2017/12/7</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
 
       <div class="row">
         <div class="large-6 columns">
@@ -629,6 +665,9 @@ print(m)  # d26a53750bc40b38b65a520292f69306
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15377973431694.html">Logrotate使用教程</a>
+              </li>
+                 <li class="post">
               <a href="15365964361279.html">NCE2 Unit 01（Lesson09 ~ 16）</a>
               </li>
                  <li class="post">
@@ -639,9 +678,6 @@ print(m)  # d26a53750bc40b38b65a520292f69306
               </li>
                  <li class="post">
               <a href="15354658906894.html">Redis配置使用（Linux）</a>
-              </li>
-                 <li class="post">
-              <a href="15354658894867.html">Nginx配置使用（Linux）</a>
               </li>
                                              
           </ul>

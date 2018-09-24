@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     TIME TO GO 
+     Logrotate使用教程 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -87,22 +87,28 @@
       <section id="main-content" role="main" class="scroll-container"> <script type="text/javascript">
   $(function () {
     $('#menu_item_index').addClass('is_active');
+    $('#sidebar').parent().parent().hide();
   });
 </script>
-<div class="row">
-  <div class="large-8 medium-8 columns">
-    <div class="markdown-body home-categories">
 
-      
+<div class="row">
+  <div class="large-12 medium-12 columns">
+    <div class="markdown-body article-wrap">
+
       <div class="article">
-        <a class="clearlink" href="15377973431694.html">
-          
-          <h1>Logrotate使用教程</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
+        
+        <h1>Logrotate使用教程</h1>
+        <div class="read-more clearfix">
+          <span class="date">2018/9/24</span>
+           
+          <span class="comments">
+             
+          </span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <ul>
 <li>
 <a href="#toc_0">一、概述</a>
 </li>
@@ -128,240 +134,145 @@
 </ul></li>
 </ul>
 
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15377973431694.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/9/24</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
-        <a class="clearlink" href="15365964361279.html">
-          
-          <h1>NCE2 Unit 01（Lesson09 ~ 16）</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			   
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15365964361279.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/9/11</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
-        <a class="clearlink" href="15359820779641.html">
-          
-          <h1>NCE2 Unit 01（Lesson01 ~ 08）</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			   
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15359820779641.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/9/3</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
-        <a class="clearlink" href="15355589911528.html">
-          
-          <h1>Ubuntu常见命令</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">一、管理命令</a>
-<ul>
-<li>
-<a href="#toc_1">1. apt-get</a>
-</li>
-<li>
-<a href="#toc_2">2、netstat</a>
-</li>
-<li>
-<a href="#toc_3">3、ps</a>
-</li>
-<li>
-<a href="#toc_4">4、lsof</a>
-</li>
-<li>
-<a href="#toc_5">5、kill</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_6">二、工具命令</a>
-<ul>
-<li>
-<a href="#toc_7">1、scp</a>
-</li>
-<li>
-<a href="#toc_8">2、tar</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_9">三、注意事项</a>
-<ul>
-<li>
-<a href="#toc_10">1、Linux文件名中包含特殊字符</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">一、管理命令</h4>
-
-<h5 id="toc_1">1. apt-get</h5>
+<span id="more"></span><!-- more -->   
 
 <ul>
-<li>概述
+<li><p>Logrotate是基于crontab来运行的，日志轮循是系统自动完成的；</p>
 
 <ul>
-<li>Linux软件包按封装类型分为：<strong>.deb</strong>（Debian/Ubuntu等系列使用）、<strong>.rpm</strong>（RedHat等系列使用）、Tarball源码压缩包（<strong>.tar.gz、.tar.bz2</strong>）；</li>
-<li>软件仓库：存放软件包的地方；Ubuntu通过特定的命令（<code>apt-get</code>）就能完成软件的索引、安装、更新等操作，让相关步骤更简单、更安全；</li>
-<li>软件依赖：安装的一个软件需要依赖其他的软件或某些函数，才能实现该软件的功能；使用<code>apt-get</code>维护软件时，其会自动识别下载并安装相应的依赖软件；</li>
-<li>为了解决命令过于分散的问题，Ubuntu 16.04 引入了<code>apt</code>命令，其包括了apt-get中使用最广泛的功能选项，以及apt-cache、apt-config命令中很少用到的功能；<strong>简单来说，apt = apt-get + apt-cache + apt-config；可以用apt替换部分apt-get系列命令（不是全部，低级操作仍然需要apt-get）</strong>；</li>
+<li>默认logrotate是一天运行一次，其脚本为<code>/etc/cron.daily/logrotate</code>；</li>
+<li>CRON表达式是一个表示时间周期的字符串；</li>
+</ul></li>
+<li><p>日志切割原理（以/var/log/acc文件为例）</p>
+
+<ul>
+<li>a. 第1次执行完rotate（轮循）之后，原本的acc会变成acc.1，并且生成一个空的access存储新的日志；</li>
+<li>b. 第2次执行之后，acc.1会变成acc.2，而acc会变成acc.1，又生成一个空的access存储新的日志；</li>
+<li>c. 若设定保留3个日志，那么执行第3次时，则acc.3这个文件就会被删除，并由之后较新的日志所取代；</li>
 </ul></li>
 </ul>
 
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15355589911528.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/8/30</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
-        <a class="clearlink" href="15354658906894.html">
-          
-          <h1>Redis配置使用（Linux）</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">一、概述、安装</a>
-</li>
-<li>
-<a href="#toc_1">二、Redis命令行客户端</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">一、概述、安装</h4>
+<h4 id="toc_1">二、配置案例</h4>
 
 <ul>
-<li>Redis是一个key-value存储系统，与和Memcached类似；
+<li><p>需求：</p>
 
 <ul>
-<li>其支持存储的value类型有string(字符串)、list(链表)、set(集合)、zset(有序集合)等，并且对这些数据类型支持原子性的push/pop、add/remove、交并和差集等操作；</li>
-<li>为了保证效率，数据先缓存在内存中，之后会周期性地将更新的数据写入磁盘或把修改操作写入追加的记录文件中，进而可以实现了master-slave(主从)同步；</li>
+<li>对放在/var/log/nginx下的nginx日志进行管理：access.log只记录当天的日志；之前的日志以access.log_时间命名，一共保留10天的日志；</li>
+</ul></li>
+<li><p>配置</p>
+
+<ul>
+<li><p>1、<code>vim /etc/logrotate.d/nginx</code>文件（<strong>注意：使用安装包安装nginx时，会自动创建该文件</strong>），内容如下：</p>
+
+<pre><code class="language-shell">/var/log/nginx/*.log {
+    daily
+    rotate 100
+    missingok
+    notifempty
+    dateext
+    create 644 root root
+    if [ -f /usr/local/nginx/logs/nginx.pid ]; then # 若nginx没启动则不执行该操作
+        kill -USR1 `cat /usr/local/nginx/logs/nginx.pid`
+        # 传递给它信号重新生成日志（不是中止Nginx的进程）
+    fi
+}
+</code></pre>
+
+<ul>
+<li><p>参数说明</p>
+
+<pre><code class="language-shell">daily：日志文件将按天轮循，值可以为daily、weekly、monthly、yearly
+rotate 5：最多存储5个归档日志，对于第6个归档，删除时间最久的归档
+compress：在轮循任务完成后，对已轮循的归档将使用gzip进行压缩，不需要则注释掉
+delaycompress：必须配合compress使用，指示logrotate不要将最近的归档压缩，压缩将在下一次轮循周期进行
+missingok：在日志轮循期间，错误将被忽略，如“文件无法找到”等错误
+notifempty：若日志文件为空，轮循不会进行
+create 644 root root：以指定的权限创建全新的日志文件，同时logrotate也会重命名原始日志文件
+postrotate/endscript：在所有其它指令完成后，postrotate与endscript包含的命令将被执行；rsyslogd进程将立即再次读取其配置并继续运行
+
+dateext：就是切割后的日志文件以当前日期为格式结尾，如xxx.log-20131216；默认切割出来是按数字递增，即 xxx.log-1这种格式
+dateformat %s：必须配合dateext使用，定义文件切割后的文件名，支持%Y、%m 、%d 、%s四个参数
+</code></pre></li>
+<li><p>验证logrotate脚本是否正确</p>
+
+<pre><code class="language-shell">logrotate -d /etc/logrotate.d/nginx
+</code></pre></li>
+<li><p>默认logrotate是通过crontab定期执行的，也可以手动执行查看结果</p>
+
+<pre><code>logrotate -vf /etc/logrotate.d/nginx
+</code></pre></li>
+</ul></li>
+<li><p>2、在crontab中添加定时脚本，让logrotate每天进行一次轮循；</p>
+
+<pre><code class="language-shell">#crontab -e
+0 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/nginx
+
+// 查看crontab定时任务
+cat /etc/crontab
+</code></pre></li>
 </ul></li>
 </ul>
 
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15354658906894.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/8/28</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
+<h4 id="toc_2">三、其他日志切割方法</h4>
+
+<ul>
+<li><p>除了利用Logrotate工具实现日志切割之外，还可以使用Python脚本、Shell脚本以实现日志切割</p></li>
+<li><p>对nginx日志进行切割</p>
+
+<ul>
+<li><p>1、创建Python脚本（<code>vim nginx_log_rotate.py</code>）</p>
+
+<pre><code class="language-python">import datetime, os, shutil
+
+log_path = &#39;/var/log/nginx/&#39;
+log_file = &#39;access.log&#39;
+yesterday = (datetime.datetime.now() - datetime.timedelta(days=1))
+
+try:
+    os.makedirs(log_path + yesterday.strftime(&#39;%Y&#39;) + os.sep + yesterday.strftime(&#39;%m&#39;))
+except Exception as e:
+    print(e)
+
+shutil.move(log_path + log_file, log_path
+            + yesterday.strftime(&#39;%Y&#39;) + os.sep
+            + yesterday.strftime(&#39;%m&#39;) + os.sep
+            + log_file + &#39;_&#39; + yesterday.strftime(&#39;%Y%m%d&#39;) + &#39;.log&#39;)
+
+os.popen(&quot;sudo kill -USR1 `cat /usr/local/nginx/logs/nginx.pid`&quot;)
+</code></pre></li>
+<li><p>2、添加定时任务</p>
+
+<pre><code>30 1 * * * /usr/bin/python /log_rotate.py &gt; /dev/null 2&gt;&amp;1
+</code></pre></li>
+</ul></li>
+</ul>
+
       </div>
-      
 
       <div class="row">
         <div class="large-6 columns">
-          <p class="text-left" style="padding-top:25px;">
+          <p class="text-left" style="padding:15px 0px;">
             
           </p>
         </div>
         <div class="large-6 columns">
-          <p class="text-right" style="padding-top:25px;">
+          <p class="text-right" style="padding:15px 0px;">
             
-            <a href="all_1.html">&raquo; Next Page</a> 
+            <a href="15365964361279.html" title="Next Post: NCE2 Unit 01（Lesson09 ~ 16）">NCE2 Unit 01（Lesson09 ~ 16） &raquo;</a>
+            
           </p>
         </div>
       </div>
-      
+
+      <div class="comments-wrap">
+        <div class="share-comments">
+            
+        </div>
+      </div>
+
     </div>
-  </div>
- <div class="large-4 medium-4 columns">
+  </div> <div class="large-4 medium-4 columns">
   <div class="hide-for-small">
     <div id="sidebar" class="sidebar">
 
