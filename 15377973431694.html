@@ -113,10 +113,13 @@
 <a href="#toc_0">一、概述</a>
 </li>
 <li>
-<a href="#toc_1">二、配置案例</a>
+<a href="#toc_1">二、Crontab（定时任务）</a>
 </li>
 <li>
-<a href="#toc_2">三、其他日志切割方法</a>
+<a href="#toc_2">三、配置案例</a>
+</li>
+<li>
+<a href="#toc_3">三、其他日志切割方法</a>
 </li>
 </ul>
 
@@ -124,35 +127,53 @@
 <h4 id="toc_0">一、概述</h4>
 
 <ul>
-<li><p>Logrotate是一个非常有用的管理日志工具，其可以自动对日志进行切割（或轮循）、压缩以及删除旧的日志文件；比如让设置logrotate，让/var/log/acc日志文件每30天轮循，并删除超过6个月的日志，之后logrotate的运作完全自动化；</p></li>
+<li><p>Logrotate是一个非常有用的管理日志工具，其可以自动对日志进行切割（轮循）、压缩以及删除旧的日志文件；比如让设置logrotate自动化运作，让/var/log/acc日志文件每30天轮循，并删除超过6个月的日志；</p></li>
 <li><p>Linux默认安装了Logrotate，其默认的配置文件为：<code>/etc/logrotate.conf</code>、<code>/etc/logrotate.d/目录</code>；</p>
 
 <ul>
-<li>logrotate.conf为主要的配置文件，logrotate.d是一个目录，该目录中的所有文件都会被读入到/etc/logrotate.conf中执行；</li>
+<li><strong>logrotate.conf为主要的配置文件，logrotate.d是一个目录，该目录中的所有文件默认都会被导入到/etc/logrotate.conf中（<code>include /etc/logrotate.d</code>），在logrotate.conf被logrotate时，同时也被logrotate</strong>；</li>
 <li>若/etc/logrotate.d/里面的文件中没有配置一些设置，则使用/etc/logrotate.conf中设置的默认值；</li>
-<li><strong>对于多数Service，即使Logrotate没有被安装，一个默认的logrotate配置文件会在安装程序包时创建；若是使用源代码编译手动安装，就需要手动在/etc/logrotate.d/目录中进行创建一个logrotate配置文件；</strong></li>
+<li><strong>对于多数Service，即使系统没有安装Logrotate，一个默认的logrotate配置文件会在安装程序包时自动创建；若是使用源代码编译手动安装，就需要手动在/etc/logrotate.d/目录中手动创建一个logrotate配置文件；</strong></li>
 </ul></li>
 </ul>
 
 <span id="more"></span><!-- more -->   
 
 <ul>
-<li><p>Logrotate是基于crontab来运行的，日志轮循是系统自动完成的；</p>
+<li>日志切割原理（以/var/log/acc文件为例）
 
 <ul>
-<li>默认logrotate是一天运行一次，其脚本为<code>/etc/cron.daily/logrotate</code>；</li>
-<li>CRON表达式是一个表示时间周期的字符串；</li>
-</ul></li>
-<li><p>日志切割原理（以/var/log/acc文件为例）</p>
-
-<ul>
-<li>a. 第1次执行完rotate（轮循）之后，原本的acc会变成acc.1，并且生成一个空的access存储新的日志；</li>
-<li>b. 第2次执行之后，acc.1会变成acc.2，而acc会变成acc.1，又生成一个空的access存储新的日志；</li>
+<li>a. 第1次执行完rotate（轮循）之后，原本的acc会变成acc.1，并且生成一个空的acc存储新的日志；</li>
+<li>b. 第2次执行之后，acc.1会变成acc.2，而acc会变成acc.1，又生成一个空的acc存储新的日志；</li>
 <li>c. 若设定保留3个日志，那么执行第3次时，则acc.3这个文件就会被删除，并由之后较新的日志所取代；</li>
 </ul></li>
 </ul>
 
-<h4 id="toc_1">二、配置案例</h4>
+<h4 id="toc_1">二、Crontab（定时任务）</h4>
+
+<ul>
+<li><p>Logrotate是基于<code>crontab</code>来运行的，日志轮循是系统自动完成的；</p>
+
+<ul>
+<li><strong>默认的logrotate被加入cron的/etc/cron.daily中作为每日任务执行，其脚本为<code>/etc/cron.daily/logrotate</code>（内容为<code>logrotate logrotate.conf...</code>；默认etc/logrotate.d/目录下的内容也被logrotate）</strong></li>
+<li>CRON表达式是一个表示时间周期的字符串；</li>
+</ul></li>
+<li><p>查看crontab定时任务</p>
+
+<pre><code class="language-shell">cat /etc/crontab
+</code></pre></li>
+<li><p>查看logrotate上次轮换日志文件的时间</p>
+
+<pre><code class="language-shell">cat /var/lib/logrotate/status
+</code></pre></li>
+<li><p><strong>修改系统时间后，必须手动重启重启crontab、rsyslog服务（只是重启服务器是不行的），否则crontab日志时间与系统时间不一致；</strong></p>
+
+<pre><code class="language-shell">systemctl restart cron
+systemctl restart rsyslog
+</code></pre></li>
+</ul>
+
+<h4 id="toc_2">三、配置案例</h4>
 
 <ul>
 <li><p>需求：</p>
@@ -191,7 +212,7 @@ notifempty：若日志文件为空，轮循不会进行
 create 644 root root：以指定的权限创建全新的日志文件，同时logrotate也会重命名原始日志文件
 postrotate/endscript：在所有其它指令完成后，postrotate与endscript包含的命令将被执行；rsyslogd进程将立即再次读取其配置并继续运行
 
-dateext：就是切割后的日志文件以当前日期为格式结尾，如xxx.log-20131216；默认切割出来是按数字递增，即 xxx.log-1这种格式
+dateext：就是切割后的日志文件以当前日期为格式结尾，如xxx.log-20180924；默认切割出来是按数字递增，即 xxx.log-1这种格式
 dateformat %s：必须配合dateext使用，定义文件切割后的文件名，支持%Y、%m 、%d 、%s四个参数
 </code></pre></li>
 <li><p>验证logrotate脚本是否正确</p>
@@ -208,20 +229,18 @@ dateformat %s：必须配合dateext使用，定义文件切割后的文件名，
 <pre><code class="language-shell">#crontab -e
 0 0 * * * /usr/sbin/logrotate -f /etc/logrotate.d/nginx
 
-// 查看crontab定时任务
-cat /etc/crontab
 </code></pre></li>
 </ul></li>
 </ul>
 
-<h4 id="toc_2">三、其他日志切割方法</h4>
+<h4 id="toc_3">三、其他日志切割方法</h4>
 
 <ul>
 <li><p>除了利用Logrotate工具实现日志切割之外，还可以使用Python脚本、Shell脚本以实现日志切割</p></li>
 <li><p>对nginx日志进行切割</p>
 
 <ul>
-<li><p>1、创建Python脚本（<code>vim nginx_log_rotate.py</code>）</p>
+<li><p>1、创建Python脚本（<code>vim /nginx_log_rotate.py</code>）</p>
 
 <pre><code class="language-python">import datetime, os, shutil
 
@@ -243,7 +262,7 @@ os.popen(&quot;sudo kill -USR1 `cat /usr/local/nginx/logs/nginx.pid`&quot;)
 </code></pre></li>
 <li><p>2、添加定时任务</p>
 
-<pre><code>30 1 * * * /usr/bin/python /log_rotate.py &gt; /dev/null 2&gt;&amp;1
+<pre><code>30 0 * * * /usr/bin/python /nginx_log_rotate.py &gt; /dev/null 2&gt;&amp;1
 </code></pre></li>
 </ul></li>
 </ul>

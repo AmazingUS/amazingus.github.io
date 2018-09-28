@@ -222,6 +222,9 @@
 <li>
 <a href="#toc_5">六、SSH登录</a>
 </li>
+<li>
+<a href="#toc_6">七、查询软件安装时间</a>
+</li>
 </ul>
 
 
@@ -389,6 +392,11 @@ ntpdate cn.pool.ntp.org
 // 将时间写入硬件（防止重启时间被还原）
 hwclock --systohc
 </code></pre></li>
+<li><p><strong>修改系统时间后，必须手动重启重启crontab、rsyslog服务（只是重启服务器是不行的），否则crontab日志时间与系统时间不一致；</strong></p>
+
+<pre><code class="language-shell">systemctl restart cron
+systemctl restart rsyslog
+</code></pre></li>
 </ul>
 
 <h4 id="toc_4">五、域名解析</h4>
@@ -478,6 +486,17 @@ ps -aux | grep ssh
 </ul></li>
 <li><p><strong>ssh-server可以配置成同时支持公钥认证和密码认证，客户端优先使用公钥进行认证，若尝试不通过则会使用密码进行认证；</strong></p></li>
 <li><p><strong>注意：使用公钥认证，可能还需要输入密码，这个密码是生成私钥时配置的密码，不是密码认证的密码；</strong></p></li>
+</ul>
+
+<h4 id="toc_6">七、查询软件安装时间</h4>
+
+<ul>
+<li><p><code>/var/log/apt/</code>目录的文件<code>history.log.*</code>（如history.log.1.gz）文件中有所有安装软件的信息，文件的格式如下：</p>
+
+<pre><code class="language-shell">Start-Date: 2018-08-27  14:50:38
+Commandline: apt-get install vim
+Install: vim-runtime:amd64....
+</code></pre></li>
 </ul>
  
             </div>

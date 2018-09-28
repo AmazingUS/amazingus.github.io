@@ -107,10 +107,13 @@
 <a href="#toc_0">一、概述</a>
 </li>
 <li>
-<a href="#toc_1">二、配置案例</a>
+<a href="#toc_1">二、Crontab（定时任务）</a>
 </li>
 <li>
-<a href="#toc_2">三、其他日志切割方法</a>
+<a href="#toc_2">三、配置案例</a>
+</li>
+<li>
+<a href="#toc_3">三、其他日志切割方法</a>
 </li>
 </ul>
 
@@ -118,13 +121,13 @@
 <h4 id="toc_0">一、概述</h4>
 
 <ul>
-<li><p>Logrotate是一个非常有用的管理日志工具，其可以自动对日志进行切割（或轮循）、压缩以及删除旧的日志文件；比如让设置logrotate，让/var/log/acc日志文件每30天轮循，并删除超过6个月的日志，之后logrotate的运作完全自动化；</p></li>
+<li><p>Logrotate是一个非常有用的管理日志工具，其可以自动对日志进行切割（轮循）、压缩以及删除旧的日志文件；比如让设置logrotate自动化运作，让/var/log/acc日志文件每30天轮循，并删除超过6个月的日志；</p></li>
 <li><p>Linux默认安装了Logrotate，其默认的配置文件为：<code>/etc/logrotate.conf</code>、<code>/etc/logrotate.d/目录</code>；</p>
 
 <ul>
-<li>logrotate.conf为主要的配置文件，logrotate.d是一个目录，该目录中的所有文件都会被读入到/etc/logrotate.conf中执行；</li>
+<li><strong>logrotate.conf为主要的配置文件，logrotate.d是一个目录，该目录中的所有文件默认都会被导入到/etc/logrotate.conf中（<code>include /etc/logrotate.d</code>），在logrotate.conf被logrotate时，同时也被logrotate</strong>；</li>
 <li>若/etc/logrotate.d/里面的文件中没有配置一些设置，则使用/etc/logrotate.conf中设置的默认值；</li>
-<li><strong>对于多数Service，即使Logrotate没有被安装，一个默认的logrotate配置文件会在安装程序包时创建；若是使用源代码编译手动安装，就需要手动在/etc/logrotate.d/目录中进行创建一个logrotate配置文件；</strong></li>
+<li><strong>对于多数Service，即使系统没有安装Logrotate，一个默认的logrotate配置文件会在安装程序包时自动创建；若是使用源代码编译手动安装，就需要手动在/etc/logrotate.d/目录中手动创建一个logrotate配置文件；</strong></li>
 </ul></li>
 </ul>
 
