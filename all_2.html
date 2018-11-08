@@ -95,6 +95,65 @@
 
       
       <div class="article">
+        <a class="clearlink" href="15354658894867.html">
+          
+          <h1>Nginx配置使用（Linux）</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <ul>
+<li>
+<a href="#toc_0">一、概述、安装</a>
+</li>
+<li>
+<a href="#toc_1">二、静态网页与动态网页</a>
+</li>
+<li>
+<a href="#toc_2">三、配置文件nginx.conf</a>
+</li>
+<li>
+<a href="#toc_3">四、虚拟主机匹配及禁止直接访问IP</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、概述、安装</h4>
+
+<ul>
+<li>Nginx是一个免费的开源高性能服务器，其有以下主要功能：<strong>静态HTTP服务器、
+反向代理服务器、负载均衡、虚拟主机等，其中负载均衡、虚拟主机是基于反向代理实现的</strong>；（参考<code>http://xxgblog.com/2015/05/17/nginx-start/</code>）
+
+<ul>
+<li>a. Nginx可以将服务器上的静态文件（如HTML、图片）通过HTTP协议返回给客户端； </li>
+<li>b. 客户端本来可以直接访问某网站的应用服务器，若在这中间加上Nginx，则客户端先请求Nginx，Nginx再请求应用服务器，此时Nginx就是反向代理服务器；</li>
+<li><strong>c. 当网站访问量非常大时，可以将相同的应用部署在多台服务器上，使用Nginx反向代理，让大量用户的请求分配给多台机器处理，实现负载均衡；</strong></li>
+<li><strong>d. 网站访问量大需要负载均衡，网站访问量小，为节省成本，可以将多个网站部署在同一台服务器上（通过配置文件中的<code>server_name</code>来区分）；</strong>如将www.aaa.com、www.bbb.com两个网站部署在同一台服务器上，两个域名解析到同一个IP，但用户通过两个域名却打开两个完全不同的网站，互相不影响，就像访问两个服务器一样，所以叫两个<code>虚拟主机</code>；</li>
+</ul></li>
+</ul>
+
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15354658894867.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2018/8/28</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
         <a class="clearlink" href="15354665260298.html">
           
           <h1>MySQL配置使用（Linux）</h1>
@@ -582,87 +641,6 @@ Install: vim-runtime:amd64....
         </div>
       </div>
       
-      <div class="article">
-        <a class="clearlink" href="15288255574523.html">
-          
-          <h1>Python3笔记(19实战)</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">Day1-搭建开发环境</a>
-</li>
-<li>
-<a href="#toc_1">Day2-编写Web App骨架</a>
-</li>
-<li>
-<a href="#toc_2">Day3-编写ORM</a>
-</li>
-<li>
-<a href="#toc_3">Day4-编写Model</a>
-</li>
-<li>
-<a href="#toc_4">Day5-编写Web框架</a>
-</li>
-<li>
-<a href="#toc_5">Day6-编写配置文件</a>
-</li>
-<li>
-<a href="#toc_6">Day7-编写MVC</a>
-</li>
-<li>
-<a href="#toc_7">Day8-构建前端</a>
-</li>
-<li>
-<a href="#toc_8">Day9-编写API</a>
-</li>
-<li>
-<a href="#toc_9">Day10-用户注册和登录</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">Day1-搭建开发环境</h4>
-
-<ul>
-<li>安装以下依赖库：aiohttp、jinja2、aiomysql（MysQL的Python异步驱动）</li>
-<li><p>项目结构：</p>
-
-<pre><code class="language-python">awesome-python3-webapp # 根目录
-../backup # 备份目录
-../conf # 配置文件
-../dist # 打包目录
-../www # Web目录，存放.py文件
-../../static # 存放静态文件
-../../templates # 存放模板文件
-../ios # 存放iOS App工程
-../LICENSE # 代码LICENSE
-</code></pre></li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15288255574523.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/6/13</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
 
       <div class="row">
         <div class="large-6 columns">
@@ -715,6 +693,9 @@ Install: vim-runtime:amd64....
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15416904024187.html">NCE2 Unit 02（Lesson41 ~ 48）</a>
+              </li>
+                 <li class="post">
               <a href="15410846265758.html">NCE2 Unit 02（Lesson33 ~ 40）</a>
               </li>
                  <li class="post">
@@ -725,9 +706,6 @@ Install: vim-runtime:amd64....
               </li>
                  <li class="post">
               <a href="15397820854819.html">NCE2 Unit 01（Lesson17 ~ 24）</a>
-              </li>
-                 <li class="post">
-              <a href="15377973431694.html">Logrotate使用教程</a>
               </li>
                                              
           </ul>
