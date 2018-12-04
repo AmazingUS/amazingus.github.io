@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     错误、异常的处理（Java、ObjC、Swift） - TIME TO GO 
+     NCE2 Unit 03（Lesson49 ~ 54） - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,9 +97,9 @@
 
       <div class="article">
         
-        <h1>错误、异常的处理（Java、ObjC、Swift）</h1>
+        <h1>NCE2 Unit 03（Lesson49 ~ 54）</h1>
         <div class="read-more clearfix">
-          <span class="date">2018/5/10</span>
+          <span class="date">2018/11/21</span>
            
           <span class="comments">
              
@@ -108,95 +108,153 @@
       </div>
 
       <div class="article-content">
-        <ul>
+        <span id="more"></span><!-- more -->
+
+<ul>
 <li>
-<a href="#toc_0">一、Java</a>
+<a href="#toc_0">Lesson 49 The end of a dream</a>
+<ul>
+<li>
+<a href="#toc_1">一、单词讲解</a>
 </li>
 <li>
-<a href="#toc_1">二、ObjC</a>
+<a href="#toc_2">二、课文&amp;语法讲解</a>
 </li>
-<li>
-<a href="#toc_2">三、Swift</a>
+</ul>
 </li>
 </ul>
 
 
-<h4 id="toc_0">一、Java</h4>
+<h3 id="toc_0">Lesson 49 The end of a dream</h3>
+
+<h4 id="toc_1">一、单词讲解</h4>
 
 <ul>
-<li><p><strong>在Java中，所有的错误、异常的最上层父类为<code>Throwable</code>，其有两个重要的子类：<code>Error（错误）</code>、<code>Exception（异常）</code>；</strong></p>
+<li><p>1、tired：adj. 厌烦的、劳累的；</p>
 
 <ul>
-<li>a. Error（错误）：程序无法处理，大多数为JVM出现的问题；比如JVM运行错误（VirtualMachineError）、当 JVM没有内存资源错误（OutOfMemoryError）等；</li>
-<li>b. Exception（异常）：程序可以处理，这是与Error（错误）的本质区别；</li>
+<li>be tired of ...</li>
+<li>We were tired of English/studying English.</li>
 </ul></li>
-<li><p><strong>Exception（异常）也分为两种：<code>运行时异常</code>、<code>非运行时异常（编译异常）</code>；</strong></p>
+<li><p>2、spring：n. 弹簧、春天、（天然的）泉；</p></li>
+<li><p>3、gust：n. 一阵风；</p>
 
 <ul>
-<li><p>a. 运行时异常：</p>
+<li>a gust of wind</li>
+</ul></li>
+<li><p>4、sweep：v. 扫、刮；</p>
 
 <ul>
-<li><strong>a). 在编译时不会被检查；一般是由程序逻辑问题引起的，应该从逻辑角度尽可能避免这类异常的发生；</strong></li>
-<li><strong>b) 程序中可以选择处理（try-catch-finally、throws），或者不处理异常；</strong></li>
-<li>c) 其都是<code>RuntimeException</code>及其子类，比如NullPointerException（空指针异常）、IndexOutOfBoundsException（下标越界异常）等；</li>
+<li>sweep、swept、swept</li>
+<li>sleep、slept、slept</li>
+<li>keep、kept、kept</li>
+<li>creep、crept、crept</li>
 </ul></li>
-<li><p>b. 非运行时异常（编译异常）：</p>
+<li><p>5、smash：v. 碰碎、摔碎；</p>
 
 <ul>
-<li><strong>a) 必须要进行处理（try-catch-finally、throws）的异常，若不处理，程序就不能编译通过；比如IOException、SQLException等</strong></li>
-<li>b）除RuntimeException及其子类以外的异常都是非运行时异常（编译异常）；</li>
+<li>smash sth. to/in pieces：把...摔成碎片</li>
 </ul></li>
+<li><p>6、miraculously：adv. 奇迹般地；</p>
+
+<ul>
+<li>miracle：n.</li>
+<li>miraculous：adj.</li>
 </ul></li>
-<li><p><strong>通常也将可以把Java的错误、异常分为：可查的异常（checked exceptions，也就是上面的<code>非运行时异常</code>）、不可查的异常（unchecked exceptions，包含<code>错误</code>和<code>运行时异常</code>）；</strong></p></li>
-<li><p><strong>处理异常有两种方式：捕获异常（try-catch-finally）、捕获异常后再抛出（throws）；</strong></p></li>
+<li><p>7、glance：v. 扫视；</p>
+
+<ul>
+<li>glance at ...</li>
+</ul></li>
+<li><p>8、promptly：adv. 迅速地；</p>
+
+<ul>
+<li>fast、quickly、rapidly、fleetly、swiftly</li>
+</ul></li>
+<li><p>All</p>
+
+<p><img src="media/15428122799005/le49words.png" alt="le49words" style="width:680px;"/></p></li>
 </ul>
 
-<span id="more"></span><!-- more -->
-
-<h4 id="toc_1">二、ObjC</h4>
+<h4 id="toc_2">二、课文&amp;语法讲解</h4>
 
 <ul>
-<li><p><strong>在ObjC中，所有的错误、异常的分为两种：NSError（错误）、NSException（异常）；</strong></p>
+<li><p>1、本文重点</p>
 
 <ul>
-<li><p><strong>a. NSError（错误）：</strong></p>
-
-<ul>
-<li><strong>可以预见到发生的、可以恢复的非致命错误，比如找不到指定位置的文件、网络无法连接等；</strong></li>
-<li><strong>其相当于JAVA中的<code>可查的异常（checked exceptions)</code>；</strong></li>
-<li><strong>只能使用NSError *类型的指针去捕获处理错误的内容；</strong></li>
+<li>复习句子</li>
+<li><strong>分词作状语（源于状语的省略）</strong></li>
 </ul></li>
-<li><p><strong>b. NSException（异常）：</strong></p>
+<li><p>2、分词作状语</p>
 
 <ul>
-<li><strong>无法预见到发生的，通常也不可恢复的致命错误，程序会奔溃，比如磁盘坏了、内存没了、数组越界、无效的方法等；</strong></li>
-<li><strong>其相当于JAVA中的<code>不可查的异常（unchecked exceptions）</code>；</strong></li>
-<li><strong>只能使用@try-@catch-@finally去捕获处理，但是Apple不推荐使用，通常也不去处理）</strong></li>
-<li><strong>而对于JAVA来说，不论是哪种问题都使用try-catch-finally去捕获处理；</strong></li>
-</ul></li>
-</ul></li>
-</ul>
-
-<h4 id="toc_2">三、Swift</h4>
+<li>分词：doing、done</li>
+<li>作状语：修饰动词、句子，表示描述性的信息（不是状态）；</li>
+<li>来源：状语从句的省略；
 
 <ul>
-<li><p><strong>在Swift中，NSError（错误）被<code>Error（错误）</code>替代；但是Error（错误）的处理方式有两种：</strong></p>
+<li>. <u>While he was talking with me</u>, he broke his cup carelessly.
 
 <ul>
-<li><strong>捕获异常：<code>do-try-catch</code>、<code>try?</code>、<code>try!</code>；</strong></li>
-<li><strong>捕获异常后再抛出：<code>throw</code>；方法定义使用<code>throws</code>、<code>rethrows</code>抛出异常；</strong></li>
+<li>时间状语从句，主句</li>
+<li>主语相同，将主要的保留，故将从句的he省略；was talking中有两个动词，was没有什么意思也省略</li>
+<li>. <u>While talking with me</u>, he broke his cup carelessly.</li>
+<li>. <u>Talking with me</u>, he broke his cup carelessly. 将while省略，根据上下文理解，也能知道这两件事是时间上的关联；分词作状语</li>
 </ul></li>
-<li><p><strong>Swift中每一行的Error都需要使用try标记；</strong></p>
+<li><strong>doing分词，作状语（修饰句子），表示主动（相对于主句的主语）；</strong></li>
+<li>. <u>Because he was punished</u>, she burst into tears.
 
-<pre><code class="language-swift">do {
-    let session = AVAudioSession.sharedInstance()
-    try session.setCategory(AVAudioSessionCategoryMultiRoute)
-    try session.overrideOutputAudioPort(.none)
-    try session.setActive(true)
-} catch let error {
-    print(error)
-}
-</code></pre></li>
+<ul>
+<li>原因状语从句，主句</li>
+<li>. <u>Because punished</u>, she burst into tears.</li>
+<li>- . <u>punished</u>, she burst into tears.</li>
+</ul></li>
+<li><strong>done分词，作状语（修饰句子），表示被动（相对于主句的主语）；</strong></li>
+<li>注意：若从句和主句的主语不同，则不能省略，不能变成分词作状语了；</li>
+</ul></li>
+<li>练习
+
+<ul>
+<li>Because he was tired of sleeping on the floor, a young men saved up for years to buy a real bed.
+
+<ul>
+<li><strong>这里，从句的was不能省略，因为没有其他动词了（tried为形容词）；</strong></li>
+<li><strong>主动的厌烦，不是被动的，所以was要变主动（先变原形，再变成doing）</strong></li>
+<li>. <u>Being</u> tired of sleeping on the floor, a young men saved up for years to buy a real bed. 主动</li>
+<li>. <u>Tired of sleeping on the floor</u>, a young men saved up for years to buy a real bed. Being没有实际意思，课文中将其也省略了</li>
+</ul></li>
+<li>After the man glanced at the bits of wood and metal, the man sadly picked up the mattress.
+
+<ul>
+<li>. <u>Glancing</u> at the bits of wood and metal, the man sadly picked up the mattress. 主动</li>
+</ul></li>
+<li>Because the weather was very hot, he carried the bed to the roof ...
+
+<ul>
+<li>主语不能，不能省略，不能变成分词作状语</li>
+</ul></li>
+</ul></li>
+<li><strong>总结一下</strong>
+
+<ul>
+<li><strong>两件事主语相同；一件事写成句子，另一件事写成分词作状语；</strong>
+
+<ul>
+<li>我走进教室，拿着一个包。
+
+<ul>
+<li>I walked into the classroom, <u>taking a bag</u>.</li>
+</ul></li>
+<li>我走进教室，我被五个学生跟着。</li>
+<li>I walked into the classroom, <u>followed by five students</u>. 被动的发出者by</li>
+<li>三件事
+
+<ul>
+<li>I walked into the classroom, <u>taking</u> a bag, <u>followed</u> by five students.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </div>
@@ -205,14 +263,12 @@
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15288255574523.html" title="Previous Post: Python3笔记(19实战)">&laquo; Python3笔记(19实战)</a>
-            
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15312301698124.html" title="Next Post: Swift版本间差异">Swift版本间差异 &raquo;</a>
+            <a href="15416904024187.html" title="Next Post: NCE2 Unit 02（Lesson41 ~ 48）">NCE2 Unit 02（Lesson41 ~ 48） &raquo;</a>
             
           </p>
         </div>
