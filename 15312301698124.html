@@ -113,16 +113,16 @@
 <a href="#toc_0">一、@objc</a>
 </li>
 <li>
-<a href="#toc_1">二、 #selector</a>
+<a href="#toc_1">二、#selector</a>
 <ul>
 <li>
-<a href="#toc_2">1. 定义格式</a>
+<a href="#toc_2">（一）定义的格式</a>
 </li>
 <li>
-<a href="#toc_3">2. 方法定义规定</a>
+<a href="#toc_3">（二）方法定义的规定</a>
 </li>
 <li>
-<a href="#toc_4">3. self</a>
+<a href="#toc_4">（三）self问题</a>
 </li>
 </ul>
 </li>
@@ -130,10 +130,10 @@
 <a href="#toc_5">三、懒加载</a>
 <ul>
 <li>
-<a href="#toc_6">1. 懒加载情景</a>
+<a href="#toc_6">（一）懒加载情景</a>
 </li>
 <li>
-<a href="#toc_7">2. 延迟属性与闭包</a>
+<a href="#toc_7">（二）延迟属性与闭包</a>
 </li>
 </ul>
 </li>
@@ -143,16 +143,33 @@
 <li>
 <a href="#toc_9">五、单例模式</a>
 </li>
+<li>
+<a href="#toc_10">六、Equatable、Hashable协议</a>
+<ul>
+<li>
+<a href="#toc_11">（一）Objective-C的=== 、==、isEqual:、isEqualToString:、hash</a>
+</li>
+<li>
+<a href="#toc_12">（二）swift的=== 、==、Equatable、Hashable</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_13">七、NSString、String编码</a>
+<ul>
+<li>
+<a href="#toc_14">（一）NSString</a>
+</li>
+</ul>
+</li>
 </ul>
 
 
 <h4 id="toc_0">一、@objc</h4>
 
 <ul>
-<li>将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</li>
-</ul>
-
-<p><strong>1). Swift 3.0</strong></p>
+<li><p>作用：将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</p></li>
+<li><p><strong>1、Swift 3.0</strong></p>
 
 <ul>
 <li><p>a. 编译器默认给继承于NSObject的类的所有方法都隐式添加@objc；缺点是大量@objc导致二进制文件增大；</p>
@@ -163,9 +180,8 @@
 </code></pre></li>
 </ul>
 
-<span id="more"></span><!-- more -->
-
-<p><strong>2). Swift 4.0</strong></p>
+<span id="more"></span><!-- more --></li>
+<li><p><strong>2、Swift 4.0</strong></p>
 
 <ul>
 <li><strong>a. 隐式添加@objc只存在以下场景：覆盖父类的ObjC方法、符合一个ObjC的协议；</strong></li>
@@ -204,55 +220,54 @@ extension MyClass {
 }
 </code></pre></li>
 <li><p><strong>设置Xcode的<code>Build Settings</code>中的<code>Swift 3 @objc Inference</code>，决定是否继续采用Swift 3.0隐式添加@objc的模式；</strong></p></li>
+</ul></li>
 </ul>
 
-<h4 id="toc_1">二、 #selector</h4>
+<h4 id="toc_1">二、#selector</h4>
 
-<h5 id="toc_2">1. 定义格式</h5>
+<h5 id="toc_2">（一）定义的格式</h5>
 
-<p><strong>1). Swift 2.2前</strong></p>
+<ul>
+<li><p><strong>1、Swift 2.2前</strong></p>
 
 <pre><code class="language-swift">// 无参数
 Selector(&quot;btnDidClick&quot;)
 // 有参数
 Selector(&quot;btnDidClick:&quot;)
-</code></pre>
-
-<p><strong>2). Swift 2.2</strong></p>
+</code></pre></li>
+<li><p><strong>2、Swift 2.2</strong></p>
 
 <pre><code class="language-swift">// 无参数
 #selector(btnDidClick)
 // 有参数，参数名称使用下划线；具体方法的参数名称可任意设置
 #selector(btnDidClick(_:))
-</code></pre>
-
-<p><strong>3). Swift 3.0</strong></p>
+</code></pre></li>
+<li><p><strong>3、Swift 3.0</strong></p>
 
 <pre><code class="language-swift">// 无参数
 #selector(btnDidClick)
 // 有参数，参数名称必须具体给出；具体方法的参数名称必须一致
 #selector(btnDidClick(btn:))
-</code></pre>
-
-<h5 id="toc_3">2. 方法定义规定</h5>
-
-<ul>
-<li><strong>#selector使用到了ObjC运行时，所以方法必须要能被ObjC访问才行（加@objc修饰符）；</strong></li>
+</code></pre></li>
 </ul>
 
-<p><strong>1). Swift 3.0</strong></p>
+<h5 id="toc_3">（二）方法定义的规定</h5>
+
+<ul>
+<li><p><strong>#selector使用到了ObjC运行时，所以方法必须要能被ObjC访问才行（加@objc修饰符）；</strong></p></li>
+<li><p><strong>1、Swift 3.0</strong></p>
 
 <ul>
 <li><strong>只有当方法的权限为<code>private</code>，才需要加@objc修饰符，否则不需要添加；</strong></li>
-</ul>
-
-<p><strong>2). Swift 4.0</strong></p>
+</ul></li>
+<li><p><strong>2、Swift 4.0</strong></p>
 
 <ul>
 <li>所有的方法都要加@objc修饰符，不论其权限是否为private；</li>
+</ul></li>
 </ul>
 
-<h5 id="toc_4">3. self</h5>
+<h5 id="toc_4">（三）self问题</h5>
 
 <ul>
 <li><p><strong><code>btn.addTarget(self, action: #selector()...</code>中的self是动态的；比如在A中初始化了B，B中的btn初始化时进行了<code>addTarget(self...</code>，则此时self为A而不是B；</strong></p></li>
@@ -261,7 +276,7 @@ Selector(&quot;btnDidClick:&quot;)
 
 <h4 id="toc_5">三、懒加载</h4>
 
-<h5 id="toc_6">1. 懒加载情景</h5>
+<h5 id="toc_6">（一）懒加载情景</h5>
 
 <ul>
 <li><strong>全局的常/变量都是懒加载的，不需要标记lazy；</strong></li>
@@ -269,7 +284,7 @@ Selector(&quot;btnDidClick:&quot;)
 <li><strong>延迟属性，必须使用<code>lazy var</code>标记；（延迟属性只能使用var修饰，不能使用let修饰）</strong></li>
 </ul>
 
-<h5 id="toc_7">2. 延迟属性与闭包</h5>
+<h5 id="toc_7">（二）延迟属性与闭包</h5>
 
 <ul>
 <li><p><strong>延迟属性使用<code>lazy var</code>标记声明，其初始值可以是直接创建，也可以使用闭包创建；</strong></p>
@@ -365,10 +380,11 @@ DispatchQueue.once {
 
 <h4 id="toc_9">五、单例模式</h4>
 
-<p><strong>1). Swift 1.2之前</strong></p>
+<ul>
+<li><p><strong>1、 Swift 1.2之前</strong></p>
 
 <ul>
-<li><p>类不支持存储型类型属性（let、var），结构体支持；</p>
+<li><p><strong>类不支持存储型类型属性（let、var），结构体支持；</strong></p>
 
 <pre><code class="language-swift">// OC移植版
 class MyManager {
@@ -411,9 +427,8 @@ class MyManager  {
     }
 }
 </code></pre></li>
-</ul>
-
-<p><strong>2). Swift 1.2</strong></p>
+</ul></li>
+<li><p><strong>2、Swift 1.2开始</strong></p>
 
 <ul>
 <li><p><strong>类开始支持存储型类型属性（let、var）；</strong></p>
@@ -433,14 +448,13 @@ class MyManager  {
     private init() {}
 }
 </code></pre></li>
-</ul>
-
-<p><strong>3). 补充（ObjC单例）</strong></p>
+</ul></li>
+<li><p><strong>3、补充（ObjC单例）</strong></p>
 
 <pre><code class="language-ObjC">@interface MyManager : NSObject
-    
+
 + (instancetype)sharedManager;
-    
+
 @end
 </code></pre>
 
@@ -448,22 +462,22 @@ class MyManager  {
  *  饿汉式，类被加载时就创建唯一实例
  */
 @implementation MyManager
-    
+
 // 标示唯一的实例，该static全局变量的作用域仅限于当前文件内部
 static id _instance;
-    
+
 // 当类被加载到OC运行时环境（内存）时调用（一个类只会被加载1次）
 + (void)load {
     NSLog(@&quot;load...&quot;);
     // 创建该类的唯一实例（因为在load这里就使用了类，故initialize也被调用）
     _instance = [[self alloc] init]; 
 }
-    
+
 // 当第一次使用该类的时候调用
 + (void)initialize {
     NSLog(@&quot;initialize...&quot;);
 }
-    
+
 // alloc方法的内部会调用该方法
 + (id)allocWithZone:(struct _NSZone *)zone {
     if (_instance == nil) { // 防止多次创建
@@ -471,16 +485,16 @@ static id _instance;
     }
     return _instance;
 }
-    
+
 // copy方法的内部会调用该方法（由于是对象方法，对象已存在，不需要判断直接返回对象）
 - (id)copyWithZone:(NSZone *)zone {
     return _instance;
 }
-    
+
 + (instancetype)sharedManager {
     return _instance; // 直接返回已创建的实例
 }
-    
+
 @end
 </code></pre>
 
@@ -488,9 +502,9 @@ static id _instance;
  *  懒汉式，使用时再创建唯一实例
  */
 @implementation MyManager
-    
+
 static id _instance;
-    
+
 + (id)allocWithZone:(struct _NSZone *)zone {
     if (_instance == nil) { // 防止频繁加锁
         @synchronized(self) {
@@ -506,11 +520,11 @@ static id _instance;
     // });
     return _instance;
 }
-    
+
 - (id)copyWithZone:(NSZone *)zone {
     return _instance;
 }
-    
+
 + (instancetype)sharedManager {
     if (_instance == nil) { // 防止频繁加锁
         @synchronized(self) {
@@ -526,7 +540,7 @@ static id _instance;
     // });
     return _instance;
 }
-    
+
 @end
 </code></pre>
 
@@ -535,7 +549,102 @@ static id _instance;
 - (id)autorelease { return self; }
 - (id)retain { return self; }
 - (NSUInteger)retainCount { return 1; }
-</code></pre>
+</code></pre></li>
+</ul>
+
+<h4 id="toc_10">六、Equatable、Hashable协议</h4>
+
+<h5 id="toc_11">（一）Objective-C的=== 、==、isEqual:、isEqualToString:、hash</h5>
+
+<ul>
+<li><p>1、==操作符</p>
+
+<ul>
+<li>对于对象类型，判断连个两个对象的内存地址是否相同，相同返回true，否则返回false；</li>
+</ul></li>
+<li><p>2、isEqual:方法</p>
+
+<ul>
+<li><strong>默认情况下，比较两个对象的内存地址是否相同；</strong></li>
+<li>系统自带的某些类型（如Foundation中的NSString、NSArray等）会重写该方法，改变默认的判断规则（不比较地址，而是比较两个对象的内容）；</li>
+<li><strong>对于我们自定义类型的对象，若有判等需求，需要重写该方法；</strong></li>
+<li>重写的建议规则：
+
+<ul>
+<li>a. 判断传入的对象是否是nil，若是直接返回NO；</li>
+<li>b. ==运算符判断是否是同一对象，若相同直接返回YES；</li>
+<li>c. 判断是否是同一类型，若不同直接返回NO；</li>
+<li>d. 根据场景使用相应的属性进行判等操作，返回最终的操作结果；</li>
+</ul></li>
+</ul></li>
+<li><p>3、isEqualToString:方法</p>
+
+<ul>
+<li>NSString的特有方法，只比较字符串本身的内容是否一致，不比较内存地址；</li>
+<li>类似的还有isEqualToArray、isEqualToDictionary等；</li>
+</ul></li>
+<li><p><strong>4、hash方法</strong></p>
+
+<ul>
+<li><strong>返回当前对象的hash值，默认值为当前对象的内存地址（<code>p (NSUInteger)self</code>）；</strong></li>
+<li><strong>作用：为了加快数据的查找速度；</strong>
+
+<ul>
+<li><strong>a. 原始的遍历查询的速度为O(n)，使用基于hash值的Hash Table数据结构的查询速度为O(1)；</strong></li>
+<li><strong>b. 一般情况下，不同对象的hash值是不一样；但是某些情况下却是一样的，这时候就出现“hash碰撞”了；故hash值是对象判等的必要非充分条件；</strong></li>
+</ul></li>
+<li><strong>在对象被添加到NSSet、设置为NSDictionary的key等涉及到Hash Table数据结构时，hash方法会被调用；</strong></li>
+<li><strong>重写的建议规则：对相关属性的hash值作XOR运算，如<code>return [_name hash] ^ [_age hash];</code></strong></li>
+</ul></li>
+<li><p><strong>5、hash方法 与 isEqual:方法的关系</strong></p>
+
+<ul>
+<li><strong>由于hash的可以加快查找速度，但可能出现“hash碰撞”，故在应用时，先调用hash方法根据hash值快速排除不相等的数据，之后若hash值相同再调用isEqual:方法，作最终的判等操作；这样既加快了速度又不失准确性；</strong><br/></li>
+</ul></li>
+<li><p><strong>6、自定义类型的对象重写isEqual:方法、hash方法</strong></p>
+
+<ul>
+<li><strong>若不涉及到Hash Table数据结构的判等操作，只重写isEqual:方法即可；</strong></li>
+<li><strong>若涉及到Hash Table数据结构的判等操作，重写hash方法后，也大概率必须重写isEqual:方法；</strong>
+
+<ul>
+<li><strong>原因：重写hash方法大概率是因为两个对象的内存地址不同，就是本质上为不同的对象；若只重写了hash方法，两个对象的hash值相等后，还要调用isEqual:方法进行判等，而isEqual:方法的默认行为就是比较内存地址是否相同；</strong></li>
+<li><strong>hash方法是加快判等速度，并不能决定判等结果；</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h5 id="toc_12">（二）swift的=== 、==、Equatable、Hashable</h5>
+
+<ul>
+<li><p>1、===操作符</p>
+
+<ul>
+<li>swift中的=== 操作符等价于OC中的==操作符，比较的是对象的内存地址；</li>
+</ul></li>
+<li><p>2、==操作符</p>
+
+<ul>
+<li>swift中没有isEqual:方法；</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_13">七、NSString、String编码</h4>
+
+<h5 id="toc_14">（一）NSString</h5>
+
+<ul>
+<li><strong>NSString是建立在Unicode之上的，但是NSString在开发的时候（1994年），Unicode还是16位的，之后Unicode才扩展到21位；</strong></li>
+<li><strong>所以，NSString对象代表的是用UTF-16编码的码元组成的数组；相应地，length 方法的返回值也是字符串包含的码元个数（而不是字符个数）</strong>；</li>
+<li><code>[NSString length]</code>返回返回值与实际（可见）字符数不符，有以下场景：
+
+<ul>
+<li><strong>a. 基本多文种平面外的字符</strong>：BMP里所有的字符在UTF-16里都可以用一个码元表示，其余的字符都需要两个码元（一个代理对），如emoji字符；</li>
+<li><strong>b. 组合字符序列</strong>：字母é是以分解形式（e + ´）编码（默认），算作两个码元；某些字母，也可以调用precomposedStringWithCanonicalMapping方法，以合成形式编码；</li>
+<li><strong>c. 变体序列</strong>：它们和分解形式的组合字符序列的工作方式一样，因此变体选择符也算作单独的字符；</li>
+</ul></li>
+<li>参考：<code>https://objccn.io/issue-9-1/</code></li>
+</ul>
 
       </div>
 

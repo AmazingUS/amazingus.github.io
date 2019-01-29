@@ -383,16 +383,16 @@
 <a href="#toc_0">一、@objc</a>
 </li>
 <li>
-<a href="#toc_1">二、 #selector</a>
+<a href="#toc_1">二、#selector</a>
 <ul>
 <li>
-<a href="#toc_2">1. 定义格式</a>
+<a href="#toc_2">（一）定义的格式</a>
 </li>
 <li>
-<a href="#toc_3">2. 方法定义规定</a>
+<a href="#toc_3">（二）方法定义的规定</a>
 </li>
 <li>
-<a href="#toc_4">3. self</a>
+<a href="#toc_4">（三）self问题</a>
 </li>
 </ul>
 </li>
@@ -400,10 +400,10 @@
 <a href="#toc_5">三、懒加载</a>
 <ul>
 <li>
-<a href="#toc_6">1. 懒加载情景</a>
+<a href="#toc_6">（一）懒加载情景</a>
 </li>
 <li>
-<a href="#toc_7">2. 延迟属性与闭包</a>
+<a href="#toc_7">（二）延迟属性与闭包</a>
 </li>
 </ul>
 </li>
@@ -413,16 +413,33 @@
 <li>
 <a href="#toc_9">五、单例模式</a>
 </li>
+<li>
+<a href="#toc_10">六、Equatable、Hashable协议</a>
+<ul>
+<li>
+<a href="#toc_11">（一）Objective-C的=== 、==、isEqual:、isEqualToString:、hash</a>
+</li>
+<li>
+<a href="#toc_12">（二）swift的=== 、==、Equatable、Hashable</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_13">七、NSString、String编码</a>
+<ul>
+<li>
+<a href="#toc_14">（一）NSString</a>
+</li>
+</ul>
+</li>
 </ul>
 
 
 <h4 id="toc_0">一、@objc</h4>
 
 <ul>
-<li>将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</li>
-</ul>
-
-<p><strong>1). Swift 3.0</strong></p>
+<li><p>作用：将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</p></li>
+<li><p><strong>1、Swift 3.0</strong></p>
 
 <ul>
 <li><p>a. 编译器默认给继承于NSObject的类的所有方法都隐式添加@objc；缺点是大量@objc导致二进制文件增大；</p>
