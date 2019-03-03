@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     Swift版本间差异 - TIME TO GO 
+     Swift知识点总结 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,7 +97,7 @@
 
       <div class="article">
         
-        <h1>Swift版本间差异</h1>
+        <h1>Swift知识点总结</h1>
         <div class="read-more clearfix">
           <span class="date">2018/5/10</span>
            
@@ -161,6 +161,9 @@
 <a href="#toc_14">（一）NSString</a>
 </li>
 </ul>
+</li>
+<li>
+<a href="#toc_15">八、Swift构造器</a>
 </li>
 </ul>
 
@@ -635,7 +638,7 @@ static id _instance;
 
 <ul>
 <li><strong>NSString是建立在Unicode之上的，但是NSString在开发的时候（1994年），Unicode还是16位的，之后Unicode才扩展到21位；</strong></li>
-<li><strong>所以，NSString对象代表的是用UTF-16编码的码元组成的数组；相应地，length 方法的返回值也是字符串包含的码元个数（而不是字符个数）</strong>；</li>
+<li><strong>所以，NSString对象代表的是用UTF-16编码的码元组成的数组；相应地，length方法的返回值也是字符串包含的码元个数（而不是字符个数）</strong>；</li>
 <li><code>[NSString length]</code>返回返回值与实际（可见）字符数不符，有以下场景：
 
 <ul>
@@ -644,6 +647,58 @@ static id _instance;
 <li><strong>c. 变体序列</strong>：它们和分解形式的组合字符序列的工作方式一样，因此变体选择符也算作单独的字符；</li>
 </ul></li>
 <li>参考：<code>https://objccn.io/issue-9-1/</code></li>
+</ul>
+
+<h4 id="toc_15">八、Swift构造器</h4>
+
+<ul>
+<li><p><strong>1、默认构造器</strong></p>
+
+<ul>
+<li><strong>a. Swift将为<code>已提供了所有的存储型属性有默认值的</code>且<code>自身没有定义任何构造器</code>的<code>结构体</code>或<code>基类</code>，提供一个默认构造器</strong>；</li>
+<li><strong>b. 可选类型属性若没有显式设置默认值，则有隐式默认值nil；</strong></li>
+<li>c. 该默认构造器无任何参数的，调用其可以创建一个所有属性值都设置为默认值的实例；</li>
+</ul></li>
+<li><p><strong>2、结构体的逐一成员构造器</strong></p>
+
+<ul>
+<li>a. Swift还将为<code>已提供了所有的存储型属性有默认值的</code>且<code>自身没有定义任何构造器</code>的<code>结构体</code>，提供一个逐一成员构造器；</li>
+<li>b. 可选类型属性若没有显式设置默认值，则有隐式默认值nil；</li>
+<li>c. 该逐一成员构造器的参数名称与成员属性名相同，调用其可以进行传值来完成对成员属性的初始赋值；</li>
+</ul></li>
+<li><p><strong>3、自定义构造器</strong></p>
+
+<ul>
+<li>a. 若自定义任何构造器，则Swift不会提供<code>默认构造器</code>、<code>逐一成员构造器</code>；</li>
+<li><strong>b. 在自定义任何构造器中，必须初始化<code>所有没有默认值的存储型属性</code>；</strong></li>
+<li><strong>c. 技巧：给自定义构造器的参数添加<code>默认参数值</code>，这样也可以在调用时不传递构造参数，相对于又提供了<code>一个隐式的默认构造器</code>；</strong></li>
+</ul></li>
+<li><p><strong>4、指定构造器、便利构造器</strong></p>
+
+<ul>
+<li>Swift的类类型的构造器有两种类型：指定构造器(Designated Initializer)、便利构造器(Convenience Initializer)；</li>
+</ul></li>
+<li><p><strong>5、构造器的继承</strong></p>
+
+<ul>
+<li><strong>子类默认不会继承父类的构造器；但是若满足某些条件，父类的构造器还是可以继承给子类，这意味着不必复写父类的构造器；</strong></li>
+<li><strong>首先必须<code>子类新增的存储属性</code>都提供了<code>默认值</code>，那么则</strong>：
+
+<ul>
+<li><strong>a. 若子类中没有新增任何自定义的指定构造器（新增便利构造器可有可无），那么子类会自动继承父类的所有指定构造器；</strong></li>
+<li><strong>b. 若子类提供了所有父类的指定构造器的实现（无论是通过继承来的，还是自定义实现的），（新增便利构造器可有可无），那么子类自动继承所有父类的便利构造器；</strong>
+
+<ul>
+<li><strong>注：子类自定义实现的父类的指定构造器时，可以重写，也可以将其实现为便利构造器；</strong></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><strong>6、构造器的重写、覆盖</strong></p>
+
+<ul>
+<li><strong>a. 父类的指定构造器可以被<code>子类重写</code>成指定构造器（必须添加override）、便利构造器（不必添加override）；</strong></li>
+<li><strong>b. 父类的便利构造器可以被<code>子类覆盖</code>为指定构造器、便利构造器，不必添加override；</strong></li>
+</ul></li>
 </ul>
 
       </div>
@@ -706,6 +761,9 @@ static id _instance;
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15503038236595.html">NCE2 Unit 03（Lesson65 ~ 72）</a>
+              </li>
+                 <li class="post">
               <a href="15450672099321.html">NCE2 Unit 03（Lesson57 ~ 64）</a>
               </li>
                  <li class="post">
@@ -716,9 +774,6 @@ static id _instance;
               </li>
                  <li class="post">
               <a href="15410846265758.html">NCE2 Unit 02（Lesson33 ~ 40）</a>
-              </li>
-                 <li class="post">
-              <a href="15404876438980.html">NCE2 Unit 02（Lesson25 ~ 32）</a>
               </li>
                                              
           </ul>
