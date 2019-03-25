@@ -165,6 +165,9 @@
 <li>
 <a href="#toc_15">八、Swift构造器</a>
 </li>
+<li>
+<a href="#toc_16">九、Swift的四种处理错误方式</a>
+</li>
 </ul>
 
 
@@ -652,26 +655,26 @@ static id _instance;
 <h4 id="toc_15">八、Swift构造器</h4>
 
 <ul>
-<li><p><strong>1、默认构造器</strong></p>
+<li><p><strong>1、无参默认构造器</strong></p>
 
 <ul>
-<li><strong>a. Swift将为<code>已提供了所有的存储型属性有默认值的</code>且<code>自身没有定义任何构造器</code>的<code>结构体</code>或<code>基类</code>，提供一个默认构造器</strong>；</li>
+<li><strong>a. Swift将为<code>已提供了所有的存储型属性有默认值的</code>且<code>自身没有定义任何构造器（类：指定构造器）</code>的<code>结构体</code>或<code>基类</code>，提供一个无参默认构造器</strong>；</li>
 <li><strong>b. 可选类型属性若没有显式设置默认值，则有隐式默认值nil；</strong></li>
-<li>c. 该默认构造器无任何参数的，调用其可以创建一个所有属性值都设置为默认值的实例；</li>
+<li>c. 调用该无参默认构造器，可以创建一个所有属性值都设置为默认值的实例；</li>
 </ul></li>
-<li><p><strong>2、结构体的逐一成员构造器</strong></p>
+<li><p><strong>2、结构体的成员逐一构造器</strong></p>
 
 <ul>
-<li>a. Swift还将为<code>已提供了所有的存储型属性有默认值的</code>且<code>自身没有定义任何构造器</code>的<code>结构体</code>，提供一个逐一成员构造器；</li>
+<li>a. Swift还将为<code>已提供了所有的存储型属性有默认值的</code>且<code>自身没有定义任何构造器</code>的<code>结构体</code>，提供一个成员逐一构造器；</li>
 <li>b. 可选类型属性若没有显式设置默认值，则有隐式默认值nil；</li>
-<li>c. 该逐一成员构造器的参数名称与成员属性名相同，调用其可以进行传值来完成对成员属性的初始赋值；</li>
+<li>c. 该成员逐一构造器的参数名称与成员属性名相同，调用其可以进行传值来完成对成员属性的初始赋值；</li>
 </ul></li>
 <li><p><strong>3、自定义构造器</strong></p>
 
 <ul>
-<li>a. 若自定义任何构造器，则Swift不会提供<code>默认构造器</code>、<code>逐一成员构造器</code>；</li>
+<li>a. 若自定义任何构造器，则Swift不会提供<code>无参默认构造器</code>、<code>成员逐一构造器</code>；</li>
 <li><strong>b. 在自定义任何构造器中，必须初始化<code>所有没有默认值的存储型属性</code>；</strong></li>
-<li><strong>c. 技巧：给自定义构造器的参数添加<code>默认参数值</code>，这样也可以在调用时不传递构造参数，相对于又提供了<code>一个隐式的默认构造器</code>；</strong></li>
+<li><strong>c. 技巧：给自定义构造器的参数添加<code>默认参数值</code>，这样也可以在调用时不传递构造参数，相对于又提供了<code>一个隐式的无参默认构造器</code>；</strong></li>
 </ul></li>
 <li><p><strong>4、指定构造器、便利构造器</strong></p>
 
@@ -698,6 +701,147 @@ static id _instance;
 <ul>
 <li><strong>a. 父类的指定构造器可以被<code>子类重写</code>成指定构造器（必须添加override）、便利构造器（不必添加override）；</strong></li>
 <li><strong>b. 父类的便利构造器可以被<code>子类覆盖</code>为指定构造器、便利构造器，不必添加override；</strong></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_16">九、Swift的四种处理错误方式</h4>
+
+<ul>
+<li><p><strong>1、使用throw抛出错误</strong></p>
+
+<ul>
+<li>为了明确一个函数、方法可以抛出错误，要在它的声明当中的形式参数后边写上<code>throws</code>关键字，使用<code>throws</code>标记的函数叫做<code>抛出函数</code>；</li>
+<li><p><strong>只有抛出函数可以传递错误，任何在非抛出函数中抛出的错误都必须在该函数内部处理；</strong></p>
+
+<pre><code class="language-swift">enum VendingMachineError: Error {
+    case invalidSelection
+    case outOfStock
+    case insufficientFunds(coinsNeeded: Int)
+}
+
+struct Item {
+    var price: Int
+    var count: Int
+}
+</code></pre>
+
+<pre><code class="language-swift">class VendingMachine {
+    var inventory = [
+        &quot;Candy Bar&quot;: Item(price: 12, count: 7),
+        &quot;Chips&quot;: Item(price: 10, count: 4),
+    ]
+    var coinsDeposited = 0
+
+    func vend(itemNamed name: String) throws {
+        guard let item = inventory[name] else {
+            throw VendingMachineError.invalidSelection
+        }
+
+        guard item.count &gt; 0 else {
+            throw VendingMachineError.outOfStock
+        }
+
+        guard item.price &lt;= coinsDeposited else {
+            throw VendingMachineError.insufficientFunds(coinsNeeded: item.price - coinsDeposited)
+        }
+
+        coinsDeposited -= item.price
+
+        var newItem = item
+        newItem.count -= 1
+        inventory[name] = newItem
+
+        print(&quot;Dispensing \(name)&quot;)
+    }
+}
+</code></pre>
+
+<ul>
+<li><p><strong>由于vend(itemNamed:)方法传递它抛出的任何错误，所以在调用它的代码，要么直接处理错误（使用do-try-catch、try?、try!），要么继续传递它们（只使用try）；</strong></p>
+
+<pre><code>let favoriteSnacks = [
+    &quot;Alice&quot;: &quot;Chips&quot;,
+    &quot;Bob&quot;: &quot;Licorice&quot;,
+    &quot;Eve&quot;: &quot;Pretzels&quot;,
+]
+
+func buyFavoriteSnack(person: String, vendingMachine: VendingMachine) throws {
+    let snackName = favoriteSnacks[person] ?? &quot;Candy Bar&quot;
+    try vendingMachine.vend(itemNamed: snackName)
+}
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p><strong>2、使用do-try-catch捕获错误</strong></p>
+
+<ul>
+<li><strong>在非抛出函数中，do-try-catch必须处理所有错误；</strong></li>
+<li><p><strong>在抛出函数中，do-try-catch可以有没有处理的错误；</strong></p>
+
+<pre><code class="language-swift">var vendingMachine = VendingMachine()
+vendingMachine.coinsDeposited = 8
+
+do {
+    try buyFavoriteSnack(&quot;Alice&quot;, vendingMachine: vendingMachine)
+} catch VendingMachineError.invalidSelection {
+    print(&quot;Invalid Selection.&quot;)
+} catch VendingMachineError.outOfStock {
+    print(&quot;Out of Stock.&quot;)
+} catch VendingMachineError.insufficientFunds(let coinsNeeded) {
+    print(&quot;Insufficient funds. Please insert an additional \(coinsNeeded) coins.&quot;)
+}
+</code></pre></li>
+</ul></li>
+<li><p><strong>3、使用try?转换错误为可选项</strong></p>
+
+<ul>
+<li><p>使用try?可将错误转换为可选项来处理一个错误，若一个错误 try?表达式中抛出，则表达式的值为nil；</p>
+
+<pre><code class="language-swift">func someThrowingFunction() throws -&gt; Int {
+    // ...
+}
+
+let x = try? someThrowingFunction()
+</code></pre>
+
+<pre><code class="language-swift">// 等价于上面的try?
+let y: Int?
+do {
+    y = try someThrowingFunction()
+} catch {
+    y = nil
+}
+</code></pre></li>
+</ul></li>
+<li><p><strong>4、使用try?排除错误</strong></p>
+
+<ul>
+<li><p>有时知道一个抛出错误的函数、方法不会在运行时抛出错误，可以在表达式前写try!来取消错误传递；如错误真的抛出了则得到一个运行时错误；</p>
+
+<pre><code class="language-swift">let photo = try! loadImage(&quot;./Resources/John Appleseed.jpg&quot;)
+</code></pre></li>
+</ul></li>
+<li><p><strong>使用defer清理操作</strong></p>
+
+<ul>
+<li><strong>defer允许在以任何方式（无论是抛出了错误，还是return、break）离开当前代码块前，执行必须要的清理工作；</strong></li>
+<li><p>如，可以使用defer语句来保证文件描述符都关闭并且手动指定的内存到被释放；</p>
+
+<pre><code class="language-swift">func processFile(filename: String) throws {
+    if exists(filename) {
+        let file = open(filename)
+
+        defer {
+            close(file)
+        }
+
+        while let line = try file.readline() {
+            // Work with the file.
+        }
+        // close(file) is called here, at the end of the scope.
+    }
+}
+</code></pre></li>
 </ul></li>
 </ul>
 
@@ -761,9 +905,6 @@ static id _instance;
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
-              <a href="15503038236595.html">NCE2 Unit 03（Lesson65 ~ 72）</a>
-              </li>
-                 <li class="post">
               <a href="15450672099321.html">NCE2 Unit 03（Lesson57 ~ 64）</a>
               </li>
                  <li class="post">
@@ -774,6 +915,9 @@ static id _instance;
               </li>
                  <li class="post">
               <a href="15410846265758.html">NCE2 Unit 02（Lesson33 ~ 40）</a>
+              </li>
+                 <li class="post">
+              <a href="15404876438980.html">NCE2 Unit 02（Lesson25 ~ 32）</a>
               </li>
                                              
           </ul>
