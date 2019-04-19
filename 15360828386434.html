@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     Python中的常见问题 - TIME TO GO 
+     使用Nginx+uWSGI运行Python Web应用 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,9 +97,9 @@
 
       <div class="article">
         
-        <h1>Python中的常见问题</h1>
+        <h1>使用Nginx+uWSGI运行Python Web应用</h1>
         <div class="read-more clearfix">
-          <span class="date">2018/7/28</span>
+          <span class="date">2018/9/5</span>
            
           <span class="comments">
              
@@ -110,90 +110,138 @@
       <div class="article-content">
         <ul>
 <li>
-<a href="#toc_0">一、is、==、对象的布尔值（if ObjA）、None、not</a>
+<a href="#toc_0">一、uWSGI基本使用</a>
+</li>
+<li>
+<a href="#toc_1">二、uWSGI运行Flask应用</a>
+</li>
+<li>
+<a href="#toc_2">三、Nginx+uWSGI配合使用</a>
+</li>
+</ul>
 
 
-<h4 id="toc_0">一、is、==、对象的布尔值（if ObjA）、None、not</h4>
+<h4 id="toc_0">一、uWSGI基本使用</h4>
 
 <ul>
-<li><p><strong>1. <code>is</code>：</strong></p>
+<li><p>新建一个python文件，定义一个application函数（其实就是wsgi的处理函数）；</p>
+
+<pre><code class="language-python"># server.py
+def application(env, response):
+    response(&#39;200 OK&#39;, [(&#39;Content-Type&#39;, &#39;text/html&#39;)])
+    return [b&#39;&lt;h1&gt;Hello,Web!&lt;/h1&gt;&#39;] # 注意: 返回的是字节
+</code></pre></li>
+<li><p>终端中运行：<code>uwsgi --http :9090 --wsgi-file server.py</code> ，之后就可以访问<code>http://127.0.0.1:9090/</code>；</p>
 
 <ul>
-<li><p><strong>比较两个对象的内存地址(<code>id(a)</code>)是否相同，若是相同则返回True，否则为False；</strong></p></li>
-<li><p><strong>注意：由于Python会对较小的对象进行缓存（比如str、int等，自定义类不会进行缓存），所以有时并不会创建新的对象，而是从缓存中进行查找返回，没有才创建；</strong></p></li>
-<li><p><strong><code>is not</code>表示is的相反结果，内存地址不相同时返回True</strong>；</p>
+<li>a. --http参数指定HTTP监听地址端口；</li>
+<li>b. --wsgi-file参数指定WSGI应用程序入口；</li>
+<li>c. uWSGI会自动搜寻名为”application”的应用对象并调用，也可以使用--callable参数修改该默认名称；</li>
+</ul></li>
+</ul>
 
-<span id="more"></span><!-- more -->
+<span id="more"></span><!-- more -->   
 
-<pre><code class="language-python"># case 1:
-s1 = &#39;Hello&#39;
-s2 = &#39;Hello&#39;  # 会使用缓存
-print(id(s1))
-print(id(s2))
-print(s1 is s2)  # True
+<ul>
+<li><p>uWSGI还支持多进程多线程的方式启动应用，并且也可以监控应用的运行状态；</p>
 
-# case 2:
-a = 2
-b = 1 * 2  # 会使用缓存
-print(id(a))
-print(id(b)) 
-print(a is b)  # True
-
-# case 3:
-print(1000 is 10 ** 3)  # False，不会使用缓存
-
-# case 4:
-class A:
-    pass
-
-print(A() is A()) # False
+<pre><code class="language-shell">uwsgi --http :9090 --wsgi-file server.py 
+--master --processes 4 --threads 2 --stats :9091
 </code></pre>
 
-<!-- more -->   </li>
+<ul>
+<li>uWSGI将会启动4个进程（每个进程有2个线程）和一个master主进程（监控其他进程状态，若其他线程挂了会将其重启）；</li>
+<li>访问127.0.0.1:9091可以获取JSON格式的应用运行信息，也可以使用uwsgitop命令（需要先pip安装）；</li>
 </ul></li>
-<li><p><strong>2. <code>==</code></strong></p>
+<li><p>当命令参数过多时，可以将其写在配置文件中，然后再启动uWSGI时指定配置文件即可；配置文件可以为ini、XML、YAML格式的；</p>
+
+<pre><code>[uwsgi]
+http=:9090
+wsgi-file=server.py
+master=true
+processes=4
+threads=2
+stats=:9091
+</code></pre>
+
+<pre><code class="language-shell">uwsgi myapp.ini
+</code></pre>
+
+<pre><code>&lt;uwsgi&gt;
+    &lt;http&gt;:9090&lt;/socket&gt;
+    &lt;master/&gt;
+&lt;/uwsgi&gt;
+</code></pre>
+
+<pre><code>uwsgi:
+  socket: :9090
+  master: 1
+</code></pre></li>
+</ul>
+
+<h4 id="toc_1">二、uWSGI运行Flask应用</h4>
 
 <ul>
-<li><p><strong>返回对象的<code>__eq__</code>函数的结果（布尔值）；</strong></p></li>
-<li><p><strong><code>==</code>、<code>!=</code>、<code>&gt;</code>、<code>&lt;</code>等值比较都可以通过重写<code>__eq__</code>、<code>__ne__</code>等函数来改变；</strong></p></li>
-<li><p><strong>str的<code>__eq__</code>函数会比较字符串的内容是否一致；自定义类的<code>__eq__</code>函数会返回父类的默认值；</strong></p></li>
-<li><p><strong>若需要重写自定义类的<code>__eq__</code>，一般也需要重写其<code>__hash__</code>，否则该自定义类不可以在哈希集合中使用；</strong>若没有重写<code>__eq__</code>，则此时不应该重写<code>__hash__</code>；对象放到哈希集合中时，先调用__hash_进行定位其集合中的位置，再调用<code>__eq__</code>决定是否应该将该对象访问集合中；</p></li>
-</ul></li>
-<li><p><strong>3. 对象的布尔值（if ObjA）</strong></p>
+<li><p>通常将Flask应用对象取名为app，而WSGI标准是application，配置<code>callable</code>项修改标准名称；</p>
+
+<pre><code class="language-shell">[uwsgi]
+...
+callable=app
+</code></pre>
+
+<pre><code class="language-python">from flask import Flask
+
+application = Flask(__name__)
+
+@application.route(&#39;/&#39;)
+def index():
+    return &#39;&lt;h1&gt;Hello World&lt;/h1&gt;&#39;
+</code></pre></li>
+<li><p>配置<code>virtualenv</code>项，可以使用Python虚拟环境，来避免应用间冲突；</p>
+
+<pre><code class="language-shell">[uwsgi]
+...
+virtualenv＝/root/virtualenv
+</code></pre></li>
+</ul>
+
+<h4 id="toc_2">三、Nginx+uWSGI配合使用</h4>
 
 <ul>
-<li><p><strong>当一个对象的<code>__bool__()</code>函数返回True并且<code>__len()__</code>不返回0时，该对象的布尔值为True，否则为False；</strong> 比如0、0.0、0L、&quot;&quot;（空字符串）、[]、()、{}、False、None等；</p></li>
-<li><p><strong>注意：None的布尔值为False；</strong></p></li>
-<li><p><strong><code>对象的布尔值</code>在if判断、布尔运算时（<code>and</code>、<code>or</code>、<code>not</code>）会用到；</strong></p></li>
-</ul></li>
-<li><p><strong>4. None</strong></p>
+<li><p>Nginx端配置</p>
+
+<pre><code class="language-shell">server {
+        listen       8080;
+        server_name  localhost;
+
+        location / {
+            include uwsgi_params;
+            uwsgi_pass 127.0.0.1:9999; # 该地址端口为uWSGI的socket端口
+        }
+}
+</code></pre></li>
+<li><p>uWSGI启动命令加上<code>--socket</code>参数指定Socket端口，如：</p>
+
+<pre><code class="language-shell">uwsgi --socket :9999 --http :9090 --wsgi-file flask_demo.py 
+--callable app --master --processes 4 --threads 2 --stats :9091
+</code></pre></li>
+<li><p><strong>上面采用socket端口连接Nginx和uWSGI，也可以通过采用socket文件的方式，这样就可以不用写死端口了；</strong></p>
+
+<pre><code class="language-shell">location / {
+    include uwsgi_params;
+    uwsgi_pass unix:/tmp/uwsgi.sock;
+}
+</code></pre>
+
+<pre><code class="language-shell">[uwsgi]
+socket=/tmp/uwsgi.sock
+或
+uwsgi --socket /tmp/uwsgi.sock --http :9090 --wsgi-file flask_demo.py --callable app --master --processes 4 --threads 2 --stats :9091
+</code></pre>
 
 <ul>
-<li><p><strong>一个特殊的常量，含义为空，相当于C语言中的NULL，其可以赋值给任意变量；None的数据类型为NoneType；</strong></p></li>
-<li><p>注意：空列表、空字符串、空字典都不是None；</p></li>
-</ul></li>
-<li><p><strong>5. not</strong></p>
-
-<ul>
-<li><p>布尔运算符非，可以和is、in连用组成<code>is not</code>、<code>not in</code>语句；</p></li>
-<li><p><strong>Python的<code>布尔运算符使用的是not而不是!</code>，<code>关系运算符!=</code>（不等于）才用到了!；</strong></p></li>
-</ul></li>
-<li><p>举例：</p>
-
-<ul>
-<li><strong><code>if a == None</code></strong>：（不常用，写法不Pythonic）判断a是否为空，等价于<code>if a is None</code>；</li>
-<li><strong><code>if a != None</code></strong>：（不常用，写法不Pythonic）判断a是否不为空，等价于<code>if a is not None</code>；</li>
-<li><strong><code>if a is None</code></strong>：判断a是否为空；<strong>None只有一个，不存在另一个值为None但id(None)不相等的对象；</strong></li>
-<li><strong><code>if a is not None</code></strong>：判断a是否不为空；</li>
-<li><strong><code>if a</code></strong>：判断对象的布尔值是否为True；</li>
-<li><strong><code>if not a</code></strong>：判断对象的布尔值是否为False；</li>
-<li><strong>注意：当判断一个对象是否为None时，使用<code>if a is None</code>和<code>if not a</code>是没有区别；当判断一个对象是否False时，就只使用<code>if not a</code>；</strong></li>
-</ul></li>
-<li><p>参考：</p>
-
-<ul>
-<li>if foobar != None 和 if foobar is not None 是完全等价的吗？<code>https://www.v2ex.com/t/443096</code></li>
-<li>python里None 表示False吗<code>https://www.zhihu.com/question/48707732</code></li>
+<li>启动uWSGI服务器后，其会自动创建一个/tmp/uwsgi.sock文件；</li>
+<li><strong>注意：运行uWSGI的用户与运行Nginx的用户可能不一样，而/tmp/uwsgi.sock是由uWSGI的用户创建的；Nginx的用户必须有对该文件有读写的权限，否则无法Nginx无法访问；</strong></li>
 </ul></li>
 </ul>
 
@@ -203,14 +251,14 @@ print(A() is A()) # False
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15332159757050.html" title="Previous Post: 证书、SSL、HTTPS">&laquo; 证书、SSL、HTTPS</a>
+            <a href="15365964361279.html" title="Previous Post: NCE2 Unit 01（Lesson09 ~ 16）">&laquo; NCE2 Unit 01（Lesson09 ~ 16）</a>
             
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15288255574523.html" title="Next Post: Python3笔记(19实战)">Python3笔记(19实战) &raquo;</a>
+            <a href="15359820779641.html" title="Next Post: NCE2 Unit 01（Lesson01 ~ 08）">NCE2 Unit 01（Lesson01 ~ 08） &raquo;</a>
             
           </p>
         </div>

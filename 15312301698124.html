@@ -390,7 +390,7 @@ DispatchQueue.once {
 <li><p><strong>1、 Swift 1.2之前</strong></p>
 
 <ul>
-<li><p><strong>类不支持存储型类型属性（let、var），结构体支持；</strong></p>
+<li><p><strong>类不支持类型存储型属性（let、var），结构体支持；</strong></p>
 
 <pre><code class="language-swift">// OC移植版
 class MyManager {
@@ -437,7 +437,7 @@ class MyManager  {
 <li><p><strong>2、Swift 1.2开始</strong></p>
 
 <ul>
-<li><p><strong>类开始支持存储型类型属性（let、var）；</strong></p>
+<li><p><strong>类开始支持类型存储型属性（let、var）；</strong></p>
 
 <pre><code>class MyManager {
     private static let sharedInstance : MyManager = MyManager()
@@ -633,6 +633,16 @@ static id _instance;
 <ul>
 <li>swift中没有isEqual:方法；</li>
 </ul></li>
+<li><p>3、Equatable</p>
+
+<ul>
+<li><p><strong>A class inheriting NSObject already conforms to Equatable. So declaring Object: Equatable is redundant. However, the conformance does not mean that it has been implemented properly (NSObject just checks whether the pointers are the same). If you wish to properly implement Equatable for NSObject, just exclude the protocol conformance statement (: Equatable), but still implement the comparison method:</strong></p>
+
+<pre><code class="language-swift">static func ==(lhs: Object, rhs: Object) -&gt; Bool {
+   return lhs.text == rhs.text
+}
+</code></pre></li>
+</ul></li>
 </ul>
 
 <h4 id="toc_13">七、NSString、String编码</h4>
@@ -701,6 +711,77 @@ static id _instance;
 <ul>
 <li><strong>a. 父类的指定构造器可以被<code>子类重写</code>成指定构造器（必须添加override）、便利构造器（不必添加override）；</strong></li>
 <li><strong>b. 父类的便利构造器可以被<code>子类覆盖</code>为指定构造器、便利构造器，不必添加override；</strong></li>
+</ul></li>
+<li><p><strong>7、补充</strong></p>
+
+<ul>
+<li><strong>Objective-C</strong>
+
+<ul>
+<li><strong>a. Objective-C中的类几乎派生自NSObject；所有类的都有<code>init</code>初始化方法，无论该方法是否是NS_DESIGNATED_INITIALIZER；</strong></li>
+<li><strong>b. 若类没有指定NS_DESIGNATED_INITIALIZER，则默认把<code>init</code>作为NS_DESIGNATED_INITIALIZER；</strong></li>
+<li><strong>c. 若类指定NS_DESIGNATED_INITIALIZER，那么<code>init</code>将只是一个普通的初始化方法；</strong></li>
+</ul></li>
+<li><p><strong>Swift</strong></p>
+
+<ul>
+<li><p><strong>a. Swift中的纯Swift类默认不派生任何类；当类自定义指定构造器时，将导致不自动生成默认的<code>init()</code>初始化方法（指定构造器），除非手动自定义，否则调用时无法使用<code>ClassName()</code>形式初始化；而子类之后是否使用override修饰当前类中的<code>init()</code>，取决于父类是否有该方法；</strong></p>
+
+<pre><code class="language-swift">class AAA {
+    init(aaa: Int) {
+    }
+}
+
+class BBB: AAA {
+    init() { // 不需要加override
+        super.init(aaa: 1)
+    }
+}
+
+//let aaa = AAA() // ❌，没有改构造器了
+//let aaa = AAA(aaa: 0) // ✅
+//let bbb = BBB() // ✅
+//let bbb = BBB(aaa: 0) // ❌，不会继承
+</code></pre></li>
+<li><p><strong>b. Swift中的Objective-C类（如UIKit的类）派生自NSObject，所有类的都有<code>init()</code>初始化方法，该方法是指定构造器，还是便利构造器，判断规则同上面的Objective-C的；</strong></p></li>
+<li><p><strong>c. Swift中的<code>UIView</code>类有两个指定构造器：<code>public init(frame: CGRect)</code>、<code>public init?(coder aDecoder: NSCoder)</code>，而<code>init()</code>为便利构造器；</strong></p>
+
+<ul>
+<li><strong>当自定义的子类，自定义指定构造器时，所有构造器不会被继承，但<code>init?(coder aDecoder: NSCoder)</code>必须有，所以要重写（这里重写使用<code>required</code>，而不是<code>override</code>修饰）</strong>；</li>
+<li><strong>注意：由于自定义指定构造器，子类将没有<code>init(frame: CGRect)</code>、<code>init()</code>构造器；</strong></li>
+</ul></li>
+<li><p><strong>d. Swift中的<code>UIViewController</code>类有两个指定构造器：<code>public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)</code>、<code>public init?(coder aDecoder: NSCoder)</code>，而<code>init()</code>为便利构造器；规则同<code>UIView</code>；</strong></p>
+
+<pre><code class="language-swift">class AAAViewController: UIViewController {  
+}
+
+//let aaa1 = AAAViewController() // ✅
+//let aaa2 = AAAViewController(coder: xxx) // ✅
+//let aaa3 = AAAViewController(nibName: nil, bundle: nil) // ✅
+</code></pre>
+
+<pre><code class="language-swift">class BBBViewController: UIViewController {
+    // 这里init为指定构造器，父类中的init为便利构造器，故不需要加override；
+    // 只能调用super的init(nibName: nil, bundle: nil)、init?(coder aDecoder: NSCoder)，而不能是init()
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        // OR
+        // super.init(coder: NSCoder())! // ✅，需要解包
+        // OR
+        // super.init() // ❌
+    }
+
+    // 必须实现（同时也重写了），NSCoding协议要求
+    required init?(coder aDecoder: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+}
+
+//let bbb1 = BBBViewController() // ✅
+//let bbb2 = BBBViewController(coder: xxx) // ✅
+//let bbb3 = BBBViewController(nibName: nil, bundle: nil) // ❌，没有构造器了
+</code></pre></li>
+</ul></li>
 </ul></li>
 </ul>
 
