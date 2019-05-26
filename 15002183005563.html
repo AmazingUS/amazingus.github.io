@@ -125,8 +125,8 @@
 
 <ul>
 <li>执行 <code>ssh-keygen -t rsa -C &quot;xx@email.com&quot;</code>，回车确认，默认在~/.ssh/目录中生成名称为“id_rsa”的private key和“id_rsa_pub”的public key；<strong>注意：每次执行生成的key是不一样的；</strong></li>
-<li>对于所有网站（如github、git.oschina等），一般使用同一个key进行认证；<strong>同一key在同一网站上只能用于一个账号，若需要使用不同的key就需要配置.ssh/config文件；</strong></li>
-<li>使用不同的key可以认证不同网站的账号，也可以认证同一网站的不同账号；</li>
+<li><strong>对于不同的网站（如github.com、gitee.com等），虽然是不同的账号，一般使用同一个key进行认证，也可以使用不同的key（配置.ssh/config）；</strong></li>
+<li><strong>对于同一网站，若需要使用不同的账号，就需要配置不同的key（配置.ssh/config），同一个key只能用于一个账号；</strong></li>
 </ul>
 
 <span id="more"></span><!-- more -->
@@ -165,10 +165,10 @@ ssh -T git@BB
 
 <ul>
 <li>github repo的ssh地址结构：<code>git@github.com:USERNAME/REPO_NAME.git</code></li>
-<li><p>比如git@<strong>github.com</strong>:twbs/bootstrap.git需要A_KEY管理，git@<strong>github.com</strong>:hexojs/hexo.git需要B_KEY管理；</p>
+<li><p>比如<strong>git@<code>github.com</code>:twbs/bootstrap.git</strong>需要A_KEY管理，<strong>git@<code>github.com</code>:hexojs/hexo.git</strong>需要B_KEY管理；</p>
 
 <ul>
-<li><p>将ssh地址中的域名改为对应账号使用的域名别名，这样就可以使用该账号对应的key了；</p>
+<li><p>将ssh地址中的域名改为<code>对应账号使用的域名别名</code>，这样就可以使用该账号对应的key了；</p>
 
 <pre><code># 修改后的ssh地址
 git@AA:twbs/bootstrap.git
@@ -187,33 +187,50 @@ git@BB:hexojs/hexo.git
 <li><strong>a. 可以让config的Host和Hostname相同，这样不修改repo的ssh地址，就使用对应的key</strong>；比如让Host和Hostname都是“github.com”；</li>
 <li>b. Host可以配置通配符*，规则写在最后，匹配前面没有匹配上的别名；</li>
 <li>c. 使用<code>ssh -T git@AA</code>进行测试时，加-v参数会输出测试log，如<code>ssh -T -v git@AA</code> ；</li>
-<li>d. <strong>.ssh/config文件可以加User参数；</strong>对Git服务，User为git，这样 <code>git@别名</code> 就可以简写成 <code>别名</code> 了，如 <code>ssh -T git@AA</code> 简写成 <code>ssh -T AA</code> ；</li>
+<li>d. <strong>.ssh/config文件可以加User参数；</strong>对于Git服务，User为git，这样 <code>git@别名</code> 就可以简写成 <code>别名</code> 了，如 <code>ssh -T git@AA</code> 简写成 <code>ssh -T AA</code> ；</li>
 </ul></li>
 <li><p>示例</p>
 
-<pre><code>Host blog
+<pre><code># Only for git
+Host blog
 User git
 Hostname github.com
 IdentityFile ~/.ssh/me
-# example: git clone blog:usera/repo.git
+# example:
+# old: git clone git@github.com:USERNAME/REPO_NAME.git
+# new: git clone blog:USERNAME/REPO_NAME.git
 
-Host back
+# Only for git
+Host backup
+User git
+Hostname github.com
+IdentityFile ~/.ssh/me
+# example:
+# old: git clone git@github.com:USERNAME/REPO_NAME.git
+# new: git clone backup:USERNAME/REPO_NAME.git
+
+# Only for git
+# Host same as Hostname
+Host gitee.com
 User git
 Hostname gitee.com
 IdentityFile ~/.ssh/me
-# example: git clone back:usera/repo.git
+# example:
+# old: git clone git@gitee.com:USERNAME/REPO_NAME.git
+# new: git clone gitee.com:USERNAME/REPO_NAME.git
 
-# &quot;Host&quot; same as &quot;URL&quot;
+# No User param, for git、ssh...
+# Host same as Hostname, and No User param
 Host gitee.com
 Hostname gitee.com
 IdentityFile ~/.ssh/me
-# example: git clone git@gitee.com:usera/repo.git
+# example:
+# old、new: git clone git@gitee.com:USERNAME/REPO_NAME.git
 
-# other &quot;Host&quot;
+# No User param, for git、ssh...
+# *: All Host
 Host *
 IdentityFile ~/.ssh/us
-# example: git clone git@github.com:usera/repo.git、
-#          ssh...
 </code></pre></li>
 </ul>
 
@@ -277,6 +294,9 @@ IdentityFile ~/.ssh/us
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15580276420967.html">iOS照片框架</a>
+              </li>
+                 <li class="post">
               <a href="15450672099321.html">NCE2 Unit 03（Lesson57 ~ 64）</a>
               </li>
                  <li class="post">
@@ -287,9 +307,6 @@ IdentityFile ~/.ssh/us
               </li>
                  <li class="post">
               <a href="15410846265758.html">NCE2 Unit 02（Lesson33 ~ 40）</a>
-              </li>
-                 <li class="post">
-              <a href="15404876438980.html">NCE2 Unit 02（Lesson25 ~ 32）</a>
               </li>
                                              
           </ul>

@@ -168,6 +168,9 @@
 <li>
 <a href="#toc_16">九、Swift的四种处理错误方式</a>
 </li>
+<li>
+<a href="#toc_17">十、常见错误</a>
+</li>
 </ul>
 
 
@@ -926,6 +929,46 @@ do {
 </ul></li>
 </ul>
 
+<h4 id="toc_17">十、常见错误</h4>
+
+<ul>
+<li><p>1、&quot;Cannot use instance member &#39;XXX&#39; within property initializer; property initializers run before &#39;self&#39;s available&quot;</p>
+
+<pre><code class="language-swift">class LoginViewController: UIViewController {
+    var customerKey = &quot;xxx&quot;
+    var server = &quot;https://api.test.io/&quot;
+    var api = API.init(hostUrl: server, customerKey: customerKey)
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+}
+</code></pre>
+
+<ul>
+<li><p>You cannot use an instance of your view controller and properties until the initialization, so you just need to <code>move your API initialization to viewDidLoad</code>:</p>
+
+<pre><code class="language-swift">var api: API!
+override func viewDidLoad() {
+    super.viewDidLoad()
+    api = API(hostUrl: server, customerId: customerId, customerKey: customerKey)
+}
+</code></pre></li>
+<li><p>Another option is using <code>all hardcoded values</code>：</p>
+
+<pre><code class="language-swift">API.init(hostUrl: &quot;https://api.test.io/&quot;,  customerKey: &quot;xxx&quot;)
+</code></pre></li>
+<li><p>Or using <code>a computed property</code>, or <code>a lazy variable</code>;</p></li>
+<li><p>参考：</p>
+
+<ul>
+<li><code>https://stackoverflow.com/questions/44648388/cannot-use-instance-member-server-within-property-initializer</code></li>
+<li><code>https://stackoverflow.com/questions/43768348/property-initializers-run-before-self-is-available-error-swift</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
       </div>
 
       <div class="row">
@@ -986,6 +1029,9 @@ do {
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15580276420967.html">iOS照片框架</a>
+              </li>
+                 <li class="post">
               <a href="15450672099321.html">NCE2 Unit 03（Lesson57 ~ 64）</a>
               </li>
                  <li class="post">
@@ -996,9 +1042,6 @@ do {
               </li>
                  <li class="post">
               <a href="15410846265758.html">NCE2 Unit 02（Lesson33 ~ 40）</a>
-              </li>
-                 <li class="post">
-              <a href="15404876438980.html">NCE2 Unit 02（Lesson25 ~ 32）</a>
               </li>
                                              
           </ul>
