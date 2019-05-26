@@ -166,6 +166,7 @@
 
 <ul>
 <li><strong>PHAsset只包含元数据（如图片大小、创建日期等），具体的图片、视频数据需要使用<code>PHImageManager</code>进行加载；</strong></li>
+<li>若一个资源的<code>representsBurst</code>属性为true，则表示该资源是一系列连拍照片中的代表照片，可以通过<code>fetchAssetsWithBurstIdentifier()</code>方法，传入<code>burstIdentifier</code>属性，获取连拍照片中的剩余的其他照片；</li>
 </ul></li>
 <li><code>PHCollection</code>：PHAssetCollection和PHCollectionList的父类；</li>
 <li><code>PHAssetCollection</code>：资源集合，表示成组的资源；可以表示照片库中的一个相册、时刻、智能相册；
@@ -370,7 +371,7 @@ PHImageManager.default().requestImage(for: imageAssets[0], targetSize: CGSize(wi
 </code></pre>
 
 <ul>
-<li><strong>a. targetSize属性：需要获取的图片的尺寸，若输入的尺寸大于资源原图的尺寸，则返回原图；传入PHImageManagerMaximumSize常量，则返回原图；</strong></li>
+<li><strong>a. targetSize属性：需要获取的图片的尺寸，若输入的尺寸大于原图的尺寸，则返回原图；可以传入PHImageManagerMaximumSize常量，则返回原图；</strong></li>
 <li>b. contentMode：图片的剪裁方式，与UIView的contentMode参数相似；</li>
 <li>c. options：一个PHImageRequestOptions实例，可以控制图片的质量、版本、剪裁等；
 
@@ -378,7 +379,7 @@ PHImageManager.default().requestImage(for: imageAssets[0], targetSize: CGSize(wi
 <li>resizeMode：设置图片缩放模式；
 
 <ul>
-<li>none（保持原size，不调整大小）</li>
+<li><strong>none（保持原size，不调整大小），默认值</strong></li>
 <li>fast（高效但不保证图片的size为自定义size，由系统决定，有时比设置的size小，有时又会大）</li>
 <li>exact（严格按照自定义size）</li>
 </ul></li>
@@ -392,6 +393,8 @@ PHImageManager.default().requestImage(for: imageAssets[0], targetSize: CGSize(wi
 <li>fastFormat（以最快速度提供好的质量）</li>
 </ul></li>
 </ul></li>
+<li><strong>d. 若需要返回一个指定尺寸的图像，需要指定options参数，并且resizeMode不能为none；</strong></li>
+<li><strong>e. <code>resultHandler</code>回调中的<code>info</code>包含图片的相关信息，若图片来自于iCloud，则含有<code>PHImageResultIsInCloudKey=1</code>；对于来自于iCloud的图片，需要在options中设置<code>networkAccessAllowed=YES</code>，这样就能获取到图片了；</strong></li>
 </ul></li>
 <li><p><strong>5) 将图片保存到系统的相机胶卷</strong></p>
 
