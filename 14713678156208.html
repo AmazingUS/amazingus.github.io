@@ -200,14 +200,17 @@ rm /usr/local/bin/pod # 删除可执行文件pod
 
 <ul>
 <li><p>使用CocoaPods前，需要在工程目录下创建一个名为<code>Podfile</code>的文本文件（描述需要使用哪些第三方框架及使用这些框架的Target）；</p></li>
-<li><p>执行 <code>pod install</code> 或 <code>pod update</code> 命令时，CocoaPods默认每次都会先主动更新CocoaPods的镜像索引文件，加参数 <code>--no-repo-update</code> 则略过此步，以加速执行速度；</p></li>
+<li><p>执行 <code>pod install</code> 或 <code>pod update</code> 命令时，CocoaPods默认每次都会先主动更新CocoaPods的镜像索引文件，加参数 <code>--no-repo-update</code> 则略过此步，以加速执行速度；<strong>（注：新版本的<code>pod install</code>是不会主动更新的）</strong></p></li>
 <li><p>添加参数 <code>--no-repo-update</code> 执行，有时报以下类似错误 <code>Unable to satisfy the following requirements: - `XXXX`, `~&gt; 2.4` required by `Podfile`</code> ，这是由于本地的镜像索引文件过时导致的，此时应不加参数执行，或主动更新镜像索引文件（ <code>pod repo update</code> ；若更新失败，可删除镜像索引文件，重新执行 <code>pod setup</code> ）</p>
 
 <pre><code class="language-ruby">pod [COMMAND] help # 查看命令帮助
 
-pod search &lt;NAME&gt; # 搜索类库，例如pod search AFNetworking
-pod install [--no-repo-update] # 初次根据Podfile安装类库
-pod update [--no-repo-update] # Podfile文件更新了，更新工程类库
+# 搜索类库，例如pod search AFNetworking
+pod search &lt;NAME&gt;
+# 安装、新增、移除类库需要执行
+pod install [--no-repo-update]
+# 更新工程的类库到尽可能的新版本，只需符合Podfile中的版本限制即可，不必考虑Podfile.lock中的限制
+pod update [--no-repo-update]
 </code></pre></li>
 <li><p><strong>若执行pod相关命令报以下类似警告 <code>...target overrides the `OTHER_LDFLAGS` build setting defined...</code> ，则说明pod自动生成的一些配置信息没有生效，这是由于工程自身的配置信息覆盖掉pod自动生成的配置信息；</strong></p>
 
@@ -324,6 +327,12 @@ pod &#39;AFNetworking&#39;, &#39;~&gt;0.1&#39; # 使用大于等于0.1但小于1
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15590636648081.html">OpenCV配置使用</a>
+              </li>
+                 <li class="post">
+              <a href="15590617242967.html">Sublime配置使用</a>
+              </li>
+                 <li class="post">
               <a href="15580276420967.html">iOS照片框架</a>
               </li>
                  <li class="post">
@@ -331,12 +340,6 @@ pod &#39;AFNetworking&#39;, &#39;~&gt;0.1&#39; # 使用大于等于0.1但小于1
               </li>
                  <li class="post">
               <a href="15428122799005.html">NCE2 Unit 03（Lesson49 ~ 56）</a>
-              </li>
-                 <li class="post">
-              <a href="15416904024187.html">NCE2 Unit 02（Lesson41 ~ 48）</a>
-              </li>
-                 <li class="post">
-              <a href="15410846265758.html">NCE2 Unit 02（Lesson33 ~ 40）</a>
               </li>
                                              
           </ul>

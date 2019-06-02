@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     Swift和ObjC混合编程 - TIME TO GO 
+     Swift、ObjC混编 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,7 +97,7 @@
 
       <div class="article">
         
-        <h1>Swift和ObjC混合编程</h1>
+        <h1>Swift、ObjC混编</h1>
         <div class="read-more clearfix">
           <span class="date">2018/3/10</span>
            
@@ -127,10 +127,10 @@
 </ul>
 
 
-<h5 id="toc_0">一、Swift调用ObjC</h5>
+<h4 id="toc_0">一、Swift调用ObjC</h4>
 
 <ul>
-<li>实现步骤：
+<li>实现步骤
 
 <ul>
 <li>1、新建Swift项目；</li>
@@ -196,10 +196,10 @@ class SwiftTest { // 不必继承NSObject
 </code></pre></li>
 </ul>
 
-<h5 id="toc_1">二、ObjC调用Swift</h5>
+<h4 id="toc_1">二、ObjC调用Swift</h4>
 
 <ul>
-<li><p>实现步骤：</p>
+<li><p>实现步骤</p>
 
 <ul>
 <li>1、新建ObjC项目；</li>
@@ -261,7 +261,7 @@ class SwiftUtil: NSObject { // 必须继承NSObject
 </code></pre></li>
 </ul>
 
-<h5 id="toc_2">三、Swift项目使用ObjC Pods</h5>
+<h4 id="toc_2">三、Swift项目使用ObjC Pods</h4>
 
 <ul>
 <li><p>Swift项目中可以直接使用ObjC Pods（不需要在Bridge头文件中进行#import），在使用的地方直接<code>imprort 模块名</code>即可，比如<code>import PureLayout</code>；</p>
@@ -306,7 +306,7 @@ class ViewController: UIViewController {
 </code></pre></li>
 </ul>
 
-<h5 id="toc_3">四、ObjC项目使用Swift Pods</h5>
+<h4 id="toc_3">四、ObjC项目使用Swift Pods</h4>
 
 <ul>
 <li>一般无法直接使用Swift Pods，需要定义一个Swift中介文件；通过中介文件调用Swift Pods，ObjC项目再调用中介文件；</li>
@@ -368,10 +368,10 @@ class NetworkingUitl : NSObject {
 </code></pre></li>
 </ul>
 
-<h5 id="toc_4">五、Swift调用C、C++</h5>
+<h4 id="toc_4">五、Swift调用C、C++</h4>
 
 <ul>
-<li>Swift无法直接调用C、C++，其可以通过Swift调用ObjC，ObjC再调用C、C++，间接完成Swift调用C、C++；</li>
+<li>Swift调用C、C++也需要使用<code>Bridge头文件</code>，使用方式和“Swift调用ObjC”的一样；</li>
 </ul>
 
       </div>
@@ -387,7 +387,7 @@ class NetworkingUitl : NSObject {
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15180139668070.html" title="Next Post: Docker使用教程">Docker使用教程 &raquo;</a>
+            <a href="15594138145337.html" title="Next Post: ObjC、C、C++混编">ObjC、C、C++混编 &raquo;</a>
             
           </p>
         </div>
@@ -434,6 +434,12 @@ class NetworkingUitl : NSObject {
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15590636648081.html">OpenCV配置使用</a>
+              </li>
+                 <li class="post">
+              <a href="15590617242967.html">Sublime配置使用</a>
+              </li>
+                 <li class="post">
               <a href="15580276420967.html">iOS照片框架</a>
               </li>
                  <li class="post">
@@ -441,12 +447,6 @@ class NetworkingUitl : NSObject {
               </li>
                  <li class="post">
               <a href="15428122799005.html">NCE2 Unit 03（Lesson49 ~ 56）</a>
-              </li>
-                 <li class="post">
-              <a href="15416904024187.html">NCE2 Unit 02（Lesson41 ~ 48）</a>
-              </li>
-                 <li class="post">
-              <a href="15410846265758.html">NCE2 Unit 02（Lesson33 ~ 40）</a>
               </li>
                                              
           </ul>
