@@ -116,7 +116,7 @@
 <a href="#toc_1">二、使用</a>
 </li>
 <li>
-<a href="#toc_2">三、快捷键</a>
+<a href="#toc_2">三、补充</a>
 </li>
 </ul>
 
@@ -127,11 +127,11 @@
 <li><p>配置文件目录</p>
 
 <ul>
-<li>Configuration Path：~/Library/Preferences/<PRODUCT><VERSION>，删除该目录即还原默认配置</li>
-<li>Caches Path：~/Library/Caches/<PRODUCT><VERSION></li>
-<li>Logs Path：~/Library/Logs/<PRODUCT><VERSION></li>
+<li>Configuration Path：<code>~/Library/Preferences/&lt;PRODUCT&gt;&lt;VERSION&gt;</code>，删除该目录即还原默认配置</li>
+<li>Caches Path：<code>~/Library/Caches/&lt;PRODUCT&gt;&lt;VERSION&gt;</code></li>
+<li>Logs Path：<code>~/Library/Logs/&lt;PRODUCT&gt;&lt;VERSION&gt;</code></li>
 </ul></li>
-<li><p>禁止AS首次启动下载SDK：显示包内容，bin目录下的idea.properties增加<code>disable.android.first.run=true</code></p></li>
+<li><p>禁止AS首次启动下载SDK：显示包内容，bin目录下的idea.properties增加<code>disable.android.first.run=true</code>；</p></li>
 </ul>
 
 <span id="more"></span><!-- more -->
@@ -155,7 +155,7 @@
 <li>禁止代码自动折叠：General --&gt; Code Folding --&gt; 取消One-line methods、Closues...、Generic constructor...</li>
 <li>文本编辑器字体：Colors&amp;Fonts --&gt; 修改Font（新版的内置Scheme也可直接修改不需要复制了）</li>
 <li>Console字体：Colors&amp;Fonts --&gt;  修改Console Font</li>
-<li>主题（文本编辑器）：Colors&amp;Fonts --&gt; 修改Scheme，第三方主题<a href="https://github.com/rainglow/jetbrains">https://github.com/rainglow/jetbrains</a></li>
+<li>主题（文本编辑器）：Colors&amp;Fonts --&gt; 修改Scheme，第三方主题<code>https://github.com/rainglow/jetbrains</code></li>
 <li>文件编码：File Endcodings（默认UTF-8）</li>
 </ul></li>
 </ul>
@@ -163,23 +163,11 @@
 <h4 id="toc_1">二、使用</h4>
 
 <ul>
-<li>工程区别（AS --&gt; Eclipse）：project --&gt; workspace、module --&gt; project</li>
-<li>AS 2.1版本开始，新建的Activity默认继承AppCompatActivity</li>
-<li>修改grandle配置后，需要进行手动同步</li>
-<li>引入第三方库
-
-<ul>
-<li>a. 通过将第三方jar包复制到工程的libs目录下，然后选中jar包，之后进行grandle同步</li>
-<li>b. 通过配置grandle导入（易于升级）：右键Open Module Settings --&gt; Dependencies，点击 + 后，选择Library dependency，其会自动下载相关的lib</li>
-</ul></li>
-<li>删除module：需要先Open Module Settings删除对应module，之后右键才有delete选项，之后进行删除</li>
-<li>代码自动换行：View --&gt; Active Editor --&gt; Use soft Wraps</li>
-<li>Gradle使用：略</li>
-<li>APK签名：略</li>
-<li>APK混淆：略</li>
-</ul>
-
-<h4 id="toc_2">三、快捷键</h4>
+<li><p>工程区别（AS --&gt; Eclipse）：project --&gt; workspace、module --&gt; project；</p></li>
+<li><p>AS 2.1版本开始，新建的Activity默认继承AppCompatActivity；</p></li>
+<li><p>删除module：需要先Open Module Settings删除对应module，之后右键才有delete选项，之后进行删除；</p></li>
+<li><p>代码自动换行：View --&gt; Active Editor --&gt; Use soft Wraps；</p></li>
+<li><p>常见快捷键</p>
 
 <table>
 <thead>
@@ -307,7 +295,166 @@
 <td>CMD + ;</td>
 </tr>
 </tbody>
-</table>
+</table></li>
+</ul>
+
+<h4 id="toc_2">三、补充</h4>
+
+<ul>
+<li><p><strong>各种Version</strong></p>
+
+<ul>
+<li><strong>a、compileSdkVersion</strong>
+
+<ul>
+<li>使用哪个版本的SDK API进行构建项目；</li>
+<li>其对应Android SDK目录下的platforms目录下的版本；</li>
+</ul></li>
+<li><strong>b、buildeToolVersion</strong>
+
+<ul>
+<li>构建项目时，所使用的构建工具的版本；</li>
+<li>其对应其对应Android SDK目录下的build-tools目录下的版本；</li>
+<li>一般每个Android版本都会有对应版本的buildTools；</li>
+<li>新版本的SDK API添加了新特性，需要新版本的构建工具来进行构建，老版本的构建工具不能构建；</li>
+<li><strong>新版本的构建工具可以兼容构建老版本的SDK API；</strong></li>
+<li><strong>有时Android Gradle Plugin版本更新，需要把buildToolsVersion提升至指定的版本才可以继续使用；</strong></li>
+<li><strong>Android Studio 3.0开始，隐藏了buildToolsVersion这个配置，默认使用最新版本的构建工具；</strong></li>
+</ul></li>
+<li><p><strong>c、minSdkVersion</strong></p>
+
+<ul>
+<li>App最低支持的手机版本，低于这个版本的设备无法安装；</li>
+<li>若minSdkVersion设置成12，但代码使用了一个SDK API 20才有的方法，此时编译器会发出警告，允许在低于20的设备上会崩溃；</li>
+<li><p>可以使用以下方式解决</p>
+
+<pre><code class="language-Java">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.LOLLIPOP) {
+    // 在Android 5.1（API&gt;=21）的设备上
+} else {
+
+}
+</code></pre></li>
+</ul></li>
+<li><p><strong>d、targetSdkVersion</strong></p>
+
+<ul>
+<li>设置SDK API运行时的目标版本；其是Android为了适应系统版本更新过快，提供的一种向下兼容的方案；</li>
+<li>如权限检查机制在Android 6.0改成了动态申请，需要手动在项目中调用申请权限的代码；若将targetSdkVersion改为低于Android 6.0，则权限检查机制则不会使用新特性来动态申请；</li>
+</ul></li>
+<li><p><strong>e、Gradle Version</strong></p>
+
+<ul>
+<li>Gradle是一个构建项目的工具，可以把文件、文件夹按照一定的规则关联起来形成一个项目，其不仅仅用在Android Studio中；</li>
+</ul></li>
+<li><p><strong>f、Android Plugin Version</strong></p>
+
+<ul>
+<li>在Android Studio中使用的Gradle其实是Android Gradle Plugin，简称Android Plugin（安卓插件）；</li>
+<li>Android Studio的构建系统基于Gradle，并且Android Gradle Plugin添加了构建Android应用程序特有的功能；</li>
+<li><strong>Android Plugin通常与Android Studio一起更新，但其和Gradle是可以独立于Android Studio运行，并可以单独更新；</strong></li>
+<li><strong>Android Plugin也有版本号，而每个版本会限定使用的Gradle的版本；若这两个版本对应不上，则工程构建报错；</strong></li>
+<li><strong>所以，Android Plugin Version、Gradle Version、buildeToolVersion版本是相互关联的；（<code>https://developer.android.com/studio/releases/gradle-plugin</code>）</strong></li>
+<li><code>https://www.cnblogs.com/whycxb/p/9111254.html</code></li>
+</ul></li>
+</ul></li>
+<li><p><strong>SDK目录文件</strong></p>
+
+<ul>
+<li><strong>a、platforms</strong>
+
+<ul>
+<li>存放不同API Level版本SDK的地方；（目录内按版本号区分）</li>
+<li>AS中下载SDK Platform；</li>
+</ul></li>
+<li><strong>b、build-tools</strong>
+
+<ul>
+<li>不同版本的构建工具，如aapt、dx、aidl等；（目录内按版本号区分）</li>
+<li>AS中下载Android SDK Build-Tools；</li>
+</ul></li>
+<li><strong>c、platform-tools</strong>
+
+<ul>
+<li>一些Android平台相关的工具，如adb、fastboot等；（目录内不按版本号区分）</li>
+<li>AS中下载Android SDK Platform-Tools；</li>
+</ul></li>
+<li>d<strong>、tools</strong>
+
+<ul>
+<li>一些Android开发相关的工具，如ddms、draw9patch等；（目录内不按版本号区分）</li>
+<li>AS中下载Android SDK Tools；</li>
+</ul></li>
+</ul></li>
+<li><p>Android版本和SDK API Level</p>
+
+<table>
+<thead>
+<tr>
+<th>版本名称</th>
+<th>版本号</th>
+<th>SDK API Level</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Oreo</td>
+<td>8.1</td>
+<td>27</td>
+</tr>
+<tr>
+<td>Oreo</td>
+<td>8.0</td>
+<td>26</td>
+</tr>
+<tr>
+<td>Nougat</td>
+<td>7.1.1</td>
+<td>25</td>
+</tr>
+<tr>
+<td>Nougat</td>
+<td>7.0</td>
+<td>24</td>
+</tr>
+<tr>
+<td>Marshmallow</td>
+<td>6.0</td>
+<td>23</td>
+</tr>
+<tr>
+<td>Lollipop</td>
+<td>5.1</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Lollipop</td>
+<td>5.0</td>
+<td>21</td>
+</tr>
+<tr>
+<td>KitKat Wear</td>
+<td>4.4.4</td>
+<td>20</td>
+</tr>
+<tr>
+<td>KitKat</td>
+<td>4.4</td>
+<td>19</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>引入第三方库</p>
+
+<ul>
+<li>a. 通过将第三方jar包复制到工程的libs目录下，然后选中jar包，之后进行grandle同步；</li>
+<li>b. 通过配置Gradle导入（易于升级）：右键Open Module Settings --&gt; Dependencies，点击 + 后，选择Library dependency，其会自动下载相关的lib；</li>
+<li>修改gradle配置后，需要进行手动同步；</li>
+</ul></li>
+<li><p>Gradle使用：略</p></li>
+<li><p>APK签名：略</p></li>
+<li><p>APK混淆：略</p></li>
+</ul>
 
       </div>
 
