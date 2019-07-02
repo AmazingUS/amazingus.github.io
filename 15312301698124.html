@@ -163,10 +163,10 @@
 </ul>
 </li>
 <li>
-<a href="#toc_15">八、Swift构造器</a>
+<a href="#toc_15">八、构造器</a>
 </li>
 <li>
-<a href="#toc_16">九、Swift的四种处理错误方式</a>
+<a href="#toc_16">九、错误处理方式</a>
 </li>
 <li>
 <a href="#toc_17">十、扩展、协议</a>
@@ -175,7 +175,13 @@
 <a href="#toc_18">十一、编译器合成 (synthesize)</a>
 </li>
 <li>
-<a href="#toc_19">十二、常见错误</a>
+<a href="#toc_19">十二、代理</a>
+</li>
+<li>
+<a href="#toc_20">十三、KVO、KVC</a>
+</li>
+<li>
+<a href="#toc_21">十四、常见错误</a>
 </li>
 </ul>
 
@@ -183,7 +189,7 @@
 <h4 id="toc_0">一、@objc</h4>
 
 <ul>
-<li><p>作用：将用Swift写的API暴露给ObjC使用，需要增加@objc关键字；</p></li>
+<li><p>作用：将Swift API暴露给ObjC使用，需要增加@objc关键字；</p></li>
 <li><p><strong>1、Swift 3.0</strong></p>
 
 <ul>
@@ -747,7 +753,7 @@ static func &gt;(lhs: Self, rhs: Self) -&gt; Bool
 <li>参考：<code>https://objccn.io/issue-9-1/</code></li>
 </ul>
 
-<h4 id="toc_15">八、Swift构造器</h4>
+<h4 id="toc_15">八、构造器</h4>
 
 <ul>
 <li><p><strong>1、无参默认构造器</strong></p>
@@ -870,7 +876,7 @@ class BBB: AAA {
 </ul></li>
 </ul>
 
-<h4 id="toc_16">九、Swift的四种处理错误方式</h4>
+<h4 id="toc_16">九、错误处理方式</h4>
 
 <ul>
 <li><p><strong>1、使用throw抛出错误</strong></p>
@@ -1245,9 +1251,12 @@ struct BClass: Equatable {
 <h4 id="toc_18">十一、编译器合成 (synthesize)</h4>
 
 <ul>
-<li><strong>编译器合成就是编译器自动合成相关代码；</strong></li>
+<li><p><strong>编译器合成就是编译器自动合成相关代码；</strong></p>
+
+<ul>
 <li><strong>Swift 4.0开始，编译器支持自动合成Codable的相关函数；</strong></li>
 <li><strong>Swift 4.1开始，编译器支持自动合成Equatable、Hashable的相关函数；</strong></li>
+</ul></li>
 <li><p><strong>对于Codable、Equatable、Hashable的自动合成，两个必要非充分条件（并不一定都能自动合成，自动合成失败需要手动实现）：所需要合成的类型<code>声明遵循上述协议</code>且<code>其所有存储属性遵循上述协议</code>；</strong></p>
 
 <pre><code class="language-swift">// Swift 4.0编译✅（自动合成成功）
@@ -1335,7 +1344,208 @@ print(CC(name: &quot;tom&quot;, age: 1) is Codable) // true
 </code></pre></li>
 </ul>
 
-<h4 id="toc_19">十二、常见错误</h4>
+<h4 id="toc_19">十二、代理</h4>
+
+<ul>
+<li><p><strong>使用Delegate Protocol，分为4步：</strong></p>
+
+<ul>
+<li>1) 定义一个Delegate Protocol（只用于约束Delegate）；</li>
+<li>2) 声明一个delegate Property；</li>
+<li>3) 遵守并实现Delegate Protocol；</li>
+<li>4) 调用delegate；</li>
+</ul></li>
+<li><p>为避免循环引用，在声明delegate Property时，需要使用weak修饰（可以让delegate Property不存在值时，自动设置为nil）；</p></li>
+<li><p><strong>Swift的Protocol是可以被class、struct、enum使用的，但struct、enum并不通过ARC来管理内存，故导致无法使用weak修饰delegate Property；解决办法：<code>将Delegate Protocol限制为只能被class使用</code>；有以下方式：</strong></p>
+
+<ul>
+<li><p><strong>a. 通过class关键字（将Delegate Protocol限制为只能被class使用；建议使用）；</strong></p>
+
+<pre><code class="language-swift">import UIKit
+
+protocol DeleteAlertViewDelegate: class {
+    func deleterAlertViewClickDeleteBtn(_ deleteAlertView: DeleteAlertView)
+}
+
+class DeleteAlertView: UIView {
+
+    let deleteBtn: UIButton
+    weak var delegate: DeleteAlertViewDelegate?
+
+    override init(frame: CGRect) {
+        deleteBtn = UIButton()
+        super.init(frame: frame)
+
+        self.backgroundColor = .gray
+
+        self.addSubview(deleteBtn)
+        deleteBtn.setTitle(&quot;DELETE&quot;, for: .normal)
+        deleteBtn.backgroundColor = .orange
+        deleteBtn.addTarget(self, action: #selector(clickDeleteBtn), for: .touchUpInside)
+        deleteBtn.translatesAutoresizingMaskIntoConstraints = false
+        deleteBtn.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        deleteBtn.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        deleteBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        deleteBtn.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError(&quot;init(coder:) has not been implemented&quot;)
+    }
+
+    @objc func clickDeleteBtn() {
+        print(#function)
+
+        // 使用optional chaining，当delegate不为nil时，才调用方法
+        delegate?.deleterAlertViewClickDeleteBtn(self)
+    }
+}
+</code></pre>
+
+<pre><code class="language-swift">import UIKit
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let deleteAlertView = DeleteAlertView()
+        self.view.addSubview(deleteAlertView)
+        deleteAlertView.translatesAutoresizingMaskIntoConstraints = false
+        deleteAlertView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        deleteAlertView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        deleteAlertView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        deleteAlertView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+
+        deleteAlertView.delegate = self
+    }
+}
+
+extension ViewController: DeleteAlertViewDelegate {
+    func deleterAlertViewClickDeleteBtn(_ deleteAlertView: DeleteAlertView) {
+        print(#function, deleteAlertView)
+    }
+}
+</code></pre></li>
+<li><p><strong>b. 通过@objc关键字；</strong></p>
+
+<pre><code class="language-swift">@objc protocol DeleteAlertViewDelegate {
+    func deleterAlertViewClickDeleteBtn(_ deleteAlertView: DeleteAlertView)
+}
+</code></pre></li>
+<li><p><strong>c. 通过@NSObjectProtocol关键字；</strong></p>
+
+<pre><code class="language-swift">protocol DeleteAlertViewDelegate: NSObjectProtocol {
+    func deleterAlertViewClickDeleteBtn(_ deleteAlertView: DeleteAlertView)
+}
+</code></pre></li>
+</ul></li>
+<li><p><strong>Objective-C中可以有可选的协议方法；而Swift中的所有协议方法都是必须被实现，否则编译器会报错，但是可以通过间接方式来实现<code>可选协议方法</code>，有以下方式：</strong></p>
+
+<ul>
+<li><p><strong>a. 通过协议扩展（利用协议扩展，实现可选协议方法的默认实现，class、struct、enum均可使用）；</strong></p>
+
+<pre><code class="language-swift">// 这里是Delegate Protocol，所以使用class修饰了一下
+protocol DeleteAlertViewDelegate: class {
+    func deleterAlertViewClickDeleteBtn(_ deleteAlertView: DeleteAlertView)
+    func optionalMethod()
+}
+
+extension DeleteAlertViewDelegate {
+    func optionalMethod() {
+        print(#function)
+    }
+}
+</code></pre>
+
+<pre><code class="language-swift">// 调用可选的协议方法（方法后面不需要有?，因为实际上已经被实现了）
+delegate?.optionalMethod()
+</code></pre></li>
+<li><p><strong>b. 通过@objc和optional关键字（协议前加@objc，可选方法或属性前加@objc和optional）；</strong></p>
+
+<pre><code class="language-swift">@objc protocol DeleteAlertViewDelegate {
+    func deleterAlertViewClickDeleteBtn(_ deleteAlertView: DeleteAlertView)
+    @objc optional func optionalMethod()
+}
+</code></pre>
+
+<pre><code class="language-swift">// 调用可选的协议方法（注意方法后面的?）
+delegate?.optionalMethod?()
+</code></pre></li>
+<li><p><strong>c. 通过NSObjectProtocol和optional关键字（Cocoa框架的实现方式；该方式外界不可用）；</strong></p>
+
+<pre><code class="language-swift">public protocol UIScrollViewDelegate : NSObjectProtocol {
+    optional func scrollViewDidScroll(_ scrollView: UIScrollView)
+    // ...
+}
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_20">十三、KVO、KVC</h4>
+
+<ul>
+<li><p><strong>1、KVO</strong></p>
+
+<ul>
+<li>KVO基于ObjC的动态派发、KVC，这些都是依赖于ObjC的运行时（runtime）；</li>
+<li><p>在Swift中，默认是禁用了动态派发，Swift若需要实现KVO，就需要一些额外的操作；</p>
+
+<ul>
+<li><strong>1) class类型需要继承NSObject；</strong></li>
+<li><strong>2) 属性前加上@objc dynamic（Swift 3中只需要加上dynamic即可）；</strong></li>
+</ul>
+
+<pre><code class="language-swift">class Person: NSObject {
+    @objc dynamic var age = 0
+}
+</code></pre>
+
+<pre><code class="language-swift">class ViewController: UIViewController {
+
+    var person: Person!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        person = Person()
+        person.addObserver(self, forKeyPath: &quot;age&quot;, options: [.new, .old], context: nil)
+    }
+
+    deinit {
+        person.removeObserver(self, forKeyPath: &quot;age&quot;)
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == &quot;age&quot; {
+            print(&quot;age changed: \(change as Any)&quot;)
+        }
+    }
+
+    override func touchesBegan(_ touches: Set&lt;UITouch&gt;, with event: UIEvent?) {
+        person.age = 10
+    }
+}
+</code></pre></li>
+<li><p><strong>Swift 4.0新增一个便捷添加observer的方法，之后不需要再手动移除observer，但需要手动持有化，添加observer之后返回的NSKeyValueObservation实例；</strong></p>
+
+<pre><code>var person2: Person!
+var observer: NSKeyValueObservation!
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+
+    person2 = Person()
+    observer = person2.observe(\.age) { (object, changed) in
+        print(&quot;changed: \(changed), \(object.age)&quot;)
+    }
+}
+</code></pre></li>
+</ul></li>
+<li><p><strong>2、KVC</strong></p></li>
+</ul>
+
+<h4 id="toc_21">十四、常见错误</h4>
 
 <ul>
 <li><p>1、&quot;Cannot use instance member &#39;XXX&#39; within property initializer; property initializers run before &#39;self&#39;s available&quot;</p>
