@@ -300,20 +300,20 @@ Selector(&quot;btnDidClick:&quot;)
 <h5 id="toc_6">（一）懒加载情景</h5>
 
 <ul>
-<li><strong>全局的常/变量都是懒加载的，不需要标记lazy；</strong></li>
-<li><strong>标记为<code>static</code>的常/变量存储属性（类属性）也都是懒加载的，不需要标记lazy；（补充：class只能修饰计算属性，而计算属性只能使用var修饰）</strong></li>
-<li><strong>延迟属性，必须使用<code>lazy var</code>标记；（延迟属性只能使用var修饰，不能使用let修饰）</strong></li>
+<li><strong>全局的常量变量都是懒加载的，不需要标记lazy；（补充：Swift的static和ObjC的不一样，只能在类型定义中使用）</strong></li>
+<li><strong>标记为<code>static</code>的存储型的类型属性（常量变量）也是懒加载的，不需要标记lazy；（补充：static可以修饰存储型的和计算型的类型属性，class可以修饰类类型的计算型的类型属性）</strong></li>
+<li><strong>延迟属性：必须使用<code>lazy var</code>标记；（延迟属性只能使用var修饰，不能使用let修饰）</strong></li>
 </ul>
 
 <h5 id="toc_7">（二）延迟属性与闭包</h5>
 
 <ul>
-<li><p><strong>延迟属性使用<code>lazy var</code>标记声明，其初始值可以是直接创建，也可以使用闭包创建；</strong></p>
+<li><p><strong>延迟属性使用<code>lazy var</code>标记声明，其初始值可以使用直接方式创建，也可以使用闭包方式创建；</strong></p>
 
-<pre><code class="language-swift">// 直接创建
+<pre><code class="language-swift">// 直接方式创建
 lazy var person1: Person = Person()
 
-// 闭包创建
+// 闭包方式创建
 lazy var person2: Person = {
     let person = Person()
     p.name = &quot;Tom&quot;
@@ -321,7 +321,7 @@ lazy var person2: Person = {
     return person
 }()
 </code></pre></li>
-<li><p><strong>使用闭包不仅仅可以给延迟属性（lazy var）设置初始值，也可以给全局的常/变量、类的属性、对象的属性进行初始值，计算属性本质通过闭包实现的；</strong></p>
+<li><p><strong>闭包不仅仅可以给延迟属性（lazy var）设置初始值，也可以给全局的常/变量、类的属性、对象的属性进行初始值，计算属性本质通过闭包实现的；</strong></p>
 
 <pre><code class="language-swift">let i = {
     return 0
@@ -336,7 +336,7 @@ class Person {
     }()
 }
 </code></pre></li>
-<li><p>在布局UI控件的时候也可以使用闭包来完成初始化赋值，这样更便于复用、更简洁；</p>
+<li><p>在布局UI控件的时候，也可以使用闭包方式来完成初始化赋值，这样更便于复用、更简洁；</p>
 
 <pre><code class="language-swift">let leftButton: UIButton = {
     let button = UIButton(frame: buttonSize)
@@ -352,7 +352,7 @@ let rightButton: UIButton = {
     return button
 }()
 </code></pre></li>
-<li><p><strong>延迟属性使用闭包创建，在闭包中使用self不会产生循环引用；全局的常/变量、类的属性、对象的属性使用闭包创建，无在闭包中使用self；</strong></p></li>
+<li><p><strong>延迟属性使用闭包方式创建，在闭包中使用self不会产生循环引用；全局的常/变量、类的属性、对象的属性使用闭包方式创建，在闭包中无法使用self；</strong></p></li>
 </ul>
 
 <h4 id="toc_8">四、dispatch_once</h4>
@@ -985,7 +985,7 @@ do {
 }
 </code></pre></li>
 </ul></li>
-<li><p><strong>4、使用try?排除错误</strong></p>
+<li><p><strong>4、使用try!排除错误</strong></p>
 
 <ul>
 <li><p>有时知道一个抛出错误的函数、方法不会在运行时抛出错误，可以在表达式前写try!来取消错误传递；如错误真的抛出了则得到一个运行时错误；</p>
@@ -1243,6 +1243,34 @@ struct BClass: Equatable {
     var name: String
     var students: [BStudent]
 }
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p><strong>6、补充：泛型的类型约束（只能添加到泛型参量上）</strong></p>
+
+<ul>
+<li><p>语法形式有：</p>
+
+<ul>
+<li><p><strong>a. 继承类语法</strong></p>
+
+<ul>
+<li>继承类语法是约束语法的简化形式，直接把约束添加到类型参量的声明中；</li>
+<li>适用于继承、遵循形式；</li>
+</ul>
+
+<pre><code class="language-swift">public struct Tuple&lt;A: Equatable, B: Equatable&gt;
+</code></pre></li>
+<li><p><strong>b. where语句语法</strong></p>
+
+<ul>
+<li>约束从主声明中剥离，增加了可读性；</li>
+<li>也可以添加非继承、遵循形式的约束、复杂的约束；</li>
+</ul>
+
+<pre><code class="language-swift">public extension Thenable where T: Sequence, T.Iterator.Element: Comparable
+public extension Request where Response == Void
+associatedtype Iterator: IteratorProtocol where Iterator.Element == Item
 </code></pre></li>
 </ul></li>
 </ul></li>
@@ -1645,6 +1673,9 @@ override func viewDidLoad() {
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15622540495294.html">iOS屏幕旋转</a>
+              </li>
+                 <li class="post">
               <a href="15590636648081.html">OpenCV配置使用</a>
               </li>
                  <li class="post">
@@ -1655,9 +1686,6 @@ override func viewDidLoad() {
               </li>
                  <li class="post">
               <a href="15450672099321.html">NCE2 Unit 03（Lesson57 ~ 64）</a>
-              </li>
-                 <li class="post">
-              <a href="15428122799005.html">NCE2 Unit 03（Lesson49 ~ 56）</a>
               </li>
                                              
           </ul>
