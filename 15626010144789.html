@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     GitBook使用教程 - TIME TO GO 
+     iOS状态栏 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,9 +97,9 @@
 
       <div class="article">
         
-        <h1>GitBook使用教程</h1>
+        <h1>iOS状态栏</h1>
         <div class="read-more clearfix">
-          <span class="date">2018/3/25</span>
+          <span class="date">2019/7/8</span>
            
           <span class="comments">
              
@@ -110,85 +110,110 @@
       <div class="article-content">
         <ul>
 <li>
-<a href="#toc_0">一、简介</a>
+<a href="#toc_0">一、启动时设置</a>
 </li>
 <li>
-<a href="#toc_1">二、安装使用</a>
+<a href="#toc_1">二、启动后设置</a>
+<ul>
+<li>
+<a href="#toc_2">1、方式1：全局设置（iOS 9开始废弃）</a>
 </li>
 <li>
-<a href="#toc_2">三、补充</a>
+<a href="#toc_3">2、方式2：控制器单独设置（iOS 7开始支持）</a>
+</li>
+</ul>
 </li>
 </ul>
 
 
-<h4 id="toc_0">一、简介</h4>
+<h4 id="toc_0">一、启动时设置</h4>
 
 <ul>
-<li>GitBook是一个可以将Markdown文本一键生成为HTML、PDF、EPUB格式图书（需要安装安装calibre）的工具，其也内置使用Git对Markdown文件做版本控制；</li>
-<li>可以在本地离线生成各种格式的图书，也可以在GitBook官网在线生成，便于共享；并且其也提供了一键导入GitHub仓库生成图书的便捷功能（一本图书就是一个Git仓库）；</li>
+<li><p>可以设置Target的Status Bar，可以设置Info.Plist，这两个地方是一样的；</p>
+
+<pre><code class="language-swift">// 设置启动时是否显示状态栏
+UIStatusBarHidden：Status bar is initially hidden
+// 设置启动时状态栏样式
+UIStatusBarStyle：Status bar style
+</code></pre></li>
 </ul>
 
 <span id="more"></span><!-- more -->
 
-<h4 id="toc_1">二、安装使用</h4>
+<h4 id="toc_1">二、启动后设置</h4>
+
+<h5 id="toc_2">1、方式1：全局设置（iOS 9开始废弃）</h5>
 
 <ul>
-<li><p>1、安装Node.js、Git（可选；若需要版本控制、上传到GitBook则要安装）；</p></li>
-<li><p>2、安装GitBook；</p>
+<li><p>启用：</p>
 
-<pre><code>npm install -g gitbook-cli
+<ul>
+<li>配置info.plist的<code>View controller-based status bar appearance</code>项为NO，不添加该项默认值为YES；</li>
+</ul></li>
+<li><p>设置：</p>
 
-gitbook -V # 查看当前GitBook版本（注意是大写的V）
-</code></pre></li>
-<li><p>3、创建一本图书（本地）；</p>
+<pre><code class="language-swift">// 设置状态栏显示
+UIApplication.shared.isStatusBarHidden = true
 
-<pre><code>gitbook init BOOK_NAME
+// 设置状态栏样式
+UIApplication.shared.statusBarStyle = .default
 </code></pre>
 
 <ul>
-<li>目录中自动生成README.md、SUMMARY.md两个文件；这两个文件是必须存在的，README.md为对图书的介绍，SUMMARY.md是对书籍目录的描述，之后就是根据该文件生成图书目录结构的；</li>
-<li><p>SUMMARY.md格式如如下：</p>
-
-<pre><code># Summary
-
-* [简介](README.md)
-* [第一章 基础](chapter1/chapter1_0.md)
-    * [第一小节 基础概述](chapter1/chapter1_1.md)
-    * [第二小节 基础介绍](chapter1/chapter1_2.md)
-* [第二章 进阶](chapter2/chapter2_0.md)
-    * [第一小节 进阶概述](chapter2/chapter2_1.md)
-    * [第二小节 进阶介绍](chapter2/chapter2_2.md)
-</code></pre></li>
-<li><p>手动修改SUMMARY.md后，再执行 <code>gitbook init</code> 命令，会自动生成相应的文件及目录；</p></li>
-</ul></li>
-<li><p>4、书写相关Markdown文本；</p></li>
-<li><p>5、编译、预览图书；</p>
-
-<pre><code>gitbook serve # 在图片文件夹目录中执行
-</code></pre>
-
-<ul>
-<li><code>gitbook serve</code> 会先调用 <code>gitbook build</code> 命令编译图书，之后会打开一个本地WEB服务器，打开网页即可预览图书HTML；</li>
-</ul></li>
-<li><p>6、安装calibre工具，生成PDF、EPUB格式图书；</p>
-
-<ul>
-<li>a. 下载安装Calibre（<code>https://calibre-ebook.com/download</code>）；</li>
-<li><p>b. 配置ebook-convert的路径；</p>
-
-<pre><code>// macOS
-sudo ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin  
-</code></pre></li>
-<li><p>c. 执行<code>gitbook pdf</code>、<code>gitbook epub</code>分别生成PDF、EPUB格式图书；</p></li>
+<li>注意：若启用后没有进行设置，则继续使用<code>启动时设置</code>的配置；</li>
 </ul></li>
 </ul>
 
-<h4 id="toc_2">三、补充</h4>
+<h5 id="toc_3">2、方式2：控制器单独设置（iOS 7开始支持）</h5>
 
 <ul>
-<li>第3、4步操作可以通过 <code>Gitbook Editor</code> 桌面编辑器更便捷地进行文本书写（其会自动更新修改SUMMARY.md文件）；但是生成图书还是需要在终端下通过GitBook完成；</li>
-<li>可以使用 <code>book.json</code> 文件定义GitBook在编译图书时的配置信息（如定义图书名称、显示效果等）；</li>
-<li>执行 <code>gitbook install</code> 命令可以安装一些第三方的插件，如disqus等；</li>
+<li><p>启用：</p>
+
+<ul>
+<li>配置info.plist的<code>View controller-based status bar appearance</code>项为<code>YES</code>，或者不添加该项（默认值为YES）；</li>
+</ul></li>
+<li><p>设置：</p>
+
+<pre><code class="language-swift">// 设置状态栏显示隐藏
+// 默认值：竖屏VC的为true、横屏VC的为false
+open var prefersStatusBarHidden: Bool { get }
+
+// 设置状态栏样式
+// 默认值为default
+open var preferredStatusBarStyle: UIStatusBarStyle { get }
+</code></pre>
+
+<pre><code class="language-swift">// 设置状态栏显示、消失时的动画类型
+open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { get }
+
+// 状态栏样式改变后，需要调用该方法，重绘状态栏
+open func setNeedsStatusBarAppearanceUpdate()
+</code></pre>
+
+<ul>
+<li><strong>a. 横屏模式下，系统会自动将状态栏会隐藏，可以重写prefersStatusBarHidden返回true，让其一直显示；</strong></li>
+<li><p><strong>b. 若当前控制器是UINavigationController的子控制器，则当前控制器的preferredStatusBarStyle不会被调用，导航控制器的preferredStatusBarStyle才具有修改状态栏样式的能力；有两种方式可以解决：</strong></p>
+
+<ul>
+<li><p><strong>a) 方式1：重写UINavigationController的<code>preferredStatusBarStyle</code>，直接返回当前显示VC的preferredStatusBarStyle；</strong></p>
+
+<pre><code class="language-swift">// BaseNavigationController
+override var preferredStatusBarStyle: UIStatusBarStyle {
+    return self.topViewController?.preferredStatusBarStyle ?? .default
+}
+</code></pre></li>
+<li><p><strong>b) 方式2：重写UINavigationController的<code>childViewControllerForStatusBarStyle</code>，直接返回当前显示VC；</strong></p>
+
+<pre><code class="language-swift">override var childForStatusBarStyle: UIViewController? {
+    return self.topViewController
+}
+</code></pre>
+
+<ul>
+<li>此时，不再调用UINavigationController的preferredStatusBarStyle，而是去调用topViewController的preferredStatusBarStyle；</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </div>
@@ -197,14 +222,12 @@ sudo ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15230908846113.html" title="Previous Post: Android Studio配置使用">&laquo; Android Studio配置使用</a>
-            
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15210408337160.html" title="Next Post: iOS静态库、动态库">iOS静态库、动态库 &raquo;</a>
+            <a href="15622540495294.html" title="Next Post: iOS屏幕旋转">iOS屏幕旋转 &raquo;</a>
             
           </p>
         </div>

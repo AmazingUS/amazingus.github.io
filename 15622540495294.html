@@ -269,7 +269,7 @@ func application(_ application: UIApplication, supportedInterfaceOrientationsFor
 
 <ul>
 <li><strong>1）若当前界面控制器<code>是Presented的</code>，则界面的默认方向只由<code>当前界面控制器的preferredInterfaceOrientationForPresentation配置</code>决定，与<code>界面的可旋转范围</code>、<code>界面是否允许旋转</code>没有关系；</strong></li>
-<li><strong>2）若当前界面控制器<code>不是Presented的</code>，则界面的默认方向由<code>当前界面的可旋转范围（优先级高）</code>、<code>设备的方向</code>共同决定；</strong></li>
+<li><strong>2）若当前界面控制器<code>不是Presented的</code>，则界面的默认方向由<code>当前界面的可旋转范围</code>、<code>设备的当前方向</code>交集决定，若没有交集，则直接由<code>当前界面的可旋转范围</code>中的第一个方向元素决定；</strong></li>
 </ul></li>
 <li><p><strong>3、界面是否允许旋转</strong></p>
 
@@ -407,6 +407,8 @@ override func viewWillTransition(to size: CGSize, with coordinator: UIViewContro
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
+            <a href="15626010144789.html" title="Previous Post: iOS状态栏">&laquo; iOS状态栏</a>
+            
           </p>
         </div>
         <div class="large-6 columns">
@@ -459,6 +461,9 @@ override func viewWillTransition(to size: CGSize, with coordinator: UIViewContro
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15626010144789.html">iOS状态栏</a>
+              </li>
+                 <li class="post">
               <a href="15622540495294.html">iOS屏幕旋转</a>
               </li>
                  <li class="post">
@@ -469,9 +474,6 @@ override func viewWillTransition(to size: CGSize, with coordinator: UIViewContro
               </li>
                  <li class="post">
               <a href="15580276420967.html">iOS照片框架</a>
-              </li>
-                 <li class="post">
-              <a href="15450672099321.html">NCE2 Unit 03（Lesson57 ~ 64）</a>
               </li>
                                              
           </ul>
