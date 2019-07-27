@@ -147,10 +147,10 @@
 <a href="#toc_10">六、Equatable、Hashable协议</a>
 <ul>
 <li>
-<a href="#toc_11">（一）Objective-C的==、isEqual:、isEqualToString:、hash</a>
+<a href="#toc_11">（一）Objective-C的 ==、isEqual:、isEqualToString:、hash</a>
 </li>
 <li>
-<a href="#toc_12">（二）swift的=== 、==、Equatable、Hashable、Comparable</a>
+<a href="#toc_12">（二）swift的 === 、==、Equatable、Hashable、Comparable</a>
 </li>
 </ul>
 </li>
@@ -575,7 +575,7 @@ static id _instance;
 
 <h4 id="toc_10">六、Equatable、Hashable协议</h4>
 
-<h5 id="toc_11">（一）Objective-C的==、isEqual:、isEqualToString:、hash</h5>
+<h5 id="toc_11">（一）Objective-C的 ==、isEqual:、isEqualToString:、hash</h5>
 
 <ul>
 <li><p>1、== 操作符</p>
@@ -593,7 +593,7 @@ static id _instance;
 
 <ul>
 <li>a. 判断传入的对象是否是nil，若是直接返回NO；</li>
-<li>b. ==运算符判断是否是同一对象，若相同直接返回YES；</li>
+<li>b. == 运算符判断是否是同一对象，若相同直接返回YES；</li>
 <li>c. 判断是否是同一类型，若不同直接返回NO；</li>
 <li>d. 根据场景使用相应的属性进行判等操作，返回最终的操作结果；</li>
 </ul></li>
@@ -635,28 +635,28 @@ static id _instance;
 </ul></li>
 </ul>
 
-<h5 id="toc_12">（二）swift的=== 、==、Equatable、Hashable、Comparable</h5>
+<h5 id="toc_12">（二）swift的 === 、==、Equatable、Hashable、Comparable</h5>
 
 <ul>
 <li><p>1、=== 操作符</p>
 
 <ul>
-<li>swift中的=== 操作符等价于OC中的== 操作符，比较的是对象的内存地址；</li>
+<li>swift中的 === 操作符等价于OC中的 == 操作符，比较的是对象的内存地址；</li>
 </ul></li>
 <li><p>2、== 操作符、Equatable协议</p>
 
 <ul>
-<li><strong>Swift的原生类中没有提供isEqual:方法，其使用== 操作符的进行两个元素的判等；（等价于OC中的isEqual:方法）</strong></li>
-<li><strong>之所以可以对实例使用== 操作符进行比较，就是因为操作符所操作的类型实现了Equatable协议；若没有实现该协议，则无法使用== 操作符；</strong></li>
+<li><strong>Swift的原生类中没有提供isEqual:方法，其使用 == 操作符的进行两个元素的判等；（等价于OC中的isEqual:方法）</strong></li>
+<li><strong>之所以可以对实例使用 == 操作符进行比较，就是因为操作符所操作的类型实现了Equatable协议；若没有实现该协议，则无法使用 == 操作符；</strong></li>
 <li><strong>Equatable协议中定义了 <code>static func ==(lhs: Self, rhs: Self) -&gt; Bool</code> 方法要求；</strong></li>
 <li><strong>Swift原生类型<code>几乎都</code>实现了Equatable协议；</strong></li>
 <li><p><strong>继承于NSObject的Swift类型</strong></p>
 
 <ul>
 <li><strong>a. 默认遵循Equatable；</strong></li>
-<li><strong>b. 并且== 操作符的默认实现是调用isEqual(_ object: Any?)方法，而该方法的默认实现是比较内存地址（字符串等类已替换了默认实现）；</strong></li>
-<li><strong>c. 因此，可以直接使用== 进行判等；</strong></li>
-<li><p><strong>d. 若认为== 操作符的默认实现不合理，可以重新实现== 操作符，但是不需要声明遵循Equatable了（重复了）；</strong></p>
+<li><strong>b. 并且 == 操作符的默认实现是调用isEqual(_ object: Any?)方法，而该方法的默认实现是比较内存地址（字符串等类已替换了默认实现）；</strong></li>
+<li><strong>c. 因此，可以直接使用 == 进行判等；</strong></li>
+<li><p><strong>d. 若认为 == 操作符的默认实现不合理，可以重新实现 == 操作符，但是不需要声明遵循Equatable了（重复了）；</strong></p>
 
 <pre><code class="language-swift">static func ==(lhs: Object, rhs: Object) -&gt; Bool {
     return lhs.text == rhs.text
@@ -759,15 +759,15 @@ static func &gt;(lhs: Self, rhs: Self) -&gt; Bool
 <li><p><strong>1、无参默认构造器</strong></p>
 
 <ul>
-<li><strong>a. Swift将为<code>已提供了所有的存储型属性有默认值的</code>且<code>自身没有定义任何构造器（类：指定构造器）</code>的<code>结构体</code>或<code>基类</code>，提供一个无参默认构造器</strong>；</li>
-<li><strong>b. 可选类型属性若没有显式设置默认值，则有隐式默认值nil；</strong></li>
+<li><strong>a. Swift将为<code>所有的存储型属性，都有默认值</code>并且<code>没有定义任何构造器（类：指定构造器）</code>的<code>结构体</code>或<code>基类</code>，提供一个无参默认构造器</strong>；</li>
+<li><strong>b. 可选的var属性若没有显式设置默认值，则有隐式默认值nil，可选的let属性没有默认值；</strong></li>
 <li>c. 调用该无参默认构造器，可以创建一个所有属性值都设置为默认值的实例；</li>
 </ul></li>
 <li><p><strong>2、结构体的成员逐一构造器</strong></p>
 
 <ul>
-<li>a. Swift还将为<code>已提供了所有的存储型属性有默认值的</code>且<code>自身没有定义任何构造器</code>的<code>结构体</code>，提供一个成员逐一构造器；</li>
-<li>b. 可选类型属性若没有显式设置默认值，则有隐式默认值nil；</li>
+<li><strong>a. Swift还将为<code>没有定义任何构造器</code>的<code>结构体</code>，提供一个成员逐一构造器，<code>即使有的存储型属性，没有默认值</code>；</strong></li>
+<li>b. 可选的var属性若没有显式设置默认值，则有隐式默认值nil，可选的let属性没有默认值；</li>
 <li>c. 该成员逐一构造器的参数名称与成员属性名相同，调用其可以进行传值来完成对成员属性的初始赋值；</li>
 </ul></li>
 <li><p><strong>3、自定义构造器</strong></p>
@@ -780,7 +780,7 @@ static func &gt;(lhs: Self, rhs: Self) -&gt; Bool
 <li><p><strong>4、指定构造器、便利构造器</strong></p>
 
 <ul>
-<li>Swift的类类型的构造器有两种类型：指定构造器(Designated Initializer)、便利构造器(Convenience Initializer)；</li>
+<li>Swift的类类型的构造器可以分为两种类型：指定构造器(Designated Initializer)、便利构造器(Convenience Initializer)，值类型的构造器没有区分；</li>
 </ul></li>
 <li><p><strong>5、构造器的继承</strong></p>
 
@@ -1215,7 +1215,7 @@ print(arr.hashValue)
 // Swift 4.1 ❌，error: value of type &#39;[Int]&#39; has no member &#39;hashValue&#39;
 // Swift 4.2 ✅，由于增加了泛型参数的类型为`Hashable`的Conditional Conformance，该[Int]才是Hashable的
 </code></pre></li>
-<li><p>如Array的== 操作符实现，在Swift 4.0中定义为全局函数，在Swift 4.1中定义在扩展中；</p>
+<li><p>如Array的 == 操作符实现，在Swift 4.0中定义为全局函数，在Swift 4.1中定义在扩展中；</p>
 
 <pre><code class="language-swift">// Swift 4.0
 @inlineable public func == &lt;Element : Equatable&gt;(lhs: Array&lt;Element&gt;, rhs: Array&lt;Element&gt;) -&gt; Bool
