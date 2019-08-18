@@ -136,19 +136,66 @@
 <h4 id="toc_0">一、基本尺寸</h4>
 
 <ul>
-<li><p>控件尺寸</p>
+<li><p>1、控件尺寸</p>
 
 <ul>
-<li>iPhone、iPad：StatusBar的高度为20，NavBar为44，TabBar为49；</li>
-<li>iPhoneX：StatusBar的高度为44，NavBar为44，TabBar为83；</li>
+<li>iPhone、iPad：StatusBar的高度为20，NavBar的高度为44，TabBar的高度为49；</li>
+<li>iPhone X：StatusBar的高度为44，NavBar的高度为44，TabBar的高度为83；</li>
 </ul></li>
-<li><p>屏幕尺寸</p>
+<li><p>2、屏幕尺寸</p>
 
-<ul>
-<li>iPhone4s：屏幕尺寸为320x480，iPhone5s屏幕尺寸为320*568；</li>
-<li>iPhone8屏幕尺寸为375x667，iPhone8Plus屏幕尺寸为414*736，3X；</li>
-<li>iPhoneX屏幕尺寸为375x812，3X；</li>
-</ul></li>
+<table>
+<thead>
+<tr>
+<th style="text-align: center">设备</th>
+<th style="text-align: center">逻辑像素pt</th>
+<th style="text-align: center">倍率</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: center">iPhone 4s</td>
+<td style="text-align: center">320x480</td>
+<td style="text-align: center">2X</td>
+</tr>
+<tr>
+<td style="text-align: center">iPhone 5s</td>
+<td style="text-align: center">320x568</td>
+<td style="text-align: center">2X</td>
+</tr>
+<tr>
+<td style="text-align: center">iPhone 8</td>
+<td style="text-align: center">375x667</td>
+<td style="text-align: center">2X</td>
+</tr>
+<tr>
+<td style="text-align: center">iPhone 8Plus</td>
+<td style="text-align: center">414x736</td>
+<td style="text-align: center">3X</td>
+</tr>
+<tr>
+<td style="text-align: center">iPhone X</td>
+<td style="text-align: center">375x812</td>
+<td style="text-align: center">3X</td>
+</tr>
+<tr>
+<td style="text-align: center">iPhone XS</td>
+<td style="text-align: center">375x812</td>
+<td style="text-align: center">3X</td>
+</tr>
+<tr>
+<td style="text-align: center">iPhone XR</td>
+<td style="text-align: center">414x896</td>
+<td style="text-align: center">2X</td>
+</tr>
+<tr>
+<td style="text-align: center">iPhone XS Max</td>
+<td style="text-align: center">414x896</td>
+<td style="text-align: center">3X</td>
+</tr>
+</tbody>
+</table></li>
 </ul>
 
 <span id="more"></span><!-- more -->   
@@ -156,69 +203,77 @@
 <h4 id="toc_1">二、iOS 7之前特性</h4>
 
 <ul>
-<li>VC的view尺寸不是全屏幕尺寸，尺寸不包含StatusBar、NavBar、TabBar的高度；</li>
-<li><p>可以通过VC的wantsFullScreenLayout属性（iOS7 deprecated）设置全屏幕尺寸；</p></li>
-<li><p>布局方式</p>
+<li><p>1、VC的view尺寸默认不是全屏幕尺寸，尺寸不包含StatusBar、NavBar、TabBar的高度；</p>
+
+<ul>
+<li>可以通过VC的wantsFullScreenLayout属性（iOS7 deprecated）设置成全屏幕尺寸；</li>
+</ul></li>
+<li><p>2、布局方式</p>
 
 <ul>
 <li>iOS 6之前有两种布局方式：设置控件的Frame、Autoresizing；</li>
-<li>iOS 6（2012，iPhone5），苹果推出AutoLayout用于代替Autoresizing；View有个属性translatesAutoresizingMaskIntoConstraints用于自动将Autoresizing转为AutoLayout，默认值为YES；</li>
-<li>AutoLayout使用约束进行布局，约束创建有两种方式：<code>constraintWithItem:(id)view1 attribute:...</code>、<code>constraintsWithVisualFormat:(NSString *)format options</code>（VFL）；</li>
+<li>iOS 6（2012，iPhone 5），苹果推出AutoLayout用于代替Autoresizing；view有个属性<code>translatesAutoresizingMaskIntoConstraints</code>用于自动将Autoresizing转为AutoLayout，默认值为YES；</li>
+<li>AutoLayout使用约束进行布局，约束创建有两种方式：
+
+<ul>
+<li><code>constraintWithItem:(id)view1 attribute:...</code>；</li>
+<li><code>constraintsWithVisualFormat:(NSString *)format options</code>（VFL）；</li>
+</ul></li>
 </ul></li>
 </ul>
 
 <h4 id="toc_2">三、iOS 7特性</h4>
 
 <ul>
-<li><p>VC的view尺寸默认是全屏幕尺寸，尺寸包含StatusBar、NavBar、TabBar的高度，不论其是否被包裹在NavVC、TabBarVC；</p></li>
-<li><p><strong>UIViewController新增以下属性控制VC的view及其子控件的显示效果：</strong></p>
+<li><p>1、VC的view尺寸默认是全屏幕尺寸，尺寸包含StatusBar、NavBar、TabBar的高度，不论其是否被包裹在NavVC、TabBarVC中；</p></li>
+<li><p>2、<strong>UIViewController新增以下属性控制VC的view及其子控件的显示效果：</strong></p>
 
 <ul>
-<li><p><strong>a. <code>edgesForExtendedLayout</code></strong></p>
+<li><p>a. <strong>edgesForExtendedLayout</strong></p>
 
 <ul>
-<li><strong>当有StatusBar、NavBar、TabBar时，并且NavBar、TabBar的translucent为YES，VC的view的四个边和父view（window）的贴合情况；</strong></li>
+<li><strong>表示当有StatusBar、NavBar、TabBar，并且NavBar、TabBar的translucent为YES时，VC的view的四个边和父view（window）的贴合情况；</strong></li>
 <li><strong>默认值为UIRectEdgeAll（枚举值），即四边都贴合；</strong></li>
 </ul></li>
-<li><p><strong>b. <code>extendedLayoutIncludesOpaqueBars</code></strong></p>
+<li><p>b. <strong>extendedLayoutIncludesOpaqueBars</strong></p>
 
 <ul>
-<li><strong>当有StatusBar、NavBar、TabBar时，并且NavBar、TabBar的translucent为NO（直接设置为NO、设置backgroundImage间接导致），会导致VC的view不是全屏幕尺寸；</strong></li>
-<li><strong>默认值为NO，即不是全屏幕尺寸；</strong></li>
+<li><strong>表示当有StatusBar、NavBar、TabBar，并且NavBar、TabBar的translucent为NO时（直接设置为NO、设置backgroundImage导致间接设置为NO），会导致VC的view不是全屏幕尺寸，是否需要让VC的view是全屏幕尺寸（延伸布局包括Bars）；</strong></li>
+<li><strong>默认值为NO，即不需要全屏幕尺寸；</strong></li>
 <li><strong>注意要点</strong>
 
 <ul>
 <li><strong>NavVC、TabBarVC的view始终都是全屏幕尺寸，需要设置被包裹的VC的该属性；</strong></li>
 </ul></li>
 </ul></li>
-<li><p><strong>c. <code>automaticallyAdjustsScrollViewInsets</code></strong></p>
+<li><p>c. <strong>automaticallyAdjustsScrollViewInsets</strong></p>
 
 <ul>
-<li><strong>表示若VC的view有被StatusBar、NavBar、TabBar遮挡住，并且view中有ScrollView类型的子控件，是否自动设置ScrollView类型子控件的contentInset；</strong></li>
-<li><strong>默认值为YES，即会自动设置；（<code>注意：ScrollView类型子控件不被遮挡住也会被设置</code>）</strong></li>
+<li><strong>表示当VC的view有被StatusBar、NavBar、TabBar遮挡住，并且view中有ScrollView类型控件，是否自动设置ScrollView类型控件的contentInset；</strong></li>
+<li><strong>默认值为YES，即会自动设置contentInset；（<code>注意：ScrollView类型控件不被遮挡住也会被设置</code>）</strong></li>
 <li><p><strong>VC的view必须被StatusBar、NavBar、TabBar遮挡住，否则即使automaticallyAdjustsScrollViewInsets为YES，也不会自动设置contentInset；</strong></p></li>
 <li><p>VC的view没有被遮挡住，有以下4种情况下：</p>
 
 <ul>
 <li>a). StatusBar、NavBar、TabBar被隐藏，此时view的尺寸是全屏幕尺寸；</li>
-<li>b). 设置edgesForExtendedLayout让view不是全屏幕尺寸；比如设置为UIRectEdgeNone，此时View的尺寸需要减去StatusBar、NavBar、TabBar的尺寸（哪个有显示减去哪个的尺寸）；</li>
-<li><strong>c). 设置NavBar、TabBar的translucent为NO，此时view的尺寸需要减去StatusBar、NavBar、TabBar的尺寸；</strong></li>
-<li><strong>d). 设置NavBar、TabBar的backgroundImage，其translucent会被自动设置为NO，此时view的尺寸需要减去StatusBar、NavBar、TabBar的尺寸；</strong></li>
+<li>b). 设置edgesForExtendedLayout让view不是全屏幕尺寸；比如设置为UIRectEdgeNone，此时View的尺寸会减去StatusBar、NavBar、TabBar的高度；</li>
+<li><strong>c). 设置NavBar、TabBar的translucent为NO，此时view的尺寸会减去StatusBar、NavBar、TabBar的高度；</strong></li>
+<li><strong>d). 设置NavBar、TabBar的backgroundImage，其translucent会被自动设置为NO，此时view的尺寸会减去StatusBar、NavBar、TabBar的高度；</strong></li>
 </ul></li>
-<li><p><strong>ScrollView类型子控件必须是view的第一个子控件，或者view就是ScrollView类型的，否则即使automaticallyAdjustsScrollViewInsets为YES，也不会自动设置contentInset；</strong></p></li>
-<li><p><strong>注意要点</strong>：</p>
+<li><p><strong>ScrollView类型控件必须是view的首个子控件，或者view就是ScrollView类型的，否则即使automaticallyAdjustsScrollViewInsets为YES，也不会自动设置contentInset；</strong></p></li>
+<li><p><strong>注意：</strong></p>
 
 <ul>
-<li><strong>VC的view尺寸对view的子控件的影响；</strong></li>
-<li><strong>view的子控件为非ScrollView类型：注意子控件在布局时（使用Frame、使用AutoLayout设置与父控件的边距）不要被遮挡住；</strong></li>
 <li><strong>view的子控件为ScrollView类型：由于<code>automaticallyAdjustsScrollViewInsets</code>的原因，子控件的可见区域和尺寸会不一致，内容不会被遮挡住；</strong></li>
+<li><strong>view的子控件为非ScrollView类型：注意子控件在布局时（使用Frame、使用AutoLayout设置与父控件的边距）不要被遮挡住；</strong></li>
 <li><strong>StatusBar、NavBar、TabBar的显示与隐藏，会影响到contentInset的值；</strong></li>
+<li><strong>VC的view是否全屏显示对view的子控件的影响；</strong></li>
 </ul></li>
 </ul></li>
-<li><p><strong>d. <code>topLayoutGuide、bottomLayoutGuide</code></strong></p>
+<li><p>d. <strong>topLayoutGuide、bottomLayoutGuide</strong></p>
 
 <ul>
-<li><strong>表示当有StatusBar、NavBar、TabBar时，它们的占位区域（虚拟占位的View），没有时表示VC的顶部、底部；可用于在自动布局时帮助开发者避开StatusBar、NavBar、TabBar；</strong></li>
+<li><strong>表示当有StatusBar、NavBar、TabBar时，它们的占位区域（虚拟占位的View）；没有时表示VC的顶部、底部；可用于在自动布局时帮助开发者避开StatusBar、NavBar、TabBar；</strong></li>
 <li>LayoutGuide的length属性表示VC的view被遮挡区域的高度；需要在viewDidLayoutSubviews、layoutSubviews方法中获取，否则获取的值可能不准确；</li>
 <li><p>使用方式</p>
 
@@ -229,24 +284,24 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 </code></pre>
 
 <pre><code class="language-objc">// PureLayout也提供了相关方法
-- (NSLayoutConstraint *)autoPinToTopLayoutGuideOfViewControl
-  ler:(UIViewController *)viewController withInset:(CGFloat)inset;
+- (NSLayoutConstraint *)autoPinToTopLayoutGuideOfViewController:
+    (UIViewController *)viewController withInset:(CGFloat)inset;
 </code></pre></li>
 </ul></li>
 </ul></li>
-<li><p>NavVC、TabBarVC的NavBar、TabBar增加<code>translucent</code>属性：</p>
+<li><p>3、NavVC、TabBarVC的NavBar、TabBar增加<code>translucent</code>属性：</p>
 
 <ul>
-<li>表示是否有穿透效果，有穿透效果则VC的view尺寸为全屏幕尺寸，否则不是；默认值为YES，有穿透效果；</li>
+<li>表示是否有穿透效果，有穿透效果则VC的view尺寸为全屏幕尺寸；默认值为YES，有穿透效果；</li>
 <li><strong>给NavBar、TabBar设置backgroundImage将会间接导致translucent为NO（若还需要穿透效果，需要手动设置为YES还原回去）；</strong></li>
 <li><strong>给NavBar、TabBar设置backgroundColor不会影响translucent；</strong></li>
-<li><strong>若设置了shadowImage，还必须设置backgroundImage才有效果，这样也进而导致translucent为NO；</strong><br/></li>
+<li><strong>若需要设置shadowImage，还必须设置backgroundImage才有效果，这样也会导致translucent为NO；</strong><br/></li>
 </ul></li>
-<li><p>总结</p>
+<li><p>4、总结</p>
 
 <ul>
 <li>edgesForExtendedLayout、extendedLayoutIncludesOpaqueBars、translucent影响VC的view尺寸；</li>
-<li>automaticallyAdjustsScrollViewInsets影响view中的ScrollView类型子控件的可见区域；</li>
+<li>automaticallyAdjustsScrollViewInsets影响view中的ScrollView类型控件的可见区域；</li>
 <li><strong>VC的view尺寸全屏幕的条件：</strong>
 
 <ul>
@@ -254,8 +309,8 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 <li><strong>NavBar、TabBar的translucent为NO，并且extendedLayoutIncludesOpaqueBars为YES；</strong></li>
 </ul></li>
 <li>对于view的子控件不是ScrollView类型的，当view为全屏幕尺寸时，为了让其不被StatusBar、NavBar、TabBar遮挡，除了设置与父控件View的边距值（Bar的高度）外，还可以设置让其与topLayoutGuide、bottomLayoutGuide对齐；</li>
-<li><strong>设置topLayoutGuide、bottomLayoutGuide对齐的方式最好不要用于ScrollView类型子控件，因为此时VC的view是全屏幕尺寸，子控件被遮挡但是依然调整了contentInset；</strong></li>
-<li>StatusBar默认背景色为透明色，配合NavBar后才有背景色；</li>
+<li><strong>设置topLayoutGuide、bottomLayoutGuide对齐的方式最好不要用于ScrollView类型控件，因为即使ScrollView类型控件没有被遮挡，但是依然还会调整contentInset；</strong></li>
+<li>StatusBar默认背景色为透明色，配合使用NavBar后，与NavBar的背景色一致；</li>
 </ul></li>
 </ul>
 
@@ -264,52 +319,61 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 <h4 id="toc_4">五、iOS 11特性</h4>
 
 <ul>
-<li>当iPhoneX横屏显示时，topLayoutGuide、bottomLayoutGuide就不能处理左右两边的不可用区域了；为了适配iPhoneX，引入<code>Safe Area</code>的概念；</li>
-<li><p>topLayoutGuide、bottomLayoutGuide与Safe Area的区别：</p>
+<li><p>1、当iPhone X横屏显示时，topLayoutGuide、bottomLayoutGuide就不能处理左右两边的不可用区域了；为了适配iPhone X，引入<code>Safe Area</code>的概念；</p>
 
 <ul>
-<li><strong>topLayoutGuide、bottomLayoutGuide表示的是不可见区域；Safe Area表示的是可用区域（去掉了不可见区域和不规则区域）；</strong></li>
+<li>topLayoutGuide、bottomLayoutGuide与Safe Area的区别：
+
+<ul>
+<li><strong>topLayoutGuide、bottomLayoutGuide表示的是<code>不可见区域</code>；Safe Area表示的是<code>可用区域（去掉了不可见区域和不规则区域）</code>；</strong></li>
 <li><strong>topLayoutGuide、bottomLayoutGuide是VC的属性，只能判断VC的view的不可见区域；Safe Area是View的概念，任何view都有，可以比较快捷地获取当前view的可用区域；</strong></li>
 </ul></li>
-<li><p>UIView新增有以下属性：</p>
-
-<ul>
-<li><strong>a. <code>safeAreaLayoutGuide</code></strong>
-
-<ul>
-<li>view的可用区域，其有layoutFrame属性；当view是Root ViewController的View时，类似于之前VC的topLayoutGuide、bottomLayoutGuide（iOS11 被deprecated）；</li>
 </ul></li>
-<li><strong>b. <code>safeAreaInsets</code></strong>
+<li><p>2、UIView新增有以下属性：</p>
 
 <ul>
-<li>表示view不在Safe Area范围的inset；<strong>view的frame等于safeAreaLayoutGuide加上safeAreaInsets的四边；</strong></li>
+<li>a. <strong>safeAreaLayoutGuide</strong>
+
+<ul>
+<li>view的可用区域，其有layoutFrame属性；当view是Root ViewController的View时，类似于减去之前VC的topLayoutGuide、bottomLayoutGuide（iOS 11被deprecated）；</li>
+</ul></li>
+<li>b. <strong>safeAreaInsets</strong>
+
+<ul>
+<li>表示view不在Safe Area范围的inset；<strong>view的frame等于safeAreaInsets的四边 + safeAreaLayoutGuide；</strong></li>
+<li>注意：
+
+<ul>
+<li><strong>当有StatusBar、NavBar、TabBar，并且NavBar、TabBar的translucent为NO时，设置extendedLayoutIncludesOpaqueBars为YES全屏显示，此时<code>被StatusBar、NavBar遮挡的view的safeAreaInsets的top是有值的</code>，<code>被TabBar遮挡的view的safeAreaInsets的bottom的值为0</code>；iOS 11之前的ScrollView及子类的自动计算的contentInset则会包含所有的Bar高度（StatusBar、NavBar、TabBar）；</strong></li>
 </ul></li>
 </ul></li>
-<li><p>UIViewController新增<code>additionalSafeAreaInsets</code>属性，可以用于手动调整safeAreaInsets；</p></li>
-<li><p>UIScrollView及子类添加<code>adjustedContentInset</code>和<code>contentInsetAdjustmentBehavior</code>：</p>
-
-<ul>
-<li><p><strong>iOS 11之前</strong></p>
-
-<ul>
-<li><strong>ScrollView及子类的<code>内容边界与尺寸边界间的距离</code>由ScrollView及子类的<code>contentInset</code>决定；</strong></li>
-<li><strong>系统会根据<code>automaticallyAdjustsScrollViewInsets</code>自己计算一个inset，然后再加上用户手动设置的<code>contentInset</code>，最后将该结果赋值给<code>contentInset</code>；</strong></li>
 </ul></li>
-<li><p><strong>iOS 11开始</strong></p>
+<li><p>3、UIViewController新增<code>additionalSafeAreaInsets</code>属性，可以用于手动调整safeAreaInsets；</p></li>
+<li><p>4、UIScrollView及子类添加<code>adjustedContentInset</code>和<code>contentInsetAdjustmentBehavior</code>：</p>
 
 <ul>
-<li><strong>ScrollView及子类的<code>内容边界与尺寸边界间的距离</code>由ScrollView及子类的<code>adjustedContentInset（新增属性）</code>决定；</strong></li>
+<li><p>a. <strong>iOS 11之前</strong></p>
+
+<ul>
+<li><strong>ScrollView及子类的<code>内容边界与尺寸边界间的距离padding</code>由ScrollView及子类的<code>contentInset</code>决定；</strong></li>
+<li><strong>系统会根据<code>automaticallyAdjustsScrollViewInsets=YES</code>自己计算一个inset，然后再加上用户手动设置的<code>contentInset</code>，最后将该结果赋值给<code>contentInset</code>；</strong></li>
+</ul></li>
+<li><p>b. <strong>iOS 11开始</strong></p>
+
+<ul>
+<li><strong>ScrollView及子类的<code>内容边界与尺寸边界间的距离padding</code>由ScrollView及子类的<code>adjustedContentInset（新增属性）</code>决定；</strong></li>
 <li><strong>adjustedContentInset也是一个计算值，其由<code>contentInsetAdjustmentBehavior</code>、<code>safeAreaInsets</code>、<code>contentInset</code>、<code>automaticallyAdjustsScrollViewInsets</code>等来共同决定；</strong></li>
 </ul></li>
-<li><p><strong>adjustedContentInset的计算规则，contentInsetAdjustmentBehavior为以下情况时</strong>：</p>
+<li><p>c. <strong>adjustedContentInset的计算规则：</strong></p>
 
 <ul>
+<li><strong>当contentInsetAdjustmentBehavior为以下情况时：</strong></li>
 <li>a) <code>UIScrollViewContentInsetAdjustmentAutomatic（默认值）</code>
 
 <ul>
 <li><strong>automaticallyAdjustsScrollViewInsets为YES，并且VC是被NavVC包裹着：adjustedContentInset = safeAreaInsets + contentInset，不论ScrollView及子类是否可滚动；</strong></li>
 <li><strong>其他情况：可滚动方向上adjustedContentInset = safeAreaInsets + contentInset，不可滚动方向上adjustedContentInset = contentInset；</strong></li>
-<li><strong>该方向是否可滚动由<code>scrollEnabled</code>、<code>alwaysBounceHorizontal / vertical</code> 决定；</strong></li>
+<li><strong>该方向是否可滚动由<code>scrollEnabled</code>、<code>alwaysBounceHorizontal/vertical</code> 决定；</strong></li>
 </ul></li>
 <li>b）<code>UIScrollViewContentInsetAdjustmentScrollableAxes</code>
 
@@ -327,11 +391,11 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 <li>adjustedContentInset = safeAreaInsets + contentInset；</li>
 </ul></li>
 </ul></li>
-<li><p>注意：</p>
+<li><p>d. 注意：</p>
 
 <ul>
-<li><strong>VC新增<code>additionalSafeAreaInsets</code>属性是直接影响<code>safeAreaInsets</code>；若safeAreaInsets不参与adjustedContentInset的计算，additionalSafeAreaInsets对adjustedContentInset没有任何影响；</strong></li>
-<li><strong>iOS 11的UITableView默认开启估算行高</strong>；对于UITableViewStyleGrouped类型的TableView，若代码只实现了相关heightForHeaderInSection等方法（返回一个较小值，如0.1）而没有实现viewForHeaderInSection等方法，则height不生效依然有间隔；<strong>解决方式有两种：一种是将viewFor方法实现，另一种就是关闭TableView的估算行高；</strong></li>
+<li><strong>VC新增<code>additionalSafeAreaInsets</code>属性是会直接影响<code>safeAreaInsets</code>；若safeAreaInsets不参与adjustedContentInset的计算，additionalSafeAreaInsets对adjustedContentInset没有任何影响；</strong></li>
+<li><strong>iOS 11的UITableView默认开启估算行高</strong>；对于<code>UITableViewStyleGrouped</code>类型的TableView，若代码只实现了相关heightForHeaderInSection等方法（返回一个较小值，如0.1）而没有实现viewForHeaderInSection等方法，则height不生效依然有间隔；<strong>解决方式有两种：一种是将viewFor...方法实现，另一种是关闭TableView的估算行高；</strong></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -339,9 +403,9 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 <h4 id="toc_5">六、补充</h4>
 
 <ul>
-<li><p>在viewDidLoad方法中获取self.view的尺寸不一定准确；不同iOS版本的运行结果不一样，有的是屏幕的大小，有的是StoryBoard的大小（比如之前Xcode 7）；</p></li>
-<li><p>UISearchBar的高度是固定的（不可以修改，若需要需改需要自定义SearchBar），iOS 11之前的高度为44，iOS 11的高度为56；</p></li>
-<li><p>NavBar可以设置backgroundColor，也可以设置backgroundImage，而且其上面有一个backgroundView（穿透的背景图，尺寸包含StatusBar）；</p>
+<li><p>1、在viewDidLoad方法中获取self.view的尺寸不一定准确；不同iOS版本的运行结果不一样，有的是屏幕的大小，有的是StoryBoard的大小（比如之前Xcode 7）；</p></li>
+<li><p>2、UISearchBar的高度是固定的（不可以修改，若需要需改需要自定义SearchBar），iOS 11之前的高度为44，iOS 11的高度为56；</p></li>
+<li><p>3、NavBar可以设置backgroundColor，也可以设置backgroundImage，而且其上面有一个backgroundView（穿透的背景图，尺寸包含StatusBar）；</p>
 
 <ul>
 <li>设置backgroundColor不影响backgroundView，范围只有NavBar，而且由于backgroundView存在，显示有磨砂效果；</li>
@@ -422,13 +486,13 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
               <a href="15626010144789.html">iOS状态栏</a>
               </li>
                  <li class="post">
-              <a href="15622540495294.html">iOS屏幕旋转</a>
+              <a href="15622540495294.html">iOS屏幕方向</a>
               </li>
                  <li class="post">
               <a href="15590636648081.html">OpenCV配置使用</a>
               </li>
                  <li class="post">
-              <a href="15590617242967.html">Sublime配置使用</a>
+              <a href="15590617242967.html">Sublime配置使用教程</a>
               </li>
                  <li class="post">
               <a href="15580276420967.html">iOS照片框架</a>
