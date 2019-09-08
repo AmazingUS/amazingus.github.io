@@ -358,7 +358,14 @@ let rightButton: UIButton = {
 <h4 id="toc_8">四、dispatch_once</h4>
 
 <ul>
-<li><p>Swift 3.0废弃了dispatch_once，但是<strong>全局的常/变量</strong>和<strong>标记为<code>static</code>的常/变量存储属性</strong>底层实现都是使用dispatch_once机制且线程安全的，它们都是只会执行一次；延迟属性是对象属性，会被执行多次；</p></li>
+<li><p>Swift 3.0废弃了dispatch_once，但是<strong>全局的常/变量</strong>和<strong>标记为<code>static</code>的常/变量存储属性</strong>底层实现都是使用dispatch_once机制且线程安全的，它们都是只会执行一次；而延迟属性是对象属性，会被执行多次；</p>
+
+<pre><code class="language-swift">static let swizzed: Void = { // 通过static这样的声明实现dispatch_once
+    let originalSelector = #selector(test)
+    let swizzedSelector = #selector(swizzled_test)
+    sc_swizzlingForClass(UIViewController.self, originalSelector: originalSelector, swizzledSelector: swizzedSelector)
+}()
+</code></pre></li>
 <li><p>也可以通过手动给DispatchQueue扩展一个方法实现dispatch_once的功能；<code>objc_sync_enter、objc_sync_exit</code>等价于OC中的<code>@synchronized(TOKEN) { }</code>；</p>
 
 <pre><code class="language-swift">public extension DispatchQueue {

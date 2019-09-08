@@ -124,7 +124,7 @@
 <h4 id="toc_0">一、简介</h4>
 
 <ul>
-<li>GitBook是一个可以将Markdown文本一键生成为HTML、PDF、EPUB格式图书（需要安装安装calibre）的工具，其也内置使用Git对Markdown文件做版本控制；</li>
+<li>GitBook是一个可以将Markdown文本一键生成为HTML、PDF及EPUB格式图书（需要安装calibre）的工具，其内置了使用Git对Markdown文件做版本控制；</li>
 <li>可以在本地离线生成各种格式的图书，也可以在GitBook官网在线生成，便于共享；并且其也提供了一键导入GitHub仓库生成图书的便捷功能（一本图书就是一个Git仓库）；</li>
 </ul>
 
@@ -133,7 +133,7 @@
 <h4 id="toc_1">二、安装使用</h4>
 
 <ul>
-<li><p>1、安装Node.js、Git（可选；若需要版本控制、上传到GitBook则要安装）；</p></li>
+<li><p>1、安装Node.js、Git（可选；若需要版本控制、上传到GitBook则需要安装）；</p></li>
 <li><p>2、安装GitBook；</p>
 
 <pre><code>npm install -g gitbook-cli
@@ -186,7 +186,7 @@ sudo ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin
 <h4 id="toc_2">三、补充</h4>
 
 <ul>
-<li>第3、4步操作可以通过 <code>Gitbook Editor</code> 桌面编辑器更便捷地进行文本书写（其会自动更新修改SUMMARY.md文件）；但是生成图书还是需要在终端下通过GitBook完成；</li>
+<li>第3、4步操作，可以通过 <code>Gitbook Editor</code> 桌面编辑器更便捷地进行文本书写（其会自动更新修改SUMMARY.md文件）；但是生成图书还是需要在终端下通过GitBook完成；</li>
 <li>可以使用 <code>book.json</code> 文件定义GitBook在编译图书时的配置信息（如定义图书名称、显示效果等）；</li>
 <li>执行 <code>gitbook install</code> 命令可以安装一些第三方的插件，如disqus等；</li>
 </ul>

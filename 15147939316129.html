@@ -124,7 +124,12 @@
 <h4 id="toc_0">一、概述、安装</h4>
 
 <ul>
-<li>Carthage类似于CocoaPods，用于iOS、macOS等平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持；Carthage是基于Swift的，Swift只支持Dynamic framework）</strong>，之后手动拖入到项目中；其对项目工程文件的入侵性较小，并且可以与CocoaPods无缝集成，一个项目可以同时拥有CocosPods和Carthage；</li>
+<li>Carthage类似于CocoaPods，用于iOS、macOS平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持）</strong>；
+
+<ul>
+<li>Carthage是基于Swift的，而Swift只支持Dynamic framework（从Xcode 9开始，Swift 4.0支持静态库）；</li>
+<li>之后手动拖入到项目中；其对项目工程文件的入侵性较小，并且可以与CocoaPods无缝集成，一个项目可以同时拥有CocosPods和Carthage；</li>
+</ul></li>
 <li><p>可以通过Homebrew进行安装Carthage；</p>
 
 <pre><code># 安装carthage（安装升级carthage，注意可能出现多版本共存bug）
@@ -171,7 +176,7 @@ github &quot;PureLayout/PureLayout&quot;
 <li><strong>a. 由于是生成的是Dynamic framework，可以手动直接添加framework到General或Build Phase界面的&quot;Embedded Binaries&quot;中，之后就可以直接使用；</strong></li>
 <li><strong>b. 添加了&quot;Embedded Binaries&quot;后，&quot;Link Binary With Libraries&quot;中会自动添加上面手动添加的framework；</strong></li>
 <li><strong>c. 若只是仅仅手动添加framework到&quot;Link Binary With Libraries&quot;，则该framework只能是Static Framework，不可以为Dynamic framework；</strong></li>
-<li><strong>d. 手动拖拽framework，只会添加framework到&quot;Link Binary With Libraries&quot;中；</strong></li>
+<li><strong>d. 手动拖拽framework到工程中，只会添加framework到&quot;Link Binary With Libraries&quot;中；</strong></li>
 </ul></li>
 <li><p><strong>方式二：Link Binary With Libraries + Run Script；</strong></p>
 
@@ -211,13 +216,13 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 <h4 id="toc_2">三、其他说明</h4>
 
 <ul>
-<li>若更新了Cartfile文件（库的版本、增删库），则只需要重新执行 <code>carthage update</code> 命令即可；</li>
-<li><strong>注意：不要直接删除Xcode Simulator的文件目录(<code>~/Library/Developer/CoreSimulator/Devices/</code>)</strong>；
+<li><p>若更新了Cartfile文件（库的版本、增删库），则只需要重新执行 <code>carthage update</code> 命令即可；</p></li>
+<li><p><strong>注意：不要直接删除Xcode Simulator的文件目录(<code>~/Library/Developer/CoreSimulator/Devices/</code>)；</strong></p>
 
 <ul>
 <li>若需要删除，可以通过<code>Xcode-&gt;Window-&gt;Devices and Simulators</code>进行删除；</li>
 <li><strong>直接删除可能导致执行xcodebuild命令失败，报错<code>xcodebuild: error: Unable to find a destination matching the provided destination specifier: { platform:iOS Simulator, id:</code>，进而导致执行 <code>carthage update</code> 命令失败</strong>；</li>
-<li>解决出现上面的问题，需要将所有模拟器手动删除后再新建一些模拟器即可；</li>
+<li>若出现上面的问题，解决方式为将所有模拟器手动删除后再新建一些模拟器即可；</li>
 </ul></li>
 </ul>
 

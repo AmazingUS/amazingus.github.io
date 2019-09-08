@@ -133,17 +133,17 @@
 
 <h4 id="toc_1">二、使用多个SSH Key</h4>
 
-<ol>
-<li><p>生成第一个key；</p>
+<ul>
+<li><p>1、生成第一个key；</p>
 
 <pre><code>## 指定生成的key的名称
 ssh-keygen -t rsa -C &quot;a@email.com&quot; -f ~/.ssh/A_KEYNAME
 </code></pre></li>
-<li><p>生成第二个key；</p>
+<li><p>2、生成第二个key；</p>
 
 <pre><code>ssh-keygen -t rsa -C &quot;b@email.com&quot; -f ~/.ssh/B_KEYNAME
 </code></pre></li>
-<li><p>配置.ssh的config文件；</p>
+<li><p>3、配置.ssh的config文件；</p>
 
 <pre><code>vi ~/.ssh/config
 </code></pre>
@@ -156,12 +156,12 @@ Host BB
 Hostname XX.com
 IdentityFile ~/.ssh/B_KEYNAME
 </code></pre></li>
-<li><p>测试；</p>
+<li><p>4、测试；</p>
 
-<pre><code>ssh -T git@AA # 注意：git@别名
+<pre><code>ssh -T git@AA # 注意：使用“git@别名”进行测试
 ssh -T git@BB
 </code></pre></li>
-<li><p>修改repo的ssh地址；</p>
+<li><p>5、修改repo的ssh地址；</p>
 
 <ul>
 <li>github repo的ssh地址结构：<code>git@github.com:USERNAME/REPO_NAME.git</code></li>
@@ -176,7 +176,7 @@ git@BB:hexojs/hexo.git
 </code></pre></li>
 </ul></li>
 </ul></li>
-</ol>
+</ul>
 
 <h4 id="toc_2">三、.ssh/config文件</h4>
 
@@ -184,10 +184,10 @@ git@BB:hexojs/hexo.git
 <li><p>补充：</p>
 
 <ul>
-<li><strong>a. 可以让config的Host和Hostname相同，这样不修改repo的ssh地址，就使用对应的key</strong>；比如让Host和Hostname都是“github.com”；</li>
-<li>b. Host可以配置通配符*，规则写在最后，匹配前面没有匹配上的别名；</li>
+<li><strong>a. 可以让config中的Host和Hostname相同，这样不修改repo的ssh地址，就使用对应的key</strong>；比如让Host和Hostname都是“github.com”；</li>
+<li>b. Host可以配置通配符*，该规则写在最后，用来匹配前面没有匹配上的别名；</li>
 <li>c. 使用<code>ssh -T git@AA</code>进行测试时，加-v参数会输出测试log，如<code>ssh -T -v git@AA</code> ；</li>
-<li>d. <strong>.ssh/config文件可以加User参数；</strong>对于Git服务，User为git，这样 <code>git@别名</code> 就可以简写成 <code>别名</code> 了，如 <code>ssh -T git@AA</code> 简写成 <code>ssh -T AA</code> ；</li>
+<li>d. <strong>.ssh/config文件可以加User参数；</strong>对于Git服务，User为git，这样 <code>git@别名</code> 就可以简写成 <code>别名</code> 了，如 <code>ssh -T git@AA</code> 就简写成 <code>ssh -T AA</code> ；</li>
 </ul></li>
 <li><p>示例</p>
 

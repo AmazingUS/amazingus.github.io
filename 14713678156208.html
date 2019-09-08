@@ -133,7 +133,7 @@
 <h4 id="toc_0">一、概述</h4>
 
 <ul>
-<li>CocoaPods是iOS、macOS等平台的第三方框架的管理工具，类似于Android中的Gradle；但是没有Gradle强大，Gradle不仅可以自动下载配置所需要的框架，还可以进行自动化构建；</li>
+<li>CocoaPods是iOS、macOS平台的第三方框架的管理工具，类似于Android中的Gradle；但是没有Gradle强大，Gradle不仅可以自动下载配置所需要的框架，还可以进行自动化构建；</li>
 <li>CocoaPods基于Ruby，是Ruby的一个包（库）；需要确保使用最新的Ruby/Gem进行安装CocoaPods，或者直接安装CocoaPods APP；</li>
 </ul>
 
@@ -143,41 +143,38 @@
 
 <ul>
 <li><p><strong>最新安装方式可以通过官网的CocosPods App进行安装，方便快捷；以下是通过命令行方式进行安装；</strong></p></li>
-</ul>
-
-<ol>
-<li><p>安装最新的Ruby（建议使用rbenv安装）；</p></li>
-<li><p>更换Ruby的Gem的源（建议使用<code>https://ruby.taobao.org/</code>）；</p></li>
-<li><p>安装CocoaPods；</p>
+<li><p>1、安装最新的Ruby（建议使用rbenv安装）；</p></li>
+<li><p>2、更换Ruby的Gem的源（建议使用<code>https://ruby.taobao.org/</code>）；</p></li>
+<li><p>3、安装CocoaPods；</p>
 
 <pre><code>gem install cocoapods
 </code></pre>
 
 <ul>
 <li>重启终端，执行 <code>pod --version</code>，检查CocoaPods是否被安装正确；</li>
-<li><p>若使用macOS默认的Ruby安装CocoaPods，会报错误 <code>... Operation not permitted - /usr/bin/fuzzy_match</code>，这是由于OS X 10.11引入了Rootless机制导致的，不仅仅只是对CocoaPods有副作用，解决办法如下：</p>
+<li><p>若使用macOS默认的Ruby安装CocoaPods，会报错误 <code>... Operation not permitted - /usr/bin/fuzzy_match</code>，这是由于OS X 10.11引入了Rootless机制导致的，其不仅仅只是对安装CocoaPods有影响；解决办法如下：</p>
 
 <pre><code>sudo gem install -n /usr/local/bin cocoapods
 </code></pre></li>
 </ul></li>
-<li><p>（可选）更换CocoaPods的镜像索引文件的源；</p>
+<li><p>4、（可选）更换CocoaPods的镜像索引文件的源；</p>
 
 <ul>
-<li><p>CocoaPods使用之前必须先将第三方框架的镜像索引文件（spec repo）缓存到本地，文件存放在GitHub上；</p>
+<li><p>使用CocoaPods之前，必须先将第三方框架的镜像索引文件（spec repo）缓存到本地，镜像索引文件存放在GitHub上；</p>
 
 <pre><code>pod repo remove master
 pod repo add master https://git.oschina.net/akuandev/Specs.git
 </code></pre></li>
 </ul></li>
-<li><p>获取CocoaPods的镜像索引文件；</p>
+<li><p>5、获取CocoaPods的镜像索引文件；</p>
 
 <pre><code>pod setup
 </code></pre>
 
 <ul>
-<li>执行该命令后，终端卡在 <code>Setting up CocoaPods master repo</code> ，Cocoapods正在将镜像索引文件下载到 <code>~/.cocoapods</code> 目录中；可到该目录中执行 <code>du -sh *</code> 查看此刻已下载进度；</li>
+<li>执行该命令后，终端卡在 <code>Setting up CocoaPods master repo</code> ，Cocoapods正在将镜像索引文件下载到 <code>~/.cocoapods</code> 目录中；可在该目录中执行 <code>du -sh *</code> 查看此刻已下载进度；</li>
 </ul></li>
-</ol>
+</ul>
 
 <h4 id="toc_2">三、卸载</h4>
 
@@ -200,8 +197,8 @@ rm /usr/local/bin/pod # 删除可执行文件pod
 
 <ul>
 <li><p>使用CocoaPods前，需要在工程目录下创建一个名为<code>Podfile</code>的文本文件（描述需要使用哪些第三方框架及使用这些框架的Target）；</p></li>
-<li><p>执行 <code>pod install</code> 或 <code>pod update</code> 命令时，CocoaPods默认每次都会先主动更新CocoaPods的镜像索引文件，加参数 <code>--no-repo-update</code> 则略过此步，以加速执行速度；<strong>（注：新版本的<code>pod install</code>是不会主动更新的）</strong></p></li>
-<li><p>添加参数 <code>--no-repo-update</code> 执行，有时报以下类似错误 <code>Unable to satisfy the following requirements: - `XXXX`, `~&gt; 2.4` required by `Podfile`</code> ，这是由于本地的镜像索引文件过时导致的，此时应不加参数执行，或主动更新镜像索引文件（ <code>pod repo update</code> ；若更新失败，可删除镜像索引文件，重新执行 <code>pod setup</code> ）</p>
+<li><p>执行 <code>pod install</code> 或 <code>pod update</code> 命令时，CocoaPods默认每次都会，先进行主动更新CocoaPods的镜像索引文件，加参数 <code>--no-repo-update</code> 则略过此步，以加速执行速度；<strong>（注：新版本的<code>pod install</code>是不再进行主动更新）</strong></p></li>
+<li><p>添加参数 <code>--no-repo-update</code> 执行后，有时报以下类似错误 <code>Unable to satisfy the following requirements: - `XXXX`, `~&gt; 2.4` required by `Podfile`</code> ，这是由于本地的镜像索引文件过时导致的；此时应不加该参数执行，或主动更新镜像索引文件 <code>pod repo update</code>（若更新失败，可删除镜像索引文件，重新执行 <code>pod setup</code> ）；</p>
 
 <pre><code class="language-ruby">pod [COMMAND] help # 查看命令帮助
 
@@ -240,20 +237,20 @@ pod update [--no-repo-update]
 
 <h4 id="toc_4">五、项目中移除CocoaPods</h4>
 
-<ol>
-<li>删除工程文件夹下的Podfile、Podfile.lock、Pods、*.xcworkspace文件（夹）；</li>
-<li>打开原有工程文件，删除Pods文件夹，删除Frameworks文件夹中的libPods.a文件，删除 <code>Build Phases</code> 选项中的 <code>[CP]Check Pods Manifest.lock</code>、<code>[CP]Copy Pods Resources</code>、[<code>CP]Embeded Pods Frameworks</code> 等与CocoaPods相关项；</li>
-<li>移除使用的相关类库代码；若有必要还需移除相关配置信息（比如Header Search Paths等）；</li>
-</ol>
+<ul>
+<li>1、删除工程文件夹下的Podfile、Podfile.lock、Pods、*.xcworkspace文件（夹）；</li>
+<li>2、打开原有工程文件，删除Pods文件夹，删除Frameworks文件夹中的libPods.a文件，删除 <code>Build Phases</code> 选项中的 <code>[CP]Check Pods Manifest.lock</code>、<code>[CP]Copy Pods Resources</code>、<code>[CP]Embeded Pods Frameworks</code> 等与CocoaPods相关项；</li>
+<li>3、移除使用的相关类库代码；若有必要还需移除相关配置信息（比如<code>Header Search Paths</code>等）；</li>
+</ul>
 
 <h4 id="toc_5">六、Podfile文件</h4>
 
 <ul>
-<li>之前Podfile文件需要自己手动创建，现在可以执行 <code>pod init</code> 命令自动创建该文件（需要当前的目录中有Xcode工程文件）；</li>
-<li><p>不同版本的CocoaPods的Podefile文件格式有所差异，同时要注意空格符、iOS版本等规范；最新的Podefile文件的格式如下：（<code>inhibit_all_warnings!</code>表示消除CocoaPods引入的类库中的警告）</p>
+<li>之前Podfile文件需要自己手动创建，现在可以执行 <code>pod init</code> 命令可自动创建该文件（需要当前的目录中有Xcode工程文件）；</li>
+<li><p>不同版本的CocoaPods的Podefile文件格式有所差异，同时要<strong>注意空格符</strong>、iOS版本等规范；最新的Podefile文件的格式如下：（<code>inhibit_all_warnings!</code>表示消除CocoaPods引入的类库中的警告）</p>
 
 <pre><code>inhibit_all_warnings!
-platform :ios, &#39;7.0&#39;
+platform :ios, &#39;8.0&#39;
 
 target &#39;Sample&#39; do
     pod &#39;AFNetworking&#39;, &#39;2.4.0&#39;
@@ -262,7 +259,7 @@ end
 </code></pre></li>
 <li><p>类库的版本格式：</p>
 
-<pre><code>pod &#39;AFNetworking&#39; # 不指定版本，每次都获取最新版本  
+<pre><code>pod &#39;AFNetworking&#39; # 不指定版本，使用最新版本  
 pod &#39;AFNetworking&#39;, &#39;2.0&#39; # 只使用2.0版本  
 pod &#39;AFNetworking&#39;, &#39;&gt;= 2.0&#39; # 使用大于等于2.0的版本  
 pod &#39;AFNetworking&#39;, &#39;~&gt;0.1&#39; # 使用大于等于0.1但小于1.0的版本  

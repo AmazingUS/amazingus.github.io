@@ -110,7 +110,7 @@
       <div class="article-content">
         <ul>
 <li>
-<a href="#toc_0">一. 概述</a>
+<a href="#toc_0">一、概述</a>
 </li>
 <li>
 <a href="#toc_1">二、安装、卸载</a>
@@ -149,11 +149,11 @@
 </ul>
 
 
-<h4 id="toc_0">一. 概述</h4>
+<h4 id="toc_0">一、概述</h4>
 
 <ul>
 <li>Homebrew（简称brew）是macOS中的软件管理工具，可以方便地安装、更新、卸载软件，类似Ubuntu系统中的apt-get；</li>
-<li>macOS默认安装了Python、Ruby、Perl、Apache/PHP等开发程序，但是版本比较旧；若直接使用新版本替换系统的旧版本，会引发一些问题，Homebrew可以很好地将其安装的开发工具与系统默认的隔离开来；</li>
+<li><strong>macOS默认安装了Python、Ruby、Perl、Apache/PHP等开发程序，但是版本比较旧；</strong>若直接使用新版本替换系统的旧版本，会引发一些问题，Homebrew可以很好地将其安装的开发工具与系统默认的隔离开来；</li>
 </ul>
 
 <h4 id="toc_1">二、安装、卸载</h4>
@@ -168,11 +168,11 @@
 <span id="more"></span><!-- more -->
 
 <ul>
-<li>brew会创建/usr/local/Cellar/目录，用于存放通过其安装的程序，文件夹结构为“程序名/版本号”；</li>
-<li>/usr/local/bin/目录存放程序的启动链接（相当于快捷方式）；brew也会在此创建通过其安装的程序的启动链接</li>
-<li>brew安装的程序的配置文件默认存放在/usr/local/etc/目录中；</li>
+<li>brew会创建<code>/usr/local/Cellar/</code>目录，用于存放通过其安装的程序，文件夹结构为“程序名/版本号”；</li>
+<li><strong>/usr/local/bin/目录是操作系统用来存放程序的启动链接（相当于快捷方式）；brew也会在此创建通过其安装的程序的启动链接；</strong></li>
+<li>通过brew安装的程序的配置文件，默认存放在/usr/local/etc/目录中；</li>
 </ul></li>
-<li><p>在终端中执行以下指令（可在 <code>https://docs.brew.sh/FAQ.html</code> 页面中获取）即可自动卸载；</p>
+<li><p>在终端中执行以下指令（可在 <code>https://docs.brew.sh/FAQ.html</code> 页面中获取）即可自动卸载brew；</p>
 
 <pre><code class="language-ruby">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&quot;
 </code></pre></li>
@@ -181,10 +181,12 @@
 <h4 id="toc_2">三、brew常用命令</h4>
 
 <ul>
-<li><p>可以使用 <code>brew doctor</code> 命令检测操作brew（安装、卸载程序等）后是否有什么问题；比如，若报以下警告，按照提示进行解决，之后再执行 <code>source .bash_profile</code> ；<br/>
-<img src="media/14694520920617/brew_warning.png" alt="brew_warning" style="width:597px;"/></p></li>
-<li><p>执行 <code>brew install</code> 之后，要注意终端输出日志，从而采取操作的操作（caveats: 警告、附加说明）；<br/>
-<img src="media/14694520920617/caveats.png" alt="caveats" style="width:628px;"/></p>
+<li><p>可以使用 <code>brew doctor</code> 命令检测操作brew（安装、卸载程序等）后是否有什么问题；比如若报以下警告，则按照提示进行解决（之后再执行 <code>source .bash_profile</code>）；</p>
+
+<p><img src="media/14694520920617/brew_warning.png" alt="brew_warning" style="width:597px;"/></p></li>
+<li><p>执行 <code>brew install</code> 之后，要注意终端输出日志，从而采取进一步的操作；（caveats: 警告、附加说明）</p>
+
+<p><img src="media/14694520920617/caveats.png" alt="caveats" style="width:628px;"/></p>
 
 <pre><code>brew -h | --help # 查看brew帮助（使用--时，命令要写全）
 brew -v | --version # 查看brew当前的版本
@@ -208,19 +210,21 @@ brew home [NAME] # 使用浏览器打开brew（或某个程序）的主页
 brew services cleanup # 清除所有无用的services
 
 brew services run &lt;NAME&gt; # 启动某个services
+
 brew services start &lt;NAME&gt; # 启动某个services，并将设置开机自启动
-brew services stop &lt;NAME&gt;  # 关闭某个services，并将取消开机自启动
 brew services restart &lt;NAME&gt; # 重启某个services，并将设置开机自启动
+
+brew services stop &lt;NAME&gt;  # 关闭某个services，并将取消开机自启动
 </code></pre></li>
 </ul>
 
 <h4 id="toc_3">四、Homebrew-cask</h4>
 
 <ul>
-<li>Homebrew-cask是Homebrew的一个扩展，用于安装图形界面程序（例如Chrome、QQMusic等），其命令为 <code>brew cask ...</code> ；</li>
-<li>brew用于安装不带界面的命令行工具，brew cask用于安装带界面的应用软件；</li>
-<li>Homebrew-cask有两个安装索引源，一个是稳定版本 <code>https://github.com/phinze/homebrew-cask</code> ，一个是开发版本 <code>https://github.com/caskroom/homebrew-versions</code> ；安装了Homebrew即可直接使用Homebrew-cask稳定版本的索引源；</li>
-<li><p>Homebrew-cask和Homebrew的搜索、安装、卸载、更新等操作是独立的；</p>
+<li><p>Homebrew-cask是Homebrew的一个扩展，用于安装图形界面程序（例如Chrome、QQMusic等），其命令为 <code>brew cask ...</code> ；</p></li>
+<li><p>brew用于安装不带界面的命令行工具，brew cask用于安装带界面的应用软件；</p></li>
+<li><p>Homebrew-cask有两个安装索引源，一个是稳定版本 <code>https://github.com/phinze/homebrew-cask</code> ，一个是开发版本 <code>https://github.com/caskroom/homebrew-versions</code> ；安装了Homebrew，即可直接使用Homebrew-cask稳定版本的索引源；</p></li>
+<li><p><strong>Homebrew-cask和Homebrew的搜索、安装、卸载、更新等操作是独立的；</strong></p>
 
 <pre><code>brew cask list # 查看通过Homebrew-cask安装的程序
 brew cask search &lt;NAME&gt; # 搜索某个程序，例如brew cask search qqmusic
@@ -228,8 +232,11 @@ brew cask search &lt;NAME&gt; # 搜索某个程序，例如brew cask search qqmu
 brew cask install &lt;NAME&gt; # 安装某个程序（路径为/Applications目录），例如brew cask install qqmusic
 brew cask uninstall | remove &lt;NAME&gt; # 卸载某个程序，例如brew cask uninstall qqmusic
 ····
-</code></pre></li>
-<li><p>注意：Homebrew-cask<strong>没有提供<code>brew cask upgrade [NAME]</code>的命令升级程序版本</strong>，只能重新安装程序；</p></li>
+</code></pre>
+
+<ul>
+<li><strong>注意：Homebrew-cask没有提供<code>brew cask upgrade [NAME]</code>的命令升级程序版本，只能重新安装程序；</strong></li>
+</ul></li>
 </ul>
 
 <h4 id="toc_4">五、常用开发工具</h4>
@@ -248,9 +255,10 @@ brew cask uninstall | remove &lt;NAME&gt; # 卸载某个程序，例如brew cask
 <li>首先执行 <code>mysql.server start</code> 或 <code>brew servers start mysql</code> 启动MySQL（关闭使用stop命令），之后才可以连接数据库（<code>mysql -uroot</code>）；否则会报错：<code>Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (2)</code> ；</li>
 <li>MySQL默认没有设置密码；若需要设置密码，执行 <code>mysql_secure_installation</code> ，此时会提醒安装“VALIDATE PASSWORD PLUGIN”，选择<strong>NO</strong>，否则无法设置简单密码，之后按照后续提示进行操作即可；</li>
 </ul></li>
-<li><p>MySQL的数据库文件默认存放在/usr/local/var/mysql/目录中，可执行SQL语句进行查看：<code>show global variables like &quot;%datadir%&quot;;</code> ；当卸载时，若要完全删除MySQL，必须手动删除该数据库文件；<br/>
-<img src="media/14694520920617/datadir.png" alt="datadi" style="width:373px;"/></p></li>
-<li><p>通过brew安装MySQL，卸载时通过brew卸载即可；若是手动安装，则需要手动卸载（命令如下）；</p>
+<li><p>MySQL的数据库文件默认存放在/usr/local/var/mysql/目录中，可执行SQL语句进行查看：<code>show global variables like &quot;%datadir%&quot;;</code> ；当卸载时，若要完全删除MySQL，必须手动删除该数据库文件；</p>
+
+<p><img src="media/14694520920617/datadir.png" alt="datadi" style="width:373px;"/></p></li>
+<li><p>通过brew安装MySQL，卸载时通过brew卸载即可；若是手动安装，则需要手动卸载，命令如下：</p>
 
 <pre><code>sudo rm /usr/local/mysql
 sudo rm -rf /usr/local/mysql*
@@ -269,15 +277,12 @@ sudo rm -rf /usr/local/var/mysql # 删除数据库文件
 <h5 id="toc_6">5.2 Oracle Java</h5>
 
 <ul>
-<li><p>注意是使用Homebrew-cask进行安装（可以执行 <code>brew search java</code> 命令查询安装源是Homebrew，还是Homebrew-cask）；若之前手动安装过Oracle Java，需要先进行手动卸载（命令如下；参考 <code>https://docs.oracle.com/javase/9/install/installation-jdk-and-jre-macos.htm</code> ）；</p>
+<li><p>注意：使用Homebrew-cask进行安装（可以执行 <code>brew search java</code> 命令查询安装源是Homebrew，还是Homebrew-cask）；</p>
 
 <pre><code>brew cask install java # 安装Oracle Java
 brew cask uninstall java # 卸载Oracle Java
 </code></pre></li>
-<li><p>Uninstalling the JDK on macOS<br/>
-<img src="media/14694520920617/uninstall_jdk.png" alt="uninstall_jdk" style="width:871px;"/></p></li>
-<li><p>Uninstalling the JRE on macOS<br/>
-<img src="media/14694520920617/uninstall_jre.png" alt="uninstall_jre" style="width:875px;"/></p>
+<li><p>若之前手动安装过Oracle Java，需要先进行手动卸载，相关命令如下：</p>
 
 <pre><code>sudo rm -rf /Library/Java
 
@@ -290,22 +295,21 @@ sudo rm -rf /Library/Preferences/com.oracle.java.Helper-Tool.plist
 sudo rm -rf /Library/PrivilegedHelperTools/com.oracle.java.JavaUpdateHelper
 sudo rm /var/db/receipts/com.oracle.*
 ...
-</code></pre>
-
-<ul>
+</code></pre></li>
 <li><p>Shell命令补充：查找匹配、删除文件</p>
 
 <pre><code># 全盘查找带“编程”的目录（d）、普通文件（f）、链接文件（l）等文件
 find / -name &quot;*编程*&quot;
+
 # 当前目录查找带“编程”的普通文件
 find . -name &quot;*编程*&quot; -type f
+
 # -iname: 不区分大小写查找
 find / -iname &quot;*Abc*&quot;
 
 # 当前目录查找带“编程”的普通文件，并删除（不带打印）
 find . -name &quot;*编程*&quot; -type f | xargs rm -rf
 </code></pre></li>
-</ul></li>
 </ul>
 
 <h5 id="toc_7">5.3 Tomcat</h5>
@@ -326,16 +330,18 @@ catalina stop # 关闭tomcat
 <h5 id="toc_9">6.1 Cakebrew</h5>
 
 <ul>
-<li>Cakebrew是一个图形化的Homebrew，通过该工具不使用brew命令就可以进行Homebrew的管理；<code>https://www.cakebrew.com/</code>
-<img src="media/14694520920617/cakebrew.png" alt="cakebre" style="width:560px;"/></li>
+<li><p>Cakebrew是一个图形化的Homebrew，通过该工具可以不使用brew命令就可以进行Homebrew的管理（<code>https://www.cakebrew.com/</code>）；</p>
+
+<p><img src="media/14694520920617/cakebrew.png" alt="cakebre" style="width:560px;"/></p></li>
 </ul>
 
 <h5 id="toc_10">6.2 LaunchRocket</h5>
 
 <ul>
-<li>LaunchRocket可以管理通过Homebrew安装的service，查看service的运行状态；<code>https://github.com/jimbojsb/launchrocket</code></li>
-<li>注意：先将service关闭后，再通过LaunchRocket进行管理；
-<img src="media/14694520920617/launchrocket.png" alt="launchrocket" style="width:664px;"/></li>
+<li>LaunchRocket可以管理通过Homebrew安装的Service，查看Service的运行状态（<code>https://github.com/jimbojsb/launchrocket</code>）；</li>
+<li><p>注意：先将service关闭后，再通过LaunchRocket进行管理；</p>
+
+<p><img src="media/14694520920617/launchrocket.png" alt="launchrocket" style="width:664px;"/></p></li>
 </ul>
 
       </div>
@@ -344,14 +350,14 @@ catalina stop # 关闭tomcat
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="14702376488769.html" title="Previous Post: Python3环境搭建教程">&laquo; Python3环境搭建教程</a>
+            <a href="14694629279396.html" title="Previous Post: Node.js环境搭建教程">&laquo; Node.js环境搭建教程</a>
             
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="14694629279396.html" title="Next Post: Node.js环境搭建教程">Node.js环境搭建教程 &raquo;</a>
+            <a href="14699747303062.html" title="Next Post: Hexo博客配置使用教程">Hexo博客配置使用教程 &raquo;</a>
             
           </p>
         </div>
