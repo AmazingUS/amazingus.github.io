@@ -656,7 +656,7 @@ static id _instance;
 <li><strong>Swift的原生类中没有提供isEqual:方法，其使用 == 操作符的进行两个元素的判等；（等价于OC中的isEqual:方法）</strong></li>
 <li><strong>之所以可以对实例使用 == 操作符进行比较，就是因为操作符所操作的类型实现了Equatable协议；若没有实现该协议，则无法使用 == 操作符；</strong></li>
 <li><strong>Equatable协议中定义了 <code>static func ==(lhs: Self, rhs: Self) -&gt; Bool</code> 方法要求；</strong></li>
-<li><strong>Swift原生类型<code>几乎都</code>实现了Equatable协议；</strong></li>
+<li><strong>Swift内置的原生类型<code>几乎都</code>实现了Equatable协议；</strong></li>
 <li><p><strong>继承于NSObject的Swift类型</strong></p>
 
 <ul>
@@ -1049,19 +1049,23 @@ extension ABC {
 <li><p><strong>2、限定扩展</strong></p>
 
 <ul>
-<li><strong>a. <code>extesion ... where ...</code>，必须满足某些条件才进行扩展；</strong></li>
-<li><strong>b. 被扩展的只能是<code>带泛型的结构体</code>、<code>带泛型的类</code>、<code>带关联的协议、不带关联的协议</code>；</strong></li>
-<li><strong>c. 某些条件为<code>带泛型的（带关联的），限定泛型参数的类型</code>、<code>不带关联的，限定Self的类型</code>；</strong></li>
-<li><p>d. <code>https://stackoverflow.com/questions/36173544/trailing-where-clause-for-extension-of-non-generic-type</code></p>
+<li><p><strong>a. <code>extesion ... where ...</code>，必须满足某些条件才进行扩展；</strong></p>
+
+<ul>
+<li><strong>a）被扩展的只能是<code>不带关联的协议</code>、<code>带泛型的结构体</code>、<code>带泛型的类</code>、<code>带关联的协议</code>；</strong></li>
+<li><strong>b）某些条件为<code>不带关联的，限定Self的类型</code>、<code>带泛型的（带关联的），限定泛型参数的类型</code>；</strong></li>
+<li>c）<strong>总结：若是扩展类、结构体，则必须是带泛型的，而且where必须是限定泛型参数的类型；若是扩展协议，则不要求是否带泛型，where可以限定Self的类型，或限定泛型参数的类型；</strong></li>
+<li><p>d) <code>https://stackoverflow.com/questions/36173544/trailing-where-clause-for-extension-of-non-generic-type</code></p>
 
 <pre><code>// ❌
 extension UINavigationController where Self: UINavigationControllerDelegate
-// ✅
+// ✅ 扩展协议限定Self的类型
 extension UINavigationControllerDelegate where Self: UINavigationController
 </code></pre></li>
-<li><p><strong>e. Swift 3.0开始，支持通过协议进行限制；</strong></p>
+</ul></li>
+<li><p><strong>b. Swift 3.0开始，支持通过协议进行限制；</strong></p>
 
-<pre><code class="language-swift">// 对结构体进行限制
+<pre><code class="language-swift">// 对泛型结构体进行限制“泛型参数的类型”
 extension Array where Element: Comparable {
     func lessThanFirst() -&gt; [Element] {
         guard let first = self.first else { return [] }
@@ -1069,7 +1073,7 @@ extension Array where Element: Comparable {
     }
 }
 
-// 对协议进行限制
+// 对协议进行限制“泛型参数的类型”
 extension Collection where Element: Comparable {
     func lessThanFirst() -&gt; [Element] {
         guard let first = self.first else { return [] }
@@ -1077,9 +1081,9 @@ extension Collection where Element: Comparable {
     }
 }
 </code></pre></li>
-<li><p><strong>f. Swift 3.1开始，还支持通过类型进行限制；</strong></p>
+<li><p><strong>c. Swift 3.1开始，还支持通过类型进行限制；</strong></p>
 
-<pre><code class="language-swift">// 对结构体进行限制
+<pre><code class="language-swift">// 对泛型结构体进行限制“泛型参数的类型”
 extension Array where Element == Int {
     func lessThanFirst() -&gt; [Int] {
         guard let first = self.first else { return [] }
@@ -1087,7 +1091,7 @@ extension Array where Element == Int {
     }
 }
 
-// 对协议进行限制
+// 对协议进行限制“泛型参数的类型”
 extension Collection where Element == Int {
     func lessThanFirst() -&gt; [Int] {
         guard let first = self.first else { return [] }
@@ -1680,6 +1684,9 @@ override func viewDidLoad() {
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15703760378326.html">NIB、XIB、StoryBoard与UIViewController、UIView</a>
+              </li>
+                 <li class="post">
               <a href="15626010144789.html">iOS状态栏</a>
               </li>
                  <li class="post">
@@ -1690,9 +1697,6 @@ override func viewDidLoad() {
               </li>
                  <li class="post">
               <a href="15590617242967.html">Sublime配置使用教程</a>
-              </li>
-                 <li class="post">
-              <a href="15580276420967.html">iOS照片框架</a>
               </li>
                                              
           </ul>

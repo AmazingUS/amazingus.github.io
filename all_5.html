@@ -95,6 +95,128 @@
 
       
       <div class="article">
+        <a class="clearlink" href="15312301698124.html">
+          
+          <h1>Swift知识点总结</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <ul>
+<li>
+<a href="#toc_0">一、@objc</a>
+</li>
+<li>
+<a href="#toc_1">二、#selector</a>
+<ul>
+<li>
+<a href="#toc_2">（一）定义的格式</a>
+</li>
+<li>
+<a href="#toc_3">（二）方法定义的规定</a>
+</li>
+<li>
+<a href="#toc_4">（三）self问题</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_5">三、懒加载</a>
+<ul>
+<li>
+<a href="#toc_6">（一）懒加载情景</a>
+</li>
+<li>
+<a href="#toc_7">（二）延迟属性与闭包</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">四、dispatch_once</a>
+</li>
+<li>
+<a href="#toc_9">五、单例模式</a>
+</li>
+<li>
+<a href="#toc_10">六、Equatable、Hashable协议</a>
+<ul>
+<li>
+<a href="#toc_11">（一）Objective-C的 ==、isEqual:、isEqualToString:、hash</a>
+</li>
+<li>
+<a href="#toc_12">（二）swift的 === 、==、Equatable、Hashable、Comparable</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_13">七、NSString、String编码</a>
+<ul>
+<li>
+<a href="#toc_14">（一）NSString</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_15">八、构造器</a>
+</li>
+<li>
+<a href="#toc_16">九、错误处理方式</a>
+</li>
+<li>
+<a href="#toc_17">十、扩展、协议</a>
+</li>
+<li>
+<a href="#toc_18">十一、编译器合成 (synthesize)</a>
+</li>
+<li>
+<a href="#toc_19">十二、代理</a>
+</li>
+<li>
+<a href="#toc_20">十三、KVO、KVC</a>
+</li>
+<li>
+<a href="#toc_21">十四、常见错误</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、@objc</h4>
+
+<ul>
+<li><p>作用：将Swift API暴露给ObjC使用，需要增加@objc关键字；</p></li>
+<li><p><strong>1、Swift 3.0</strong></p>
+
+<ul>
+<li><p>a. 编译器默认给继承于NSObject的类的所有方法都隐式添加@objc；缺点是大量@objc导致二进制文件增大；</p>
+
+<pre><code class="language-swift">class MyClass: NSObject {
+    func print() { } // 包含隐式的 @objc
+}
+</code></pre></li>
+</ul>
+
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15312301698124.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2018/5/10</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
         <a class="clearlink" href="15247648225940.html">
           
           <h1>Android编程权威指南 笔记(25~31)</h1>
@@ -715,141 +837,6 @@
         </div>
       </div>
       
-      <div class="article">
-        <a class="clearlink" href="15221600755364.html">
-          
-          <h1>Android编程权威指南 笔记(01~06)</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">第1章 Android开发初体验</a>
-<ul>
-<li>
-<a href="#toc_1">1.4 用户界面设计</a>
-</li>
-<li>
-<a href="#toc_2">1.5 从布局XML到视图对象</a>
-</li>
-<li>
-<a href="#toc_3">1.6 组件的实际应用</a>
-</li>
-<li>
-<a href="#toc_4">1.7 创建提示消息</a>
-</li>
-<li>
-<a href="#toc_5">1.9 深入学习：Android编译过程</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_6">第2章 Android与MVC设计模式</a>
-<ul>
-<li>
-<a href="#toc_7">2.1 创建新类</a>
-</li>
-<li>
-<a href="#toc_8">2.2 Android与MVC设计模式</a>
-</li>
-<li>
-<a href="#toc_9">2.6 添加图标资源</a>
-</li>
-<li>
-<a href="#toc_10">2.9 挑战练习：从按钮到图标按钮</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_11">第3章 activity的生命周期</a>
-<ul>
-<li>
-<a href="#toc_12">3.0. 概述</a>
-</li>
-<li>
-<a href="#toc_13">3.1 日志跟踪理解activity生命周期</a>
-</li>
-<li>
-<a href="#toc_14">3.2 设备旋转与activity生命周期</a>
-</li>
-<li>
-<a href="#toc_15">3.3 保存数据以应对设备旋转</a>
-</li>
-<li>
-<a href="#toc_16">3.4 再探activity生命周期</a>
-</li>
-<li>
-<a href="#toc_17">3.5 深入学习：activity内存清理现状</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_18">第4章 Android应用的调试</a>
-<ul>
-<li>
-<a href="#toc_19">4.1 异常与栈跟踪</a>
-</li>
-<li>
-<a href="#toc_20">4.2 Android特有的调试工具</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_21">第5章 第二个activity</a>
-<ul>
-<li>
-<a href="#toc_22">5.1 创建第二个activity</a>
-</li>
-<li>
-<a href="#toc_23">5.2 启动activity</a>
-</li>
-<li>
-<a href="#toc_24">5.3 activity间传递数据</a>
-</li>
-<li>
-<a href="#toc_25">5.4 activity的使用与管理</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_26">第6章 第Android SDK版本与兼容</a>
-<ul>
-<li>
-<a href="#toc_27">6.1 Android SDK版本</a>
-</li>
-<li>
-<a href="#toc_28">6.2 Android编程与兼容性问题</a>
-</li>
-<li>
-<a href="#toc_29">6.3 使用Android开发者文档</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15221600755364.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/3/27</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
 
       <div class="row">
         <div class="large-6 columns">
@@ -902,6 +889,9 @@
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15703760378326.html">NIB、XIB、StoryBoard与UIViewController、UIView</a>
+              </li>
+                 <li class="post">
               <a href="15626010144789.html">iOS状态栏</a>
               </li>
                  <li class="post">
@@ -912,9 +902,6 @@
               </li>
                  <li class="post">
               <a href="15590617242967.html">Sublime配置使用教程</a>
-              </li>
-                 <li class="post">
-              <a href="15580276420967.html">iOS照片框架</a>
               </li>
                                              
           </ul>
