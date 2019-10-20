@@ -1257,7 +1257,7 @@ struct BClass: Equatable {
 </code></pre></li>
 </ul></li>
 </ul></li>
-<li><p><strong>6、补充：泛型的类型约束（只能添加到泛型参量上）</strong></p>
+<li><p><strong>6、补充：泛型的类型约束（只能添加到泛型参数上）</strong></p>
 
 <ul>
 <li><p>语法形式有：</p>
@@ -1266,7 +1266,7 @@ struct BClass: Equatable {
 <li><p><strong>a. 继承类语法</strong></p>
 
 <ul>
-<li>继承类语法是约束语法的简化形式，直接把约束添加到类型参量的声明中；</li>
+<li>继承类语法是约束语法的简化形式，直接把约束添加到类型参数的声明中；</li>
 <li>适用于继承、遵循形式；</li>
 </ul>
 
@@ -1276,7 +1276,7 @@ struct BClass: Equatable {
 
 <ul>
 <li>约束从主声明中剥离，增加了可读性；</li>
-<li>也可以添加非继承、遵循形式的约束、复杂的约束；</li>
+<li>适用于继承、遵循形式，也适用于非继承、非遵循形式的约束，可以同时存在多个约束；</li>
 </ul>
 
 <pre><code class="language-swift">public extension Thenable where T: Sequence, T.Iterator.Element: Comparable

@@ -113,7 +113,7 @@
 <a href="#toc_0">一、概述</a>
 </li>
 <li>
-<a href="#toc_1">二、加载XIB、StoryBoard</a>
+<a href="#toc_1">二、加载XIB、SB</a>
 </li>
 <li>
 <a href="#toc_2">三、UIViewController、UIView的初始化方式</a>
@@ -155,7 +155,7 @@
 
 <span id="more"></span><!-- more -->   
 
-<h4 id="toc_1">二、加载XIB、StoryBoard</h4>
+<h4 id="toc_1">二、加载XIB、SB</h4>
 
 <ul>
 <li><p>1、XIB文件的下面这些配置，决定 <code>从哪里</code> <code>如何加载</code> XIB中的视图；</p>
@@ -350,7 +350,7 @@ var cell = tableView.dequeueReusableCell(withIdentifier: &quot;cell2&quot;, for:
 <li>在<code>awakeFromNib</code>方法中，可以使用XIB、SB连线出来的属性了；</li>
 </ul></li>
 </ul></li>
-<li><p>7、<strong>StoryBoard通过<code>View Controller Scene</code>管理ViewController（<code>一一对应</code>）；</strong></p>
+<li><p>7、<strong>SB通过<code>View Controller Scene</code>管理ViewController（<code>一一对应</code>）；</strong></p>
 
 <p><img src="media/15703760378326/sb_01.png" alt="sb_01" style="width:752px;"/></p>
 
@@ -415,7 +415,7 @@ if cell == nil {
 <h4 id="toc_2">三、UIViewController、UIView的初始化方式</h4>
 
 <ul>
-<li><p>1、<strong>UIViewController的初始化有三种方式：代码初始化、使用XIB初始化、使用Storyboard初始化；</strong></p>
+<li><p>1、<strong>UIViewController的初始化有三种方式：代码初始化、使用XIB初始化、使用SB初始化；</strong></p>
 
 <ul>
 <li><p>a. 代码初始化</p>
@@ -434,7 +434,7 @@ if cell == nil {
 <ul>
 <li><strong>会依次调用<code>UIViewController</code>的<code>initWithNibName</code>、<code>awakeFromNib</code>、<code>loadView</code>、<code>viewDidLoad</code>方法；</strong></li>
 </ul></li>
-<li><p>c. 使用Storyboard初始化</p>
+<li><p>c. 使用SB初始化</p>
 
 <ul>
 <li><strong>会依次调用<code>UIViewController</code>的<code>initWithCoder</code>、<code>awakeFromNib</code>、<code>loadView</code>、<code>viewDidLoad</code>方法；</strong></li>
