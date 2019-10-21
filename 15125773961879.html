@@ -230,12 +230,46 @@ Hello, world!
 
 <ul>
 <li>正常名称的函数、变量都是公开的（public）,可以被其他模块导入后直接使用，比如abc</li>
-<li>若仅仅让函数、变量在模块内部使用，可以通过给名称加‘_’前缀来表示非公开的（private），比如_abc
+<li><strong>若仅仅让函数、变量在模块内部使用，可以通过给名称加‘_’前缀来表示非公开的（private），但__xxx__这样形式的名称除外（是公开的（public））；比如_abc、__abc</strong></li>
+<li><p><strong>Python函数名、变量名形式分类</strong></p>
 
-<ul>
-<li>但是，类似__xxx__这样名称的变量是有特殊用途的变量，是公开的（public），可以直接使用，如上面的__author__、__name__、__doc__（定义文档注释）</li>
-<li>注意：虽然类似_xxx和__xxx这样名称的函数、变量是非公开的（private）不应该被直接使用，比如_abc、__abc，但是实际上还是可以被访问的；<strong>是按照约定不应该，而不是不可以</strong></li>
-</ul></li>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>说明</th>
+<th>访问限制</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>xx</td>
+<td>公有名称</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>_xx，前置单下划线</td>
+<td>私有名称</td>
+<td>当前类、子类可访问； 可通过间接方式访问</td>
+</tr>
+<tr>
+<td>xx_，后置单下划线</td>
+<td>公有名称，可用于避免与Python关键词冲突</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>__xx，前置双下划线</td>
+<td>私有名称</td>
+<td>当前类内可访问，可以避免与子类中的命名冲突； 可通过间接方式访问</td>
+</tr>
+<tr>
+<td>__xx__，前后双下划线</td>
+<td>公有名称，Python内置特殊名称，如__init__等</td>
+<td>无限制</td>
+</tr>
+</tbody>
+</table></li>
 <li><p>可以通过在定义公开的函数中，调用私有的函数、变量的方式（在模块中没有私有访问限制的问题），让外界可以间接使用私有的函数、变量</p>
 
 <pre><code class="language-python">def _private_1(name):
@@ -250,10 +284,6 @@ def greeting(name):
 
 &gt;&gt;&gt; from testpy import greeting
 &gt;&gt;&gt; greeting(&#39;test&#39;)
-&#39;Hello, test&#39;
-
-&gt;&gt;&gt; from testpy import _private_1
-&gt;&gt;&gt; _private_1(&#39;test&#39;)
 &#39;Hello, test&#39;
 </code></pre></li>
 </ul>
@@ -342,7 +372,6 @@ AttributeError: &#39;Student&#39; object has no attribute &#39;intro&#39;
 <ul>
 <li>只能内部可以访问，外部不能直接访问（但是通过特殊手段，还是可以间接访问的）</li>
 <li>上面定义的Student类，外部代码是可以自由地修改一个实例的name、score属性</li>
-<li><strong>注意：模块中的函数、变量只是人为意识上的私有（加一个、两个下划线都是，只要以下划线开始），实际上还是可以直接访问的</strong></li>
 </ul>
 
 <pre><code class="language-python">class Student(object):

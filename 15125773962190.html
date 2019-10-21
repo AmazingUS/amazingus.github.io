@@ -163,10 +163,11 @@
 <li>?表示0个或1个</li>
 <li>{n}表示n个，{n, m}表示n~m个，例如[a-zA-Z_][0-9a-zA-Z_]{0, 19}匹配长度为1-20个字符（前面1个是字母或下划线，后面最多19个数字、字母或下划线）</li>
 </ul></li>
-<li>^表示行的开头，例如<sup>\d表示必须以数字开头</sup></li>
-<li>\(表示行的结束，\d\)表示必须以数字结束，py可以匹配python，但是<sup>py$就只能匹配py</sup></li>
+<li>^表示行的开头，例如^\d表示必须以数字开头</li>
+<li>$表示行的结束，\d$表示必须以数字结束，py可以匹配python，但是<sup>py$就只能匹配py</sup></li>
 <li>A|B表示可以匹配A或B，但有时候需要加小括号()进行限制长度（此时也就会出现了分组）；例如(P|p)ython可以匹配Python或python，P|python只能匹配P或python</li>
 <li>单个字符的或匹配，也可以使用字符集[]来实现，例如[Pp]ython可以匹配Python或python</li>
+<li><strong>若字符串中的所有特殊字符都需要转义，则使用r&#39;&#39;，例如print(r&#39;\tabc\r\&#39;&#39;) # 结果为\tabc\r\&#39;</strong></li>
 </ul>
 
 <span id="more"></span><!-- more -->
