@@ -379,7 +379,7 @@ print(&#39;hello %s&#39; % s, s)    # hello world world
 <pre><code class="language-python">age = 0
 
 if age &gt; 18:
-    print(&#39;your age is&#39;, age)
+   print(&#39;your age is&#39;, age)
    print(&#39;adult&#39;)
 print(&#39;haha&#39;)
 </code></pre></li>
@@ -416,14 +416,14 @@ print(&#39;haha&#39;)
 <ul>
 <li><p>调用不可变对象的任何方法，不会改变对象自身的内容，方法会创建新的对象并进行返回</p>
 
-<pre><code class="language-python"># 可变：如list
+<pre><code class="language-python"># 可变，如list
 a = [&#39;d&#39;, &#39;b&#39;, &#39;c&#39;] 
 a.sort()
 a  # [&#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
 
-# 不可变：如str
-a = &#39;abc&#39;  # a是变量，&#39;abc&#39;是字符串对象，a指向&#39;abc&#39;
-a.replace(&#39;a&#39;, &#39;A&#39;)  # &#39;Abc&#39;
+# 不可变，如str
+a = &#39;abc&#39;
+a.replace(&#39;a&#39;, &#39;A&#39;)  # 返回&#39;Abc&#39;
 a   # &#39;abc&#39;
 </code></pre></li>
 </ul>

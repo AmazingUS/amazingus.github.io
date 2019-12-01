@@ -182,7 +182,7 @@
 s = r&#39;ABC\\-001&#39; # 字符串为&#39;ABC\\-001&#39;  
 </code></pre></li>
 <li><p>re.match()：从字符串的起点进行匹配，成功返回一个Match，否则返回None</p></li>
-<li><p>re.search()：在字符串内查找匹配，只找到一个就匹配返回，成功返回一个Match，否则返回None；re.search(r&#39;<sup>a&#39;,</sup> &#39;cba&#39;)与re.match(r&#39;a&#39;, &#39;cba&#39;)是等价的</p></li>
+<li><p>re.search()：在字符串内查找匹配，只找到一个就匹配返回，成功返回一个Match，否则返回None；<code>re.search(r&#39;^a&#39;, &#39;cba&#39;)</code>与<code>re.match(r&#39;a&#39;, &#39;cba&#39;)</code>是等价的</p></li>
 <li><p>re.sub()：用于替换字符串中的匹配项</p></li>
 <li><p>re.split()：分割字符串，使用正则表更灵活（可以识别连续空格）</p></li>
 <li><p>re.findall()：以list形式返回全部匹配的子串</p>
@@ -261,8 +261,8 @@ print(m)  # (&#39;010&#39;, &#39;12345&#39;)
 
 <ul>
 <li>re.I(IGNORECASE；忽略大小写)</li>
-<li>re.M(MULTILINE；多行模式，改变&#39;<sup>&#39;和&#39;$&#39;的行为)</sup></li>
-<li>re.S(DOTALL；点任意匹配模式，改变&#39;.&#39;的行为)；</li>
+<li>re.M(MULTILINE；多行模式，改变<code>&#39;^&#39;</code>和<code>&#39;$&#39;</code>的行为)</li>
+<li>re.S(DOTALL；点任意匹配模式，改变<code>&#39;.&#39;</code>的行为)；</li>
 <li>多个匹配模式使用或运算符|进行组合</li>
 </ul></li>
 </ul>
