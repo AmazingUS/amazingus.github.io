@@ -175,7 +175,7 @@ UIApplication.shared.statusBarStyle = .default
 <li><p>设置：</p>
 
 <pre><code class="language-swift">// 设置状态栏显示隐藏
-// 默认值：竖屏VC的为true、横屏VC的为false
+// 默认值：竖屏VC的为false、横屏VC的为true
 open var prefersStatusBarHidden: Bool { get }
 
 // 设置状态栏样式
@@ -191,8 +191,12 @@ open func setNeedsStatusBarAppearanceUpdate()
 </code></pre>
 
 <ul>
-<li><strong>a. 横屏模式下，系统会自动将状态栏会隐藏，可以重写prefersStatusBarHidden返回true，让其一直显示；</strong></li>
-<li><p><strong>b. 若当前控制器是UINavigationController的子控制器，则当前控制器的preferredStatusBarStyle不会被调用，导航控制器的preferredStatusBarStyle才具有修改状态栏样式的能力；有两种方式可以解决：</strong></p>
+<li><p><strong>a. 横屏模式下，系统会自动将状态栏会隐藏，可以重写prefersStatusBarHidden返回true，让其一直显示；</strong></p>
+
+<ul>
+<li><strong>注意：iOS 11，iPhone X被设置横屏模式强制隐藏，重写无效；iOS 13，所有iPhone被设置横屏模式强制隐藏，重写无效；</strong></li>
+</ul></li>
+<li><p><strong>b. 若当前控制器是UINavigationController的子控制器，则当前控制器的preferredStatusBarXX方法不会被调用，导航控制器的preferredStatusBarXX才具有修改状态栏的能力；有两种方式可以解决（以Style为例）：</strong></p>
 
 <ul>
 <li><p><strong>a) 方式1：重写UINavigationController的<code>preferredStatusBarStyle</code>，直接返回当前显示VC的preferredStatusBarStyle；</strong></p>
@@ -276,6 +280,9 @@ override var preferredStatusBarStyle: UIStatusBarStyle {
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="15859991604863.html">多线程与GCD</a>
+              </li>
+                 <li class="post">
               <a href="15703760378326.html">NIB、XIB、StoryBoard与UIViewController、UIView</a>
               </li>
                  <li class="post">
@@ -286,9 +293,6 @@ override var preferredStatusBarStyle: UIStatusBarStyle {
               </li>
                  <li class="post">
               <a href="15590636648081.html">OpenCV配置使用</a>
-              </li>
-                 <li class="post">
-              <a href="15590617242967.html">Sublime配置使用教程</a>
               </li>
                                              
           </ul>
