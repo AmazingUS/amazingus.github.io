@@ -121,6 +121,9 @@
 <li>
 <a href="#toc_3">2、方式2：控制器单独设置（iOS 7开始支持）</a>
 </li>
+<li>
+<a href="#toc_4">3、补充：当前控制器是UINavigationController的子控制器</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -195,6 +198,8 @@ open func setNeedsStatusBarAppearanceUpdate()
 
 <ul>
 <li><strong>注意：iOS 11，iPhone X被设置横屏模式强制隐藏，重写无效；iOS 13，所有iPhone被设置横屏模式强制隐藏，重写无效；</strong></li>
+<li><code>https://stackoverflow.com/questions/46666603/status-bar-in-landscape-for-iphone-x</code>；</li>
+<li><code>https://stackoverflow.com/questions/57590252/ios-13-status-bar-hidden-for-all-iphone-types-in-landscape</code>；</li>
 </ul></li>
 <li><p><strong>b. 若当前控制器是UINavigationController的子控制器，则当前控制器的preferredStatusBarXX方法不会被调用，导航控制器的preferredStatusBarXX才具有修改状态栏的能力；有两种方式可以解决（以Style为例）：</strong></p>
 
@@ -218,6 +223,32 @@ override var preferredStatusBarStyle: UIStatusBarStyle {
 </ul></li>
 </ul></li>
 </ul></li>
+</ul>
+
+<h5 id="toc_4">3、补充：当前控制器是UINavigationController的子控制器</h5>
+
+<ul>
+<li><p>1）当Navigation Bar不可见时，由栈顶的Content ViewController负责管理Status Bar Style；</p></li>
+<li><p>2）当Navigation Bar可见时，由NavigationController负责管理Status Bar Style；NavigationController往往都是系统默认的UINavigationController，若Status Bar Style不符合要求，有两种解决方式：</p>
+
+<ul>
+<li><strong>a. 继承UINavigationController，重写preferredStatusBarStyle属性；</strong></li>
+<li><strong>b. 不继承UINavigationController（没有办法继承，如系统组件MFMailComposeViewController）:</strong>
+
+<ul>
+<li>a）Navigation Bar的barStyle属性决定外观，修改barStyle会联动改变Status Bar Style：</li>
+<li>b）当barStyle = .default时，Navigation Bar显示为黑色，此时Status Bar显示为白色；</li>
+<li>c）当barStyle = .black时，Navigation Bar显示为白色，此时Status Bar显示为黑色；</li>
+<li>d）设置barStyle后，会改变Navigation Bar的颜色，因此需要先修改barStyle，再设置barTintColor；（通过barTintColor可以自定义Navigation Bar的外观）</li>
+</ul></li>
+</ul></li>
+<li><p>3）通过Modal Presentation呈现的VC，若也是嵌套在NavigationController中，规则和上面的描述一致；</p>
+
+<ul>
+<li>但是只有当modalPresentationStyle为.fullScreen（全屏Presentation），呈现出的视图才对Status Bar Style有发言权，否则还是由原先的ViewController控制；</li>
+<li><strong>若非要在不全屏Presentation的ViewController中控制Status Bar Style，通过设置modalPresentationCapturesStatusBarAppearance为true解决；</strong></li>
+</ul></li>
+<li><p>4）参考：<code>https://www.jianshu.com/p/4008c08a2df2</code>；</p></li>
 </ul>
 
       </div>
