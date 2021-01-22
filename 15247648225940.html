@@ -287,7 +287,7 @@ HttpURLConnection connection = (HttpURLConnection)url.openConnection();
 <li><p>创建了URL并打开网络连接之后，就可以循环调用read()方法读取网络数据直到取完为止；只要还有数据，InputStream类就会不断地输出字节流数据；</p></li>
 <li><p>连接网络需要先获取使用网络的权限，需要在AndroidManifest.xml文件中添加权限声明：</p>
 
-<pre><code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+<pre><code class="language-text">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
 </code></pre></li>
 <li><p>Android M中权限管理得到了加强，有些只要在AndroidManifest.xml中进行声明，有些危险性权限（如获取设备地理位置信息权限），既需要进行声明又需要<code>运行时动态申请</code>；</p></li>
 </ul>
@@ -415,7 +415,7 @@ haveABaby.execute();
 <ul>
 <li><p>获取res/drawable目录中的图片：</p>
 
-<pre><code>Drawable placeholder = getResources().getDrawable(R.drawable.bill_up_close);
+<pre><code class="language-text">Drawable placeholder = getResources().getDrawable(R.drawable.bill_up_close);
 </code></pre></li>
 </ul>
 
@@ -571,7 +571,7 @@ m.callback = myRunnable;
 <li><p><strong>可以使用SearchView来实现搜索功能，SearhView是个<code>操作视图</code>（Action View）；所谓<code>操作视图</code>就是可以内置在工具栏中的视图，SearchVew可以让整个搜索界面完全内置在应用的工具栏中；</strong></p></li>
 <li><p>在应用顶部的工具栏的自定义菜单xml文件添加SearchView；</p>
 
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+<pre><code class="language-text">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
       xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;
     &lt;item android:id=&quot;@+id/menu_item_search&quot;
@@ -891,7 +891,7 @@ public void onDestroy() {
 <li><p>任务结束，可以调用<code>jobFinished(JobParameters, boolean)</code>方法通知结果；第二个参数若为true，表示任务其实还没有做完，下次继续；</p></li>
 <li><p>在manifest中配置文件中登记服务时，必须将其导出并添加权限；导出就是将服务暴露出来，添加的权限控制只有JobScheduler才能运行；</p>
 
-<pre><code>&lt;service android:name=&quot;.PollService&quot;
+<pre><code class="language-text">&lt;service android:name=&quot;.PollService&quot;
     android:permission=&quot;android.permission.BIND_JOB_SERVICE&quot;
     android:exported=&quot;true&quot;/&gt;
 </code></pre></li>
@@ -958,14 +958,14 @@ for (JobInfo jobInfo : scheduler.getAllPendingJobs()) {
 <li><strong>最后需添加相应的use-permission标签；</strong></li>
 </ul>
 
-<pre><code>&lt;receiver android:name=&quot;.StartupReceiver&quot;&gt;
+<pre><code class="language-text">&lt;receiver android:name=&quot;.StartupReceiver&quot;&gt;
     &lt;intent-filter&gt;
         &lt;action android:name=&quot;android.intent.action.BOOT_COMPLETED&quot;/&gt;
     &lt;/intent-filter&gt;
 &lt;/receiver&gt;
 </code></pre>
 
-<pre><code>&lt;uses-permission android:name=&quot;android.permission.RECEIVE_BOOT_COMPLETED&quot; /&gt;
+<pre><code class="language-text">&lt;uses-permission android:name=&quot;android.permission.RECEIVE_BOOT_COMPLETED&quot; /&gt;
 </code></pre></li>
 <li><p>Android Device Monitor在KitKat之前被称为DDMS（Dalvik Debug Monitor Server）；</p>
 
@@ -1014,12 +1014,12 @@ getActivity().registerReceiver(mOnShowNotification, filter);
 <li><strong>a. 在manifest配置文件中给receiver标签添加一个<code>android:exported=&quot;false&quot;</code>属性，声明其仅供应用内部使用，这样系统中的其他应用就再也无法接触到该receiver；</strong></li>
 <li><p><strong>b. 创建自己的使用权限（在manifest文件中使用<code>permission</code>标签创建），之后声明获取相应的使用权限（使用<code>uses-permission</code>标签）；即使是自定义的权限，也必须在使用这个权限前获取它；</strong></p>
 
-<pre><code>&lt;permission 
+<pre><code class="language-text">&lt;permission 
     android:name=&quot;com.bignerdranch.android.photogallery.PRIVATE&quot;
     android:protectionLevel=&quot;signature&quot; /&gt;
 </code></pre>
 
-<pre><code>&lt;uses-permission android:name=&quot;com.bignerdranch.android.photogallery.PRIVATE&quot; /&gt;
+<pre><code class="language-text">&lt;uses-permission android:name=&quot;com.bignerdranch.android.photogallery.PRIVATE&quot; /&gt;
 </code></pre>
 
 <ul>
@@ -1056,7 +1056,7 @@ mOnShowNotification, filter, PollService.PERM_PRIVATE, null);
 <li><p><strong>设置结果数据，可以调用setResultCode(int)、setResultData(String)、setResultExtras(Bundle)、setResult(int, String, Bundle)等方法；</strong></p></li>
 <li><p>broadcast receiver设置优先级，数值越大越先接收到broadcast intent；用户可以定义的最低优先级为-999，-1000及以下值为系统保留值；</p>
 
-<pre><code>&lt;receiver android:name=&quot;.NotificationReceiver&quot; android:exported=&quot;false&quot;&gt;
+<pre><code class="language-text">&lt;receiver android:name=&quot;.NotificationReceiver&quot; android:exported=&quot;false&quot;&gt;
     &lt;intent-filter android:priority=&quot;-999&quot;&gt;
         &lt;action android:name=&quot;com.example.scott.photogallery.SHOW_NOTIFICATION&quot;/&gt;
     &lt;/intent-filter&gt;

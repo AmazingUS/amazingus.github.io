@@ -208,7 +208,7 @@
 <li><strong>a. 隐式添加@objc只存在以下场景：覆盖父类的ObjC方法、符合一个ObjC的协议；</strong></li>
 <li><p>b. 显式给方法添加@objc；</p>
 
-<pre><code>class MyClass: NSObject {
+<pre><code class="language-text">class MyClass: NSObject {
     @objc func print() { } // 显示加上 @objc
 }
 </code></pre></li>
@@ -446,7 +446,7 @@ class MyManager {
 }
 </code></pre>
 
-<pre><code>// 优化版：使用 私有的全局量 存储单例对象
+<pre><code class="language-text">// 优化版：使用 私有的全局量 存储单例对象
 private let sharedInstance = MyManager()
 
 class MyManager  {
@@ -461,7 +461,7 @@ class MyManager  {
 <ul>
 <li><p><strong>类开始支持类型存储型属性（let、var）；</strong></p>
 
-<pre><code>class MyManager {
+<pre><code class="language-text">class MyManager {
     private static let sharedInstance : MyManager = MyManager()
     class var sharedManager : MyManager {
         return sharedInstance
@@ -470,7 +470,7 @@ class MyManager  {
 }
 </code></pre>
 
-<pre><code>// 最终版
+<pre><code class="language-text">// 最终版
 class MyManager  {
     static let sharedInstance = MyManager()
     private init() {}
@@ -479,14 +479,14 @@ class MyManager  {
 </ul></li>
 <li><p><strong>3、补充（ObjC单例）</strong></p>
 
-<pre><code class="language-ObjC">@interface MyManager : NSObject
+<pre><code class="language-objectivec">@interface MyManager : NSObject
 
 + (instancetype)sharedManager;
 
 @end
 </code></pre>
 
-<pre><code class="language-ObjC">/**
+<pre><code class="language-objectivec">/**
  *  饿汉式，类被加载时就创建唯一实例
  */
 @implementation MyManager
@@ -526,7 +526,7 @@ static id _instance;
 @end
 </code></pre>
 
-<pre><code class="language-ObjC">/**
+<pre><code class="language-objectivec">/**
  *  懒汉式，使用时再创建唯一实例
  */
 @implementation MyManager
@@ -572,7 +572,7 @@ static id _instance;
 @end
 </code></pre>
 
-<pre><code class="language-ObjC">// MRC情况下还需要实现以下方法
+<pre><code class="language-objectivec">// MRC情况下还需要实现以下方法
 - (oneway void)release {}
 - (id)autorelease { return self; }
 - (id)retain { return self; }
@@ -702,7 +702,7 @@ struct Person: Hashable {
 }
 </code></pre>
 
-<pre><code>// Swift 4.2开始，实现Hashable协议
+<pre><code class="language-text">// Swift 4.2开始，实现Hashable协议
 struct Person: Hashable {
     var name: String
     var age: Int
@@ -938,7 +938,7 @@ struct Item {
 <ul>
 <li><p><strong>由于vend(itemNamed:)方法传递它抛出的任何错误，所以在调用它的代码，要么直接处理错误（使用do-try-catch、try?、try!），要么继续传递它们（只使用try）；</strong></p>
 
-<pre><code>let favoriteSnacks = [
+<pre><code class="language-text">let favoriteSnacks = [
     &quot;Alice&quot;: &quot;Chips&quot;,
     &quot;Bob&quot;: &quot;Licorice&quot;,
     &quot;Eve&quot;: &quot;Pretzels&quot;,
@@ -1057,7 +1057,7 @@ extension ABC {
 <li>c）<strong>总结：若是扩展类、结构体，则必须是带泛型的，而且where必须是限定泛型参数的类型；若是扩展协议，则不要求是否带泛型，where可以限定Self的类型，或限定泛型参数的类型；</strong></li>
 <li><p>d) <code>https://stackoverflow.com/questions/36173544/trailing-where-clause-for-extension-of-non-generic-type</code></p>
 
-<pre><code>// ❌
+<pre><code class="language-text">// ❌
 extension UINavigationController where Self: UINavigationControllerDelegate
 // ✅ 扩展协议限定Self的类型
 extension UINavigationControllerDelegate where Self: UINavigationController
@@ -1568,7 +1568,7 @@ delegate?.optionalMethod?()
 </code></pre></li>
 <li><p><strong>Swift 4.0新增一个便捷添加observer的方法，之后不需要再手动移除observer，但需要手动持有化，添加observer之后返回的NSKeyValueObservation实例；</strong></p>
 
-<pre><code>var person2: Person!
+<pre><code class="language-text">var person2: Person!
 var observer: NSKeyValueObservation!
 
 override func viewDidLoad() {

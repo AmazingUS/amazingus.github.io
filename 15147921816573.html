@@ -435,13 +435,13 @@
 <li>LayoutGuide的length属性表示VC的view被遮挡区域的高度；需要在viewDidLayoutSubviews、layoutSubviews方法中获取，否则获取的值可能不准确；</li>
 <li><p>使用方式</p>
 
-<pre><code class="language-objc">id bottomGuide = self.bottomLayoutGuide;
+<pre><code class="language-objectivec">id bottomGuide = self.bottomLayoutGuide;
 NSDictionary *dict = NSDictionaryOfVariableBindings(btn, bottomGuide);
 NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&quot;V:[btn]-20-[bottomGuide]&quot;
 [self.view addConstraints:constr options:0 metrics:nil views: dict]];
 </code></pre>
 
-<pre><code class="language-objc">// PureLayout也提供了相关方法
+<pre><code class="language-objectivec">// PureLayout也提供了相关方法
 - (NSLayoutConstraint *)autoPinToTopLayoutGuideOfViewController:
     (UIViewController *)viewController withInset:(CGFloat)inset;
 </code></pre></li>
@@ -575,7 +575,7 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
 <h4 id="toc_6">七、参考</h4>
 
 <ul>
-<li><p>iOS 11 安全区域适配总结<br/>
+<li><p>iOS 11 安全区域适配总结
 <code>https://mp.weixin.qq.com/s/W1_0VrchCO50owhJNmJnuQ</code></p></li>
 <li><p>Safe Area Layout Guide<code>http://www.cnblogs.com/6duxz/p/7591103.html</code></p></li>
 <li><p>iOS开发-LayoutGuide的前世今生（从top/bottom LayoutGuide到Safe Area）<code>https://www.jianshu.com/p/f2cb5f8e747f</code></p></li>
@@ -590,7 +590,7 @@ NSLayoutConstraint *constr = [NSLayoutConstraint constraintsWithVisualFormat:@&q
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15147939316129.html" title="Previous Post: Carthage使用教程">&laquo; Carthage使用教程</a>
+            <a href="15147939316129.html" title="Previous Post: Carthage配置使用">&laquo; Carthage配置使用</a>
             
           </p>
         </div>

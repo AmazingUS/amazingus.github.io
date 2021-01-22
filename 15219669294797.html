@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     GitBook使用教程 - TIME TO GO 
+     GitBook配置使用 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,7 +97,7 @@
 
       <div class="article">
         
-        <h1>GitBook使用教程</h1>
+        <h1>GitBook配置使用</h1>
         <div class="read-more clearfix">
           <span class="date">2018/3/25</span>
            
@@ -136,20 +136,20 @@
 <li><p>1、安装Node.js、Git（可选；若需要版本控制、上传到GitBook则需要安装）；</p></li>
 <li><p>2、安装GitBook；</p>
 
-<pre><code>npm install -g gitbook-cli
+<pre><code class="language-text">npm install -g gitbook-cli
 
 gitbook -V # 查看当前GitBook版本（注意是大写的V）
 </code></pre></li>
 <li><p>3、创建一本图书（本地）；</p>
 
-<pre><code>gitbook init BOOK_NAME
+<pre><code class="language-text">gitbook init BOOK_NAME
 </code></pre>
 
 <ul>
 <li>目录中自动生成README.md、SUMMARY.md两个文件；这两个文件是必须存在的，README.md为对图书的介绍，SUMMARY.md是对书籍目录的描述，之后就是根据该文件生成图书目录结构的；</li>
 <li><p>SUMMARY.md格式如如下：</p>
 
-<pre><code># Summary
+<pre><code class="language-text"># Summary
 
 * [简介](README.md)
 * [第一章 基础](chapter1/chapter1_0.md)
@@ -164,7 +164,7 @@ gitbook -V # 查看当前GitBook版本（注意是大写的V）
 <li><p>4、书写相关Markdown文本；</p></li>
 <li><p>5、编译、预览图书；</p>
 
-<pre><code>gitbook serve # 在图片文件夹目录中执行
+<pre><code class="language-text">gitbook serve # 在图片文件夹目录中执行
 </code></pre>
 
 <ul>
@@ -176,7 +176,7 @@ gitbook -V # 查看当前GitBook版本（注意是大写的V）
 <li>a. 下载安装Calibre（<code>https://calibre-ebook.com/download</code>）；</li>
 <li><p>b. 配置ebook-convert的路径；</p>
 
-<pre><code>// macOS
+<pre><code class="language-text">// macOS
 sudo ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin  
 </code></pre></li>
 <li><p>c. 执行<code>gitbook pdf</code>、<code>gitbook epub</code>分别生成PDF、EPUB格式图书；</p></li>

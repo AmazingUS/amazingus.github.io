@@ -276,7 +276,7 @@
 <li><p><strong>现在，通过数据绑定（Data Binding）技术，可以使用DataBindingUtil类去<code>inflate()</code>布局文件，自动获得XXXBinding对象（Android Stuido自动生成该绑定类，BindingClass），之后通过该XXXBinding对象就可以直接访问UI布局内的组件对象，即通过数据绑定获取视图，省略手动去调用findByID()；</strong></p></li>
 <li><p><strong>在app模块的build.gradle文件里增加以下内容，启用数据绑定；</strong></p>
 
-<pre><code>buildTypes {
+<pre><code class="language-text">buildTypes {
     // 打开IDE的整合功能，允许你使用数据绑定产生的类，并把它们整合到编译
     dataBinding {
         enabled true
@@ -285,7 +285,7 @@
 </code></pre></li>
 <li><p><strong>要在布局中使用数据绑定：首先要把一般布局改造为<code>数据绑定布局</code>，具体做法就是把整个布局定义放入<layout>标签中；</strong></p>
 
-<pre><code>// 之前：把一般布局
+<pre><code class="language-text">// 之前：把一般布局
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;android.support.v7.widget.RecyclerView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
     android:id=&quot;@+id/fragment_beat_box_recycler_view&quot;
@@ -293,7 +293,7 @@
     android:layout_height=&quot;match_parent&quot; /&gt;
 </code></pre>
 
-<pre><code>// 现在：数据绑定布局
+<pre><code class="language-text">// 现在：数据绑定布局
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
     &lt;android.support.v7.widget.RecyclerView
@@ -351,7 +351,7 @@ public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 <ul>
 <li><p>使用数据绑定，我们还可以在布局文件中声明数据对象<code>（data、variable）</code>；</p>
 
-<pre><code>&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+<pre><code class="language-text">&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
         xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
     &lt;data&gt;
         &lt;variable
@@ -363,7 +363,7 @@ public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 </code></pre></li>
 <li><p>之后，使用绑定操作符<code>@{}</code>，可以在布局文件中直接使用这些数据对象的值；</p>
 
-<pre><code>&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+<pre><code class="language-text">&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
         xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
     &lt;data&gt;
         &lt;variable
@@ -387,7 +387,7 @@ public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 </ul></li>
 <li><p>使用了数据绑定和MVVM：</p>
 
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+<pre><code class="language-text">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
     xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
     &lt;Button
@@ -502,7 +502,7 @@ int soundId = mSoundPool.load(afd, 1);
 <ul>
 <li><p>和前面使用数据绑定关联数据和UI控件一样，也可以使用lambda表达式，让数据绑定关联点击监听器和按钮；</p>
 
-<pre><code>&lt;Button
+<pre><code class="language-text">&lt;Button
     android:layout_width=&quot;match_parent&quot; 
     android:layout_height=&quot;120dp&quot;
     android:onClick=&quot;@{() -&gt; viewModel.onButtonClicked()}&quot; 
@@ -567,7 +567,7 @@ int soundId = mSoundPool.load(afd, 1);
 <ul>
 <li><p><strong><code>颜色资源</code>定义在<code>res/values/colors.xml</code>中；可以应用在视图组件的textColor、backgroundColor等属性上（<code>@color/xxx</code>），也可以被样式资源引用；</strong></p>
 
-<pre><code>&lt;resources&gt;
+<pre><code class="language-text">&lt;resources&gt;
     &lt;color name=&quot;colorPrimary&quot;&gt;#3F51B5&lt;/color&gt;
     &lt;color name=&quot;dark_blue&quot;&gt;#005A8A&lt;/color&gt;
 &lt;/resources&gt;
@@ -579,21 +579,21 @@ int soundId = mSoundPool.load(afd, 1);
 <ul>
 <li><p><strong><code>样式资源</code>定义在<code>res/values/styles.xml</code>中，可以应用在视图组件的style属性，其是一套属性集合；</strong></p>
 
-<pre><code>&lt;style name=&quot;BeatBoxButton&quot;&gt;
+<pre><code class="language-text">&lt;style name=&quot;BeatBoxButton&quot;&gt;
     &lt;item name=&quot;android:background&quot;&gt;@color/dark_blue&lt;/item&gt;
 &lt;/style&gt;
 </code></pre>
 
-<pre><code>&lt;Button style=&quot;@style/BeatBoxButton&quot;/&gt;
+<pre><code class="language-text">&lt;Button style=&quot;@style/BeatBoxButton&quot;/&gt;
 </code></pre></li>
 <li><p>样式支持继承；一个样式能继承并覆盖其他样式的属性；有两种继承方式，一种是NAME加样式名前缀点（表示继承该样式），另一种是使用parent属性指明；</p>
 
-<pre><code>&lt;style name=&quot;BeatBoxButton.Strong&quot;&gt;
+<pre><code class="language-text">&lt;style name=&quot;BeatBoxButton.Strong&quot;&gt;
     &lt;item name=&quot;android:textStyle&quot;&gt;bold&lt;/item&gt; 
 &lt;/style&gt;
 </code></pre>
 
-<pre><code>&lt;style name=&quot;StrongBeatBoxButton&quot; parent=&quot;@style/BeatBoxButton&quot;&gt;
+<pre><code class="language-text">&lt;style name=&quot;StrongBeatBoxButton&quot; parent=&quot;@style/BeatBoxButton&quot;&gt;
     &lt;item name=&quot;android:textStyle&quot;&gt;bold&lt;/item&gt;
 &lt;/style&gt;
 </code></pre></li>
@@ -602,11 +602,11 @@ int soundId = mSoundPool.load(afd, 1);
 <h4 id="toc_24">22.3 主题</h4>
 
 <ul>
-<li><p><strong>主题可看作样式的进化加强版；同样是定义一套属性，<br/>
+<li><p><strong>主题可看作样式的进化加强版；同样是定义一套属性，
 样式属性需要逐个添加，而主题属性则会自动应用于整个应用；</strong></p></li>
 <li><p><strong>定义时的方式和样式一模一样，只是使用时应用在AndroidManifest.xml的application标签的<code>theme</code>属性上；主题属性能引用颜色这样的外部资源，也能引用其他样式；</strong></p>
 
-<pre><code>&lt;application android:theme=&quot;@style/AppTheme&quot;&gt;
+<pre><code class="language-text">&lt;application android:theme=&quot;@style/AppTheme&quot;&gt;
 </code></pre></li>
 <li><p><strong>主题实际就是一种样式，但是主题指定的属性有别于样式，样式指定的属性仅适用于单个组件</strong></p></li>
 <li><p>AppCompat库自带三大主题：Theme.AppCompat（深色主题）、Theme.AppCompat.Light（浅色主题）、Theme.AppCompat.Light.DarkActionBar（带深色工具栏的浅色主题）</p></li>
@@ -617,7 +617,7 @@ int soundId = mSoundPool.load(afd, 1);
 <ul>
 <li><p>虽然这主题属性看上去和前面的样式属性差不多，但它们的应用范围不一样；样式属性仅适用于单个组件，主题属性则适用所有使用同一主题的组件；</p>
 
-<pre><code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat&quot;&gt;
+<pre><code class="language-text">&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat&quot;&gt;
     &lt;item name=&quot;colorPrimary&quot;&gt;@color/red&lt;/item&gt;
     &lt;item name=&quot;colorPrimaryDark&quot;&gt;@color/dark_red&lt;/item&gt;
     &lt;item name=&quot;colorAccent&quot;&gt;@color/gray&lt;/item&gt;
@@ -642,7 +642,7 @@ int soundId = mSoundPool.load(afd, 1);
 <ul>
 <li><p>比如，主题的背景色属性，定义为<code>&lt;item name=&quot;android:colorBackground&quot;&gt;@color/background_material_dark&lt;/item&gt;</code>，在style.xml文件中覆盖该主题属性即可修改；</p>
 
-<pre><code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat&quot;&gt;
+<pre><code class="language-text">&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat&quot;&gt;
     &lt;!-- Customize your theme here. --&gt;
     &lt;item name=&quot;colorPrimary&quot;&gt;@color/colorPrimary&lt;/item&gt;
     &lt;item name=&quot;colorPrimaryDark&quot;&gt;@color/colorPrimaryDark&lt;/item&gt;
@@ -663,7 +663,7 @@ int soundId = mSoundPool.load(afd, 1);
 <li><strong>之前覆盖android:colorBackground属性时直接传入了颜色值（只有一个属性）；</strong></li>
 <li><p><strong>现在buttonStyle应该指向另一个样式，且继承于之前的父样式（点击进去之前的样式查看其父样式）并覆盖想要修改的属性；</strong></p>
 
-<pre><code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat&quot;&gt;
+<pre><code class="language-text">&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat&quot;&gt;
     &lt;!-- Customize your theme here. --&gt;
     &lt;item name=&quot;colorPrimary&quot;&gt;@color/colorPrimary&lt;/item&gt;
     &lt;item name=&quot;colorPrimaryDark&quot;&gt;@color/colorPrimaryDark&lt;/item&gt;
@@ -716,7 +716,7 @@ a.recycle();
 <li><p><strong><code>XML drawable</code>和屏幕像素密度无关，无需创建特定像素密度目录，直接将其放入默认的drawable文件夹中即可；</strong></p></li>
 <li><p>可以使用shape drawable将图片变形（比如变为圆形等）、修改颜色等；</p>
 
-<pre><code>// 新建res/drawable/button_beat_box_normal.xml，定义了一个背景为深蓝色的圆形
+<pre><code class="language-text">// 新建res/drawable/button_beat_box_normal.xml，定义了一个背景为深蓝色的圆形
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
        android:shape=&quot;oval&quot;&gt;
@@ -724,7 +724,7 @@ a.recycle();
 &lt;/shape&gt;
 </code></pre>
 
-<pre><code>// 使用
+<pre><code class="language-text">// 使用
 &lt;style name=&quot;BeatBoxBtn&quot; parent=&quot;android:style/Widget.Holo.Button&quot;&gt;
     &lt;item name=&quot;android:background&quot;&gt;@drawable/button_beat_box_normal&lt;/item&gt;
 &lt;/style&gt;
@@ -736,7 +736,7 @@ a.recycle();
 <ul>
 <li><p><code>state list drawable</code>可以解决按钮的不同状态下（如点击状态）的图形显示需求，其会根据按钮的状态，切换指向不同的drawable；注意，默认状态值必须要声明，或者将默认状态放在最后，否则状态设置无效；</p>
 
-<pre><code>// 新建res/drawable/button_beat_box.xml，每个item都是shape drawable文件
+<pre><code class="language-text">// 新建res/drawable/button_beat_box.xml，每个item都是shape drawable文件
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
     &lt;item android:drawable=&quot;@drawable/button_beat_box_normal&quot; android:state_pressed=&quot;false&quot;/&gt;
@@ -744,7 +744,7 @@ a.recycle();
 &lt;/selector&gt;
 </code></pre>
 
-<pre><code>// 使用时
+<pre><code class="language-text">// 使用时
 &lt;style name=&quot;BeatBoxBtn&quot; parent=&quot;android:style/Widget.Holo.Button&quot;&gt;
     &lt;item name=&quot;android:background&quot;&gt;@drawable/button_beat_box&lt;/item&gt;
 &lt;/style&gt;
@@ -756,7 +756,7 @@ a.recycle();
 <ul>
 <li><p><code>layer list drawable</code>可以将两个<code>XML drawable</code>合二为一；比如，借助此工具可以再添加一个边框；</p>
 
-<pre><code>// 修改res/drawable/button_beat_box_pressed.xml，
+<pre><code class="language-text">// 修改res/drawable/button_beat_box_pressed.xml，
 &lt;layer-list xmlns:app=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
     &lt;item&gt;
         &lt;shape app:shape=&quot;oval&quot;&gt;
@@ -809,7 +809,7 @@ a.recycle();
 <ul>
 <li><p>可以使用PackageManager获取所有<code>可启动主activity</code>；可启动主activity都带有包含MAIN操作和LAUNCHER类别的intent过滤器；</p>
 
-<pre><code>&lt;intent-filter&gt;
+<pre><code class="language-text">&lt;intent-filter&gt;
   &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
   &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
 &lt;/intent-filter&gt;
@@ -882,7 +882,7 @@ startActivity(i);
 <ul>
 <li><p><strong>给activity的拦截器添加HOME、DEFAULT类别，可以让该activity成为可选的桌面；</strong>恢复成系统默认桌面，需要打开Settings进行修改；</p>
 
-<pre><code>&lt;intent-filter&gt;
+<pre><code class="language-text">&lt;intent-filter&gt;
     &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
     &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt; 
 
@@ -930,7 +930,7 @@ startActivity(i);
 <li><strong>a. 给intent加上<code>Intent. FLAG_ACTIVITY_NEW_DOCUMENT</code>标志，再调用startActivity()方法；</strong></li>
 <li><p><strong>b. 在manifest文件中，为activity设置<code>documentLaunchMode</code>为<code>intoExisting</code>；</strong></p>
 
-<pre><code>&lt;activity
+<pre><code class="language-text">&lt;activity
     android:name=&quot;.CrimePagerActivity&quot;
     android:label=&quot;@string/app_name&quot;
     android:parentActivityName=&quot;.CrimeListActivity&quot;

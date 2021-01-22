@@ -185,7 +185,7 @@
 let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
 </code></pre>
 
-<pre><code class="language-OC">dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0); // iOS 8.0 deprecated
+<pre><code class="language-oc">dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0); // iOS 8.0 deprecated
 // OR
 dispatch_queue_attr_t queue = dispatch_queue_attr_make_with_qos_class(nil, QOS_CLASS_DEFAULT, 0);
 </code></pre></li>
@@ -194,7 +194,7 @@ dispatch_queue_attr_t queue = dispatch_queue_attr_make_with_qos_class(nil, QOS_C
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;, attributes: [.concurrent])
 </code></pre>
 
-<pre><code class="language-OC">dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DISPATCH_QUEUE_CONCURRENT);
+<pre><code class="language-oc">dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DISPATCH_QUEUE_CONCURRENT);
 </code></pre></li>
 </ul></li>
 <li><p><strong>2、串行队列</strong></p>
@@ -206,7 +206,7 @@ dispatch_queue_attr_t queue = dispatch_queue_attr_make_with_qos_class(nil, QOS_C
 
 </code></pre>
 
-<pre><code class="language-OC">// DISPATCH_QUEUE_SERIAL也可换成NULL
+<pre><code class="language-oc">// DISPATCH_QUEUE_SERIAL也可换成NULL
 dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DISPATCH_QUEUE_SERIAL); 
 </code></pre></li>
 <li><p><strong>b. 使用主队列（特殊的串行队列，和主线程相关联的队列）；</strong></p>
@@ -214,7 +214,7 @@ dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DIS
 <pre><code class="language-swift">let queue = DispatchQueue.main
 </code></pre>
 
-<pre><code class="language-OC">dispatch_queue_t queue = dispatch_get_main_queue();
+<pre><code class="language-oc">dispatch_queue_t queue = dispatch_get_main_queue();
 </code></pre></li>
 </ul></li>
 </ul>

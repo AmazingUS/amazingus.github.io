@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     Logrotate使用教程 - TIME TO GO 
+     Logrotate配置使用 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,7 +97,7 @@
 
       <div class="article">
         
-        <h1>Logrotate使用教程</h1>
+        <h1>Logrotate配置使用</h1>
         <div class="read-more clearfix">
           <span class="date">2018/9/24</span>
            
@@ -221,7 +221,7 @@ dateformat %s：必须配合dateext使用，定义文件切割后的文件名，
 </code></pre></li>
 <li><p>默认logrotate是通过crontab定期执行的，也可以手动执行查看结果</p>
 
-<pre><code>logrotate -vf /etc/logrotate.d/nginx
+<pre><code class="language-text">logrotate -vf /etc/logrotate.d/nginx
 </code></pre></li>
 </ul></li>
 <li><p>2、在crontab中添加定时脚本，让logrotate每天进行一次轮循；</p>
@@ -262,7 +262,7 @@ os.popen(&quot;sudo kill -USR1 `cat /usr/local/nginx/logs/nginx.pid`&quot;)
 </code></pre></li>
 <li><p>2、添加定时任务</p>
 
-<pre><code>30 0 * * * /usr/bin/python /nginx_log_rotate.py &gt; /dev/null 2&gt;&amp;1
+<pre><code class="language-text">30 0 * * * /usr/bin/python /nginx_log_rotate.py &gt; /dev/null 2&gt;&amp;1
 </code></pre></li>
 </ul></li>
 </ul>

@@ -237,7 +237,7 @@ async for line in f:
 </code></pre></li>
 <li><p>数据库操作</p>
 
-<pre><code># @asyncio.coroutine；yield from
+<pre><code class="language-text"># @asyncio.coroutine；yield from
 @asyncio.coroutine
 def select(sql):
     global __pool
@@ -252,7 +252,7 @@ def select(sql):
         return rs
 </code></pre>
 
-<pre><code># async；await
+<pre><code class="language-text"># async；await
 async def select(sql):
     global __pool
     with (await __pool) as conn:
@@ -266,7 +266,7 @@ async def select(sql):
         return rs
 </code></pre>
 
-<pre><code># async；async with，await      
+<pre><code class="language-text"># async；async with，await      
 async def select(sql):
     global __pool
     async with __pool.get() as conn:
@@ -280,11 +280,11 @@ async def select(sql):
 </ul></li>
 <li><p>为了防止查询字段与SQL关键字冲突，加``包裹查询字段可以解决此问题；</p>
 
-<pre><code>sql = &#39;DELETE FROM `%s` WHERE `%s`=?&#39; % (table_name, primary_key)
+<pre><code class="language-text">sql = &#39;DELETE FROM `%s` WHERE `%s`=?&#39; % (table_name, primary_key)
 </code></pre></li>
 <li><p>类方法使用@classmethod修饰，方法第一个参数为类对象；</p>
 
-<pre><code>@classmethod
+<pre><code class="language-text">@classmethod
 def find(cls, pk):
     pass
 </code></pre></li>
@@ -296,7 +296,7 @@ def find(cls, pk):
 <ul>
 <li><p>对数据库授权命令（grant语句）</p>
 
-<pre><code>grant select, insert, update, delete on awesome.* to &#39;www-data&#39;@&#39;localhost&#39; identified by &#39;www-data&#39;; # identified by后面为密码
+<pre><code class="language-text">grant select, insert, update, delete on awesome.* to &#39;www-data&#39;@&#39;localhost&#39; identified by &#39;www-data&#39;; # identified by后面为密码
 </code></pre></li>
 <li><p>Mysql中，float表示单精度浮点数，double或real表示双精度浮点数；</p></li>
 <li><p>Mysql中key、index、primary key、unique key的区别：</p>
@@ -321,7 +321,7 @@ def find(cls, pk):
 <li>e. POSITIONAL_ONLY：已过时，推荐使用VAR_POSITIONAL代替</li>
 </ul></li>
 <li><p><strong>函数接收参数的优先级：先接收POSITIONAL_OR_KEYWORD，再接收KEYWORD_ONLY，最后接收VAR_POSITIONAL和VAR_KEYWORD（这两者没有交集）；(参考<code>http://www.imooc.com/article/13053</code>）</strong></p></li>
-<li><p><strong>为避免处理函数要分别从request中取相关关键数据，可以先统一预处理request中的关键数据，然后再传递给处理函数；<br/>
+<li><p><strong>为避免处理函数要分别从request中取相关关键数据，可以先统一预处理request中的关键数据，然后再传递给处理函数；
 每个处理函数定义的函数参数字段就是要预处理的数据；</strong></p>
 
 <ul>
@@ -405,7 +405,7 @@ app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
 <ul>
 <li><p>由于有多个前端页面，且每个页面都有相同的页眉和页脚；为了提高效率，可以使用通过include把页面拆成多个部分，比如</p>
 
-<pre><code class="language-html">&lt;html&gt;
+<pre><code class="language-markup">&lt;html&gt;
     &lt;% include file=&quot;inc_header.html&quot; %&gt;
     &lt;% include file=&quot;index_body.html&quot; %&gt;
     &lt;% include file=&quot;inc_footer.html&quot; %&gt;
@@ -414,7 +414,7 @@ app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
 <li><p>但是include方法不利于页面整体结构的维护，jinjia2的模板还可以通过“继承”方式实现模板的复用；</p></li>
 <li><p><strong>编写一个“父模板”，定义一些可替换的block（块）；然后编写多个“子模板”，每个子模板都只需要替换父模板定义的block；比如：</strong></p>
 
-<pre><code class="language-html">&lt;!-- base.html --&gt;
+<pre><code class="language-markup">&lt;!-- base.html --&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;{% block title%} 这里定义了一个名为title的block {% endblock %}&lt;/title&gt;
@@ -425,7 +425,7 @@ app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
 &lt;/html&gt;
 </code></pre>
 
-<pre><code class="language-html">&lt;!-- 子模板a.html，只需要把父模板的title和content替换掉 --&gt;
+<pre><code class="language-markup">&lt;!-- 子模板a.html，只需要把父模板的title和content替换掉 --&gt;
 
 {% extends &#39;base.html&#39; %}
 
@@ -437,7 +437,7 @@ app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
 {% endblock %}
 </code></pre>
 
-<pre><code class="language-html">&lt;!-- 子模板b.html --&gt;
+<pre><code class="language-markup">&lt;!-- 子模板b.html --&gt;
 
 {% extends &#39;base.html&#39; %}
 
@@ -472,7 +472,7 @@ app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
 </ul></li>
 <li><p>服务器可以使用下面算法构造防伪造cookie：</p>
 
-<pre><code>&quot;用户id&quot; + &quot;过期时间&quot; + SHA1(&quot;用户id&quot; + &quot;用户口令&quot; + &quot;过期时间&quot; + &quot;SecretKey&quot;)
+<pre><code class="language-text">&quot;用户id&quot; + &quot;过期时间&quot; + SHA1(&quot;用户id&quot; + &quot;用户口令&quot; + &quot;过期时间&quot; + &quot;SecretKey&quot;)
 </code></pre>
 
 <ul>

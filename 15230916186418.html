@@ -235,7 +235,7 @@
 <li><p>工具栏菜单由菜单项（操作项）组成，位于工具栏的右上方；</p></li>
 <li><p><strong>菜单是一种类似于布局的资源文件，定义在res/menu目录下，Android会自动生成相应的资源ID（实例化菜单时使用）；右击res目录，New -&gt; <code>Android resource file</code>，<code>Resource type</code>选择 <code>Menu类型</code> 即定义创建XML菜单文件；</strong></p>
 
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+<pre><code class="language-text">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
       xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;
     &lt;item
@@ -276,7 +276,7 @@
 <li><p><strong><code>后退键导航</code>又称为临时性导航，只能返回到上一次浏览过的用户界面；而<code>层级式导航</code>（hierarchical navigation，又称为ancestral navigation）可在应用内逐级向上导航；有了层级式导航，用户可点击工具栏左边的向上按钮向上导航；</strong></p></li>
 <li><p>从Android 4.1（API 16）开始，在AndroidManifest.xml中，给相关的activity添加parentActivityName属性就开启层级式导航；</p>
 
-<pre><code>&lt;activity android:name=&quot;.CrimePagerActivity&quot; android:parentActivityName=&quot;.CrimeListActivity&quot;&gt;
+<pre><code class="language-text">&lt;activity android:name=&quot;.CrimePagerActivity&quot; android:parentActivityName=&quot;.CrimeListActivity&quot;&gt;
 &lt;/activity&gt;
 </code></pre></li>
 <li><p>层级式导航的工作原理（和点击后退键不同）：当用户点击工具栏的向上按钮时，会执行以下操作：</p>
@@ -492,7 +492,7 @@ String subtitle = getResources()
 <li><p><strong>一个查看某个网址的简单隐式intent会包括一个Intent.ACTION_VIEW操作，以及某个具体URL网址；</strong></p></li>
 <li><p><strong>让某个activity对外宣称可以处理某些操作，需要在AndroidManifest.xml文件中给该activity配置intent-filter子标签；</strong>比如，处理打开URL的操作：</p>
 
-<pre><code>&lt;activityandroid:name=&quot;.BrowserActivity&quot; &gt;
+<pre><code class="language-text">&lt;activityandroid:name=&quot;.BrowserActivity&quot; &gt;
     &lt;intent-filter&gt;
         &lt;action android:name=&quot;android.intent.action.VIEW&quot; /&gt;
         &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;
@@ -546,7 +546,7 @@ try {
 <li><p><strong>由于使用<code>联系人应用</code>获取联系人的URI，<code>联系人应用</code>又有使用联系人数据库的全部权限，<code>联系人应用</code>会给返回intent中的URI数据添加<code>Intent.FLAG_GRANT_READ_URI_PERMISSION标志</code>（表示原activity可以获取使用联系人数据一次），故原activity不需要主动声明读取联系人数据库的权限；</strong></p></li>
 <li><p><strong>操作系统响应隐式intent时，若没有找到匹配的activity则应用会崩溃；解决办法是使用<code>PackageManager</code>类可以自检；</strong></p>
 
-<pre><code>PackageManager packageManager = getActivity().getPackageManager();
+<pre><code class="language-text">PackageManager packageManager = getActivity().getPackageManager();
 if (packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAULT_ONLY) == null) {
     // 无合适的activity
 }
@@ -651,7 +651,7 @@ if (packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAU
 <ul>
 <li><p>为了安全控管，Android要求应用申请各类权限；比如读写外部存储需要获取相关权限，在manifest文件中声明uses-permission标签，比如</p>
 
-<pre><code>&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; android:maxSdkVersion=&quot;18&quot;/&gt;
+<pre><code class="language-text">&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; android:maxSdkVersion=&quot;18&quot;/&gt;
 </code></pre></li>
 <li><p><strong>Android4.4(API19）放宽了一些权限管控的限制，比如context.getExternalFilesDir()返回的是该应用专用的文件目录，就没有必要再申请该目录的权限了使用其他的外部存储仍然需要）；</strong></p></li>
 <li><p><strong>uses-permission的maxSdkVersion属性，表示适用API级别最大为18，大于该版本时不再声明相关权限（否则在API 19时，应用也能访问其他的外部存储）；</strong></p></li>
@@ -667,7 +667,7 @@ if (packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAU
 <ul>
 <li><p>a. 在AndroidManifes.xml中声明FileProvider为ContentProvider，并给与一个指定权限（这里为文件存储位置）；</p>
 
-<pre><code>&lt;provider
+<pre><code class="language-text">&lt;provider
 android:name=&quot;android.support.v4.content.FileProvider&quot;
 android:authorities=&quot;com.bignerdranch.android.criminalintent.fileprovider&quot;
 android:exported=&quot;false&quot;
@@ -681,7 +681,7 @@ android:grantUriPermissions=&quot;true&quot;&gt;
 </ul></li>
 <li><p><strong>b. 使用一个XML资源文件配置FileProvider，告诉其应该暴露哪些文件；</strong></p>
 
-<pre><code>&lt;paths&gt;
+<pre><code class="language-text">&lt;paths&gt;
     &lt;files-path name=&quot;crime_photos&quot; path=&quot;.&quot;/&gt;
 &lt;/paths&gt;   
 </code></pre>
@@ -691,7 +691,7 @@ android:grantUriPermissions=&quot;true&quot;&gt;
 <li><strong>上述XML表示把<code>私有存储空间的根路径path=&quot;.&quot;</code>映射为crime_photos，这个名字仅是供FileProvider内部使用，没有意义；</strong></li>
 <li><p><strong>在paths节点内部支持以下几个子节点：</strong></p>
 
-<pre><code>&lt;files-path/&gt;：代表context.getFilesDir()
+<pre><code class="language-text">&lt;files-path/&gt;：代表context.getFilesDir()
 &lt;cache-path/&gt;：代表context.getCacheDir()
 &lt;external-files-path/&gt;：代表context.getExternalFilesDirs()
 &lt;external-cache-path/&gt;：代表getExternalCacheDirs()
@@ -701,7 +701,7 @@ android:grantUriPermissions=&quot;true&quot;&gt;
 </ul></li>
 <li><p>c. <strong>给AndroidManifes.xml中的FileProvider添加<code>meta-data</code>标签，让FileProvider能找到文件；</strong></p>
 
-<pre><code>&lt;provider
+<pre><code class="language-text">&lt;provider
     ......&gt;
     &lt;meta-data
      android:name=&quot;android.support.FILE_PROVIDER_PATHS&quot;
@@ -809,7 +809,7 @@ activity.getWindowManager().getDefaultDisplay().getSize(size);
 <li><p><strong>若应用要使用诸如相机、NFC、或者其他的随设备相关的功能时，都应该让Android系统知道；这样，若设备缺少这样的功能时，类似Google Play商店的安装程序就会拒绝安装该应用；</strong></p></li>
 <li><p><strong>在AndroidManifest.xml文件中声明uses-feature标签进行所需要的功能声明；默认情况下，缺少相关功能就无法使用该应用；添加required属性为false，则表示缺少相关功能也可以使用该应用；</strong></p>
 
-<pre><code>&lt;uses-feature android:name=&quot;android.hardware.camera&quot; android:required=&quot;false&quot;/&gt;
+<pre><code class="language-text">&lt;uses-feature android:name=&quot;android.hardware.camera&quot; android:required=&quot;false&quot;/&gt;
 </code></pre></li>
 </ul>
 
@@ -836,7 +836,7 @@ activity.getWindowManager().getDefaultDisplay().getSize(size);
 </ul></li>
 <li><p>右击res/目录 -&gt; 选择New -&gt; Android resource file -&gt; 选择资源类型为Values，文件命名为refs.xml -&gt; 确认新建的文件不带任何修饰符；</p>
 
-<pre><code>// res/values/refs.xml，别名资源activity_masterdetail指向了activity_fragment布局资源文件
+<pre><code class="language-text">// res/values/refs.xml，别名资源activity_masterdetail指向了activity_fragment布局资源文件
 &lt;resources&gt;
     &lt;item name=&quot;activity_masterdetail&quot; type=&quot;layout&quot;&gt;@layout/activity_fragment&lt;/item&gt;
 &lt;/resources&gt;
@@ -848,7 +848,7 @@ activity.getWindowManager().getDefaultDisplay().getSize(size);
 </ul></li>
 <li><p><strong>需要创建一个大屏幕设备使用的别名资源，此时创建时将<code>Available qualifiers</code>中<code>Smallest Screen Width</code>选到右边窗口中，并且输入相关数值（如600），这样创建的refs.xml文件会在特定的values-XX目录中（如res/values-sw600dp/）；</strong></p>
 
-<pre><code>// res/values-sw600dp/refs.xml，别名资源activity_masterdetail指向了activity_twopane布局资源文件
+<pre><code class="language-text">// res/values-sw600dp/refs.xml，别名资源activity_masterdetail指向了activity_twopane布局资源文件
 &lt;resources&gt;
     &lt;item name=&quot;activity_masterdetail&quot; type=&quot;layout&quot;&gt;@layout/activity_twopane&lt;/item&gt;
 &lt;/resources&gt;

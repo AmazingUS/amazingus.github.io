@@ -233,7 +233,7 @@
 <ul>
 <li><p>一个默认名称为string.xml（可取其他名称）的XML文件，存放在app/res/valus/目录下；</p>
 
-<pre><code>&lt;/resources&gt;&lt;string name=&quot;true_button&quot;&gt;True&lt;/string&gt;&lt;/resources&gt;
+<pre><code class="language-text">&lt;/resources&gt;&lt;string name=&quot;true_button&quot;&gt;True&lt;/string&gt;&lt;/resources&gt;
 </code></pre></li>
 <li><p>一个项目也可以有多个字符串文件，只需将这些文件放app/res/valus/目录下，含有一个resources根元素及多个string子元素即可，应用就能找到并正确使用它们；</p></li>
 <li><p>定义好后，引用时使用@string/NAME；</p></li>
@@ -543,7 +543,7 @@
 <ul>
 <li><p>manifest中，XXActivity声明intent-filter子元素被设置为<code>launcher activity</code>；</p>
 
-<pre><code>&lt;intent-filter&gt; 
+<pre><code class="language-text">&lt;intent-filter&gt; 
     &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt; 
     &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
 &lt;/intent-filter&gt;

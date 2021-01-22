@@ -344,7 +344,7 @@ if __name__ == &#39;__main__&#39;:
 <li>Flask默认支持的模板是Jinja2，通过rander_template()函数来实现模板的渲染；<strong>模板HTML一定要放到正确的templates目录，templates和app.py在同级目录下</strong></li>
 <li><p>在Jinja2模板中，用 <code>{{ NAME }}</code> 表示一个需要替换的变量，循环、条件判断等指令语句用 <code>{% ... %}</code> 表示</p>
 
-<pre><code># 循环输出页码
+<pre><code class="language-text"># 循环输出页码
 {% if i in page_list %}
     &lt;a href=&quot;/page/{{ i }}&quot;&gt;{{ i }}&lt;/a&gt;
 {% endfor %}
@@ -375,7 +375,7 @@ if __name__ == &#39;__main__&#39;:
     app.run()   
 </code></pre>
 
-<pre><code class="language-html"># home.html
+<pre><code class="language-markup"># home.html
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Home&lt;/title&gt;
@@ -386,7 +386,7 @@ if __name__ == &#39;__main__&#39;:
 &lt;/html&gt;
 </code></pre>
 
-<pre><code class="language-html"># form.html
+<pre><code class="language-markup"># form.html
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Please Sign In&lt;/title&gt;
@@ -405,7 +405,7 @@ if __name__ == &#39;__main__&#39;:
 &lt;/html&gt;
 </code></pre>
 
-<pre><code class="language-html"># signin-ok.html
+<pre><code class="language-markup"># signin-ok.html
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Welcome, {{ username }}&lt;/title&gt;

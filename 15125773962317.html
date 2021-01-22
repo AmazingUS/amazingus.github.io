@@ -370,7 +370,7 @@ conn.close()
 </code></pre></li>
 <li><p>对Cursor执行insert、update、delete语句后，影响的行数由rowcount返回</p></li>
 <li><p>对Cursor执行select语句后，通过featchall()获取结果集；结果集是一个list，每一个元素都是一个tuple，对应表中一行记录</p></li>
-<li><p>若sql语句带有参数，需要把参数按照位置传递给execute()方法，有几个?占位符就必须对应几个参数，参数以tuple形式提供：<br/>
+<li><p>若sql语句带有参数，需要把参数按照位置传递给execute()方法，有几个?占位符就必须对应几个参数，参数以tuple形式提供：
 <code>cursor.execute(&#39;select * from user where name=? and pwd=?&#39;, (&#39;abc&#39;, &#39;password&#39;))</code></p></li>
 <li><p>执行产生数据库变化的操作要进行commit()提交事务</p></li>
 <li><p>打开的Connection对象、Cursor对象要被正确地关闭，否则就会泄漏资源；可使用 <code>try...except...finally...</code> ，确保在出错的情况也能关闭掉Cursor对象、Connection对象</p>
@@ -422,7 +422,7 @@ print(&#39;Pass&#39;)
 <li>my.cnf为MySQL的配置文件，若要修改编码格式可以修改此文件；修改文件后需要重启MySQL</li>
 <li><p>若MySQL的版本&gt;=5.5.3，可以将编码设置为utf8mb4（和utf8完全兼容），该编码支持最新的Unicode标准，可以存储显示emoji字符</p>
 
-<pre><code>[client]
+<pre><code class="language-text">[client]
 default-character-set = utf8mb4
 
 [mysqld]

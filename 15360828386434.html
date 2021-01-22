@@ -155,7 +155,7 @@ def application(env, response):
 </ul></li>
 <li><p>当命令参数过多时，可以将其写在配置文件中，然后再启动uWSGI时指定配置文件即可；配置文件可以为ini、XML、YAML格式的；</p>
 
-<pre><code>[uwsgi]
+<pre><code class="language-text">[uwsgi]
 http=:9090
 wsgi-file=server.py
 master=true
@@ -167,13 +167,13 @@ stats=:9091
 <pre><code class="language-shell">uwsgi myapp.ini
 </code></pre>
 
-<pre><code>&lt;uwsgi&gt;
+<pre><code class="language-text">&lt;uwsgi&gt;
     &lt;http&gt;:9090&lt;/socket&gt;
     &lt;master/&gt;
 &lt;/uwsgi&gt;
 </code></pre>
 
-<pre><code>uwsgi:
+<pre><code class="language-text">uwsgi:
   socket: :9090
   master: 1
 </code></pre></li>

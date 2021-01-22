@@ -520,7 +520,7 @@ mRecyclerView.getAdapter().notifyItemMoved(0, 5);
 <li><p>边距属性（android:layout_margin）是布局参数，决定了组件间的距离，Android Studio默认使用的值是16dp或8dp（遵循Material Design原则）；内边距属性（android:padding）不是布局参数，表示的是组件在绘制组件自身时，要比所含内容大多少；</p></li>
 <li><p><code>样式</code>资源文件style.xml是用来描述组件行为和外观的属性定义，其位于res/values目录下；在该文件中可以添加创建自己的样式，之后在布局文件中中以<code>@style/STYLE_NAME</code>的形式进行引用（与string类似）；</p>
 
-<pre><code class="language-xml">&lt;style name=&quot;BigTextStyle&quot;&gt;
+<pre><code class="language-markup">&lt;style name=&quot;BigTextStyle&quot;&gt;
     &lt;item name=&quot;android:textSize&quot;&gt;20sp&lt;/item&gt;
     &lt;item name=&quot;android:padding&quot;&gt;3dp&lt;/item&gt; 
 &lt;/style&gt;

@@ -195,7 +195,7 @@
 <li><strong>使用Xcode编译一次只会生成一种类型的库，可以使用 <code>Aggregate Target</code> 生成多种类型的合成库；</strong></li>
 <li><p>新建 <code>Aggregate Target</code> ，添加 <code>Run Script</code> ，填入以下类似内容（参考<code>http://blog.csdn.net/qq_16706275/article/details/45913269</code>）：</p>
 
-<pre><code># Sets the target folders and the final framework product.
+<pre><code class="language-text"># Sets the target folders and the final framework product.
 # 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME
 # 例如: FMK_NAME = &quot;MyFramework&quot;
 FMK_NAME=${PROJECT_NAME}
@@ -241,7 +241,7 @@ open &quot;${INSTALL_DIR}&quot;
 <li><p>a. 因为无法在.a文件中存放资源文件，需要将资源文件打包放在一个后缀为.bundle的文件夹中；</p></li>
 <li><p>b. 使用时需要手动添加.bundle到主项目中，之后通过以下方式使用：</p>
 
-<pre><code class="language-objc">[UIImage iamgeNamed:&quot;A.bundle/test.png&quot;];
+<pre><code class="language-objectivec">[UIImage iamgeNamed:&quot;A.bundle/test.png&quot;];
 </code></pre></li>
 </ul></li>
 <li><p>对于.framework静、动态库</p>
@@ -251,7 +251,7 @@ open &quot;${INSTALL_DIR}&quot;
 <li><p>b. 可以将资源文件直接（或打包成bundle后）放在.framework文件中，也可以将资源文件打包成bundle后与.framework文件独立开来；</p></li>
 <li><p>c. <strong>需要注意的是：Xcode在添加.framework到项目中的时候，不会添加.framework中的资源文件到项目中（添加bundle会自动添加的），故无法其中的资源无法使用；必须在 <code>Copy Bundle Resources</code> 中添加对应的.framework</strong>，之后通过以下方式使用：</p>
 
-<pre><code class="language-objc">// .framework中直接包含图片
+<pre><code class="language-objectivec">// .framework中直接包含图片
 [UIImage iamgeNamed:&quot;A.framework/test.png&quot;]
 // .framework中还有bundle，bundle中包含图片
 [UIImage iamgeNamed:&quot;A.framework/A.bundle/test.png&quot;]
@@ -283,7 +283,7 @@ open &quot;${INSTALL_DIR}&quot;
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15219669294797.html" title="Previous Post: GitBook使用教程">&laquo; GitBook使用教程</a>
+            <a href="15219669294797.html" title="Previous Post: GitBook配置使用">&laquo; GitBook配置使用</a>
             
           </p>
         </div>

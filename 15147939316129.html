@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     Carthage使用教程 - TIME TO GO 
+     Carthage配置使用 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,7 +97,7 @@
 
       <div class="article">
         
-        <h1>Carthage使用教程</h1>
+        <h1>Carthage配置使用</h1>
         <div class="read-more clearfix">
           <span class="date">2018/1/1</span>
            
@@ -132,7 +132,7 @@
 </ul></li>
 <li><p>可以通过Homebrew进行安装Carthage；</p>
 
-<pre><code># 安装carthage（安装升级carthage，注意可能出现多版本共存bug）
+<pre><code class="language-text"># 安装carthage（安装升级carthage，注意可能出现多版本共存bug）
 brew install carthage
 
 carthage version  # 查看安装的版本
@@ -146,7 +146,7 @@ carthage version  # 查看安装的版本
 <ul>
 <li><p>1、在项目根目录更加一个名称为Cartfile的文件，其作用和Podfile一样，描述所需要的第三方框架；</p>
 
-<pre><code>touch Cartfile
+<pre><code class="language-text">touch Cartfile
 open -a Xcode Cartfile  # 使用Xcode打开编辑
 
 # Cartfile内容（可以像Podfile一样指定库的版本）
@@ -155,7 +155,7 @@ github &quot;PureLayout/PureLayout&quot;
 </code></pre></li>
 <li><p>2、执行更新命令，生成framework文件；</p>
 
-<pre><code>carthage update --platform iOS # 只生成iOS平台的framework
+<pre><code class="language-text">carthage update --platform iOS # 只生成iOS平台的framework
 </code></pre>
 
 <p>执行完成后，会生成以下文件目录结构：</p>
@@ -189,12 +189,12 @@ github &quot;PureLayout/PureLayout&quot;
 <li><strong>a) 添加命令：<code>usr/local/bin/carthage copy-frameworks</code></strong></li>
 <li><p><strong>b) Input Files中添加每一个framework的输入路径（注意避免空格换行符），比如：</strong></p>
 
-<pre><code>$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
+<pre><code class="language-text">$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
 $(SRCROOT)/Carthage/Build/iOS/PureLayout.framework
 </code></pre></li>
 <li><p><strong>c)（可选，建议配置）Output Files中添加每一个framework的输出路径，比如：</strong></p>
 
-<pre><code>$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework
+<pre><code class="language-text">$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 </code></pre></li>
 </ul></li>

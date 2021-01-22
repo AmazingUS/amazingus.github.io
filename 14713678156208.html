@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     CocoaPods使用教程 - TIME TO GO 
+     CocoaPods配置使用 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,7 +97,7 @@
 
       <div class="article">
         
-        <h1>CocoaPods使用教程</h1>
+        <h1>CocoaPods配置使用</h1>
         <div class="read-more clearfix">
           <span class="date">2016/4/17</span>
            
@@ -147,14 +147,14 @@
 <li><p>2、更换Ruby的Gem的源（建议使用<code>https://ruby.taobao.org/</code>）；</p></li>
 <li><p>3、安装CocoaPods；</p>
 
-<pre><code>gem install cocoapods
+<pre><code class="language-text">gem install cocoapods
 </code></pre>
 
 <ul>
 <li>重启终端，执行 <code>pod --version</code>，检查CocoaPods是否被安装正确；</li>
 <li><p>若使用macOS默认的Ruby安装CocoaPods，会报错误 <code>... Operation not permitted - /usr/bin/fuzzy_match</code>，这是由于OS X 10.11引入了Rootless机制导致的，其不仅仅只是对安装CocoaPods有影响；解决办法如下：</p>
 
-<pre><code>sudo gem install -n /usr/local/bin cocoapods
+<pre><code class="language-text">sudo gem install -n /usr/local/bin cocoapods
 </code></pre></li>
 </ul></li>
 <li><p>4、（可选）更换CocoaPods的镜像索引文件的源；</p>
@@ -162,13 +162,13 @@
 <ul>
 <li><p>使用CocoaPods之前，必须先将第三方框架的镜像索引文件（spec repo）缓存到本地，镜像索引文件存放在GitHub上；</p>
 
-<pre><code>pod repo remove master
+<pre><code class="language-text">pod repo remove master
 pod repo add master https://git.oschina.net/akuandev/Specs.git
 </code></pre></li>
 </ul></li>
 <li><p>5、获取CocoaPods的镜像索引文件；</p>
 
-<pre><code>pod setup
+<pre><code class="language-text">pod setup
 </code></pre>
 
 <ul>
@@ -181,7 +181,7 @@ pod repo add master https://git.oschina.net/akuandev/Specs.git
 <ul>
 <li><p>使用gem卸载CocoaPods的相关包后，还需要进行以下操作：清理镜像索引文件、删除pod执行文件、重启终端；</p>
 
-<pre><code>gem list | grep cocoapods # 查找与cocoapods相关的包
+<pre><code class="language-text">gem list | grep cocoapods # 查找与cocoapods相关的包
 sudo gem uninstall &lt;PACKAGE&gt; # 删除上面查找到的cocoapods的相关包
 
 rm -rf ~/.cocoapods # 删除镜像索引文件
@@ -249,7 +249,7 @@ pod update [--no-repo-update]
 <li>之前Podfile文件需要自己手动创建，现在可以执行 <code>pod init</code> 命令可自动创建该文件（需要当前的目录中有Xcode工程文件）；</li>
 <li><p>不同版本的CocoaPods的Podefile文件格式有所差异，同时要<strong>注意空格符</strong>、iOS版本等规范；最新的Podefile文件的格式如下：（<code>inhibit_all_warnings!</code>表示消除CocoaPods引入的类库中的警告）</p>
 
-<pre><code>inhibit_all_warnings!
+<pre><code class="language-text">inhibit_all_warnings!
 platform :ios, &#39;8.0&#39;
 
 target &#39;Sample&#39; do
@@ -259,7 +259,7 @@ end
 </code></pre></li>
 <li><p>类库的版本格式：</p>
 
-<pre><code>pod &#39;AFNetworking&#39; # 不指定版本，使用最新版本  
+<pre><code class="language-text">pod &#39;AFNetworking&#39; # 不指定版本，使用最新版本  
 pod &#39;AFNetworking&#39;, &#39;2.0&#39; # 只使用2.0版本  
 pod &#39;AFNetworking&#39;, &#39;&gt;= 2.0&#39; # 使用大于等于2.0的版本  
 pod &#39;AFNetworking&#39;, &#39;~&gt;0.1&#39; # 使用大于等于0.1但小于1.0的版本  
@@ -272,7 +272,7 @@ pod &#39;AFNetworking&#39;, &#39;~&gt;0.1&#39; # 使用大于等于0.1但小于1
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="14699747303062.html" title="Previous Post: Hexo博客配置使用教程">&laquo; Hexo博客配置使用教程</a>
+            <a href="14699747303062.html" title="Previous Post: Hexo配置使用">&laquo; Hexo配置使用</a>
             
           </p>
         </div>

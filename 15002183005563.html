@@ -136,19 +136,19 @@
 <ul>
 <li><p>1、生成第一个key；</p>
 
-<pre><code>## 指定生成的key的名称
+<pre><code class="language-text">## 指定生成的key的名称
 ssh-keygen -t rsa -C &quot;a@email.com&quot; -f ~/.ssh/A_KEYNAME
 </code></pre></li>
 <li><p>2、生成第二个key；</p>
 
-<pre><code>ssh-keygen -t rsa -C &quot;b@email.com&quot; -f ~/.ssh/B_KEYNAME
+<pre><code class="language-text">ssh-keygen -t rsa -C &quot;b@email.com&quot; -f ~/.ssh/B_KEYNAME
 </code></pre></li>
 <li><p>3、配置.ssh的config文件；</p>
 
-<pre><code>vi ~/.ssh/config
+<pre><code class="language-text">vi ~/.ssh/config
 </code></pre>
 
-<pre><code>Host AA # 要匹配的别名
+<pre><code class="language-text">Host AA # 要匹配的别名
 Hostname XX.com # 使用的域名
 IdentityFile ~/.ssh/A_KEYNAME # 使用的Key
 
@@ -158,7 +158,7 @@ IdentityFile ~/.ssh/B_KEYNAME
 </code></pre></li>
 <li><p>4、测试；</p>
 
-<pre><code>ssh -T git@AA # 注意：使用“git@别名”进行测试
+<pre><code class="language-text">ssh -T git@AA # 注意：使用“git@别名”进行测试
 ssh -T git@BB
 </code></pre></li>
 <li><p>5、修改repo的ssh地址；</p>
@@ -170,7 +170,7 @@ ssh -T git@BB
 <ul>
 <li><p>将ssh地址中的域名改为<code>对应账号使用的域名别名</code>，这样就可以使用该账号对应的key了；</p>
 
-<pre><code># 修改后的ssh地址
+<pre><code class="language-text"># 修改后的ssh地址
 git@AA:twbs/bootstrap.git
 git@BB:hexojs/hexo.git
 </code></pre></li>
@@ -191,7 +191,7 @@ git@BB:hexojs/hexo.git
 </ul></li>
 <li><p>示例</p>
 
-<pre><code># Only for git
+<pre><code class="language-text"># Only for git
 Host blog
 User git
 Hostname github.com
@@ -247,7 +247,7 @@ IdentityFile ~/.ssh/us
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="14709318994406.html" title="Next Post: Ruby环境搭建教程">Ruby环境搭建教程 &raquo;</a>
+            <a href="14709318994406.html" title="Next Post: Ruby配置使用">Ruby配置使用 &raquo;</a>
             
           </p>
         </div>

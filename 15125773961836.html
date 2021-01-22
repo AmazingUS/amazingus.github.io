@@ -523,7 +523,7 @@ now.__name__  # &#39;now&#39;
 <li><p>在OOP的设计模式中，Decorator被称为装饰模式；OOP的装饰模式需要通过继承和组合来实现，而Python除了支持OOP的Decorator（用类实现），还直接从语法层次支持Decorator（用函数实现）</p></li>
 <li><p>练习：编写Decorator，使其能在函数调用前后打印&#39;begin call&#39;和&#39;end call&#39;，并且同时支持@log和@log(&#39;execute&#39;)</p>
 
-<pre><code>import functools
+<pre><code class="language-text">import functools
 def log(msg):
      # callable(obj)：检查obj对象是否可以被调用；若可以则obj是函数
     if callable(msg): # 可调用，说明此时的log就是不带参数的@log

@@ -675,7 +675,7 @@ Python 2.7.10 。。。。。。 more information.
 <li><p>virtualenv命令创建一个独立的Python运行环境，参数--no-site-packages表示不将系统的安装的第三方模块复制过来</p></li>
 <li><p>独立的Python环境存放在当前目录下的环境名称目录中（比如上面的myvenv），之后使用source命令进入该环境</p></li>
 <li><p>针对每个应用创建独立的Python运行环境，可以解决不同应用间使用的库多版本的冲突问题</p></li>
-<li><p>virturalenv创建“独立”的Python运行环境原理：把系统Python复制一份到virtualenv环境，用命令“source myvenv/bin/activate”进入一个virtualenv环境时，virtualenv会修改环境变量，让命令python和pip均指向当前的virtualenv环境<br/>
+<li><p>virturalenv创建“独立”的Python运行环境原理：把系统Python复制一份到virtualenv环境，用命令“source myvenv/bin/activate”进入一个virtualenv环境时，virtualenv会修改环境变量，让命令python和pip均指向当前的virtualenv环境
 Python3.3开始新增内置的创建虚拟环境的venv，其操作和virtualenv类似，创建一个“隔离环境”：<code>python3 -m venv myvenv</code></p></li>
 </ul>
 

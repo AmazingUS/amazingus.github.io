@@ -315,7 +315,7 @@ print(10 / n)
 <li>启动Python的调试器pdb，让程序以单步方式运行，可以随时查看运行状态</li>
 <li><p>该调试方法不常用；过于麻烦，若有多行代码，执行多少行需要输入多少行代码</p>
 
-<pre><code>python -m pdb helloworld.py  # 加上-m pdb参数，pdb定位到下一步要执行的代码
+<pre><code class="language-text">python -m pdb helloworld.py  # 加上-m pdb参数，pdb定位到下一步要执行的代码
 &gt;...helloworld.py(111)&lt;module&gt;()
 -&gt; s = &#39;0&#39;
 (Pdb) l  #【1】输入&#39;l&#39;查看代码
@@ -445,12 +445,15 @@ class TestDict(unittest.TestCase):
 
 <pre><code class="language-python">&gt;python -m unittest dicttest.py # 测试通过打.，测试不通过打E
 .....
-----------------------------------------------------------------------
+</code></pre></li>
+</ul>
+
+<pre><code class="language-text">----------------------------------------------------------------------
 Ran 5 tests in 0.001s
 
 OK
-</code></pre></li>
-</ul>
+```
+</code></pre>
 
 <h4 id="toc_14">9.4 文档测试</h4>
 

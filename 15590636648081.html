@@ -111,7 +111,7 @@
         <ul>
 <li><p>1、安装OpenCV</p>
 
-<pre><code>brew install opencv
+<pre><code class="language-text">brew install opencv
 </code></pre>
 
 <ul>
@@ -127,7 +127,7 @@
 <ul>
 <li><p><strong>a. Header Search Paths</strong></p>
 
-<pre><code>$(PROJECT_DIR)  // 当前工程路径
+<pre><code class="language-text">$(PROJECT_DIR)  // 当前工程路径
 /usr/local/Cellar/opencv/4.1.0_2/include/opencv4  // OpenCV的头文件路径
 </code></pre>
 
@@ -136,7 +136,7 @@
 </ul></li>
 <li><p><strong>b. Library Search Paths</strong></p>
 
-<pre><code>$(PROJECT_DIR)  // 当前工程路径
+<pre><code class="language-text">$(PROJECT_DIR)  // 当前工程路径
 /usr/local/Cellar/opencv/4.1.0_2/lib  // OpenCV的库文件路径
 </code></pre></li>
 <li><p><strong>c. Link Binary With Libraries</strong></p>
@@ -152,7 +152,7 @@
 </ul></li>
 <li><p>3、测试代码（C++）</p>
 
-<pre><code class="language-C++">#include &lt;iostream&gt;
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;opencv2/opencv.hpp&gt;
 
 using namespace cv;
@@ -181,7 +181,7 @@ int main(int argc, const char * argv[]) {
 <li>若使用brew安装了OpenCV，再使用pip直接安装opencv-python会造成重复安装，brew安装的OpenCV本身就可以支持Python；</li>
 <li><p><strong>方式：将OpenCV安装路径下的<code>cv2.cpython-36m-darwin.so</code>文件复制到Python环境下的<code>site-packages</code>目录中，并重命名为<code>cv.so</code>；注意若进行软连接，还是会报错的；</strong></p>
 
-<pre><code># .so文件的具体路径
+<pre><code class="language-text"># .so文件的具体路径
 /usr/local/Cellar/opencv/3.3.1_1/lib/python3.6/site-packages/cv2.cpython-36m-darwin.so
 
 # Python的site-packages目录的具体路径
@@ -228,7 +228,7 @@ cv2.destroyAllWindows()
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15590617242967.html" title="Next Post: Sublime配置使用教程">Sublime配置使用教程 &raquo;</a>
+            <a href="15590617242967.html" title="Next Post: Sublime配置使用">Sublime配置使用 &raquo;</a>
             
           </p>
         </div>
