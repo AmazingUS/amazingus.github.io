@@ -477,7 +477,7 @@ mRecyclerView.getAdapter().notifyItemMoved(0, 5);
 <li><p>和RecyclerView类似， ConstraintLayout来自于约束布局依赖库（constraint-layout），使用时需要添加该依赖库；</p></li>
 <li><p>布局预览窗口顶部的约束编辑选项工具栏，依次为显示所有约束、自动连接切换开关（当拖拽组件时，Android Studio自动配置约束）、清除全部约束、猜测约束（与自动连接类似）；</p>
 
-<p><img src="media/15225894269717/constraintlayout_tools.png" alt="constraintlayout_tools" style="width:709px;"/></p></li>
+<p><figure><img src="media/15225894269717/constraintlayout_tools.png" alt="constraintlayout_tools" style="width:709px;"/><figcaption>constraintlayout_tools</figcaption></figure></p></li>
 <li><p><strong>控件的大小尺寸由宽度、高度的设置值决定，设置值有三种选项，可以通过点击示例图进行切换，也可以设置layout_width(layout_height)；</strong></p>
 
 <ul>
@@ -485,7 +485,7 @@ mRecyclerView.getAdapter().notifyItemMoved(0, 5);
 <li><p><strong>包裹内容：wrap_content，设置视图想尺寸根据内容而定；</strong></p></li>
 <li><p><strong>动态适应：match_constraint（0dp）， 允许视图缩放以满足指定约束；与match_parent不等价；</strong></p>
 
-<p><img src="media/15225894269717/constraintlayout_size_types.png" alt="constraintlayout_size_types" style="width:444px;"/></p></li>
+<p><figure><img src="media/15225894269717/constraintlayout_size_types.png" alt="constraintlayout_size_types" style="width:444px;"/><figcaption>constraintlayout_size_types</figcaption></figure></p></li>
 </ul></li>
 <li><p><strong>控件的四边的中心有都有圆点，表示约束柄；</strong></p>
 
@@ -494,7 +494,7 @@ mRecyclerView.getAdapter().notifyItemMoved(0, 5);
 <li><strong>圆点为实心则说明已添加约束，光标移动到该圆点上（变红色），点击即删除该约束；</strong></li>
 </ul>
 
-<p><img src="media/15225894269717/constraintlayout_attributes.png" alt="constraintlayout_attributes" style="width:537px;"/></p></li>
+<p><figure><img src="media/15225894269717/constraintlayout_attributes.png" alt="constraintlayout_attributes" style="width:537px;"/><figcaption>constraintlayout_attributes</figcaption></figure></p></li>
 <li><p><strong>凡是以layout_开头的属性都属于布局参数（layout parameter）属性；<code>app:layout_constraintTop_toTopOf=&quot;parent&quot;</code>：</strong></p>
 
 <ul>
@@ -509,7 +509,7 @@ mRecyclerView.getAdapter().notifyItemMoved(0, 5);
 <ul>
 <li><p><strong>对于图片，Android会使用不同像素密度drawable自动适配不同像素密度的屏幕；对于对距离尺寸、文字大小，Android提供了与密度无关的尺寸单位，让其在不同屏幕像素密度的设备上获得同样的尺寸，而在应用运行时，Android会自动将这种单位转换成像素单位；</strong></p>
 
-<p><img src="media/15225894269717/px%E3%80%81dp%E3%80%81sp.png" alt="px、dp、sp" style="width:343px;"/></p>
+<p><figure><img src="media/15225894269717/px%E3%80%81dp%E3%80%81sp.png" alt="px、dp、sp" style="width:343px;"/><figcaption>px、dp、sp</figcaption></figure></p>
 
 <ul>
 <li>px（pixel，像素）：无论屏幕密度多少，一个像素单位对应一个屏幕像素单位；不推荐使用px，因为它不会根据屏幕密度自动缩放；</li>

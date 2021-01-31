@@ -142,7 +142,7 @@
 <pre><code class="language-text">brew install nvm
 </code></pre>
 
-<p><img src="media/14694629279396/nvm_caveats.png" alt="nvm_caveats" style="width:634px;"/></p>
+<p><figure><img src="media/14694629279396/nvm_caveats.png" alt="nvm_caveats" style="width:634px;"/><figcaption>nvm_caveats</figcaption></figure></p>
 
 <span id="more"></span><!-- more -->
 
@@ -186,7 +186,7 @@ nvm alias default &lt;VERSION&gt; # 修改node的默认版本，例如nvm alias 
 nvm which &lt;VERSION&gt; # 查看指定版本node的安装路径
 </code></pre>
 
-<p><img src="media/14694629279396/nvm_change_node_version.png" alt="nvm_change_node_version" style="width:362px;"/></p></li>
+<p><figure><img src="media/14694629279396/nvm_change_node_version.png" alt="nvm_change_node_version" style="width:362px;"/><figcaption>nvm_change_node_version</figcaption></figure></p></li>
 </ul>
 
 <h4 id="toc_2">三、npm模块</h4>
@@ -217,7 +217,7 @@ npm &lt;show | info&gt; &lt;PACKAGE&gt; [字段名] # 查看模块详情（不�
 npm search &lt;PACKAGE&gt; # 搜索某个模块（不建议使用）
 </code></pre>
 
-<p><img src="media/14694629279396/npm_install.png" alt="npm_instal" style="width:315px;"/></p>
+<p><figure><img src="media/14694629279396/npm_install.png" alt="npm_instal" style="width:315px;"/><figcaption>npm_instal</figcaption></figure></p>
 
 <ul>
 <li>第一行的路径为安装路径，@前面的为模块的name，@后面的数字为模块的版本号，下面的模块为其所依赖的模块；</li>
@@ -230,7 +230,7 @@ npm search &lt;PACKAGE&gt; # 搜索某个模块（不建议使用）
 </ul></li>
 <li><p>执行npm install或npm uninstall等操作时，需要当前目录中有package.json文件（用于管理项目的依赖项、元数据）；一般情况下，<code>本地安装</code>是没有该文件的，需要手动创建，否则会报警告 <code>npm WARN ENOENT ENOENT: no such file or directory, open...package.json</code>；消除警告，有三种方式解决：</p>
 
-<p><img src="media/14694629279396/npm_install_warn.png" alt="npm_install_warn" style="width:596px;"/></p>
+<p><figure><img src="media/14694629279396/npm_install_warn.png" alt="npm_install_warn" style="width:596px;"/><figcaption>npm_install_warn</figcaption></figure></p>
 
 <ul>
 <li>a. 使用 <code>npm init</code> 引导模式输入相关数据初始化一个；</li>
