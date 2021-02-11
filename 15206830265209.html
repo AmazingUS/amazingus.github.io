@@ -208,11 +208,11 @@ class SwiftTest { // 不必继承NSObject
 <ul>
 <li><p>a. 在选择Xcode自动创建Bridge头文件的同时，Xcode还会<strong>自动隐式创建</strong><code>#ProjectName#-Swift.h</code>，用于ObjC调用Swift；该文件中的内容为Xcode动态生成的，不需要编辑；</p>
 
-<p><figure><img src="media/15206830265209/Xcode_config.png" alt="Xcode_config" style="width:676px;"/><figcaption>Xcode_config</figcaption></figure></p></li>
+<p><img src="media/15206830265209/Xcode_config.png" alt="Xcode_config" style="width:676px;"/></p></li>
 <li><p>b. 若要将Swift类暴露给ObjC使用，则Swift类必须是NSObject的子类；</p></li>
 <li><p><strong>c. 从Swift4.0开始，Swift类中的方法必须显示添加@objc修饰符（Swift3.0不需要），否则ObjC无法识别；可以通过设置&quot;Build Setting&quot;中的&quot;Swift 3 @objc inference&quot;决定是否使用新特性；</strong></p>
 
-<p><figure><img src="media/15206830265209/@objc.png" alt="@obj" style="width:489px;"/><figcaption>@obj</figcaption></figure></p></li>
+<p><img src="media/15206830265209/@objc.png" alt="@obj" style="width:489px;"/></p></li>
 </ul></li>
 <li><p>3、在需要Swift类的ObjC文件中，进行<code>#ProjectName#-swift.h</code>，即可在ObjC调用Swift了；</p></li>
 <li><p>4、新建ObjC文件用于测试，比如ObjCTest.h/m；</p></li>

@@ -198,17 +198,17 @@ let sendBtn = testHelper.sendBtn
 <ul>
 <li><p>1）当在Xcode中创建一个<code>Empty XIB</code>时，XIB文件中<code>只有Placeholders</code>；</p>
 
-<p><figure><img src="media/15703760378326/xib_01.png" alt="xib_01" style="width:367px;"/><figcaption>xib_01</figcaption></figure></p></li>
+<p><img src="media/15703760378326/xib_01.png" alt="xib_01" style="width:367px;"/></p></li>
 <li><p>2）当在Xcode中创建一个<code>View XIB</code>时，XIB中有<code>Placeholders和一个View</code>；<strong>可以向这个View添加子控件，也可以给XIB添加控件（与默认的View同级别）；</strong></p>
 
-<p><figure><img src="media/15703760378326/xib_02.png" alt="xib_02" style="width:588px;"/><figcaption>xib_02</figcaption></figure></p></li>
+<p><img src="media/15703760378326/xib_02.png" alt="xib_02" style="width:588px;"/></p></li>
 <li><p>3）<strong>当在Xcode中创建一个<code>View Class并勾选Also create XIB file</code>时，会自动配置<code>视图（View）</code>的<code>Custom Class</code>为当前新建的View Class名称；</strong></p>
 
 <ul>
 <li><strong>之后就可以把XIB文件中<code>该视图（View）内的子控件</code>，关联到View Class的IBOutlet属性；</strong></li>
 <li><p><strong>注意：File’s Owner的Class为空；</strong></p>
 
-<p><figure><img src="media/15703760378326/xib_03.png" alt="xib_03" style="width:666px;"/><figcaption>xib_03</figcaption></figure></p></li>
+<p><img src="media/15703760378326/xib_03.png" alt="xib_03" style="width:666px;"/></p></li>
 </ul></li>
 <li><p>4）<strong>当在Xcode中创建一个<code>ViewController Class并勾选Also create XIB file</code>时，会自动配置<code>File’s Owner</code>的<code>Class</code>为当前新建的ViewController Class名称；</strong></p>
 
@@ -216,14 +216,14 @@ let sendBtn = testHelper.sendBtn
 <li><strong>并且由于自动配置的File’s Owner的Class是ViewController类型，就有了一个<code>名称为view的Outlet</code>，并<code>自动关联XIB文件中的View</code>（默认会创建一个和屏幕一样大的View）；</strong></li>
 <li><p><strong><code>名称为view的Outlet必须有关联XIB文件中的View</code>，否则使用时报错：-[UIViewController _loadViewFromNibNamed:bundle:] loaded the &quot;TestViewController&quot; nib but the view outlet was not set.</strong></p>
 
-<p><figure><img src="media/15703760378326/xib_04.png" alt="xib_04" style="width:682px;"/><figcaption>xib_04</figcaption></figure></p>
+<p><img src="media/15703760378326/xib_04.png" alt="xib_04" style="width:682px;"/></p>
 
-<p><figure><img src="media/15703760378326/xib_05.png" alt="xib_05" style="width:685px;"/><figcaption>xib_05</figcaption></figure></p>
+<p><img src="media/15703760378326/xib_05.png" alt="xib_05" style="width:685px;"/></p>
 
-<p><figure><img src="media/15703760378326/xib_06.png" alt="xib_06" style="width:685px;"/><figcaption>xib_06</figcaption></figure></p></li>
+<p><img src="media/15703760378326/xib_06.png" alt="xib_06" style="width:685px;"/></p></li>
 <li><p><strong>也可以将这个默认的关联的View换成其他控件；</strong></p>
 
-<p><figure><img src="media/15703760378326/xib_07.png" alt="xib_07" style="width:684px;"/><figcaption>xib_07</figcaption></figure></p></li>
+<p><img src="media/15703760378326/xib_07.png" alt="xib_07" style="width:684px;"/></p></li>
 <li><p><strong>注意：视图（View）的Custom Class为空；</strong></p></li>
 </ul></li>
 </ul></li>
@@ -352,7 +352,7 @@ var cell = tableView.dequeueReusableCell(withIdentifier: &quot;cell2&quot;, for:
 </ul></li>
 <li><p>7、<strong>SB通过<code>View Controller Scene</code>管理ViewController（<code>一一对应</code>）；</strong></p>
 
-<p><figure><img src="media/15703760378326/sb_01.png" alt="sb_01" style="width:752px;"/><figcaption>sb_01</figcaption></figure></p>
+<p><img src="media/15703760378326/sb_01.png" alt="sb_01" style="width:752px;"/></p>
 
 <ul>
 <li><p><strong>其Custom Class默认是UIViewController类型的（自定义Class必须是UIViewController的子类，设置其他类型的Class不起作用），并<code>名称为view的Outlet</code>自动关联<code>View Controller Scene中的View</code>，且不可以替换；</strong></p>

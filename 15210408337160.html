@@ -157,7 +157,7 @@
 <li><p>Xcode也不支持创建任何形式的动态库；</p></li>
 <li><p>.tdb/.dylib动态库、.framework动态库都是系统内置的（如libz.dylib、UIKit.framework），故开发者只能使用系统内置的动态库；</p>
 
-<p><figure><img src="media/15210408337160/xcode_5.png" alt="xcode_5" style="width:311px;"/><figcaption>xcode_5</figcaption></figure></p></li>
+<p><img src="media/15210408337160/xcode_5.png" alt="xcode_5" style="width:311px;"/></p></li>
 </ul></li>
 <li><p>Xcode 6（iOS8）开始：</p>
 
@@ -165,7 +165,7 @@
 <li>Xcode支持创建.a静态库、.framework静态库（修改Mach-O Type，默认为动态库）；</li>
 <li><p><strong>Xcode也支持创建.framework动态库了，但这是一种特殊的动态库（使用时需要被添加到 <code>Embedded Binaries</code> 中，并且默认自动添加到Link Binary With Libraries中）；其只支持主程序和扩展程序共用该动态库，其他应用还是无法进行公共，这和系统的（如UIKit.framework）还是有着很大区别的；</strong></p>
 
-<p><figure><img src="media/15210408337160/xcode_6.png" alt="xcode_6" style="width:300px;"/><figcaption>xcode_6</figcaption></figure></p></li>
+<p><img src="media/15210408337160/xcode_6.png" alt="xcode_6" style="width:300px;"/></p></li>
 </ul></li>
 <li><p><strong>Xcode 6（iOS8）发布了Swift 1.0，但是Swift不支持静态库（.a、.framework），只支持动态库（.tdb/.dylib、.framework）；从Xcode 9开始，Swift 4.0支持静态库；</strong></p></li>
 <li><p>CocoaPods在纯ObjC项目中，默认将第三方库源码编译成.a静态库集成到项目中；若含有Swift的类库则必须添加 <code>use_frameworks!</code> 标识（纯ObjC项目中也可以使用的），进而生成.framework动态库；</p></li>

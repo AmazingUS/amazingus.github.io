@@ -163,14 +163,14 @@ github &quot;PureLayout/PureLayout&quot;
 <ul>
 <li><p>Carfile.resolved用于版本控制；Build目录为生成的Dynamic framework；Checkouts为从github上clone的源代码；</p>
 
-<p><figure><img src="media/15147939316129/carthage_files.png" alt="carthage_files" style="width:684px;"/><figcaption>carthage_files</figcaption></figure></p></li>
+<p><img src="media/15147939316129/carthage_files.png" alt="carthage_files" style="width:684px;"/></p></li>
 </ul></li>
 <li><p>3、添加Dynamic framework到项目中；</p>
 
 <ul>
 <li><p><strong>方式一：Embedded Binaries（不建议使用）</strong></p>
 
-<p><figure><img src="media/15147939316129/embedded_binaries.png" alt="embedded_binaries" style="width:672px;"/><figcaption>embedded_binaries</figcaption></figure></p>
+<p><img src="media/15147939316129/embedded_binaries.png" alt="embedded_binaries" style="width:672px;"/></p>
 
 <ul>
 <li><strong>a. 由于是生成的是Dynamic framework，可以手动直接添加framework到General或Build Phase界面的&quot;Embedded Binaries&quot;中，之后就可以直接使用；</strong></li>
@@ -183,7 +183,7 @@ github &quot;PureLayout/PureLayout&quot;
 <ul>
 <li><p><strong>a. 添加添加framework到&quot;Link Binary With Libraries&quot;后，在Build Phase界面点击左上角+按钮，添加一个Run Script，并做以下配置；</strong></p>
 
-<p><figure><img src="media/15147939316129/carthage_run_script.png" alt="carthage_run_script" style="width:491px;"/><figcaption>carthage_run_script</figcaption></figure></p>
+<p><img src="media/15147939316129/carthage_run_script.png" alt="carthage_run_script" style="width:491px;"/></p>
 
 <ul>
 <li><strong>a) 添加命令：<code>usr/local/bin/carthage copy-frameworks</code></strong></li>
