@@ -116,7 +116,7 @@
 <a href="#toc_1">二、类库类型支持</a>
 </li>
 <li>
-<a href="#toc_2">三、设备CPU架构</a>
+<a href="#toc_2">三、iPhone设备CPU架构</a>
 </li>
 <li>
 <a href="#toc_3">四、资源文件处理</a>
@@ -163,7 +163,7 @@
 
 <ul>
 <li>Xcode支持创建.a静态库、.framework静态库（修改Mach-O Type，默认为动态库）；</li>
-<li><p><strong>Xcode也支持创建.framework动态库了，但这是一种特殊的动态库（使用时需要被添加到 <code>Embedded Binaries</code> 中，并且默认自动添加到Link Binary With Libraries中）；其只支持主程序和扩展程序共用该动态库，其他应用还是无法进行公共，这和系统的（如UIKit.framework）还是有着很大区别的；</strong></p>
+<li><p><strong>Xcode也支持创建.framework动态库了，但这是一种特殊的动态库（使用时需要被添加到 <code>Embedded Binaries</code> 中，并且默认自动添加到Link Binary With Libraries中）；其只支持主程序和扩展程序共用该动态库，其他应用还是无法进行共用，这和系统的（如UIKit.framework）还是有着很大区别的；</strong></p>
 
 <p><img src="media/15210408337160/xcode_6.png" alt="xcode_6" style="width:300px;"/></p></li>
 </ul></li>
@@ -172,22 +172,112 @@
 <li><p>Carthage只支持生成.framework动态库（原因：Carthage是通过Swift语言编写而成的），故其支持的项目最低版本为8.0；</p></li>
 </ul>
 
-<h4 id="toc_2">三、设备CPU架构</h4>
+<h4 id="toc_2">三、iPhone设备CPU架构</h4>
 
 <ul>
 <li><p>CPU架构</p>
 
 <ul>
-<li>a. 模拟器：iPhone 4s~5c为i386，iPhone 5s~...为x86_64；</li>
-<li>b. 真机：iPhone 3gs~4s为armv7，iPhone 5~5c为armv7s，iPhone 5s~...为arm64；静态库只要支持armv7，就可以运行在armv7s架构上；</li>
+<li>a. 模拟器：
+
+<ul>
+<li>i386（32位）：iPhone 4s~5c；</li>
+<li>x86_64（64位）：iPhone 5s~...；</li>
 </ul></li>
+<li>b. 真机：
+
+<ul>
+<li>armv7（32位）：iPhone 3gs~4s；</li>
+<li>armv7s（32位）：iPhone 5~5c；</li>
+<li>arm64（64位）：，iPhone 5s~...；</li>
+<li><strong>只支持armv7架构，也可以运行在armv7s架构上；</strong></li>
+</ul></li>
+</ul></li>
+<li><p>CPU架构演进</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">年份</th>
+<th style="text-align: center">芯片</th>
+<th style="text-align: center">架构</th>
+<th style="text-align: center">设备</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: center">2013</td>
+<td style="text-align: center">A7</td>
+<td style="text-align: center">arm64</td>
+<td style="text-align: center">iPhone 5S</td>
+</tr>
+<tr>
+<td style="text-align: center">2014</td>
+<td style="text-align: center">A8</td>
+<td style="text-align: center">arm64</td>
+<td style="text-align: center">iPhone 6/6P</td>
+</tr>
+<tr>
+<td style="text-align: center">2015</td>
+<td style="text-align: center">A9</td>
+<td style="text-align: center">arm64</td>
+<td style="text-align: center">iPhone 6S/6SP</td>
+</tr>
+<tr>
+<td style="text-align: center">2016</td>
+<td style="text-align: center">A10</td>
+<td style="text-align: center">arm64</td>
+<td style="text-align: center">iPhone 7/7SP</td>
+</tr>
+<tr>
+<td style="text-align: center">2017</td>
+<td style="text-align: center">A11</td>
+<td style="text-align: center">arm64</td>
+<td style="text-align: center">iPhone 8/8SP/X</td>
+</tr>
+<tr>
+<td style="text-align: center">2018</td>
+<td style="text-align: center">A12</td>
+<td style="text-align: center">arm64e</td>
+<td style="text-align: center">iPhone XS/XS Max/XR</td>
+</tr>
+</tbody>
+</table></li>
 <li><p>生成库类型</p>
 
 <ul>
-<li>a. 通过修改Xcode编译的目标设备，可以分别生成模拟器、真机的库；</li>
-<li>b. 通过修改Xcode编译的Scheme的config，可以分别生成Debug、Release的库；</li>
-<li>c. Xcode在Debug、模拟器情况下，默认只会生成Active平台的CPU架构，比如生成的模拟器的库只有x86_64架构（通过 <code>lipo -info</code> 命令查看）；修改Build Settings的 <code>Build Active Architecture Only</code> 为No，则生成所有的CPU架构；真机情况下为armv7、arm64两种架构(armv7s被Apple舍弃了)；</li>
-<li>d. 可以使用 <code>lipo -create</code> 命令合并相关的库文件；</li>
+<li>a. 通过修改Xcode编译的目标设备（模拟器、<code>Generic iOS Device</code>或真机），可以分别生成模拟器的库、真机的库；</li>
+<li>b. 通过修改Xcode编译的Scheme的<code>Run</code> -&gt; <code>Build Config</code>，可以分别生成Debug、Release的库；</li>
+<li><p>c. Xcode在Debug模式下，默认只会生成Active平台的CPU架构；</p>
+
+<ul>
+<li>修改Build Settings的 <code>Build Active Architecture Only</code> 为No，则生成所有的CPU架构；</li>
+<li>-比如模拟器iPhone 5为i386，iPhone 6为x86_64（通过 <code>lipo -info</code> 命令查看），真机情况下为armv7、arm64两种架构(armv7s被Apple舍弃了)；</li>
+<li><p><strong>Xcode 12，App最低支持版本也会影响生成的CPU架构；</strong></p>
+
+<ul>
+<li><p>最低支持版本iOS 10：</p>
+
+<p><img src="media/15210408337160/xcode12_ios_min_10.png" alt="xcode12_ios_min_10" style="width:254px;"/></p></li>
+<li><p>最低支持版本iOS 10：</p>
+
+<p><img src="media/15210408337160/xcode12_ios_min_11.png" alt="xcode12_iosmin11" style="width:212px;"/></p></li>
+</ul></li>
+<li><p><strong>Xcode 12的模拟器的库也包含arm64（为了支持Apple M1的模拟器），但是真机使用不了该库；若此时合并真机的库，则因为arm64冲突，合并失败；解决办法是合并前去掉模拟器的库中的arm64（<code>lipo -create</code>）；</strong></p></li>
+</ul></li>
+<li><p>d. 可以使用 <code>lipo -create</code> 命令合并相关的库文件；</p></li>
+<li><p>e. <code>Valid Architectures</code></p>
+
+<ul>
+<li><strong>Xcode 12之前：用于配置需要打包的架构；</strong></li>
+<li><strong>Xcode 12：被废弃移除了；</strong>
+
+<ul>
+<li><strong>若之前修改配置过该值（不再是默认值），则Xcode自动将其移到<code>User-Defined -&gt; VALID_ARCHS</code>；</strong></li>
+<li><strong>Xcode 12通过新增<code>EXCLUDED_ARCHS</code>，用于配置不需要打包的架构；</strong></li>
+</ul></li>
+</ul></li>
 </ul></li>
 <li><p>通用（合成）库类型</p>
 
@@ -275,6 +365,7 @@ open &quot;${INSTALL_DIR}&quot;
 <ul>
 <li><p><strong>若需要边开发边调试类库：在现有工程中添加一个库Lib Target，设置一些相关配置（默认情况下自动添加，比如主Target的Build Phases的Target Dependencies添加lib Target、Embedded Binaries添加Lib、Link Binary With Libraries添加Lib、Public头文件、Copy Bundle Resources等），之后就可以进行调试；</strong></p></li>
 <li><p>若静态库中使用了分类，则在使用时需要在 <code>other linker flags</code> 中增加 <code>-ObjC</code> 配置，否则报<code>selector not recognized</code>运行时错误；</p></li>
+<li><p><strong>都是.framework后缀名的库文件，通过<code>file .framework中的库文件</code>命令区分是静态库，还是动态库；</strong></p></li>
 </ul>
 
       </div>
