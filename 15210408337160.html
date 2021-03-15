@@ -124,6 +124,12 @@
 <li>
 <a href="#toc_4">五、补充知识</a>
 </li>
+<li>
+<a href="#toc_5">六、XCFramework</a>
+</li>
+<li>
+<a href="#toc_6">七、Xcode 12</a>
+</li>
 </ul>
 
 
@@ -134,13 +140,34 @@
 
 <ul>
 <li>.a二进制库：使用时还需要将.h头文件及资源文件（比如图片等）拖入到工程项目中，配置一些header、lib路径之类的；使用起来比较麻烦；</li>
-<li>.framework库：Apple平台独有，其本质是将.a库文件、.h头文件及资源文件打包在一起的包文件；使用时直接将其拖到工程项目中即可（或在 <code>Link Binary With Libraries</code> 中添加即可使用）；</li>
+<li>.framework库：Apple平台独有，其本质是将.a库文件、.h头文件及资源文件打包在一起的包文件；使用时直接将其拖到工程项目中即可，或在 <code>General</code> -&gt; <code>Link Binary With Libraries</code> 中添加使用；</li>
 </ul></li>
 <li>动态库：
 
 <ul>
-<li>.tdb库：Xcode 7（iOS9）开始使用，之前名称为.dylib；在 <code>Link Binary With Libraries</code> 中添加即可使用；</li>
-<li>.framework库：在 <code>Link Binary With Libraries</code> 中添加即可使用；</li>
+<li>.tdb库：Xcode 7（iOS9）开始使用，之前名称为.dylib；在 <code>General</code> -&gt; <code>Link Binary With Libraries</code> 中添加使用；</li>
+<li>.framework库：必须在 <code>General</code> -&gt; <code>Embedded Binaries</code> 中添加使用；</li>
+</ul></li>
+<li><p>区别：</p>
+
+<ul>
+<li><strong>对于静态库：</strong>
+
+<ul>
+<li><strong>在链接时，Xcode会自动从库文件中，筛选出相应的架构，之后合并到主程序的二进制文件中；</strong></li>
+<li><strong>在打包时，Xcode会自动忽略库文件中不使用的架构，如会忽略x86_64等模拟器使用的架构；</strong></li>
+</ul></li>
+<li><p><strong>对于动态库：</strong></p>
+
+<ul>
+<li><strong>在编译时，Xcode会直接拷贝整个动态framework文件到最终的.ipa中，只有在App真正启动运行时，才会进行动态链接；</strong></li>
+<li><strong>但是苹果不允许上传到App Store Connect后台的.ipa包含x86_64等模拟器的架构（报Invalid错误）；所以对于工程中的动态framework，在打Release包时，一般会通过执行命令脚本的方式移除这些Invalid Architectures；</strong></li>
+<li><strong>通过CocoaPods集成动态库时，其会自动添加一个shell脚本（[CP] Embed Pods Frameworks），用于移除不需要的架构；</strong></li>
+<li><p><strong>通过Carthage集成动态库时，需要手动配置相关shell脚本，用于移除不需要的架构；</strong></p>
+
+<pre><code class="language-shell">/usr/local/bin/carthage copy-frameworks
+</code></pre></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -152,9 +179,9 @@
 <li><p>Xcode 6（iOS8）之前：</p>
 
 <ul>
-<li><p>出于安全考虑，Xcode只支持创建.a静态库（注意需要将相关的.h头文件public出来）；不支持创建.framework静态库，但是可以通过第三方工具创建（如iOS-Universal-Framework），这种被称为伪（Fake）Framework；</p></li>
-<li><p>一般情况下都使用第三方工具创建.framework静态库，因为这样之后使用起来比.a形式更方便；</p></li>
-<li><p>Xcode也不支持创建任何形式的动态库；</p></li>
+<li>出于安全考虑，Xcode只支持创建.a静态库（注意需要将相关的.h头文件public出来）；不支持创建.framework静态库，但是可以通过第三方工具创建（如iOS-Universal-Framework），这种被称为伪（Fake）Framework；</li>
+<li>一般情况下都使用第三方工具创建.framework静态库，因为这样之后使用起来比.a形式更方便；</li>
+<li>Xcode也不支持创建任何形式的动态库；</li>
 <li><p>.tdb/.dylib动态库、.framework动态库都是系统内置的（如libz.dylib、UIKit.framework），故开发者只能使用系统内置的动态库；</p>
 
 <p><img src="media/15210408337160/xcode_5.png" alt="xcode_5" style="width:311px;"/></p></li>
@@ -163,12 +190,12 @@
 
 <ul>
 <li>Xcode支持创建.a静态库、.framework静态库（修改Mach-O Type，默认为动态库）；</li>
-<li><p><strong>Xcode也支持创建.framework动态库了，但这是一种特殊的动态库（使用时需要被添加到 <code>Embedded Binaries</code> 中，并且默认自动添加到Link Binary With Libraries中）；其只支持主程序和扩展程序共用该动态库，其他应用还是无法进行共用，这和系统的（如UIKit.framework）还是有着很大区别的；</strong></p>
+<li><p><strong>Xcode也支持创建.framework动态库了，但这是一种特殊的动态库（使用时需要被添加到 <code>Embedded Binaries</code> 中，并且添加后也会默认自动添加到<code>Link Binary With Libraries</code>中）；其只支持主程序和扩展程序共用该动态库，其他应用还是无法进行共用，这和系统的（如UIKit.framework）还是有着很大区别的；</strong></p>
 
 <p><img src="media/15210408337160/xcode_6.png" alt="xcode_6" style="width:300px;"/></p></li>
 </ul></li>
 <li><p><strong>Xcode 6（iOS8）发布了Swift 1.0，但是Swift不支持静态库（.a、.framework），只支持动态库（.tdb/.dylib、.framework）；从Xcode 9开始，Swift 4.0支持静态库；</strong></p></li>
-<li><p>CocoaPods在纯ObjC项目中，默认将第三方库源码编译成.a静态库集成到项目中；若含有Swift的类库则必须添加 <code>use_frameworks!</code> 标识（纯ObjC项目中也可以使用的），进而生成.framework动态库；</p></li>
+<li><p>CocoaPods在纯ObjC项目中，默认将第三方库源码编译成.a静态库集成到项目中；若含有Swift的类库则必须添加 <code>use_frameworks!</code> 标识（纯ObjC项目中也可以使用该标识），进而生成.framework动态库；</p></li>
 <li><p>Carthage只支持生成.framework动态库（原因：Carthage是通过Swift语言编写而成的），故其支持的项目最低版本为8.0；</p></li>
 </ul>
 
@@ -248,7 +275,7 @@
 
 <ul>
 <li>a. 通过修改Xcode编译的目标设备（模拟器、<code>Generic iOS Device</code>或真机），可以分别生成模拟器的库、真机的库；</li>
-<li>b. 通过修改Xcode编译的Scheme的<code>Run</code> -&gt; <code>Build Config</code>，可以分别生成Debug、Release的库；</li>
+<li>b. 通过修改Xcode编译的Scheme（<code>Run</code> -&gt; <code>Build Config</code>），可以分别生成Debug、Release的库；</li>
 <li><p>c. Xcode在Debug模式下，默认只会生成Active平台的CPU架构；</p>
 
 <ul>
@@ -264,18 +291,18 @@
 
 <p><img src="media/15210408337160/xcode12_ios_min_11.png" alt="xcode12_iosmin11" style="width:212px;"/></p></li>
 </ul></li>
-<li><p><strong>Xcode 12的模拟器的库也包含arm64（为了支持Apple M1的模拟器），但是真机使用不了该库；若此时合并真机的库，则因为arm64冲突，合并失败；解决办法是合并前去掉模拟器的库中的arm64（<code>lipo -create</code>）；</strong></p></li>
+<li><p><strong>注意：Xcode 12编译的模拟器的库默认也包含arm64（为了支持Apple M1），但真机使用不了该库；若此时合并真机的库，则因为arm64冲突，合并失败；解决办法是合并前去掉模拟器的库中的arm64（<code>lipo -remove</code>）；</strong></p></li>
 </ul></li>
 <li><p>d. 可以使用 <code>lipo -create</code> 命令合并相关的库文件；</p></li>
-<li><p>e. <code>Valid Architectures</code></p>
+<li><p>e. <code>Valid Architectures（VALID_ARCHS）</code></p>
 
 <ul>
-<li><strong>Xcode 12之前：用于配置需要打包的架构；</strong></li>
-<li><strong>Xcode 12：被废弃移除了；</strong>
+<li><strong>Xcode 12之前：与Architectures（ARCHS）配合使用（取交集），用于配置需要的架构；</strong></li>
+<li><strong>Xcode 12开始：被废弃移除了；</strong>
 
 <ul>
 <li><strong>若之前修改配置过该值（不再是默认值），则Xcode自动将其移到<code>User-Defined -&gt; VALID_ARCHS</code>；</strong></li>
-<li><strong>Xcode 12通过新增<code>EXCLUDED_ARCHS</code>，用于配置不需要打包的架构；</strong></li>
+<li><strong>Xcode 12通过新增<code>Excluded Architectures（EXCLUDED_ARCHS）</code>，用于配置不需要的架构；</strong></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -283,9 +310,9 @@
 
 <ul>
 <li><strong>使用Xcode编译一次只会生成一种类型的库，可以使用 <code>Aggregate Target</code> 生成多种类型的合成库；</strong></li>
-<li><p>新建 <code>Aggregate Target</code> ，添加 <code>Run Script</code> ，填入以下类似内容（参考<code>http://blog.csdn.net/qq_16706275/article/details/45913269</code>）：</p>
+<li><p>新建 <code>Aggregate Target</code> ，添加 <code>Run Script</code> ，添加以下类似内容（参考<code>http://blog.csdn.net/qq_16706275/article/details/45913269</code>）：</p>
 
-<pre><code class="language-text"># Sets the target folders and the final framework product.
+<pre><code class="language-shell"># Sets the target folders and the final framework product.
 # 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME
 # 例如: FMK_NAME = &quot;MyFramework&quot;
 FMK_NAME=${PROJECT_NAME}
@@ -338,8 +365,8 @@ open &quot;${INSTALL_DIR}&quot;
 
 <ul>
 <li><p>a. .framework文件本质上也是一个bundle文件；</p></li>
-<li><p>b. 可以将资源文件直接（或打包成bundle后）放在.framework文件中，也可以将资源文件打包成bundle后与.framework文件独立开来；</p></li>
-<li><p>c. <strong>需要注意的是：Xcode在添加.framework到项目中的时候，不会添加.framework中的资源文件到项目中（添加bundle会自动添加的），故无法其中的资源无法使用；必须在 <code>Copy Bundle Resources</code> 中添加对应的.framework</strong>，之后通过以下方式使用：</p>
+<li><p>b. 可以将资源文件直接（或打包成.bundle后）放在.framework文件中，也可以将资源文件打包成.bundle后与.framework文件独立开来；</p></li>
+<li><p>c. <strong>需要注意的是：Xcode在添加.framework到项目中的时候，不会添加.framework中的资源文件到项目中（添加.bundle会自动添加的），故无法其中的资源无法使用；必须在 <code>Copy Bundle Resources</code> 中添加对应的.framework</strong>，之后通过以下方式使用：</p>
 
 <pre><code class="language-objectivec">// .framework中直接包含图片
 [UIImage iamgeNamed:&quot;A.framework/test.png&quot;]
@@ -366,6 +393,61 @@ open &quot;${INSTALL_DIR}&quot;
 <li><p><strong>若需要边开发边调试类库：在现有工程中添加一个库Lib Target，设置一些相关配置（默认情况下自动添加，比如主Target的Build Phases的Target Dependencies添加lib Target、Embedded Binaries添加Lib、Link Binary With Libraries添加Lib、Public头文件、Copy Bundle Resources等），之后就可以进行调试；</strong></p></li>
 <li><p>若静态库中使用了分类，则在使用时需要在 <code>other linker flags</code> 中增加 <code>-ObjC</code> 配置，否则报<code>selector not recognized</code>运行时错误；</p></li>
 <li><p><strong>都是.framework后缀名的库文件，通过<code>file .framework中的库文件</code>命令区分是静态库，还是动态库；</strong></p></li>
+</ul>
+
+<h4 id="toc_5">六、XCFramework</h4>
+
+<ul>
+<li><p>Xcode 11开始支持，用于替代.framework，可以是静态库，也可以是动态库；</p>
+
+<ul>
+<li>包含模拟器和真机（和之前的.framework没有区别）；</li>
+<li>包含多个平台（之前不同的平台需要创建不同的库）；</li>
+<li>可以包含其他第三方库等；</li>
+<li>上传到App Store Connect后台，不用将.xcframework中的不需要的架构移除，.framework还要用脚本进行移除；</li>
+</ul></li>
+<li><p>创建.xcframeworks和之前创建.framework步骤一样，只是需要在<code>Build Setting</code>中设置<code>Build Libraires For Distribution</code>为YES；</p></li>
+<li><p>对于多架构的.framework，需要使用<code>lipo</code>命令进行合成；但是对于多架构的.xcframework，可以使用<code>xcodebuild</code>命令进行合成；</p>
+
+<ul>
+<li><p>可以将.a和头文件转化为.xcframework；如</p>
+
+<pre><code class="language-shell">xcodebuild -create-xcframework 
+-library ~/Debug-iphonesimulator/libMyLibrary.a 
+-headers ~/Debug-iphonesimulator/include/MyLibrary 
+-library ~/Debug-iphoneos/libMyLibrary.a 
+-headers ~/Debug-iphoneos/include/MyLibrary 
+-output MyLibrary.xcframework
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_6">七、Xcode 12</h4>
+
+<ul>
+<li><p>1、Xcode 12模拟器运行，报 <code>building for iOS Simulator, but linking in object file built for iOS, for architecture arm64</code> 错误；</p>
+
+<ul>
+<li><strong>为了支持Apple M1，Xcode 12编译的模拟器的库默认也包含arm64；但是很多第三方针对模拟器编译后的库并不包含arm64；</strong></li>
+<li><strong>所以需要移除模拟器的指令集的arm64，设置Excluded Architectures后，模拟器将不再被认为支持arm64；</strong></li>
+<li>Build Settings -&gt; Excluded Architectures，添加需要排除的架构；</li>
+<li>参考：<code>https://www.jianshu.com/p/4e1c826025a5</code></li>
+</ul></li>
+<li><p>2、Xcode 12.3模拟器运行，报 <code>Building for iOS Simulator, but the linked and embedded framework &#39;xxx.framework&#39; was built for iOS + iOS Simulator.</code> 错误；</p>
+
+<ul>
+<li><strong>Xcode 12.3开始，不允许使用类似于“模拟器库 + 真机库”这种含有多架构的库；因为模拟器和真机都支持arm64了；</strong></li>
+<li>解决办法有五种方式：
+
+<ul>
+<li>方式一：Build Setting -&gt; Build Options -&gt; Validate WorkSpace -&gt; YES；</li>
+<li>方式二：Files -&gt; WorkSpace Setting -&gt; Build System -&gt; Legacy Build System（Deprecated）；</li>
+<li>方式三：Build Settings -&gt; Excluded Architectures，添加需要排除的架构；如编译模拟器时移除arm64，编译真机时移除x86_64；</li>
+<li>方式四：将动态.framework（静态库没有该问题）改成.xcframework；</li>
+<li>方式五：改为只包含“模拟器库”或“真机库”的库；</li>
+</ul></li>
+<li>参考：<code>https://blog.csdn.net/qq_43377749/article/details/111592751</code></li>
+</ul></li>
 </ul>
 
       </div>

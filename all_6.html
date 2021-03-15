@@ -495,6 +495,12 @@
 <li>
 <a href="#toc_4">五、补充知识</a>
 </li>
+<li>
+<a href="#toc_5">六、XCFramework</a>
+</li>
+<li>
+<a href="#toc_6">七、Xcode 12</a>
+</li>
 </ul>
 
 
@@ -505,13 +511,34 @@
 
 <ul>
 <li>.a二进制库：使用时还需要将.h头文件及资源文件（比如图片等）拖入到工程项目中，配置一些header、lib路径之类的；使用起来比较麻烦；</li>
-<li>.framework库：Apple平台独有，其本质是将.a库文件、.h头文件及资源文件打包在一起的包文件；使用时直接将其拖到工程项目中即可（或在 <code>Link Binary With Libraries</code> 中添加即可使用）；</li>
+<li>.framework库：Apple平台独有，其本质是将.a库文件、.h头文件及资源文件打包在一起的包文件；使用时直接将其拖到工程项目中即可，或在 <code>General</code> -&gt; <code>Link Binary With Libraries</code> 中添加使用；</li>
 </ul></li>
 <li>动态库：
 
 <ul>
-<li>.tdb库：Xcode 7（iOS9）开始使用，之前名称为.dylib；在 <code>Link Binary With Libraries</code> 中添加即可使用；</li>
-<li>.framework库：在 <code>Link Binary With Libraries</code> 中添加即可使用；</li>
+<li>.tdb库：Xcode 7（iOS9）开始使用，之前名称为.dylib；在 <code>General</code> -&gt; <code>Link Binary With Libraries</code> 中添加使用；</li>
+<li>.framework库：必须在 <code>General</code> -&gt; <code>Embedded Binaries</code> 中添加使用；</li>
+</ul></li>
+<li><p>区别：</p>
+
+<ul>
+<li><strong>对于静态库：</strong>
+
+<ul>
+<li><strong>在链接时，Xcode会自动从库文件中，筛选出相应的架构，之后合并到主程序的二进制文件中；</strong></li>
+<li><strong>在打包时，Xcode会自动忽略库文件中不使用的架构，如会忽略x86_64等模拟器使用的架构；</strong></li>
+</ul></li>
+<li><p><strong>对于动态库：</strong></p>
+
+<ul>
+<li><strong>在编译时，Xcode会直接拷贝整个动态framework文件到最终的.ipa中，只有在App真正启动运行时，才会进行动态链接；</strong></li>
+<li><strong>但是苹果不允许上传到App Store Connect后台的.ipa包含x86_64等模拟器的架构（报Invalid错误）；所以对于工程中的动态framework，在打Release包时，一般会通过执行命令脚本的方式移除这些Invalid Architectures；</strong></li>
+<li><strong>通过CocoaPods集成动态库时，其会自动添加一个shell脚本（[CP] Embed Pods Frameworks），用于移除不需要的架构；</strong></li>
+<li><p><strong>通过Carthage集成动态库时，需要手动配置相关shell脚本，用于移除不需要的架构；</strong></p>
+
+<pre><code class="language-shell">/usr/local/bin/carthage copy-frameworks
+</code></pre></li>
+</ul></li>
 </ul></li>
 </ul>
 

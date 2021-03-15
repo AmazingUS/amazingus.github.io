@@ -249,7 +249,7 @@ pod update [--no-repo-update]
 <li>之前Podfile文件需要自己手动创建，现在可以执行 <code>pod init</code> 命令可自动创建该文件（需要当前的目录中有Xcode工程文件）；</li>
 <li><p>不同版本的CocoaPods的Podefile文件格式有所差异，同时要<strong>注意空格符</strong>、iOS版本等规范；最新的Podefile文件的格式如下：（<code>inhibit_all_warnings!</code>表示消除CocoaPods引入的类库中的警告）</p>
 
-<pre><code class="language-text">inhibit_all_warnings!
+<pre><code class="language-ruby">inhibit_all_warnings!
 platform :ios, &#39;8.0&#39;
 
 target &#39;Sample&#39; do
@@ -259,7 +259,7 @@ end
 </code></pre></li>
 <li><p>类库的版本格式：</p>
 
-<pre><code class="language-text">pod &#39;AFNetworking&#39; # 不指定版本，使用最新版本  
+<pre><code class="language-ruby">pod &#39;AFNetworking&#39; # 不指定版本，使用最新版本  
 pod &#39;AFNetworking&#39;, &#39;2.0&#39; # 只使用2.0版本  
 pod &#39;AFNetworking&#39;, &#39;&gt;= 2.0&#39; # 使用大于等于2.0的版本  
 pod &#39;AFNetworking&#39;, &#39;~&gt;0.1&#39; # 使用大于等于0.1但小于1.0的版本  
