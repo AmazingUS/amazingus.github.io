@@ -205,7 +205,7 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 <li><strong>b)（最重要）裁减Dynamic framework；</strong>
 
 <ul>
-<li><strong>Carthage生成的Dynamic framework是包含模拟器和真机平台的，而App Store提交的包内不可以有没有用到的平台的代码（模拟器的），使用该脚本就是自动将无用代码去除；（<code>http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/</code>）</strong></li>
+<li><strong>Carthage生成的Dynamic framework是包含模拟器和真机平台的，而App Store提交的包内不可以有不需要的平台的代码（模拟器的），使用该脚本就是自动将无用代码去除；（<code>http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/</code>）</strong></li>
 <li><strong>为了优化编译速度，添加Output Files路径，这样只有在Input Files中的文件修改了或Output Files中的文件丢失的情况下，才会执行命令，否则每次运行都会去执行；（详情查看<code>https://github.com/Carthage/</code>）</strong></li>
 </ul></li>
 </ul></li>

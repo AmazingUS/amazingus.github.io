@@ -279,30 +279,35 @@
 <li><p>c. Xcode在Debug模式下，默认只会生成Active平台的CPU架构；</p>
 
 <ul>
+<li>比如模拟器iPhone 5为i386，iPhone 6为x86_64，真机情况下为armv7、arm64两种架构(armv7s被Apple舍弃了)；通过 <code>lipo -info</code> 命令查看；</li>
 <li>修改Build Settings的 <code>Build Active Architecture Only</code> 为No，则生成所有的CPU架构；</li>
-<li>-比如模拟器iPhone 5为i386，iPhone 6为x86_64（通过 <code>lipo -info</code> 命令查看），真机情况下为armv7、arm64两种架构(armv7s被Apple舍弃了)；</li>
-<li><p><strong>Xcode 12，App最低支持版本也会影响生成的CPU架构；</strong></p>
+<li><p><strong>Xcode 12开始，App的最低支持版本也会影响，默认生成的CPU架构；</strong></p>
 
 <ul>
 <li><p>最低支持版本iOS 10：</p>
 
 <p><img src="media/15210408337160/xcode12_ios_min_10.png" alt="xcode12_ios_min_10" style="width:254px;"/></p></li>
-<li><p>最低支持版本iOS 10：</p>
+<li><p>最低支持版本iOS 11：</p>
 
 <p><img src="media/15210408337160/xcode12_ios_min_11.png" alt="xcode12_iosmin11" style="width:212px;"/></p></li>
 </ul></li>
-<li><p><strong>注意：Xcode 12编译的模拟器的库默认也包含arm64（为了支持Apple M1），但真机使用不了该库；若此时合并真机的库，则因为arm64冲突，合并失败；解决办法是合并前去掉模拟器的库中的arm64（<code>lipo -remove</code>）；</strong></p></li>
+<li><p><strong>注意：Apple M1下，Xcode编译的模拟器的库为arm64架构，但真机使用不了该库；若此时进行合并真机的库，则因为arm64冲突，合并失败；解决方法:</strong></p>
+
+<ul>
+<li><strong>办法1：合并前去掉模拟器的库的arm64（<code>lipo -remove</code>）；</strong></li>
+<li><strong>办法2：若必须合并两个arm64架构，可以使用.xcframework代替.framework、.a；</strong></li>
+</ul></li>
 </ul></li>
 <li><p>d. 可以使用 <code>lipo -create</code> 命令合并相关的库文件；</p></li>
 <li><p>e. <code>Valid Architectures（VALID_ARCHS）</code></p>
 
 <ul>
-<li><strong>Xcode 12之前：与Architectures（ARCHS）配合使用（取交集），用于配置需要的架构；</strong></li>
-<li><strong>Xcode 12开始：被废弃移除了；</strong>
+<li><strong>Xcode 12-：与Architectures（ARCHS）配合使用（取交集），用来配置需要的架构；</strong></li>
+<li><strong>Xcode 12=+：被废弃移除了；</strong>
 
 <ul>
-<li><strong>若之前修改配置过该值（不再是默认值），则Xcode自动将其移到<code>User-Defined -&gt; VALID_ARCHS</code>；</strong></li>
-<li><strong>Xcode 12通过新增<code>Excluded Architectures（EXCLUDED_ARCHS）</code>，用于配置不需要的架构；</strong></li>
+<li><strong>若之前修改配置过该值（不再是默认值），则Xcode自动将其迁移到<code>User-Defined -&gt; VALID_ARCHS</code>；</strong></li>
+<li><strong>Xcode 12新增<code>Excluded Architectures（EXCLUDED_ARCHS）</code>，用来配置不需要的架构；</strong></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -402,12 +407,12 @@ open &quot;${INSTALL_DIR}&quot;
 
 <ul>
 <li>包含模拟器和真机（和之前的.framework没有区别）；</li>
-<li>包含多个平台（之前不同的平台需要创建不同的库）；</li>
+<li>包含多个平台（之前不同的平台，需要创建不同的库）；</li>
 <li>可以包含其他第三方库等；</li>
 <li>上传到App Store Connect后台，不用将.xcframework中的不需要的架构移除，.framework还要用脚本进行移除；</li>
 </ul></li>
 <li><p>创建.xcframeworks和之前创建.framework步骤一样，只是需要在<code>Build Setting</code>中设置<code>Build Libraires For Distribution</code>为YES；</p></li>
-<li><p>对于多架构的.framework，需要使用<code>lipo</code>命令进行合成；但是对于多架构的.xcframework，可以使用<code>xcodebuild</code>命令进行合成；</p>
+<li><p>对于多架构的.framework，需要使用<code>lipo</code>命令进行合成；对于多架构的.xcframework，可以使用<code>xcodebuild</code>命令进行合成；</p>
 
 <ul>
 <li><p>可以将.a和头文件转化为.xcframework；如</p>
@@ -425,26 +430,28 @@ open &quot;${INSTALL_DIR}&quot;
 <h4 id="toc_6">七、Xcode 12</h4>
 
 <ul>
-<li><p>1、Xcode 12模拟器运行，报 <code>building for iOS Simulator, but linking in object file built for iOS, for architecture arm64</code> 错误；</p>
+<li><p>1、Apple M1（只能运行Xcode 12=+）, Xcode 12，模拟器运行，报 <code>building for iOS Simulator, but linking in object file built for iOS, for architecture arm64</code> 错误；</p>
 
 <ul>
-<li><strong>为了支持Apple M1，Xcode 12编译的模拟器的库默认也包含arm64；但是很多第三方针对模拟器编译后的库并不包含arm64；</strong></li>
-<li><strong>所以需要移除模拟器的指令集的arm64，设置Excluded Architectures后，模拟器将不再被认为支持arm64；</strong></li>
-<li>Build Settings -&gt; Excluded Architectures，添加需要排除的架构；</li>
-<li>参考：<code>https://www.jianshu.com/p/4e1c826025a5</code></li>
+<li><strong>原因：Apple M1，Xcode 12模拟器的库需要的是arm64架构；但是很多第三方针对模拟器编译后的库并不包含arm64，因此报错；</strong></li>
+<li><strong><code>真正解决方法</code>：使用Rossetta 2运行Xcode；而设置Excluded Architectures移除arm64是都是无效的；</strong></li>
+<li>参考：
+
+<ul>
+<li><code>https://www.jianshu.com/p/5f5aaf0fc56d</code>、</li>
 </ul></li>
-<li><p>2、Xcode 12.3模拟器运行，报 <code>Building for iOS Simulator, but the linked and embedded framework &#39;xxx.framework&#39; was built for iOS + iOS Simulator.</code> 错误；</p>
+</ul></li>
+<li><p>2、Xcode 12.3，模拟器运行（真机运行同理），报 <code>Building for iOS Simulator, but the linked and embedded framework &#39;xxx.framework&#39; was built for iOS + iOS Simulator.</code> 错误；</p>
 
 <ul>
-<li><strong>Xcode 12.3开始，不允许使用类似于“模拟器库 + 真机库”这种含有多架构的库；因为模拟器和真机都支持arm64了；</strong></li>
-<li>解决办法有五种方式：
+<li><strong>原因：Xcode 12.3开始，不允许使用类似于“模拟器的库 + 真机的库”这种含有多架构的库（x86_64+armv7+arm64）；因为模拟器的库和真机的库都有arm64了；</strong></li>
+<li>解决办法有4种方式：
 
 <ul>
-<li>方式一：Build Setting -&gt; Build Options -&gt; Validate WorkSpace -&gt; YES；</li>
-<li>方式二：Files -&gt; WorkSpace Setting -&gt; Build System -&gt; Legacy Build System（Deprecated）；</li>
-<li>方式三：Build Settings -&gt; Excluded Architectures，添加需要排除的架构；如编译模拟器时移除arm64，编译真机时移除x86_64；</li>
-<li>方式四：将动态.framework（静态库没有该问题）改成.xcframework；</li>
-<li>方式五：改为只包含“模拟器库”或“真机库”的库；</li>
+<li>方式1：Files -&gt; WorkSpace Setting -&gt; Build System -&gt; Legacy Build System（Deprecated）；</li>
+<li>方式2：Build Setting -&gt; Build Options -&gt; Validate WorkSpace -&gt; YES；</li>
+<li>方式3：改用.xcframework；</li>
+<li>方式4：改为只包含“模拟器库”或“真机库”的库；（如CocoaPods、Carthage的处理）</li>
 </ul></li>
 <li>参考：<code>https://blog.csdn.net/qq_43377749/article/details/111592751</code></li>
 </ul></li>
