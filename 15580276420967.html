@@ -126,6 +126,12 @@
 <li>
 <a href="#toc_4">2、具体操作</a>
 </li>
+<li>
+<a href="#toc_5">3、授权</a>
+</li>
+<li>
+<a href="#toc_6">4、iOS 14适配</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -153,22 +159,24 @@
 <h4 id="toc_3">1、基本概念</h4>
 
 <ul>
-<li>基本
+<li>1）基本
 
 <ul>
 <li><code>PHPhotoLibrary</code>：表示用户的照片库，用于请求、获取照片库的权限，监听照片库的变化；</li>
 </ul></li>
-<li>资源
+<li>2）资源
 
 <ul>
 <li><code>PHObject</code>：抽象基类，其他PhotoKit类都继承该类，提供了一个localIdentifier属性；</li>
 <li><strong><code>PHAsset</code>：表示照片库中的一个单独的资源（可以是图片，也可以是视频；与ALAsset类似），用于获取、保存<code>资源的元数据</code></strong>；
 
 <ul>
-<li><strong>PHAsset只包含元数据（如图片大小、创建日期等），具体的图片、视频数据需要使用<code>PHImageManager</code>进行加载；</strong></li>
+<li><strong>PHAsset只包含元数据（如图片大小、创建日期等）；具体的图片、视频数据需要使用<code>PHImageManager</code>进行加载；</strong></li>
 <li>若一个资源的<code>representsBurst</code>属性为true，则表示该资源是一系列连拍照片中的代表照片，可以通过<code>fetchAssetsWithBurstIdentifier()</code>方法，传入<code>burstIdentifier</code>属性，获取连拍照片中的剩余的其他照片；</li>
 </ul></li>
-<li><code>PHCollection</code>：PHAssetCollection和PHCollectionList的父类；</li>
+<li><code>PHCollection</code>：PHAssetCollection和PHCollectionList的父类；
+
+<ul>
 <li><code>PHAssetCollection</code>：资源集合，表示成组的资源；可以表示照片库中的一个相册、时刻、智能相册；
 
 <ul>
@@ -176,16 +184,19 @@
 </ul></li>
 <li><code>PHCollectionList</code>：表示一组PHCollections的集合；其本身也是PHCollection，故PHCollectionList也可以包含其他的PHCollectionList；</li>
 </ul></li>
-<li>获取
+</ul></li>
+<li>3）获取
 
 <ul>
-<li><strong><code>PHFetchResult</code>：表示一系列的<code>PHAsset的结果集合</code>，也可以是一系列的<code>PHCollection的结果集合</code>；</strong></li>
-<li><strong><code>PHFetchOptions</code>：获取PHFetchResult时的传入参数，起过滤、排序等作用，可以过滤类型、日期、名称等；</strong>
+<li><strong><code>PHFetchResult</code>：表示一系列的<code>PHAsset的结果集合</code>，也可以是一系列的<code>PHCollection的结果集合</code>；</strong>
 
 <ul>
+<li><strong><code>PHFetchOptions</code>：获取PHFetchResult时的传入参数，起过滤、排序等作用，可以过滤类型、日期、名称等；</strong></li>
 <li><strong>传入nil则使用系统默认值；</strong></li>
 </ul></li>
-<li><strong><code>PHImageManager</code>：用于加载资源；</strong></li>
+<li><strong><code>PHImageManager</code>：用于加载资源；</strong>
+
+<ul>
 <li><strong><code>PHCachingImageManager</code>：继承于PHImageManager，带有缓存的加载资源；当使用大量的资源时，可以先在后台准备资源图片，减少在之后的请求单个资源时的延迟；</strong>
 
 <ul>
@@ -194,7 +205,8 @@
 </ul></li>
 <li><code>PHImageRequestOptions</code>：加载资源时的传入参数，控制资源的输出尺寸等规格；</li>
 </ul></li>
-<li>更新
+</ul></li>
+<li>4）更新
 
 <ul>
 <li><code>PHAssetChangeRequest</code>：用来创建、删除和修改PHAsset对象；</li>
@@ -202,7 +214,7 @@
 <li><code>PHCollectionListChangeRequest</code>：用来创建、删除和修改PHCollectionList对象；</li>
 <li><code>PHAssetCreationRequest</code>：PHAssetChangeRequest的子类，也可以用来创建，丰富了添加资源的方式；</li>
 </ul></li>
-<li>注意
+<li>5）注意
 
 <ul>
 <li><strong>与AssetsLibrary相似，一个PHAsset可以同时属于多个不同的PHAssetCollection；</strong>如刚刚拍摄的照片，至少同时属于“最近添加”、“相机胶卷“以及”照片-精选“这3个PHAssetCollection；</li>
@@ -224,7 +236,7 @@ PHPhotoLibrary.requestAuthorization { (authorizationStatus) in
 </code></pre>
 
 <ul>
-<li><strong>也可以不主动调用代码请求授权，请求照片库中的数据时会自动请求授权；</strong></li>
+<li><strong>注意：也可以不主动调用代码请求授权，请求照片库中的数据时，系统也会自动请求授权；</strong></li>
 </ul></li>
 <li><p><strong>2) 获取相册资源集合</strong></p>
 
@@ -462,6 +474,69 @@ if let album = searchAlbum(albumName) {
     }
 }
 </code></pre></li>
+</ul>
+
+<h4 id="toc_5">3、授权</h4>
+
+<ul>
+<li>使用AssetsLibrary、PhotoKit框架，读取、写入相册，都需要在Info.plist中配置<code>NSPhotoLibraryUsageDescription</code>（iOS 6+），说明用途；</li>
+<li><strong>iOS 11之前，使用<code>UIImageWriteToSavedPhotosAlbum</code>、<code>UIActivityViewController 系统分享保存图片到系统相册</code>，都可以成功写入相册；iOS 11开始，都需要在Info.plist中配置<code>NSPhotoLibraryAddUsageDescription</code>（iOS 11+），说明用途，否则Crash；</strong></li>
+<li><strong>iOS 11开始，若AssetsLibrary、PhotoKit框架，<code>只进行写入相册操作</code>，则也可以只配置<code>NSPhotoLibraryAddUsageDescription</code>；但是为了兼容低版本的写入相册操作，也是需要配置<code>NSPhotoLibraryUsageDescription</code>；</strong></li>
+</ul>
+
+<h4 id="toc_6">4、iOS 14适配</h4>
+
+<ul>
+<li><p><strong>1）在iOS 14之前，PhotoKit读取相册只有两种授权：一种是<code>不允许</code>，一种是<code>允许，可以读取所有</code>；iOS 14开始，增加了一种授权模式：<code>选择部分照片</code>，即<code>Limited模式</code>；</strong></p>
+
+<p><img src="media/15580276420967/iOS14%E8%AE%BF%E9%97%AE%E5%9B%BE%E7%89%87%E9%A6%96%E6%AC%A1%E6%8E%88%E6%9D%83.png" alt="iOS14访问图片首次授权" style="width:264px;"/></p>
+
+<ul>
+<li><strong>对于手机系统是iOS 14，首次授权时都是弹该弹框（三个选项），不论是否使用方式：iOS 13 SDK（14之前的API）、iOS 14 SDK（14之前的API、14新增的API）进行了编译；</strong></li>
+<li><strong>首次授权“访问所有”、“不允许”，现象与iOS 14之前的一样；</strong></li>
+<li><strong>首次授权“选择照片”，会有再次授权弹框，解决处理方式如下；</strong></li>
+</ul></li>
+<li><p>2）<strong>首次授权“选择照片”</strong></p>
+
+<ul>
+<li><strong>选择此项后，系统会弹出一个页面让用户选择可以访问的照片；</strong></li>
+<li><p><strong>之后每次App重启后，若访问相册，系统还会弹出一个再次授权弹框，进行“选择照片”；</strong></p>
+
+<p><img src="media/15580276420967/iOS14%E8%AE%BF%E9%97%AE%E5%9B%BE%E7%89%87%E5%86%8D%E6%AC%A1%E6%8E%88%E6%9D%83.png" alt="iOS14访问图片再次授权" style="width:271px;"/></p>
+
+<ul>
+<li>若不想每次都弹出这个弹框，需要在Info.plist中配置<code>PHPhotoLibraryPreventAutomaticLimitedAccessAlert（Prevent limited photos access alert）</code>为<code>YES</code>；</li>
+<li><p>若需要手动控制，弹出这个再次授权弹框，让用户可以重新选择图片，可以调用以下代码</p>
+
+<pre><code class="language-swift">import PhotosUI
+
+PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: vc)
+</code></pre></li>
+<li><p>也可以在系统设置中找到相关App项，重新选择图片；</p></li>
+<li><p><strong>注意：使用14之前的API，进行请求授权；获取相册权限的状态，即使授权是“选择照片”，状态结果还是.authorized（允许，可以读取所有）；所以建议使用<code>14新增的API</code>进行请求授权；</strong></p></li>
+<li><p>iOS 14新增API</p>
+
+<pre><code class="language-swift">class func authorizationStatus(for accessLevel: PHAccessLevel) -&gt; PHAuthorizationStatus
+class func requestAuthorization(for accessLevel: PHAccessLevel, handler: @escaping (PHAuthorizationStatus) -&gt; Void)
+
+enum PHAccessLevel : Int {
+    case addOnly = 1 // 只可以写入
+    case readWrite = 2 // 可以读取、写入
+}
+</code></pre>
+
+<ul>
+<li><strong>a. 增加了PHAccessLevel类型，PHAuthorizationStatus.limited枚举case；</strong></li>
+<li><strong>b. PHAuthorizationStatus.limited，只在PHAccessLevel.readWrite情况下生效，在PHAccessLevel.addOnly不会有再次授权弹框；</strong></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>3）iOS 14相册权限比较繁琐，若只是简单地选取图片（读取相册），建议使用<code>PHPicker</code>进行选取；</p>
+
+<ul>
+<li>PHPicker使用系统自带UI，不需要用户进行相册授权，并且支持多选；</li>
+<li>PHPicker是用来代替iOS 14之前的<code>UIImagePickerController</code>（也不需要用户进行相册授权，但不支持多选；若使用相机获取图片，则需要授权相机权限）；</li>
+</ul></li>
 </ul>
 
       </div>
