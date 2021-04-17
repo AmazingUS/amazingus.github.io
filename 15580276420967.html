@@ -127,7 +127,7 @@
 <a href="#toc_4">2、具体操作</a>
 </li>
 <li>
-<a href="#toc_5">3、授权</a>
+<a href="#toc_5">3、授权描述</a>
 </li>
 <li>
 <a href="#toc_6">4、iOS 14适配</a>
@@ -167,12 +167,13 @@
 <li>2）资源
 
 <ul>
-<li><code>PHObject</code>：抽象基类，其他PhotoKit类都继承该类，提供了一个localIdentifier属性；</li>
+<li><code>PHObject</code>：抽象基类，其他PhotoKit类都继承该类，提供了一个<code>localIdentifier</code>属性；</li>
 <li><strong><code>PHAsset</code>：表示照片库中的一个单独的资源（可以是图片，也可以是视频；与ALAsset类似），用于获取、保存<code>资源的元数据</code></strong>；
 
 <ul>
 <li><strong>PHAsset只包含元数据（如图片大小、创建日期等）；具体的图片、视频数据需要使用<code>PHImageManager</code>进行加载；</strong></li>
 <li>若一个资源的<code>representsBurst</code>属性为true，则表示该资源是一系列连拍照片中的代表照片，可以通过<code>fetchAssetsWithBurstIdentifier()</code>方法，传入<code>burstIdentifier</code>属性，获取连拍照片中的剩余的其他照片；</li>
+<li>mediaType、mediaSubtypes：获取资源的类型及子类型（图片、视频、全景图、屏幕截图等）；</li>
 </ul></li>
 <li><code>PHCollection</code>：PHAssetCollection和PHCollectionList的父类；
 
@@ -188,7 +189,7 @@
 <li>3）获取
 
 <ul>
-<li><strong><code>PHFetchResult</code>：表示一系列的<code>PHAsset的结果集合</code>，也可以是一系列的<code>PHCollection的结果集合</code>；</strong>
+<li><strong><code>PHFetchResult</code>：表示一系列的<code>PHAsset的结果集合</code>，也可以是一系列的<code>PHCollection的结果集合</code>；类似于数组，可以以索引方式访问；</strong>
 
 <ul>
 <li><strong><code>PHFetchOptions</code>：获取PHFetchResult时的传入参数，起过滤、排序等作用，可以过滤类型、日期、名称等；</strong></li>
@@ -214,7 +215,12 @@
 <li><code>PHCollectionListChangeRequest</code>：用来创建、删除和修改PHCollectionList对象；</li>
 <li><code>PHAssetCreationRequest</code>：PHAssetChangeRequest的子类，也可以用来创建，丰富了添加资源的方式；</li>
 </ul></li>
-<li>5）注意
+<li>5）监听
+
+<ul>
+<li><code>PHPhotoLibraryChangeObserver</code>：用于监听照片库的变化；</li>
+</ul></li>
+<li>6）注意
 
 <ul>
 <li><strong>与AssetsLibrary相似，一个PHAsset可以同时属于多个不同的PHAssetCollection；</strong>如刚刚拍摄的照片，至少同时属于“最近添加”、“相机胶卷“以及”照片-精选“这3个PHAssetCollection；</li>
@@ -226,7 +232,7 @@
 <ul>
 <li><p><strong>1) 请求权限</strong></p>
 
-<pre><code class="language-text">// 获取授权状态
+<pre><code class="language-swift">// 获取授权状态
 print(&quot;status: \(PHPhotoLibrary.authorizationStatus().rawValue)&quot;)
 
 // 请求授权
@@ -318,11 +324,11 @@ for i in 0 ..&lt; smartResults.count {
 <li><strong>注意：获取指定类型的相册时，主类型和子类型要匹配，若不匹配则系统会按照any子类型处理；</strong>
 
 <ul>
-<li><strong>对于moment类型，子类型使用any；</strong></li>
 <li><strong>对于smartAlbum类型，子类型使用albumRegular比使用any多一个<code>Recently Deleted</code>（最近删除）的相册；</strong></li>
+<li><strong>对于moment类型，子类型使用any；</strong></li>
 </ul></li>
 </ul></li>
-<li><p><strong>3) 获取照片、视频资源</strong></p>
+<li><p><strong>3) 获取照片、视频资源集合</strong></p>
 
 <pre><code class="language-swift">// 获取照片、视频资源
 class func fetchAssets(with options: PHFetchOptions?) -&gt; PHFetchResult&lt;PHAsset&gt;
@@ -362,7 +368,7 @@ for i in 0 ..&lt; deleteAssets.count {
     print(&quot;\(asset.localIdentifier), pixelWidth: \(asset.pixelWidth), creationDate: \(asset.creationDate), isFavorite: \(asset.isFavorite)&quot;)
 }
 </code></pre></li>
-<li><p><strong>4) 获取单张图片的数据</strong></p>
+<li><p><strong>4) 获取图片的数据</strong></p>
 
 <pre><code class="language-swift">func requestImage(for asset: PHAsset, targetSize: CGSize, contentMode: PHImageContentMode, options: PHImageRequestOptions?, 
     resultHandler: @escaping (UIImage?, [AnyHashable : Any]?) -&gt; Void) -&gt; PHImageRequestID
@@ -383,62 +389,67 @@ PHImageManager.default().requestImage(for: imageAssets[0], targetSize: CGSize(wi
 </code></pre>
 
 <ul>
-<li><strong>a. targetSize属性：需要获取的图片的尺寸，若输入的尺寸大于原图的尺寸，则返回原图；可以传入PHImageManagerMaximumSize常量，则返回原图；</strong></li>
-<li>b. contentMode：图片的剪裁方式，与UIView的contentMode参数相似；</li>
-<li>c. options：一个PHImageRequestOptions实例，可以控制图片的质量、版本、剪裁等；
+<li><strong>a. targetSize：需要获取的图片的尺寸；若输入的尺寸大于原图尺寸，则返回原图寸；若需要返回原图尺寸，可以传入PHImageManagerMaximumSize常量（并且设置options的resizeMode为exact）；</strong></li>
+<li>b. contentMode：图片的剪裁方式，与UIView的contentMode参数相似；<strong>注意：若targetSize传入的是PHImageManagerMaximumSize，则contentMode无论传入什么值，都被认为是PHImageContentModeDefault；</strong></li>
+<li>c. options：PHImageRequestOptions实例，可以控制图片的质量、版本、剪裁等；
 
 <ul>
-<li>resizeMode：设置图片缩放模式；
+<li>a）<strong>synchronous：默认为false，表示requestImageData()方法是否为同步操作；</strong>
 
 <ul>
-<li><strong>none（保持原size，不调整大小），默认值</strong></li>
-<li>fast（高效但不保证图片的size为自定义size，由系统决定，有时比设置的size小，有时又会大）</li>
-<li>exact（严格按照自定义size）</li>
+<li><strong>当synchronous为true时，并且设置的deliveryMode被忽略，都被认为是.highQualityFormat；resultHandler只被调用一次；</strong></li>
+<li><strong>当synchronous为false时，resultHandler是否会被多次调用取决于deliveryMode；</strong></li>
 </ul></li>
-<li>synchronous：指定请求是否同步执行；</li>
-<li>normalizedCropRect：只在resizeMode为exact时有效，基于比例坐标，对原始尺寸的图像进行裁剪；</li>
-<li>deliveryMode：图像质量；
+<li>b）resizeMode：图片缩放模式；
 
 <ul>
-<li>opportunistic（在速度与质量中均衡）</li>
-<li>highQualityFormat（不管花费多长时间，提供高质量图像）</li>
-<li>fastFormat（以最快速度提供好的质量）</li>
+<li><strong>none：默认值；保持原size，不调整大小，可能会导致返回大小和要求大小不一致；</strong></li>
+<li>fast：高效但不保证图片的size为自定义size，由系统决定，有时比设置的size小，有时又会大；</li>
+<li>exact：严格按照自定义size；</li>
 </ul></li>
+<li>c）<strong>deliveryMode：图像质量；</strong>
+
+<ul>
+<li>opportunistic：默认值；在速度与质量中均衡；一个图片的请求回调只会触发多次，在将图像的高质量版本返回之前，会先传递一个较低质量的版本；若有缓存则直接提供高质量的图片；</li>
+<li>highQualityFormat：不管花费多长时间，提供高质量图像；一个图片的请求回调只会触发一次；</li>
+<li>fastFormat：以最快速度加载；一个图片的请求回调只会触发一次；</li>
 </ul></li>
-<li><strong>d. 若需要返回一个指定尺寸的图像，需要指定options参数，并且resizeMode不能为none；</strong></li>
-<li><strong>e. <code>resultHandler</code>回调中的<code>info</code>包含图片的相关信息，若图片来自于iCloud，则含有<code>PHImageResultIsInCloudKey=1</code>；对于来自于iCloud的图片，需要在options中设置<code>networkAccessAllowed=YES</code>，这样就能获取到图片了；</strong></li>
+<li>d）normalizedCropRect：只在resizeMode为exact时有效；基于比例坐标，对原始尺寸的图像进行裁剪；</li>
 </ul></li>
-<li><p><strong>5) 将图片保存到系统的相机胶卷</strong></p>
+<li><strong>d. resultHandler回调：<code>info</code>包含图片的相关信息，若图片来自于iCloud，则含有<code>PHImageResultIsInCloudKey=1</code>；若需要获取来自于iCloud的图片，需要在options中设置<code>isNetworkAccessAllowed = true</code>；PHImageResultIsDegradedKey：判断当前图片是否为最终高质量结果的图片（degraded：adj.退化的、堕落的、被降级的）；</strong></li>
+</ul></li>
+<li><p><strong>5) 保存图片到系统的相机胶卷</strong></p>
 
 <pre><code class="language-swift">// 保存到系统的相机胶卷
 PHPhotoLibrary.shared().performChanges({
     let image = UIImage(named: &quot;standard&quot;)!
-    // 创建一个图片资源
+    // 异步执行修改操作
     let assetRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
-    let placeHolder : PHObjectPlaceholder? = assetRequest.placeholderForCreatedAsset
 
     // 获取资源id
+    let placeHolder : PHObjectPlaceholder? = assetRequest.placeholderForCreatedAsset
     print(&quot;asset localIdentifier: \(placeHolder?.localIdentifier)&quot;)
 }) { (isSuccess, error) in
     // 结果回调
     print(&quot;asset isSuccess: \(isSuccess), error: \(error)&quot;)
 }
 </code></pre></li>
-<li><p><strong>6) 将图片保存到自定义相册</strong></p>
+<li><p><strong>6) 保存图片到自定义相册</strong></p>
 
 <pre><code class="language-swift">// 保存到自定义相册closure
 let saveImage = { (album: PHAssetCollection) in
     PHPhotoLibrary.shared().performChanges({
         let image = UIImage(named: &quot;standard&quot;)!
-        // 创建一个图片资源
+        // 1. 先保存到系统的相机胶卷
+        // 异步执行修改操作
         let assetRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
-        let placeHolder : PHObjectPlaceholder? = assetRequest.placeholderForCreatedAsset
 
         // 获取资源id
+        let placeHolder : PHObjectPlaceholder? = assetRequest.placeholderForCreatedAsset
         print(&quot;asset localIdentifier: \(placeHolder?.localIdentifier)&quot;)
 
+        // 2. 将刚刚保存到系统的相机胶卷中的图片，添加到自定义相册中
         let collectionRequest = PHAssetCollectionChangeRequest(for: album)
-        // 将图片加入到相册中
         collectionRequest?.addAssets([placeHolder!] as NSArray)
     }) { (isSuccess, error) in
         // 执行结果回调
@@ -463,8 +474,9 @@ let albumName = &quot;Hello&quot;
 if let album = searchAlbum(albumName) {
     // 进行保存
     saveImage(album)
-} else { // 该自定义相册不存在，则进行创建
+} else { 
     PHPhotoLibrary.shared().performChanges({
+        // 该自定义相册不存在，则先创建相册
         PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: albumName)
     }) { (isSuccess, error) in
         print(&quot;collection isSuccess: \(isSuccess), error: \(error)&quot;)
@@ -474,9 +486,126 @@ if let album = searchAlbum(albumName) {
     }
 }
 </code></pre></li>
+<li><p><strong>7）删除相册（删除时，系统会有提示框）</strong></p>
+
+<pre><code class="language-swift">PHPhotoLibrary.shared().performChanges {
+    // 删除相册（相册中的图片一并删除，并且无法恢复）
+    PHAssetCollectionChangeRequest.deleteAssetCollections([album] as NSFastEnumeration)
+} completionHandler: { (isSuccess, error) in
+    print(&quot;delete isSuccess: \(isSuccess), error: \(error)&quot;)
+}
+</code></pre>
+
+<p><img src="media/15580276420967/%E5%88%A0%E9%99%A4%E7%9B%B8%E5%86%8C%E6%97%B6%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E6%A1%86.png" alt="删除相册时系统提示框" style="width:220px;"/></p></li>
+<li><p><strong>8）删除图片（删除时，系统会有提示框）</strong></p>
+
+<pre><code class="language-swift">let assetsResults = PHAsset.fetchAssets(in: album, options: nil)
+
+PHPhotoLibrary.shared().performChanges {
+    // 删除相册中的所有图片
+    PHAssetChangeRequest.deleteAssets(assetsResults)
+
+    // 删除相册中的第一张图片
+    PHAssetChangeRequest.deleteAssets([assetsResults.firstObject!] as NSFastEnumeration)
+} completionHandler: { (isSuccess, error) in
+    print(&quot;delete isSuccess: \(isSuccess), error: \(error)&quot;)
+}
+</code></pre>
+
+<p><img src="media/15580276420967/%E5%88%A0%E9%99%A4%E5%9B%BE%E7%89%87%E6%97%B6%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E6%A1%86.png" alt="删除图片时系统提示框" style="width:225px;"/>    </p></li>
+<li><p><strong>9）获取图片的元数据</strong></p>
+
+<pre><code class="language-swift">// 方式一
+PHImageManager.default().requestImage(for: imageAsset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil) { (image, infos) in
+    print(&quot;image: \(image)&quot;)
+    print(&quot;infos: \(infos)&quot;)
+
+    // 获取图片元数据（数据不全）
+    let data = (image?.jpegData(compressionQuality: 0.5))!
+    let imageSource = CGImageSourceCreateWithData(data as CFData, nil)!
+    let properties = CGImageSourceCopyPropertiesAtIndex(imageSource, 0, nil)
+    print(&quot;imageSource properties: \(properties)&quot;)
+}
+
+// 方式二
+let options = PHContentEditingInputRequestOptions()
+options.canHandleAdjustmentData = {  (PHAdjustmentData) -&gt; Bool in
+    return false
+}
+options.isNetworkAccessAllowed = true
+imageAsset.requestContentEditingInput(with: options) { (contentEditingInput, infos) in
+    print(&quot;contentEditingInput: \(contentEditingInput)&quot;)
+    print(&quot;infos: \(infos)&quot;)
+
+    // 获取图片元数据（数据全）
+    let ciImage = CIImage(contentsOf: (contentEditingInput?.fullSizeImageURL)!)
+    print(&quot;ciImage properties: \(ciImage?.properties)&quot;)
+}
+</code></pre></li>
+<li><p><strong>10）监听照片库的变化</strong></p>
+
+<pre><code class="language-swift">class ViewController: UIViewController {
+
+    var assetsResults: PHFetchResult&lt;PHAsset&gt;!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // 启动后获取目前所有照片资源
+        let allPhotosOptions = PHFetchOptions()
+        allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: &quot;creationDate&quot;, ascending: false)]
+        allPhotosOptions.predicate = NSPredicate(format: &quot;mediaType = %d&quot;, PHAssetMediaType.image.rawValue)
+        self.assetsResults = PHAsset.fetchAssets(with: .image, options: allPhotosOptions)
+        print(&quot;--- 资源获取完毕 ---&quot;)
+        // 监听资源改变
+        PHPhotoLibrary.shared().register(self)
+    }
+
+    deinit {
+        PHPhotoLibrary.shared().unregisterChangeObserver(self)
+    }
+}
+
+extension ViewController: PHPhotoLibraryChangeObserver{
+
+    // 当照片库发生变化的时候会触发
+    func photoLibraryDidChange(_ change: PHChange) {
+        // 获取assetsResults的所有变化情况
+        guard let collectionChanges = change.changeDetails(for: self.assetsResults as! PHFetchResult&lt;PHObject&gt;) else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            // 获取最新的完整数据
+            if let allResult = collectionChanges.fetchResultAfterChanges as? PHFetchResult&lt;PHAsset&gt; {
+                self.assetsResults = allResult
+            }
+
+            if !collectionChanges.hasIncrementalChanges || collectionChanges.hasMoves {
+                return
+            } else {
+                print(&quot;--- 监听到变化 ---&quot;)
+                if let insertedIndexes = collectionChanges.insertedIndexes,
+                   insertedIndexes.count &gt; 0 {
+                    print(&quot;新增了\(insertedIndexes.count)张照片&quot;)
+                }
+                if let removedIndexes = collectionChanges.removedIndexes,
+                   removedIndexes.count &gt; 0 {
+                    print(&quot;删除了\(removedIndexes.count)张照片&quot;)
+                }
+                if let changedIndexes = collectionChanges.changedIndexes,
+                   changedIndexes.count &gt; 0 {
+                    print(&quot;修改了\(changedIndexes.count)张照片&quot;)
+                }
+            }
+        }
+    }
+
+}
+</code></pre></li>
 </ul>
 
-<h4 id="toc_5">3、授权</h4>
+<h4 id="toc_5">3、授权描述</h4>
 
 <ul>
 <li>使用AssetsLibrary、PhotoKit框架，读取、写入相册，都需要在Info.plist中配置<code>NSPhotoLibraryUsageDescription</code>（iOS 6+），说明用途；</li>
