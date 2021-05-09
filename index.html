@@ -95,6 +95,87 @@
 
       
       <div class="article">
+        <a class="clearlink" href="16204916511807.html">
+          
+          <h1>iOS 13暗黑模式适配</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <ul>
+<li>
+<a href="#toc_0">一、颜色适配</a>
+</li>
+<li>
+<a href="#toc_1">二、图片适配</a>
+</li>
+<li>
+<a href="#toc_2">三、获取当前模式、监听模式变化、处理模式变化</a>
+</li>
+<li>
+<a href="#toc_3">四、禁用暗黑模式</a>
+</li>
+<li>
+<a href="#toc_4">五、其他</a>
+</li>
+</ul>
+
+
+<h4 id="toc_0">一、颜色适配</h4>
+
+<ul>
+<li><p>1、iOS 13之前，UIColor只能表示一种颜色；iOS 13开始，UIColor的颜色可以是根据当前的模式（<code>Light Mode</code>、<code>Dark Mode</code>）动态返回的，只需要通过下面的方法创建UIColor即可；</p>
+
+<pre><code class="language-swift">// 当系统切换模式时，会自动触发闭包回调，
+// 动态返回所需要的颜色，并自动刷新使用该颜色的控件的样式；
+// 可以通过闭包参数UITraitCollection的userInterfaceStyle属性，得到当前是什么模式；
+public init(dynamicProvider: @escaping (UITraitCollection) -&gt; UIColor)
+</code></pre>
+
+<pre><code class="language-swift">let color = UIColor { traitCollection in
+    if traitCollection.userInterfaceStyle == .light {
+        return UIColor.orange
+    } else {
+        return UIColor.blue
+    }
+}
+view.backgroundColor = color
+</code></pre></li>
+<li><p>2、同时，系统也内置了一些动态颜色；</p>
+
+<ul>
+<li>同一个颜色，两种模式下的颜色稍有差异；</li>
+<li>颜色名称多数包含<code>system</code>字样，如UIColor.systemIndigo、UIColor.label等；</li>
+</ul></li>
+<li><p>3、Assets.xcassets也可以定义颜色（iOS 11，Xcode 9支持）；</p>
+
+<ul>
+<li>右侧属性栏中的<code>Appearances</code>（iOS 13，Xcode 11支持），可以配置不同模式下的颜色；</li>
+</ul></li>
+</ul>
+
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="16204916511807.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2021/5/9</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
         <a class="clearlink" href="15859991604863.html">
           
           <h1>多线程与GCD</h1>
@@ -390,46 +471,6 @@ case faceDown // Device oriented flat, face down
         </div>
       </div>
       
-      <div class="article">
-        <a class="clearlink" href="15590636648081.html">
-          
-          <h1>OpenCV配置使用</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li><p>1、安装OpenCV</p>
-
-<pre><code class="language-text">brew install opencv
-</code></pre>
-
-<ul>
-<li>安装路径：<code>/usr/local/Cellar/opencv</code>；</li>
-</ul></li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15590636648081.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2019/5/29</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
 
       <div class="row">
         <div class="large-6 columns">
@@ -481,6 +522,9 @@ case faceDown // Device oriented flat, face down
         <div class="side-content">
           <ul class="posts-list">
               <li class="post">
+              <a href="16204916511807.html">iOS 13暗黑模式适配</a>
+              </li>
+                 <li class="post">
               <a href="15859991604863.html">多线程与GCD</a>
               </li>
                  <li class="post">
@@ -491,9 +535,6 @@ case faceDown // Device oriented flat, face down
               </li>
                  <li class="post">
               <a href="15622540495294.html">iOS屏幕方向</a>
-              </li>
-                 <li class="post">
-              <a href="15590636648081.html">OpenCV配置使用</a>
               </li>
                                              
           </ul>

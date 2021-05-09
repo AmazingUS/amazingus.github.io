@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     Sublime配置使用 - TIME TO GO 
+     iOS 13暗黑模式适配 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,9 +97,9 @@
 
       <div class="article">
         
-        <h1>Sublime配置使用</h1>
+        <h1>iOS 13暗黑模式适配</h1>
         <div class="read-more clearfix">
-          <span class="date">2019/5/29</span>
+          <span class="date">2021/5/9</span>
            
           <span class="comments">
              
@@ -110,63 +110,163 @@
       <div class="article-content">
         <ul>
 <li>
-<a href="#toc_0">一、个人配置</a>
+<a href="#toc_0">一、颜色适配</a>
 </li>
 <li>
-<a href="#toc_1">二、插件安装</a>
+<a href="#toc_1">二、图片适配</a>
 </li>
 <li>
-<a href="#toc_2">三、快捷键</a>
+<a href="#toc_2">三、获取当前模式、监听模式变化、处理模式变化</a>
+</li>
+<li>
+<a href="#toc_3">四、禁用暗黑模式</a>
+</li>
+<li>
+<a href="#toc_4">五、其他</a>
 </li>
 </ul>
 
 
-<h4 id="toc_0">一、个人配置</h4>
+<h4 id="toc_0">一、颜色适配</h4>
 
 <ul>
-<li><p><strong>Preference -&gt; Package Setting -&gt; Package Control -&gt; Setting-User</strong></p></li>
-<li><p>1、添加以下配置，设置代理：</p>
+<li><p>1、iOS 13之前，UIColor只能表示一种颜色；iOS 13开始，UIColor的颜色可以是根据当前的模式（<code>Light Mode</code>、<code>Dark Mode</code>）动态返回的，只需要通过下面的方法创建UIColor即可；</p>
 
-<pre><code class="language-text">&quot;http_proxy&quot;: &quot;http://127.0.0.1:8001&quot;,
-&quot;https_proxy&quot;: &quot;http://127.0.0.1:8001&quot;,
+<pre><code class="language-swift">// 当系统切换模式时，会自动触发闭包回调，
+// 动态返回所需要的颜色，并自动刷新使用该颜色的控件的样式；
+// 可以通过闭包参数UITraitCollection的userInterfaceStyle属性，得到当前是什么模式；
+public init(dynamicProvider: @escaping (UITraitCollection) -&gt; UIColor)
+</code></pre>
+
+<pre><code class="language-swift">let color = UIColor { traitCollection in
+    if traitCollection.userInterfaceStyle == .light {
+        return UIColor.orange
+    } else {
+        return UIColor.blue
+    }
+}
+view.backgroundColor = color
 </code></pre></li>
+<li><p>2、同时，系统也内置了一些动态颜色；</p>
+
+<ul>
+<li>同一个颜色，两种模式下的颜色稍有差异；</li>
+<li>颜色名称多数包含<code>system</code>字样，如UIColor.systemIndigo、UIColor.label等；</li>
+</ul></li>
+<li><p>3、Assets.xcassets也可以定义颜色（iOS 11，Xcode 9支持）；</p>
+
+<ul>
+<li>右侧属性栏中的<code>Appearances</code>（iOS 13，Xcode 11支持），可以配置不同模式下的颜色；</li>
+</ul></li>
 </ul>
 
 <span id="more"></span><!-- more -->
 
-<h4 id="toc_1">二、插件安装</h4>
+<h4 id="toc_1">二、图片适配</h4>
 
 <ul>
-<li><p>1、Package Control（安装其他插件的必要基础）</p>
-
-<ul>
-<li>安装方式：自动安装、手动安装；</li>
-<li>安装文档：<code>https://packagecontrol.io/installation</code>；</li>
-</ul></li>
-<li><p>2、JsFormat（HTML/CSS/JS/JS代码格式化插件）</p>
-
-<ul>
-<li>系统默认的<code>Edit -&gt; Line -&gt; Reindent</code>，只是对当前的文本进行重新缩进（需要先全选文本，再执行操作）；</li>
-<li>调出输入框命令面板，输入install选择<code>Package Control: Install Package</code>，之后输入选择JsFormat进行安装；</li>
-<li>使用：调出输入框命令面板，再输入<code>Format: Javascript</code>就进行了格式化命令；</li>
-</ul></li>
-<li><p>3、Color Highlight（RGB等文字实时渲染显示颜色效果插件）</p></li>
-<li><p>4、Color Convert（颜色格式转换插件）</p></li>
-<li><p>5、ConvertToUTF8、Codecs33（解决中文GBK乱码插件）</p></li>
+<li>1、Assets.xcassets中的图片，也可以像Assets.xcassets中的颜色那样，配置不同模式下的图片；</li>
 </ul>
 
-<h4 id="toc_2">三、快捷键</h4>
+<h4 id="toc_2">三、获取当前模式、监听模式变化、处理模式变化</h4>
 
 <ul>
-<li>显示底部console：<code>Ctrl + `</code>；</li>
-<li>调出输入框命令面板：<code>Cmd + Shift + P</code>；</li>
-<li>多行文件合并到一行：<code>Cmd + J</code>；</li>
-<li>多行编辑：
+<li><p>1、获取当前模式</p>
+
+<pre><code class="language-swift">UITraitCollection.current.userInterfaceStyle
+</code></pre></li>
+<li><p>2、监听模式变化</p>
 
 <ul>
-<li>鼠标框选多行后，<code>Cmd + Shift + L</code>：进入多行编辑模式；</li>
-<li><code>Cmd + -&gt;</code> 或 <code>Ctrl + A</code>：移到行首编辑；</li>
-<li><code>Cmd + &lt;-</code> 或 <code>Ctrl + E</code>：移到行末编辑；</li>
+<li><strong>当系统模式变化时，系统会通知所有控件更新样式，会触发以下方法；</strong></li>
+<li><p><code>https://developer.apple.com/documentation/uikit/appearance_customization/supporting_dark_mode_in_your_interface</code></p>
+
+<pre><code class="language-swift">// UIView
+
+traitCollectionDidChange(_:)
+layoutSubviews()
+draw(_:)
+updateConstraints()
+tintColorDidChange()
+</code></pre>
+
+<pre><code class="language-swift">// UIViewController
+
+traitCollectionDidChange(_:)
+updateViewConstraints()
+viewWillLayoutSubviews()
+viewDidLayoutSubviews()
+</code></pre>
+
+<pre><code class="language-swift">// UIPresentationController
+
+traitCollectionDidChange(_:)
+containerViewWillLayoutSubviews()
+containerViewDidLayoutSubviews()
+</code></pre>
+
+<pre><code class="language-swift">// NSView
+
+updateLayer()
+draw(_:)
+layout()
+updateConstraints()
+</code></pre></li>
+</ul></li>
+<li><p>3、处理模式变化</p>
+
+<ul>
+<li>1）<strong>一般情况下，只要使用了动态的颜色、图片等，模式切换时，系统会自动更换相关样式；</strong></li>
+<li>2）<strong>但是某些情况下，还需要手动处理模式变化，如没有动态的样式、一些不支持动态的样式等（如CGColor，还是只能表示一种颜色）；</strong></li>
+<li><p>3）<strong>一般都是在UIView、UIViewController的<code>traitCollectionDidChange(_:)</code>方法中进行手动处理；</strong></p>
+
+<ul>
+<li><strong>注意：UITraitCollection发生变化了，并不都是模式发生变化了，还有可能是屏幕发生了旋转；</strong></li>
+</ul>
+
+<pre><code class="language-swift">override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    super.traitCollectionDidChange(previousTraitCollection)
+
+    // 模式发生了变化
+    if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+
+    }
+}
+</code></pre></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_3">四、禁用暗黑模式</h4>
+
+<ul>
+<li><p>1、默认情况下，App开启支持暗黑模式的；</p></li>
+<li><p>2、整个App禁用</p>
+
+<ul>
+<li>在Info.plist中增加<code>UIUserInterfaceStyle</code>，并配置为<code>Light</code>，则整个App禁用暗黑模式；</li>
+</ul></li>
+<li><p>3、某个控制器或视图禁用</p>
+
+<ul>
+<li><strong>UIViewController、UIView新增<code>overrideUserInterfaceStyle</code>属性，表示强制设置该控件及其子控件，以设置的模式进行展示，不跟随系的统模式；</strong>
+
+<ul>
+<li><strong>a. 设置UIViewController的该属性，则影响控制器的视图及其所有的子视图；由该控制器present出的控制器不受影响；</strong></li>
+<li><strong>b. 设置UIView的该属性，则影响该视图及其所有的子视图；</strong></li>
+<li><strong>c. 设置UIWindow的该属性，则影响该window的所有内容，包含根控制器及在该window上的所有UIPresentationController；</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_4">五、其他</h4>
+
+<ul>
+<li><p>1、<strong>注意UILabel、UITextField、UITextView等控件暗黑模式的适配（防止与背景色融合），如使用了NSAttributedString；</strong></p></li>
+<li><p>2、<strong>有个常见功能：<code>暗黑模式是否跟随系统</code>；可用通过设置<code>window</code>的<code>overrideUserInterfaceStyle</code>属性完成；</strong></p>
+
+<ul>
+<li><strong>跟随系统时，设置overrideUserInterfaceStyle为unspecified，其他情况设置为light、dark；</strong></li>
+<li><strong>注意，window对象别为nil；</strong></li>
 </ul></li>
 </ul>
 
@@ -176,14 +276,12 @@
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15590636648081.html" title="Previous Post: OpenCV配置使用">&laquo; OpenCV配置使用</a>
-            
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15580276420967.html" title="Next Post: iOS照片框架">iOS照片框架 &raquo;</a>
+            <a href="15859991604863.html" title="Next Post: 多线程与GCD">多线程与GCD &raquo;</a>
             
           </p>
         </div>
