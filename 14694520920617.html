@@ -162,7 +162,7 @@
 <li>brew是基于Ruby运行的工具，必须先安装Ruby；</li>
 <li><p>在终端中执行以下指令（可在 <code>https://brew.sh/</code> 页面中获取）即可自动安装，路径为/usr/local/Homebrew/，其中/usr/local/Homebrew/Library/是brew系统的自身目录；</p>
 
-<pre><code class="language-ruby">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+<pre><code class="language-shell">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
 </code></pre>
 
 <span id="more"></span><!-- more -->
@@ -174,7 +174,7 @@
 </ul></li>
 <li><p>在终端中执行以下指令（可在 <code>https://docs.brew.sh/FAQ.html</code> 页面中获取）即可自动卸载brew；</p>
 
-<pre><code class="language-ruby">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&quot;
+<pre><code class="language-shell">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&quot;
 </code></pre></li>
 </ul>
 
@@ -188,7 +188,7 @@
 
 <p><img src="media/14694520920617/caveats.png" alt="caveats" style="width:628px;"/></p>
 
-<pre><code class="language-text">brew -h | --help # 查看brew帮助（使用--时，命令要写全）
+<pre><code class="language-shell">brew -h | --help # 查看brew帮助（使用--时，命令要写全）
 brew -v | --version # 查看brew当前的版本
 brew update # 更新brew
 
@@ -206,7 +206,7 @@ brew home [NAME] # 使用浏览器打开brew（或某个程序）的主页
 </code></pre></li>
 <li><p>对于通过Homebrew安装的services（如mysql等），可以使用 <code>brew services</code> 相关命令进行管理；</p>
 
-<pre><code class="language-text">brew services list # 查看所有services的状态
+<pre><code class="language-shell">brew services list # 查看所有services的状态
 brew services cleanup # 清除所有无用的services
 
 brew services run &lt;NAME&gt; # 启动某个services
@@ -226,7 +226,7 @@ brew services stop &lt;NAME&gt;  # 关闭某个services，并将取消开机自�
 <li><p>Homebrew-cask有两个安装索引源，一个是稳定版本 <code>https://github.com/phinze/homebrew-cask</code> ，一个是开发版本 <code>https://github.com/caskroom/homebrew-versions</code> ；安装了Homebrew，即可直接使用Homebrew-cask稳定版本的索引源；</p></li>
 <li><p><strong>Homebrew-cask和Homebrew的搜索、安装、卸载、更新等操作是独立的；</strong></p>
 
-<pre><code class="language-text">brew cask list # 查看通过Homebrew-cask安装的程序
+<pre><code class="language-shell">brew cask list # 查看通过Homebrew-cask安装的程序
 brew cask search &lt;NAME&gt; # 搜索某个程序，例如brew cask search qqmusic
 
 brew cask install &lt;NAME&gt; # 安装某个程序（路径为/Applications目录），例如brew cask install qqmusic
@@ -246,7 +246,7 @@ brew cask uninstall | remove &lt;NAME&gt; # 卸载某个程序，例如brew cask
 <ul>
 <li><p>安装MySQL后，根据相关的信息配置MySQL；</p>
 
-<pre><code class="language-text">brew install msysql
+<pre><code class="language-shell">brew install msysql
 </code></pre>
 
 <p><img src="media/14694520920617/brew_install_mysql.png" alt="brew_install_mysq" style="width:788px;"/></p>
@@ -260,7 +260,7 @@ brew cask uninstall | remove &lt;NAME&gt; # 卸载某个程序，例如brew cask
 <p><img src="media/14694520920617/datadir.png" alt="datadi" style="width:373px;"/></p></li>
 <li><p>通过brew安装MySQL，卸载时通过brew卸载即可；若是手动安装，则需要手动卸载，命令如下：</p>
 
-<pre><code class="language-text">sudo rm /usr/local/mysql
+<pre><code class="language-shell">sudo rm /usr/local/mysql
 sudo rm -rf /usr/local/mysql*
 sudo rm -rf /Library/StartupItems/MySQLCOM
 sudo rm -rf /Library/PreferencePanes/My*
@@ -279,12 +279,12 @@ sudo rm -rf /usr/local/var/mysql # 删除数据库文件
 <ul>
 <li><p>注意：使用Homebrew-cask进行安装（可以执行 <code>brew search java</code> 命令查询安装源是Homebrew，还是Homebrew-cask）；</p>
 
-<pre><code class="language-text">brew cask install java # 安装Oracle Java
+<pre><code class="language-shell">brew cask install java # 安装Oracle Java
 brew cask uninstall java # 卸载Oracle Java
 </code></pre></li>
 <li><p>若之前手动安装过Oracle Java，需要先进行手动卸载，相关命令如下：</p>
 
-<pre><code class="language-text">sudo rm -rf /Library/Java
+<pre><code class="language-shell">sudo rm -rf /Library/Java
 
 sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
 sudo rm -rf /Library/PreferencePanes/JavaControlPanel.prefPane
@@ -298,17 +298,20 @@ sudo rm /var/db/receipts/com.oracle.*
 </code></pre></li>
 <li><p>Shell命令补充：查找匹配、删除文件</p>
 
-<pre><code class="language-text"># 全盘查找带“编程”的目录（d）、普通文件（f）、链接文件（l）等文件
+<pre><code class="language-shell"># 全盘查找带“编程”的目录（d）、普通文件（f）、链接文件（l）等文件
 find / -name &quot;*编程*&quot;
 
-# 当前目录查找带“编程”的普通文件
+# 在当前目录及其子目录，查找带“编程”的普通文件
 find . -name &quot;*编程*&quot; -type f
 
 # -iname: 不区分大小写查找
 find / -iname &quot;*Abc*&quot;
 
-# 当前目录查找带“编程”的普通文件，并删除（不带打印）
+# 在当前目录及其子目录，查找带“编程”的普通文件，并删除（不带打印）
 find . -name &quot;*编程*&quot; -type f | xargs rm -rf
+
+# 只在当前目录，查找带“编程”的普通文件（不递归查找）
+find . -name &quot;*编程*&quot; -type f -maxdepth 1
 </code></pre></li>
 </ul>
 
@@ -317,7 +320,7 @@ find . -name &quot;*编程*&quot; -type f | xargs rm -rf
 <ul>
 <li><p>Tomcat后运行服务后，默认网址为 <code>http://localhost:8080/</code> ；</p>
 
-<pre><code class="language-text">brew install tomcat # 安装tomcat
+<pre><code class="language-shell">brew install tomcat # 安装tomcat
 
 catalina run # 在当前窗口中运行tomcat
 catalina start # 运行tomcat
@@ -410,13 +413,13 @@ catalina stop # 关闭tomcat
               <a href="15859991604863.html">多线程与GCD</a>
               </li>
                  <li class="post">
+              <a href="15705573115081.html">iOS、macOS应用启动逻辑</a>
+              </li>
+                 <li class="post">
               <a href="15703760378326.html">NIB、XIB、StoryBoard与UIViewController、UIView</a>
               </li>
                  <li class="post">
               <a href="15626010144789.html">iOS状态栏</a>
-              </li>
-                 <li class="post">
-              <a href="15622540495294.html">iOS屏幕方向</a>
               </li>
                                              
           </ul>

@@ -95,75 +95,16 @@
 
       
       <div class="article">
-        <a class="clearlink" href="15210408337160.html">
+        <a class="clearlink" href="15147467488941.html">
           
-          <h1>iOS静态库、动态库</h1>
+          <h1>Swift语法概要(03~04)</h1>
           <div class="a-content">
             
             <div class="a-content-text">
                
-			  <ul>
-<li>
-<a href="#toc_0">一、类库分类</a>
-</li>
-<li>
-<a href="#toc_1">二、类库类型支持</a>
-</li>
-<li>
-<a href="#toc_2">三、iPhone设备CPU架构</a>
-</li>
-<li>
-<a href="#toc_3">四、资源文件处理</a>
-</li>
-<li>
-<a href="#toc_4">五、补充知识</a>
-</li>
-<li>
-<a href="#toc_5">六、XCFramework</a>
-</li>
-<li>
-<a href="#toc_6">七、Xcode 12</a>
-</li>
-</ul>
+			  <h4 id="toc_0">一、结构体(值类型)、类(引用类型)</h4>
 
-
-<h4 id="toc_0">一、类库分类</h4>
-
-<ul>
-<li>静态库：
-
-<ul>
-<li>.a二进制库：使用时还需要将.h头文件及资源文件（比如图片等）拖入到工程项目中，配置一些header、lib路径之类的；使用起来比较麻烦；</li>
-<li>.framework库：Apple平台独有，其本质是将.a库文件、.h头文件及资源文件打包在一起的包文件；使用时直接将其拖到工程项目中即可，或在 <code>General</code> -&gt; <code>Link Binary With Libraries</code> 中添加使用；</li>
-</ul></li>
-<li>动态库：
-
-<ul>
-<li>.tdb库：Xcode 7（iOS9）开始使用，之前名称为.dylib；在 <code>General</code> -&gt; <code>Link Binary With Libraries</code> 中添加使用；</li>
-<li>.framework库：必须在 <code>General</code> -&gt; <code>Embedded Binaries</code> 中添加使用；</li>
-</ul></li>
-<li><p>区别：</p>
-
-<ul>
-<li><strong>对于静态库：</strong>
-
-<ul>
-<li><strong>在链接时，Xcode会自动从库文件中，筛选出相应的架构，之后合并到主程序的二进制文件中；</strong></li>
-<li><strong>在打包时，Xcode会自动忽略库文件中不使用的架构，如会忽略x86_64等模拟器使用的架构；</strong></li>
-</ul></li>
-<li><p><strong>对于动态库：</strong></p>
-
-<ul>
-<li><strong>在编译时，Xcode会直接拷贝整个动态framework文件到最终的.ipa中，只有在App真正启动运行时，才会进行动态链接；</strong></li>
-<li><strong>但是苹果不允许上传到App Store Connect后台的.ipa包含x86_64等模拟器的架构（报Invalid错误）；所以对于工程中的动态framework，在打Release包时，一般会通过执行命令脚本的方式移除这些Invalid Architectures；</strong></li>
-<li><strong>通过CocoaPods集成动态库时，其会自动添加一个shell脚本（[CP] Embed Pods Frameworks），用于移除不需要的架构；</strong></li>
-<li><p><strong>通过Carthage集成动态库时，需要手动配置相关shell脚本，用于移除不需要的架构；</strong></p>
-
-<pre><code class="language-shell">/usr/local/bin/carthage copy-frameworks
-</code></pre></li>
-</ul></li>
-</ul></li>
-</ul>
+<h4 id="toc_1">二、枚举(值类型)、其他</h4>
 
  
             </div>
@@ -172,8 +113,8 @@
         <div class="read-more clearfix">
           <div class="more-left left">
             
-            <a href="15210408337160.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/3/14</span>
+            <a href="15147467488941.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/31</span>
              
 			
           </div>
@@ -187,49 +128,16 @@
       </div>
       
       <div class="article">
-        <a class="clearlink" href="15206830265209.html">
+        <a class="clearlink" href="15142060028487.html">
           
-          <h1>Swift、ObjC混编</h1>
+          <h1>Swift语法概要(01~02)</h1>
           <div class="a-content">
             
             <div class="a-content-text">
                
-			  <ul>
-<li>
-<a href="#toc_0">一、Swift调用ObjC</a>
-</li>
-<li>
-<a href="#toc_1">二、ObjC调用Swift</a>
-</li>
-<li>
-<a href="#toc_2">三、Swift项目使用ObjC Pods</a>
-</li>
-<li>
-<a href="#toc_3">四、ObjC项目使用Swift Pods</a>
-</li>
-<li>
-<a href="#toc_4">五、Swift调用C、C++</a>
-</li>
-</ul>
+			  <h4 id="toc_0">一、基本概念、基础类型(值类型)、控制流</h4>
 
-
-<h4 id="toc_0">一、Swift调用ObjC</h4>
-
-<ul>
-<li>实现步骤
-
-<ul>
-<li>1、新建Swift项目；</li>
-<li>2、新建ObjC文件，比如ObjCUtil.h/m；
-
-<ul>
-<li>a. 此时Xcode会提示是否自动创建Bridge头文件（文件名称为<code>#ProjectName#-Bridging-Header.h</code>），选择自动创建；</li>
-<li>b. 也可以手动创建Bridge头文件，只需修改&quot;Build Setting&quot;中的&quot;Objective-C Briding Header&quot;即可；</li>
-</ul></li>
-<li>3、在Bridge头文件中，进行<code>#import &quot;ObjC文件.h&quot;</code>，之后即可在Swift调用ObjC了；</li>
-<li>4、新建一个Swift文件（不必继承NSObject）用于测试，比如SwiftTest.swift；</li>
-</ul></li>
-</ul>
+<h4 id="toc_1">二、函数、闭包(引用类型)</h4>
 
  
             </div>
@@ -238,8 +146,8 @@
         <div class="read-more clearfix">
           <div class="more-left left">
             
-            <a href="15206830265209.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/3/10</span>
+            <a href="15142060028487.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/25</span>
              
 			
           </div>
@@ -253,71 +161,67 @@
       </div>
       
       <div class="article">
-        <a class="clearlink" href="15594138145337.html">
+        <a class="clearlink" href="15129255415379.html">
           
-          <h1>ObjC、C、C++混编</h1>
+          <h1>Python3爬虫总结</h1>
           <div class="a-content">
             
             <div class="a-content-text">
                
 			  <ul>
 <li>
-<a href="#toc_0">一、文件类型</a>
+<a href="#toc_0">一、URI、URL</a>
 </li>
 <li>
-<a href="#toc_1">二、头文件导入类型兼容判断</a>
+<a href="#toc_1">二、urllib库</a>
 </li>
 <li>
-<a href="#toc_2">三、修改编译模式的方式</a>
+<a href="#toc_2">三、URLError、HTTPError</a>
 </li>
 <li>
-<a href="#toc_3">四、代码互相调用</a>
+<a href="#toc_3">四、设置header、timeout</a>
 </li>
 <li>
-<a href="#toc_4">五、对象管理</a>
+<a href="#toc_4">五、Opener、Handler</a>
+<ul>
+<li>
+<a href="#toc_5">5.1 HTTPBasicAuthHandler</a>
 </li>
 <li>
-<a href="#toc_5">六、ObjC、C++代码混编案例</a>
+<a href="#toc_6">5.2 ProxyHandler</a>
 </li>
 <li>
-<a href="#toc_6">七、补充</a>
+<a href="#toc_7">5.3 HTTPRedirectHandler</a>
+</li>
+<li>
+<a href="#toc_8">5.4 HTTPCoookieProcessor</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_9">六、实战</a>
 </li>
 </ul>
 
 
-<h4 id="toc_0">一、文件类型</h4>
+<h4 id="toc_0">一、URI、URL</h4>
 
 <ul>
-<li>C类型
+<li>URI（Universal Resource Identifier）：统一资源标识符，一种语义上的抽象概念；可以是绝对的，也可以是相对的</li>
+<li>URL（Uniform Resource Locator）：统一资源定位符，一种具体的绝对的URI，是URI的一个子集；不仅唯一标识资源，而且还提供足够的信息定位该资源的信息</li>
+</ul>
+
+<h4 id="toc_1">二、urllib库</h4>
 
 <ul>
-<li>.h头文件：可以兼容C代码</li>
-<li>.c源文件：可以兼容C代码</li>
-</ul></li>
-<li>C++类型
+<li><p>Python 2.x中有urllib、urllib2两个HTTP请求模块；urllib2是urllib的增强，但urllib中有urllib2中所没有的函数，它们一起搭配使用、不可相互替代</p>
 
 <ul>
-<li>.hpp头文件：可以兼容C、C++代码</li>
-<li>.cpp源文件：可以兼容C、C++代码</li>
-</ul></li>
-<li>Objective-C类型
-
-<ul>
-<li>.h头文件：可以兼容ObjC、C代码</li>
-<li>.m源文件：可以兼容ObjC、C代码</li>
-</ul></li>
-<li>Objective-C++类型
-
-<ul>
-<li>.h头文件：可以兼容ObjC、C、C++代码</li>
-<li>.mm源文件：可以兼容ObjC、C、C++代码</li>
-</ul></li>
-<li>补充
-
-<ul>
-<li>C++的.hpp头文件的内部一般写C++类、类的变量、类的方法的申明，而.cpp源文件内则写在.hpp头文件中申明的方法的实现；</li>
-<li><strong>Xcode默认根据<code>文件类型（According to File Type）</code>，来选择编译模式；</strong></li>
-<li><strong>若需要使用一些C++的标准库，需要导入libc++库；Xcode10和iOS12中已移除废弃多年的libstdc++库，由libc++库（llvm优化过，并全面支持C++11）代替；</strong></li>
+<li><p>a). urllib仅仅可以接受url，不可以设置请求的headers，意味着不可以进行伪装“User Agent”等操作</p></li>
+<li><p>b). urllib2可以通过接受一个Request实例，来设置HTTP请求的headers</p></li>
+<li><p>c). urllib提供urlencode函数用来“拼接”请求参数字符串</p></li>
+<li><p>d). urllib2没有“拼接”请求参数字符串功能的函数；</p></li>
+<li><p>urlencode函数是将一个dit或一个含有两个元素tuple的list变成一个url查询字符串（如name=Tom&amp;age=12)，并不是进行字符编码</p></li>
 </ul></li>
 </ul>
 
@@ -328,8 +232,8 @@
         <div class="read-more clearfix">
           <div class="more-left left">
             
-            <a href="15594138145337.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/3/7</span>
+            <a href="15129255415379.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/11</span>
              
 			
           </div>
@@ -343,41 +247,62 @@
       </div>
       
       <div class="article">
-        <a class="clearlink" href="15147939316129.html">
+        <a class="clearlink" href="15288255574523.html">
           
-          <h1>Carthage配置使用</h1>
+          <h1>Python3笔记(19实战)</h1>
           <div class="a-content">
             
             <div class="a-content-text">
                
 			  <ul>
 <li>
-<a href="#toc_0">一、概述、安装</a>
+<a href="#toc_0">Day1-搭建开发环境</a>
 </li>
 <li>
-<a href="#toc_1">二、使用</a>
+<a href="#toc_1">Day2-编写Web App骨架</a>
 </li>
 <li>
-<a href="#toc_2">三、其他说明</a>
+<a href="#toc_2">Day3-编写ORM</a>
+</li>
+<li>
+<a href="#toc_3">Day4-编写Model</a>
+</li>
+<li>
+<a href="#toc_4">Day5-编写Web框架</a>
+</li>
+<li>
+<a href="#toc_5">Day6-编写配置文件</a>
+</li>
+<li>
+<a href="#toc_6">Day7-编写MVC</a>
+</li>
+<li>
+<a href="#toc_7">Day8-构建前端</a>
+</li>
+<li>
+<a href="#toc_8">Day9-编写API</a>
+</li>
+<li>
+<a href="#toc_9">Day10-用户注册和登录</a>
 </li>
 </ul>
 
 
-<h4 id="toc_0">一、概述、安装</h4>
+<h4 id="toc_0">Day1-搭建开发环境</h4>
 
 <ul>
-<li>Carthage类似于CocoaPods，用于iOS、macOS平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持）</strong>；
+<li>安装以下依赖库：aiohttp、jinja2、aiomysql（MysQL的Python异步驱动）</li>
+<li><p>项目结构：</p>
 
-<ul>
-<li>Carthage是基于Swift的，而Swift只支持Dynamic framework（从Xcode 9开始，Swift 4.0支持静态库）；</li>
-<li>之后手动拖入到项目中；其对项目工程文件的入侵性较小，并且可以与CocoaPods无缝集成，一个项目可以同时拥有CocosPods和Carthage；</li>
-</ul></li>
-<li><p>可以通过Homebrew进行安装Carthage；</p>
-
-<pre><code class="language-text"># 安装carthage（安装升级carthage，注意可能出现多版本共存bug）
-brew install carthage
-
-carthage version  # 查看安装的版本
+<pre><code class="language-python">awesome-python3-webapp # 根目录
+../backup # 备份目录
+../conf # 配置文件
+../dist # 打包目录
+../www # Web目录，存放.py文件
+../../static # 存放静态文件
+../../templates # 存放模板文件
+../ios # 存放iOS App工程
+../LICENSE # 代码LICENSE
 </code></pre></li>
 </ul>
 
@@ -388,8 +313,8 @@ carthage version  # 查看安装的版本
         <div class="read-more clearfix">
           <div class="more-left left">
             
-            <a href="15147939316129.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/1/1</span>
+            <a href="15288255574523.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/10</span>
              
 			
           </div>
@@ -403,265 +328,106 @@ carthage version  # 查看安装的版本
       </div>
       
       <div class="article">
-        <a class="clearlink" href="15147921816573.html">
+        <a class="clearlink" href="15125773962376.html">
           
-          <h1>iOS视图布局方式</h1>
+          <h1>Python3笔记(17Web开发、18异步IO)</h1>
           <div class="a-content">
             
             <div class="a-content-text">
                
 			  <ul>
 <li>
-<a href="#toc_0">一、基本尺寸</a>
+<a href="#toc_0">17. Web开发</a>
+<ul>
+<li>
+<a href="#toc_1">17.1 HTTP协议</a>
 </li>
 <li>
-<a href="#toc_1">二、iOS 7之前特性</a>
+<a href="#toc_2">17.2 HTML</a>
 </li>
 <li>
-<a href="#toc_2">三、iOS 7特性</a>
+<a href="#toc_3">17.3 WSGI接口</a>
 </li>
 <li>
-<a href="#toc_3">四、iOS 9特性</a>
+<a href="#toc_4">17.4 使用Web框架</a>
 </li>
 <li>
-<a href="#toc_4">五、iOS 11特性</a>
+<a href="#toc_5">17.5 使用模板</a>
+</li>
+</ul>
 </li>
 <li>
-<a href="#toc_5">六、补充</a>
+<a href="#toc_6">18. 异步IO</a>
+<ul>
+<li>
+<a href="#toc_7">18.1 概述</a>
 </li>
 <li>
-<a href="#toc_6">七、参考</a>
+<a href="#toc_8">18.2 协程（Coroutine）</a>
+</li>
+<li>
+<a href="#toc_9">18.3 asyncio</a>
+</li>
+<li>
+<a href="#toc_10">18.4 async/await</a>
+</li>
+<li>
+<a href="#toc_11">18.5 aiohttp</a>
+</li>
+</ul>
 </li>
 </ul>
 
 
-<h4 id="toc_0">一、基本尺寸</h4>
+<h4 id="toc_0">17. Web开发</h4>
+
+<h5 id="toc_1">17.1 HTTP协议</h5>
 
 <ul>
-<li><p>1、控件尺寸</p>
+<li>在Web应用中，服务器把网页传给浏览器，实际上就是把网页的HTML代码发送给浏览器，让浏览器显示出来；浏览器和服务器之间的传输协议是HTTP</li>
+<li>HTTP是在网络上传输HTML的协议，用于浏览器和服务器的通信；HTML是一种用来定义网页的文本</li>
+<li><p>每个HTTP请求和响应报文都遵循相同的格式，包含Header、Body（可选的）</p>
+
+<pre><code class="language-python"># 1. HTTP GET请求格式
+GET /path HTTP/1.1
+Header1: Value1
+Header2: Value2
+Header3: Value3
+</code></pre>
 
 <ul>
-<li>iPhone、iPad：StatusBar的高度为20，NavBar的高度为44，TabBar的高度为49；</li>
-<li>iPhone X：StatusBar的高度为44，NavBar的高度为44，TabBar的高度为83；</li>
-</ul></li>
-<li><p>2、屏幕尺寸</p>
+<li>a. GET为请求方法，类似的有POST、HEADER等</li>
+<li>b. /path表示URL的路径（总是以/开头），/就表示首页</li>
+<li>c. HTTP/1.1表示采用HTTP协议版本为1.1；HTTP/1.1允许多个HTTP请求复用同一个TCP连接，加快传输速度，HTTP/1.0不可以</li>
+<li>d. 每个Header一行一个，换行符为\r\n</li>
+</ul>
 
-<table>
-<thead>
-<tr>
-<th style="text-align: center">设备</th>
-<th style="text-align: center">逻辑像素pt</th>
-<th style="text-align: center">倍率</th>
-<th style="text-align: center">屏幕尺寸</th>
-<th style="text-align: center">最高系统</th>
-</tr>
-</thead>
+<pre><code class="language-python"># 2. HTTP POST请求格式
+POST /path HTTP/1.1
+Header1: Value1
+Header2: Value2
+Header3: Value3
 
-<tbody>
-<tr>
-<td style="text-align: center">iPhone 4s（11）</td>
-<td style="text-align: center">320x480</td>
-<td style="text-align: center">2X</td>
-<td style="text-align: center">3.5inch</td>
-<td style="text-align: center">iOS 9</td>
-</tr>
-<tr>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 5s（13）</td>
-<td style="text-align: center">320x568</td>
-<td style="text-align: center">2X</td>
-<td style="text-align: center">4inch</td>
-<td style="text-align: center">iOS 12</td>
-</tr>
-<tr>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">2016（iOS 10、Xcode 8）</td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone SE（春季）</td>
-<td style="text-align: center">320x568</td>
-<td style="text-align: center">2X</td>
-<td style="text-align: center">4inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">2017（iOS 11、Xcode 9）</td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 8</td>
-<td style="text-align: center">375x667</td>
-<td style="text-align: center">2X</td>
-<td style="text-align: center">4.7inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 8 Plus</td>
-<td style="text-align: center">414x736</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">5.5inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone X</td>
-<td style="text-align: center">375x812</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">5.8inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">2018（iOS 12、Xcode 10）</td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone XS</td>
-<td style="text-align: center">375x812</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">5.8inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone XR</td>
-<td style="text-align: center">414x896</td>
-<td style="text-align: center">2X</td>
-<td style="text-align: center">6.1inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone XS Max</td>
-<td style="text-align: center">414x896</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">6.5inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">2019（iOS 13、Xcode 11）</td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 11 Pro</td>
-<td style="text-align: center">375x812</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">5.8inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 11</td>
-<td style="text-align: center">414x896</td>
-<td style="text-align: center">2X</td>
-<td style="text-align: center">6.1inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 11 Pro Max</td>
-<td style="text-align: center">414x896</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">6.5inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">2020（iOS 14、Xcode 12）</td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-<td style="text-align: center"></td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone SE2（春季）</td>
-<td style="text-align: center">375x667</td>
-<td style="text-align: center">2X</td>
-<td style="text-align: center">4.7inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 12 Min</td>
-<td style="text-align: center">375x812</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">5.4inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 12</td>
-<td style="text-align: center">390x844</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">6.1inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 12 Pro</td>
-<td style="text-align: center">390x844</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">6.1inch</td>
-<td style="text-align: center">--</td>
-</tr>
-<tr>
-<td style="text-align: center">iPhone 12 Pro Max</td>
-<td style="text-align: center">428x926</td>
-<td style="text-align: center">3X</td>
-<td style="text-align: center">6.7inch</td>
-<td style="text-align: center">--</td>
-</tr>
-</tbody>
-</table>
+body data goes here...
+</code></pre>
 
 <ul>
-<li>375x812: X、XS、11 Pro、12 Min；</li>
-<li>414x896: XR、XS Max、11、11 Pro Max；</li>
-<li>390x844: 12、12 Pro；</li>
-<li>428x926: 12 Pro Max；</li>
+<li>a. 当遇到连续两个\r\n，表示Header部分结束，后面的数据全部是Body</li>
+</ul>
+
+<pre><code class="language-python"># 3. HTTP 响应格式
+200 OK
+Header1: Value1
+Header2: Value2
+Header3: Value3
+
+body data goes here...
+</code></pre>
+
+<ul>
+<li>a. 200表示成功响应，后面的OK为说明；类似的，“404 Not Found”表示网页不存在，“500 Internal Server Error”表示服务器内部出错，等等</li>
+<li>b. Content-Type表示body的数据类型，比如，“text/html”表示HTML网页；浏览器依靠Content-Type来判断响应的内容类型，而不是依靠URL，故即使URL是<code>http://abc.com/a.jpg</code>也不一定就是图片</li>
+<li>c. 当存在Content-Encoding时，说明Body数据被压缩了，需要将Body数据先解压才能使用；最常见的压缩方式是gzip；压缩的目的在于减小Body的大小，加速网络传输</li>
 </ul></li>
 </ul>
 
@@ -672,8 +438,8 @@ carthage version  # 查看安装的版本
         <div class="read-more clearfix">
           <div class="more-left left">
             
-            <a href="15147921816573.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/1/1</span>
+            <a href="15125773962376.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/7</span>
              
 			
           </div>
@@ -744,13 +510,13 @@ carthage version  # 查看安装的版本
               <a href="15859991604863.html">多线程与GCD</a>
               </li>
                  <li class="post">
+              <a href="15705573115081.html">iOS、macOS应用启动逻辑</a>
+              </li>
+                 <li class="post">
               <a href="15703760378326.html">NIB、XIB、StoryBoard与UIViewController、UIView</a>
               </li>
                  <li class="post">
               <a href="15626010144789.html">iOS状态栏</a>
-              </li>
-                 <li class="post">
-              <a href="15622540495294.html">iOS屏幕方向</a>
               </li>
                                              
           </ul>

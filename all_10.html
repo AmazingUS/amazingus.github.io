@@ -95,99 +95,56 @@
 
       
       <div class="article">
-        <a class="clearlink" href="15125773962077.html">
+        <a class="clearlink" href="15125773961741.html">
           
-          <h1>Python3笔记(11进程和线程)</h1>
+          <h1>Python3笔记(03函数)</h1>
           <div class="a-content">
             
             <div class="a-content-text">
                
 			  <ul>
 <li>
-<a href="#toc_0">11. 进程和线程</a>
-</li>
-<li>
-<a href="#toc_1">11.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">11.2 多进程</a>
+<a href="#toc_0">03. 函数</a>
 <ul>
 <li>
-<a href="#toc_3">a. fork()函数</a>
+<a href="#toc_1">3.1 基本函数</a>
 </li>
 <li>
-<a href="#toc_4">b. Process（multiprocessing模块）</a>
+<a href="#toc_2">3.2 自定义函数</a>
 </li>
 <li>
-<a href="#toc_5">c. Pool（multiprocessing模块）</a>
+<a href="#toc_3">3.3 参数检查</a>
 </li>
 <li>
-<a href="#toc_6">d. subprocess</a>
+<a href="#toc_4">3.4 返回多值</a>
+</li>
+<li>
+<a href="#toc_5">3.5 函数的参数</a>
+</li>
+<li>
+<a href="#toc_6">3.6 递归函数</a>
 </li>
 </ul>
-</li>
-<li>
-<a href="#toc_7">11.3 进程间通信</a>
-</li>
-<li>
-<a href="#toc_8">11.4 多线程</a>
-<ul>
-<li>
-<a href="#toc_9">a. Lock（线程同步）</a>
-</li>
-<li>
-<a href="#toc_10">b. 多核CPU（多线程执行）</a>
-</li>
-<li>
-<a href="#toc_11">c. ThreadLocal（数据独立）</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_12">11.5 进程 VS 线程</a>
-<ul>
-<li>
-<a href="#toc_13">a. 计算密集型 VS IO密集型</a>
-</li>
-<li>
-<a href="#toc_14">b. 异步IO</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_15">11.6 分布式进程</a>
 </li>
 </ul>
 
 
-<h4 id="toc_0">11. 进程和线程</h4>
+<h4 id="toc_0">03. 函数</h4>
 
-<h4 id="toc_1">11.1 概述</h4>
-
-<ul>
-<li>多任务：简单地说就是系统可以同时运行多个任务</li>
-<li>对于系统来说，一个任务就是一个进程（Process）
+<h5 id="toc_1">3.1 基本函数</h5>
 
 <ul>
-<li>单核CPU：系统轮流让各个任务交替执行，由于CPU的执行速度太快，感觉所有任务都是在同时执行</li>
-<li>多核CPU：真正实现并行执行多任务，由于任务数量远远多于CPU的核心数量，所以系统会自动把多任务轮流调度到每个核心上执行</li>
+<li>取绝对值abs()、取最大值max()、min()、sum()，注意传入的参数格式及个数(也可以是一个数组)</li>
+<li>类型转换函数，如int()、float()、str()、bool()</li>
+<li>函数名是指向一个函数对象的引用，可以将函数名赋值给一个变量，相当于给函数起个“别名”，例如 <code>a = abs \n a = &#39;abc&#39;</code></li>
+<li><strong>hex()函数：将一个整数转为16进制的字符串，例如hex(65) # &#39;0x41&#39;</strong></li>
+<li><strong>注意：</strong>
+
+<ul>
+<li><strong>&#39;\u4e2d&#39;：加\u前缀的16进制的的特殊字符串（Unicode编码值），表示对应字符（串）</strong></li>
+<li><strong>b&#39;\xe4&#39;：加“b”前缀的16进制的特殊字符串，表示字节数据</strong></li>
+<li><strong>&#39;0x41&#39;：表示一个数字的16进制的字符串</strong></li>
 </ul></li>
-<li>有些进程要同时干多件事（比如Word，同时进行打字、拼写检查、打印等），就需要同时运行多个“子任务”，进程内的这些“子任务”称之为线程（Thread）
-
-<ul>
-<li>线程是最小的执行单元</li>
-<li>由于每个进程至少要干一件事，所以，一个进程至少有一个线程</li>
-<li>多个线程也是可以同时执行，执行方式和多个进程类似，由系统在多个线程之间快速切换；但真正地同时执行多线程需要多核CPU</li>
-</ul></li>
-<li>同时执行多个任务有以下解决方案：
-
-<ul>
-<li>a. 多进程模式：启动多个进程，每个进程虽然只有一个线程，但多个进程可以一起执行多个任务</li>
-<li>b. 多线程模式：启动一个进程，在一个进程内启动多个线程，这样多个线程可以一起执行多个任务</li>
-<li>c. 多进程+多线程模式：启动多个进程，每个进程再启动多个线程，这样同时执行的任务就更多了；这种模型更复杂，实际很少采用</li>
-</ul></li>
-<li>同时执行多个任务，通常各个任务之间并不是没有关联的，而是需要互相通信和协调的；多进程和多线程的程序涉及到同步、数据共享的问题，编写起来更复杂</li>
-<li>Python既支持多进程，又支持多线程</li>
 </ul>
 
  
@@ -197,7 +154,7 @@
         <div class="read-more clearfix">
           <div class="more-left left">
             
-            <a href="15125773962077.html">Read more</a>&nbsp;&nbsp; 
+            <a href="15125773961741.html">Read more</a>&nbsp;&nbsp; 
             <span class="date">2017/12/7</span>
              
 			
@@ -212,71 +169,89 @@
       </div>
       
       <div class="article">
-        <a class="clearlink" href="15125773962028.html">
+        <a class="clearlink" href="15125773961684.html">
           
-          <h1>Python3笔记(10IO编程)</h1>
+          <h1>Python3笔记(01简介、02基础)</h1>
           <div class="a-content">
             
             <div class="a-content-text">
                
 			  <ul>
 <li>
-<a href="#toc_0">10. IO编程</a>
-</li>
-<li>
-<a href="#toc_1">10.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">10.2 读写文件</a>
+<a href="#toc_0">01. 简介</a>
 <ul>
 <li>
-<a href="#toc_3">a. 读文件</a>
+<a href="#toc_1">1.1 Python模式</a>
 </li>
 <li>
-<a href="#toc_4">b. 写文件</a>
+<a href="#toc_2">1.2 输入、输出函数</a>
+</li>
+<li>
+<a href="#toc_3">1.3 细节</a>
+</li>
+<li>
+<a href="#toc_4">1.4 字符转义</a>
+</li>
+<li>
+<a href="#toc_5">1.5 换行</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_5">10.3 StringIO、BytesIO</a>
-</li>
-<li>
-<a href="#toc_6">10.4 操作文件和目录</a>
-</li>
-<li>
-<a href="#toc_7">10.5 序列化</a>
+<a href="#toc_6">02. 基础</a>
 <ul>
 <li>
-<a href="#toc_8">a. JSON</a>
+<a href="#toc_7">2.1 数据类型、变量</a>
 </li>
 <li>
-<a href="#toc_9">b. JSON进阶</a>
+<a href="#toc_8">2.2 字符编码</a>
+</li>
+<li>
+<a href="#toc_9">2.3 字符串</a>
+</li>
+<li>
+<a href="#toc_10">2.4 str格式化</a>
+</li>
+<li>
+<a href="#toc_11">2.5 str.format()方法</a>
+</li>
+<li>
+<a href="#toc_12">2.6 list类</a>
+</li>
+<li>
+<a href="#toc_13">2.7 tuple类</a>
+</li>
+<li>
+<a href="#toc_14">2.8 条件判断、循环</a>
+</li>
+<li>
+<a href="#toc_15">2.9 dict类</a>
+</li>
+<li>
+<a href="#toc_16">2.10 set类</a>
+</li>
+<li>
+<a href="#toc_17">2.11 可变、不可变对象</a>
 </li>
 </ul>
 </li>
 </ul>
 
 
-<h4 id="toc_0">10. IO编程</h4>
+<h4 id="toc_0">01. 简介</h4>
 
-<h4 id="toc_1">10.1 概述</h4>
-
-<ul>
-<li>流只能单向流动；既收又发数据就必须建立两个流（输入流、输出流）</li>
-<li>在IO编程中，存在着速度严重不匹配额问题，解决方式有两种：
+<h5 id="toc_1">1.1 Python模式</h5>
 
 <ul>
-<li>a. CPU暂停执行后续代码，等待数据读取或写入完毕后再执行（同步IO模式）</li>
-<li>b. CPU不等待继续执行后续代码，数据读取或写入一边进行着（异步IO模式）</li>
-</ul></li>
-<li>同步IO和异步IO的区别是否等待IO执行的结果；使用异步IO来编写的程序性能远远高于同步IO，但是异步IO的缺点是编程模型复杂，异步IO需要“通知”别人其已执行完毕，“通知”有两种：
+<li>交互模式（终端输入“python3”进入交互模式，输入“exit()”退出）</li>
+<li>命令行模式（终端输入“python3 文件名.py”直接运行）</li>
+</ul>
+
+<h5 id="toc_2">1.2 输入、输出函数</h5>
 
 <ul>
-<li>a. 回调，IO主动告诉别人</li>
-<li>b. 轮询，别人不断去检查IO是否执行完毕</li>
-</ul></li>
-<li>操作IO的能力是由操作系统提供的，每一种编程语言都会把操作系统提供的低级C接口封装起来方便使用，Python也不例外</li>
-<li>本章讨论的IO编程都是同步模式的</li>
+<li>输出函数print(a1, a2, ...)，输出参数间遇到一个“,”就会拼接一个空格符，例如print(&#39;hello&#39;,&#39;world&#39;)结果为“hello world”</li>
+<li>输入函数input()，函数返回值为输入数据，例如name = input()、 带提示信息的输入name = input(&#39;please enter your name:&#39;)</li>
 </ul>
 
  
@@ -286,7 +261,7 @@
         <div class="read-more clearfix">
           <div class="more-left left">
             
-            <a href="15125773962028.html">Read more</a>&nbsp;&nbsp; 
+            <a href="15125773961684.html">Read more</a>&nbsp;&nbsp; 
             <span class="date">2017/12/7</span>
              
 			
@@ -301,111 +276,97 @@
       </div>
       
       <div class="article">
-        <a class="clearlink" href="15125773961976.html">
+        <a class="clearlink" href="15002183005563.html">
           
-          <h1>Python3笔记(09异常、测试)</h1>
+          <h1>本地使用多个SSH Key</h1>
           <div class="a-content">
             
             <div class="a-content-text">
                
 			  <ul>
 <li>
-<a href="#toc_0">09. 异常、测试</a>
+<a href="#toc_0">一、概述</a>
 </li>
 <li>
-<a href="#toc_1">9.1 异常</a>
-<ul>
-<li>
-<a href="#toc_2">a. 捕获异常</a>
+<a href="#toc_1">二、使用多个SSH Key</a>
 </li>
 <li>
-<a href="#toc_3">b. 抛出异常</a>
-</li>
-<li>
-<a href="#toc_4">c. 捕获抛出异常</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_5">9.2 调试</a>
-<ul>
-<li>
-<a href="#toc_6">a. 断言</a>
-</li>
-<li>
-<a href="#toc_7">b. logging</a>
-</li>
-<li>
-<a href="#toc_8">c. pdb</a>
-</li>
-<li>
-<a href="#toc_9">d. pdb.set_trace()</a>
-</li>
-<li>
-<a href="#toc_10">e. 使用IDE调试</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_11">9.3 单元测试</a>
-<ul>
-<li>
-<a href="#toc_12">a. 编写单元测试</a>
-</li>
-<li>
-<a href="#toc_13">b. 运行单元测试</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_14">9.4 文档测试</a>
+<a href="#toc_2">三、.ssh/config文件</a>
 </li>
 </ul>
 
 
-<h4 id="toc_0">09. 异常、测试</h4>
-
-<h4 id="toc_1">9.1 异常</h4>
-
-<h5 id="toc_2">a. 捕获异常</h5>
+<h4 id="toc_0">一、概述</h4>
 
 <ul>
-<li>可以用多个“except”（except：把…除外）来捕获不同类型的异常；但是需要将父类型的异常写在后面，否则父类型的异常会捕获其子类型的所有异常</li>
-<li>所有的异常继承于BaseException，比如Exception； UnicodeError是ValueError的子类</li>
-<li><p>使用“try...except”捕获异常有一个好处，就是可以跨越多层调用；也就是说，不需要在每个可能出错的地方捕获异常错误，只要在合适的层次地方去捕获异常错误就可以</p>
+<li>执行 <code>ssh-keygen -t rsa -C &quot;xx@email.com&quot;</code>，回车确认，默认在~/.ssh/目录中生成名称为“id_rsa”的private key和“id_rsa_pub”的public key；<strong>注意：每次执行生成的key是不一样的；</strong></li>
+<li><strong>对于不同的网站（如github.com、gitee.com等），虽然是不同的账号，一般使用同一个key进行认证，也可以使用不同的key（配置.ssh/config）；</strong></li>
+<li><strong>对于同一网站，若需要使用不同的账号，就需要配置不同的key（配置.ssh/config），同一个key只能用于一个账号；</strong></li>
+</ul>
 
-<pre><code class="language-python">try:
-    print(&#39;try...&#39;)
-    # r = 10 / 0
-    # r = 10 / int(&#39;a&#39;)
-    r = 10 / 2
-    print(&#39;result:&#39;, r)
-except ZeroDivisionError as e:
-    print(&#39;ZeroDivisionError, except:&#39;, e)
-except ValueError as e:
-    print(&#39;ValueError, except:&#39;, e)
-else: # 其它情况（没有异常、其它异常）
-    print(&#39;no error&#39;)
-finally:
-    print(&#39;finally...&#39;)  # 最终都会执行（不论是否有异常）
-print(&#39;END&#39;) # 程序会继续执行（不论是否有异常）
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15002183005563.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/7/16</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
+        <a class="clearlink" href="14709318994406.html">
+          
+          <h1>Ruby配置使用</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <ul>
+<li>
+<a href="#toc_0">一、安装</a>
+</li>
+<li>
+<a href="#toc_1">二、rbenv</a>
+</li>
+<li>
+<a href="#toc_2">三、gem模块</a>
+</li>
+<li>
+<a href="#toc_3">四、gemset模块</a>
+</li>
+</ul>
 
-# 比如函数的main()调用了fun1()，fun1()调用了fun2()，结果fun2()出错了
-def fun2(s):
-    return 10 / int(s)
-def fun1(s):
-    return fun2(s) * 2
-#   只在main()中捕获到处理  
-def main():
-    try:
-        fun1(&#39;s&#39;)
-    except Exception as e:
-        print(&#39;Error:&#39;, e)
-    finally:
-        print(&#39;finally...&#39;)
 
-main()
+<h4 id="toc_0">一、安装</h4>
+
+<ul>
+<li>Ruby安装方式有多种方式，可以通Ruby安装包、Homebrew、rbenv或RVM等方式；</li>
+<li><p>rbenv和RVM都可进行Ruby多版本管理，等同于Node.js中的nvm、Python中的pyenv；这里使用rbenv进行安装（rbenv的GitHub Star比RVM的多）；</p>
+
+<ul>
+<li><p>第1步：安装rbenv</p>
+
+<pre><code class="language-text">brew install rbenv
+</code></pre>
+
+<p><img src="media/14709318994406/install_rbenv.png" alt="install_rbenv" style="width:595px;"/></p></li>
+<li><p>第2步：安装某个版本的Ruby；</p>
+
+<pre><code class="language-text">rbenv install &lt;VERSION&gt;
 </code></pre></li>
+</ul></li>
 </ul>
 
  
@@ -415,8 +376,8 @@ main()
         <div class="read-more clearfix">
           <div class="more-left left">
             
-            <a href="15125773961976.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2017/12/7</span>
+            <a href="14709318994406.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2016/8/12</span>
              
 			
           </div>
@@ -430,84 +391,48 @@ main()
       </div>
       
       <div class="article">
-        <a class="clearlink" href="15125773961928.html">
+        <a class="clearlink" href="14702376488769.html">
           
-          <h1>Python3笔记(08面向对象高级编程)</h1>
+          <h1>Python3配置使用</h1>
           <div class="a-content">
             
             <div class="a-content-text">
                
 			  <ul>
 <li>
-<a href="#toc_0">08. 面向对象高级编程</a>
-<ul>
-<li>
-<a href="#toc_1">8.1 动态绑定方法</a>
+<a href="#toc_0">一、安装、卸载</a>
 </li>
 <li>
-<a href="#toc_2">8.2 使用__slots</a>
+<a href="#toc_1">二、pyenv</a>
 </li>
 <li>
-<a href="#toc_3">8.3. 使用@property</a>
+<a href="#toc_2">三、pip模块</a>
 </li>
 <li>
-<a href="#toc_4">8.4 多重继承</a>
+<a href="#toc_3">四、pyenv、virtualenv模块配合</a>
 </li>
 <li>
-<a href="#toc_5">8.5 定制类</a>
+<a href="#toc_4">五、pipenv模块</a>
 </li>
 <li>
-<a href="#toc_6">8.6 使用枚举类</a>
-</li>
-<li>
-<a href="#toc_7">8.7 使用元类（metaclass）</a>
-</li>
-<li>
-<a href="#toc_8">8.7 自定义ORM框架</a>
-</li>
-</ul>
+<a href="#toc_5">六、参考</a>
 </li>
 </ul>
 
 
-<h4 id="toc_0">08. 面向对象高级编程</h4>
-
-<h5 id="toc_1">8.1 动态绑定方法</h5>
+<h4 id="toc_0">一、安装、卸载</h4>
 
 <ul>
-<li><p>types模块MethodType()函数可以创建一个方法，给实例变量、类动态绑定方法</p>
+<li><p>Python的安装方式有多种方式，可以通过Python安装包、Homebrew、pyenv等方式；</p></li>
+<li><p>建议使用pyenv进行安装，pyenv可以很好地进行Python多版本管理，等同于NodeJS中的nvm；这里使用pyenv进行安装；</p>
 
-<pre><code class="language-python">class Student(object):
-    pass
+<ul>
+<li><p>第1步：安装pyenv；</p>
 
-# 注意是带有self参数的函数，不是方法
-def set_age(self, age):  
-    self.age = age
+<pre><code class="language-text">brew install pyenv
+</code></pre>
 
-from types import MethodType
-s = Student()
-s.set_age = MethodType(set_age, s)  # 给一个实例变量动态绑定方法，只能该实例变量可以调用
-s.set_age(25)
-s.age # 25
-
-s2 = Student()
-s2.set_age(25)
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;Student&#39; object has no attribute &#39;set_age&#39;
-
-def set_score(self, score):
-    self.score = score
-
-# 给类绑定方法，所有实例变量都可以使用
-Student.set_score = MethodType(set_score, Student) 
-s.set_score(100)
-s.score # 100
-
-s2.set_score(99) # 99
-s2.score
-</code></pre></li>
-</ul>
+<p><img src="media/14702376488769/pyenv_install.png" alt="pyenv_instal" style="width:573px;"/></p>
 
  
             </div>
@@ -516,95 +441,8 @@ s2.score
         <div class="read-more clearfix">
           <div class="more-left left">
             
-            <a href="15125773961928.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2017/12/7</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
-        <a class="clearlink" href="15125773961879.html">
-          
-          <h1>Python3笔记(06模块、07面向对象编程)</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">06. 模块</a>
-<ul>
-<li>
-<a href="#toc_1">6.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">6.2 使用模块</a>
-</li>
-<li>
-<a href="#toc_3">6.3 模块中的函数、变量的作用域</a>
-</li>
-<li>
-<a href="#toc_4">6.4 安装第三方模块</a>
-</li>
-<li>
-<a href="#toc_5">6.5 模块搜索路径</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_6">07. 面向对象编程</a>
-<ul>
-<li>
-<a href="#toc_7">7.1 概述</a>
-</li>
-<li>
-<a href="#toc_8">7.2 类、实例、绑定属性、方法</a>
-</li>
-<li>
-<a href="#toc_9">7.3 属性访问限制</a>
-</li>
-<li>
-<a href="#toc_10">7.4 继承和多态</a>
-</li>
-<li>
-<a href="#toc_11">7.5 获取对象信息</a>
-</li>
-<li>
-<a href="#toc_12">7.6 实例属性、类属性</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">06. 模块</h4>
-
-<h5 id="toc_1">6.1 概述</h5>
-
-<ul>
-<li>在Python中，一个.py文件称之为一个模块（Module），模块可以被其他地方导入使用</li>
-<li>为了避免模块名冲突，Python按照文件夹目录的形式（称为包，Package）来组织各个模块；abc.py的模块名为abc，mycompany目录下的abc.py的模块名为mycompany.abc</li>
-<li>每一个包目录下必须有一个__init__.py的文件（模块），否则Python就把这个目录当成普通目录而不是一个包目录；__init__.py可以是一个空文件，也可以有Python代码</li>
-<li>自己创建的模块要注意命名，不要和Python自带的模块冲突；例如Python自带sys模块，自己的模块就不可命名为sys .py，否则将无法导入Python自带的sys模块</li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15125773961879.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2017/12/7</span>
+            <a href="14702376488769.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2016/8/3</span>
              
 			
           </div>
@@ -675,13 +513,13 @@ s2.score
               <a href="15859991604863.html">多线程与GCD</a>
               </li>
                  <li class="post">
+              <a href="15705573115081.html">iOS、macOS应用启动逻辑</a>
+              </li>
+                 <li class="post">
               <a href="15703760378326.html">NIB、XIB、StoryBoard与UIViewController、UIView</a>
               </li>
                  <li class="post">
               <a href="15626010144789.html">iOS状态栏</a>
-              </li>
-                 <li class="post">
-              <a href="15622540495294.html">iOS屏幕方向</a>
               </li>
                                              
           </ul>
