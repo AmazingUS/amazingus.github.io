@@ -181,7 +181,7 @@ pod repo add master https://git.oschina.net/akuandev/Specs.git
 <ul>
 <li><p>使用gem卸载CocoaPods的相关包后，还需要进行以下操作：清理镜像索引文件、删除pod执行文件、重启终端；</p>
 
-<pre><code class="language-text">gem list | grep cocoapods # 查找与cocoapods相关的包
+<pre><code class="language-shell">gem list | grep cocoapods # 查找与cocoapods相关的包
 sudo gem uninstall &lt;PACKAGE&gt; # 删除上面查找到的cocoapods的相关包
 
 rm -rf ~/.cocoapods # 删除镜像索引文件

@@ -299,7 +299,10 @@ sudo rm /var/db/receipts/com.oracle.*
 <li><p>Shell命令补充：查找匹配、删除文件</p>
 
 <pre><code class="language-shell"># 全盘查找带“编程”的目录（d）、普通文件（f）、链接文件（l）等文件
-find / -name &quot;*编程*&quot;
+find / -name &quot;*编程*&quot; 
+
+# 全盘查找带“编程”或“IT”的目录（d）、普通文件（f）、链接文件（l）等文件
+find / -name &quot;*编程*&quot; -o -name &quot;*IT*&quot;
 
 # 在当前目录及其子目录，查找带“编程”的普通文件
 find . -name &quot;*编程*&quot; -type f
