@@ -575,10 +575,10 @@ if (packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAU
 <li><p><strong>沙盒目录存储在<code>/data/data/&lt;packageName&gt;/</code>，仅供应用内部访问，使用context的以下方法进行访问；</strong></p>
 
 <ul>
-<li><p><strong><code>File getDir(String name, int mode)</code>：获取/data/data/<packageName>/中的子目录，需要传入子目录名称，不存在则创建；</strong></p></li>
-<li><p><strong><code>File getCacheDir()</code>：获取/data/data/<packageName>/cache目录，注意及时清理该目录；</strong></p></li>
-<li><p><strong><code>File getFilesDir()</code>：获取/data/data/<packageName>/files目录；</strong></p></li>
-<li><p><strong><code>String[] fileList()</code>：获取/data/data/<packageName>/files目录下的文件列表；之后可与其他方法配合使用，如openFileInput(String)；</strong></p></li>
+<li><p><strong><code>File getDir(String name, int mode)</code>：获取<code>/data/data/&lt;packageName&gt;/</code>中的子目录，需要传入子目录名称，不存在则创建；</strong></p></li>
+<li><p><strong><code>File getCacheDir()</code>：获取<code>/data/data/&lt;packageName&gt;/cache</code>目录，注意及时清理该目录；</strong></p></li>
+<li><p><strong><code>File getFilesDir()</code>：获取<code>/data/data/&lt;packageName&gt;/files</code>目录；</strong></p></li>
+<li><p><strong><code>String[] fileList()</code>：获取<code>/data/data/&lt;packageName&gt;/files</code>目录下的文件列表；之后可与其他方法配合使用，如openFileInput(String)；</strong></p></li>
 <li><p><strong><code>FileInputStream openFileInput(String name)</code>： 打开现有文件进行读取；</strong></p></li>
 <li><p><strong><code>FileOutputStream openFileOutput(String name, int mode)</code>：打开文件进行写入，若不存在则创建；</strong></p></li>
 </ul></li>
@@ -586,12 +586,12 @@ if (packageManager.resolveActivity(pickContactIntent, PackageManager.MATCH_DEFAU
 <li><p><strong>若要共享文件给其他应用，或接受其他应用的文件有以下途径：</strong></p>
 
 <ul>
-<li><strong>a. openFileOutput(String name, int mode)方法：❎</strong>
+<li><strong>a. openFileOutput(String name, int mode)方法：❌</strong>
 
 <ul>
 <li><strong>mode设置为Context.MODE_WORLD_READABLE，但该mode早已废弃，即使强制使用也是无效的；</strong></li>
 </ul></li>
-<li>b. <strong>外部存储：❎</strong>
+<li>b. <strong>外部存储：❌</strong>
 
 <ul>
 <li><strong>出于安全考虑，从Android 7.0开始已经禁止方式；</strong></li>
