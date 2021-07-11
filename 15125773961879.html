@@ -179,7 +179,7 @@
 <ul>
 <li><strong>XX为模块名</strong></li>
 <li><strong>使用模块内的属性、函数、类时需要加模块名前缀，例如 <code>import sys、print(sys.path)</code>、<code>import testpy、print(testpy.say())</code></strong></li>
-<li><strong>++加模块名前缀的语义用法，使得模块看起来很像一个类的实例（testpy.say()感觉是对象调用方法，实际是调用函数）或命名空间++</strong></li>
+<li><strong>加模块名前缀的语义用法，使得模块看起来很像一个类的实例（testpy.say()感觉是对象调用方法，实际是调用函数）或命名空间</strong></li>
 </ul></li>
 <li><strong>b. 导入模块内的内容：<code>from XX import YY</code></strong>
 
@@ -187,7 +187,7 @@
 <li><strong>XX为模块名，YY为模块内的变量、函数、类</strong></li>
 <li><strong>也可以<code>from xx import \*</code>，一次性导入该模块内的所有的变量、函数、类</strong></li>
 <li><strong>使用模块内的属性、函数、类时不需要加模块名，例如 <code>from sys import path、print(path)</code>、<code>from testpy import say、print(say())</code></strong></li>
-<li><strong>应避免使用此方式导入，这样可以避免名称冲突，也增强程序可读性</strong></li>
+<li><strong>应避免使用此方式导入；该方式会导致名称冲突，也让程序可读性变弱</strong></li>
 </ul></li>
 </ul></li>
 <li><p>Python文本头部结构信息</p>

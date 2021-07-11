@@ -252,8 +252,13 @@ brew cask uninstall | remove &lt;NAME&gt; # 卸载某个程序，例如brew cask
 <p><img src="media/14694520920617/brew_install_mysql.png" alt="brew_install_mysq" style="width:788px;"/></p>
 
 <ul>
-<li>首先执行 <code>mysql.server start</code> 或 <code>brew servers start mysql</code> 启动MySQL（关闭使用stop命令），之后才可以连接数据库（<code>mysql -uroot</code>）；否则会报错：<code>Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (2)</code> ；</li>
+<li>首先执行 <code>mysql.server start</code> 或 <code>brew services start mysql</code> 启动MySQL（关闭使用stop命令），之后才可以连接数据库（<code>mysql -uroot</code>）；否则会报错：<code>Can&#39;t connect to local MySQL server through socket &#39;/tmp/mysql.sock&#39; (2)</code> ；</li>
 <li>MySQL默认没有设置密码；若需要设置密码，执行 <code>mysql_secure_installation</code> ，此时会提醒安装“VALIDATE PASSWORD PLUGIN”，选择<strong>NO</strong>，否则无法设置简单密码，之后按照后续提示进行操作即可；</li>
+<li><strong>注意：若一些工具连接MySQL报2003错误，修改<code>/usr/local/Cellar/mysql/VERSION/homebrew.mxcl.mysql.plist</code>中的<code>ProgramArguments</code>，添加<code>&lt;string&gt;--bind-address=0.0.0.0&lt;/string&gt;</code>；（非brew安装的MySQL，修改<code>/etc/my.cnf</code>，添加<code>[mysqld]换行bind-address=0.0.0.0</code>）；</strong>
+
+<ul>
+<li>参考：<code>https://stackoverflow.com/questions/43873367/error-2003-hy000-cant-connect-to-mysql-server-on-15-29-92-100-61</code></li>
+</ul></li>
 </ul></li>
 <li><p>MySQL的数据库文件默认存放在/usr/local/var/mysql/目录中，可执行SQL语句进行查看：<code>show global variables like &quot;%datadir%&quot;;</code> ；当卸载时，若要完全删除MySQL，必须手动删除该数据库文件；</p>
 
