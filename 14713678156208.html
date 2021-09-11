@@ -127,6 +127,9 @@
 <li>
 <a href="#toc_5">六、Podfile文件</a>
 </li>
+<li>
+<a href="#toc_6">七、podspec文件编写</a>
+</li>
 </ul>
 
 
@@ -233,6 +236,14 @@ pod update [--no-repo-update]
 <li><strong>b. 方法二：使用<code>$(inherited)</code>继承优先级低的pod自动生成的配置信息；</strong></li>
 </ul></li>
 </ul></li>
+<li><p><strong>当pod某个版本的某个三方库后，若下次还是pod该版本的这个三方库，则CocoaPods会使用之前缓存的；可以清除缓存，重新下载该版本的这个三方库；</strong></p>
+
+<pre><code class="language-shell">pod cache list // 查看本地缓存
+
+pod cache clear --all
+pod cache clear &#39;AFNetworking&#39; // 删除时，有多个版本会提示选择
+pod cache clear &#39;AFNetworking&#39; --all // 删除所有版本的AFNetworking
+</code></pre></li>
 </ul>
 
 <h4 id="toc_4">五、项目中移除CocoaPods</h4>
@@ -249,8 +260,10 @@ pod update [--no-repo-update]
 <li>之前Podfile文件需要自己手动创建，现在可以执行 <code>pod init</code> 命令可自动创建该文件（需要当前的目录中有Xcode工程文件）；</li>
 <li><p>不同版本的CocoaPods的Podefile文件格式有所差异，同时要<strong>注意空格符</strong>、iOS版本等规范；最新的Podefile文件的格式如下：（<code>inhibit_all_warnings!</code>表示消除CocoaPods引入的类库中的警告）</p>
 
-<pre><code class="language-ruby">inhibit_all_warnings!
-platform :ios, &#39;8.0&#39;
+<pre><code class="language-ruby">platform :ios, &#39;8.0&#39;
+source &#39;https://github.com/CocoaPods/Specs.git&#39;
+
+inhibit_all_warnings!
 
 target &#39;Sample&#39; do
     pod &#39;AFNetworking&#39;, &#39;2.4.0&#39;
@@ -264,6 +277,21 @@ pod &#39;AFNetworking&#39;, &#39;2.0&#39; # 只使用2.0版本
 pod &#39;AFNetworking&#39;, &#39;&gt;= 2.0&#39; # 使用大于等于2.0的版本  
 pod &#39;AFNetworking&#39;, &#39;~&gt;0.1&#39; # 使用大于等于0.1但小于1.0的版本  
 </code></pre></li>
+</ul>
+
+<h4 id="toc_6">七、podspec文件编写</h4>
+
+<ul>
+<li>字段含义
+
+<ul>
+<li><code>s.libraries</code>：依赖的系统库；</li>
+<li><code>s.frameworks</code>：依赖的系统框架；如<code>s.frameworks = &#39;UIKit&#39;,&#39;AVFoundation&#39;</code></li>
+<li><code>s.vendored_libraries</code>：依赖的非系统库（三方库），本地管理的；如<code>s.vendored_libraries = &#39;Library/Classes/libWeChatSDK.a&#39;</code> </li>
+<li><code>s.vendored_frameworks</code>：依赖的非系统框架（三方框架），本地管理的；如<code>s.vendored_frameworks = &#39;ThirdParty.framework&#39;</code></li>
+<li><code>s.dependency</code>：依赖的非系统库（三方库），pod管理的；如<code>s.dependency &#39;RxSwift&#39;, &#39;5.0.0&#39;</code></li>
+<li><code>s.public_header_files</code>：暴露给外部的头文件；</li>
+</ul></li>
 </ul>
 
       </div>

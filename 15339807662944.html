@@ -285,9 +285,9 @@ systemctl start mysql.service
 <h4 id="toc_3">四、系统时间</h4>
 
 <ul>
-<li>格林尼治标准时：GMT，Greenwish Mean Time，指位于伦敦郊区的皇家格林尼治天文台（本初子午线）的标准时间，因为地球自转的速度是不均衡的，该时间不够精确；</li>
-<li>协调世界时：UTC，Coordinated Universal Time ，基于原子物理学的特性，更加精确基本不会产生误差，被应用在互联网标准中；</li>
-<li><p><strong>基本上可以认为GMT=UTC，例如北京时间=UTC+8=GMT+8；</strong></p>
+<li><strong>格林尼治标准时</strong>：<code>GMT，Greenwish Mean Time</code>，指位于伦敦郊区的皇家格林尼治天文台（本初子午线）的标准时间，因为地球自转的速度是不均衡的，该时间不够精确；</li>
+<li><strong>协调世界时</strong>：<code>UTC，Coordinated Universal Time</code> ，基于原子物理学的特性，更加精确基本不会产生误差，被应用在互联网标准中；</li>
+<li><p><strong>基本上可以认为<code>GMT = UTC</code>（误差不超过0.9秒），例如<code>北京时间 = UTC+8 = GMT+8</code>；</strong></p>
 
 <pre><code class="language-shell">// 查看当前系统时间
 date -R   

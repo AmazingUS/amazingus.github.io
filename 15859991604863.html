@@ -153,7 +153,7 @@
 
 <ul>
 <li>并行：多个任务并行，可以同时执行；</li>
-<li>串行：一个任务执行完毕后，才可以执行下一个任务；</li>
+<li>串行：一个任务执行完毕后，才可以执行下一个任务；（一般使用同一线程执行）</li>
 </ul></li>
 <li><p><strong>异步、同步描述的是 <code>当前线程 与 新的任务集合 的执行关系</code>；<code>添加任务后，是否需要等其执行完毕，再返回</code>：</strong></p>
 
@@ -162,7 +162,7 @@
 <li>同步：不立即返回;</li>
 </ul></li>
 <li><p><strong><code>队列</code>是保存以及管理任务的地方，<code>线程</code>只是执行任务的地方；</strong></p></li>
-<li><p><strong>至于异步队列、同步队列是否<code>具备开启新线程的能力</code>，只是根据执行方式、执行关系，得出的最后执行的结果，没有多大意义；</strong></p></li>
+<li><p><strong>至于异步队列、同步队列是否<code>具备开启新线程的能力</code>，是根据<code>执行方式</code>、<code>执行关系</code>、<code>性能优化（复用线程）</code>，得出的最后执行结果，没有多大意义；</strong></p></li>
 </ul>
 
 <span id="more"></span><!-- more -->
@@ -224,7 +224,7 @@ dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DIS
 print(&quot;Start..., \(Thread.current)&quot;)
 
 queue.async {
-    Thread.sleep(forTimeInterval: 0.5) // Sleep
+    Thread.sleep(forTimeInterval: 5) // Sleep
     print(&quot;Task A..., \(Thread.current)&quot;)
 }
 
@@ -281,7 +281,7 @@ Task C..., &lt;NSThread: 0x6000015560c0&gt;{number = 1, name = main}
 print(&quot;Start..., \(Thread.current)&quot;)
 
 queue.sync {
-    Thread.sleep(forTimeInterval: 0.5) // Sleep
+    Thread.sleep(forTimeInterval: 5) // Sleep
     print(&quot;Task A..., \(Thread.current)&quot;)
 }
 
@@ -296,7 +296,8 @@ queue.sync {
 print(&quot;End...&quot;, Thread.current)
 </code></pre>
 
-<pre><code class="language-swift">// 结果：添加后不立即返回，影响当前线程的task；新添加的task顺序执行，执行顺序固定（不立即返回，导致新添加的task顺序执行）
+<pre><code class="language-swift">// 结果：添加后不立即返回，影响当前线程的task；
+//      新添加的task顺序执行，执行顺序固定（不立即返回，导致新添加的task顺序执行）
 // 新添加的task在主线程中执行，只是出于性能优化的结果
 //（添加task不需要立即返回，那就在当前线程中执行吧）
 Start..., &lt;NSThread: 0x600002f50f00&gt;{number = 1, name = main}
@@ -304,7 +305,42 @@ Task A..., &lt;NSThread: 0x600002f50f00&gt;{number = 1, name = main}
 Task B..., &lt;NSThread: 0x600002f50f00&gt;{number = 1, name = main}
 Task C..., &lt;NSThread: 0x600002f50f00&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x600002f50f00&gt;{number = 1, name = main}
+</code></pre>
+
+<ul>
+<li><p><strong>若将代码放到<code>DispatchQueue.global().async</code>中执行，结果如下：</strong></p>
+
+<pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;, attributes: [.concurrent])
+
+print(&quot;Start..., \(Thread.current)&quot;)
+
+DispatchQueue.global().async {
+    queue.sync {
+        Thread.sleep(forTimeInterval: 5) // Sleep
+        print(&quot;Task A..., \(Thread.current)&quot;)
+    }
+
+    queue.sync {
+        print(&quot;Task B..., \(Thread.current)&quot;)
+    }
+
+    queue.sync {
+        print(&quot;Task C..., \(Thread.current)&quot;)
+    }
+}
+
+print(&quot;End...&quot;, Thread.current)
+</code></pre>
+
+<pre><code class="language-swift">// 结果：添加后不立即返回，影响当前线程的task（影响global Queue，不影响main）；
+//      新添加的task顺序执行，执行顺序固定（不立即返回，导致新添加的task顺序执行）
+Start..., &lt;NSThread: 0x600001bb01c0&gt;{number = 1, name = main}
+End... &lt;NSThread: 0x600001bb01c0&gt;{number = 1, name = main}
+Task A..., &lt;NSThread: 0x600001bf4380&gt;{number = 6, name = (null)}
+Task B..., &lt;NSThread: 0x600001bf4380&gt;{number = 6, name = (null)}
+Task C..., &lt;NSThread: 0x600001bf4380&gt;{number = 6, name = (null)}
 </code></pre></li>
+</ul></li>
 <li><p>5、同步+串行队列</p>
 
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;)
@@ -313,7 +349,7 @@ End... &lt;NSThread: 0x600002f50f00&gt;{number = 1, name = main}
 </code></pre>
 
 <pre><code class="language-swift">// 结果：添加后不立即返回，影响当前线程的task；新添加的task顺序执行，执行顺序固定
-// 新添加的task在主线程中执行，只是出于性能优化的结果
+// 新添加的task在主线程中执行（只是出于性能优化的结果）
 //（添加task不需要立即返回，那就在当前线程中执行吧）
 Start..., &lt;NSThread: 0x600000624e80&gt;{number = 1, name = main}
 Task A..., &lt;NSThread: 0x600000624e80&gt;{number = 1, name = main}
@@ -337,7 +373,7 @@ Start..., &lt;NSThread: 0x6000017520c0&gt;{number = 1, name = main}
 
 <ul>
 <li><p><strong>需要两步独立的操作：<code>将task添加到queue</code>、<code>queue把task放到某个线程中执行</code>；</strong></p></li>
-<li><p><strong>当为“同步+主队列”时，同步状态要求添加task后，不立即返回，serialQueue要求多个task要依次执行；</strong></p></li>
+<li><p><strong>当为“同步+主队列”时：同步状态要求添加task后，不立即返回；而serialQueue要求多个task要依次执行；</strong></p></li>
 <li><p><strong>由于当前线程对应的未执行完的task、新添加的task共用<code>同一个serialQueue</code>（主队列），会造成<code>当前线程对应的未执行完的task</code>和<code>新添加的task</code>都在主线程中执行，争夺资源，造成“死锁”；</strong>同理，以下代码也会造成“死锁”：</p>
 
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;) // 串行队列

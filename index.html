@@ -228,7 +228,7 @@ view.backgroundColor = color
 
 <ul>
 <li>并行：多个任务并行，可以同时执行；</li>
-<li>串行：一个任务执行完毕后，才可以执行下一个任务；</li>
+<li>串行：一个任务执行完毕后，才可以执行下一个任务；（一般使用同一线程执行）</li>
 </ul></li>
 <li><p><strong>异步、同步描述的是 <code>当前线程 与 新的任务集合 的执行关系</code>；<code>添加任务后，是否需要等其执行完毕，再返回</code>：</strong></p>
 
@@ -237,7 +237,7 @@ view.backgroundColor = color
 <li>同步：不立即返回;</li>
 </ul></li>
 <li><p><strong><code>队列</code>是保存以及管理任务的地方，<code>线程</code>只是执行任务的地方；</strong></p></li>
-<li><p><strong>至于异步队列、同步队列是否<code>具备开启新线程的能力</code>，只是根据执行方式、执行关系，得出的最后执行的结果，没有多大意义；</strong></p></li>
+<li><p><strong>至于异步队列、同步队列是否<code>具备开启新线程的能力</code>，是根据<code>执行方式</code>、<code>执行关系</code>、<code>性能优化（复用线程）</code>，得出的最后执行结果，没有多大意义；</strong></p></li>
 </ul>
 
  

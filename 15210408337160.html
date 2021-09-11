@@ -139,7 +139,7 @@
 <li>静态库：
 
 <ul>
-<li>.a二进制库：使用时还需要将.h头文件及资源文件（比如图片等）拖入到工程项目中，配置一些header、lib路径之类的；使用起来比较麻烦；</li>
+<li>.a库：使用时需要将.h头文件及资源文件（比如图片等）拖入到工程项目中，配置一些header、lib路径之类的；使用起来比较麻烦；</li>
 <li>.framework库：Apple平台独有，其本质是将.a库文件、.h头文件及资源文件打包在一起的包文件；使用时直接将其拖到工程项目中即可，或在 <code>General</code> -&gt; <code>Link Binary With Libraries</code> 中添加使用；</li>
 </ul></li>
 <li>动态库：
@@ -195,7 +195,7 @@
 <p><img src="media/15210408337160/xcode_6.png" alt="xcode_6" style="width:300px;"/></p></li>
 </ul></li>
 <li><p><strong>Xcode 6（iOS8）发布了Swift 1.0，但是Swift不支持静态库（.a、.framework），只支持动态库（.tdb/.dylib、.framework）；从Xcode 9开始，Swift 4.0支持静态库；</strong></p></li>
-<li><p>CocoaPods在纯ObjC项目中，默认将第三方库源码编译成.a静态库集成到项目中；若含有Swift的类库则必须添加 <code>use_frameworks!</code> 标识（纯ObjC项目中也可以使用该标识），进而生成.framework动态库；</p></li>
+<li><p>CocoaPods在纯ObjC项目中，默认将第三方库源码编译成.a静态库集成到项目中；若含有Swift的类库则必须添加 <code>use_frameworks!</code> 标识（纯ObjC项目中也可以使用该标识），进而生成.framework动态库（默认）；</p></li>
 <li><p>Carthage只支持生成.framework动态库（原因：Carthage是通过Swift语言编写而成的），故其支持的项目最低版本为8.0；</p></li>
 </ul>
 
@@ -397,7 +397,19 @@ open &quot;${INSTALL_DIR}&quot;
 <ul>
 <li><p><strong>若需要边开发边调试类库：在现有工程中添加一个库Lib Target，设置一些相关配置（默认情况下自动添加，比如主Target的Build Phases的Target Dependencies添加lib Target、Embedded Binaries添加Lib、Link Binary With Libraries添加Lib、Public头文件、Copy Bundle Resources等），之后就可以进行调试；</strong></p></li>
 <li><p>若静态库中使用了分类，则在使用时需要在 <code>other linker flags</code> 中增加 <code>-ObjC</code> 配置，否则报<code>selector not recognized</code>运行时错误；</p></li>
-<li><p><strong>都是.framework后缀名的库文件，通过<code>file .framework中的库文件</code>命令区分是静态库，还是动态库；</strong></p></li>
+<li><p><strong>都是.framework后缀名的库文件，通过<code>file .framework中的库文件</code>命令区分是静态库，还是动态库；</strong></p>
+
+<pre><code class="language-shell">// 静态库
+file GoogleAppMeasurement.framework/GoogleAppMeasurement
+GoogleAppMeasurement.framework/GoogleAppMeasurement: Mach-O universal binary with 2 architectures: [arm_v7:current ar archive] [arm64]
+GoogleAppMeasurement.framework/GoogleAppMeasurement (for architecture armv7):   current ar archive
+GoogleAppMeasurement.framework/GoogleAppMeasurement (for architecture arm64):   current ar archive
+</code></pre>
+
+<pre><code class="language-shell">// 动态库
+file SVProgressHUD.framework/SVProgressHUD 
+SVProgressHUD.framework/SVProgressHUD: Mach-O 64-bit dynamically linked shared library arm64
+</code></pre></li>
 </ul>
 
 <h4 id="toc_5">六、XCFramework</h4>
