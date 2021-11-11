@@ -186,6 +186,8 @@
 </ul>
 
 
+<span id="more"></span><!-- more -->
+
 <h4 id="toc_0">一、@objc</h4>
 
 <ul>
@@ -201,14 +203,14 @@
 </code></pre></li>
 </ul>
 
-<span id="more"></span><!-- more --></li>
+<!-- more --></li>
 <li><p><strong>2、Swift 4.0</strong></p>
 
 <ul>
 <li><strong>a. 隐式添加@objc只存在以下场景：覆盖父类的ObjC方法、符合一个ObjC的协议；</strong></li>
 <li><p>b. 显式给方法添加@objc；</p>
 
-<pre><code class="language-text">class MyClass: NSObject {
+<pre><code class="language-swift">class MyClass: NSObject {
     @objc func print() { } // 显示加上 @objc
 }
 </code></pre></li>
@@ -446,7 +448,7 @@ class MyManager {
 }
 </code></pre>
 
-<pre><code class="language-text">// 优化版：使用 私有的全局量 存储单例对象
+<pre><code class="language-swift">// 优化版：使用 私有的全局量 存储单例对象
 private let sharedInstance = MyManager()
 
 class MyManager  {
@@ -461,7 +463,7 @@ class MyManager  {
 <ul>
 <li><p><strong>类开始支持类型存储型属性（let、var）；</strong></p>
 
-<pre><code class="language-text">class MyManager {
+<pre><code class="language-swift">class MyManager {
     private static let sharedInstance : MyManager = MyManager()
     class var sharedManager : MyManager {
         return sharedInstance
@@ -470,7 +472,7 @@ class MyManager  {
 }
 </code></pre>
 
-<pre><code class="language-text">// 最终版
+<pre><code class="language-swift">// 最终版
 class MyManager  {
     static let sharedInstance = MyManager()
     private init() {}
@@ -588,13 +590,13 @@ static id _instance;
 <li><p>1、== 操作符</p>
 
 <ul>
-<li>对于对象类型，判断连个两个对象的内存地址是否相同，相同返回true，否则返回false；</li>
+<li>对于对象类型，判断连个两个对象的<code>内存地址</code>是否相同，相同返回YES，否则返回NO；</li>
 </ul></li>
 <li><p>2、isEqual:方法</p>
 
 <ul>
-<li><strong>默认情况下，比较两个对象的内存地址是否相同；</strong></li>
-<li>系统自带的某些类型（如Foundation中的NSString、NSArray等）会重写该方法，改变默认的判断规则（不比较地址，而是比较两个对象的内容）；</li>
+<li><strong>默认情况下，比较两个对象的<code>内存地址</code>是否相同；</strong></li>
+<li>系统自带的某些类型（如Foundation中的NSString、NSArray等）重写了该方法，改变默认的判断规则（不比较地址，而是比较两个对象的内容）；</li>
 <li><strong>对于我们自定义类型的对象，若有判等需求，需要重写该方法；</strong></li>
 <li>重写的建议规则：
 
@@ -602,13 +604,13 @@ static id _instance;
 <li>a. 判断传入的对象是否是nil，若是直接返回NO；</li>
 <li>b. == 运算符判断是否是同一对象，若相同直接返回YES；</li>
 <li>c. 判断是否是同一类型，若不同直接返回NO；</li>
-<li>d. 根据场景使用相应的属性进行判等操作，返回最终的操作结果；</li>
+<li>d. 根据场景使用相应的属性进行判等操作，返回最终的操作结果YES或NO；</li>
 </ul></li>
 </ul></li>
 <li><p>3、isEqualToString:方法</p>
 
 <ul>
-<li>NSString的特有方法，只比较字符串本身的内容是否一致，不比较内存地址；</li>
+<li>NSString的特有方法，比较字符串本身的内容是否一致；</li>
 <li>类似的还有isEqualToArray、isEqualToDictionary等；</li>
 </ul></li>
 <li><p><strong>4、hash方法</strong></p>
@@ -619,7 +621,7 @@ static id _instance;
 
 <ul>
 <li><strong>a. 原始的遍历查询的速度为O(n)，使用基于hash值的Hash Table数据结构的查询速度为O(1)；</strong></li>
-<li><strong>b. 一般情况下，不同对象的hash值是不一样；但是某些情况下却是一样的，这时候就出现“hash碰撞”了；故hash值是对象判等的必要非充分条件；</strong></li>
+<li><strong>b. 一般情况下，不同对象的Hash值是不一样；但是某些情况下，Hash值却是一样的，这时候就出现“Hash碰撞”了；故Hash值是对象判等的必要非充分条件；</strong></li>
 </ul></li>
 <li><strong>在对象被添加到NSSet、设置为NSDictionary的key等涉及到Hash Table数据结构时，hash方法会被调用；</strong></li>
 <li><strong>重写的建议规则：对相关属性的hash值作XOR运算，如<code>return [_name hash] ^ [_age hash];</code></strong></li>
@@ -627,13 +629,13 @@ static id _instance;
 <li><p><strong>5、hash方法 与 isEqual:方法的关系</strong></p>
 
 <ul>
-<li><strong>由于hash的可以加快查找速度，但可能出现“hash碰撞”，故在应用时，会先调用hash方法根据hash值，快速排除不相等的数据，之后若hash值相同再调用isEqual:方法，作最终的判等操作；这样既加快了速度又不失准确性；</strong><br/></li>
+<li><strong>由于Hash可以加快查找速度，但可能出现“Hash碰撞”；故在系统做判等时，会先调用hash方法根据Hash值，快速排除不相等的数据，之后若Hash值相同，再调用isEqual:方法，作最终的判等操作；这样既加快了速度又不失准确性；</strong><br/></li>
 </ul></li>
 <li><p><strong>6、自定义类型的对象的<code>判等操作</code></strong></p>
 
 <ul>
-<li><strong>若不涉及到Hash Table数据结构的判等操作，无需重写hash方法，只重写isEqual:方法即可；</strong></li>
-<li><strong>若涉及到Hash Table数据结构的判等操作，重写hash方法后，也必须重写isEqual:方法；</strong>
+<li><strong>若不涉及到Hash Table数据结构的判等操作，无需重写hash方法，只重写isEqual:方法即可；（建议也重写hash方法，加快判等速度；）</strong></li>
+<li><strong>若涉及到Hash Table数据结构的判等操作，必须重写hash方法后，也必须重写isEqual:方法；</strong>
 
 <ul>
 <li><strong>原因：当时两个对象的内存地址不同时（不同对象），重写hash方法让hash值相同（不相同就快速判定为不相等，这就另当别论了），但是系统还要调用isEqual:方法进行判等，而isEqual:方法的默认行为就是比较内存地址是否相同；</strong></li>
@@ -648,29 +650,39 @@ static id _instance;
 <li><p>1、=== 操作符</p>
 
 <ul>
-<li>swift中的 === 操作符等价于OC中的 == 操作符，比较的是对象的内存地址；</li>
+<li>swift中的 === 操作符，等价于OC中的 == 操作符，比较的是对象的内存地址；</li>
 </ul></li>
 <li><p>2、== 操作符、Equatable协议</p>
 
 <ul>
-<li><strong>Swift的原生类中没有提供isEqual:方法，其使用 == 操作符的进行两个元素的判等；（等价于OC中的isEqual:方法）</strong></li>
-<li><strong>之所以可以对实例使用 == 操作符进行比较，就是因为操作符所操作的类型实现了Equatable协议；若没有实现该协议，则无法使用 == 操作符；</strong></li>
+<li><strong>Swift的原生类中没有提供isEqual:方法，其使用 == 操作符的进行两个元素的判等；（类似于OC中的isEqual:方法）</strong></li>
+<li><strong>之所以可以对实例使用 == 操作符进行比较，是因为操作符所操作的类型，遵循了Equatable协议；若没有遵循该协议，则无法使用 == 操作符；</strong></li>
 <li><strong>Equatable协议中定义了 <code>static func ==(lhs: Self, rhs: Self) -&gt; Bool</code> 方法要求；</strong></li>
-<li><strong>Swift内置的原生类型<code>几乎都</code>实现了Equatable协议；</strong></li>
-<li><p><strong>继承于NSObject的Swift类型</strong></p>
+<li><strong>Swift内置的原生类型：</strong>
 
 <ul>
-<li><strong>a. 默认遵循Equatable；</strong></li>
-<li><strong>b. 并且 == 操作符的默认实现是调用isEqual(_ object: Any?)方法，而该方法的默认实现是比较内存地址（字符串等类已替换了默认实现）；</strong></li>
-<li><strong>c. 因此，可以直接使用 == 进行判等；</strong></li>
-<li><p><strong>d. 若认为 == 操作符的默认实现不合理，可以重新实现 == 操作符，但是不需要声明遵循Equatable了（重复了）；</strong></p>
+<li><strong><code>几乎</code>都遵守了Equatable协议；</strong></li>
+</ul></li>
+<li><p><strong>继承于NSObject的Swift类型：</strong></p>
 
-<pre><code class="language-swift">static func ==(lhs: Object, rhs: Object) -&gt; Bool {
-    return lhs.text == rhs.text
+<ul>
+<li><strong>a. 由于NSObject默认遵守了Equatable，所以这些子类都遵守了Equatable；</strong></li>
+<li><strong>b. 并且 == 操作符的默认实现为，调用isEqual(_ object: Any?)方法（默认实现是比较内存地址，字符串等类已改变了默认实现）；</strong></li>
+<li><strong>c. 因此，可以直接使用 == 进行判等；</strong></li>
+<li><strong>d. 若认为 == 操作符的默认实现不合理，可以重新实现 == 操作符，但是不需要声明遵守Equatable了（重复了）；</strong></li>
+<li><p><strong>e. 使用 == 操作符、isEqual(_ object: Any?)方法都可以做判等操作；重写时，建议重写isEqual方法，而不是==操作符，这样能保证两种方式的判等结果一致；</strong></p>
+
+<pre><code class="language-swift">protocol Equatable {
+    static func == (lhs: Self, rhs: Self) -&gt; Bool
+}
+</code></pre>
+
+<pre><code class="language-swift">extension NSObject : Equatable, Hashable { 
+    // ...
 }
 </code></pre></li>
 </ul></li>
-<li><p><strong>Equatable协议的协议扩展提供了!= 操作符的默认实现；</strong></p>
+<li><p><strong>Equatable协议的协议扩展，提供了!= 操作符的默认实现；</strong></p>
 
 <pre><code class="language-swift">extension Equatable {
     public static func !=(lhs: Self, rhs: Self) -&gt; Bool {
@@ -684,8 +696,20 @@ static id _instance;
 <ul>
 <li>作用等价于OC中的hash方法；若一个对象想作为Dictionary的key，就必须实现Hashable协议；</li>
 <li><strong>计算hash值，是通过实现该协议的 <code>var hashValue: Int { get }</code> 属性要求来完成的； hash值推荐计算方法与OC的一样；</strong></li>
-<li><strong>与OC中的“重写hash方法后，也必须重写isEqual:方法”类似，在Swift中，Hashable协议继承于Equatable协议；故实现该协议时，需要同时实现 <code>var hashValue: Int { get }</code> 属性要求、<code>static func ==(lhs: Self, rhs: Self) -&gt; Bool</code> 方法要求</strong></li>
-<li><p><strong>Swift 4.2开始，为了简化hash值的计算，该协议废弃了<code>var hashValue: Int { get }</code> 属性要求，添加了 <code>func hash(into hasher: inout Hasher)</code> 方法要求（<code>在该方法要求的实现中，调用hasher.combine()传入需要纳入Hash计算的Hashable数据成员即可</code>），该方法会在系统计算hash值时被自动调用；</strong></p>
+<li><strong>与OC中的“重写hash方法后，也必须重写isEqual:方法”类似，在Swift中，Hashable协议继承于Equatable协议；故实现该协议时，需要同时实现 <code>var hashValue: Int { get }</code> 属性要求、<code>static func ==(lhs: Self, rhs: Self) -&gt; Bool</code> 方法要求；</strong></li>
+<li><strong>Swift 4.2开始，为了简化Hash值的计算，该协议废弃了<code>var hashValue: Int { get }</code> 属性要求，添加了 <code>func hash(into hasher: inout Hasher)</code> 方法要求（<code>在该方法要求的实现中，调用hasher.combine()，传入需要纳入Hash计算的Hashable数据成员即可</code>），该方法会在系统计算hash值时被自动调用；</strong></li>
+<li><p><strong>继承于NSObject的Swift类型：</strong></p>
+
+<ul>
+<li><strong>a. 由于NSObject默认遵守了Hashable，所以这些子类都遵守了Hashable；Hash值默认返回OC中的hash方法的值；</strong></li>
+</ul>
+
+<pre><code class="language-swift">// Hashable协议继承于Equatable协议
+protocol Hashable : Equatable {
+    var hashValue: Int { get }
+    func hash(into hasher: inout Hasher)
+}
+</code></pre>
 
 <pre><code class="language-swift">// Swift 4.2之前，实现Hashable协议
 struct Person: Hashable {
@@ -702,7 +726,7 @@ struct Person: Hashable {
 }
 </code></pre>
 
-<pre><code class="language-text">// Swift 4.2开始，实现Hashable协议
+<pre><code class="language-swift">// Swift 4.2开始，实现Hashable协议
 struct Person: Hashable {
     var name: String
     var age: Int
@@ -731,12 +755,16 @@ struct Person: Hashable {
 
 <ul>
 <li><strong>Equatable协议是对<code>相等性</code>进行比较，而Comparable协议是对<code>顺序</code>进行比较；</strong></li>
-<li><p><strong>该协议有以下4个方法要求，并且由于<code>其继承Equatable协议</code>，其一共有6个方法；</strong></p>
+<li><p><strong>该协议继承于Equatable协议；</strong></p>
 
-<pre><code class="language-swift">static func &lt;(lhs: Self, rhs: Self) -&gt; Bool
-static func &lt;=(lhs: Self, rhs: Self) -&gt; Bool
-static func &gt;=(lhs: Self, rhs: Self) -&gt; Bool
-static func &gt;(lhs: Self, rhs: Self) -&gt; Bool
+<pre><code class="language-swift">// Comparable协议继承于Equatable协议
+protocol Comparable : Equatable {
+    static func &lt;(lhs: Self, rhs: Self) -&gt; Bool
+    static func &lt;=(lhs: Self, rhs: Self) -&gt; Bool
+    static func &gt;=(lhs: Self, rhs: Self) -&gt; Bool
+    static func &gt;(lhs: Self, rhs: Self) -&gt; Bool
+    // ...
+}
 </code></pre></li>
 <li><p><strong>实现了Comparable协议，就可以使用 <code>==、!=、&lt;、&lt;=、&gt;=、&gt;</code> 操作符进行比较了；</strong></p></li>
 <li><p><strong>Swift标准库为 <code>!=、&lt;=、&gt;=、&gt;</code> 这4个操作符提供了默认的实现（通过 <code>==、&lt;</code> 可推导出）；故只需要实现 <code>==、&lt;</code> 操作符，即可完整地实现该协议；</strong></p></li>

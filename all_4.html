@@ -180,21 +180,6 @@
 </ul>
 
 
-<h4 id="toc_0">一、@objc</h4>
-
-<ul>
-<li><p>作用：将Swift API暴露给ObjC使用，需要增加@objc关键字；</p></li>
-<li><p><strong>1、Swift 3.0</strong></p>
-
-<ul>
-<li><p>a. 编译器默认给继承于NSObject的类的所有方法都隐式添加@objc；缺点是大量@objc导致二进制文件增大；</p>
-
-<pre><code class="language-swift">class MyClass: NSObject {
-    func print() { } // 包含隐式的 @objc
-}
-</code></pre></li>
-</ul>
-
  
             </div>
           </div>
