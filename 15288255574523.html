@@ -108,46 +108,26 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">Day1-搭建开发环境</a>
-</li>
-<li>
-<a href="#toc_1">Day2-编写Web App骨架</a>
-</li>
-<li>
-<a href="#toc_2">Day3-编写ORM</a>
-</li>
-<li>
-<a href="#toc_3">Day4-编写Model</a>
-</li>
-<li>
-<a href="#toc_4">Day5-编写Web框架</a>
-</li>
-<li>
-<a href="#toc_5">Day6-编写配置文件</a>
-</li>
-<li>
-<a href="#toc_6">Day7-编写MVC</a>
-</li>
-<li>
-<a href="#toc_7">Day8-构建前端</a>
-</li>
-<li>
-<a href="#toc_8">Day9-编写API</a>
-</li>
-<li>
-<a href="#toc_9">Day10-用户注册和登录</a>
-</li>
+        <div class="mweb_toc"><ul>
+<li><a href="#day1%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83">Day1-搭建开发环境</a></li>
+<li><a href="#day2%E7%BC%96%E5%86%99-web-app%E9%AA%A8%E6%9E%B6">Day2-编写Web App骨架</a></li>
+<li><a href="#day3%E7%BC%96%E5%86%99-orm">Day3-编写ORM</a></li>
+<li><a href="#day4%E7%BC%96%E5%86%99-model">Day4-编写Model</a></li>
+<li><a href="#day5%E7%BC%96%E5%86%99-web%E6%A1%86%E6%9E%B6">Day5-编写Web框架</a></li>
+<li><a href="#day6%E7%BC%96%E5%86%99%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">Day6-编写配置文件</a></li>
+<li><a href="#day7%E7%BC%96%E5%86%99-mvc">Day7-编写MVC</a></li>
+<li><a href="#day8%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AF">Day8-构建前端</a></li>
+<li><a href="#day9%E7%BC%96%E5%86%99-api">Day9-编写API</a></li>
+<li><a href="#day10%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E5%92%8C%E7%99%BB%E5%BD%95">Day10-用户注册和登录</a></li>
 </ul>
-
-
-<h4 id="toc_0">Day1-搭建开发环境</h4>
-
+</div>
+<h4><a id="day1%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day1-搭建开发环境</h4>
 <ul>
-<li>安装以下依赖库：aiohttp、jinja2、aiomysql（MysQL的Python异步驱动）</li>
-<li><p>项目结构：</p>
-
+<li>
+<p>安装以下依赖库：aiohttp、jinja2、aiomysql（MysQL的Python异步驱动）</p>
+</li>
+<li>
+<p>项目结构：</p>
 <pre><code class="language-python">awesome-python3-webapp # 根目录
 ../backup # 备份目录
 ../conf # 配置文件
@@ -157,57 +137,66 @@
 ../../templates # 存放模板文件
 ../ios # 存放iOS App工程
 ../LICENSE # 代码LICENSE
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-
-<span id="more"></span><!-- more -->   
-
-<h4 id="toc_1">Day2-编写Web App骨架</h4>
-
+<span id="more"></span><!-- more -->	
+<h4><a id="day2%E7%BC%96%E5%86%99-web-app%E9%AA%A8%E6%9E%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day2-编写Web App骨架</h4>
 <ul>
 <li>略</li>
 </ul>
-
-<h4 id="toc_2">Day3-编写ORM</h4>
-
+<h4><a id="day3%E7%BC%96%E5%86%99-orm" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day3-编写ORM</h4>
 <ul>
-<li><p><strong>在协程中，不能调用同步IO操作，因为所有用户都是由一个线程服务的，协程的执行速度必须非常快，才能处理大量用户的请求；若耗时的IO操作在协程中以同步的方式调用，则会等待一个IO操作时，系统无法响应任何其他用户；</strong></p></li>
-<li><p>异步编程的一个原则：一旦决定使用异步，则系统每一层都必须是异步；</p></li>
-<li><p>Web框架使用的基于asyncio的aiohttp，就是基于协程的异步模型；aiomysql为MySQL数据库提供了异步IO的驱动；</p></li>
-<li><p>创建一个全局的连接池，每个HTTP请求都可以从连接池中直接获取数据库连接，这样就不必频繁地打开和关闭数据库连接，而是能复用就尽量复用；</p></li>
-<li><p>SQLite3的占位符是?，MySQL的占位符是%s；注意要始终坚持使用带参数的SQL，而不是自己拼接SQL字符串，这样可以防止SQL注入攻击；</p></li>
-<li><p><strong><code>yield from</code>将调用一个子协程（也就是在一个协程中调用另一个协程）并直接获得子协程的返回结果；</strong></p></li>
-<li><p><strong><code>async with ...</code>为with语句添加的异步调用（将两个单词看成一个整体，含义类似于with await ...）；<code>async for</code>同理；</strong></p>
-
+<li>
+<p><strong>在协程中，不能调用同步IO操作，因为所有用户都是由一个线程服务的，协程的执行速度必须非常快，才能处理大量用户的请求；若耗时的IO操作在协程中以同步的方式调用，则会等待一个IO操作时，系统无法响应任何其他用户；</strong></p>
+</li>
+<li>
+<p>异步编程的一个原则：一旦决定使用异步，则系统每一层都必须是异步；</p>
+</li>
+<li>
+<p>Web框架使用的基于asyncio的aiohttp，就是基于协程的异步模型；aiomysql为MySQL数据库提供了异步IO的驱动；</p>
+</li>
+<li>
+<p>创建一个全局的连接池，每个HTTP请求都可以从连接池中直接获取数据库连接，这样就不必频繁地打开和关闭数据库连接，而是能复用就尽量复用；</p>
+</li>
+<li>
+<p>SQLite3的占位符是?，MySQL的占位符是%s；注意要始终坚持使用带参数的SQL，而不是自己拼接SQL字符串，这样可以防止SQL注入攻击；</p>
+</li>
+<li>
+<p><strong><code>yield from</code>将调用一个子协程（也就是在一个协程中调用另一个协程）并直接获得子协程的返回结果；</strong></p>
+</li>
+<li>
+<p><strong><code>async with ...</code>为with语句添加的异步调用（将两个单词看成一个整体，含义类似于with await ...）；<code>async for</code>同理；</strong></p>
 <ul>
-<li><p><strong>async with</strong></p>
-
+<li>
+<p><strong>async with</strong></p>
 <pre><code class="language-python"># 同步读文件
-f = open(&#39;1.txt&#39;)
+f = open('1.txt')
 try:
     content = f.read()
 finally:
     f.close()
 
 # 同步读文件（with简化）
-with open(&#39;1.txt&#39;) as f:
+with open('1.txt') as f:
     content = f.read()
 
 # 异步读文件
-f = await async_open(&#39;1.txt&#39;)
+f = await async_open('1.txt')
 try:
     content = await f.read()
 finally:
     await f.close()
-
+    
 # 异步读文件（async with简化）
-async with async_open(&#39;1.txt&#39;) as f:
+async with async_open('1.txt') as f:
     content = await f.read()
-</code></pre></li>
-<li><p><strong>async for</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>async for</strong></p>
 <pre><code class="language-python"># 同步遍历文件
-f = open(&#39;1.txt&#39;)
+f = open('1.txt')
 it = iter(f)
 while True:
     try:
@@ -216,12 +205,12 @@ while True:
         break
 
 # 同步遍历文件（for简化）
-f = open(&#39;1.txt&#39;)
+f = open('1.txt')
 for line in f:
     print(line)
 
 # 异步遍历文件    
-f = open(&#39;1.txt&#39;)
+f = open('1.txt')
 it = iter(f)
 while True:
     try:
@@ -231,13 +220,14 @@ while True:
         break
 
 # 异步遍历文件（async for简化）    
-f = open(&#39;1.txt&#39;)
+f = open('1.txt')
 async for line in f:
     print(line)
-</code></pre></li>
-<li><p>数据库操作</p>
-
-<pre><code class="language-text"># @asyncio.coroutine；yield from
+</code></pre>
+</li>
+<li>
+<p>数据库操作</p>
+<pre><code class="language-plain_text"># @asyncio.coroutine；yield from
 @asyncio.coroutine
 def select(sql):
     global __pool
@@ -251,8 +241,7 @@ def select(sql):
         yield from cur.close()
         return rs
 </code></pre>
-
-<pre><code class="language-text"># async；await
+<pre><code class="language-plain_text"># async；await
 async def select(sql):
     global __pool
     with (await __pool) as conn:
@@ -265,8 +254,7 @@ async def select(sql):
         await cur.close()
         return rs
 </code></pre>
-
-<pre><code class="language-text"># async；async with，await      
+<pre><code class="language-plain_text"># async；async with，await      
 async def select(sql):
     global __pool
     async with __pool.get() as conn:
@@ -276,145 +264,176 @@ async def select(sql):
             else:
                 rs = await cur.fetchall()
         return rs
-</code></pre></li>
-</ul></li>
-<li><p>为了防止查询字段与SQL关键字冲突，加``包裹查询字段可以解决此问题；</p>
-
-<pre><code class="language-text">sql = &#39;DELETE FROM `%s` WHERE `%s`=?&#39; % (table_name, primary_key)
-</code></pre></li>
-<li><p>类方法使用@classmethod修饰，方法第一个参数为类对象；</p>
-
-<pre><code class="language-text">@classmethod
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>为了防止查询字段与SQL关键字冲突，加``包裹查询字段可以解决此问题；</p>
+<pre><code class="language-plain_text">sql = 'DELETE FROM `%s` WHERE `%s`=?' % (table_name, primary_key)
+</code></pre>
+</li>
+<li>
+<p>类方法使用@classmethod修饰，方法第一个参数为类对象；</p>
+<pre><code class="language-plain_text">@classmethod
 def find(cls, pk):
     pass
-</code></pre></li>
-<li><p>PyCharm打开<code>Type checker</code>，即打开Python的<code>Type Hint</code>（类型提供，3.5开始支持）；</p></li>
+</code></pre>
+</li>
+<li>
+<p>PyCharm打开<code>Type checker</code>，即打开Python的<code>Type Hint</code>（类型提供，3.5开始支持）；</p>
+</li>
 </ul>
-
-<h4 id="toc_3">Day4-编写Model</h4>
-
+<h4><a id="day4%E7%BC%96%E5%86%99-model" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day4-编写Model</h4>
 <ul>
-<li><p>对数据库授权命令（grant语句）</p>
-
-<pre><code class="language-text">grant select, insert, update, delete on awesome.* to &#39;www-data&#39;@&#39;localhost&#39; identified by &#39;www-data&#39;; # identified by后面为密码
-</code></pre></li>
-<li><p>Mysql中，float表示单精度浮点数，double或real表示双精度浮点数；</p></li>
-<li><p>Mysql中key、index、primary key、unique key的区别：</p>
-
+<li>
+<p>对数据库授权命令（grant语句）</p>
+<pre><code class="language-plain_text">grant select, insert, update, delete on awesome.* to 'www-data'@'localhost' identified by 'www-data'; # identified by后面为密码
+</code></pre>
+</li>
+<li>
+<p>Mysql中，float表示单精度浮点数，double或real表示双精度浮点数；</p>
+</li>
+<li>
+<p>Mysql中key、index、primary key、unique key的区别：</p>
 <ul>
 <li>key：主要用于加快查询速度的；可以简单地认为与index（索引）类似；</li>
 <li>primary key：主键（键最多一个，但可以联合），值也是唯一的；</li>
 <li>unique key：唯一键，只要求值是唯一的，但是键可以有多个；</li>
-</ul></li>
 </ul>
-
-<h4 id="toc_4">Day5-编写Web框架</h4>
-
+</li>
+</ul>
+<h4><a id="day5%E7%BC%96%E5%86%99-web%E6%A1%86%E6%9E%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day5-编写Web框架</h4>
 <ul>
-<li><p><strong>inspect库用来获取类、函数的参数信息，类型检查等；</strong>inspect.Parameter.kind有5种情况：</p>
-
+<li>
+<p>**inspect库用来获取类、函数的参数信息，类型检查等；**inspect.Parameter.kind有5种情况：</p>
 <ul>
 <li>a. POSITIONAL_OR_KEYWORD：位置参数</li>
 <li>b. VAR_POSITIONAL：可变参数，*key</li>
 <li>c. VAR_KEYWORD：关键字参数，**key</li>
 <li>d. KEYWORD_ONLY：命名关键字参数，*,key</li>
 <li>e. POSITIONAL_ONLY：已过时，推荐使用VAR_POSITIONAL代替</li>
-</ul></li>
-<li><p><strong>函数接收参数的优先级：先接收POSITIONAL_OR_KEYWORD，再接收KEYWORD_ONLY，最后接收VAR_POSITIONAL和VAR_KEYWORD（这两者没有交集）；(参考<code>http://www.imooc.com/article/13053</code>）</strong></p></li>
-<li><p><strong>为避免处理函数要分别从request中取相关关键数据，可以先统一预处理request中的关键数据，然后再传递给处理函数；
+</ul>
+</li>
+<li>
+<p><strong>函数接收参数的优先级：先接收POSITIONAL_OR_KEYWORD，再接收KEYWORD_ONLY，最后接收VAR_POSITIONAL和VAR_KEYWORD（这两者没有交集）；(参考<code>http://www.imooc.com/article/13053</code>）</strong></p>
+</li>
+<li>
+<p><strong>为避免处理函数要分别从request中取相关关键数据，可以先统一预处理request中的关键数据，然后再传递给处理函数；<br />
 每个处理函数定义的函数参数字段就是要预处理的数据；</strong></p>
-
 <ul>
-<li><strong>a. request的关键数据来源：带参数的URL（比如/blog/{id}）、GET和POST的查询参数；这些都是从request对象中获取的，分别是dict(**request.match_info)、request.query_string等；</strong></li>
-<li>b. 处理函数可以定义使用<code>位置参数</code>、<code>关键字参数</code>、<code>命名关键字参数</code>去接收上面的关键数据；</li>
-<li><strong>c. 为了区分管理，这里使用<code>位置参数</code>去接收<code>带参数的URL（比如/blog/{id}）</code>，使用<code>命名关键字参数</code>去接收GET和POST的查询参数，若不需要某种类型的数据就不定义对于类型的参数；（这只是一种方案）</strong></li>
-<li><strong>d. 对于某些处理函数，可能还有必要将原始的request对象传入，以便获取其他相关信息；为了区分管理，这里规定使用<code>最后一个位置参数</code>来接收request；</strong></li>
-<li><strong>e. 位置参数和命名关键字参数在函数传参时的区别在于：命名关键字参数必须指定参数名，而位置参数则是可有可无，其他没有任何区别；</strong></li>
-<li><strong>f. 位置参数和命名关键字参数都只能接收定义的名称的参数，若有多余的参数传入调用则会报错；此时可以使用关键字参数去接收，其会将接收的所有参数包装在一个dict中传入；</strong></li>
-<li><strong>g. 因为从request中获取的参数比较多，若处理参数没有定义关键字参数，则需要根据处理函数定义的参数名称，将多余的参数去除；</strong></li>
-<li><p><strong>h. 位置参数和命名关键字参数调用时字段必须要有数据，否则报错；字段的数据可以是传入的，也可以是默认的；</strong></p></li>
-<li><p>示例: 处理函数</p>
-
-<pre><code class="language-python">@get(&#39;/blog/{id}&#39;) # 可变路径路由{NAME}需要和函数参数名一致
+<li>
+<p><strong>a. request的关键数据来源：带参数的URL（比如/blog/{id}）、GET和POST的查询参数；这些都是从request对象中获取的，分别是dict(**request.match_info)、request.query_string等；</strong></p>
+</li>
+<li>
+<p>b. 处理函数可以定义使用<code>位置参数</code>、<code>关键字参数</code>、<code>命名关键字参数</code>去接收上面的关键数据；</p>
+</li>
+<li>
+<p><strong>c. 为了区分管理，这里使用<code>位置参数</code>去接收<code>带参数的URL（比如/blog/{id}）</code>，使用<code>命名关键字参数</code>去接收GET和POST的查询参数，若不需要某种类型的数据就不定义对于类型的参数；（这只是一种方案）</strong></p>
+</li>
+<li>
+<p><strong>d. 对于某些处理函数，可能还有必要将原始的request对象传入，以便获取其他相关信息；为了区分管理，这里规定使用<code>最后一个位置参数</code>来接收request；</strong></p>
+</li>
+<li>
+<p><strong>e. 位置参数和命名关键字参数在函数传参时的区别在于：命名关键字参数必须指定参数名，而位置参数则是可有可无，其他没有任何区别；</strong></p>
+</li>
+<li>
+<p><strong>f. 位置参数和命名关键字参数都只能接收定义的名称的参数，若有多余的参数传入调用则会报错；此时可以使用关键字参数去接收，其会将接收的所有参数包装在一个dict中传入；</strong></p>
+</li>
+<li>
+<p><strong>g. 因为从request中获取的参数比较多，若处理参数没有定义关键字参数，则需要根据处理函数定义的参数名称，将多余的参数去除；</strong></p>
+</li>
+<li>
+<p><strong>h. 位置参数和命名关键字参数调用时字段必须要有数据，否则报错；字段的数据可以是传入的，也可以是默认的；</strong></p>
+</li>
+<li>
+<p>示例: 处理函数</p>
+<pre><code class="language-python">@get('/blog/{id}') # 可变路径路由{NAME}需要和函数参数名一致
 def get_blog(id):
     pass
 </code></pre>
-
-<pre><code class="language-python">@get(&#39;/api/comments&#39;)
-def api_comments(*, page=&#39;1&#39;):
+<pre><code class="language-python">@get('/api/comments')
+def api_comments(*, page='1'):
     pass
-</code></pre></li>
-</ul></li>
-<li><p><strong>动态加载模块：<code>__import__(module_name, globals(), locals())</code>；</strong></p></li>
-<li><p><strong>request.match_info：通过add_route注册的可变路径路由（如/{i}），request.match_info中会包含key为i，value为匹配的路径的信息；取值方式有两种，分别为<code>dict(**request.match_info)</code>、<code>request.match_info.items()</code>；参考<code>http://aiohttp-zh.readthedocs.io/web.html#aiohttp-web-resource-and-route</code>；</strong></p></li>
-<li><p>定义RequestHandler：URL处理函数不一定是一个coroutine，因此可以自定义给一个RequestHandler类，用于从处理函数中分析其需要接收的参数，从request中获取必要的参数，调用URL函数，然后把结果转换为web.Response对象；</p></li>
-<li><p><strong>middleware是一种拦截器，一个URL在被某个函数处理前，可以经过一系列的middleware的处理；</strong>其可以改变URL的输入、输出，甚至可以决定不继续处理而直接返回；其主要用于把通用的功能从每个URL处理函数中拿出来，集中放到一个地方，比如一个一个记录URL日志的logger；</p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>动态加载模块：<code>__import__(module_name, globals(), locals())</code>；</strong></p>
+</li>
+<li>
+<p><strong>request.match_info：通过add_route注册的可变路径路由（如/{i}），request.match_info中会包含key为i，value为匹配的路径的信息；取值方式有两种，分别为<code>dict(**request.match_info)</code>、<code>request.match_info.items()</code>；参考<code>http://aiohttp-zh.readthedocs.io/web.html#aiohttp-web-resource-and-route</code>；</strong></p>
+</li>
+<li>
+<p>定义RequestHandler：URL处理函数不一定是一个coroutine，因此可以自定义给一个RequestHandler类，用于从处理函数中分析其需要接收的参数，从request中获取必要的参数，调用URL函数，然后把结果转换为web.Response对象；</p>
+</li>
+<li>
+<p>**middleware是一种拦截器，一个URL在被某个函数处理前，可以经过一系列的middleware的处理；**其可以改变URL的输入、输出，甚至可以决定不继续处理而直接返回；其主要用于把通用的功能从每个URL处理函数中拿出来，集中放到一个地方，比如一个一个记录URL日志的logger；</p>
 <pre><code class="language-python">async def logger_factory(app, handler):
     async def logger(request):
-        logging.info(&#39;Request1: %s %s&#39; % (request.method, request.path))
+        logging.info('Request1: %s %s' % (request.method, request.path))
         # 继续处理请求
         return await handler(request)
-        logging.info(&#39;Request2: %s %s&#39; % (request.method, request.path))
+        logging.info('Request2: %s %s' % (request.method, request.path))
     return logger
-
+    
 app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
-</code></pre></li>
-<li><p>jinja2渲染</p>
-
+</code></pre>
+</li>
+<li>
+<p>jinja2渲染</p>
 <pre><code class="language-python">def init_jinja2(app, **kw):
-    logging.info(&#39;init jinja2...&#39;)
+    logging.info('init jinja2...')
     options = dict(
-        autoescape=kw.get(&#39;autoescape&#39;, True),
-        block_start_string=kw.get(&#39;block_start_string&#39;, &#39;{%&#39;),
-        block_end_string=kw.get(&#39;block_end_string&#39;, &#39;%}&#39;),
-        variable_start_string=kw.get(&#39;variable_start_string&#39;, &#39;{{&#39;),
-        variable_end_string=kw.get(&#39;variable_end_string&#39;, &#39;}}&#39;),
-        auto_reload=kw.get(&#39;auto_reload&#39;, True)
+        autoescape=kw.get('autoescape', True),
+        block_start_string=kw.get('block_start_string', '{%'),
+        block_end_string=kw.get('block_end_string', '%}'),
+        variable_start_string=kw.get('variable_start_string', '{{'),
+        variable_end_string=kw.get('variable_end_string', '}}'),
+        auto_reload=kw.get('auto_reload', True)
     )
-    path = kw.get(&#39;path&#39;, None)
+    path = kw.get('path', None)
     if path is None:
-        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), &#39;templates&#39;)
-    logging.info(&#39;set jinja2 template path: %s&#39; % path)
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+    logging.info('set jinja2 template path: %s' % path)
 
     # Environment为jinja2的核心类，用来保存配置、全局对象以及模板文件的路径
     # FileSystemLoader加载path路径中的模板文件
     env = Environment(loader=FileSystemLoader(path), **options)
-    filters = kw.get(&#39;filters&#39;, None)
+    filters = kw.get('filters', None)
     if filters is not None:
         for name, f in filters.items():
             env.filters[name] = f
-    app[&#39;__templating__&#39;] = env  # app是一个dict-like对象
-</code></pre></li>
+    app['__templating__'] = env  # app是一个dict-like对象
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_5">Day6-编写配置文件</h4>
-
+<h4><a id="day6%E7%BC%96%E5%86%99%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day6-编写配置文件</h4>
 <ul>
 <li>略</li>
 </ul>
-
-<h4 id="toc_6">Day7-编写MVC</h4>
-
+<h4><a id="day7%E7%BC%96%E5%86%99-mvc" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day7-编写MVC</h4>
 <ul>
 <li>略</li>
 </ul>
-
-<h4 id="toc_7">Day8-构建前端</h4>
-
+<h4><a id="day8%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day8-构建前端</h4>
 <ul>
-<li><p>由于有多个前端页面，且每个页面都有相同的页眉和页脚；为了提高效率，可以使用通过include把页面拆成多个部分，比如</p>
-
-<pre><code class="language-markup">&lt;html&gt;
+<li>
+<p>由于有多个前端页面，且每个页面都有相同的页眉和页脚；为了提高效率，可以使用通过include把页面拆成多个部分，比如</p>
+<pre><code class="language-html">&lt;html&gt;
     &lt;% include file=&quot;inc_header.html&quot; %&gt;
     &lt;% include file=&quot;index_body.html&quot; %&gt;
     &lt;% include file=&quot;inc_footer.html&quot; %&gt;
 &lt;/html&gt;
-</code></pre></li>
-<li><p>但是include方法不利于页面整体结构的维护，jinjia2的模板还可以通过“继承”方式实现模板的复用；</p></li>
-<li><p><strong>编写一个“父模板”，定义一些可替换的block（块）；然后编写多个“子模板”，每个子模板都只需要替换父模板定义的block；比如：</strong></p>
-
-<pre><code class="language-markup">&lt;!-- base.html --&gt;
+</code></pre>
+</li>
+<li>
+<p>但是include方法不利于页面整体结构的维护，jinjia2的模板还可以通过“继承”方式实现模板的复用；</p>
+</li>
+<li>
+<p><strong>编写一个“父模板”，定义一些可替换的block（块）；然后编写多个“子模板”，每个子模板都只需要替换父模板定义的block；比如：</strong></p>
+<pre><code class="language-html">&lt;!-- base.html --&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;{% block title%} 这里定义了一个名为title的block {% endblock %}&lt;/title&gt;
@@ -424,10 +443,9 @@ app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
+<pre><code class="language-html">&lt;!-- 子模板a.html，只需要把父模板的title和content替换掉 --&gt;
 
-<pre><code class="language-markup">&lt;!-- 子模板a.html，只需要把父模板的title和content替换掉 --&gt;
-
-{% extends &#39;base.html&#39; %}
+{% extends 'base.html' %}
 
 {% block title %} A {% endblock %}
 
@@ -436,10 +454,9 @@ app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
     &lt;p&gt;blablabla...&lt;/p&gt;
 {% endblock %}
 </code></pre>
+<pre><code class="language-html">&lt;!-- 子模板b.html --&gt;
 
-<pre><code class="language-markup">&lt;!-- 子模板b.html --&gt;
-
-{% extends &#39;base.html&#39; %}
+{% extends 'base.html' %}
 
 {% block title %} B {% endblock %}
 
@@ -450,51 +467,51 @@ app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
        &lt;li&gt;list 2&lt;/li&gt;
     &lt;/ul&gt;
 {% endblock %}
-</code></pre></li>
-<li><p><strong>注意资源引用路径<code>/static/...</code>，比如<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/static/bootstrap.min.css&quot;&gt;</code>，这个路径与<code>app.router.add_static(&#39;/static/&#39;, path)</code>做的映射关系有关；</strong></p></li>
-<li><p><strong>日期的格式是通过jinja2的filter转换完成的，使用格式为<code>&lt;p&gt;发表于{{ blog.create_at|format_datetime }}&lt;/p&gt;</code>；</strong></p></li>
+</code></pre>
+</li>
+<li>
+<p><strong>注意资源引用路径<code>/static/...</code>，比如<code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/static/bootstrap.min.css&quot;&gt;</code>，这个路径与<code>app.router.add_static('/static/', path)</code>做的映射关系有关；</strong></p>
+</li>
+<li>
+<p><strong>日期的格式是通过jinja2的filter转换完成的，使用格式为<code>&lt;p&gt;发表于{{ blog.create_at|format_datetime }}&lt;/p&gt;</code>；</strong></p>
+</li>
 </ul>
-
-<h4 id="toc_8">Day9-编写API</h4>
-
+<h4><a id="day9%E7%BC%96%E5%86%99-api" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day9-编写API</h4>
 <ul>
 <li>REST（Representational State Transfer）是一种设计API的模式，最常用的数据格式是JSON；</li>
 </ul>
-
-<h4 id="toc_9">Day10-用户注册和登录</h4>
-
+<h4><a id="day10%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E5%92%8C%E7%99%BB%E5%BD%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Day10-用户注册和登录</h4>
 <ul>
-<li><p>HTTP协议是一种无状态协议，而服务器要跟踪用户状态；</p>
-
+<li>
+<p>HTTP协议是一种无状态协议，而服务器要跟踪用户状态；</p>
 <ul>
 <li>使用直接从Session中取出用户登录信息的缺点是服务器需要在内存中维护一个映射表来存储用户登录信息，在多服务器上还需要对Session做集群；</li>
 <li>使用直接读取cookie的方式来验证用户登录，每次用户访问任意URL都对cookie进行验证；这种方式的好处是保证处理任意的URL都是无状态的，可以扩展到多台服务器；</li>
-</ul></li>
-<li><p>服务器可以使用下面算法构造防伪造cookie：</p>
-
-<pre><code class="language-text">&quot;用户id&quot; + &quot;过期时间&quot; + SHA1(&quot;用户id&quot; + &quot;用户口令&quot; + &quot;过期时间&quot; + &quot;SecretKey&quot;)
+</ul>
+</li>
+<li>
+<p>服务器可以使用下面算法构造防伪造cookie：</p>
+<pre><code class="language-plain_text">&quot;用户id&quot; + &quot;过期时间&quot; + SHA1(&quot;用户id&quot; + &quot;用户口令&quot; + &quot;过期时间&quot; + &quot;SecretKey&quot;)
 </code></pre>
-
 <ul>
 <li>当浏览器发送cookie到服务器端后，服务器收到：用户id、过期时间、SHA1值；</li>
 <li>若未到过期时间，服务器就根据用户id查找用户口令，并计算：SHA1(&quot;用户id&quot; + &quot;用户口令&quot; + &quot;过期时间&quot; + &quot;SecretKey&quot;)，之后并与浏览器cookie中的哈希进行比较，若相等则说明用户已登录，否则cookie就是伪造的；</li>
-</ul></li>
-<li><p>jQuery为开发插件提拱了两个方法，分别是：</p>
-
+</ul>
+</li>
+<li>
+<p>jQuery为开发插件提拱了两个方法，分别是：</p>
 <ul>
 <li>jQuery.extend(object)：为扩展jQuery类本身添加新的方法，可以理解为添加静态方法；</li>
 <li>jQuery.fn.extend(object)：给jQuery对象添加新的方法；</li>
 </ul>
-
 <pre><code class="language-javascript">$.extend({
-    add: function(a, b) { 
-        return a + b;
-    }
+	add: function(a, b) { 
+		return a + b;
+	}
 });
 
 $.add(3, 4);
 </code></pre>
-
 <pre><code class="language-javascript">$.fn.extend({
     postJSON: function(url, data, callback) {
         return this.each(function () {
@@ -504,32 +521,37 @@ $.add(3, 4);
 });
 
 $form.postJSON(url, data, function(result, err) {
-
+	
 });
-</code></pre></li>
-<li><p><strong>注意：Bootstrap中默认配置的JQuery版本是删减版的（<code>jquery-3.1.1.slim.min.js</code>），无法使用<code>$.ajax(…)</code>函数，引入非删减版的（<code>jquery-3.1.1.min.js</code>）既可以解决问题；</strong></p></li>
-<li><p>JS是一种弱类型的编程语言，函数不介意传递来多少个参数，也不在乎传递来参数是什么数据类型；<strong>当参数为匿名函数类型时，则传入的匿名函数的参数的个数不受限制，需要多少数据就设置多个参数；</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>注意：Bootstrap中默认配置的JQuery版本是删减版的（<code>jquery-3.1.1.slim.min.js</code>），无法使用<code>$.ajax(…)</code>函数，引入非删减版的（<code>jquery-3.1.1.min.js</code>）既可以解决问题；</strong></p>
+</li>
+<li>
+<p>JS是一种弱类型的编程语言，函数不介意传递来多少个参数，也不在乎传递来参数是什么数据类型；<strong>当参数为匿名函数类型时，则传入的匿名函数的参数的个数不受限制，需要多少数据就设置多个参数；</strong></p>
 <pre><code class="language-java">jqXHR.done(function (data, textStatus, jqXHR) {});
 jqXHR.fail(function (jqXHR, textStatus, errorThrown) {});
 
 $.ajax(&quot;example.php&quot;)
 .done(function () {
-    alert(&quot;success&quot;);
+	alert(&quot;success&quot;);
 })
 .fail(function () {
-    alert(&quot;error&quot;);
+	alert(&quot;error&quot;);
 })
 
+
 $.ajax({
-    method: &quot;POST&quot;,
-    url: &quot;some.php&quot;,
-    data: { name: &quot;John&quot; }
+	method: &quot;POST&quot;,
+	url: &quot;some.php&quot;,
+	data: { name: &quot;John&quot; }
 })
 .done(function (msg) {
-    alert( &quot;Data Saved: &quot; + msg );
+	alert( &quot;Data Saved: &quot; + msg );
 });
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -595,7 +617,7 @@ $.ajax({
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

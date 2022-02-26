@@ -108,59 +108,65 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">一、概述、安装</a>
-</li>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85">一、概述、安装</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、概述、安装</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述、安装</h4>
 <ul>
 <li>MySQL的安装可以通过apt、.deb离线安装包、tar.gz压缩包三种方式进行安装；其中通过tar.gz压缩包进行安装，需要手动配置启动服务、环境变量等操作，而且其他两种方式则会自动配置所需要的；</li>
 </ul>
-
 <span id="more"></span><!-- more -->
-
 <ul>
-<li><p>安装步骤</p>
-
+<li>
+<p>安装步骤</p>
 <ul>
-<li><p>a. 安装mysql</p>
-
+<li>
+<p>a. 安装mysql</p>
 <ul>
-<li><strong>会自动安装mysql-server、mysql-server-core、mysql-client等相关包，且默认安装完成就启动了mysql</strong></li>
-<li><p><strong>注意：在Ubuntu 18.0.4中安装mysql 5.7，不会像之前的版本会在安装过程中提示设置密码</strong></p>
-
+<li>
+<p><strong>会自动安装mysql-server、mysql-server-core、mysql-client等相关包，且默认安装完成就启动了mysql</strong></p>
+</li>
+<li>
+<p><strong>注意：在Ubuntu 18.0.4中安装mysql 5.7，不会像之前的版本会在安装过程中提示设置密码</strong></p>
 <pre><code class="language-shell">apt-get install mysql-server 
-</code></pre></li>
-</ul></li>
-<li><p>b. 配置mysql</p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>b. 配置mysql</p>
 <ul>
-<li>注意：若选择了安装“Validate Password Plugin”，这个设置的密码必须符合一定的安全要求；</li>
-<li><p><strong>Note that even though you’ve set a password for the root MySQL user, this user is not configured to authenticate with a password when connecting to the MySQL shell.</strong></p>
-
+<li>
+<p>注意：若选择了安装“Validate Password Plugin”，这个设置的密码必须符合一定的安全要求；</p>
+</li>
+<li>
+<p><strong>Note that even though you’ve set a password for the root MySQL user, this user is not configured to authenticate with a password when connecting to the MySQL shell.</strong></p>
 <pre><code class="language-shell">mysql_secure_installation 
-</code></pre></li>
-</ul></li>
-<li><p>c. 调整用户认证方式（可选）</p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>c. 调整用户认证方式（可选）</p>
 <ul>
-<li><strong>在Ubuntu 18.0.4中安装mysql 5.7，mysql的root用户默认使用<code>auth_socket plugin</code>去认证而不是密码，这导致在终端中直接<code>mysql -uroot</code>不用密码就能登陆（即使在<code>配置mysql</code>中设置了密码也没有效果）</strong></li>
-<li><p>In Ubuntu systems running MySQL 5.7 (and later versions), the root MySQL user is set to authenticate using the auth_socket plugin by default rather than with a password. This allows for some greater security and usability in many cases, but it can also complicate things when you need to allow an external program (e.g., phpMyAdmin) to access the user.（参考<code>https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04</code>）</p>
-
+<li>
+<p><strong>在Ubuntu 18.0.4中安装mysql 5.7，mysql的root用户默认使用<code>auth_socket plugin</code>去认证而不是密码，这导致在终端中直接<code>mysql -uroot</code>不用密码就能登陆（即使在<code>配置mysql</code>中设置了密码也没有效果）</strong></p>
+</li>
+<li>
+<p>In Ubuntu systems running MySQL 5.7 (and later versions), the root MySQL user is set to authenticate using the auth_socket plugin by default rather than with a password. This allows for some greater security and usability in many cases, but it can also complicate things when you need to allow an external program (e.g., phpMyAdmin) to access the user.（参考<code>https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04</code>）</p>
 <pre><code class="language-sql">SELECT user,authentication_string,plugin,host FROM mysql.user;
 
-ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 FLUSH PRIVILEGES;
 
 SELECT user,authentication_string,plugin,host FROM mysql.user;
-</code></pre></li>
-</ul></li>
-<li><p>d. 开启远程访问（可选）</p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>d. 开启远程访问（可选）</p>
 <pre><code class="language-shell">**默认情况下mysql只允许本地连接访问；**
 
 // 开启远程访问
@@ -169,12 +175,14 @@ nano /etc/mysql/mysql.conf.d/mysqld.cnf，
 
 // 授权用户(没有该用户就创建)
 // 也可以授权给root用户，但是和mysql安装时创建的root是两条记录
-GRANT ALL PRIVILEGES ON *.* TO &#39;username&#39;@&#39;%&#39; IDENTIFIED BY &#39;password&#39; WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
 SELECT user,authentication_string,plugin,host FROM mysql.user;
-</code></pre></li>
-</ul></li>
-<li><p>管理命令</p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>管理命令</p>
 <pre><code class="language-shell">// 检查MySQL是否运行
 netstat -tap | grep mysql
 service mysql status
@@ -185,7 +193,8 @@ systemctl status mysql.service
 service mysql restart/start/stop
 systemctl restart/start/stop mysql 
 systemctl restart/start/stop mysql.service 
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -251,7 +260,7 @@ systemctl restart/start/stop mysql.service
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

@@ -108,28 +108,20 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">一、iOS应用启动逻辑</a>
-</li>
-<li>
-<a href="#toc_1">二、macOS应用启动逻辑</a>
-</li>
-<li>
-<a href="#toc_2">三、代码创建macOS项目</a>
-</li>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81ios%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E9%80%BB%E8%BE%91">一、iOS应用启动逻辑</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81macos%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E9%80%BB%E8%BE%91">二、macOS应用启动逻辑</a></li>
+<li><a href="#%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E5%88%9B%E5%BB%BAmacos%E9%A1%B9%E7%9B%AE">三、代码创建macOS项目</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、iOS应用启动逻辑</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81ios%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E9%80%BB%E8%BE%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、iOS应用启动逻辑</h4>
 <ul>
-<li><p>1、<strong>OC版本</strong></p>
-
+<li>
+<p>1、<strong>OC版本</strong></p>
 <ul>
-<li><p>1）<strong>执行main.m文件中的<code>main</code>函数（程序入口）；</strong></p>
-
-<pre><code class="language-objectivec">#import &lt;UIKit/UIKit.h&gt;
+<li>
+<p>1）<strong>执行main.m文件中的<code>main</code>函数（程序入口）；</strong></p>
+<pre><code class="language-ObjC">#import &lt;UIKit/UIKit.h&gt;
 #import &quot;AppDelegate.h&quot;
 
 int main(int argc, char * argv[]) {
@@ -138,25 +130,26 @@ int main(int argc, char * argv[]) {
     }
 }
 </code></pre>
-
-<span id="more"></span><!-- more -->   
-
+  <span id="more"></span><!-- more -->	
 <ul>
 <li><code>UIApplicationMain(int argc, char *argv[], NSString *principalClassName, NSString *delegateClassName)</code>是启动应用的函数，有四个参数<code>argc</code>、<code>*argv[]</code>、<code>principalClassName</code>、<code>delegateClassName</code>；
-
 <ul>
 <li><strong><code>principalClassName</code>：<code>UIApplication（或其子类）的类名</code>，之后会自动生成该类型的对象；若设置为nil，则使用UIApplication类型，不使用其子类型；</strong></li>
 <li><code>delegateClassName</code>：<code>UIApplicationDelegate类型的类名</code>，之后会自动生成该类型的对象，UIApplication（或其子类）类型的对象的代理；</li>
 <li><strong>方法参数具体含义：参考函数说明文档；<code>UIApplicationMain</code>：<code>Creates the application object and the application delegate and sets up the event cycle.</code></strong></li>
-</ul></li>
-</ul></li>
-<li><p>2）<strong>读取<code>Info.plist</code>，判断有没有配置<code>UIMainStoryboard</code>（Main storyboard file base name）使用SB进行初始化window；</strong></p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2）<strong>读取<code>Info.plist</code>，判断有没有配置<code>UIMainStoryboard</code>（Main storyboard file base name）使用SB进行初始化window；</strong></p>
 <ul>
-<li><strong>若配置了UIMainStoryboard，则加载SB，并且把“配置成<code>Initial View Controller</code>的View Controller”，设置为<code>UIApplication（或其子类）类型的对象的代理</code>的<code>window属性</code>的<code>rootViewController</code>；</strong></li>
-<li><p><strong>若配置了UIMainStoryboard，但是<code>UIApplication（或其子类）类型的对象的代理</code>没有window属性，则报警告<code>The app delegate must implement the window property if it wants to use a main storyboard file.</code>；</strong></p>
-
-<pre><code class="language-objectivec">#import &lt;UIKit/UIKit.h&gt;
+<li>
+<p><strong>若配置了UIMainStoryboard，则加载SB，并且把“配置成<code>Initial View Controller</code>的View Controller”，设置为<code>UIApplication（或其子类）类型的对象的代理</code>的<code>window属性</code>的<code>rootViewController</code>；</strong></p>
+</li>
+<li>
+<p><strong>若配置了UIMainStoryboard，但是<code>UIApplication（或其子类）类型的对象的代理</code>没有window属性，则报警告<code>The app delegate must implement the window property if it wants to use a main storyboard file.</code>；</strong></p>
+<pre><code class="language-ObjC">#import &lt;UIKit/UIKit.h&gt;
 
 @interface AppDelegate : UIResponder &lt;UIApplicationDelegate&gt;
 
@@ -164,105 +157,126 @@ int main(int argc, char * argv[]) {
 
 @end
 </code></pre>
-
-<p><img src="media/15705573115081/sb_01.png" alt="sb_01" style="width:752px;"/></p></li>
-</ul></li>
-<li><p>3）<strong>调用<code>UIApplication（或其子类）类型的对象的代理</code>的<code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code>方法；</strong></p>
-
+<p><img src="media/15705573115081/sb_01.png" alt="sb_01" style="width:752px;" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>3）<strong>调用<code>UIApplication（或其子类）类型的对象的代理</code>的<code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code>方法；</strong></p>
 <ul>
 <li><strong>没有配置<code>UIMainStoryboard</code>使用SB进行初始化window，或者需要重新配置window，可以在该方法中进行操作；</strong></li>
-</ul></li>
-</ul></li>
-<li><p>2、<strong>Swift版本</strong></p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、<strong>Swift版本</strong></p>
 <ul>
-<li><p>1）<strong>由于Swift没有main.m文件，使用<code>@UIApplicationMain</code>修饰<code>UIApplication（或其子类）类型的对象的代理</code>，表示执行<code>UIApplicationMain</code>函数启动应用；</strong></p>
-
+<li>
+<p>1）<strong>由于Swift没有main.m文件，使用<code>@UIApplicationMain</code>修饰<code>UIApplication（或其子类）类型的对象的代理</code>，表示执行<code>UIApplicationMain</code>函数启动应用；</strong></p>
 <pre><code class="language-swift">import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -&gt; Bool {
         // Override point for customization after application launch.
         return true
     }
 }
-</code></pre></li>
-<li><p>2）之后的逻辑和OC版本的一样；</p></li>
-</ul></li>
+</code></pre>
+</li>
+<li>
+<p>2）之后的逻辑和OC版本的一样；</p>
+</li>
 </ul>
-
-<h4 id="toc_1">二、macOS应用启动逻辑</h4>
-
+</li>
+</ul>
+<h4><a id="%E4%BA%8C%E3%80%81macos%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E9%80%BB%E8%BE%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、macOS应用启动逻辑</h4>
 <ul>
-<li><p>1、<strong>SB：OC版本</strong></p>
-
+<li>
+<p>1、<strong>SB：OC版本</strong></p>
 <ul>
-<li><p>1）<strong>执行main.m文件中的main函数（程序入口）；</strong></p>
-
-<pre><code class="language-objectivec">#import &lt;Cocoa/Cocoa.h&gt;
+<li>
+<p>1）<strong>执行main.m文件中的main函数（程序入口）；</strong></p>
+<pre><code class="language-Objc">#import &lt;Cocoa/Cocoa.h&gt;
 
 int main(int argc, const char * argv[]) {
     return NSApplicationMain(argc, argv);
 }
 </code></pre>
-
 <ul>
 <li><strong>与iOS的UIApplicationMain函数相比，少了两个参数<code>principalClassName（指定UIApplication（或其子类）类型）</code>、<code>delegateClassName（指定UIApplication（或其子类）类型的对象的代理）</code>；</strong></li>
 <li><strong>其中<code>principalClassName（指定UIApplication（或其子类）类型）</code>由Info.plist配置指定了<code>NSPrincipalClass</code>（Principal class，值为NSApplication）；</strong></li>
-</ul></li>
-<li><p>2）<strong>读取<code>Info.plist</code>的<code>NSPrincipalClass</code>（Principal class，值为NSApplication），创建自动生成该类型的对象，NSApplication（或其子类）类型；</strong></p></li>
-<li><p>3）<strong>读取<code>Info.plist</code>，判断有没有配置<code>NSMainStoryboardFile</code>（Main storyboard file base name）使用SB进行初始化一系列相关的对象；</strong></p>
-
-<p><img src="media/15705573115081/macOS_01.png" alt="macOS_01" style="width:1024px;"/></p>
-
+</ul>
+</li>
+<li>
+<p>2）<strong>读取<code>Info.plist</code>的<code>NSPrincipalClass</code>（Principal class，值为NSApplication），创建自动生成该类型的对象，NSApplication（或其子类）类型；</strong></p>
+</li>
+<li>
+<p>3）<strong>读取<code>Info.plist</code>，判断有没有配置<code>NSMainStoryboardFile</code>（Main storyboard file base name）使用SB进行初始化一系列相关的对象；</strong></p>
+<p><img src="media/15705573115081/macOS_01.png" alt="macOS_01" style="width:1024px;" /></p>
 <ul>
-<li>a. <strong>SB默认创建三个Scene：<code>Application Scene</code>、<code>Window Controller Scene</code>、<code>View Controller Scene</code>；</strong></li>
-<li><p>b. <strong>Application Scene：</strong></p>
-
+<li>
+<p>a. <strong>SB默认创建三个Scene：<code>Application Scene</code>、<code>Window Controller Scene</code>、<code>View Controller Scene</code>；</strong></p>
+</li>
+<li>
+<p>b. <strong>Application Scene：</strong></p>
 <ul>
-<li><strong>只能有唯一个；</strong></li>
-<li><strong>Application内包含着<code>Main Menu</code>；</strong></li>
-<li><p><strong><code>Main Menu</code>、<code>App Delegate（Class被配置成AppDelegate（实现了NSApplicationDelegate协议））</code>、<code>Font Manager（Class被配置成NSFontManager）</code>都是Object，加载XIB时会创建，并关联属性、事件；</strong></p>
-
-<pre><code class="language-objectivec">#import &lt;Cocoa/Cocoa.h&gt;
+<li>
+<p><strong>只能有唯一个；</strong></p>
+</li>
+<li>
+<p><strong>Application内包含着<code>Main Menu</code>；</strong></p>
+</li>
+<li>
+<p><strong><code>Main Menu</code>、<code>App Delegate（Class被配置成AppDelegate（实现了NSApplicationDelegate协议））</code>、<code>Font Manager（Class被配置成NSFontManager）</code>都是Object，加载XIB时会创建，并关联属性、事件；</strong></p>
+<pre><code class="language-ObjC">#import &lt;Cocoa/Cocoa.h&gt;
 
 @interface AppDelegate : NSObject &lt;NSApplicationDelegate&gt;
 
 @end
-</code></pre></li>
-<li><p><strong>Application的<code>delegate属性</code>关联App Delegate；</strong></p></li>
-</ul></li>
-<li><p>c. <strong>Window Controller Scene</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>Application的<code>delegate属性</code>关联App Delegate；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>c. <strong>Window Controller Scene</strong></p>
 <ul>
 <li><strong>可以有多个；</strong></li>
 <li><strong>拖入Window Controller控件，会自动拖入View Controller控件；Window Controller Scene关联View Controller Scene；</strong></li>
 <li><strong>Window控件内部中<code>没有</code>一个View控件；（XIB的有）</strong></li>
-</ul></li>
-<li><p>d. <strong>View Controller Scene</strong></p>
-
+</ul>
+</li>
+<li>
+<p>d. <strong>View Controller Scene</strong></p>
 <ul>
-<li><strong>可以有多个；</strong><br/></li>
+<li><strong>可以有多个；</strong></li>
 <li><strong>可以单独拖入View Controller控件；</strong></li>
-</ul></li>
-<li><p>e. <strong>使用SB创建的macOS项目，<code>Window</code>由<code>Window Controller</code>进行管理的；</strong></p>
-
-<p><img src="media/15705573115081/macOS_02.png" alt="macOS_02" style="width:834px;"/></p>
-
+</ul>
+</li>
+<li>
+<p>e. <strong>使用SB创建的macOS项目，<code>Window</code>由<code>Window Controller</code>进行管理的；</strong></p>
+<p><img src="media/15705573115081/macOS_02.png" alt="macOS_02" style="width:834px;" /></p>
 <ul>
 <li><strong>Window Controller的<code>window属性</code>关联Window（不可以取消）；</strong></li>
 <li><strong>Window Controller的<code>contentViewController属性</code>关联View Controller；</strong></li>
 <li><strong>Window的<code>delegate属性</code>关联Window Controller；</strong></li>
-</ul></li>
-</ul></li>
-<li><p>4）<strong>若配置了<code>NSMainStoryboardFile</code>，则加载SB，并且准备展示“配置成<code>Initial Controller</code>的Window Controller”；</strong></p></li>
-<li><p>5）<strong>调用<code>App Delegate（Class被配置成AppDelegate（实现了NSApplicationDelegate协议））</code>的<code>- (void)applicationDidFinishLaunching:(NSNotification *)aNotification</code>方法；</strong></p>
-
-<pre><code class="language-objectivec">#import &quot;AppDelegate.h&quot;
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4）<strong>若配置了<code>NSMainStoryboardFile</code>，则加载SB，并且准备展示“配置成<code>Initial Controller</code>的Window Controller”；</strong></p>
+</li>
+<li>
+<p>5）<strong>调用<code>App Delegate（Class被配置成AppDelegate（实现了NSApplicationDelegate协议））</code>的<code>- (void)applicationDidFinishLaunching:(NSNotification *)aNotification</code>方法；</strong></p>
+<pre><code class="language-ObjC">#import &quot;AppDelegate.h&quot;
 
 @interface AppDelegate ()
 
@@ -277,72 +291,87 @@ int main(int argc, const char * argv[]) {
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
 }
-
+    
 @end
 </code></pre>
-
 <ul>
 <li><strong>没有配置<code>NSMainStoryboardFile</code>使用SB进行初始化，或者需要重新配置初始化，可以在该方法中进行操作；</strong></li>
-</ul></li>
-</ul></li>
-<li><p>2、<strong>SB：Swift版本</strong></p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、<strong>SB：Swift版本</strong></p>
 <ul>
-<li><p>1）<strong>由于Swift没有main.m文件，使用<code>@NSApplicationMain</code>修饰<code>NSApplication（或其子类）类型的对象的代理</code>，表示执行<code>NSApplicationMain</code>函数启动应用；</strong></p>
-
+<li>
+<p>1）<strong>由于Swift没有main.m文件，使用<code>@NSApplicationMain</code>修饰<code>NSApplication（或其子类）类型的对象的代理</code>，表示执行<code>NSApplicationMain</code>函数启动应用；</strong></p>
 <pre><code class="language-swift">import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
+    
 }
-</code></pre></li>
-<li><p>2）<strong>但由于<code>NSApplicationMain</code>函数没有<code>principalClassName</code>、<code>delegateClassName</code>参数，所以该函数仅仅是启动应用，还需要在<code>Info.Plist中配置NSPrincipalClass、NSMainStoryboardFile（并添加App Delegate Object）</code>；</strong></p></li>
-<li><p>3）之后的逻辑和OC版本的一样，SB中的配置（Scene、属性、方法关联等）和OC版本的一样；</p></li>
-</ul></li>
-<li><p>3、<strong>XIB：OC版本</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p>2）<strong>但由于<code>NSApplicationMain</code>函数没有<code>principalClassName</code>、<code>delegateClassName</code>参数，所以该函数仅仅是启动应用，还需要在<code>Info.Plist中配置NSPrincipalClass、NSMainStoryboardFile（并添加App Delegate Object）</code>；</strong></p>
+</li>
+<li>
+<p>3）之后的逻辑和OC版本的一样，SB中的配置（Scene、属性、方法关联等）和OC版本的一样；</p>
+</li>
+</ul>
+</li>
+<li>
+<p>3、<strong>XIB：OC版本</strong></p>
 <ul>
-<li><p>1）<strong>与“SB：OC版本”的类似，只是第3步有所差异；<code>Info.plist</code>的<code>NSMainStoryboardFile</code>换成了<code>NSMainNibFile</code>（Main nib file base name），使用XIB进行初始化一系列相关的对象；</strong></p>
-
-<p><img src="media/15705573115081/macOS_03.png" alt="macOS_03" style="width:1017px;"/>
-<img src="media/15705573115081/macOS_04.png" alt="macOS_04" style="width:1023px;"/></p>
-
+<li>
+<p>1）<strong>与“SB：OC版本”的类似，只是第3步有所差异；<code>Info.plist</code>的<code>NSMainStoryboardFile</code>换成了<code>NSMainNibFile</code>（Main nib file base name），使用XIB进行初始化一系列相关的对象；</strong></p>
+<p><img src="media/15705573115081/macOS_03.png" alt="macOS_03" style="width:1017px;" /><br />
+<img src="media/15705573115081/macOS_04.png" alt="macOS_04" style="width:1023px;" /></p>
 <ul>
-<li><strong>iOS的XIB的Placeholders默认有<code>File&#39;s Owner</code>、<code>First Responder</code>两项，macOS的XIB的Placeholders默认有<code>File&#39;s Owner</code>、<code>First Responder</code>、<code>Application</code>三项；</strong></li>
-<li><strong><code>First Responder</code>的Class被配置成NSApplication，其<code>delegate属性</code>关联<code>Delegate</code>；</strong></li>
-<li><strong><code>Main Menu</code>、<code>Delegate（Class被配置成AppDelegate（实现了NSApplicationDelegate协议））</code>、<code>Font Manager（Class被配置成NSFontManager）</code>都是Object，加载XIB时会创建，并关联属性、事件；</strong></li>
-<li><p><strong>使用XIB创建的macOS项目，<code>Window</code>由Delegate（Class被配置成AppDelegate（实现了NSApplicationDelegate协议））`进行管理的；</strong></p>
-
-<p><img src="media/15705573115081/macOS_05.png" alt="macOS_05" style="width:1019px;"/></p>
-
+<li>
+<p><strong>iOS的XIB的Placeholders默认有<code>File's Owner</code>、<code>First Responder</code>两项，macOS的XIB的Placeholders默认有<code>File's Owner</code>、<code>First Responder</code>、<code>Application</code>三项；</strong></p>
+</li>
+<li>
+<p><strong><code>First Responder</code>的Class被配置成NSApplication，其<code>delegate属性</code>关联<code>Delegate</code>；</strong></p>
+</li>
+<li>
+<p><strong><code>Main Menu</code>、<code>Delegate（Class被配置成AppDelegate（实现了NSApplicationDelegate协议））</code>、<code>Font Manager（Class被配置成NSFontManager）</code>都是Object，加载XIB时会创建，并关联属性、事件；</strong></p>
+</li>
+<li>
+<p><strong>使用XIB创建的macOS项目，<code>Window</code>由Delegate（Class被配置成AppDelegate（实现了NSApplicationDelegate协议））`进行管理的；</strong></p>
+<p><img src="media/15705573115081/macOS_05.png" alt="macOS_05" style="width:1019px;" /></p>
 <ul>
 <li><strong>Delegate的<code>window属性（人为添加的，不是NSApplicationDelegate自带的，可以去掉）</code>关联Window；</strong></li>
 <li><strong>XIB中的<code>Outlets</code>是指<code>当前对象的某个属性</code>关联了<code>某个对象</code>， <code>Referencing Outlets</code>是指<code>当前对象</code>被关联到<code>某个对象的某个属性</code>上了；</strong></li>
-</ul></li>
-<li><p><strong>若在一个XIB中配置了多个window，则会同时运行多个window；这说明程序是找XIB中的window运行的，<code>window是独立的</code>；</strong></p></li>
-<li><p><strong>Window控件内部中<code>有</code>一个View控件，<code>且不删除不掉</code>；</strong></p>
-
-<p><img src="media/15705573115081/macOS_06.png" alt="macOS_06" style="width:194px;"/></p></li>
-</ul></li>
-<li><p>2）AppDelegate的相关代码</p>
-
-<pre><code class="language-objectivec">#import &lt;Cocoa/Cocoa.h&gt;
+</ul>
+</li>
+<li>
+<p><strong>若在一个XIB中配置了多个window，则会同时运行多个window；这说明程序是找XIB中的window运行的，<code>window是独立的</code>；</strong></p>
+</li>
+<li>
+<p><strong>Window控件内部中<code>有</code>一个View控件，<code>且不删除不掉</code>；</strong></p>
+<p><img src="media/15705573115081/macOS_06.png" alt="macOS_06" style="width:194px;" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>2）AppDelegate的相关代码</p>
+<pre><code class="language-ObjC">#import &lt;Cocoa/Cocoa.h&gt;
 
 @interface AppDelegate : NSObject &lt;NSApplicationDelegate&gt;
 
 @end
 </code></pre>
-
-<pre><code class="language-objectivec">#import &quot;AppDelegate.h&quot;
+<pre><code class="language-ObjC">#import &quot;AppDelegate.h&quot;
 
 @interface AppDelegate ()
 
@@ -361,72 +390,78 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 @end
-</code></pre></li>
-</ul></li>
-<li><p>4、<strong>XIB：Swift版本</strong></p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>4、<strong>XIB：Swift版本</strong></p>
 <ul>
-<li><p>1）<strong>与“SB：Swift版本”的类似，具体差异参考“XIB：OC版本”与“SB：OC版本”（<code>@NSApplicationMain</code>、<code>NSMainNibFile</code>）；</strong></p>
-
+<li>
+<p>1）<strong>与“SB：Swift版本”的类似，具体差异参考“XIB：OC版本”与“SB：OC版本”（<code>@NSApplicationMain</code>、<code>NSMainNibFile</code>）；</strong></p>
 <pre><code class="language-swift">import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    
     @IBOutlet weak var window: NSWindow!
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
+    
 }
 </code></pre>
-
-<p><img src="media/15705573115081/macOS_07.png" alt="macOS_07" style="width:1034px;"/></p></li>
-</ul></li>
+<p><img src="media/15705573115081/macOS_07.png" alt="macOS_07" style="width:1034px;" /></p>
+</li>
 </ul>
-
-<h4 id="toc_2">三、代码创建macOS项目</h4>
-
+</li>
+</ul>
+<h4><a id="%E4%B8%89%E3%80%81%E4%BB%A3%E7%A0%81%E5%88%9B%E5%BB%BAmacos%E9%A1%B9%E7%9B%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、代码创建macOS项目</h4>
 <ul>
-<li><p>1、<strong>不完全版本</strong></p>
-
+<li>
+<p>1、<strong>不完全版本</strong></p>
 <ul>
 <li><strong>方式：删除SB文件中的<code>View Controller Scene</code>和<code>Window Controller Scene</code>，保留<code>Application Scene</code>，或者删除XIB文件中的<code>Window</code>，保留<code>Objects</code>；</strong></li>
 <li><strong>这样可以保留<code>Application</code>对象、<code>AppDelegate</code>对象、<code>MainMenu</code>对象，只需要在<code>applicationDidFinishLaunching</code>方法中<code>手动创建展示window相关对象</code>即可；</strong></li>
-</ul></li>
-<li><p>2、<strong>完全版本</strong></p>
-
+</ul>
+</li>
+<li>
+<p>2、<strong>完全版本</strong></p>
 <ul>
-<li><strong>方式：删除SB或XIB，以及Info.plist的相关配置项（<code>NSMainStoryboardFile</code>或<code>NSMainNibFile</code>）；</strong></li>
-<li><strong>由于删除了SB或XIB，所以除了在<code>applicationDidFinishLaunching</code>方法中<code>手动创建展示window相关对象</code>外，还需要<code>在此之前</code>手动创建<code>AppDelegate</code>对象、<code>MainMenu</code>对象，而<code>Application</code>则可以通过单例方法获取到；</strong></li>
-<li><p><strong>注意：要设置<code>Application</code>对象的代理为<code>AppDelegate</code>对象，否则相关代理方法不会被调用；也可以不创建<code>MainMenu</code>对象，只是程序启动后没有菜单栏而已；</strong></p>
-
-<pre><code class="language-objectivec">int main(int argc, const char * argv[]) {
+<li>
+<p><strong>方式：删除SB或XIB，以及Info.plist的相关配置项（<code>NSMainStoryboardFile</code>或<code>NSMainNibFile</code>）；</strong></p>
+</li>
+<li>
+<p><strong>由于删除了SB或XIB，所以除了在<code>applicationDidFinishLaunching</code>方法中<code>手动创建展示window相关对象</code>外，还需要<code>在此之前</code>手动创建<code>AppDelegate</code>对象、<code>MainMenu</code>对象，而<code>Application</code>则可以通过单例方法获取到；</strong></p>
+</li>
+<li>
+<p><strong>注意：要设置<code>Application</code>对象的代理为<code>AppDelegate</code>对象，否则相关代理方法不会被调用；也可以不创建<code>MainMenu</code>对象，只是程序启动后没有菜单栏而已；</strong></p>
+<pre><code class="language-ObjC">int main(int argc, const char * argv[]) {
     // 创建AppDelegate，并设置为代理
     AppDelegate *delegate = [[AppDelegate alloc] init];
     NSApplication.sharedApplication.delegate = delegate;
-
+    
     return NSApplicationMain(argc, argv);
 }
 </code></pre>
-
-<pre><code class="language-objectivec">- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+<pre><code class="language-ObjC">- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // 窗口有标题、关闭、缩小、放大按钮
     NSUInteger style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable;
     CGRect rect = NSMakeRect(0, 0, 200, 200);
     NSWindow *window = [[NSWindow alloc] initWithContentRect:rect styleMask:style backing:NSBackingStoreBuffered defer:YES];
     window.title = @&quot;Test&quot;;
-
+    
     [window makeKeyAndOrderFront:nil];
 }
-</code></pre></li>
-<li><p><strong>Swift版本默认没有main文件，此时需要新建<code>main.swift</code>，并添加以下内容；</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>Swift版本默认没有main文件，此时需要新建<code>main.swift</code>，并添加以下内容；</strong></p>
 <pre><code class="language-swift">import Cocoa
 
 // 创建AppDelegate，并设置为代理
@@ -436,8 +471,10 @@ NSApplication.shared.delegate = delegate
 _ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
 // 或
 NSApplication.shared.run()
-</code></pre></li>
-</ul></li>
+</code></pre>
+</li>
+</ul>
+</li>
 </ul>
 
       </div>
@@ -446,7 +483,7 @@ NSApplication.shared.run()
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15859991604863.html" title="Previous Post: iOS 多线程与GCD总结">&laquo; iOS 多线程与GCD总结</a>
+            <a href="15859991604863.html" title="Previous Post: Apple 多线程与GCD总结">&laquo; Apple 多线程与GCD总结</a>
             
           </p>
         </div>
@@ -503,7 +540,7 @@ NSApplication.shared.run()
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

@@ -108,45 +108,27 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">12. 正则表达式</a>
+        <div class="mweb_toc"><ul>
+<li><a href="#12%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">12. 正则表达式</a>
 <ul>
-<li>
-<a href="#toc_1">12.1 基础</a>
-</li>
-<li>
-<a href="#toc_2">12.2 re模块</a>
-</li>
+<li><a href="#12-1%E5%9F%BA%E7%A1%80">12.1 基础</a></li>
+<li><a href="#12-2-re%E6%A8%A1%E5%9D%97">12.2 re模块</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_3">13. 常见内建模块(上)</a>
+<li><a href="#13%E5%B8%B8%E8%A7%81%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97%E4%B8%8A">13. 常见内建模块(上)</a>
 <ul>
-<li>
-<a href="#toc_4">13.1 datetime</a>
-</li>
-<li>
-<a href="#toc_5">13.2 collections</a>
-</li>
-<li>
-<a href="#toc_6">13.3 base64</a>
-</li>
-<li>
-<a href="#toc_7">13.4 struct</a>
-</li>
+<li><a href="#13-1-datetime">13.1 datetime</a></li>
+<li><a href="#13-2-collections">13.2 collections</a></li>
+<li><a href="#13-3-base64">13.3 base64</a></li>
+<li><a href="#13-4-struct">13.4 struct</a></li>
 </ul>
 </li>
 </ul>
-
-
-<h4 id="toc_0">12. 正则表达式</h4>
-
-<h5 id="toc_1">12.1 基础</h5>
-
+</div>
+<h4><a id="12%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>12. 正则表达式</h4>
+<h5><a id="12-1%E5%9F%BA%E7%A1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>12.1 基础</h5>
 <ul>
 <li>匹配字符：
-
 <ul>
 <li>\d匹配一个数字，\D匹配一个非数字</li>
 <li>\w匹配一个数字字母，\W匹配一个非数字字母</li>
@@ -154,170 +136,187 @@
 <li>.匹配任意一个字符</li>
 <li>[]表示精确匹配范围，例如[a-zA-Z]匹配一个字母、[0-9a-zA-Z_]匹配找一个数字、字母或下划线</li>
 <li>特殊字符使用\进行转义，例如-</li>
-</ul></li>
+</ul>
+</li>
 <li>匹配长度：
-
 <ul>
 <li>*表示任意个字符（包含0个）</li>
 <li>+表示至少一个</li>
 <li>?表示0个或1个</li>
 <li>{n}表示n个，{n, m}表示n~m个，例如[a-zA-Z_][0-9a-zA-Z_]{0, 19}匹配长度为1-20个字符（前面1个是字母或下划线，后面最多19个数字、字母或下划线）</li>
-</ul></li>
+</ul>
+</li>
 <li>^表示行的开头，例如^\d表示必须以数字开头</li>
-<li>$表示行的结束，\d$表示必须以数字结束，py可以匹配python，但是<sup>py$就只能匹配py</sup></li>
+<li>$表示行的结束，\d$表示必须以数字结束，py可以匹配python，但是^py$就只能匹配py</li>
 <li>A|B表示可以匹配A或B，但有时候需要加小括号()进行限制长度（此时也就会出现了分组）；例如(P|p)ython可以匹配Python或python，P|python只能匹配P或python</li>
 <li>单个字符的或匹配，也可以使用字符集[]来实现，例如[Pp]ython可以匹配Python或python</li>
-<li><strong>若字符串中的所有特殊字符都需要转义，则使用r&#39;&#39;，例如print(r&#39;\tabc\r\&#39;&#39;) # 结果为\tabc\r\&#39;</strong></li>
+<li><strong>若字符串中的所有特殊字符都需要转义，则使用r''，例如print(r'\tabc\r'') # 结果为\tabc\r'</strong></li>
 </ul>
-
 <span id="more"></span><!-- more -->
-
-<h5 id="toc_2">12.2 re模块</h5>
-
+<h5><a id="12-2-re%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>12.2 re模块</h5>
 <ul>
-<li><p>Python中的re模块提供了正则表达式的功能；注意Python的字符串本身也用\进行转义</p>
-
-<pre><code class="language-python">s = &#39;ABC\\-001&#39; # 字符串为&#39;ABC\-001&#39;
-# 使用Python的r前缀，就不用考虑转义的问题了
-s = r&#39;ABC\\-001&#39; # 字符串为&#39;ABC\\-001&#39;  
-</code></pre></li>
-<li><p>re.match()：从字符串的起点进行匹配，成功返回一个Match，否则返回None</p></li>
-<li><p>re.search()：在字符串内查找匹配，只找到一个就匹配返回，成功返回一个Match，否则返回None；<code>re.search(r&#39;^a&#39;, &#39;cba&#39;)</code>与<code>re.match(r&#39;a&#39;, &#39;cba&#39;)</code>是等价的</p></li>
-<li><p>re.sub()：用于替换字符串中的匹配项</p></li>
-<li><p>re.split()：分割字符串，使用正则表更灵活（可以识别连续空格）</p></li>
-<li><p>re.findall()：以list形式返回全部匹配的子串</p>
-
-<pre><code class="language-python">import re
-
-m = re.match(r&#39;a&#39;, &#39;cba&#39;)
-print(m)  # None
-m = re.search(r&#39;a&#39;, &#39;cba&#39;)
-print(m)  # &lt;_sre.SRE_Match object; span=(2, 3), match=&#39;a&#39;&gt;
-
-m = re.match(r&#39;\d{3}-\d{3,8}$&#39;, &#39;010-12345&#39;)
-print(m)
-
-# 将字符串中所有的空格替换成-
-re.sub(r&#39;\s+&#39;, &#39;-&#39;, str)
-
-l = &#39;a b    c&#39;.split(&#39; &#39;)
-print(l)  # [&#39;a&#39;, &#39;b&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;c&#39;]
-
-l = re.split(r&#39;\s+&#39;, &#39;a b    c&#39;)
-print(l)  # [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
-
-# split()还可以屏蔽一些特殊字符
-l = re.split(r&#39;[\s\\,\\;]+&#39;, &#39;a,b, c;;    d&#39;)
-print(l)  # [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
-</code></pre></li>
-<li><p>分组：使用()表示要提取的分组（Group），即提取子串</p>
-
+<li>
+<p>Python中的re模块提供了正则表达式的功能；注意Python的字符串本身也用\进行转义</p>
+<pre><code class="language-python"> s = 'ABC\\-001' # 字符串为'ABC\-001'
+ # 使用Python的r前缀，就不用考虑转义的问题了
+ s = r'ABC\\-001' # 字符串为'ABC\\-001'  
+</code></pre>
+</li>
+<li>
+<p>re.match()：从字符串的起点进行匹配，成功返回一个Match，否则返回None</p>
+</li>
+<li>
+<p>re.search()：在字符串内查找匹配，只找到一个就匹配返回，成功返回一个Match，否则返回None；<code>re.search(r'^a', 'cba')</code>与<code>re.match(r'a', 'cba')</code>是等价的</p>
+</li>
+<li>
+<p>re.sub()：用于替换字符串中的匹配项</p>
+</li>
+<li>
+<p>re.split()：分割字符串，使用正则表更灵活（可以识别连续空格）</p>
+</li>
+<li>
+<p>re.findall()：以list形式返回全部匹配的子串</p>
+<pre><code class="language-python"> import re
+ 
+ m = re.match(r'a', 'cba')
+ print(m)  # None
+ m = re.search(r'a', 'cba')
+ print(m)  # &lt;_sre.SRE_Match object; span=(2, 3), match='a'&gt;
+ 
+ m = re.match(r'\d{3}-\d{3,8}$', '010-12345')
+ print(m)
+ 
+ 
+ # 将字符串中所有的空格替换成-
+ re.sub(r'\s+', '-', str)
+ 
+ 
+ l = 'a b    c'.split(' ')
+ print(l)  # ['a', 'b', '', '', '', 'c']
+ 
+ l = re.split(r'\s+', 'a b    c')
+ print(l)  # ['a', 'b', 'c']
+ 
+ # split()还可以屏蔽一些特殊字符
+ l = re.split(r'[\s\\,\\;]+', 'a,b, c;;    d')
+ print(l)  # ['a', 'b', 'c', 'd']
+</code></pre>
+</li>
+<li>
+<p>分组：使用()表示要提取的分组（Group），即提取子串</p>
 <ul>
 <li>若正则表达式中定义了组（使用了“()”）并且匹配成功
-
 <ul>
 <li>可以在Match对象上用group(1)、group(2)提取出第1、2个子</li>
-<li>&#39;\1&#39;、&#39;\2&#39;也可以表示分组中的第1、2个子串</li>
+<li>'\1'、'\2'也可以表示分组中的第1、2个子串</li>
 <li>groups()返回所有的子串组成的tuple</li>
 <li>group()或group(0)返回整个正则表达式匹配上的子串（不要求正则中是否定义了组）</li>
-</ul></li>
+</ul>
+</li>
 <li>若匹配不成功，返回None，调用group(0)、group(1)会报错</li>
 </ul>
-
-<pre><code class="language-python"># ^(\d{3})-(\d{3,8})$定义两个组用于提取出区号和号码
-m = re.match(r&#39;^(\d{3})-(\d{3,8})$&#39;, &#39;010-12345&#39;)
-
-print(m) # &lt;_sre.SRE_Match object; span=(0, 9), match=&#39;010-12345&#39;&gt;
-print(m.group(0)) # 010-12345
-print(m.group(1)) # 010
-print(m.group(2)) # 12345
-</code></pre></li>
-<li><p>贪婪匹配：正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符</p>
-
-<pre><code class="language-python">m = re.match(r&#39;^(\d+)(0*)$&#39;, &#39;102300&#39;).groups()
-print(m)  # (&#39;102300&#39;, &#39;&#39;)
-
-# 加个?就让\d+采用非贪婪匹配（也就是尽可能少匹配）
-# 注意：单个?表示的是0个或1个
-m = re.match(r&#39;^(\d+?)(0*)$&#39;, &#39;102300&#39;).groups()
-print(m)  # (&#39;1023&#39;, &#39;00&#39;)
-</code></pre></li>
-<li><p>当在Python中使用正则表达式时，re模块内部会干两件事情：</p>
-
+<pre><code class="language-python"> # ^(\d{3})-(\d{3,8})$定义两个组用于提取出区号和号码
+ m = re.match(r'^(\d{3})-(\d{3,8})$', '010-12345')
+ 
+ print(m) # &lt;_sre.SRE_Match object; span=(0, 9), match='010-12345'&gt;
+ print(m.group(0)) # 010-12345
+ print(m.group(1)) # 010
+ print(m.group(2)) # 12345
+</code></pre>
+</li>
+<li>
+<p>贪婪匹配：正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符</p>
+<pre><code class="language-python"> m = re.match(r'^(\d+)(0*)$', '102300').groups()
+ print(m)  # ('102300', '')
+ 
+ # 加个?就让\d+采用非贪婪匹配（也就是尽可能少匹配）
+ # 注意：单个?表示的是0个或1个
+ m = re.match(r'^(\d+?)(0*)$', '102300').groups()
+ print(m)  # ('1023', '00')
+</code></pre>
+</li>
+<li>
+<p>当在Python中使用正则表达式时，re模块内部会干两件事情：</p>
 <ul>
 <li>a. 编译正则表达式，若该表达式的字符串本身不合法，会报错</li>
 <li>b. 用编译后的正则表达式去匹配字符串</li>
-</ul></li>
-<li><p>若一个正则表达式需要被重复使用多次，可以预编译该正则表达式，之后重复使用时就不需要编译这个步骤，直接进行匹配</p>
-
-<pre><code class="language-python"># 编译，生成Regular Expression对象（包含正则表达式）
-re_phone = re.compile(r&#39;^(\d{3})-(\d{3,8})$&#39;) 
-# 匹配使用
-m = re_phone.match(&#39;010-12345&#39;).groups()
-
-print(m)  # (&#39;010&#39;, &#39;12345&#39;)
-</code></pre></li>
-<li><p>re提供的函数都有个可省略的flags参数（匹配模式），其有以下几个常用取值：</p>
-
+</ul>
+</li>
+<li>
+<p>若一个正则表达式需要被重复使用多次，可以预编译该正则表达式，之后重复使用时就不需要编译这个步骤，直接进行匹配</p>
+<pre><code class="language-python"> # 编译，生成Regular Expression对象（包含正则表达式）
+ re_phone = re.compile(r'^(\d{3})-(\d{3,8})$') 
+ # 匹配使用
+ m = re_phone.match('010-12345').groups()
+ 
+ print(m)  # ('010', '12345')
+</code></pre>
+</li>
+<li>
+<p>re提供的函数都有个可省略的flags参数（匹配模式），其有以下几个常用取值：</p>
 <ul>
 <li>re.I(IGNORECASE；忽略大小写)</li>
-<li>re.M(MULTILINE；多行模式，改变<code>&#39;^&#39;</code>和<code>&#39;$&#39;</code>的行为)</li>
-<li>re.S(DOTALL；点任意匹配模式，改变<code>&#39;.&#39;</code>的行为)；</li>
+<li>re.M(MULTILINE；多行模式，改变<code>'^'</code>和<code>'$'</code>的行为)</li>
+<li>re.S(DOTALL；点任意匹配模式，改变<code>'.'</code>的行为)；</li>
 <li>多个匹配模式使用或运算符|进行组合</li>
-</ul></li>
 </ul>
-
-<h4 id="toc_3">13. 常见内建模块(上)</h4>
-
+</li>
+</ul>
+<h4><a id="13%E5%B8%B8%E8%A7%81%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97%E4%B8%8A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>13. 常见内建模块(上)</h4>
 <ul>
 <li>Python之所以自称“batteries included”，就是因为内置了许多非常有用的模块，无需额外安装和配置，即可直接使用</li>
 </ul>
-
-<h5 id="toc_4">13.1 datetime</h5>
-
+<h5><a id="13-1-datetime" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>13.1 datetime</h5>
 <ul>
-<li><p>datetime模块是Python处理日期和时间的标准库，datetime模块还包含一个datetime类</p>
-
-<pre><code class="language-python">from datetime import datetime
-
-# 获取当前日期和时间
-now = datetime.now()  # 返回类型为datatime
-print(now)
-print(type(now))
-
-# 获取指定日期和时间
-dt = datetime(2015, 10, 1, 9, 20)  # 用参数直接构造一个datetime
-print(dt)
-</code></pre></li>
-<li><p>将1970.1.1 00:00:00 UTC+00:00的时刻称为epoch time，记为0；当前时间相对于epoch time的秒数称为timestamp（1970年之前为负数）；timestamp = 0 = 1970-1-1 00:00:00 UTC+0:00 = 1970-1-1 08:00:00 UTC+8:00</p></li>
-<li><p>由于timestamp和时区没有关系，全球各地的计算机在任意时刻的timestamp是完全相同的，所以计算机存储的当前时间是以timestamp表示的</p></li>
-<li><p>Python中的timestamp是一个浮点数，小数位表示毫秒数；某些编程语言（如Java和JS）的timestamp使用整数表示毫秒数，此时只需要把timestamp除以1000就得到Python的timestamp</p>
-
-<pre><code class="language-python"># 将datetime转timestamp
-#（若datetime的时区属性为None，转换时时区取当前时区）
-now = datetime.now()
-print(now.timestamp())
-
-# 将timestamp转为datetime（当前时区时间）
-#（timestamp没有时区概念，datetime有时区概念）
-ts = 0
-print(datetime.fromtimestamp(ts))  # 1970-01-01 08:00:00
-
-# 将timestamp转为datetime（UTC标准时间）
-print(datetime.utcfromtimestamp(ts))  # 1970-01-01 00:00:00
-</code></pre></li>
-<li><p>datetime格式化：字符串&#39;%Y-%m-%d %H:%M:%S&#39;规定了日期和时间部分的格式</p>
-
-<pre><code class="language-python"># datetime转str
-now = datetime.now()
-print(now.strftime(&#39;%a, %b %d %H:%M&#39;))
-
-# str转datetime（没有时区信息）
-dt = datetime.strptime(&#39;2015-6-1 18:20:12&#39;, &#39;%Y-%m-%d %H:%M:%S&#39;)
-print(dt)
-</code></pre></li>
-<li><p>对日期和时间进行加减就是把datetime往后往前计算得到新的datetime；加减可直接用+、-运算符操作timedelta类</p>
-
+<li>
+<p>datetime模块是Python处理日期和时间的标准库，datetime模块还包含一个datetime类</p>
+<pre><code class="language-python"> from datetime import datetime
+ 
+ # 获取当前日期和时间
+ now = datetime.now()  # 返回类型为datatime
+ print(now)
+ print(type(now))
+ 
+ # 获取指定日期和时间
+ dt = datetime(2015, 10, 1, 9, 20)  # 用参数直接构造一个datetime
+ print(dt)
+</code></pre>
+</li>
+<li>
+<p>将1970.1.1 00:00:00 UTC+00:00的时刻称为epoch time，记为0；当前时间相对于epoch time的秒数称为timestamp（1970年之前为负数）；timestamp = 0 = 1970-1-1 00:00:00 UTC+0:00 = 1970-1-1 08:00:00 UTC+8:00</p>
+</li>
+<li>
+<p>由于timestamp和时区没有关系，全球各地的计算机在任意时刻的timestamp是完全相同的，所以计算机存储的当前时间是以timestamp表示的</p>
+</li>
+<li>
+<p>Python中的timestamp是一个浮点数，小数位表示毫秒数；某些编程语言（如Java和JS）的timestamp使用整数表示毫秒数，此时只需要把timestamp除以1000就得到Python的timestamp</p>
+<pre><code class="language-python"> # 将datetime转timestamp
+ #（若datetime的时区属性为None，转换时时区取当前时区）
+ now = datetime.now()
+ print(now.timestamp())
+ 
+ # 将timestamp转为datetime（当前时区时间）
+ #（timestamp没有时区概念，datetime有时区概念）
+ ts = 0
+ print(datetime.fromtimestamp(ts))  # 1970-01-01 08:00:00
+ 
+ # 将timestamp转为datetime（UTC标准时间）
+ print(datetime.utcfromtimestamp(ts))  # 1970-01-01 00:00:00
+</code></pre>
+</li>
+<li>
+<p>datetime格式化：字符串'%Y-%m-%d %H:%M:%S'规定了日期和时间部分的格式</p>
+<pre><code class="language-python"> # datetime转str
+ now = datetime.now()
+ print(now.strftime('%a, %b %d %H:%M'))
+ 
+ # str转datetime（没有时区信息）
+ dt = datetime.strptime('2015-6-1 18:20:12', '%Y-%m-%d %H:%M:%S')
+ print(dt)
+</code></pre>
+</li>
+<li>
+<p>对日期和时间进行加减就是把datetime往后往前计算得到新的datetime；加减可直接用+、-运算符操作timedelta类</p>
 <pre><code class="language-python">from datetime import timedelta
 
 print(now)
@@ -329,9 +328,10 @@ print(newNow)
 
 newNow = now + timedelta(days=2, hours=12)  # 加2天12小时
 print(newNow)
-</code></pre></li>
-<li><p><strong>datetime有一个时区属性tzinfo，默认为None</strong>，所以无法区分该datetime是哪个时区的，需要人为设置一个时区</p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>datetime有一个时区属性tzinfo，默认为None</strong>，所以无法区分该datetime是哪个时区的，需要人为设置一个时区</p>
 <pre><code class="language-python">from datetime import datetime, timedelta, timezone
 
 # 强制设置时区（使用replace()方法）
@@ -355,272 +355,290 @@ bj_dt = utc_dt.astimezone(timezone(timedelta(hours=8)))
 print(bj_dt)  # 2015-11-05 12:41:30.332392+08:00
 tokyo_dt = bj_dt.astimezone(timezone(timedelta(hours=9)))
 print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
-</code></pre></li>
-<li><p>datetime不含有时区信息时表示为当前本地时间；存储datetime的最佳方法是将其转为timestamp再存储</p>
-
-<pre><code class="language-python"># 练习：将日期时间字符串及时区信息字符串转为timestamp
-import re
-from datetime import datetime, timezone, timedelta
-
-def to_timestamp(dt_str, tz_str):
-    d = datetime.strptime(dt_str, &quot;%Y-%m-%d %H:%M:%S&quot;)
-    h = int(re.match(r&#39;UTC([+|-]\d+):&#39;, tz_str).group(1))
-    tz = timezone(timedelta(hours=h))
-    d = d.replace(tzinfo=tz)  # 在调用d.timestamp()前，先调用设置时区
-    return d.timestamp()
-
-t1 = to_timestamp(&#39;2015-6-1 08:10:30&#39;, &#39;UTC+7:00&#39;)
-assert t1 == 1433121030.0, &#39;函数返回值:%s&#39; % t1
-
-t2 = to_timestamp(&#39;2015-5-31 16:10:30&#39;, &#39;UTC-09:00&#39;)
-assert t2 == 1433121030.0, &#39;函数返回值:%s&#39; % t2
-
-print(&#39;Pass&#39;)
-</code></pre></li>
+</code></pre>
+</li>
+<li>
+<p>datetime不含有时区信息时表示为当前本地时间；存储datetime的最佳方法是将其转为timestamp再存储</p>
+<pre><code class="language-python"> # 练习：将日期时间字符串及时区信息字符串转为timestamp
+ import re
+ from datetime import datetime, timezone, timedelta
+ 
+ def to_timestamp(dt_str, tz_str):
+     d = datetime.strptime(dt_str, &quot;%Y-%m-%d %H:%M:%S&quot;)
+     h = int(re.match(r'UTC([+|-]\d+):', tz_str).group(1))
+     tz = timezone(timedelta(hours=h))
+     d = d.replace(tzinfo=tz)  # 在调用d.timestamp()前，先调用设置时区
+     return d.timestamp()
+  
+ t1 = to_timestamp('2015-6-1 08:10:30', 'UTC+7:00')
+ assert t1 == 1433121030.0, '函数返回值:%s' % t1
+ 
+ t2 = to_timestamp('2015-5-31 16:10:30', 'UTC-09:00')
+ assert t2 == 1433121030.0, '函数返回值:%s' % t2
+ 
+ print('Pass')
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_5">13.2 collections</h5>
-
+<h5><a id="13-2-collections" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>13.2 collections</h5>
 <ul>
-<li>collections是Python内建的一个集合模块，提供了许多有用的集合类</li>
-<li><p>a. namedtuple</p>
-
+<li>
+<p>collections是Python内建的一个集合模块，提供了许多有用的集合类</p>
+</li>
+<li>
+<p>a. namedtuple</p>
 <ul>
 <li>tuple是不可变集合，使用tuple可以表示一个坐标(x, y)，但是无法直接以x、y属性形式去访问值，而定义一个class又小题大做</li>
 <li>namedtuple是一个函数，可以创建一个自定义的tuple对象，之后可以以属性形式而不是索引形式去访问tuple的某个元素，使用非常方便</li>
 </ul>
-
-<pre><code class="language-python">from collections import namedtuple
-
-Point = namedtuple(&#39;Point&#39;, [&#39;x&#39;, &#39;y&#39;])
-p = Point(1, 2)
-print(&#39;x:&#39;, p.x)
-print(&#39;y:&#39;, p.y)
-print(isinstance(p, Point)) # True
-print(isinstance(p, tuple)) # True
-
-Circle = namedtuple(&#39;Circle&#39;, [&#39;x&#39;, &#39;y&#39;, &#39;r&#39;])；
-</code></pre></li>
-<li><p>b. duque</p>
-
+<pre><code class="language-python"> from collections import namedtuple
+ 
+ Point = namedtuple('Point', ['x', 'y'])
+ p = Point(1, 2)
+ print('x:', p.x)
+ print('y:', p.y)
+ print(isinstance(p, Point)) # True
+ print(isinstance(p, tuple)) # True
+ 
+ Circle = namedtuple('Circle', ['x', 'y', 'r'])；
+</code></pre>
+</li>
+<li>
+<p>b. duque</p>
 <ul>
 <li>使用list存储数据时，按索引访问元素很快，但是插入删除元素就比较慢（list是线性存储）</li>
 <li>deque是双向链表，可以高效地插入删除元素，适合用于队列和栈</li>
 <li>deque除了实现list的append()和pop()外，还支持appendleft()和popleft()可以高效地向队列的头部添加删除元素，也可以按照索引取值</li>
 </ul>
-
-<pre><code class="language-python">from collections import deque
-
-q = deque([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;])
-q.append(&#39;x&#39;)
-q.appendleft(&#39;y&#39;)
-print(q)
-print(q[2])
-</code></pre></li>
-<li><p>c. defaultdict</p>
-
+<pre><code class="language-python"> from collections import deque
+ 
+ q = deque(['a', 'b', 'c'])
+ q.append('x')
+ q.appendleft('y')
+ print(q)
+ print(q[2])
+</code></pre>
+</li>
+<li>
+<p>c. defaultdict</p>
 <ul>
 <li>使用dict时，若key不存在则抛出KeyError；若希望key不存在时就返回一个默认值，可以使用defaultdict</li>
 <li>默认值是由创建defaultdict对象时传入的函数调用返回的</li>
 <li>除了在key不存在时返回一个默认值，defaultdict的使用和dict是完全一样</li>
 </ul>
-
-<pre><code class="language-python">from collections import defaultdict
-
-dd = defaultdict(lambda: &#39;N/A&#39;)  # 传入提供默认值的函数
-dd[&#39;key1&#39;] = &#39;abc&#39;
-print(dd[&#39;key1&#39;]) # abc
-print(dd[&#39;key2&#39;]) # N/A
-</code></pre></li>
-<li><p>d. OrderDict</p>
-
+<pre><code class="language-python"> from collections import defaultdict
+ 
+ dd = defaultdict(lambda: 'N/A')  # 传入提供默认值的函数
+ dd['key1'] = 'abc'
+ print(dd['key1']) # abc
+ print(dd['key2']) # N/A
+</code></pre>
+</li>
+<li>
+<p>d. OrderDict</p>
 <ul>
 <li>dict的key是无序的，在对dict做迭代时无法确定key的顺序；若要保持key的顺序可以用OrderDict</li>
 </ul>
-
-<pre><code class="language-python">from collections import OrderedDict
-
-l = [(&#39;a&#39;, 1), (&#39;b&#39;, 2), (&#39;c&#39;, 3)]
-
-d = dict(l)
-print(d)
-
-od = OrderedDict(l)  # 通过list构造dict
-print(od)
-
-od = OrderedDict()
-# key会按照插入的顺序排序，不是key本身排序
-od[&#39;z&#39;] = 1
-od[&#39;y&#39;] = 2
-od[&#39;x&#39;] = 3
-print(list(od.keys()))
+<pre><code class="language-python"> from collections import OrderedDict
+ 
+ l = [('a', 1), ('b', 2), ('c', 3)]
+ 
+ d = dict(l)
+ print(d)
+ 
+ od = OrderedDict(l)  # 通过list构造dict
+ print(od)
+ 
+ 
+ od = OrderedDict()
+ # key会按照插入的顺序排序，不是key本身排序
+ od['z'] = 1
+ od['y'] = 2
+ od['x'] = 3
+ print(list(od.keys()))
 </code></pre>
-
-<pre><code class="language-python"># 使用OrderedDict实现一个FIFO的dict，当容量超出限制时，先删除最早添加的元素
-from collections import OrderedDict
-
-class LastUpdateOrderedDict(OrderedDict):
-    def __init__(self, capacity):
-        super(LastUpdateOrderedDict, self).__init__()
-        self.__capcity = capacity
-
-    def __setitem__(self, key, value):
-        contains_key = 1 if key in self else 0  # Python三元表达式 
-        if len(self) - contains_key &gt;= self.__capcity:
-            # last为True是LIFO即为堆栈，反之是FIFO即为队列
-            last = self.popitem(last=False)
-            print(&#39;remove:&#39;, last)
-        if contains_key:
-            del self[key]  # 可以不删除，直接覆盖
-            print(&#39;set:&#39;, (key, value))
-        else:
-            print(&#39;add:&#39;, (key, value))
-        OrderedDict.__setitem__(self, key, value)  # 调用父类方法，添加元素
+<pre><code class="language-python"> # 使用OrderedDict实现一个FIFO的dict，当容量超出限制时，先删除最早添加的元素
+ from collections import OrderedDict
+ 
+ class LastUpdateOrderedDict(OrderedDict):
+     def __init__(self, capacity):
+         super(LastUpdateOrderedDict, self).__init__()
+         self.__capcity = capacity
+         
+     def __setitem__(self, key, value):
+         contains_key = 1 if key in self else 0  # Python三元表达式 
+         if len(self) - contains_key &gt;= self.__capcity:
+             # last为True是LIFO即为堆栈，反之是FIFO即为队列
+             last = self.popitem(last=False)
+             print('remove:', last)
+         if contains_key:
+             del self[key]  # 可以不删除，直接覆盖
+             print('set:', (key, value))
+         else:
+             print('add:', (key, value))
+         OrderedDict.__setitem__(self, key, value)  # 调用父类方法，添加元素
 </code></pre>
-
-<pre><code class="language-python"># 补充（两个list合并成dict）：
-list1 = [&#39;key1&#39;, &#39;key2&#39;, &#39;key3&#39;]
-list2 = [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;]
-d = dict(zip(list1, list2))
-print(d)
-</code></pre></li>
-<li><p>e. Counter</p>
-
+<pre><code class="language-python"> # 补充（两个list合并成dict）：
+ list1 = ['key1', 'key2', 'key3']
+ list2 = ['1', '2', '3']
+ d = dict(zip(list1, list2))
+ print(d)
+</code></pre>
+</li>
+<li>
+<p>e. Counter</p>
 <ul>
 <li>一个简单的计数器，实际上是dict的一个子类</li>
 </ul>
-
-<pre><code class="language-python"># 统计字符出现的个数
-from collections import Counter
-
-c = Counter()
-for ch in &#39;programming&#39;:
-    c[ch] += 1
-print(c)  
-
-# Counter({&#39;r&#39;: 2, &#39;g&#39;: 2, &#39;m&#39;: 2, &#39;i&#39;: 1, &#39;n&#39;: 1, &#39;o&#39;: 1, &#39;a&#39;: 1, &#39;p&#39;: 1})
-</code></pre></li>
+<pre><code class="language-python"> # 统计字符出现的个数
+ from collections import Counter
+ 
+ c = Counter()
+ for ch in 'programming':
+     c[ch] += 1
+ print(c)  
+ 
+ # Counter({'r': 2, 'g': 2, 'm': 2, 'i': 1, 'n': 1, 'o': 1, 'a': 1, 'p': 1})
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_6">13.3 base64</h5>
-
+<h5><a id="13-3-base64" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>13.3 base64</h5>
 <ul>
-<li>若使用记事本打开exe、jpg等二进制文件会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符；若让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法，base64是一种常见的二进制编码方法</li>
-<li>base64用64个可打印字符可以表示任意二进制数据</li>
-<li>base64编码原理
-
+<li>
+<p>若使用记事本打开exe、jpg等二进制文件会看到一大堆乱码，因为二进制文件包含很多无法显示和打印的字符；若让记事本这样的文本处理软件能处理二进制数据，就需要一个二进制到字符串的转换方法，base64是一种常见的二进制编码方法</p>
+</li>
+<li>
+<p>base64用64个可打印字符可以表示任意二进制数据</p>
+</li>
+<li>
+<p>base64编码原理</p>
 <ul>
-<li>a. 先准备一个包含64个字符的数组表[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, .... &#39;a&#39;,...&#39;0&#39;,... &#39;+&#39;,&#39;/&#39;]</li>
+<li>a. 先准备一个包含64个字符的数组表['A', 'B', 'C', .... 'a',...'0',... '+','/']</li>
 <li>b. 对二进制数据进行处理，每3个字节为一大组（3*8=24bit），再每6个bit分隔为一小组，共4小组</li>
 <li>c. 根据得到的4个小组对应的数值（小于64）做索引，在上面的数组表中查找获取相应的4个字符，这些字符就是编码之后的字符</li>
 <li>d. 若分大组时剩余的字节数不是3的倍数（8、16bit）则无法被6整除，需要在末尾补bit0（分别补4、2个bit0后为12、18bit，最后分别生成2、3个字符）；之后再在编码的末尾添加=号（剩余字节数为1时补2个=，剩余字节数为2时补1个=），让其满足编码后的字符数（含=）恰好是4的倍数，解码的时候=号会自动去掉</li>
-</ul></li>
-<li>base64编码会把3字节的二进制数据编码为4字节的文本数据，文件大小增加33%</li>
-<li><p>Python内置了支持base64编码解码的base64模块</p>
-
-<pre><code class="language-python">import base64
-
-en = base64.b64encode(b&#39;binary\x00string&#39;)  # 编码，一共6+1+6个字节
-print(en)  # b&#39;YmluYXJ5AHN0cmluZw==&#39;
-de = base64.b64decode(b&#39;YmluYXJ5AHN0cmluZw==&#39;)  # 解码
-print(de)
-</code></pre></li>
-<li><p>使用标准的base64编码可能出现字符/和+，但是字符/和+在URL中不能直接作为参数，所以出现了一种“url safe”的base64编码（其实就是把字符/和+分别变成_和-）</p>
-
-<pre><code class="language-python">en = base64.b64encode(b&#39;i\xb7\x1d\xfb\xef\xff&#39;)
-print(en)  # b&#39;abcd++//&#39;
-
-sf_en = base64.urlsafe_b64encode(b&#39;i\xb7\x1d\xfb\xef\xff&#39;)
-print(sf_en)  # b&#39;abcd--__&#39;
-sf_de = base64.urlsafe_b64decode(b&#39;abcd--__&#39;)
-print(sf_de)  # b&#39;i\xb7\x1d\xfb\xef\xff&#39;
-</code></pre></li>
-<li><p>编码中也可能也出现字符=，但字符=在URL、Cookie中会造成歧义；所以，很多base64编码会把字符=去掉，解码时先添加字符=再进行解码（base64编码本质就是让3字节变为4字节（字符），所以只需手动添加字符=让字符串的长度是4的倍数即可）</p></li>
-<li><p>可以自定义64个字符的排序顺序，这样就是自定义base64编码，不过通常没有必要</p></li>
-<li><p>base64是一种通过查表的编码方法，不能用于加密，即使使用自定义的编码表也不行</p></li>
-<li><p>base64适用于小段内容的编码，比如数字证书签名、Cookie、URL等</p>
-
-<pre><code class="language-python"># 处理去掉=的base64的解码
-import base64
-
-def safe_base64_decode(s):
-    # 3 % 4 = 3，-3 / 4 = 1； b&#39;=&#39; * 2结果为b&#39;==&#39;
-    s += (-len(s) % 4) * b&#39;=&#39;
-    return base64.b64decode(s)
-
-assert b&#39;abcd&#39; == safe_base64_decode(b&#39;YWJjZA==&#39;), safe_base64_decode(&#39;YWJjZA==&#39;)
-assert b&#39;abcd&#39; == safe_base64_decode(b&#39;YWJjZA&#39;), safe_base64_decode(&#39;YWJjZA&#39;)
-print(&#39;Pass&#39;)
-</code></pre></li>
-<li><p>base64编码补充： </p>
-
+</ul>
+</li>
+<li>
+<p>base64编码会把3字节的二进制数据编码为4字节的文本数据，文件大小增加33%</p>
+</li>
+<li>
+<p>Python内置了支持base64编码解码的base64模块</p>
+<pre><code class="language-python"> import base64
+ 
+ en = base64.b64encode(b'binary\x00string')  # 编码，一共6+1+6个字节
+ print(en)  # b'YmluYXJ5AHN0cmluZw=='
+ de = base64.b64decode(b'YmluYXJ5AHN0cmluZw==')  # 解码
+ print(de)
+</code></pre>
+</li>
+<li>
+<p>使用标准的base64编码可能出现字符/和+，但是字符/和+在URL中不能直接作为参数，所以出现了一种“url safe”的base64编码（其实就是把字符/和+分别变成_和-）</p>
+<pre><code class="language-python"> en = base64.b64encode(b'i\xb7\x1d\xfb\xef\xff')
+ print(en)  # b'abcd++//'
+ 
+ sf_en = base64.urlsafe_b64encode(b'i\xb7\x1d\xfb\xef\xff')
+ print(sf_en)  # b'abcd--__'
+ sf_de = base64.urlsafe_b64decode(b'abcd--__')
+ print(sf_de)  # b'i\xb7\x1d\xfb\xef\xff'
+</code></pre>
+</li>
+<li>
+<p>编码中也可能也出现字符=，但字符=在URL、Cookie中会造成歧义；所以，很多base64编码会把字符=去掉，解码时先添加字符=再进行解码（base64编码本质就是让3字节变为4字节（字符），所以只需手动添加字符=让字符串的长度是4的倍数即可）</p>
+</li>
+<li>
+<p>可以自定义64个字符的排序顺序，这样就是自定义base64编码，不过通常没有必要</p>
+</li>
+<li>
+<p>base64是一种通过查表的编码方法，不能用于加密，即使使用自定义的编码表也不行</p>
+</li>
+<li>
+<p>base64适用于小段内容的编码，比如数字证书签名、Cookie、URL等</p>
+<pre><code class="language-python"> # 处理去掉=的base64的解码
+ import base64
+ 
+ def safe_base64_decode(s):
+     # 3 % 4 = 3，-3 / 4 = 1； b'=' * 2结果为b'=='
+     s += (-len(s) % 4) * b'='
+     return base64.b64decode(s)
+  
+ assert b'abcd' == safe_base64_decode(b'YWJjZA=='), safe_base64_decode('YWJjZA==')
+ assert b'abcd' == safe_base64_decode(b'YWJjZA'), safe_base64_decode('YWJjZA')
+ print('Pass')
+</code></pre>
+</li>
+<li>
+<p>base64编码补充：</p>
 <ul>
 <li>早期的一些邮件服务器只支持文本信息，不支持二进制信息和文件，而base64编码后的结果都是ASCII纯文本的，适合用电子邮件来传送二进制数据</li>
 <li>网页中的图片可以使用base64编码减少了HTTP请求（不是所有浏览器都支持），比如&lt;img src=&quot;data:image/gif;base64,R0lGODlhAwADAIABAL6+v=&quot;/&gt;，</li>
 <li>在URL中若使用标准的base64编码，还需要进行urlencode，处理特殊字符+和/，或者将编码后的字符串进行特殊字符替换；建议直接使用urlsafe_b64encod()</li>
 <li>urlencode：将除了-_.之外的其他非字母数字字符，编码成百分号%后跟2位十六进制数，空格则编码为加号+</li>
-</ul></li>
 </ul>
-
-<h5 id="toc_7">13.4 struct</h5>
-
+</li>
+</ul>
+<h5><a id="13-4-struct" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>13.4 struct</h5>
 <ul>
-<li><p>Python没有专门处理字节的数据类型，虽然str既可以表示字符串，又可以表示字节（b&#39;\x00\x9c&#39;）</p>
-
-<pre><code class="language-python"># 把一个32位无符号整数变成字节（4个bytes），需要使用位运算（若是浮点数就无解了）
-n = 10240099
-print(&#39;%x&#39; % n)  # 9c4063
-
-b1 = (n &amp; 0xff000000) &gt;&gt; 24
-b2 = (n &amp; 0xff0000) &gt;&gt; 16
-b3 = (n &amp; 0xff00) &gt;&gt; 8
-b4 = n &amp; 0xff
-print(&#39;%x, %x, %x, %x&#39; % (b1, b2, b3, b4))  # 0, 9c, 40, 63
-bs = bytes([b1, b2, b3, b4])
-print(bs)  # b&#39;\x00\x9c@c&#39;
-</code></pre></li>
-<li><p>struct模块可以解决bytes和二进制数据类型的转换（二进制文件的编码解码存储；这一部分操作通常是系统底层自动完成）；decode、endcode解决的是bytes和str的转换</p>
-
-<pre><code class="language-python">import struct
-
-# pack: 把任意数据类型变成bytes
-# 第1参数是处理指令；&gt;表示字节顺序是big-endian，也就是网络序，
-# I表示4字节无符号整数，H表示2字节无符号整数，f表示4字节float，d表示8字节double...
-b = struct.pack(&#39;&gt;I&#39;, 10240099)
-print(b)  # b&#39;\x00\x9c@c&#39;
-
-# 多个参数：参数个数要和处理指令中的一致
-# &gt;IH表示要转换的依次为：4字节无符号整数、2字节无符号整数
-b = struct.pack(&#39;&gt;IH&#39;, 10240099, 32896)
-print(b)  # b&#39;\x00\x9c@c\x80\x80&#39;
-
-# unpack：把bytes变成相应的数据类型
-s = struct.unpack(&#39;&gt;I&#39;, b&#39;\x00\x9c@c&#39;)
-print(s)  # (10240099,)
-
-s = struct.unpack(&#39;&gt;IH&#39;, b&#39;\x00\x9c@c\x80\x80&#39;) 
-print(s)  # (10240099, 32896)
-</code></pre></li>
-<li><p>尽管Python不适合编写底层操作字节流的代码，但是对性能要求不高的地方使用struct还是比较方便</p>
-
-<pre><code class="language-python"># 举例：使用struct分析Windows的位图文件（.bmp)，读取前30个字节来分析
-s = b&#39;\x42\x4d\x38\x8c\x0a\x00\x00\x00\x00\x00\x36\x00&#39; \
-    b&#39;\x00\x00\x28\x00\x00\x00\x80\x02\x00\x00\x68\x01&#39; \
-    b&#39;\x00\x00\x01\x00\x18\x00&#39;
-s = struct.unpack(&#39;&lt;ccIIIIIIHH&#39;, s)
-print(s)  # (b&#39;B&#39;, b&#39;M&#39;, 691256, 0, 54, 40, 640, 360, 1, 24)
-
-BMP格式采用小端方式存储数据，文件头的结构按顺序如下：
-两个字节：&#39;BM&#39;表示Windows位图，&#39;BA&#39;表示OS/2位图；
-一个4字节整数：表示位图大小；
-一个4字节整数：保留位，始终为0；
-一个4字节整数：实际图像的偏移量；
-一个4字节整数：Header的字节数；
-一个4字节整数：图像宽度；
-一个4字节整数：图像高度；
-一个2字节整数：始终为1；
-一个2字节整数：颜色数。
-</code></pre></li>
+<li>
+<p>Python没有专门处理字节的数据类型，虽然str既可以表示字符串，又可以表示字节（b'\x00\x9c'）</p>
+<pre><code class="language-python"> # 把一个32位无符号整数变成字节（4个bytes），需要使用位运算（若是浮点数就无解了）
+ n = 10240099
+ print('%x' % n)  # 9c4063
+ 
+ b1 = (n &amp; 0xff000000) &gt;&gt; 24
+ b2 = (n &amp; 0xff0000) &gt;&gt; 16
+ b3 = (n &amp; 0xff00) &gt;&gt; 8
+ b4 = n &amp; 0xff
+ print('%x, %x, %x, %x' % (b1, b2, b3, b4))  # 0, 9c, 40, 63
+ bs = bytes([b1, b2, b3, b4])
+ print(bs)  # b'\x00\x9c@c'
+</code></pre>
+</li>
+<li>
+<p>struct模块可以解决bytes和二进制数据类型的转换（二进制文件的编码解码存储；这一部分操作通常是系统底层自动完成）；decode、endcode解决的是bytes和str的转换</p>
+<pre><code class="language-python"> import struct
+ 
+ # pack: 把任意数据类型变成bytes
+ # 第1参数是处理指令；&gt;表示字节顺序是big-endian，也就是网络序，
+ # I表示4字节无符号整数，H表示2字节无符号整数，f表示4字节float，d表示8字节double...
+ b = struct.pack('&gt;I', 10240099)
+ print(b)  # b'\x00\x9c@c'
+ 
+ # 多个参数：参数个数要和处理指令中的一致
+ # &gt;IH表示要转换的依次为：4字节无符号整数、2字节无符号整数
+ b = struct.pack('&gt;IH', 10240099, 32896)
+ print(b)  # b'\x00\x9c@c\x80\x80'
+ 
+ 
+ # unpack：把bytes变成相应的数据类型
+ s = struct.unpack('&gt;I', b'\x00\x9c@c')
+ print(s)  # (10240099,)
+ 
+ s = struct.unpack('&gt;IH', b'\x00\x9c@c\x80\x80') 
+ print(s)  # (10240099, 32896)
+</code></pre>
+</li>
+<li>
+<p>尽管Python不适合编写底层操作字节流的代码，但是对性能要求不高的地方使用struct还是比较方便</p>
+<pre><code class="language-python"> # 举例：使用struct分析Windows的位图文件（.bmp)，读取前30个字节来分析
+ s = b'\x42\x4d\x38\x8c\x0a\x00\x00\x00\x00\x00\x36\x00' \
+     b'\x00\x00\x28\x00\x00\x00\x80\x02\x00\x00\x68\x01' \
+     b'\x00\x00\x01\x00\x18\x00'
+ s = struct.unpack('&lt;ccIIIIIIHH', s)
+ print(s)  # (b'B', b'M', 691256, 0, 54, 40, 640, 360, 1, 24)
+ 
+ BMP格式采用小端方式存储数据，文件头的结构按顺序如下：
+ 两个字节：'BM'表示Windows位图，'BA'表示OS/2位图；
+ 一个4字节整数：表示位图大小；
+ 一个4字节整数：保留位，始终为0；
+ 一个4字节整数：实际图像的偏移量；
+ 一个4字节整数：Header的字节数；
+ 一个4字节整数：图像宽度；
+ 一个4字节整数：图像高度；
+ 一个2字节整数：始终为1；
+ 一个2字节整数：颜色数。
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -686,7 +704,7 @@ BMP格式采用小端方式存储数据，文件头的结构按顺序如下：
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

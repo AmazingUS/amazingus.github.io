@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     iOS 多线程与GCD总结 - TIME TO GO 
+     Apple 多线程与GCD总结 - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -97,7 +97,7 @@
 
       <div class="article">
         
-        <h1>iOS 多线程与GCD总结</h1>
+        <h1>Apple 多线程与GCD总结</h1>
         <div class="read-more clearfix">
           <span class="date">2020/4/4</span>
            
@@ -108,117 +108,100 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">一、并行、串行、异步、同步</a>
-</li>
-<li>
-<a href="#toc_1">二、GCD并行队列、串行队列</a>
-</li>
-<li>
-<a href="#toc_2">三、GCD测试验证</a>
-</li>
-<li>
-<a href="#toc_3">四、CGD进阶</a>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E5%B9%B6%E8%A1%8C%E3%80%81%E4%B8%B2%E8%A1%8C%E3%80%81%E5%BC%82%E6%AD%A5%E3%80%81%E5%90%8C%E6%AD%A5">一、并行、串行、异步、同步</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81gcd%E5%B9%B6%E8%A1%8C%E9%98%9F%E5%88%97%E3%80%81%E4%B8%B2%E8%A1%8C%E9%98%9F%E5%88%97">二、GCD并行队列、串行队列</a></li>
+<li><a href="#%E4%B8%89%E3%80%81gcd%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81">三、GCD测试验证</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81cgd%E8%BF%9B%E9%98%B6">四、CGD进阶</a>
 <ul>
-<li>
-<a href="#toc_4">1、<code>Dispatch Group</code></a>
-</li>
-<li>
-<a href="#toc_5">2、<code>Dispatch Semaphore</code></a>
-</li>
-<li>
-<a href="#toc_6">3、<code>Dispatch Barrier</code></a>
-</li>
+<li><a href="#1%E3%80%81-dispatch-group">1、<code>Dispatch Group</code></a></li>
+<li><a href="#2%E3%80%81-dispatch-semaphore">2、<code>Dispatch Semaphore</code></a></li>
+<li><a href="#3%E3%80%81-dispatch-barrier">3、<code>Dispatch Barrier</code></a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_7">五、其他</a>
+<li><a href="#%E4%BA%94%E3%80%81%E5%85%B6%E4%BB%96">五、其他</a>
 <ul>
-<li>
-<a href="#toc_8">1、线程同步</a>
-</li>
+<li><a href="#1%E3%80%81%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5">1、线程同步</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_9">六、多个网络请求场景</a>
-</li>
+<li><a href="#%E5%85%AD%E3%80%81%E5%A4%9A%E4%B8%AA%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%9C%BA%E6%99%AF">六、多个网络请求场景</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、并行、串行、异步、同步</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E5%B9%B6%E8%A1%8C%E3%80%81%E4%B8%B2%E8%A1%8C%E3%80%81%E5%BC%82%E6%AD%A5%E3%80%81%E5%90%8C%E6%AD%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、并行、串行、异步、同步</h4>
 <ul>
-<li><p><strong>并行、串行描述的是 <code>新的任务集合 的内部执行方式</code>：</strong></p>
-
+<li>
+<p><strong>并行、串行描述的是 <code>新的任务集合 的内部执行方式</code>：</strong></p>
 <ul>
 <li>并行：多个任务并行，可以同时执行；</li>
 <li>串行：一个任务执行完毕后，才可以执行下一个任务；（一般使用同一线程执行）</li>
-</ul></li>
-<li><p><strong>异步、同步描述的是 <code>当前线程 与 新的任务集合 的执行关系</code>；<code>添加任务后，是否需要等其执行完毕，再返回</code>：</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>异步、同步描述的是 <code>当前线程 与 新的任务集合 的执行关系</code>；<code>添加任务后，是否需要等其执行完毕，再返回</code>：</strong></p>
 <ul>
 <li>异步：立即返回；</li>
 <li>同步：不立即返回;</li>
-</ul></li>
-<li><p><strong><code>队列</code>是保存以及管理任务的地方，<code>线程</code>只是执行任务的地方；</strong></p></li>
-<li><p><strong>至于异步队列、同步队列是否<code>具备开启新线程的能力</code>，是根据<code>执行方式</code>、<code>执行关系</code>、<code>性能优化（复用线程）</code>，得出的最后执行结果，没有多大意义；</strong></p></li>
 </ul>
-
+</li>
+<li>
+<p><strong><code>队列</code>是保存以及管理任务的地方，<code>线程</code>只是执行任务的地方；</strong></p>
+</li>
+<li>
+<p><strong>至于异步队列、同步队列是否<code>具备开启新线程的能力</code>，是根据<code>执行方式</code>、<code>执行关系</code>、<code>性能优化（复用线程）</code>，得出的最后执行结果，没有多大意义；</strong></p>
+</li>
+</ul>
 <span id="more"></span><!-- more -->
-
-<h4 id="toc_1">二、GCD并行队列、串行队列</h4>
-
+<h4><a id="%E4%BA%8C%E3%80%81gcd%E5%B9%B6%E8%A1%8C%E9%98%9F%E5%88%97%E3%80%81%E4%B8%B2%E8%A1%8C%E9%98%9F%E5%88%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、GCD并行队列、串行队列</h4>
 <ul>
-<li><p><strong>1、并行队列</strong></p>
-
+<li>
+<p><strong>1、并行队列</strong></p>
 <ul>
-<li><p><strong>a. 获取默认提供的全局并行队列，不需要手动创建；</strong></p>
-
+<li>
+<p><strong>a. 获取默认提供的全局并行队列，不需要手动创建；</strong></p>
 <pre><code class="language-swift">let queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default) // iOS 8.0 deprecated
 // OR
 let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
 </code></pre>
-
-<pre><code class="language-oc">dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0); // iOS 8.0 deprecated
+<pre><code class="language-OC">dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0); // iOS 8.0 deprecated
 // OR
 dispatch_queue_attr_t queue = dispatch_queue_attr_make_with_qos_class(nil, QOS_CLASS_DEFAULT, 0);
-</code></pre></li>
-<li><p><strong>b. 手动创建并行队列；</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>b. 手动创建并行队列；</strong></p>
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;, attributes: [.concurrent])
 </code></pre>
-
-<pre><code class="language-oc">dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DISPATCH_QUEUE_CONCURRENT);
-</code></pre></li>
-</ul></li>
-<li><p><strong>2、串行队列</strong></p>
-
+<pre><code class="language-OC">dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DISPATCH_QUEUE_CONCURRENT);
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>2、串行队列</strong></p>
 <ul>
-<li><p><strong>a. 手动创建串行队列（不加参数，默认创建的就是串行队列）；</strong></p>
-
+<li>
+<p><strong>a. 手动创建串行队列（不加参数，默认创建的就是串行队列）；</strong></p>
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;)
 
 </code></pre>
-
-<pre><code class="language-oc">// DISPATCH_QUEUE_SERIAL也可换成NULL
+<pre><code class="language-OC">// DISPATCH_QUEUE_SERIAL也可换成NULL
 dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DISPATCH_QUEUE_SERIAL); 
-</code></pre></li>
-<li><p><strong>b. 使用主队列（特殊的串行队列，和主线程相关联的队列）；</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>b. 使用主队列（特殊的串行队列，和主线程相关联的队列）；</strong></p>
 <pre><code class="language-swift">let queue = DispatchQueue.main
 </code></pre>
-
-<pre><code class="language-oc">dispatch_queue_t queue = dispatch_get_main_queue();
-</code></pre></li>
-</ul></li>
+<pre><code class="language-OC">dispatch_queue_t queue = dispatch_get_main_queue();
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_2">三、GCD测试验证</h4>
-
+</li>
+</ul>
+<h4><a id="%E4%B8%89%E3%80%81gcd%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、GCD测试验证</h4>
 <ul>
-<li><p>1、异步+并行队列</p>
-
+<li>
+<p>1、异步+并行队列</p>
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;, attributes: [.concurrent])
 
 print(&quot;Start..., \(Thread.current)&quot;)
@@ -238,44 +221,44 @@ queue.async {
 
 print(&quot;End...&quot;, Thread.current)
 </code></pre>
-
 <pre><code class="language-swift">// 结果：添加后立即返回，不影响当前线程的task；新添加的task同时执行，执行顺序不定
 Start..., &lt;NSThread: 0x60000200ed40&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x60000200ed40&gt;{number = 1, name = main}
 Task B..., &lt;NSThread: 0x6000020522c0&gt;{number = 3, name = (null)}
 Task C..., &lt;NSThread: 0x60000207de80&gt;{number = 6, name = (null)}
 Task A..., &lt;NSThread: 0x60000205d780&gt;{number = 5, name = (null)}
-</code></pre></li>
-<li><p>2、异步+串行队列</p>
-
+</code></pre>
+</li>
+<li>
+<p>2、异步+串行队列</p>
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;)
 
 // ...，代码同上
 </code></pre>
-
 <pre><code class="language-swift">// 结果：添加后立即返回，不影响当前线程的task；新添加的task顺序执行，执行顺序固定
 Start..., &lt;NSThread: 0x6000008a9e40&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x6000008a9e40&gt;{number = 1, name = main}
 Task A..., &lt;NSThread: 0x6000008c7e80&gt;{number = 7, name = (null)}
 Task B..., &lt;NSThread: 0x6000008c7e80&gt;{number = 7, name = (null)}
 Task C..., &lt;NSThread: 0x6000008c7e80&gt;{number = 7, name = (null)}
-</code></pre></li>
-<li><p>3、异步+主队列</p>
-
+</code></pre>
+</li>
+<li>
+<p>3、异步+主队列</p>
 <pre><code class="language-swift">let queue = DispatchQueue.main
 
 // ...，代码同上
 </code></pre>
-
 <pre><code class="language-swift">// 添加后立即返回，不影响当前线程的task；新添加的task顺序执行，执行顺序固定
 Start..., &lt;NSThread: 0x6000015560c0&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x6000015560c0&gt;{number = 1, name = main}
 Task A..., &lt;NSThread: 0x6000015560c0&gt;{number = 1, name = main}
 Task B..., &lt;NSThread: 0x6000015560c0&gt;{number = 1, name = main}
 Task C..., &lt;NSThread: 0x6000015560c0&gt;{number = 1, name = main}
-</code></pre></li>
-<li><p>4、同步+并行队列</p>
-
+</code></pre>
+</li>
+<li>
+<p>4、同步+并行队列</p>
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;, attributes: [.concurrent])
 
 print(&quot;Start..., \(Thread.current)&quot;)
@@ -295,7 +278,6 @@ queue.sync {
 
 print(&quot;End...&quot;, Thread.current)
 </code></pre>
-
 <pre><code class="language-swift">// 结果：添加后不立即返回，影响当前线程的task；
 //      新添加的task顺序执行，执行顺序固定（不立即返回，导致新添加的task顺序执行）
 // 新添加的task在主线程中执行，只是出于性能优化的结果
@@ -306,10 +288,9 @@ Task B..., &lt;NSThread: 0x600002f50f00&gt;{number = 1, name = main}
 Task C..., &lt;NSThread: 0x600002f50f00&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x600002f50f00&gt;{number = 1, name = main}
 </code></pre>
-
 <ul>
-<li><p><strong>若将代码放到<code>DispatchQueue.global().async</code>中执行，结果如下：</strong></p>
-
+<li>
+<p><strong>若将代码放到<code>DispatchQueue.global().async</code>中执行，结果如下：</strong></p>
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;, attributes: [.concurrent])
 
 print(&quot;Start..., \(Thread.current)&quot;)
@@ -331,7 +312,6 @@ DispatchQueue.global().async {
 
 print(&quot;End...&quot;, Thread.current)
 </code></pre>
-
 <pre><code class="language-swift">// 结果：添加后不立即返回，影响当前线程的task（影响global Queue，不影响main）；
 //      新添加的task顺序执行，执行顺序固定（不立即返回，导致新添加的task顺序执行）
 Start..., &lt;NSThread: 0x600001bb01c0&gt;{number = 1, name = main}
@@ -339,15 +319,16 @@ End... &lt;NSThread: 0x600001bb01c0&gt;{number = 1, name = main}
 Task A..., &lt;NSThread: 0x600001bf4380&gt;{number = 6, name = (null)}
 Task B..., &lt;NSThread: 0x600001bf4380&gt;{number = 6, name = (null)}
 Task C..., &lt;NSThread: 0x600001bf4380&gt;{number = 6, name = (null)}
-</code></pre></li>
-</ul></li>
-<li><p>5、同步+串行队列</p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>5、同步+串行队列</p>
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;)
 
 // ...，代码同上
 </code></pre>
-
 <pre><code class="language-swift">// 结果：添加后不立即返回，影响当前线程的task；新添加的task顺序执行，执行顺序固定
 // 新添加的task在主线程中执行（只是出于性能优化的结果）
 //（添加task不需要立即返回，那就在当前线程中执行吧）
@@ -356,33 +337,38 @@ Task A..., &lt;NSThread: 0x600000624e80&gt;{number = 1, name = main}
 Task B..., &lt;NSThread: 0x600000624e80&gt;{number = 1, name = main}
 Task C..., &lt;NSThread: 0x600000624e80&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x600000624e80&gt;{number = 1, name = main}
-</code></pre></li>
-<li><p>6、同步+主队列</p>
-
+</code></pre>
+</li>
+<li>
+<p>6、同步+主队列</p>
 <pre><code class="language-swift">let queue = DispatchQueue.main
 
 // ...，代码同上
 </code></pre>
-
 <pre><code class="language-swift"> // 死锁（并且Crash）
  // 
 Start..., &lt;NSThread: 0x6000017520c0&gt;{number = 1, name = main}
 (lldb) 
-</code></pre></li>
-<li><p><strong>7、task如何被执行的？</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>7、task如何被执行的？</strong></p>
 <ul>
-<li><p><strong>需要两步独立的操作：<code>将task添加到queue</code>、<code>queue把task放到某个线程中执行</code>；</strong></p></li>
-<li><p><strong>当为“同步+主队列”时：同步状态要求添加task后，不立即返回；而serialQueue要求多个task要依次执行；</strong></p></li>
-<li><p><strong>由于当前线程对应的未执行完的task、新添加的task共用<code>同一个serialQueue</code>（主队列），会造成<code>当前线程对应的未执行完的task</code>和<code>新添加的task</code>都在主线程中执行，争夺资源，造成“死锁”；</strong>同理，以下代码也会造成“死锁”：</p>
-
+<li>
+<p><strong>需要两步独立的操作：<code>将task添加到queue</code>、<code>queue把task放到某个线程中执行</code>；</strong></p>
+</li>
+<li>
+<p><strong>当为“同步+主队列”时：同步状态要求添加task后，不立即返回；而serialQueue要求多个task要依次执行；</strong></p>
+</li>
+<li>
+<p>**由于当前线程对应的未执行完的task、新添加的task共用<code>同一个serialQueue</code>（主队列），会造成<code>当前线程对应的未执行完的task</code>和<code>新添加的task</code>都在主线程中执行，争夺资源，造成“死锁”；**同理，以下代码也会造成“死锁”：</p>
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;) // 串行队列
 
 print(&quot;Start..., \(Thread.current)&quot;)
 
 queue.async {
     print(&quot;Task A..., \(Thread.current)&quot;)
-
+    
     // 添加Task A后需要立即返回，添加Task B后需要执行完毕后再返回；死锁
     queue.sync {
         print(&quot;Task B..., \(Thread.current)&quot;)
@@ -390,10 +376,12 @@ queue.async {
 }
 
 print(&quot;End...&quot;, Thread.current)
-</code></pre></li>
-</ul></li>
-<li><p>8、总结</p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>8、总结</p>
 <table>
 <thead>
 <tr>
@@ -403,7 +391,6 @@ print(&quot;End...&quot;, Thread.current)
 <th style="text-align: center">主队列</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td style="text-align: center">异步</td>
@@ -418,19 +405,16 @@ print(&quot;End...&quot;, Thread.current)
 <td style="text-align: center">死锁</td>
 </tr>
 </tbody>
-</table></li>
+</table>
+</li>
 </ul>
-
-<h4 id="toc_3">四、CGD进阶</h4>
-
-<h5 id="toc_4">1、<code>Dispatch Group</code></h5>
-
+<h4><a id="%E5%9B%9B%E3%80%81cgd%E8%BF%9B%E9%98%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、CGD进阶</h4>
+<h5><a id="1%E3%80%81-dispatch-group" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1、<code>Dispatch Group</code></h5>
 <ul>
-<li><p><strong>队列组：可以将多个队列添加到同一个组中，当组中所有的任务都执行完后，进行通知；</strong></p>
-
+<li><strong>队列组：可以将多个队列添加到同一个组中，当组中所有的任务都执行完后，进行通知；</strong>
 <ul>
-<li><p><strong>通知方式1（notify，异步执行，不会阻塞当前进程）：</strong></p>
-
+<li>
+<p><strong>通知方式1（notify，异步执行，不会阻塞当前进程）：</strong></p>
 <pre><code class="language-swift">let group = DispatchGroup()
 let concurrentQueue = DispatchQueue(label: &quot;com.test.gcdDemo.concurrent&quot;, attributes: [.concurrent])
 let serialQueue = DispatchQueue(label: &quot;com.test.gcdDemo.serial&quot;)
@@ -461,7 +445,6 @@ group.notify(queue: DispatchQueue.main) {
 
 print(&quot;End...&quot;, Thread.current)
 </code></pre>
-
 <pre><code class="language-swift">// （A、B）和（C、D）并行执行，A与B并行执行，C和D串行执行；End没有被阻塞
 Start..., &lt;NSThread: 0x60000190b740&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x60000190b740&gt;{number = 1, name = main}
@@ -471,10 +454,9 @@ Task D..., &lt;NSThread: 0x6000019597c0&gt;{number = 4, name = (null)}
 Task A..., &lt;NSThread: 0x60000193d4c0&gt;{number = 5, name = (null)}
 Notify... &lt;NSThread: 0x60000190b740&gt;{number = 1, name = main}
 </code></pre>
-
 <ul>
-<li><p><strong>补充：</strong></p>
-
+<li>
+<p><strong>补充：</strong></p>
 <pre><code class="language-swift">concurrentQueue.async(group: group) {
     Thread.sleep(forTimeInterval: 1.0)
     print(&quot;Task A..., \(Thread.current)&quot;)
@@ -487,10 +469,12 @@ concurrentQueue.async {
     print(&quot;Task A..., \(Thread.current)&quot;)
     group.leave()
 }
-</code></pre></li>
-</ul></li>
-<li><p><strong>通知方式2（wait，阻塞当前进程，直到所有任务都完成或等待超时，才向下执行）：</strong></p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>通知方式2（wait，阻塞当前进程，直到所有任务都完成或等待超时，才向下执行）：</strong></p>
 <pre><code class="language-swift">let group = DispatchGroup()
 let concurrentQueue = DispatchQueue(label: &quot;com.test.gcdDemo.concurrent&quot;, attributes: [.concurrent])
 let serialQueue = DispatchQueue(label: &quot;com.test.gcdDemo.serial&quot;)
@@ -514,14 +498,13 @@ serialQueue.async(group: group) {
 serialQueue.async(group: group) {
     print(&quot;Task D..., \(Thread.current)&quot;)
 }
-
+    
 group.wait() // 阻塞当前进程，直到所有任务都完成或等待超时，才向下执行
 
 print(&quot;Notify...&quot;, Thread.current)
 
 print(&quot;End...&quot;, Thread.current)
 </code></pre>
-
 <pre><code class="language-swift">// （A、B）和（C、D）并行执行，A与B并行执行，C和D串行执行；End被阻塞了
 Start..., &lt;NSThread: 0x600003211d80&gt;{number = 1, name = main}
 Task B..., &lt;NSThread: 0x6000032630c0&gt;{number = 7, name = (null)}
@@ -530,15 +513,15 @@ Task D..., &lt;NSThread: 0x6000032710c0&gt;{number = 8, name = (null)}
 Task A..., &lt;NSThread: 0x600003255680&gt;{number = 3, name = (null)}
 Notify... &lt;NSThread: 0x600003211d80&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x600003211d80&gt;{number = 1, name = main}
-</code></pre></li>
-</ul></li>
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_5">2、<code>Dispatch Semaphore</code></h5>
-
+</li>
+</ul>
+<h5><a id="2%E3%80%81-dispatch-semaphore" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2、<code>Dispatch Semaphore</code></h5>
 <ul>
-<li><p><strong>计数信号量：一般可以用来控制最大的并行数量；</strong></p>
-
+<li>
+<p><strong>计数信号量：一般可以用来控制最大的并行数量；</strong></p>
 <pre><code class="language-swift">// 正常情况，先wait，再signal；
 // 写法1：信号量初始值大于等于1
 let semaphore = DispatchSemaphore(value: 1)
@@ -580,7 +563,6 @@ queue.async {
 
 print(&quot;End...&quot;, Thread.current)
 </code></pre>
-
 <pre><code class="language-swift">// 写法2：信号量初始值大于等于0
 let semaphore = DispatchSemaphore(value: 0)
 let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;, attributes: [.concurrent])
@@ -623,7 +605,6 @@ queue.async {
 
 print(&quot;End...&quot;, Thread.current)
 </code></pre>
-
 <pre><code class="language-swift">// 由于最大并行数为1，【START】【END】必须成对（task执行完毕），才能执行下面的，即使它们在不同的线程中执行
 Start..., &lt;NSThread: 0x600002292180&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x600002292180&gt;{number = 1, name = main}
@@ -635,31 +616,34 @@ End... &lt;NSThread: 0x600002292180&gt;{number = 1, name = main}
 【END】Task D..., &lt;NSThread: 0x6000022c9780&gt;{number = 5, name = (null)}
 【START】Task B..., &lt;NSThread: 0x6000022cc2c0&gt;{number = 4, name = (null)}
 【END】Task B..., &lt;NSThread: 0x6000022cc2c0&gt;{number = 4, name = (null)}
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_6">3、<code>Dispatch Barrier</code></h5>
-
+<h5><a id="3%E3%80%81-dispatch-barrier" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3、<code>Dispatch Barrier</code></h5>
 <ul>
-<li>1）<code>dispatch_barrier_async</code>：
-
+<li>
+<p>1）<code>dispatch_barrier_async</code>：</p>
 <ul>
 <li><strong>用于等待队列中前面的任务执行完毕后，自己才执行，而队列后面的任务需等待它完成之后才执行；</strong></li>
 <li><strong>会阻塞queue，但不会阻塞当前线程；</strong></li>
-</ul></li>
-<li>2）<code>dispatch_barrier_sync</code>：
-
+</ul>
+</li>
+<li>
+<p>2）<code>dispatch_barrier_sync</code>：</p>
 <ul>
 <li><strong>用于等待队列中前面的任务执行完毕后，自己才执行，而队列后面的任务需等待它完成之后才执行；</strong></li>
 <li><strong>会阻塞queue，也会阻塞当前线程；</strong></li>
-</ul></li>
-<li>3）<strong>该队列必须是<code>自己创建的并行队列</code>，否则dispatch_barrier_async、dispatch_barrier_sync分别等价于dispatch_async、dispatch_sync；</strong></li>
-<li><p>4）<strong>典型的案例：数据的读写；</strong>通常为了防止文件读写导致冲突，会创建一个串行的队列，所有的文件操作都是通过这个队列来执行的，读操作并行，而写操作串行；</p>
-
+</ul>
+</li>
+<li>
+<p>3）<strong>该队列必须是<code>自己创建的并行队列</code>，否则dispatch_barrier_async、dispatch_barrier_sync分别等价于dispatch_async、dispatch_sync；</strong></p>
+</li>
+<li>
+<p>4）**典型的案例：数据的读写；**通常为了防止文件读写导致冲突，会创建一个串行的队列，所有的文件操作都是通过这个队列来执行的，读操作并行，而写操作串行；</p>
 <pre><code class="language-swift">let concurrentQueue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;, attributes: [.concurrent])
-
+    
 print(&quot;Start..., \(Thread.current)&quot;)
-
+    
 concurrentQueue.async {
     Thread.sleep(forTimeInterval: 3.0) // Sleep
     print(&quot;Read Task A..., \(Thread.current)&quot;)
@@ -677,10 +661,9 @@ concurrentQueue.async(flags: [.barrier]) {
 concurrentQueue.async {
     print(&quot;Read Task D..., \(Thread.current)&quot;)
 }
-
+    
 print(&quot;End...&quot;, Thread.current)
 </code></pre>
-
 <pre><code class="language-swift">// Task A和Task B并行，Write Task C必须等前面的A、B执行完毕；没有阻塞当前线程
 Start..., &lt;NSThread: 0x60000100ee00&gt;{number = 1, name = main}
 End... &lt;NSThread: 0x60000100ee00&gt;{number = 1, name = main}
@@ -688,19 +671,17 @@ Read Task B..., &lt;NSThread: 0x60000105f180&gt;{number = 7, name = (null)}
 Read Task A..., &lt;NSThread: 0x600001052740&gt;{number = 4, name = (null)}
 Write Task C..., &lt;NSThread: 0x600001052740&gt;{number = 4, name = (null)}
 Read Task D..., &lt;NSThread: 0x600001052740&gt;{number = 4, name = (null)}
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_7">五、其他</h4>
-
-<h5 id="toc_8">1、线程同步</h5>
-
+<h4><a id="%E4%BA%94%E3%80%81%E5%85%B6%E4%BB%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、其他</h4>
+<h5><a id="1%E3%80%81%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1、线程同步</h5>
 <ul>
-<li><p><strong>就是为了防止多个线程抢夺同一个资源造成的数据安全问题，而采取的一种措施，有很多实现方法，比如互斥锁、同步执行等；</strong></p>
-
+<li>
+<p><strong>就是为了防止多个线程抢夺同一个资源造成的数据安全问题，而采取的一种措施，有很多实现方法，比如互斥锁、同步执行等；</strong></p>
 <ul>
-<li><p>a. 互斥锁：给需要同步的代码块加一个互斥锁，保证每次只有一个线程访问此代码块；</p>
-
+<li>
+<p>a. 互斥锁：给需要同步的代码块加一个互斥锁，保证每次只有一个线程访问此代码块；</p>
 <pre><code class="language-swift">// Swift
 objc_sync_enter(self)
 // TODO Code
@@ -710,16 +691,18 @@ objc_sync_exit(self)
 @synchronized(self) {
     // TODO Code
 }
-</code></pre></li>
-<li><p>b. 同步执行：把需要同步的代码块添加到同一个串行队列，可以使用GCD、NSOperation实现；</p></li>
-</ul></li>
+</code></pre>
+</li>
+<li>
+<p>b. 同步执行：把需要同步的代码块添加到同一个串行队列，可以使用GCD、NSOperation实现；</p>
+</li>
 </ul>
-
-<h4 id="toc_9">六、多个网络请求场景</h4>
-
+</li>
+</ul>
+<h4><a id="%E5%85%AD%E3%80%81%E5%A4%9A%E4%B8%AA%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%9C%BA%E6%99%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、多个网络请求场景</h4>
 <ul>
-<li><p>1、没有监听所有网络请求都结束的时间点</p>
-
+<li>
+<p>1、没有监听所有网络请求都结束的时间点</p>
 <pre><code class="language-swift">let urlStr = &quot;https://github.com/&quot;
 
 print(&quot;Start..., \(Thread.current)&quot;)
@@ -732,7 +715,6 @@ for i in 0 ..&lt; 3 {
 }
 print(&quot;End..., \(Thread.current)&quot;)
 </code></pre>
-
 <pre><code class="language-swift">Start..., &lt;NSThread: 0x60000161e0c0&gt;{number = 1, name = main}
 For Index: 0...
 【START】Task 0..., &lt;NSThread: 0x60000161e0c0&gt;{number = 1, name = main}
@@ -744,9 +726,10 @@ End..., &lt;NSThread: 0x60000161e0c0&gt;{number = 1, name = main}
 【END】Task 0..., &lt;NSThread: 0x600001642c40&gt;{number = 5, name = (null)}
 【END】Task 1..., &lt;NSThread: 0x600001641a00&gt;{number = 4, name = (null)}
 【END】Task 2..., &lt;NSThread: 0x60000169cb80&gt;{number = 7, name = (null)}
-</code></pre></li>
-<li><p>2、监听所有网络请求都结束的时间点（Group-enter-notify）</p>
-
+</code></pre>
+</li>
+<li>
+<p>2、监听所有网络请求都结束的时间点（Group-enter-notify）</p>
 <pre><code class="language-swift">let urlStr = &quot;https://github.com/&quot;
 let group = DispatchGroup()
 
@@ -765,7 +748,6 @@ group.notify(queue: .main) {
 }
 print(&quot;End..., \(Thread.current)&quot;)
 </code></pre>
-
 <pre><code class="language-swift">Start..., &lt;NSThread: 0x600000701840&gt;{number = 1, name = main}
 For Index: 0...
 【START】Task 0..., &lt;NSThread: 0x600000701840&gt;{number = 1, name = main}
@@ -778,9 +760,10 @@ End..., &lt;NSThread: 0x600000701840&gt;{number = 1, name = main}
 【END】Task 2..., &lt;NSThread: 0x600000757600&gt;{number = 3, name = (null)}
 【END】Task 0..., &lt;NSThread: 0x60000077adc0&gt;{number = 11, name = (null)}
 All Task End..., &lt;NSThread: 0x600000701840&gt;{number = 1, name = main}
-</code></pre></li>
-<li><p>3、监听所有网络请求都结束的时间点（Group-enter-wait）</p>
-
+</code></pre>
+</li>
+<li>
+<p>3、监听所有网络请求都结束的时间点（Group-enter-wait）</p>
 <pre><code class="language-swift">let urlStr = &quot;https://github.com/&quot;
 let group = DispatchGroup()
 let queue = DispatchQueue(label: &quot;com.test.gcdTest&quot;, attributes: [.concurrent])
@@ -806,7 +789,6 @@ queue.async {
 }
 print(&quot;End..., \(Thread.current)&quot;)
 </code></pre>
-
 <pre><code class="language-swift">Start..., &lt;NSThread: 0x600003f4c040&gt;{number = 1, name = main}
 For Index: 0...
 For Index: 1...
@@ -819,9 +801,10 @@ End..., &lt;NSThread: 0x600003f4c040&gt;{number = 1, name = main}
 【END】Task 1..., &lt;NSThread: 0x600003f14640&gt;{number = 5, name = (null)}
 【END】Task 0..., &lt;NSThread: 0x600003f277c0&gt;{number = 6, name = (null)}
 All Task End..., &lt;NSThread: 0x600003f4c040&gt;{number = 1, name = main}
-</code></pre></li>
-<li><p>4、监听所有网络请求都结束的时间点（Group-async-notify+Semaphore；<strong>借助semaphore来管理计数；</strong>同理也可以Group-async-wait+Semaphore）</p>
-
+</code></pre>
+</li>
+<li>
+<p>4、监听所有网络请求都结束的时间点（Group-async-notify+Semaphore；**借助semaphore来管理计数；**同理也可以Group-async-wait+Semaphore）</p>
 <pre><code class="language-swift">let urlStr = &quot;https://github.com/&quot;
 let group = DispatchGroup()
 let queue = DispatchQueue(label: &quot;com.test.gcdTest&quot;, attributes: [.concurrent])
@@ -830,14 +813,14 @@ print(&quot;Start..., \(Thread.current)&quot;)
 for i in 0 ..&lt; 3 {
     print(&quot;For Index: \(i)...&quot;)
     queue.async(group: group) {
-
+        
         let semaphore = DispatchSemaphore(value: 0)
         print(&quot;【START】Task \(i)..., \(Thread.current)&quot;)
         URLSession(configuration: .default).dataTask(with: URL(string: urlStr)!) { (data, response, error) in
             print(&quot;【END】Task \(i)..., \(Thread.current)&quot;)
             semaphore.signal()
         }.resume()
-
+        
         // 阻塞每一个网络请求；
         // 但为了让各个网络请求独立，需要一个并行队列，并且为了不影响当前线程（主线程），让其异步执行
         semaphore.wait()
@@ -860,7 +843,6 @@ group.notify(queue: .main) {
 
 print(&quot;End..., \(Thread.current)&quot;)
 </code></pre>
-
 <pre><code class="language-swift">Start..., &lt;NSThread: 0x600002691dc0&gt;{number = 1, name = main}
 For Index: 0...
 For Index: 1...
@@ -873,9 +855,10 @@ End..., &lt;NSThread: 0x600002691dc0&gt;{number = 1, name = main}
 【END】Task 1..., &lt;NSThread: 0x6000026da880&gt;{number = 3, name = (null)}
 【END】Task 2..., &lt;NSThread: 0x6000026d31c0&gt;{number = 4, name = (null)}
 All Task End..., &lt;NSThread: 0x600002691dc0&gt;{number = 1, name = main}
-</code></pre></li>
-<li><p>5、网络请求依次发出，每个结束后再请求下一个</p>
-
+</code></pre>
+</li>
+<li>
+<p>5、网络请求依次发出，每个结束后再请求下一个</p>
 <pre><code class="language-swift">let urlStr = &quot;https://github.com/&quot;
 let queue = DispatchQueue(label: &quot;com.test.gcdTest&quot;, attributes: [.concurrent])
 // 需要一个异步执行的并发队列，否则会阻塞主线程
@@ -895,7 +878,6 @@ for i in 0 ..&lt; 3 {
 }
 print(&quot;End..., \(Thread.current)&quot;)
 </code></pre>
-
 <pre><code class="language-swift">Start..., &lt;NSThread: 0x600001702100&gt;{number = 1, name = main}
 For Index: 0...
 For Index: 1...
@@ -907,9 +889,10 @@ End..., &lt;NSThread: 0x600001702100&gt;{number = 1, name = main}
 【END】Task 1..., &lt;NSThread: 0x600001754800&gt;{number = 3, name = (null)}
 【START】Task 2..., &lt;NSThread: 0x60000177df80&gt;{number = 10, name = (null)}
 【END】Task 2..., &lt;NSThread: 0x600001773040&gt;{number = 8, name = (null)}
-</code></pre></li>
-<li><p>6、网络请求依次发出，每个结束后再请求下一个，并且监听所有网络请求都结束的时间点</p>
-
+</code></pre>
+</li>
+<li>
+<p>6、网络请求依次发出，每个结束后再请求下一个，并且监听所有网络请求都结束的时间点</p>
 <pre><code class="language-swift">let urlStr = &quot;https://github.com/&quot;
 let queue = DispatchQueue(label: &quot;com.test.gcdTest&quot;, attributes: [.concurrent])
 let semaphore = DispatchSemaphore(value: 1)
@@ -946,7 +929,6 @@ group.notify(queue: .main) {
 
 print(&quot;End..., \(Thread.current)&quot;)
 </code></pre>
-
 <pre><code class="language-swift">Start..., &lt;NSThread: 0x600002a0a5c0&gt;{number = 1, name = main}
 For Index: 0...
 For Index: 1...
@@ -959,7 +941,8 @@ End..., &lt;NSThread: 0x600002a0a5c0&gt;{number = 1, name = main}
 【START】Task 2..., &lt;NSThread: 0x600002a7e240&gt;{number = 10, name = (null)}
 【END】Task 2..., &lt;NSThread: 0x600002a70480&gt;{number = 9, name = (null)}
 All Task End..., &lt;NSThread: 0x600002a0a5c0&gt;{number = 1, name = main}
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -1025,7 +1008,7 @@ All Task End..., &lt;NSThread: 0x600002a0a5c0&gt;{number = 1, name = main}
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

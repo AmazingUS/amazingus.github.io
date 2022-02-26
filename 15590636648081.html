@@ -109,50 +109,51 @@
 
       <div class="article-content">
         <ul>
-<li><p>1、安装OpenCV</p>
-
-<pre><code class="language-text">brew install opencv
+<li>
+<p>1、安装OpenCV</p>
+<pre><code class="language-plain_text">brew install opencv
 </code></pre>
-
 <ul>
 <li>安装路径：<code>/usr/local/Cellar/opencv</code>；</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <span id="more"></span><!-- more -->
-
 <ul>
-<li><p>2、新建Xcode工程，配置Build Settings、Build Phases；</p>
-
+<li>
+<p>2、新建Xcode工程，配置Build Settings、Build Phases；</p>
 <ul>
-<li><p><strong>a. Header Search Paths</strong></p>
-
-<pre><code class="language-text">$(PROJECT_DIR)  // 当前工程路径
+<li>
+<p><strong>a. Header Search Paths</strong></p>
+<pre><code class="language-plain_text">$(PROJECT_DIR)  // 当前工程路径
 /usr/local/Cellar/opencv/4.1.0_2/include/opencv4  // OpenCV的头文件路径
 </code></pre>
-
 <ul>
 <li><strong>注意：OpenCV的头文件路径不要以<code>...opencv4/opencv2</code>结尾，否则<code>#include &quot;opencv2/opencv_modules.hpp&quot;报错file not found</code>；</strong></li>
-</ul></li>
-<li><p><strong>b. Library Search Paths</strong></p>
-
-<pre><code class="language-text">$(PROJECT_DIR)  // 当前工程路径
+</ul>
+</li>
+<li>
+<p><strong>b. Library Search Paths</strong></p>
+<pre><code class="language-plain_text">$(PROJECT_DIR)  // 当前工程路径
 /usr/local/Cellar/opencv/4.1.0_2/lib  // OpenCV的库文件路径
-</code></pre></li>
-<li><p><strong>c. Link Binary With Libraries</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>c. Link Binary With Libraries</strong></p>
 <ul>
 <li>点击+选择Add Other...，<code>CMD + Shift + G</code>直接定位到<code>/usr/local/Cellar/opencv/4.1.0_2/lib</code> ；</li>
 <li>CMD多选，图标不带箭头的，并且后缀为.dylib的库文件；（也可以只选几个常用的库文件）
-
 <ul>
 <li>impgpro、highgui、ml、core、imagecodecs</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>3、测试代码（C++）</p>
-
-<pre><code class="language-cpp">#include &lt;iostream&gt;
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3、测试代码（C++）</p>
+<pre><code class="language-C++">#include &lt;iostream&gt;
 #include &lt;opencv2/opencv.hpp&gt;
 
 using namespace cv;
@@ -160,47 +161,51 @@ using namespace cv;
 int main(int argc, const char * argv[]) {
     Mat image;
     image = imread(&quot;/Users/scott/Desktop/a.png&quot;, IMREAD_COLOR);
-
+    
     namedWindow(&quot;Display Image&quot;, WINDOW_AUTOSIZE);
     imshow(&quot;Display Image&quot;, image);
-
+    
     Mat gray;
     cvtColor(image, gray, COLOR_RGBA2GRAY);
-
+    
     namedWindow(&quot;gray&quot;);
     imshow(&quot;gray&quot;, gray);
-
+    
     waitKey(0);
-
+    
     return 0;
 }
-</code></pre></li>
-<li><p>4、支持Python3</p>
-
+</code></pre>
+</li>
+<li>
+<p>4、支持Python3</p>
 <ul>
-<li>若使用brew安装了OpenCV，再使用pip直接安装opencv-python会造成重复安装，brew安装的OpenCV本身就可以支持Python；</li>
-<li><p><strong>方式：将OpenCV安装路径下的<code>cv2.cpython-36m-darwin.so</code>文件复制到Python环境下的<code>site-packages</code>目录中，并重命名为<code>cv.so</code>；注意若进行软连接，还是会报错的；</strong></p>
-
-<pre><code class="language-text"># .so文件的具体路径
+<li>
+<p>若使用brew安装了OpenCV，再使用pip直接安装opencv-python会造成重复安装，brew安装的OpenCV本身就可以支持Python；</p>
+</li>
+<li>
+<p><strong>方式：将OpenCV安装路径下的<code>cv2.cpython-36m-darwin.so</code>文件复制到Python环境下的<code>site-packages</code>目录中，并重命名为<code>cv.so</code>；注意若进行软连接，还是会报错的；</strong></p>
+<pre><code class="language-plain_text"># .so文件的具体路径
 /usr/local/Cellar/opencv/3.3.1_1/lib/python3.6/site-packages/cv2.cpython-36m-darwin.so
 
 # Python的site-packages目录的具体路径
 /Users/scott/.pyenv/versions/3.6.6/lib/python3.6/site-packages
 </code></pre>
-
 <ul>
 <li><strong>a. 此时虽然可以import cv2，但是运行时还会报numpy错误，还需要numpy库；</strong></li>
 <li><strong>b. 虽然brew安装OpenCV时会安装numpy（/usr/local/Cellar目录下），但是将其ln -s到Python的site-packages目录下时，还是会报错的，所以需要<code>pip install numpy</code>；</strong></li>
 <li>补充：
-
 <ul>
 <li>PyCharm Cleaning System Cache：选择File -&gt; Invalidate Caches/Restart；</li>
 <li>site-packages为第三方库的安装路径；</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>5、测试代码（Python3）</p>
-
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>5、测试代码（Python3）</p>
 <pre><code class="language-python">import cv2
 
 print(cv2.__version__)
@@ -212,7 +217,8 @@ cv2.imshow(&quot;Image&quot;, img)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -221,7 +227,7 @@ cv2.destroyAllWindows()
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15622540495294.html" title="Previous Post: iOS 屏幕方向总结">&laquo; iOS 屏幕方向总结</a>
+            <a href="15626010144789.html" title="Previous Post: iOS 状态栏总结">&laquo; iOS 状态栏总结</a>
             
           </p>
         </div>
@@ -278,7 +284,7 @@ cv2.destroyAllWindows()
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

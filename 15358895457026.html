@@ -108,66 +108,67 @@
       </div>
 
       <div class="article-content">
-        <ul>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0">一、概述</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8">二、使用</a></li>
+<li><a href="#%E4%B8%89%E3%80%81%E6%A1%88%E4%BE%8B">三、案例</a></li>
+</ul>
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
+<ul>
 <li>
-<a href="#toc_0">一、概述</a>
+<p>Fabric是一个Python库，其提供了丰富的与SSH交互的接口，可以用来在本地或远程机器上自动化、流水化地执行Shell命令，因此非常适合用来做应用的远程部署及系统维护；</p>
 </li>
 <li>
-<a href="#toc_1">二、使用</a>
+<p>Fabric分为Python2和Python3版本的，安装Python3版本：<code>pip install fabric3</code>；</p>
 </li>
 <li>
-<a href="#toc_2">三、案例</a>
+<p>fab是Fabric程序的命令行执行命令，默认执行一个fabfile.py的文件（若需执行其他文件，使用-f参数指定文件即可）；</p>
+<ul>
+<li>
+<p><strong>fabfile.py文件中每个函数就是一个任务，任务名即函数名；</strong></p>
+</li>
+<li>
+<p><strong>fab命令就是用来执行fabfile.py中定义的任务，且必须显式地指定任务名；可以使用-l参数列举当前fabfile.py文件中定义了哪些任务；</strong></p>
+</li>
+<li>
+<p>fab命令语法为 <code>fab [options] &lt;command&gt; [arg1,arg2:val2,host=foo]</code> ；</p>
 </li>
 </ul>
-
-
-<h4 id="toc_0">一、概述</h4>
-
-<ul>
-<li><p>Fabric是一个Python库，其提供了丰富的与SSH交互的接口，可以用来在本地或远程机器上自动化、流水化地执行Shell命令，因此非常适合用来做应用的远程部署及系统维护；</p></li>
-<li><p>Fabric分为Python2和Python3版本的，安装Python3版本：<code>pip install fabric3</code>；</p></li>
-<li><p>fab是Fabric程序的命令行执行命令，默认执行一个fabfile.py的文件（若需执行其他文件，使用-f参数指定文件即可）；</p>
-
-<ul>
-<li><strong>fabfile.py文件中每个函数就是一个任务，任务名即函数名；</strong></li>
-<li><p><strong>fab命令就是用来执行fabfile.py中定义的任务，且必须显式地指定任务名；可以使用-l参数列举当前fabfile.py文件中定义了哪些任务；</strong></p></li>
-<li><p>fab命令语法为 <code>fab [options] &lt;command&gt; [arg1,arg2:val2,host=foo]</code> ；</p></li>
-</ul></li>
+</li>
 </ul>
-
 <span id="more"></span><!-- more -->
-
-<h4 id="toc_1">二、使用</h4>
-
+<h4><a id="%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、使用</h4>
 <ul>
-<li><p>简单示例</p>
-
+<li>
+<p>简单示例</p>
 <pre><code class="language-python">from fabric.api import *
 
 def hello1():
-    local(&#39;uname -a&#39;) # 获取当前主机信息
+    local('uname -a') # 获取当前主机信息
 
 def hello2():
-    local(&#39;date&#39;) # 获取当前主机时间
+    local('date') # 获取当前主机时间
 </code></pre>
-
 <pre><code class="language-shell">// 执行fab命令
 fab hello1
 [localhost] local: uname -a
 Darwin s.lan 16.7.0 Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; root:xnu-3789.70.16~2/RELEASE_X86_64 x86_64
-</code></pre></li>
-<li><p>常见参数</p>
-
+</code></pre>
+</li>
+<li>
+<p>常见参数</p>
 <pre><code class="language-shell">-l：列举定义的任务函数名
 -f：指定fab入口文件，默认为fabfile.py
 -w：当命令失败时，发出警告而不是终止任务
 -P：以异步并行方式运行多主机任务，默认为串行运行
 
 -R：指定role，以角色名区分不同业务组主机
-</code></pre></li>
-<li><p>env（全局环境变量）</p>
-
-<pre><code class="language-text">from fabric.api import env
+</code></pre>
+</li>
+<li>
+<p>env（全局环境变量）</p>
+<pre><code class="language-plain_text">from fabric.api import env
 
 env.hosts：定义目标主机（list）
 env.port：定义目标主机端口
@@ -175,18 +176,18 @@ env.port：定义目标主机端口
 env.user：定义用户名
 env.password：定义密码
 env.passwords：与password功能一样，但需要指定主机，
-    比如env.passwords = {&#39;user1@host&#39;:&#39;pass1&#39;}
+    比如env.passwords = {'user1@host':'pass1'}
 
 env.roledefs：定义角色分组，
-    比如env.roledefs = {&#39;webser&#39;:[&#39;ht1&#39;,&#39;hs2&#39;], &#39;dbser&#39;:[&#39;ht3&#39;,&#39;ht4&#39;]}
+    比如env.roledefs = {'webser':['ht1','hs2'], 'dbser':['ht3','ht4']}
 </code></pre>
-
 <ul>
 <li>也可以自定义全局变量，如env.name、env.age等；</li>
 <li><strong>配置使用public key登陆SSH，需要设置<code>env.use_ssh_config = True</code>；</strong>（参考<code>http://docs.fabfile.org/en/1.10/usage/execution.html#leveraging-native-ssh-config-files</code>）</li>
-</ul></li>
-<li><p>常用API</p>
-
+</ul>
+</li>
+<li>
+<p>常用API</p>
 <pre><code class="language-python">lcd：切换本地目录
 local：执行本地命令
 
@@ -201,71 +202,75 @@ confirm：获得提示信息确认
 
 @runs_once：函数修饰符，标识的函数在同一台主机上只会执行一次
 @roles：函数修饰符，配合env.roledefs的角色使用
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_2">三、案例</h4>
-
+<h4><a id="%E4%B8%89%E3%80%81%E6%A1%88%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、案例</h4>
 <ul>
-<li><p>打包nginx日志并下载解压</p>
-
+<li>
+<p>打包nginx日志并下载解压</p>
 <pre><code class="language-python">from fabric.api import *
 
-env.hosts = [&#39;IP&#39;]
-env.port = &#39;PORT&#39;
-env.user = &#39;root&#39;
+env.hosts = ['IP']
+env.port = 'PORT'
+env.user = 'root'
 env.use_ssh_config = True # 使用public key登陆SSH
 
 def pack_download():
-    with cd(&#39;/var/log/nginx&#39;):
-        run(&#39;rm -f access_log.tar&#39;)
-        run(&#39;tar -cjv -f access_log.tar *.log&#39;)
-
-        get(&#39;access_log.tar&#39;, &#39;~/Desktop/access_log.tar&#39;)
-        local(&#39;rm ~/Desktop/access_log&#39;)
-        local(&#39;mkdir ~/Desktop/access_log&#39;)
-        local(&#39;tar -xv -f ~/Desktop/access_log.tar -C ~/Desktop/access_log&#39;)
+    with cd('/var/log/nginx'):
+        run('rm -f access_log.tar')
+        run('tar -cjv -f access_log.tar *.log')
+        
+        get('access_log.tar', '~/Desktop/access_log.tar')
+        local('rm ~/Desktop/access_log')
+        local('mkdir ~/Desktop/access_log')
+        local('tar -xv -f ~/Desktop/access_log.tar -C ~/Desktop/access_log')
 </code></pre>
-
-<pre><code class="language-text"># 若删除的文件不存在，则终止任务
+<pre><code class="language-plain_text"># 若删除的文件不存在，则终止任务
 fab pack_download
 
 # 出现错误，继续执行任务
 fab -w pack_download
-</code></pre></li>
-<li><p>在不同服务器进行不同操作</p>
-
+</code></pre>
+</li>
+<li>
+<p>在不同服务器进行不同操作</p>
 <pre><code class="language-python">from fabric.api import *
 
 env.roledefs = {
-    &#39;websrv&#39;: [&#39;root@192.168.0.1:22&#39;, &#39;root@192.168.0.2:22&#39;],
-    &#39;dbsrv&#39;: [&#39;root@192.168.0.3:22&#39;, &#39;root@192.168.0.4:22&#39;]
+    'websrv': ['root@192.168.0.1:22', 'root@192.168.0.2:22'],
+    'dbsrv': ['root@192.168.0.3:22', 'root@192.168.0.4:22']
 }
 env.use_ssh_config = True
 
-@roles(&#39;websrv&#39;)
-def task1():
-    run(&#39;ls /root -l&#39;)
 
-@roles(&#39;websrv&#39;)
+@roles('websrv')
+def task1():
+    run('ls /root -l')
+
+
+@roles('websrv')
 def task2():
-    run(&#39;du -sh /root&#39;)
+    run('du -sh /root')
+
 
 def test():
     execute(task1)
     execute(task2)
-</code></pre></li>
-<li><p>彩色打印</p>
-
+</code></pre>
+</li>
+<li>
+<p>彩色打印</p>
 <pre><code class="language-python">from fabric.colors import *
 
 def show():
-    print(green(&#39;success&#39;))
-    print(red(&#39;fail&#39;))
-    print(yellow(&#39;yellow&#39;))
-</code></pre></li>
-<li><p>错误及异常处理</p>
-
+    print(green('success'))
+    print(red('fail'))
+    print(yellow('yellow'))
+</code></pre>
+</li>
+<li>
+<p>错误及异常处理</p>
 <pre><code class="language-python"># http://docs.fabfile.org/en/1.12.1/tutorial.html#failure-handling
 
 from fabric.colors import *
@@ -273,11 +278,12 @@ from fabric.contrib.console import confirm
 
 def error_handle():
     with settings(warn_only=True):
-        result = local(&#39;./manage.py test my_app&#39;, capture=True)
+        result = local('./manage.py test my_app', capture=True)
     if result.failed and not confirm(&quot;Tests failed. Continue anyway?&quot;):
         abort(&quot;Aborting at user request.&quot;)
-    print(&#39;success&#39;)
-</code></pre></li>
+    print('success')
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -343,7 +349,7 @@ def error_handle():
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

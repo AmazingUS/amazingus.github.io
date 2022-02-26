@@ -108,77 +108,71 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">一、安装、卸载</a>
-</li>
-<li>
-<a href="#toc_1">二、pyenv</a>
-</li>
-<li>
-<a href="#toc_2">三、pip模块</a>
-</li>
-<li>
-<a href="#toc_3">四、virtualenv模块、pyenv-virualenv插件</a>
-</li>
-<li>
-<a href="#toc_4">五、pipenv模块</a>
-</li>
-<li>
-<a href="#toc_5">六、参考</a>
-</li>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD">一、安装、卸载</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81pyenv">二、pyenv</a></li>
+<li><a href="#%E4%B8%89%E3%80%81pip%E6%A8%A1%E5%9D%97">三、pip模块</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81virtualenv%E6%A8%A1%E5%9D%97%E3%80%81pyenv-virualenv%E6%8F%92%E4%BB%B6">四、virtualenv模块、pyenv-virualenv插件</a></li>
+<li><a href="#%E4%BA%94%E3%80%81pipenv%E6%A8%A1%E5%9D%97">五、pipenv模块</a></li>
+<li><a href="#%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83">六、参考</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、安装、卸载</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、安装、卸载</h4>
 <ul>
-<li><p>Python的安装方式有多种方式，可以通过Python安装包、Homebrew、pyenv等方式；</p></li>
-<li><p>建议使用pyenv进行安装，pyenv可以很好地进行Python多版本管理，等同于NodeJS中的nvm；这里使用pyenv进行安装；</p>
-
+<li>
+<p>Python的安装方式有多种方式，可以通过Python安装包、Homebrew、pyenv等方式；</p>
+</li>
+<li>
+<p>建议使用pyenv进行安装，pyenv可以很好地进行Python多版本管理，等同于NodeJS中的nvm；这里使用pyenv进行安装；</p>
 <ul>
-<li><p>第1步：安装pyenv；</p>
-
+<li>
+<p>第1步：安装pyenv；</p>
 <pre><code class="language-shell">brew install pyenv
 </code></pre>
-
-<p><img src="media/14702376488769/pyenv_install.png" alt="pyenv_instal" style="width:573px;"/></p>
-
-<span id="more"></span><!-- more -->
-
+<p><img src="media/14702376488769/pyenv_install.png" alt="pyenv_instal" style="width:573px;" /></p>
+  <span id="more"></span><!-- more -->
 <ul>
-<li>（必须）向 <code>~/.bash_profile</code> 文件中添加 <code>if which pyenv &gt; /dev/null; then eval &quot;$(pyenv init -)&quot;; fi</code>，保存后，执行 <code>source ~/.bash_profile</code> 应用该配置；否则执行pyenv shell时报错：pyenv: no such command &#39;shell&#39;；</li>
-<li><p>（可选）使用pyenv安装的Python版本默认存放在/Users/USERNAME/.pyenv/versions/目录中，而不是Homebrew的相关目录中；向~/.bash_profile文件中添加 <code>export PYENV_ROOT=/usr/local/var/pyenv</code>，让其安装到Homebrew的/usr/local/var/pyenv/versions/目录中；</p></li>
-<li><p><strong>注意：改用zhs后，改为需要向 <code>~/.zprofile</code> 和 <code>~/.zshrc</code> 文件中，分别添加以下内容：</strong></p>
-
-<pre><code class="language-text"># ~/.zprofile
+<li>
+<p>（必须）向 <code>~/.bash_profile</code> 文件中添加 <code>if which pyenv &gt; /dev/null; then eval &quot;$(pyenv init -)&quot;; fi</code>，保存后，执行 <code>source ~/.bash_profile</code> 应用该配置；否则执行pyenv shell时报错：pyenv: no such command 'shell'；</p>
+</li>
+<li>
+<p>（可选）使用pyenv安装的Python版本默认存放在/Users/USERNAME/.pyenv/versions/目录中，而不是Homebrew的相关目录中；向~/.bash_profile文件中添加 <code>export PYENV_ROOT=/usr/local/var/pyenv</code>，让其安装到Homebrew的/usr/local/var/pyenv/versions/目录中；</p>
+</li>
+<li>
+<p><strong>注意：改用zhs后，改为需要向 <code>~/.zprofile</code> 和 <code>~/.zshrc</code> 文件中，分别添加以下内容：</strong></p>
+<pre><code class="language-plain_text"># ~/.zprofile
 export PYENV_ROOT=&quot;$HOME/.pyenv&quot;
 export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;
 eval &quot;$(pyenv init --path)&quot;
 </code></pre>
-
-<pre><code class="language-text"># ~/.zshrc
+<pre><code class="language-plain_text"># ~/.zshrc
 eval &quot;$(pyenv init -)&quot;
-</code></pre></li>
-</ul></li>
-<li><p>第2步：安装某个版本的Python；</p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>第2步：安装某个版本的Python；</p>
 <pre><code class="language-shell">pyenv install &lt;VERSION&gt;
-</code></pre></li>
-<li><p>第3步：安装完成后，执行brew doctor进行检查；若出现以下警告：<code>Warning: &quot;config&quot; scripts exist outside your system or Homebrew directories...</code>，则需要向~/.bash_profile文件中添加 <code>alias brew=&#39;&quot;env&quot; PATH=${PATH//$(pyenv root)\/shims:/} brew&#39;</code> 即可解决；</p>
-
-<p><img src="media/14702376488769/pyenv_warning.png" alt="pyenv_warning" style="width:617px;"/></p></li>
-</ul></li>
-<li><p>通过pyenv安装Python，卸载也需要通过pyenv进行卸载；若手动直接安装Python则需要手动卸载，相关命令如下：</p>
-
+</code></pre>
+</li>
+<li>
+<p>第3步：安装完成后，执行brew doctor进行检查；若出现以下警告：<code>Warning: &quot;config&quot; scripts exist outside your system or Homebrew directories...</code>，则需要向~/.bash_profile文件中添加	<code>alias brew='&quot;env&quot; PATH=${PATH//$(pyenv root)\/shims:/} brew'</code> 即可解决；</p>
+<p><img src="media/14702376488769/pyenv_warning.png" alt="pyenv_warning" style="width:617px;" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>通过pyenv安装Python，卸载也需要通过pyenv进行卸载；若手动直接安装Python则需要手动卸载，相关命令如下：</p>
 <pre><code class="language-shell">sudo rm -rf /Applications/Python X.X
 sudo rm -rf /Library/Frameworks/Python.framework
 
 sudo rm /var/db/receipts/org.python.*
 ~/.base_profile中删除关于Python相关的PATH值
-</code></pre></li>
-<li><p>Shell命令补充：删除无效文件链接（新建脚本文本，内容如下，添加执行权限）</p>
-
+</code></pre>
+</li>
+<li>
+<p>Shell命令补充：删除无效文件链接（新建脚本文本，内容如下，添加执行权限）</p>
 <pre><code class="language-shell"># 遍历所有软链接
 for a in `find /usr/local/bin -type l`
 do  
@@ -190,99 +184,103 @@ echo $a
 rm $a
 fi
 done
-</code></pre></li>
-<li><p><strong>注意：</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p><strong>注意：</strong></p>
 <ul>
 <li><strong>macOS Catalina（10.15）之前，系统只内置了Python2；从这个版本开始，系统同时内置了Python2、Python3&amp;Pip3（命令分别是<code>python</code>、<code>python3</code>&amp;<code>pip3</code>）；</strong></li>
 <li><strong>但不建议使用系统内置的Python3，pyenv无法识别检测到，建议还是通过<code>pyenv</code>进行安装管理；Pycharm需要填手动添加“Python Interpreter”才可以识别检测到；</strong></li>
-</ul></li>
 </ul>
-
-<h4 id="toc_1">二、pyenv</h4>
-
+</li>
+</ul>
+<h4><a id="%E4%BA%8C%E3%80%81pyenv" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、pyenv</h4>
 <ul>
-<li><p>某些系统工具依赖于Python，切换Python的版本可能导致这些工具无法使用；为了解决此问题，pyenv提供了切换Python版本的三种级别（shell &gt; local &gt; global）；</p>
-
+<li>
+<p>某些系统工具依赖于Python，切换Python的版本可能导致这些工具无法使用；为了解决此问题，pyenv提供了切换Python版本的三种级别（shell &gt; local &gt; global）；</p>
 <ul>
 <li>shell：对当前shell的临时设定Python版本，退出后失效；</li>
 <li>local：对当前目录及子目录（子目录没有.python_version的情况下）设定Python版本，会在当前目录下创建.python_version；</li>
 <li>global：直接对系统全局默认的Python进行修改，不建议使用；</li>
 </ul>
-
 <pre><code class="language-shell">pyenv version # 查看当前pyenv版本（以python --version为准）
 pyenv versions # 查看已安装的Python版本（system为系统默认安装的）
-
+	
 pyenv install -l # 查看可以安装的Python版本
 pyenv install &lt;VERSION&gt; # 安装某个版本的Python
 pyenv rehash # 刷新shims（install之后使用）
 pyenv uninstall &lt;VERSION&gt; # 卸载某个版本的Python
-
+	
 pyenv global [VERSION] # 查看或设置全局的Python版本
 pyenv local [VERSION] # 查看或设置目录的Python版本
 pyenv shell [VERSION] # 查看或设置Shell的Python版本
 pyenv &lt;local | shell&gt; --unset # 取消某个级别设置的Python版本
 </code></pre>
-
-<p><img src="media/14702376488769/pyenv_local.png" alt="pyenv_loca" style="width:344px;"/></p></li>
-<li><p><strong>pyenv和virtualenv的比较：</strong></p>
-
+<p><img src="media/14702376488769/pyenv_local.png" alt="pyenv_loca" style="width:344px;" /></p>
+</li>
+<li>
+<p><strong>pyenv和virtualenv的比较：</strong></p>
 <ul>
 <li><strong><code>pyenv是独立于Python的系统级别的多版本管理，用于Python版本环境的隔离；</code> 对于使用同一版本Python的所有项目，都是使用相同的Python环境，模块被安装在系统目录下，共用同一套模块；</strong></li>
 <li><strong><code>virtualenv模块是Python内部的项目级别的多版本管理，用于Python版本环境的隔离、需要安装的模块的隔离（主要）；</code> 不同项目中的Python是独立的（即使使用相同的Python版本），一个项目中的模块只能在该项目中使用，模块被安装在当前项目目录中；</strong></li>
-</ul></li>
 </ul>
-
-<h4 id="toc_2">三、pip模块</h4>
-
+</li>
+</ul>
+<h4><a id="%E4%B8%89%E3%80%81pip%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、pip模块</h4>
 <ul>
-<li><p>pip是Python的模块管理工具（其也是一个模块），类似于Node.js的npm；</p>
-
+<li>
+<p>pip是Python的模块管理工具（其也是一个模块），类似于Node.js的npm；</p>
 <pre><code class="language-shell">pip list # 查看已安装的模块
 pip list &lt;--outdated | -o&gt; # 查看需要更新的模块
-
+	
 pip freeze # 只列出由pip安装的模块
 pip freeze &gt; &lt;FILE_NAME&gt; # 将由pip安装的模块，写入到模块依赖描述文件中
 # 例如pip freez &gt; requirements.txt
-
+	
 pip install &lt;PACKAGE&gt; # 安装模块
 pip install -r requirements.txt # 根据模块依赖描述文件安装模块
 pip install &lt;PACKAGE&gt; --user # 安装模块到用户目录中
 pip uninstall &lt;PACKAGE&gt; # 卸载模块
 pip install &lt;--upgrade | -U&gt; &lt;PACKAGE&gt; # 更新模块，例如pip install -U pip
-
+	
 pip show &lt;PACKAGE&gt; # 查看已安装的某个模块信息 
-</code></pre></li>
-<li><p>macOS系统默认安装的Python2.X没有安装pip，需要自己安装（相关步骤如下）；</p>
-
+</code></pre>
+</li>
+<li>
+<p>macOS系统默认安装的Python2.X没有安装pip，需要自己安装（相关步骤如下）；</p>
 <pre><code class="language-shell">wget https://bootstrap.pypa.io/get-pip.py # 下载pip安装脚本
 
 sudo python get-pip.py # 执行脚本进行安装
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_3">四、virtualenv模块、pyenv-virualenv插件</h4>
-
+<h4><a id="%E5%9B%9B%E3%80%81virtualenv%E6%A8%A1%E5%9D%97%E3%80%81pyenv-virualenv%E6%8F%92%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、virtualenv模块、pyenv-virualenv插件</h4>
 <ul>
-<li>virtualenv是一个模块，需要通过pip进行安装；所以在某个版本Python上安装了virtualenv，只能在该版本Python环境下执行virtualenv命令；</li>
-<li><p>在执行virtualenv命令时加-p参数，指定创建虚拟环境时所使用的Python版本；不加-p参数则使用当前virtualenv的Python版本；</p>
-
+<li>
+<p>virtualenv是一个模块，需要通过pip进行安装；所以在某个版本Python上安装了virtualenv，只能在该版本Python环境下执行virtualenv命令；</p>
+</li>
+<li>
+<p>在执行virtualenv命令时加-p参数，指定创建虚拟环境时所使用的Python版本；不加-p参数则使用当前virtualenv的Python版本；</p>
 <pre><code class="language-shell"># 使用指定Python的版本，创建Python虚拟环境vvv
 virtualenv -p /Users/scott/.pyenv/versions/3.5.2/bin/pip3 vvv 
 
 source vvv/bin/activate # 激活虚拟环境
 deactivate # 关闭虚拟环境
-</code></pre></li>
-<li><p>创建Python虚拟环境，除了使用给每个版本的Python都安装的virtualenv模块外，还可以使用pyenv-virualenv插件；</p>
-
+</code></pre>
+</li>
+<li>
+<p>创建Python虚拟环境，除了使用给每个版本的Python都安装的virtualenv模块外，还可以使用pyenv-virualenv插件；</p>
 <ul>
-<li><p>pyenv-virualenv插件是pyenv插件化的“virtualenv”；它是pyenv的插件，不属于某个版本的Python，为所有版本的Python提供创建虚拟环境的功能；</p>
-
+<li>
+<p>pyenv-virualenv插件是pyenv插件化的“virtualenv”；它是pyenv的插件，不属于某个版本的Python，为所有版本的Python提供创建虚拟环境的功能；</p>
 <pre><code class="language-shell">brew install pyenv-virtualenv
-</code></pre></li>
-<li><p>向~/.bash_profile文件中添加 <code>if which pyenv-virtualenv-init &gt; /dev/null; then eval &quot;$(pyenv virtualenv-init -)&quot;; fi</code>，保存后，执行 <code>source ~/.bash_profile</code> 应用配置；</p></li>
-<li><p><strong>使用pyenv-virtualenv创建的Python虚拟环境与直接使用virtualenv创建的效果一样，只是虚拟环境的文件目录被设置在~/.pyenv/versions/目录下，而virtualenv设置在当前目录下；</strong></p>
-
+</code></pre>
+</li>
+<li>
+<p>向~/.bash_profile文件中添加	<code>if which pyenv-virtualenv-init &gt; /dev/null; then eval &quot;$(pyenv virtualenv-init -)&quot;; fi</code>，保存后，执行 <code>source ~/.bash_profile</code> 应用配置；</p>
+</li>
+<li>
+<p><strong>使用pyenv-virtualenv创建的Python虚拟环境与直接使用virtualenv创建的效果一样，只是虚拟环境的文件目录被设置在~/.pyenv/versions/目录下，而virtualenv设置在当前目录下；</strong></p>
 <pre><code class="language-shell">pyenv virtualenv &lt;VERSION&gt; &lt;ENV_NAME&gt; # 创建一个虚拟环境
 
 pyenv virtualenvs # 查看已创建的虚拟环境
@@ -293,21 +291,24 @@ pyenv activate &lt;ENV_NAME&gt; # 激活虚拟环境，也可使用&quot;pyenv s
 pyenv deatcive # 关闭虚拟环境，也可使用&quot;pyenv shell &lt;OTHER_VERSION&gt;&quot;命令
 
 pyenv uninstall &lt;ENV_NAME&gt; # 卸载（删除）虚拟环境
-</code></pre></li>
-</ul></li>
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_4">五、pipenv模块</h4>
-
+</li>
+</ul>
+<h4><a id="%E4%BA%94%E3%80%81pipenv%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、pipenv模块</h4>
 <ul>
-<li><p><strong>pipenv模块可以认为是更简便的virtualenv，但是其比virtualenv更强大；其整合了virtualenv、pip、pipfile，可以更方便地为项目建立虚拟环境，并管理虚拟环境中的第三方模块；</strong></p></li>
-<li><p><strong>同时pipenv可以配合pyenv安装需要的Python版本；</strong>Besides, if pyenv is available, pipenv will automatically use it to install the required version.</p></li>
-<li><p>Pipfile是模块依赖管理文件，用于替代过于简陋的requirements.txt；Pipfile文件是TOML格式，并且使用Pipfile.lock提供版本锁定支持；</p>
-
+<li>
+<p><strong>pipenv模块可以认为是更简便的virtualenv，但是其比virtualenv更强大；其整合了virtualenv、pip、pipfile，可以更方便地为项目建立虚拟环境，并管理虚拟环境中的第三方模块；</strong></p>
+</li>
+<li>
+<p>**同时pipenv可以配合pyenv安装需要的Python版本；**Besides, if pyenv is available, pipenv will automatically use it to install the required version.</p>
+</li>
+<li>
+<p>Pipfile是模块依赖管理文件，用于替代过于简陋的requirements.txt；Pipfile文件是TOML格式，并且使用Pipfile.lock提供版本锁定支持；</p>
 <pre><code class="language-shell">// 安装
 pip install pipenv
 </code></pre>
-
 <pre><code class="language-shell">// 使用当前系统的Python3版本创建虚拟环境
 pipenv --three 
 // 使用指定Python版本创建虚拟环境
@@ -318,7 +319,6 @@ pipenv shell
 // 退出虚拟环境
 exit
 </code></pre>
-
 <pre><code class="language-shell">// 安装flask模块并加入到Pipfile
 pipenv install flask 
 // 安装固定版本flask模块并加入到Pipfile
@@ -338,18 +338,17 @@ pipenv --venv
 // 查看Python解释器信息
 pipenv --py 
 </code></pre>
-
 <ul>
-<li><p><strong>macOS执行<code>pipenv install</code>报错<code>ValueError: unknown locale: UTF-8</code>；解决方法：在~/.bash_profile中添加以下内容：</strong></p>
-
+<li>
+<p><strong>macOS执行<code>pipenv install</code>报错<code>ValueError: unknown locale: UTF-8</code>；解决方法：在~/.bash_profile中添加以下内容：</strong></p>
 <pre><code class="language-shell">export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-</code></pre></li>
-</ul></li>
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_5">六、参考</h4>
-
+</li>
+</ul>
+<h4><a id="%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、参考</h4>
 <ul>
 <li>pyenv的安装和使用：<code>http://v2in.com/pyenv-installation-and-usage.html</code></li>
 <li>搭建基本的 Python 开发环境：<code>http://www.dreamxu.com/build-a-basic-python-development-environment/</code></li>
@@ -418,7 +417,7 @@ export LANG=en_US.UTF-8
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

@@ -108,28 +108,27 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">一、is、==、对象的布尔值（if ObjA）、None、not</a>
-</li>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81is%E3%80%81%E3%80%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%83%E5%B0%94%E5%80%BC%EF%BC%88-if-obja%EF%BC%89%E3%80%81none%E3%80%81not">一、is、==、对象的布尔值（if ObjA）、None、not</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、is、==、对象的布尔值（if ObjA）、None、not</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81is%E3%80%81%E3%80%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%83%E5%B0%94%E5%80%BC%EF%BC%88-if-obja%EF%BC%89%E3%80%81none%E3%80%81not" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、is、==、对象的布尔值（if ObjA）、None、not</h4>
 <ul>
-<li><p><strong>1. <code>is</code>：</strong></p>
-
+<li>
+<p><strong>1. <code>is</code>：</strong></p>
 <ul>
-<li><p><strong>比较两个对象的内存地址(<code>id(a)</code>)是否相同，若是相同则返回True，否则为False；</strong></p></li>
-<li><p><strong>注意：由于Python会对较小的对象进行缓存（比如str、int等，自定义类不会进行缓存），所以有时并不会创建新的对象，而是从缓存中进行查找返回，没有才创建；</strong></p></li>
-<li><p><strong><code>is not</code>表示is的相反结果，内存地址不相同时返回True</strong>；</p>
-
-<span id="more"></span><!-- more -->
-
+<li>
+<p><strong>比较两个对象的内存地址(<code>id(a)</code>)是否相同，若是相同则返回True，否则为False；</strong></p>
+</li>
+<li>
+<p><strong>注意：由于Python会对较小的对象进行缓存（比如str、int等，自定义类不会进行缓存），所以有时并不会创建新的对象，而是从缓存中进行查找返回，没有才创建；</strong></p>
+</li>
+<li>
+<p><strong><code>is not</code>表示is的相反结果，内存地址不相同时返回True</strong>；</p>
+  <span id="more"></span><!-- more -->
 <pre><code class="language-python"># case 1:
-s1 = &#39;Hello&#39;
-s2 = &#39;Hello&#39;  # 会使用缓存
+s1 = 'Hello'
+s2 = 'Hello'  # 会使用缓存
 print(id(s1))
 print(id(s2))
 print(s1 is s2)  # True
@@ -150,38 +149,65 @@ class A:
 
 print(A() is A()) # False
 </code></pre>
-
-<!-- more -->   </li>
-</ul></li>
-<li><p><strong>2. <code>==</code></strong></p>
-
+</li>
+</ul>
+   <!-- more -->   
+</li>
+<li>
+<p><strong>2. <code>==</code></strong></p>
 <ul>
-<li><p><strong>返回对象的<code>__eq__</code>函数的结果（布尔值）；</strong></p></li>
-<li><p><strong><code>==</code>、<code>!=</code>、<code>&gt;</code>、<code>&lt;</code>等值比较都可以通过重写<code>__eq__</code>、<code>__ne__</code>等函数来改变；</strong></p></li>
-<li><p><strong>str的<code>__eq__</code>函数会比较字符串的内容是否一致；自定义类的<code>__eq__</code>函数会返回父类的默认值；</strong></p></li>
-<li><p><strong>若需要重写自定义类的<code>__eq__</code>，一般也需要重写其<code>__hash__</code>，否则该自定义类不可以在哈希集合中使用；</strong>若没有重写<code>__eq__</code>，则此时不应该重写<code>__hash__</code>；对象放到哈希集合中时，先调用__hash_进行定位其集合中的位置，再调用<code>__eq__</code>决定是否应该将该对象访问集合中；</p></li>
-</ul></li>
-<li><p><strong>3. 对象的布尔值（if ObjA）</strong></p>
-
+<li>
+<p><strong>返回对象的<code>__eq__</code>函数的结果（布尔值）；</strong></p>
+</li>
+<li>
+<p><strong><code>==</code>、<code>!=</code>、<code>&gt;</code>、<code>&lt;</code>等值比较都可以通过重写<code>__eq__</code>、<code>__ne__</code>等函数来改变；</strong></p>
+</li>
+<li>
+<p><strong>str的<code>__eq__</code>函数会比较字符串的内容是否一致；自定义类的<code>__eq__</code>函数会返回父类的默认值；</strong></p>
+</li>
+<li>
+<p>**若需要重写自定义类的<code>__eq__</code>，一般也需要重写其<code>__hash__</code>，否则该自定义类不可以在哈希集合中使用；**若没有重写<code>__eq__</code>，则此时不应该重写<code>__hash__</code>；对象放到哈希集合中时，先调用__hash_进行定位其集合中的位置，再调用<code>__eq__</code>决定是否应该将该对象访问集合中；</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>3. 对象的布尔值（if ObjA）</strong></p>
 <ul>
-<li><p><strong>当一个对象的<code>__bool__()</code>函数返回True并且<code>__len()__</code>不返回0时，该对象的布尔值为True，否则为False；</strong> 比如0、0.0、0L、&quot;&quot;（空字符串）、[]、()、{}、False、None等；</p></li>
-<li><p><strong>注意：None的布尔值为False；</strong></p></li>
-<li><p><strong><code>对象的布尔值</code>在if判断、布尔运算时（<code>and</code>、<code>or</code>、<code>not</code>）会用到；</strong></p></li>
-</ul></li>
-<li><p><strong>4. None</strong></p>
-
+<li>
+<p><strong>当一个对象的<code>__bool__()</code>函数返回True并且<code>__len()__</code>不返回0时，该对象的布尔值为True，否则为False；</strong> 比如0、0.0、0L、&quot;&quot;（空字符串）、[]、()、{}、False、None等；</p>
+</li>
+<li>
+<p><strong>注意：None的布尔值为False；</strong></p>
+</li>
+<li>
+<p><strong><code>对象的布尔值</code>在if判断、布尔运算时（<code>and</code>、<code>or</code>、<code>not</code>）会用到；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>4. None</strong></p>
 <ul>
-<li><p><strong>一个特殊的常量，含义为空，相当于C语言中的NULL，其可以赋值给任意变量；None的数据类型为NoneType；</strong></p></li>
-<li><p>注意：空列表、空字符串、空字典都不是None；</p></li>
-</ul></li>
-<li><p><strong>5. not</strong></p>
-
+<li>
+<p><strong>一个特殊的常量，含义为空，相当于C语言中的NULL，其可以赋值给任意变量；None的数据类型为NoneType；</strong></p>
+</li>
+<li>
+<p>注意：空列表、空字符串、空字典都不是None；</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>5. not</strong></p>
 <ul>
-<li><p>布尔运算符非，可以和is、in连用组成<code>is not</code>、<code>not in</code>语句；</p></li>
-<li><p><strong>Python的<code>布尔运算符使用的是not而不是!</code>，<code>关系运算符!=</code>（不等于）才用到了!；</strong></p></li>
-</ul></li>
-<li><p>举例：</p>
-
+<li>
+<p>布尔运算符非，可以和is、in连用组成<code>is not</code>、<code>not in</code>语句；</p>
+</li>
+<li>
+<p><strong>Python的<code>布尔运算符使用的是not而不是!</code>，<code>关系运算符!=</code>（不等于）才用到了!；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>举例：</p>
 <ul>
 <li><strong><code>if a == None</code></strong>：（不常用，写法不Pythonic）判断a是否为空，等价于<code>if a is None</code>；</li>
 <li><strong><code>if a != None</code></strong>：（不常用，写法不Pythonic）判断a是否不为空，等价于<code>if a is not None</code>；</li>
@@ -190,13 +216,15 @@ print(A() is A()) # False
 <li><strong><code>if a</code></strong>：判断对象的布尔值是否为True；</li>
 <li><strong><code>if not a</code></strong>：判断对象的布尔值是否为False；</li>
 <li><strong>注意：当判断一个对象是否为None时，使用<code>if a is None</code>和<code>if not a</code>是没有区别；当判断一个对象是否False时，就只使用<code>if not a</code>；</strong></li>
-</ul></li>
-<li><p>参考：</p>
-
+</ul>
+</li>
+<li>
+<p>参考：</p>
 <ul>
 <li>if foobar != None 和 if foobar is not None 是完全等价的吗？<code>https://www.v2ex.com/t/443096</code></li>
 <li>python里None 表示False吗<code>https://www.zhihu.com/question/48707732</code></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
       </div>
@@ -262,7 +290,7 @@ print(A() is A()) # False
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

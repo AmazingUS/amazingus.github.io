@@ -95,80 +95,6 @@
 
       
       <div class="article">
-        <a class="clearlink" href="15622540495294.html">
-          
-          <h1>iOS 屏幕方向总结</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">一、三种枚举值、三个与界面方向相关的方法</a>
-</li>
-<li>
-<a href="#toc_1">二、界面是否允许旋转、界面支持的显示方向、界面的默认方向</a>
-</li>
-<li>
-<a href="#toc_2">三、两种触屏幕旋转的发方式</a>
-</li>
-<li>
-<a href="#toc_3">四、场景分析</a>
-</li>
-<li>
-<a href="#toc_4">五、旋转适配</a>
-</li>
-</ul>
-
-
-<h4 id="toc_0">一、三种枚举值、三个与界面方向相关的方法</h4>
-
-<ul>
-<li><p>1、UIDeviceOrientation</p>
-
-<ul>
-<li><p>当前设备的方向（以home键的位置作为参照），不可以设置，一共有7种情况；</p>
-
-<pre><code class="language-swift">case unknown
-case portrait // Device oriented vertically, home button on the bottom
-case portraitUpsideDown // Device oriented vertically, home button on the top
-case landscapeLeft // Device oriented horizontally, home button on the right
-case landscapeRight // Device oriented horizontally, home button on the left
-case faceUp // Device oriented flat, face up
-case faceDown // Device oriented flat, face down
-</code></pre></li>
-<li><p>获取当前设备的方向</p>
-
-<pre><code class="language-swift">UIDevice.current.orientation
-</code></pre>
-
-<ul>
-<li><strong>补充：也可以通过加速器判断设备方向；</strong></li>
-</ul></li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15622540495294.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2019/7/4</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
         <a class="clearlink" href="15590636648081.html">
           
           <h1>macOS OpenCV配置使用</h1>
@@ -177,16 +103,15 @@ case faceDown // Device oriented flat, face down
             <div class="a-content-text">
                
 			  <ul>
-<li><p>1、安装OpenCV</p>
-
-<pre><code class="language-text">brew install opencv
+<li>
+<p>1、安装OpenCV</p>
+<pre><code class="language-plain_text">brew install opencv
 </code></pre>
-
 <ul>
 <li>安装路径：<code>/usr/local/Cellar/opencv</code>；</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
  
             </div>
           </div>
@@ -216,30 +141,24 @@ case faceDown // Device oriented flat, face down
             
             <div class="a-content-text">
                
-			  <ul>
-<li>
-<a href="#toc_0">一、个人配置</a>
-</li>
-<li>
-<a href="#toc_1">二、插件安装</a>
-</li>
-<li>
-<a href="#toc_2">三、快捷键</a>
-</li>
+			  <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE">一、个人配置</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">二、插件安装</a></li>
+<li><a href="#%E4%B8%89%E3%80%81%E5%BF%AB%E6%8D%B7%E9%94%AE">三、快捷键</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、个人配置</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、个人配置</h4>
 <ul>
-<li><p><strong>Preference -&gt; Package Setting -&gt; Package Control -&gt; Setting-User</strong></p></li>
-<li><p>1、添加以下配置，设置代理：</p>
-
-<pre><code class="language-text">&quot;http_proxy&quot;: &quot;http://127.0.0.1:8001&quot;,
+<li>
+<p><strong>Preference -&gt; Package Setting -&gt; Package Control -&gt; Setting-User</strong></p>
+</li>
+<li>
+<p>1、添加以下配置，设置代理：</p>
+<pre><code class="language-plain_text">&quot;http_proxy&quot;: &quot;http://127.0.0.1:8001&quot;,
 &quot;https_proxy&quot;: &quot;http://127.0.0.1:8001&quot;,
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-
  
             </div>
           </div>
@@ -269,35 +188,22 @@ case faceDown // Device oriented flat, face down
             
             <div class="a-content-text">
                
-			  <ul>
-<li>
-<a href="#toc_0">一、AssetsLibrary框架（iOS 8之前）</a>
+			  <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81assetslibrary%E6%A1%86%E6%9E%B6%EF%BC%88ios-8%E4%B9%8B%E5%89%8D%EF%BC%89">一、AssetsLibrary框架（iOS 8之前）</a>
 <ul>
-<li>
-<a href="#toc_1">1、基本概念</a>
-</li>
+<li><a href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">1、基本概念</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_2">二、PhotoKit框架（iOS 8开始）</a>
+<li><a href="#%E4%BA%8C%E3%80%81photokit%E6%A1%86%E6%9E%B6%EF%BC%88ios-8%E5%BC%80%E5%A7%8B%EF%BC%89">二、PhotoKit框架（iOS 8开始）</a>
 <ul>
-<li>
-<a href="#toc_3">1、基本概念</a>
-</li>
-<li>
-<a href="#toc_4">2、具体操作</a>
-</li>
-<li>
-<a href="#toc_5">3、授权描述</a>
-</li>
-<li>
-<a href="#toc_6">4、iOS 14适配</a>
-</li>
+<li><a href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">1、基本概念</a></li>
+<li><a href="#2%E3%80%81%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C">2、具体操作</a></li>
+<li><a href="#3%E3%80%81%E6%8E%88%E6%9D%83%E6%8F%8F%E8%BF%B0">3、授权描述</a></li>
+<li><a href="#4%E3%80%81ios-14%E9%80%82%E9%85%8D">4、iOS 14适配</a></li>
 </ul>
 </li>
 </ul>
-
-
+</div>
  
             </div>
           </div>
@@ -327,35 +233,27 @@ case faceDown // Device oriented flat, face down
             
             <div class="a-content-text">
                
-			  <ul>
-<li>
-<a href="#toc_0">一、概述</a>
-</li>
-<li>
-<a href="#toc_1">二、Crontab（定时任务）</a>
-</li>
-<li>
-<a href="#toc_2">三、配置案例</a>
-</li>
-<li>
-<a href="#toc_3">三、其他日志切割方法</a>
-</li>
+			  <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0">一、概述</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81crontab%EF%BC%88%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%89">二、Crontab（定时任务）</a></li>
+<li><a href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B">三、配置案例</a></li>
+<li><a href="#%E4%B8%89%E3%80%81%E5%85%B6%E4%BB%96%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E6%96%B9%E6%B3%95">三、其他日志切割方法</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、概述</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
 <ul>
-<li><p>Logrotate是一个非常有用的管理日志工具，其可以自动对日志进行切割（轮循）、压缩以及删除旧的日志文件；比如让设置logrotate自动化运作，让/var/log/acc日志文件每30天轮循，并删除超过6个月的日志；</p></li>
-<li><p>Linux默认安装了Logrotate，其默认的配置文件为：<code>/etc/logrotate.conf</code>、<code>/etc/logrotate.d/目录</code>；</p>
-
+<li>
+<p>Logrotate是一个非常有用的管理日志工具，其可以自动对日志进行切割（轮循）、压缩以及删除旧的日志文件；比如让设置logrotate自动化运作，让/var/log/acc日志文件每30天轮循，并删除超过6个月的日志；</p>
+</li>
+<li>
+<p>Linux默认安装了Logrotate，其默认的配置文件为：<code>/etc/logrotate.conf</code>、<code>/etc/logrotate.d/目录</code>；</p>
 <ul>
 <li><strong>logrotate.conf为主要的配置文件，logrotate.d是一个目录，该目录中的所有文件默认都会被导入到/etc/logrotate.conf中（<code>include /etc/logrotate.d</code>），在logrotate.conf被logrotate时，同时也被logrotate</strong>；</li>
 <li>若/etc/logrotate.d/里面的文件中没有配置一些设置，则使用/etc/logrotate.conf中设置的默认值；</li>
 <li><strong>对于多数Service，即使系统没有安装Logrotate，一个默认的logrotate配置文件会在安装程序包时自动创建；若是使用源代码编译手动安装，就需要手动在/etc/logrotate.d/目录中手动创建一个logrotate配置文件；</strong></li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
  
             </div>
           </div>
@@ -365,6 +263,60 @@ case faceDown // Device oriented flat, face down
             
             <a href="15377973431694.html">Read more</a>&nbsp;&nbsp; 
             <span class="date">2018/9/24</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
+        <a class="clearlink" href="15360828386434.html">
+          
+          <h1>Nginx+uWSGI运行Python Web应用</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81uwsgi%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">一、uWSGI基本使用</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81uwsgi%E8%BF%90%E8%A1%8Cflask%E5%BA%94%E7%94%A8">二、uWSGI运行Flask应用</a></li>
+<li><a href="#%E4%B8%89%E3%80%81nginx-uwsgi%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8">三、Nginx+uWSGI配合使用</a></li>
+</ul>
+</div>
+<h4><a id="%E4%B8%80%E3%80%81uwsgi%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、uWSGI基本使用</h4>
+<ul>
+<li>
+<p>新建一个python文件，定义一个application函数（其实就是wsgi的处理函数）；</p>
+<pre><code class="language-python"># server.py
+def application(env, response):
+    response('200 OK', [('Content-Type', 'text/html')])
+    return [b'&lt;h1&gt;Hello,Web!&lt;/h1&gt;'] # 注意: 返回的是字节
+</code></pre>
+</li>
+<li>
+<p>终端中运行：<code>uwsgi --http :9090 --wsgi-file server.py</code> ，之后就可以访问<code>http://127.0.0.1:9090/</code>；</p>
+<ul>
+<li>a. --http参数指定HTTP监听地址端口；</li>
+<li>b. --wsgi-file参数指定WSGI应用程序入口；</li>
+<li>c. uWSGI会自动搜寻名为”application”的应用对象并调用，也可以使用--callable参数修改该默认名称；</li>
+</ul>
+</li>
+</ul>
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15360828386434.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2018/9/5</span>
              
 			
           </div>
@@ -432,7 +384,7 @@ case faceDown // Device oriented flat, face down
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

@@ -108,75 +108,68 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">一、概述</a>
-</li>
-<li>
-<a href="#toc_1">二、加载XIB、SB</a>
-</li>
-<li>
-<a href="#toc_2">三、UIViewController、UIView的初始化方式</a>
-</li>
-<li>
-<a href="#toc_3">四、参考</a>
-</li>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0">一、概述</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81%E5%8A%A0%E8%BD%BDxib%E3%80%81sb">二、加载XIB、SB</a></li>
+<li><a href="#%E4%B8%89%E3%80%81uiviewcontroller%E3%80%81uiview%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F">三、UIViewController、UIView的初始化方式</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81%E5%8F%82%E8%80%83">四、参考</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、概述</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
 <ul>
-<li><p>1、<strong>Interface Builder工具</strong></p>
-
+<li>
+<p>1、<strong>Interface Builder工具</strong></p>
 <ul>
 <li>可以用来使用鼠标以图形化的方式，拖拉创建界面；</li>
 <li>Xcode 4.0前，是一个独立的软件，Xcode 4.0开始，重新设计，被直接集成到Xcode中；</li>
-</ul></li>
-<li><p>2、<strong>NIB、XIB区别</strong></p>
-
+</ul>
+</li>
+<li>
+<p>2、<strong>NIB、XIB区别</strong></p>
 <ul>
 <li>Xcode 3.0前，Interface Builder创建的文件是NIB（二进制格式，NeXT Interface Builder），不利于版本控制；</li>
 <li>Xcode 3.0开始，Interface Builder使用了一种新的文件格式XIB（XML文本格式，OS X Interface Builder或XML Interface Builder）；XIB在工程编译时被转换成NIB；</li>
-</ul></li>
-<li><p>3、<strong>XIB</strong></p>
-
+</ul>
+</li>
+<li>
+<p>3、<strong>XIB</strong></p>
 <ul>
 <li>XIB是一个描述文件，包含了用户界面及相关元素；</li>
 <li><strong>一个XIB文件对应一个ViewController，也可以通过使用XIB来自定义View；</strong></li>
-</ul></li>
-<li><p>4、<strong>StoryBoard</strong></p>
-
+</ul>
+</li>
+<li>
+<p>4、<strong>StoryBoard</strong></p>
 <ul>
 <li>iOS 5开始，Apple提供了一种全新的方式StoryBoard，来拖拉创建界面；</li>
-<li><strong>StoryBoard是一组ViewController对应的XIB，以及它们之间的转换方式的集合；</strong>在StoryBoard中，不仅可以看到每个ViewController的布局样式，也可以知道各个ViewController之间的转换关系；</li>
-</ul></li>
+<li>**StoryBoard是一组ViewController对应的XIB，以及它们之间的转换方式的集合；**在StoryBoard中，不仅可以看到每个ViewController的布局样式，也可以知道各个ViewController之间的转换关系；</li>
 </ul>
-
-<span id="more"></span><!-- more -->   
-
-<h4 id="toc_1">二、加载XIB、SB</h4>
-
+</li>
+</ul>
+<span id="more"></span><!-- more -->	
+<h4><a id="%E4%BA%8C%E3%80%81%E5%8A%A0%E8%BD%BDxib%E3%80%81sb" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、加载XIB、SB</h4>
 <ul>
-<li><p>1、XIB文件的下面这些配置，决定 <code>从哪里</code> <code>如何加载</code> XIB中的视图；</p>
-
+<li>
+<p>1、XIB文件的下面这些配置，决定 <code>从哪里</code> <code>如何加载</code> XIB中的视图；</p>
 <ul>
 <li>a. XIB文件名；</li>
-<li>b. XIB文件的<strong><code>File’s Owner</code>的<code>Class</code>（默认为NSObject类型）</strong>；</li>
-<li>c. XIB文件的<strong><code>File’s Owner</code>中的<code>Outlet指向</code></strong>；</li>
-<li>d. XIB文件的<strong><code>视图（View）</code>的<code>Custom Class（默认为UIView类型）</code></strong>；</li>
-<li>e. XIB文件的<strong><code>视图（View）</code>中的<code>Outlet指向</code></strong>；</li>
-</ul></li>
-<li><p>2、<strong>XIB有<code>File&#39;s Owner（必有）</code>、<code>View（可以没有但没有意义；可以有多个顶层view）</code>、<code>Object（可以没有，可以有多个）</code>；</strong></p>
-
+<li>b. XIB文件的**<code>File’s Owner</code>的<code>Class</code>（默认为NSObject类型）**；</li>
+<li>c. XIB文件的**<code>File’s Owner</code>中的<code>Outlet指向</code>**；</li>
+<li>d. XIB文件的**<code>视图（View）</code>的<code>Custom Class（默认为UIView类型）</code>**；</li>
+<li>e. XIB文件的**<code>视图（View）</code>中的<code>Outlet指向</code>**；</li>
+</ul>
+</li>
+<li>
+<p>2、<strong>XIB有<code>File's Owner（必有）</code>、<code>View（可以没有但没有意义；可以有多个顶层view）</code>、<code>Object（可以没有，可以有多个）</code>；</strong></p>
 <ul>
-<li><strong><code>File&#39;s Owner</code>、<code>View</code>、<code>Object</code>都可以连线，关联属性、事件；</strong></li>
-<li><p><strong>Object一般是继承于NSObject的逻辑类，用于处理视图中的逻辑部分；其分为两种：</strong></p>
-
+<li><strong><code>File's Owner</code>、<code>View</code>、<code>Object</code>都可以连线，关联属性、事件；</strong></li>
+<li><strong>Object一般是继承于NSObject的逻辑类，用于处理视图中的逻辑部分；其分为两种：</strong>
 <ul>
-<li>a. <strong><code>常规Object</code>：在XIB、SB解档的时候直接创建，如添加的Gesture Recognizer；</strong></li>
-<li><p>b. <strong><code>External Object</code>：在XIB、SB初始化时，传入已存在的对象，不由XIB、SB创建；</strong></p>
-
+<li>
+<p>a. <strong><code>常规Object</code>：在XIB、SB解档的时候直接创建，如添加的Gesture Recognizer；</strong></p>
+</li>
+<li>
+<p>b. <strong><code>External Object</code>：在XIB、SB初始化时，传入已存在的对象，不由XIB、SB创建；</strong></p>
 <pre><code class="language-swift">// External Object的使用（需要配置其`Class`、`Identifier`）
 class TestHelper {
     @IBOutlet weak var sendBtn: UIButton!
@@ -190,78 +183,94 @@ let options = [UINib.OptionsKey.externalObjects:
 Bundle.main.loadNibNamed(&quot;TestXIB&quot;, owner: nil, options: options)
 
 let sendBtn = testHelper.sendBtn
-</code></pre></li>
-</ul></li>
-</ul></li>
-<li><p>3、<strong>XIB创建方式</strong></p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3、<strong>XIB创建方式</strong></p>
 <ul>
-<li><p>1）当在Xcode中创建一个<code>Empty XIB</code>时，XIB文件中<code>只有Placeholders</code>；</p>
-
-<p><img src="media/15703760378326/xib_01.png" alt="xib_01" style="width:367px;"/></p></li>
-<li><p>2）当在Xcode中创建一个<code>View XIB</code>时，XIB中有<code>Placeholders和一个View</code>；<strong>可以向这个View添加子控件，也可以给XIB添加控件（与默认的View同级别）；</strong></p>
-
-<p><img src="media/15703760378326/xib_02.png" alt="xib_02" style="width:588px;"/></p></li>
-<li><p>3）<strong>当在Xcode中创建一个<code>View Class并勾选Also create XIB file</code>时，会自动配置<code>视图（View）</code>的<code>Custom Class</code>为当前新建的View Class名称；</strong></p>
-
+<li>
+<p>1）当在Xcode中创建一个<code>Empty XIB</code>时，XIB文件中<code>只有Placeholders</code>；</p>
+<p><img src="media/15703760378326/xib_01.png" alt="xib_01" style="width:367px;" /></p>
+</li>
+<li>
+<p>2）当在Xcode中创建一个<code>View XIB</code>时，XIB中有<code>Placeholders和一个View</code>；<strong>可以向这个View添加子控件，也可以给XIB添加控件（与默认的View同级别）；</strong></p>
+<p><img src="media/15703760378326/xib_02.png" alt="xib_02" style="width:588px;" /></p>
+</li>
+<li>
+<p>3）<strong>当在Xcode中创建一个<code>View Class并勾选Also create XIB file</code>时，会自动配置<code>视图（View）</code>的<code>Custom Class</code>为当前新建的View Class名称；</strong></p>
 <ul>
-<li><strong>之后就可以把XIB文件中<code>该视图（View）内的子控件</code>，关联到View Class的IBOutlet属性；</strong></li>
-<li><p><strong>注意：File’s Owner的Class为空；</strong></p>
-
-<p><img src="media/15703760378326/xib_03.png" alt="xib_03" style="width:666px;"/></p></li>
-</ul></li>
-<li><p>4）<strong>当在Xcode中创建一个<code>ViewController Class并勾选Also create XIB file</code>时，会自动配置<code>File’s Owner</code>的<code>Class</code>为当前新建的ViewController Class名称；</strong></p>
-
+<li>
+<p><strong>之后就可以把XIB文件中<code>该视图（View）内的子控件</code>，关联到View Class的IBOutlet属性；</strong></p>
+</li>
+<li>
+<p><strong>注意：File’s Owner的Class为空；</strong></p>
+<p><img src="media/15703760378326/xib_03.png" alt="xib_03" style="width:666px;" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>4）<strong>当在Xcode中创建一个<code>ViewController Class并勾选Also create XIB file</code>时，会自动配置<code>File’s Owner</code>的<code>Class</code>为当前新建的ViewController Class名称；</strong></p>
 <ul>
-<li><strong>并且由于自动配置的File’s Owner的Class是ViewController类型，就有了一个<code>名称为view的Outlet</code>，并<code>自动关联XIB文件中的View</code>（默认会创建一个和屏幕一样大的View）；</strong></li>
-<li><p><strong><code>名称为view的Outlet必须有关联XIB文件中的View</code>，否则使用时报错：-[UIViewController _loadViewFromNibNamed:bundle:] loaded the &quot;TestViewController&quot; nib but the view outlet was not set.</strong></p>
-
-<p><img src="media/15703760378326/xib_04.png" alt="xib_04" style="width:682px;"/></p>
-
-<p><img src="media/15703760378326/xib_05.png" alt="xib_05" style="width:685px;"/></p>
-
-<p><img src="media/15703760378326/xib_06.png" alt="xib_06" style="width:685px;"/></p></li>
-<li><p><strong>也可以将这个默认的关联的View换成其他控件；</strong></p>
-
-<p><img src="media/15703760378326/xib_07.png" alt="xib_07" style="width:684px;"/></p></li>
-<li><p><strong>注意：视图（View）的Custom Class为空；</strong></p></li>
-</ul></li>
-</ul></li>
-<li><p>4、<strong>使用XIB来自定义View的方式</strong></p>
-
+<li>
+<p><strong>并且由于自动配置的File’s Owner的Class是ViewController类型，就有了一个<code>名称为view的Outlet</code>，并<code>自动关联XIB文件中的View</code>（默认会创建一个和屏幕一样大的View）；</strong></p>
+</li>
+<li>
+<p><strong><code>名称为view的Outlet必须有关联XIB文件中的View</code>，否则使用时报错：-[UIViewController _loadViewFromNibNamed:bundle:] loaded the &quot;TestViewController&quot; nib but the view outlet was not set.</strong></p>
+<p><img src="media/15703760378326/xib_04.png" alt="xib_04" style="width:682px;" /></p>
+<p><img src="media/15703760378326/xib_05.png" alt="xib_05" style="width:685px;" /></p>
+<p><img src="media/15703760378326/xib_06.png" alt="xib_06" style="width:685px;" /></p>
+</li>
+<li>
+<p><strong>也可以将这个默认的关联的View换成其他控件；</strong></p>
+<p><img src="media/15703760378326/xib_07.png" alt="xib_07" style="width:684px;" /></p>
+</li>
+<li>
+<p><strong>注意：视图（View）的Custom Class为空；</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4、<strong>使用XIB来自定义View的方式</strong></p>
 <ul>
-<li><p>a. <strong>可以通过直接加载XIB文件</strong></p>
-
+<li>
+<p>a. <strong>可以通过直接加载XIB文件</strong></p>
 <pre><code class="language-swift">let views = Bundle.main.loadNibNamed(&quot;TestXIB&quot;, owner: nil, options: nil)
 </code></pre>
-
 <ul>
-<li><p><strong>比较：配置<code>File’s Owner</code>的<code>Class</code>、配置<code>视图（View）</code>的<code>Custom Class</code></strong></p>
-
+<li>
+<p><strong>比较：配置<code>File’s Owner</code>的<code>Class</code>、配置<code>视图（View）</code>的<code>Custom Class</code></strong></p>
 <ul>
-<li>a）<code>File’s Owner</code>的<code>Class</code>的类型不要求一定是UIView类型的，<code>视图（View）</code>的<code>Custom Class</code>则必须是的；</li>
-<li>b）<strong>配置后，都可以把XIB文件中<code>该视图（View）内的子控件</code>，关联到相应Class的IBOutlet属性；但注意配置<code>File’s Owner</code>的，则加载loadNib时，需要指定参数<code>owner</code>为对应类型的对象，否则当有IBOutlet属性关联时，会导致KVC异常（这是由于XIB加载时作属性赋值、连接字段所致）；</strong></li>
-<li><p>c）<strong>配置<code>视图（View）</code>的<code>Custom Class</code>，则loadNibNamed创建的<code>视图（View）</code>的类型是配置的具体类型，而不是UIView笼统类型；而配置<code>File’s Owner</code>的<code>Class</code>，则依然是UIView笼统类型；</strong></p>
-
+<li>
+<p>a）<code>File’s Owner</code>的<code>Class</code>的类型不要求一定是UIView类型的，<code>视图（View）</code>的<code>Custom Class</code>则必须是的；</p>
+</li>
+<li>
+<p>b）<strong>配置后，都可以把XIB文件中<code>该视图（View）内的子控件</code>，关联到相应Class的IBOutlet属性；但注意配置<code>File’s Owner</code>的，则加载loadNib时，需要指定参数<code>owner</code>为对应类型的对象，否则当有IBOutlet属性关联时，会导致KVC异常（这是由于XIB加载时作属性赋值、连接字段所致）；</strong></p>
+</li>
+<li>
+<p>c）<strong>配置<code>视图（View）</code>的<code>Custom Class</code>，则loadNibNamed创建的<code>视图（View）</code>的类型是配置的具体类型，而不是UIView笼统类型；而配置<code>File’s Owner</code>的<code>Class</code>，则依然是UIView笼统类型；</strong></p>
 <pre><code class="language-swift">// 配置`File’s Owner`的`Class`
 class ViewController: UIViewController {
     @IBOutlet weak var redView: UIView!
-
-    // TestXIB.xib的File&#39;s Owner的class配置为ViewController，
+    
+    // TestXIB.xib的File's Owner的class配置为ViewController，
     // 并建立了一个从该xib的View到ViewController的IBOutlet（redView）
     func loadRedView() {
         // File’s Owner类的IBOutlet（redView）会被初始化
         Bundle.main.loadNibNamed(&quot;TestXIB&quot;, owner: self, options: nil)
-
+        
         let _redView = self.redView
     }
 }
 </code></pre>
-
 <ul>
 <li>或者</li>
 </ul>
-
 <pre><code class="language-swift">// 配置`File’s Owner`的`Class`
 class MyOwner: NSObject {
     @IBOutlet weak var redView: UIView!
@@ -269,94 +278,100 @@ class MyOwner: NSObject {
 
 class ViewController: UIViewController {
     var myOwner: MyOwner!
-
-    // TestXIB.xib的File&#39;s Owner的class配置为MyOwner，
+                       
+    // TestXIB.xib的File's Owner的class配置为MyOwner，
     // 并建立了一个从该xib的View到MyOwner的IBOutlet（redView）
     func loadRedView() {
         myOwner = MyOwner()
         // File’s Owner类的IBOutlet（redView）会被初始化
         Bundle.main.loadNibNamed(&quot;TestXIB&quot;, owner: myOwner, options: nil)
-
+        
         let _redView = myOwner.redView
     }
 }
-</code></pre></li>
-</ul></li>
-<li><p><strong>该XIB中可以有“多个视图（View）”，视图（View）有加载顺序；</strong></p></li>
-</ul></li>
-<li><p>b. <strong>对于特定类型的View（如TableViewCell、CollectionViewCell等），还可以通过创建<code>View Class并勾选Also create XIB file</code>（<code>UIView类型的为置灰状态，无法勾选</code>）</strong></p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>该XIB中可以有“多个视图（View）”，视图（View）有加载顺序；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>b. <strong>对于特定类型的View（如TableViewCell、CollectionViewCell等），还可以通过创建<code>View Class并勾选Also create XIB file</code>（<code>UIView类型的为置灰状态，无法勾选</code>）</strong></p>
 <pre><code class="language-swift">var cell = tableView.dequeueReusableCell(withIdentifier: &quot;cell2&quot;) as? TestTableViewCell
 if cell == nil {
     cell = = Bundle.main.loadNibNamed(&quot;CellXIB&quot;, owner: nil, options: nil)?.last as! TestTableViewCell
 }
 </code></pre>
-
 <pre><code class="language-swift">tableview.register(UINib.init(nibName: &quot;CellXIB&quot;, bundle: nil), forCellReuseIdentifier: &quot;cell2&quot;)
 
 var cell = tableView.dequeueReusableCell(withIdentifier: &quot;cell2&quot;, for: indexPath)
 </code></pre>
-
 <ul>
 <li><strong><code>XIB文件名</code>和<code>View Class名称</code>默认一样；</strong></li>
 <li><strong>两种方式加载都可以；若使用第二种方式，该XIB中只能有“一个视图（View）”；</strong></li>
-</ul></li>
-</ul></li>
-<li><p>5、<strong>使用XIB自定义ViewController的方式</strong></p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>5、<strong>使用XIB自定义ViewController的方式</strong></p>
 <ul>
-<li><p>a. <strong>可以通过直接加载XIB文件</strong></p>
-
+<li>
+<p>a. <strong>可以通过直接加载XIB文件</strong></p>
 <pre><code class="language-swift">let testViewController = TestViewController(nibName: &quot;TestViewController&quot;, bundle: nil)
 </code></pre>
-
 <ul>
 <li><strong>需要配置<code>File’s Owner</code>的<code>Class</code>、<code>名称为view的Outlet必须有关联</code>，（和下面的方式所需要的配置一样），就是<code>XIB文件名</code>不受限制，不必和<code>ViewController Class名称</code>一样；</strong></li>
 <li><strong>该XIB中可以有“多个视图（View）”，但只使用一个；</strong></li>
-</ul></li>
-<li><p>b. <strong>还可以通过创建<code>ViewController Class并勾选Also create XIB file</code></strong></p>
-
+</ul>
+</li>
+<li>
+<p>b. <strong>还可以通过创建<code>ViewController Class并勾选Also create XIB file</code></strong></p>
 <pre><code class="language-swift">let testViewController = TestViewController()
 </code></pre>
-
 <ul>
 <li><code>XIB文件名</code>和<code>ViewController Class名称</code>默认一样，会自动加载相应的XIB文件的View（具体参考UIViewController的视图加载逻辑）；
-
 <ul>
 <li>本质：<code>TestViewController()</code>等价于<code>TestViewController(nibName: &quot;TestViewController&quot;, bundle: nil)</code>，<strong>UIViewController的<code>init</code>为便利构造方法，内部调用指定构造方法<code>init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)</code></strong>；</li>
-</ul></li>
+</ul>
+</li>
 <li><strong>该XIB中可以有“多个视图（View）”，但只使用一个；</strong></li>
-</ul></li>
-</ul></li>
-<li><p>6、<strong>XIB的加载逻辑</strong></p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>6、<strong>XIB的加载逻辑</strong></p>
 <ul>
 <li>1）<strong>从Bundle中加载NIB到内存中；</strong></li>
 <li>2）<strong>对XIB中所有view对象进行解档；</strong>
-
 <ul>
 <li><strong>系统调用<code>initWithCoder</code>初始化方法，若view（包含<code>顶层view</code>、<code>内层view</code>）在XIB中绑定了类名，就会创建该类，若没有则创建系统默认的UIView类；</strong></li>
 <li>在<code>initWithCoder</code>方法中，不能使用XIB、SB连线出来的属性，此时值都为nil，因为还没开始关联属性；</li>
-</ul></li>
+</ul>
+</li>
 <li>3）<strong>关联属性、方法；</strong>
-
 <ul>
-<li><strong>对连线到<code>File&#39;s Owner</code>、<code>View</code>、Object中的属性进行弱引用关联（调用<code>setValue:foKey:</code>方法），并关联事件；</strong></li>
-</ul></li>
+<li><strong>对连线到<code>File's Owner</code>、<code>View</code>、Object中的属性进行弱引用关联（调用<code>setValue:foKey:</code>方法），并关联事件；</strong></li>
+</ul>
+</li>
 <li>4）<strong>解档完成；</strong>
-
 <ul>
 <li>XIB中各个view解档完成后，调用各自的<code>awakeFromNib</code>方法，XIB已经完全OK，可以使用了；</li>
 <li>在<code>awakeFromNib</code>方法中，可以使用XIB、SB连线出来的属性了；</li>
-</ul></li>
-</ul></li>
-<li><p>7、<strong>SB通过<code>View Controller Scene</code>管理ViewController（<code>一一对应</code>）；</strong></p>
-
-<p><img src="media/15703760378326/sb_01.png" alt="sb_01" style="width:752px;"/></p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>7、<strong>SB通过<code>View Controller Scene</code>管理ViewController（<code>一一对应</code>）；</strong></p>
+<p><img src="media/15703760378326/sb_01.png" alt="sb_01" style="width:752px;" /></p>
 <ul>
-<li><p><strong>其Custom Class默认是UIViewController类型的（自定义Class必须是UIViewController的子类，设置其他类型的Class不起作用），并<code>名称为view的Outlet</code>自动关联<code>View Controller Scene中的View</code>，且不可以替换；</strong></p>
-
+<li>
+<p><strong>其Custom Class默认是UIViewController类型的（自定义Class必须是UIViewController的子类，设置其他类型的Class不起作用），并<code>名称为view的Outlet</code>自动关联<code>View Controller Scene中的View</code>，且不可以替换；</strong></p>
 <pre><code class="language-swift">let storyboard = UIStoryboard(name: &quot;TestSB&quot;, bundle: nil)
 
 // 通过创建InitialViewController
@@ -364,100 +379,119 @@ let vc = storyboard.instantiateInitialViewController()
 
 // 通过storyboardID创建
 let vc = storyboard.instantiateViewController(withIdentifier: &quot;ID&quot;)
-</code></pre></li>
-</ul></li>
-<li><p>8、<strong>补充：拖拽自定义Cell的3种初始化方式</strong></p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>8、<strong>补充：拖拽自定义Cell的3种初始化方式</strong></p>
 <ul>
-<li><p>1）<strong>直接在SB中的UITableView控件中，拖入UITableViewCell控件，并配置Custom Class和identifier；</strong></p>
-
+<li>
+<p>1）<strong>直接在SB中的UITableView控件中，拖入UITableViewCell控件，并配置Custom Class和identifier；</strong></p>
 <ul>
-<li><p><strong>不需要进行<code>创建init</code>或<code>注册register</code>，故直接<code>dequeue</code>或<code>dequeueForIndex</code>就能获取cell；</strong></p>
-
+<li>
+<p><strong>不需要进行<code>创建init</code>或<code>注册register</code>，故直接<code>dequeue</code>或<code>dequeueForIndex</code>就能获取cell；</strong></p>
 <pre><code class="language-swift">let cell = tableView.dequeueReusableCell(withIdentifier: &quot;cell1&quot;) as! TestTableViewCell
-</code></pre></li>
-</ul></li>
-<li><p>2）<strong>新建单独XIB且只有一个视图（View），并配置Custom Class和identifier；</strong></p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>2）<strong>新建单独XIB且只有一个视图（View），并配置Custom Class和identifier；</strong></p>
 <ul>
-<li>还必须进行<code>创建init</code>或<code>注册register</code>，使用<code>dequeue</code>或<code>dequeueForIndex</code>可能无法获取cell；</li>
-<li>“在Xcode中创建一个<code>View Class并勾选Also create XIB file</code>”就是使用该方式；</li>
-<li><p>使用<code>创建init</code>的方式和加载自定义View类似（先<code>dequeue</code>，后<code>创建init</code>）；</p>
-
+<li>
+<p>还必须进行<code>创建init</code>或<code>注册register</code>，使用<code>dequeue</code>或<code>dequeueForIndex</code>可能无法获取cell；</p>
+</li>
+<li>
+<p>“在Xcode中创建一个<code>View Class并勾选Also create XIB file</code>”就是使用该方式；</p>
+</li>
+<li>
+<p>使用<code>创建init</code>的方式和加载自定义View类似（先<code>dequeue</code>，后<code>创建init</code>）；</p>
 <pre><code class="language-swift">var cell = tableView.dequeueReusableCell(withIdentifier: &quot;cell2&quot;) as? TestTableViewCell
 if cell == nil {
     cell = = Bundle.main.loadNibNamed(&quot;CellXIB&quot;, owner: nil, options: nil)?.last as! TestTableViewCell
 }
-</code></pre></li>
-<li><p>使用<code>注册register</code>的方式（先<code>注册register</code>，后<code>dequeueForIndex</code>）；</p>
-
+</code></pre>
+</li>
+<li>
+<p>使用<code>注册register</code>的方式（先<code>注册register</code>，后<code>dequeueForIndex</code>）；</p>
 <pre><code class="language-swift">tableview.register(UINib.init(nibName: &quot;CellXIB&quot;, bundle: nil), forCellReuseIdentifier: &quot;cell2&quot;)
 
 var cell = tableView.dequeueReusableCell(withIdentifier: &quot;cell2&quot;, for: indexPath)
-</code></pre></li>
-</ul></li>
-<li><p>3）<strong>新建单独XIB且有多个视图（View），并配置Custom Class和identifier；</strong></p>
-
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>3）<strong>新建单独XIB且有多个视图（View），并配置Custom Class和identifier；</strong></p>
 <ul>
-<li><strong>还必须只能进行<code>创建init</code>（不可以<code>注册register</code>），使用<code>dequeue</code>可能无法获取cell；</strong></li>
-<li><p><code>创建init</code>的方式和加载自定义View类似（先<code>dequeue</code>，后<code>创建init</code>）；</p>
-
+<li>
+<p><strong>还必须只能进行<code>创建init</code>（不可以<code>注册register</code>），使用<code>dequeue</code>可能无法获取cell；</strong></p>
+</li>
+<li>
+<p><code>创建init</code>的方式和加载自定义View类似（先<code>dequeue</code>，后<code>创建init</code>）；</p>
 <pre><code class="language-swift">var cell = tableView.dequeueReusableCell(withIdentifier: &quot;cell3&quot;) as? TestTableViewCell
 if cell == nil {
     cell = = Bundle.main.loadNibNamed(&quot;CellXIB&quot;, owner: nil, options: nil)?.last as! TestTableViewCell
 }
-</code></pre></li>
-<li><p>若使用<code>注册register</code>的方式，则报错：exception &#39;NSInternalInconsistencyException&#39;, reason: &#39;invalid nib registered for identifier (cell1) - nib must contain exactly one top level object which must be a UITableViewCell instance&#39;；</p></li>
-</ul></li>
-</ul></li>
+</code></pre>
+</li>
+<li>
+<p>若使用<code>注册register</code>的方式，则报错：exception 'NSInternalInconsistencyException', reason: 'invalid nib registered for identifier (cell1) - nib must contain exactly one top level object which must be a UITableViewCell instance'；</p>
+</li>
 </ul>
-
-<h4 id="toc_2">三、UIViewController、UIView的初始化方式</h4>
-
+</li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E4%B8%89%E3%80%81uiviewcontroller%E3%80%81uiview%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、UIViewController、UIView的初始化方式</h4>
 <ul>
-<li><p>1、<strong>UIViewController的初始化有三种方式：代码初始化、使用XIB初始化、使用SB初始化；</strong></p>
-
+<li>
+<p>1、<strong>UIViewController的初始化有三种方式：代码初始化、使用XIB初始化、使用SB初始化；</strong></p>
 <ul>
-<li><p>a. 代码初始化</p>
-
+<li>
+<p>a. 代码初始化</p>
 <pre><code class="language-swift">let testViewController = TestViewController()
 </code></pre>
-
 <ul>
 <li><strong>会依次调用<code>UIViewController</code>的<code>init</code>、<code>initWithNibName</code>、<code>awakeFromNib（若有同名XIB则加载XIB，并调用该方法，否则不调用该方法）</code>、<code>loadView</code>、<code>viewDidLoad</code>方法；</strong></li>
-</ul></li>
-<li><p>b. 使用XIB初始化</p>
-
+</ul>
+</li>
+<li>
+<p>b. 使用XIB初始化</p>
 <pre><code class="language-swift">let testViewController = TestViewController(nibName: &quot;TestViewController&quot;, bundle: nil)
 </code></pre>
-
 <ul>
 <li><strong>会依次调用<code>UIViewController</code>的<code>initWithNibName</code>、<code>awakeFromNib</code>、<code>loadView</code>、<code>viewDidLoad</code>方法；</strong></li>
-</ul></li>
-<li><p>c. 使用SB初始化</p>
-
+</ul>
+</li>
+<li>
+<p>c. 使用SB初始化</p>
 <ul>
 <li><strong>会依次调用<code>UIViewController</code>的<code>initWithCoder</code>、<code>awakeFromNib</code>、<code>loadView</code>、<code>viewDidLoad</code>方法；</strong></li>
-</ul></li>
-</ul></li>
-<li><p>2、<strong>UIView的初始化有两种方式：代码初始化、使用XIB初始化；</strong></p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、<strong>UIView的初始化有两种方式：代码初始化、使用XIB初始化；</strong></p>
 <ul>
-<li><p>a. 代码初始化</p>
-
+<li>
+<p>a. 代码初始化</p>
 <ul>
 <li><strong>会依次调用<code>UIView</code>的<code>init</code>、<code>initWithFrame</code>方法；</strong></li>
-</ul></li>
-<li><p>b. 使用XIB初始化</p>
-
+</ul>
+</li>
+<li>
+<p>b. 使用XIB初始化</p>
 <ul>
 <li><strong>会依次调用<code>UIView</code>的<code>initWithCoder</code>、<code>awakeFromNib</code>方法；</strong></li>
-</ul></li>
-</ul></li>
 </ul>
-
-<h4 id="toc_3">四、参考</h4>
-
+</li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E5%9B%9B%E3%80%81%E5%8F%82%E8%80%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、参考</h4>
 <ul>
 <li>a、关于xib文件和storyboard文件的那些事儿 <code>https://www.cnblogs.com/tgycoder/p/5677121.html</code></li>
 <li>b、loadNibNamed:owner:options:的理解 <code>http://blog.sina.com.cn/s/blog_5fde60890102vus9.html</code></li>
@@ -529,7 +563,7 @@ if cell == nil {
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

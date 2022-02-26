@@ -108,131 +108,109 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">06. 模块</a>
+        <div class="mweb_toc"><ul>
+<li><a href="#06%E6%A8%A1%E5%9D%97">06. 模块</a>
 <ul>
-<li>
-<a href="#toc_1">6.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">6.2 使用模块</a>
-</li>
-<li>
-<a href="#toc_3">6.3 模块中的函数、变量的作用域</a>
-</li>
-<li>
-<a href="#toc_4">6.4 安装第三方模块</a>
-</li>
-<li>
-<a href="#toc_5">6.5 模块搜索路径</a>
-</li>
+<li><a href="#6-1%E6%A6%82%E8%BF%B0">6.1 概述</a></li>
+<li><a href="#6-2%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97">6.2 使用模块</a></li>
+<li><a href="#6-3%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E3%80%81%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">6.3 模块中的函数、变量的作用域</a></li>
+<li><a href="#6-4%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97">6.4 安装第三方模块</a></li>
+<li><a href="#6-5%E6%A8%A1%E5%9D%97%E6%90%9C%E7%B4%A2%E8%B7%AF%E5%BE%84">6.5 模块搜索路径</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_6">07. 面向对象编程</a>
+<li><a href="#07%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B">07. 面向对象编程</a>
 <ul>
-<li>
-<a href="#toc_7">7.1 概述</a>
-</li>
-<li>
-<a href="#toc_8">7.2 类、实例、绑定属性、方法</a>
-</li>
-<li>
-<a href="#toc_9">7.3 属性访问限制</a>
-</li>
-<li>
-<a href="#toc_10">7.4 继承和多态</a>
-</li>
-<li>
-<a href="#toc_11">7.5 获取对象信息</a>
-</li>
-<li>
-<a href="#toc_12">7.6 实例属性、类属性</a>
-</li>
+<li><a href="#7-1%E6%A6%82%E8%BF%B0">7.1 概述</a></li>
+<li><a href="#7-2%E7%B1%BB%E3%80%81%E5%AE%9E%E4%BE%8B%E3%80%81%E7%BB%91%E5%AE%9A%E5%B1%9E%E6%80%A7%E3%80%81%E6%96%B9%E6%B3%95">7.2 类、实例、绑定属性、方法</a></li>
+<li><a href="#7-3%E5%B1%9E%E6%80%A7%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6">7.3 属性访问限制</a></li>
+<li><a href="#7-4%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81">7.4 继承和多态</a></li>
+<li><a href="#7-5%E8%8E%B7%E5%8F%96%E5%AF%B9%E8%B1%A1%E4%BF%A1%E6%81%AF">7.5 获取对象信息</a></li>
+<li><a href="#7-6%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7%E3%80%81%E7%B1%BB%E5%B1%9E%E6%80%A7">7.6 实例属性、类属性</a></li>
 </ul>
 </li>
 </ul>
-
-
-<h4 id="toc_0">06. 模块</h4>
-
-<h5 id="toc_1">6.1 概述</h5>
-
+</div>
+<h4><a id="06%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>06. 模块</h4>
+<h5><a id="6-1%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.1 概述</h5>
 <ul>
 <li>在Python中，一个.py文件称之为一个模块（Module），模块可以被其他地方导入使用</li>
 <li>为了避免模块名冲突，Python按照文件夹目录的形式（称为包，Package）来组织各个模块；abc.py的模块名为abc，mycompany目录下的abc.py的模块名为mycompany.abc</li>
 <li>每一个包目录下必须有一个__init__.py的文件（模块），否则Python就把这个目录当成普通目录而不是一个包目录；__init__.py可以是一个空文件，也可以有Python代码</li>
 <li>自己创建的模块要注意命名，不要和Python自带的模块冲突；例如Python自带sys模块，自己的模块就不可命名为sys .py，否则将无法导入Python自带的sys模块</li>
 </ul>
-
 <span id="more"></span><!-- more -->
-
-<h5 id="toc_2">6.2 使用模块</h5>
-
+<h5><a id="6-2%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.2 使用模块</h5>
 <ul>
-<li><strong>使用模块中的变量、函数、类等有两种导入方式：</strong>
-
+<li>
+<p><strong>使用模块中的变量、函数、类等有两种导入方式：</strong></p>
 <ul>
 <li><strong>a. 导入模块：<code>import XX</code></strong>
-
 <ul>
 <li><strong>XX为模块名</strong></li>
 <li><strong>使用模块内的属性、函数、类时需要加模块名前缀，例如 <code>import sys、print(sys.path)</code>、<code>import testpy、print(testpy.say())</code></strong></li>
 <li><strong>加模块名前缀的语义用法，使得模块看起来很像一个类的实例（testpy.say()感觉是对象调用方法，实际是调用函数）或命名空间</strong></li>
-</ul></li>
+</ul>
+</li>
 <li><strong>b. 导入模块内的内容：<code>from XX import YY</code></strong>
-
 <ul>
 <li><strong>XX为模块名，YY为模块内的变量、函数、类</strong></li>
 <li><strong>也可以<code>from xx import \*</code>，一次性导入该模块内的所有的变量、函数、类</strong></li>
 <li><strong>使用模块内的属性、函数、类时不需要加模块名，例如 <code>from sys import path、print(path)</code>、<code>from testpy import say、print(say())</code></strong></li>
 <li><strong>应避免使用此方式导入；该方式会导致名称冲突，也让程序可读性变弱</strong></li>
-</ul></li>
-</ul></li>
-<li><p>Python文本头部结构信息</p>
-
-<pre><code class="language-python">#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-&#39;a test module&#39;   # 表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释
-
-__author__ = &#39;Tom&#39; # 申明作者
-</code></pre></li>
-<li><p>import sys # 表示导入sys模块，之后变量sys指向该模块；利用该sys变量访问该模块的变量、函数等</p></li>
-<li><p>sys模块有一个argv变量（list）存储命令行执行时的所有参数，argv至少有一个元素（第一个元素永远是该.py文件的名称）</p>
-
-<pre><code class="language-python">def test():
-    args = sys.argv
-    if len(args) == 1:
-        print(&#39;Hello, world!&#39;)
-    elif len(args) == 2:
-        print(&#39;Hello, %s&#39; % args[1])
-    else:
-        print(&#39;Too many arguments!&#39;)
-
-if __name__ == &#39;__main__&#39;:  # 当使用命令行运行该模块时，python解释器把一个特殊变量__name__赋值为&#39;__main__&#39;，若在其他地方导入该模块则不会（if判断将失败不执行test()）
-    test()
-
-# 运行:
-localhost:Desktop $ python3 hello.py
-Hello, world!
-localhost:Desktop $ python3 hello.py Tom
-Hello, Tom
-
-&gt;&gt;&gt; import hello
-&gt;&gt;&gt; hello.test()
-Hello, world!
-</code></pre></li>
 </ul>
-
-<h5 id="toc_3">6.3 模块中的函数、变量的作用域</h5>
-
+</li>
+</ul>
+</li>
+<li>
+<p>Python文本头部结构信息</p>
+<pre><code class="language-python"> #!/usr/bin/env python3
+ # -*- coding: utf-8 -*-
+ 
+ 'a test module'   # 表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释
+ 
+ __author__ = 'Tom' # 申明作者
+</code></pre>
+</li>
+<li>
+<p>import sys # 表示导入sys模块，之后变量sys指向该模块；利用该sys变量访问该模块的变量、函数等</p>
+</li>
+<li>
+<p>sys模块有一个argv变量（list）存储命令行执行时的所有参数，argv至少有一个元素（第一个元素永远是该.py文件的名称）</p>
+<pre><code class="language-python"> def test():
+ 	args = sys.argv
+ 	if len(args) == 1:
+ 		print('Hello, world!')
+ 	elif len(args) == 2:
+ 		print('Hello, %s' % args[1])
+ 	else:
+ 		print('Too many arguments!')
+ 
+ if __name__ == '__main__':  # 当使用命令行运行该模块时，python解释器把一个特殊变量__name__赋值为'__main__'，若在其他地方导入该模块则不会（if判断将失败不执行test()）
+ 	test()
+ 
+ 
+ # 运行:
+ localhost:Desktop $ python3 hello.py
+ Hello, world!
+ localhost:Desktop $ python3 hello.py Tom
+ Hello, Tom
+ 
+ &gt;&gt;&gt; import hello
+ &gt;&gt;&gt; hello.test()
+ Hello, world!
+</code></pre>
+</li>
+</ul>
+<h5><a id="6-3%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E3%80%81%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.3 模块中的函数、变量的作用域</h5>
 <ul>
-<li>正常名称的函数、变量都是公开的（public）,可以被其他模块导入后直接使用，比如abc</li>
-<li><strong>若仅仅让函数、变量在模块内部使用，可以通过给名称加‘_’前缀来表示非公开的（private），但__xxx__这样形式的名称除外（是公开的（public））；比如_abc、__abc</strong></li>
-<li><p><strong>Python函数名、变量名形式分类</strong></p>
-
+<li>
+<p>正常名称的函数、变量都是公开的（public）,可以被其他模块导入后直接使用，比如abc</p>
+</li>
+<li>
+<p><strong>若仅仅让函数、变量在模块内部使用，可以通过给名称加‘_’前缀来表示非公开的（private），但__xxx__这样形式的名称除外（是公开的（public））；比如_abc、__abc</strong></p>
+</li>
+<li>
+<p><strong>Python函数名、变量名形式分类</strong></p>
 <table>
 <thead>
 <tr>
@@ -241,7 +219,6 @@ Hello, world!
 <th>访问限制</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>xx</td>
@@ -269,371 +246,407 @@ Hello, world!
 <td>无限制</td>
 </tr>
 </tbody>
-</table></li>
-<li><p>可以通过在定义公开的函数中，调用私有的函数、变量的方式（在模块中没有私有访问限制的问题），让外界可以间接使用私有的函数、变量</p>
-
-<pre><code class="language-python">def _private_1(name):
-    return &#39;Hello, %s&#39; % name
-def _private_2(name):
-    return &#39;Hi, %s&#39; % name
-def greeting(name):
-    if len(name) &gt; 3:
-        return _private_1(name)
-    else:
-        return _private_2(name)
-
-&gt;&gt;&gt; from testpy import greeting
-&gt;&gt;&gt; greeting(&#39;test&#39;)
-&#39;Hello, test&#39;
-</code></pre></li>
+</table>
+</li>
+<li>
+<p>可以通过在定义公开的函数中，调用私有的函数、变量的方式（在模块中没有私有访问限制的问题），让外界可以间接使用私有的函数、变量</p>
+<pre><code class="language-python"> def _private_1(name):
+ 	return 'Hello, %s' % name
+ def _private_2(name):
+ 	return 'Hi, %s' % name
+ def greeting(name):
+ 	if len(name) &gt; 3:
+ 		return _private_1(name)
+ 	else:
+ 		return _private_2(name)
+ 
+ &gt;&gt;&gt; from testpy import greeting
+ &gt;&gt;&gt; greeting('test')
+ 'Hello, test'
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_4">6.4 安装第三方模块</h5>
-
+<h5><a id="6-4%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.4 安装第三方模块</h5>
 <ul>
-<li>在Python中安装第三方模块是通过包管理工具pip完成的，例如安装Pillow：pip install Pillow</li>
-<li><p>若Python2、3都存在，则python3对应的pip命令为“pip3”</p>
-
-<pre><code class="language-python"># 生成图片缩略图:
-&gt;&gt;&gt; from PIL import Image
-&gt;&gt;&gt; im = Image.open(&#39;/Users/ls/Desktop/a.jpg&#39;)
-&gt;&gt;&gt; print(im.format, im.size, im.mode)
-JPEG (750, 1334) RGB
-&gt;&gt;&gt; im.thumbnail((200, 100))
-&gt;&gt;&gt; im.save(&#39;/Users/ls/Desktop/thumb.jpg&#39;, &#39;JPEG&#39;)
-</code></pre></li>
+<li>
+<p>在Python中安装第三方模块是通过包管理工具pip完成的，例如安装Pillow：pip install Pillow</p>
+</li>
+<li>
+<p>若Python2、3都存在，则python3对应的pip命令为“pip3”</p>
+<pre><code class="language-python"> # 生成图片缩略图:
+ &gt;&gt;&gt; from PIL import Image
+ &gt;&gt;&gt; im = Image.open('/Users/ls/Desktop/a.jpg')
+ &gt;&gt;&gt; print(im.format, im.size, im.mode)
+ JPEG (750, 1334) RGB
+ &gt;&gt;&gt; im.thumbnail((200, 100))
+ &gt;&gt;&gt; im.save('/Users/ls/Desktop/thumb.jpg', 'JPEG')
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_5">6.5 模块搜索路径</h5>
-
+<h5><a id="6-5%E6%A8%A1%E5%9D%97%E6%90%9C%E7%B4%A2%E8%B7%AF%E5%BE%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.5 模块搜索路径</h5>
 <ul>
 <li>当我们试图加载一个模块时，Python解释器会在指定路径下搜索对应的.py文件，若找不到则报错</li>
 <li>默认情况下，Python解释器会搜索当前目录、所有已安装的内置模块和第三方模块；搜索路径存放在sys模块的path变量中(import sys、sys.path)</li>
-<li>若需添加自定义的搜索路径有两种方法：a. 直接修改sys.path添加要搜索的目录（sys.path.append(&#39;/.../.../my_py_scripts&#39;)；b. 设置环境变量PYTHONPATH（注意只需要添加自己的搜索路径，Python自己本身的搜索路径不受影响）</li>
+<li>若需添加自定义的搜索路径有两种方法：a. 直接修改sys.path添加要搜索的目录（sys.path.append('/.../.../my_py_scripts')；b. 设置环境变量PYTHONPATH（注意只需要添加自己的搜索路径，Python自己本身的搜索路径不受影响）</li>
 </ul>
-
-<h4 id="toc_6">07. 面向对象编程</h4>
-
-<h5 id="toc_7">7.1 概述</h5>
-
+<h4><a id="07%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>07. 面向对象编程</h4>
+<h5><a id="7-1%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.1 概述</h5>
 <ul>
 <li>在Python中所有数据类型都可以视为对象，当然也可以自定义对象</li>
 <li>自定义对象的数据类型就是面向对象中的类（Class）的概念</li>
 </ul>
-
-<h5 id="toc_8">7.2 类、实例、绑定属性、方法</h5>
-
+<h5><a id="7-2%E7%B1%BB%E3%80%81%E5%AE%9E%E4%BE%8B%E3%80%81%E7%BB%91%E5%AE%9A%E5%B1%9E%E6%80%A7%E3%80%81%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.2 类、实例、绑定属性、方法</h5>
 <ul>
-<li>自定义类格式：依次为 <code>class 类名(CLASS) :</code> ；“(CLASS)”表示从哪个类继承，默认为 <code>object</code> (小写的)</li>
-<li><p>创建实例通过“类()”实现</p>
-
-<pre><code class="language-python">class Student(object):
-    def __init__(self, name, score):  # 这个对象拥有name和score这两属性（Property）
-        self.name = name
-        self.score = score
-    def print_score(self):
-        print(&#39;%s: %s&#39; % (self.name, self.score))
-
-&gt;&gt;&gt; bart = Student(&#39;Bart Simpson&#39;, 59)  # 创建学生对象
-&gt;&gt;&gt; lisa = Student(&#39;Lisa Simpson&#39;, 87)
-&gt;&gt;&gt; bart.print_score()  # 给对象发一个print_score消息（调用对象对应的关联函数）
-Bart Simpson: 59
-&gt;&gt;&gt; lisa.print_score()
-Lisa Simpson: 87
+<li>
+<p>自定义类格式：依次为 <code>class 类名(CLASS) :</code> ；“(CLASS)”表示从哪个类继承，默认为 <code>object</code> (小写的)</p>
+</li>
+<li>
+<p>创建实例通过“类()”实现</p>
+<pre><code class="language-python"> class Student(object):
+     def __init__(self, name, score):  # 这个对象拥有name和score这两属性（Property）
+         self.name = name
+         self.score = score
+     def print_score(self):
+         print('%s: %s' % (self.name, self.score))
+ 
+ &gt;&gt;&gt; bart = Student('Bart Simpson', 59)  # 创建学生对象
+ &gt;&gt;&gt; lisa = Student('Lisa Simpson', 87)
+ &gt;&gt;&gt; bart.print_score()  # 给对象发一个print_score消息（调用对象对应的关联函数）
+ Bart Simpson: 59
+ &gt;&gt;&gt; lisa.print_score()
+ Lisa Simpson: 87
 </code></pre>
-
-<pre><code class="language-python">&gt;&gt;&gt; bart
-&lt;__main__.Student object at 0x1024f82b0&gt;
-&gt;&gt;&gt; Student
-&lt;class &#39;__main__.Student&#39;&gt;
-</code></pre></li>
-<li><p>和静态语言不同，Python允许对实例变量自由地绑定属性；也就是说，对于两个实例，虽然它们都是同一个类的不同实例，但可以让它们拥有的属性可能不同</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; bart.intro = &#39;test&#39;
-&gt;&gt;&gt; bart.intro
-&#39;test&#39;
-&gt;&gt;&gt; lisa.intro
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;Student&#39; object has no attribute &#39;intro&#39;
-</code></pre></li>
-<li><p>由于类可以起模板的作用，可把必须绑定的属性在定义__init__方法的时候进行绑定</p></li>
-<li><p>__init__方法的第一个参数永远是self，表示创建的实例本身；可以把各种属性绑定到self上</p></li>
-<li><p>在创建实例的时候就不能传入空的参数，必须传入与__init__方法匹配的参数；但是self参数不需要传入，Python解释器会自动把实例变量本身传入</p></li>
-<li><p>定义时将封装数据的函数和类的实例进行关联起来，我们称之为方法</p></li>
-<li><p>方法定义时，除了第一个参数是实例变量self外，其他和普通函数一样；方法调用时，使用“对象.”的形式进行调用，不用传入self参数，其他参数正常传入</p></li>
+<pre><code class="language-python"> &gt;&gt;&gt; bart
+ &lt;__main__.Student object at 0x1024f82b0&gt;
+ &gt;&gt;&gt; Student
+ &lt;class '__main__.Student'&gt;
+</code></pre>
+</li>
+<li>
+<p>和静态语言不同，Python允许对实例变量自由地绑定属性；也就是说，对于两个实例，虽然它们都是同一个类的不同实例，但可以让它们拥有的属性可能不同</p>
+<pre><code class="language-python"> &gt;&gt;&gt; bart.intro = 'test'
+ &gt;&gt;&gt; bart.intro
+ 'test'
+ &gt;&gt;&gt; lisa.intro
+ Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ AttributeError: 'Student' object has no attribute 'intro'
+</code></pre>
+</li>
+<li>
+<p>由于类可以起模板的作用，可把必须绑定的属性在定义__init__方法的时候进行绑定</p>
+</li>
+<li>
+<p>__init__方法的第一个参数永远是self，表示创建的实例本身；可以把各种属性绑定到self上</p>
+</li>
+<li>
+<p>在创建实例的时候就不能传入空的参数，必须传入与__init__方法匹配的参数；但是self参数不需要传入，Python解释器会自动把实例变量本身传入</p>
+</li>
+<li>
+<p>定义时将封装数据的函数和类的实例进行关联起来，我们称之为方法</p>
+</li>
+<li>
+<p>方法定义时，除了第一个参数是实例变量self外，其他和普通函数一样；方法调用时，使用“对象.”的形式进行调用，不用传入self参数，其他参数正常传入</p>
+</li>
 </ul>
-
-<h5 id="toc_9">7.3 属性访问限制</h5>
-
+<h5><a id="7-3%E5%B1%9E%E6%80%A7%E8%AE%BF%E9%97%AE%E9%99%90%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.3 属性访问限制</h5>
 <ul>
-<li><p><strong>在Python中，若让内部属性不被外部访问，在属性的名称前加上两个下划线“__”（加一个不可以），该属性就变成私有的</strong></p>
-
+<li>
+<p><strong>在Python中，若让内部属性不被外部访问，在属性的名称前加上两个下划线“__”（加一个不可以），该属性就变成私有的</strong></p>
 <ul>
 <li>只能内部可以访问，外部不能直接访问（但是通过特殊手段，还是可以间接访问的）</li>
 <li>上面定义的Student类，外部代码是可以自由地修改一个实例的name、score属性</li>
 </ul>
-
-<pre><code class="language-python">class Student(object):
-    def __init__(self, name, score):
-        self.__name = name
-        self.__score = score
-    def print_score(self):
-        print(&#39;%s: %s&#39; % (self.__name, self.__score))
-
-&gt;&gt;&gt; bart = Student(&#39;Bart Simpson&#39;, 98)
-&gt;&gt;&gt; bart.__name
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;Student&#39; object has no attribute &#39;__name&#39;
-</code></pre></li>
-<li><p>若需要在外部代码获取设置私有属性，可以给类增加了get、set方法获取、设置该私有属性</p></li>
-<li><p>通过定义方法去访问私有属性，而不是通过定义属性为公有的去直接访问，可以对参数做检查，避免传入无效的参数</p>
-
-<pre><code class="language-python">class Student(object):
-    def __init__(self, name, score):
-        self.__name = name
-        self._score = score
-    def print_score(self):
-        print(&#39;%s: %s&#39; %s (self.__name, self._score))
-    def get_name(self):
-        return self.__name
-    def set_name(self, name):
-        self.__name = name
-
-&gt;&gt;&gt; from testpy import Student
-&gt;&gt;&gt; bart = Student(&#39;Bart Simpson&#39;, 98)
-&gt;&gt;&gt; bart.get_name()
-&#39;Bart Simpson&#39;
-&gt;&gt;&gt; bart.set_name(&#39;haha&#39;)
-&gt;&gt;&gt; bart.get_name()
-&#39;haha&#39;
-
-# 以一个下划线“_”开头的属性不是私有的，可以直接访问
-&gt;&gt;&gt; bart._score
-98
-</code></pre></li>
-<li><p>通过特殊手段，还是可以间接访问私有属性；比如__name，Python解释器对外把__name修改为_Student__name（不同版本的Python修改的结果可能不一样），所以仍然可以通过_Student__name来访问原来的__name私有属性</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; bart._Student__name
-&#39;Bart Simpson&#39;
-</code></pre></li>
-</ul>
-
-<h5 id="toc_10">7.4 继承和多态</h5>
-
-<ul>
-<li>继承可以让子类获取父类的方法，也可以重写父类的方法</li>
-<li>多态的好处：方法定义时用父类参数接收传入子类实例，当方法调用时需要传入参数时，优先使用实际传入参数的类型中定义的方法，而不是方法定义时参数的类型中定义的方法；这样就可以任意增加新的子类，而不必修改方法的定义</li>
-<li>对于例如Java这样的静态语言，若方法定义需传入A类型参数，则调用时传入的对象必须是A类型或者A的子类类型，否则将无法调用A中定义的方法，比如run()方法</li>
-<li>对于Python这样的动态语言，则不一定需要传入A类型，只需要保证传入的对象有一个run()方法即可；这就是动态语言的“鸭子类型”，并不要求严格的继承体系</li>
-<li><p>Python的“file-like object”就是一种鸭子类型，不需要传入真正的文件对象，只需要是任何实现了read()方法的对象即可</p>
-
-<pre><code class="language-python">class Animal(object):
-    def run(self):
-        print(&#39;Animal is running...&#39;)
-class Dog(Animal):
-    def run(self):
-        print(&#39;Dog is running...&#39;)
-class Cat(Animal):
-    def eat(self):
-        print(&#39;Cat is Eating...&#39;)   
-
-class Timer(object):  # 没有继承Animal父类，只是拥有run方法
-    def run(self):
-        print(&#39;Start...&#39;)
-
-def runtest(animal):
-    animal.run()
-
-&gt;&gt;&gt; runtest(Dog())
-Dog is running...
-&gt;&gt;&gt; runtest(Cat())
-Animal is running...
-&gt;&gt;&gt; runtest(Timer())
-Start...
-</code></pre></li>
-</ul>
-
-<h5 id="toc_11">7.5 获取对象信息</h5>
-
-<ul>
-<li><p>a. <strong>type()函数</strong></p>
-
-<ul>
-<li><strong>可以获取、判断对象类型，返回对应Class类型</strong></li>
-<li>判断基本数据类型可以直接写int、str；若要判断一个对象是否为函数，需要使用types模块中定义的变量</li>
-<li><p><strong>注：可以使用isinstance()函数进行数据类型检查，进而判断一个对象是否是“Iterable”、“Iterator”</strong></p>
-
-<pre><code class="language-python">&gt;&gt;&gt; type(123)
-&lt;class &#39;int&#39;&gt;
-&gt;&gt;&gt; type(&#39;123&#39;)
-&lt;class &#39;str&#39;&gt;
-&gt;&gt;&gt; type(None)
-&lt;class &#39;NoneType&#39;&gt;
-&gt;&gt;&gt; type(abs)
-&lt;class &#39;builtin_function_or_method&#39;&gt;
+<pre><code class="language-python"> class Student(object):
+     def __init__(self, name, score):
+         self.__name = name
+         self.__score = score
+     def print_score(self):
+         print('%s: %s' % (self.__name, self.__score))
+  
+ &gt;&gt;&gt; bart = Student('Bart Simpson', 98)
+ &gt;&gt;&gt; bart.__name
+ Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ AttributeError: 'Student' object has no attribute '__name'
 </code></pre>
-
-<pre><code class="language-python">&gt;&gt;&gt; type(123) == type(456)
-True
-&gt;&gt;&gt; type(123) == int
-True
-&gt;&gt;&gt; type(&#39;abc&#39;) == type(&#39;123&#39;)
-True
-&gt;&gt;&gt; type(&#39;123&#39;) == type(123)
-False
-
-&gt;&gt;&gt; def fn():
-...     pass
-... 
-&gt;&gt;&gt; type(fn) == types.FunctionType
-True
-&gt;&gt;&gt; type(abs) == types.BuiltinFunctionType
-True
-&gt;&gt;&gt; type(lambda x: x) == types.LambdaType
-True
-&gt;&gt;&gt; type((x for x in range(10))) == types.GeneratorType
-True
-</code></pre></li>
-</ul></li>
-<li><p>b. isinstance()函数</p>
-
-<ul>
-<li>对于有class的继承关系的，使用该函数判断一个对象是否是该类型本身，或者位于该类型的父继承链上</li>
-<li><p>比如，进行数据类型检查，判断一个对象是否是“Iterable”、“Iterator”</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; import testpy
-&gt;&gt;&gt; a = Animal()
-&gt;&gt;&gt; d = Dog()
-&gt;&gt;&gt; c = Cat()
-&gt;&gt;&gt; t = Timer()
-
-&gt;&gt;&gt; isinstance(c, Cat)
-True
-&gt;&gt;&gt; isinstance(c, Animal)
-True
-&gt;&gt;&gt; isinstance(a, Cat)
-False
-
-# isinstance()还可以判断一个变量是否是某些类型中的一种
-&gt;&gt;&gt; isinstance([1, 2, 3], (list, tuple)) 
-True
-</code></pre></li>
-</ul></li>
-<li><p>c. dir()函数</p>
-
-<ul>
-<li><p>可以获取一个对象的所有属性和方法，返回一个包含字符串的list</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; dir(&#39;ABC&#39;)
-&gt;&gt;&gt; dir(a)
-</code></pre></li>
-</ul></li>
-<li><p>d. len()函数</p>
-
-<ul>
-<li><p>数获取一个对象的长度，实际上在该函数内部会自动调用该对象的__len__()方法</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; len(&#39;ABC&#39;)
-3
-&gt;&gt;&gt; &#39;ABC&#39;.__len__()
-3
-
-&gt;&gt;&gt; class MyDog(object):
-...     def __len__(self):  # 重写__len__()方法
-...         return 100
-... 
-&gt;&gt;&gt; dog = MyDog()
-&gt;&gt;&gt; len(dog)
-100
-</code></pre></li>
-</ul></li>
-<li><p>e. hasattr()、getattr()、setattr()函数</p>
-
-<ul>
-<li>用来分别判断属性是否存在、获取设置对象的属性值</li>
-<li>只有在不知道对象信息的时候，才以上面函数的方式进行获取对象信息，若知道的话建议直接通过obj.x方式获取</li>
-<li><p>上述的三个函数也可以作用于对象的方法</p>
-
-<pre><code class="language-python">class MyObject(object):
-    def __init__(self):
-        self.x = 9
-    def power(self):
-        return self.x * self.x
-
-&gt;&gt;&gt; obj = MyObject()
-&gt;&gt;&gt; hasattr(obj, &#39;x&#39;)  # obj对象是否有&#39;x&#39;属性
-True
-&gt;&gt;&gt; obj.x
-9
-
-&gt;&gt;&gt; hasattr(obj, &#39;y&#39;)  # obj对象是否有&#39;y&#39;属性
-False
-&gt;&gt;&gt; setattr(obj, &#39;y&#39;, 19)  # 设置obj对象的&#39;y&#39;属性的值，若没有该属性则增加该属性
-&gt;&gt;&gt; hasattr(obj, &#39;y&#39;)
-True
-&gt;&gt;&gt; getattr(obj, &#39;y&#39;)
-19
-&gt;&gt;&gt; obj.y
-19
-
-# 若试图获取不存在的属性，会抛出AttributeError的错误
-# 可以传入default参数，若属性不存在则返回默认值（类似于dict的[&#39;key&#39;]、get(&#39;key&#39;)方式获取value）
-&gt;&gt;&gt; getattr(obj, &#39;z&#39;)
-Traceback (most recent call last):
- File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-AttributeError: &#39;MyObject&#39; object has no attribute &#39;z&#39;
-&gt;&gt;&gt; getattr(obj, &#39;z&#39;, 404) 
-404
+</li>
+<li>
+<p>若需要在外部代码获取设置私有属性，可以给类增加了get、set方法获取、设置该私有属性</p>
+</li>
+<li>
+<p>通过定义方法去访问私有属性，而不是通过定义属性为公有的去直接访问，可以对参数做检查，避免传入无效的参数</p>
+<pre><code class="language-python"> class Student(object):
+ 	def __init__(self, name, score):
+ 		self.__name = name
+ 		self._score = score
+ 	def print_score(self):
+ 		print('%s: %s' %s (self.__name, self._score))
+ 	def get_name(self):
+ 		return self.__name
+ 	def set_name(self, name):
+ 		self.__name = name
+ 
+ &gt;&gt;&gt; from testpy import Student
+ &gt;&gt;&gt; bart = Student('Bart Simpson', 98)
+ &gt;&gt;&gt; bart.get_name()
+ 'Bart Simpson'
+ &gt;&gt;&gt; bart.set_name('haha')
+ &gt;&gt;&gt; bart.get_name()
+ 'haha'
+ 
+ # 以一个下划线“_”开头的属性不是私有的，可以直接访问
+ &gt;&gt;&gt; bart._score
+ 98
 </code></pre>
-
-<pre><code class="language-python">&gt;&gt;&gt; hasattr(obj, &#39;power&#39;)
-True
-&gt;&gt;&gt; getattr(obj, &#39;power&#39;)
-&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10215e630&gt;&gt;
-
-&gt;&gt;&gt; fn = getattr(obj, &#39;power&#39;)
-&gt;&gt;&gt; fn
-&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10215e630&gt;&gt;
-&gt;&gt;&gt; fn()  # 调用fn()与调用ojc.power()是一样的
-81
-</code></pre></li>
-<li><p>应用：若从文件流对象fp中读取数据，需要先判断fp是否存在read()方法，若存在说明该对象确实是文件流，返回文件流，否则无法读取返回None</p>
-
-<pre><code class="language-python">def readImage(fp):
-    if hasattr(fp, &#39;read&#39;):
-        return readData(fp)
-    return None
-</code></pre></li>
-</ul></li>
+</li>
+<li>
+<p>通过特殊手段，还是可以间接访问私有属性；比如__name，Python解释器对外把__name修改为_Student__name（不同版本的Python修改的结果可能不一样），所以仍然可以通过_Student__name来访问原来的__name私有属性</p>
+<pre><code class="language-python"> &gt;&gt;&gt; bart._Student__name
+ 'Bart Simpson'
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_12">7.6 实例属性、类属性</h5>
-
+<h5><a id="7-4%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.4 继承和多态</h5>
 <ul>
-<li>实例属性可以通过给实例变量或self进行任意绑定的方式；若给类本身绑定属性则直接在class中定义属性即可，<strong>此时该类属性归类所有（类属性），但实例变量也是可以访问的（实例方法、类方法同理）</strong></li>
-<li><p><strong>最好不要让实例属性和类属性使用相同的名称，若名称相同，则实例变量访问的是实例属性，而不是类属性（实例方法、类方法同理）</strong></p>
-
-<pre><code class="language-python">class Student(object):
-    name = &#39;Student&#39;  # 绑定类属性
-
-&gt;&gt;&gt; Student.name  # 访问类属性
-&#39;Student&#39;
-
-&gt;&gt;&gt; s = Student()
-&gt;&gt;&gt; s.name  # 实例变量也可以访问类属性
-&#39;Student&#39;
-&gt;&gt;&gt; s.name = &#39;Tom&#39;  # 绑定实例属性
-&gt;&gt;&gt; s.name  # 访问实例属性
-&#39;Tom&#39;
-&gt;&gt;&gt; Student.name  # 访问类属性
-&#39;Student&#39;
-
-&gt;&gt;&gt; del s.name  # 删除实例属性
-&gt;&gt;&gt; s.name  # 访问类属性
-&#39;Student&#39;
-</code></pre></li>
+<li>
+<p>继承可以让子类获取父类的方法，也可以重写父类的方法</p>
+</li>
+<li>
+<p>多态的好处：方法定义时用父类参数接收传入子类实例，当方法调用时需要传入参数时，优先使用实际传入参数的类型中定义的方法，而不是方法定义时参数的类型中定义的方法；这样就可以任意增加新的子类，而不必修改方法的定义</p>
+</li>
+<li>
+<p>对于例如Java这样的静态语言，若方法定义需传入A类型参数，则调用时传入的对象必须是A类型或者A的子类类型，否则将无法调用A中定义的方法，比如run()方法</p>
+</li>
+<li>
+<p>对于Python这样的动态语言，则不一定需要传入A类型，只需要保证传入的对象有一个run()方法即可；这就是动态语言的“鸭子类型”，并不要求严格的继承体系</p>
+</li>
+<li>
+<p>Python的“file-like object”就是一种鸭子类型，不需要传入真正的文件对象，只需要是任何实现了read()方法的对象即可</p>
+<pre><code class="language-python"> class Animal(object):
+ 	def run(self):
+ 		print('Animal is running...')
+ class Dog(Animal):
+ 	def run(self):
+ 		print('Dog is running...')
+ class Cat(Animal):
+ 	def eat(self):
+ 		print('Cat is Eating...')	
+ 		
+ class Timer(object):  # 没有继承Animal父类，只是拥有run方法
+ 	def run(self):
+ 		print('Start...')
+ 		
+ def runtest(animal):
+     animal.run()
+     
+ &gt;&gt;&gt; runtest(Dog())
+ Dog is running...
+ &gt;&gt;&gt; runtest(Cat())
+ Animal is running...
+ &gt;&gt;&gt; runtest(Timer())
+ Start...
+</code></pre>
+</li>
+</ul>
+<h5><a id="7-5%E8%8E%B7%E5%8F%96%E5%AF%B9%E8%B1%A1%E4%BF%A1%E6%81%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.5 获取对象信息</h5>
+<ul>
+<li>
+<p>a. <strong>type()函数</strong></p>
+<ul>
+<li>
+<p><strong>可以获取、判断对象类型，返回对应Class类型</strong></p>
+</li>
+<li>
+<p>判断基本数据类型可以直接写int、str；若要判断一个对象是否为函数，需要使用types模块中定义的变量</p>
+</li>
+<li>
+<p><strong>注：可以使用isinstance()函数进行数据类型检查，进而判断一个对象是否是“Iterable”、“Iterator”</strong></p>
+<pre><code class="language-python"> &gt;&gt;&gt; type(123)
+ &lt;class 'int'&gt;
+ &gt;&gt;&gt; type('123')
+ &lt;class 'str'&gt;
+ &gt;&gt;&gt; type(None)
+ &lt;class 'NoneType'&gt;
+ &gt;&gt;&gt; type(abs)
+ &lt;class 'builtin_function_or_method'&gt;
+</code></pre>
+<pre><code class="language-python"> &gt;&gt;&gt; type(123) == type(456)
+ True
+ &gt;&gt;&gt; type(123) == int
+ True
+ &gt;&gt;&gt; type('abc') == type('123')
+ True
+ &gt;&gt;&gt; type('123') == type(123)
+ False
+ 
+ &gt;&gt;&gt; def fn():
+ ...     pass
+ ... 
+ &gt;&gt;&gt; type(fn) == types.FunctionType
+ True
+ &gt;&gt;&gt; type(abs) == types.BuiltinFunctionType
+ True
+ &gt;&gt;&gt; type(lambda x: x) == types.LambdaType
+ True
+ &gt;&gt;&gt; type((x for x in range(10))) == types.GeneratorType
+ True
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>b. isinstance()函数</p>
+<ul>
+<li>
+<p>对于有class的继承关系的，使用该函数判断一个对象是否是该类型本身，或者位于该类型的父继承链上</p>
+</li>
+<li>
+<p>比如，进行数据类型检查，判断一个对象是否是“Iterable”、“Iterator”</p>
+<pre><code class="language-python"> &gt;&gt;&gt; import testpy
+ &gt;&gt;&gt; a = Animal()
+ &gt;&gt;&gt; d = Dog()
+ &gt;&gt;&gt; c = Cat()
+ &gt;&gt;&gt; t = Timer()
+ 
+ &gt;&gt;&gt; isinstance(c, Cat)
+ True
+ &gt;&gt;&gt; isinstance(c, Animal)
+ True
+ &gt;&gt;&gt; isinstance(a, Cat)
+ False
+ 
+ # isinstance()还可以判断一个变量是否是某些类型中的一种
+ &gt;&gt;&gt; isinstance([1, 2, 3], (list, tuple)) 
+ True
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>c. dir()函数</p>
+<ul>
+<li>
+<p>可以获取一个对象的所有属性和方法，返回一个包含字符串的list</p>
+<pre><code class="language-python"> &gt;&gt;&gt; dir('ABC')
+ &gt;&gt;&gt; dir(a)
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>d. len()函数</p>
+<ul>
+<li>
+<p>数获取一个对象的长度，实际上在该函数内部会自动调用该对象的__len__()方法</p>
+<pre><code class="language-python"> &gt;&gt;&gt; len('ABC')
+ 3
+ &gt;&gt;&gt; 'ABC'.__len__()
+ 3
+ 
+ &gt;&gt;&gt; class MyDog(object):
+ ...     def __len__(self):  # 重写__len__()方法
+ ...         return 100
+ ... 
+ &gt;&gt;&gt; dog = MyDog()
+ &gt;&gt;&gt; len(dog)
+ 100
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>e. hasattr()、getattr()、setattr()函数</p>
+<ul>
+<li>
+<p>用来分别判断属性是否存在、获取设置对象的属性值</p>
+</li>
+<li>
+<p>只有在不知道对象信息的时候，才以上面函数的方式进行获取对象信息，若知道的话建议直接通过obj.x方式获取</p>
+</li>
+<li>
+<p>上述的三个函数也可以作用于对象的方法</p>
+<pre><code class="language-python"> class MyObject(object):
+     def __init__(self):
+         self.x = 9
+     def power(self):
+         return self.x * self.x
+ 
+ &gt;&gt;&gt; obj = MyObject()
+ &gt;&gt;&gt; hasattr(obj, 'x')  # obj对象是否有'x'属性
+ True
+ &gt;&gt;&gt; obj.x
+ 9
+ 
+ &gt;&gt;&gt; hasattr(obj, 'y')  # obj对象是否有'y'属性
+ False
+ &gt;&gt;&gt; setattr(obj, 'y', 19)  # 设置obj对象的'y'属性的值，若没有该属性则增加该属性
+ &gt;&gt;&gt; hasattr(obj, 'y')
+ True
+ &gt;&gt;&gt; getattr(obj, 'y')
+ 19
+ &gt;&gt;&gt; obj.y
+ 19
+ 
+ # 若试图获取不存在的属性，会抛出AttributeError的错误
+ # 可以传入default参数，若属性不存在则返回默认值（类似于dict的['key']、get('key')方式获取value）
+ &gt;&gt;&gt; getattr(obj, 'z')
+ Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ AttributeError: 'MyObject' object has no attribute 'z'
+ &gt;&gt;&gt; getattr(obj, 'z', 404) 
+ 404
+</code></pre>
+<pre><code class="language-python"> &gt;&gt;&gt; hasattr(obj, 'power')
+ True
+ &gt;&gt;&gt; getattr(obj, 'power')
+ &lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10215e630&gt;&gt;
+ 
+ &gt;&gt;&gt; fn = getattr(obj, 'power')
+ &gt;&gt;&gt; fn
+ &lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10215e630&gt;&gt;
+ &gt;&gt;&gt; fn()  # 调用fn()与调用ojc.power()是一样的
+ 81
+</code></pre>
+</li>
+<li>
+<p>应用：若从文件流对象fp中读取数据，需要先判断fp是否存在read()方法，若存在说明该对象确实是文件流，返回文件流，否则无法读取返回None</p>
+<pre><code class="language-python"> def readImage(fp):
+ 	if hasattr(fp, 'read'):
+ 		return readData(fp)
+ 	return None
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h5><a id="7-6%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7%E3%80%81%E7%B1%BB%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7.6 实例属性、类属性</h5>
+<ul>
+<li>
+<p>实例属性可以通过给实例变量或self进行任意绑定的方式；若给类本身绑定属性则直接在class中定义属性即可，<strong>此时该类属性归类所有（类属性），但实例变量也是可以访问的（实例方法、类方法同理）</strong></p>
+</li>
+<li>
+<p><strong>最好不要让实例属性和类属性使用相同的名称，若名称相同，则实例变量访问的是实例属性，而不是类属性（实例方法、类方法同理）</strong></p>
+<pre><code class="language-python"> class Student(object):
+     name = 'Student'  # 绑定类属性
+ 
+ &gt;&gt;&gt; Student.name  # 访问类属性
+ 'Student'
+ 
+ &gt;&gt;&gt; s = Student()
+ &gt;&gt;&gt; s.name  # 实例变量也可以访问类属性
+ 'Student'
+ &gt;&gt;&gt; s.name = 'Tom'  # 绑定实例属性
+ &gt;&gt;&gt; s.name  # 访问实例属性
+ 'Tom'
+ &gt;&gt;&gt; Student.name  # 访问类属性
+ 'Student'
+ 
+ &gt;&gt;&gt; del s.name  # 删除实例属性
+ &gt;&gt;&gt; s.name  # 访问类属性
+ 'Student'
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -699,7 +712,7 @@ True
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

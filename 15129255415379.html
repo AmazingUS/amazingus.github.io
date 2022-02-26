@@ -108,560 +108,570 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">一、URI、URL</a>
-</li>
-<li>
-<a href="#toc_1">二、urllib库</a>
-</li>
-<li>
-<a href="#toc_2">三、URLError、HTTPError</a>
-</li>
-<li>
-<a href="#toc_3">四、设置header、timeout</a>
-</li>
-<li>
-<a href="#toc_4">五、Opener、Handler</a>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81uri%E3%80%81url">一、URI、URL</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81urllib%E5%BA%93">二、urllib库</a></li>
+<li><a href="#%E4%B8%89%E3%80%81urlerror%E3%80%81httperror">三、URLError、HTTPError</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81%E8%AE%BE%E7%BD%AEheader%E3%80%81timeout">四、设置header、timeout</a></li>
+<li><a href="#%E4%BA%94%E3%80%81opener%E3%80%81handler">五、Opener、Handler</a>
 <ul>
-<li>
-<a href="#toc_5">5.1 HTTPBasicAuthHandler</a>
-</li>
-<li>
-<a href="#toc_6">5.2 ProxyHandler</a>
-</li>
-<li>
-<a href="#toc_7">5.3 HTTPRedirectHandler</a>
-</li>
-<li>
-<a href="#toc_8">5.4 HTTPCoookieProcessor</a>
-</li>
+<li><a href="#5-1-httpbasicauthhandler">5.1 HTTPBasicAuthHandler</a></li>
+<li><a href="#5-2-proxyhandler">5.2 ProxyHandler</a></li>
+<li><a href="#5-3-httpredirecthandler">5.3 HTTPRedirectHandler</a></li>
+<li><a href="#5-4-httpcoookieprocessor">5.4 HTTPCoookieProcessor</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_9">六、实战</a>
-</li>
+<li><a href="#%E5%85%AD%E3%80%81%E5%AE%9E%E6%88%98">六、实战</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、URI、URL</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81uri%E3%80%81url" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、URI、URL</h4>
 <ul>
 <li>URI（Universal Resource Identifier）：统一资源标识符，一种语义上的抽象概念；可以是绝对的，也可以是相对的</li>
 <li>URL（Uniform Resource Locator）：统一资源定位符，一种具体的绝对的URI，是URI的一个子集；不仅唯一标识资源，而且还提供足够的信息定位该资源的信息</li>
 </ul>
-
-<h4 id="toc_1">二、urllib库</h4>
-
+<h4><a id="%E4%BA%8C%E3%80%81urllib%E5%BA%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、urllib库</h4>
 <ul>
-<li><p>Python 2.x中有urllib、urllib2两个HTTP请求模块；urllib2是urllib的增强，但urllib中有urllib2中所没有的函数，它们一起搭配使用、不可相互替代</p>
-
+<li>Python 2.x中有urllib、urllib2两个HTTP请求模块；urllib2是urllib的增强，但urllib中有urllib2中所没有的函数，它们一起搭配使用、不可相互替代
 <ul>
-<li><p>a). urllib仅仅可以接受url，不可以设置请求的headers，意味着不可以进行伪装“User Agent”等操作</p></li>
-<li><p>b). urllib2可以通过接受一个Request实例，来设置HTTP请求的headers</p></li>
-<li><p>c). urllib提供urlencode函数用来“拼接”请求参数字符串</p></li>
-<li><p>d). urllib2没有“拼接”请求参数字符串功能的函数；</p></li>
-<li><p>urlencode函数是将一个dit或一个含有两个元素tuple的list变成一个url查询字符串（如name=Tom&amp;age=12)，并不是进行字符编码</p></li>
-</ul></li>
+<li>
+<p>a). urllib仅仅可以接受url，不可以设置请求的headers，意味着不可以进行伪装“User Agent”等操作</p>
+</li>
+<li>
+<p>b). urllib2可以通过接受一个Request实例，来设置HTTP请求的headers</p>
+</li>
+<li>
+<p>c). urllib提供urlencode函数用来“拼接”请求参数字符串</p>
+</li>
+<li>
+<p>d). urllib2没有“拼接”请求参数字符串功能的函数；</p>
+</li>
+<li>
+<p>urlencode函数是将一个dit或一个含有两个元素tuple的list变成一个url查询字符串（如name=Tom&amp;age=12)，并不是进行字符编码</p>
+</li>
 </ul>
-
+</li>
+</ul>
 <span id="more"></span><!-- more -->
-
 <ul>
-<li><p>Python 3.x中urllib和urilib2两个模块统一合并成了urllib模块，其中urllib2被修改为urllib.request</p>
-
+<li>
+<p>Python 3.x中urllib和urilib2两个模块统一合并成了urllib模块，其中urllib2被修改为urllib.request</p>
 <ul>
-<li><p>a). urllib.urlencode()变成了urllib.parse.urlencode()</p></li>
-<li><p>b). urllib2.urlopen()变成了urllib.request.urlopen()</p></li>
-<li><p>c). urllib2.Request()变成了urllib.request.Request()</p></li>
+<li>
+<p>a). urllib.urlencode()变成了urllib.parse.urlencode()</p>
+</li>
+<li>
+<p>b). urllib2.urlopen()变成了urllib.request.urlopen()</p>
+</li>
+<li>
+<p>c). urllib2.Request()变成了urllib.request.Request()</p>
+</li>
 </ul>
-
-<pre><code class="language-python">from urllib import request, parse
-
-# 方式1: 使用url（GET）
-url = &#39;http://www.baidu.com/&#39;
-with request.urlopen(url) as f:
-    print(f.getheaders())
-
-# 方式2: 使用Request对象(可添加Header)（GET）
-url = &#39;http://www.baidu.com/&#39;
-req = request.Request(url)
-with request.urlopen(req) as f:
-    print(f.getheaders())
-
-# 方式3: 使用url、拼接查询字符串（GET）
-d = {&#39;name&#39;: &#39;Tom&#39;, &#39;age&#39;: 12}
-l = [(&#39;name&#39;, &#39;Tom&#39;), (&#39;age&#39;, 12)]
-# urlencode将一个dit或一个含有两个元素tuple的list变成一个url查询字符串
-data = parse.urlencode(d)
-url = &#39;http://www.baidu.com/&#39; + &#39;?&#39; + data  
-with request.urlopen(url) as f:
-    print(f.getheaders())
-
-# 方式4: 使用url、设置data参数（POST）
-d = {&#39;name&#39;: &#39;Tom&#39;, &#39;age&#39;: 12}
-data = parse.urlencode(d)
-data = data.encode(&#39;utf-8&#39;)
-url = &#39;http://www.baidu.com/&#39;
-with request.urlopen(url, data=data) as f:
-    print(f.getheaders())
-
-# 方式5: 使用Request对象、设置data参数（POST）
-d = {&#39;name&#39;: &#39;Tom&#39;, &#39;age&#39;: 12}
-data = parse.urlencode(d)
-data = data.encode(&#39;utf-8&#39;)
-url = &#39;http://www.baidu.com/&#39;
-req = request.Request(url, data=data)
-with request.urlopen(req) as f:
-    print(f.getheaders())
-
-# mothod参数可以指定请求类型，比如GET/POST/HEAD/DELETE/PUT
-req = request.Request(&#39;http://www.baidu.com/&#39;, method=&#39;PUT&#39;)
-with request.urlopen(req) as f:
-    print(f.getheaders())
-
-# HTTPResponse对象的常见方法
-print(f)  # &lt;http.client.HTTPResponse object at 0x101f56940&gt;
-print(f.getheaders()) # 响应headers
-print(f.info()) # 响应headers（字典形式）
-print(f.geturl())  # 最终的url（可能会重定向）
-print(f.getcode()) # 响应码 （若请求异常，则需从HTTPError对象中获取code属性）
-</code></pre></li>
+<pre><code class="language-python"> from urllib import request, parse
+ 
+ # 方式1: 使用url（GET）
+ url = 'http://www.baidu.com/'
+ with request.urlopen(url) as f:
+     print(f.getheaders())
+ 
+ 
+ # 方式2: 使用Request对象(可添加Header)（GET）
+ url = 'http://www.baidu.com/'
+ req = request.Request(url)
+ with request.urlopen(req) as f:
+     print(f.getheaders())
+ 
+ 
+ # 方式3: 使用url、拼接查询字符串（GET）
+ d = {'name': 'Tom', 'age': 12}
+ l = [('name', 'Tom'), ('age', 12)]
+ # urlencode将一个dit或一个含有两个元素tuple的list变成一个url查询字符串
+ data = parse.urlencode(d)
+ url = 'http://www.baidu.com/' + '?' + data	
+ with request.urlopen(url) as f:
+     print(f.getheaders())
+ 
+ 
+ # 方式4: 使用url、设置data参数（POST）
+ d = {'name': 'Tom', 'age': 12}
+ data = parse.urlencode(d)
+ data = data.encode('utf-8')
+ url = 'http://www.baidu.com/'
+ with request.urlopen(url, data=data) as f:
+     print(f.getheaders())
+ 
+ 
+ # 方式5: 使用Request对象、设置data参数（POST）
+ d = {'name': 'Tom', 'age': 12}
+ data = parse.urlencode(d)
+ data = data.encode('utf-8')
+ url = 'http://www.baidu.com/'
+ req = request.Request(url, data=data)
+ with request.urlopen(req) as f:
+     print(f.getheaders())
+     
+ 
+ # mothod参数可以指定请求类型，比如GET/POST/HEAD/DELETE/PUT
+ req = request.Request('http://www.baidu.com/', method='PUT')
+ with request.urlopen(req) as f:
+     print(f.getheaders())
+ 
+ 
+ # HTTPResponse对象的常见方法
+ print(f)  # &lt;http.client.HTTPResponse object at 0x101f56940&gt;
+ print(f.getheaders()) # 响应headers
+ print(f.info()) # 响应headers（字典形式）
+ print(f.geturl())  # 最终的url（可能会重定向）
+ print(f.getcode()) # 响应码 （若请求异常，则需从HTTPError对象中获取code属性）
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_2">三、URLError、HTTPError</h4>
-
+<h4><a id="%E4%B8%89%E3%80%81urlerror%E3%80%81httperror" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、URLError、HTTPError</h4>
 <ul>
-<li><p>URLError是HTTPError的父类；URLError有reason属性，HTTPError既有reason属性，也有code属性</p>
-
-<pre><code class="language-python">from urllib import request, error
-
-# Error处理方式1:
-try:
-    # url = &#39;h://home.baidu.com&#39;
-    url = &#39;http://home.baidu.com/x&#39;
-    with request.urlopen(url) as f:  # with ... as语句简化写finally语句
-        print(f.getheaders())
-except error.HTTPError as e:
-    print(&quot;【HTTPError】:&quot;, e)
-    print(&quot;【HTTPError】, code:&quot;, e.reason)
-except error.URLError as e:
-    print(&quot;【URLError】:&quot;, e)
-    print(&quot;【URLError】, reason:&quot;, e.reason)
-else:
-    print(&#39;else...&#39;)
-
-# Error处理方式2:
-try:
-    # url = &#39;h://home.baidu.com&#39;
-    url = &#39;http://home.baidu.com/x&#39;
-    with request.urlopen(url) as f:
-        print(f.getheaders())
-except error.URLError as e:
-    if hasattr(e, &#39;code&#39;):
-        print(&quot;【HTTPError】:&quot;, e)
-        print(&quot;【HTTPError】, code:&quot;, e.code)
-    elif hasattr(e, &#39;reason&#39;):
-        print(&quot;【URLError】:&quot;, e)
-        print(&quot;【URLError】, reason:&quot;, e.reason)
-else:
-    print(&#39;else...&#39;)
-</code></pre></li>
+<li>
+<p>URLError是HTTPError的父类；URLError有reason属性，HTTPError既有reason属性，也有code属性</p>
+<pre><code class="language-python"> from urllib import request, error
+ 
+ # Error处理方式1:
+ try:
+     # url = 'h://home.baidu.com'
+     url = 'http://home.baidu.com/x'
+     with request.urlopen(url) as f:  # with ... as语句简化写finally语句
+         print(f.getheaders())
+ except error.HTTPError as e:
+     print(&quot;【HTTPError】:&quot;, e)
+     print(&quot;【HTTPError】, code:&quot;, e.reason)
+ except error.URLError as e:
+     print(&quot;【URLError】:&quot;, e)
+     print(&quot;【URLError】, reason:&quot;, e.reason)
+ else:
+     print('else...')
+ 
+ 
+ # Error处理方式2:
+ try:
+     # url = 'h://home.baidu.com'
+     url = 'http://home.baidu.com/x'
+     with request.urlopen(url) as f:
+         print(f.getheaders())
+ except error.URLError as e:
+     if hasattr(e, 'code'):
+         print(&quot;【HTTPError】:&quot;, e)
+         print(&quot;【HTTPError】, code:&quot;, e.code)
+     elif hasattr(e, 'reason'):
+         print(&quot;【URLError】:&quot;, e)
+         print(&quot;【URLError】, reason:&quot;, e.reason)
+ else:
+     print('else...')
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_3">四、设置header、timeout</h4>
-
+<h4><a id="%E5%9B%9B%E3%80%81%E8%AE%BE%E7%BD%AEheader%E3%80%81timeout" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、设置header、timeout</h4>
 <ul>
-<li>request的Content-Type（通常用于表单提交）有两种：application/x-www-form-urlencoded（没有附件上传的表单）、multipart/form-data（有附件上传的表单）</li>
-<li>response的Content-Type通常是text/html、application/json、application/json</li>
-<li><p>某些网站的简单“反盗链”设置，就检查request header的 <code>referer</code> 字段的值是不是该网站自身，若不是则认为“被盗链”了；应对“反盗链”只需将referer的值设置为当前请求的网站即可</p>
-
-<pre><code class="language-python"># timeout设置方式1: 全局timeout(设置socket)
-import  socket
-socket.setdefaulttimeout(0.25)
-
-# timeout设置方式2: urlopen函数设置timeout参数
-from urllib import request, error
-
-req = request.Request(&#39;http://www.google.com/&#39;)
-req.add_header(&#39;User-Agent&#39;, &#39;iOS&#39;)  # 浏览器类型
-
-try:
-    with request.urlopen(req, timeout=0.25) as f:
-        print(f.getheaders())
-except error.HTTPError as e:
-    print(&quot;【HTTPError】:&quot;, e)
-    print(&quot;【HTTPError】, code:&quot;, e.code)
-except error.URLError as e:
-    print(&quot;【URLError】:&quot;, e)
-    print(&quot;【URLError】, reason:&quot;, e.reason)
-else:
-    print(&#39;else...&#39;)
-</code></pre></li>
+<li>
+<p>request的Content-Type（通常用于表单提交）有两种：application/x-www-form-urlencoded（没有附件上传的表单）、multipart/form-data（有附件上传的表单）</p>
+</li>
+<li>
+<p>response的Content-Type通常是text/html、application/json、application/json</p>
+</li>
+<li>
+<p>某些网站的简单“反盗链”设置，就检查request header的 <code>referer</code> 字段的值是不是该网站自身，若不是则认为“被盗链”了；应对“反盗链”只需将referer的值设置为当前请求的网站即可</p>
+<pre><code class="language-python"> # timeout设置方式1: 全局timeout(设置socket)
+ import  socket
+ socket.setdefaulttimeout(0.25)
+ 
+ 
+ # timeout设置方式2: urlopen函数设置timeout参数
+ from urllib import request, error
+ 
+ req = request.Request('http://www.google.com/')
+ req.add_header('User-Agent', 'iOS')  # 浏览器类型
+ 
+ try:
+     with request.urlopen(req, timeout=0.25) as f:
+         print(f.getheaders())
+ except error.HTTPError as e:
+     print(&quot;【HTTPError】:&quot;, e)
+     print(&quot;【HTTPError】, code:&quot;, e.code)
+ except error.URLError as e:
+     print(&quot;【URLError】:&quot;, e)
+     print(&quot;【URLError】, reason:&quot;, e.reason)
+ else:
+     print('else...')
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_4">五、Opener、Handler</h4>
-
+<h4><a id="%E4%BA%94%E3%80%81opener%E3%80%81handler" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、Opener、Handler</h4>
 <ul>
 <li><strong>urllib.request.urlopen()本质是使用一个默认创建的Opener对象去发送网络请求，但其不支持验证、cookie、其他HTTP高级功能</strong>
-
 <ul>
 <li><strong>若要支持上述高级那些功能，必须使用build_opener()函数创建自定义的Opener对象；build_opener()函数的参数为Handlers，返回为Opener对象；若不传入Handlers参数，则Opener对象会被默认添加一些Hanlder</strong></li>
 <li>Opener对象也可通过add_handler()方法手动添加Handler</li>
 <li>Opener对象具有open()方法，和request的urlopen()方法的功能一样，也支持通过addHeaders()方法设置headers</li>
 <li>可以将某个Opener对象装载变为全局的（调用request.install_opener(opener)方法），之后使用request.urlopen()就是使用该Opener对象去发送请求</li>
-</ul></li>
+</ul>
+</li>
 <li>HTTPBasicAuthHandler是处理WWW-Authenticate的Handler，ProxyHandler是处理代理的Handler，HTTPRedirectHandler是处理重定向的Handler（需要子类），HTTPCoookieProcessor是处理Cookies的Handler，等等</li>
 </ul>
-
-<h5 id="toc_5">5.1 HTTPBasicAuthHandler</h5>
-
+<h5><a id="5-1-httpbasicauthhandler" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.1 HTTPBasicAuthHandler</h5>
 <ul>
-<li>WWW-Authenticate是早期的一种简单身份认证技术，通常用在嵌入式领域（如早期的家用路由器的登录）或者一些需要简单认证的应用（如Tomcat的Application管理的登录）；该认证采用的用户名密码的加密方式为Base64（即明码传输），验证简单容易被破解</li>
-<li>WWW-Authenticate认证过程：
-
+<li>
+<p>WWW-Authenticate是早期的一种简单身份认证技术，通常用在嵌入式领域（如早期的家用路由器的登录）或者一些需要简单认证的应用（如Tomcat的Application管理的登录）；该认证采用的用户名密码的加密方式为Base64（即明码传输），验证简单容易被破解</p>
+</li>
+<li>
+<p>WWW-Authenticate认证过程：</p>
 <ul>
 <li>1). 客户端浏览器向服务端发送HTTP请求（比如192.168.1.1）</li>
 <li>2). 服务端收到请求，解析请求的header，判断是否有 <code>Authorization: Basic XXXX</code> 字段；若没有，则服务器的响应的header设置 <code>WWW-Authenticate: Basic realm=&quot;YYYY&quot;</code>（要求客户端发送用户名密码到服务端）</li>
 <li>3). 当客户端浏览器收到响应的header中含有 <code>WWW-Authenticate: Basic realm=&quot;YYYY&quot;</code> 时，会弹出对话框要求用户输入相关信息</li>
 <li>4). 用户输入相关信息后，客户端将发送含有 <code>Authorization: Basic XXXX</code> 请求给服务器进行认证</li>
-</ul></li>
-<li><p>验证WWW-Authenticate认证</p>
-
-<pre><code class="language-python">
-# 1. 环境准备：安装Tomcat，修改文件权限，修改tomcat-users.xml，启动服务器
-    a. 修改文件权限：sudo chmod 755 xxx/bin/*.sh
-    b. 修改tomcat-users.xml：增加如下内容
-      &lt;role rolename=&quot;manager-gui&quot;/&gt;
-      &lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui&quot;/&gt;
+</ul>
+</li>
+<li>
+<p>验证WWW-Authenticate认证</p>
+<pre><code class="language-python"> 
+ # 1. 环境准备：安装Tomcat，修改文件权限，修改tomcat-users.xml，启动服务器
+  	a. 修改文件权限：sudo chmod 755 xxx/bin/*.sh
+  	b. 修改tomcat-users.xml：增加如下内容
+ 	  &lt;role rolename=&quot;manager-gui&quot;/&gt;
+ 	  &lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui&quot;/&gt;
 </code></pre>
-
-<pre><code class="language-python"># 2. 验证
-from urllib import request
-
-# a. 不使用HTTPBasicAuthHandler，访问失败
-url = &#39;http://127.0.0.1:8080/manager/html&#39;  
-with request.urlopen(url) as f:
-    print(f.getheaders())
-
-# b. 使用HTTPBasicAuthHandler，访问成功
-top_url = &#39;http://127.0.0.1:8080/&#39;
-password_mgr = request.HTTPPasswordMgrWithDefaultRealm()
-password_mgr.add_password(None, top_url, &#39;tomcat&#39;, &#39;tomcat&#39;)  # 注意要设置域
-# 创建一个handler
-handler = request.HTTPBasicAuthHandler(password_mgr=password_mgr) 
-
-# 创建一个opener
-# 方式1:
-# opener = request.build_opener(handler)  
-# 方式2:
-opener = request.build_opener()
-opener.add_handler(handler)
-
-opener.addheaders = [(&#39;User-Agent&#39;, &#39;Mozilla/5.0&#39;)]  # 设置请求头
-
-url = &#39;http://127.0.0.1:8080/manager/html&#39;
-with opener.open(url) as f:
-    print(f.getheaders())
-</code></pre></li>
+<pre><code class="language-python"> # 2. 验证
+ from urllib import request
+ 
+ # a. 不使用HTTPBasicAuthHandler，访问失败
+ url = 'http://127.0.0.1:8080/manager/html'	
+ with request.urlopen(url) as f:
+     print(f.getheaders())
+ 
+ 
+ # b. 使用HTTPBasicAuthHandler，访问成功
+ top_url = 'http://127.0.0.1:8080/'
+ password_mgr = request.HTTPPasswordMgrWithDefaultRealm()
+ password_mgr.add_password(None, top_url, 'tomcat', 'tomcat')  # 注意要设置域
+ # 创建一个handler
+ handler = request.HTTPBasicAuthHandler(password_mgr=password_mgr) 
+ 
+ # 创建一个opener
+ # 方式1:
+ # opener = request.build_opener(handler)  
+ # 方式2:
+ opener = request.build_opener()
+ opener.add_handler(handler)
+ 
+ opener.addheaders = [('User-Agent', 'Mozilla/5.0')]  # 设置请求头
+ 
+ url = 'http://127.0.0.1:8080/manager/html'
+ with opener.open(url) as f:
+     print(f.getheaders())
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_6">5.2 ProxyHandler</h5>
-
+<h5><a id="5-2-proxyhandler" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.2 ProxyHandler</h5>
 <ul>
-<li><p>设置HTTP代理</p>
-
-<pre><code class="language-python">from urllib import request
-
-# a. 不使用代理
-url = &#39;http://ip.chinaz.com/getip.aspx&#39;
-with request.urlopen(url) as f:
-print(f.read().decode(&#39;utf-&#39;))
-# {ip:&#39;111.196.84.186&#39;,address:&#39;北京市 联通&#39;}
-
-# b. 使用代理
-handler = request.ProxyHandler({&#39;http&#39;: &#39;124.88.67.21:843&#39;})
-
-opener = request.build_opener(handler)
-
-url = &#39;http://ip.chinaz.com/getip.aspx&#39;
-with opener.open(url) as f:
-print(f.read().decode(&#39;utf-8&#39;))
-# {ip:&#39;124.88.67.21&#39;,address:&#39;新疆乌鲁木齐市 联通&#39;}
-
-# c. 使用代理，并进行认证（两个Handler）
-proxy_url = &#39;124.88.67.21:843&#39;
-password_mgr = request.HTTPPasswordMgrWithDefaultRealm()
-password_mgr.add_password(None, proxy_url, &#39;tomcat&#39;, &#39;tomcat&#39;)
-proxy_auth_handler = request.ProxyBasicAuthHandler(password_mgr)
-
-proxy_handler = request.ProxyHandler({&#39;http&#39;: proxy_url})
-
-opener = request.build_opener(proxy_handler, proxy_auth_handler)
-
-url = &#39;http://ip.chinaz.com/getip.aspx&#39;
-with opener.open(url) as f:
-print(f.read().decode(&#39;utf-8&#39;))
-</code></pre></li>
+<li>
+<p>设置HTTP代理</p>
+<pre><code class="language-python"> from urllib import request
+ 	
+ # a. 不使用代理
+ url = 'http://ip.chinaz.com/getip.aspx'
+ with request.urlopen(url) as f:
+ print(f.read().decode('utf-'))
+ # {ip:'111.196.84.186',address:'北京市 联通'}
+ 
+ 
+ # b. 使用代理
+ handler = request.ProxyHandler({'http': '124.88.67.21:843'})
+ 	
+ opener = request.build_opener(handler)
+ 	
+ url = 'http://ip.chinaz.com/getip.aspx'
+ with opener.open(url) as f:
+ print(f.read().decode('utf-8'))
+ # {ip:'124.88.67.21',address:'新疆乌鲁木齐市 联通'}
+ 
+ 
+ # c. 使用代理，并进行认证（两个Handler）
+ proxy_url = '124.88.67.21:843'
+ password_mgr = request.HTTPPasswordMgrWithDefaultRealm()
+ password_mgr.add_password(None, proxy_url, 'tomcat', 'tomcat')
+ proxy_auth_handler = request.ProxyBasicAuthHandler(password_mgr)
+ 	
+ proxy_handler = request.ProxyHandler({'http': proxy_url})
+ 	
+ opener = request.build_opener(proxy_handler, proxy_auth_handler)
+ 	
+ url = 'http://ip.chinaz.com/getip.aspx'
+ with opener.open(url) as f:
+ print(f.read().decode('utf-8'))
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_7">5.3 HTTPRedirectHandler</h5>
-
+<h5><a id="5-3-httpredirecthandler" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.3 HTTPRedirectHandler</h5>
 <ul>
-<li>重定向类型：
-
+<li>
+<p>重定向类型：</p>
 <ul>
 <li>301重定向（Moved Permanently）：表示本网页永久性转移到另一个地址，搜索引擎在抓取新内容时，会将旧的网址替换为重定向之后的网址，比如<a href="http://www.360buy.com/">http://www.360buy.com/</a></li>
 <li>302重定向（Temporarily Moved）：表示暂时重定向，搜索引擎在抓取新内容时，会保留旧的网址，比如<a href="http://www.baidu.com/haha">http://www.baidu.com/haha</a></li>
-</ul></li>
-<li><p>处理重定向（需要自定义Handler继承HTTPRedirectHandler，并重写相关处理方法）</p>
-
-<pre><code class="language-python">from urllib import request
-
-# a. 不进行重定向处理
-url = &#39;http://www.baidu.com/haha&#39;
-with request.urlopen(url) as f:
-    print(f.getheaders())
-    final_url = f.geturl()
-    if url != final_url:
-        print(&#39;redirected...&#39;)
-
-# b. 进行重定向处理
-# 自定义Handler，重写父类处理302的方法（防止302跳转）
-# 若还需要防止301跳转，则重写父类处理301的方法
-class NoHTTPRedirectHandler(request.HTTPRedirectHandler):
-    def http_error_302(self, req, fp, code, msg, headers):
-        print(&#39;http_error_302...&#39;)
-        pass
-
-opener = request.build_opener(NoHTTPRedirectHandler)
-
-url = &#39;http://www.baidu.com/haha&#39;
-with opener.open(url) as f:
-    print(f.getheaders())
-    final_url = f.geturl()
-    if url != final_url:
-        print(&#39;redirected...&#39;)
-</code></pre></li>
 </ul>
-
-<h5 id="toc_8">5.4 HTTPCoookieProcessor</h5>
-
+</li>
+<li>
+<p>处理重定向（需要自定义Handler继承HTTPRedirectHandler，并重写相关处理方法）</p>
+<pre><code class="language-python"> from urllib import request
+ 
+ # a. 不进行重定向处理
+ url = 'http://www.baidu.com/haha'
+ with request.urlopen(url) as f:
+     print(f.getheaders())
+     final_url = f.geturl()
+     if url != final_url:
+         print('redirected...')
+ 
+ 
+ # b. 进行重定向处理
+ # 自定义Handler，重写父类处理302的方法（防止302跳转）
+ # 若还需要防止301跳转，则重写父类处理301的方法
+ class NoHTTPRedirectHandler(request.HTTPRedirectHandler):
+     def http_error_302(self, req, fp, code, msg, headers):
+         print('http_error_302...')
+         pass
+ 
+ opener = request.build_opener(NoHTTPRedirectHandler)
+ 
+ url = 'http://www.baidu.com/haha'
+ with opener.open(url) as f:
+     print(f.getheaders())
+     final_url = f.geturl()
+     if url != final_url:
+         print('redirected...')
+</code></pre>
+</li>
+</ul>
+<h5><a id="5-4-httpcoookieprocessor" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.4 HTTPCoookieProcessor</h5>
 <ul>
-<li>利用http.cookiejar模块的CookieJar对象可以捕获、保存、在后续请求时加载cookie（这些操作都使用了handler来实现的），以实现模拟登录的功能；在Python 2.x中，CookieJar在cookielib模块下</li>
-<li>cookie保存的方式有两大类型：
-
+<li>
+<p>利用http.cookiejar模块的CookieJar对象可以捕获、保存、在后续请求时加载cookie（这些操作都使用了handler来实现的），以实现模拟登录的功能；在Python 2.x中，CookieJar在cookielib模块下</p>
+</li>
+<li>
+<p>cookie保存的方式有两大类型：</p>
 <ul>
 <li>CookieJar（保存到内存中）</li>
 <li>FileCookieJar（保存到文件中）：无法直接使用，需要用其子类MozillaCookieJar（保存格式为Mozilla格式）、LWPCookieJar（保存格式为LWP格式）</li>
-</ul></li>
-<li>一个cookie的大小是有限制的；对于同一个url可以有多个cookie，但发送给服务器时会自动将多个cookie拼接一起设置在request的header的“Cookie”字段中</li>
-<li><p>使用cookie的方式：</p>
-
+</ul>
+</li>
+<li>
+<p>一个cookie的大小是有限制的；对于同一个url可以有多个cookie，但发送给服务器时会自动将多个cookie拼接一起设置在request的header的“Cookie”字段中</p>
+</li>
+<li>
+<p>使用cookie的方式：</p>
 <ul>
 <li>直接从response的header中获取cookie：之后访问同一个域中的其他url，request的header中是默认不会带“Cookie”字段的，需要手动设置cookie</li>
 <li><strong>通过CookieJar获取cookie：之后访问同一个域中的其他url，会自动带上之前获取的cookie，不需要手动设置</strong></li>
-</ul></li>
-<li><p>处理cookie</p>
-
-<pre><code class="language-python">from urllib import request
-from http import cookiejar
-
-# a. 直接从response的header中获取cookie
-url = &#39;http://www.baidu.com/haha&#39;
-req = request.Request(url)
-with request.urlopen(req) as f:
-    print(f.info())  # header有Set-Cookie字段
-
-# b. 通过CookieJar获取cookie（保存到CookieJar中）
-cj = cookiejar.CookieJar()
-handler = request.HTTPCookieProcessor(cookiejar=cj)
-
-opener = request.build_opener(handler)
-
-url = &#39;http://www.baidu.com/&#39;
-with opener.open(url) as f:
-    print(f.info())
-    print(&#39;............&#39;)
-    for item in cj:  # item为http.cookiejar.Cookie对象
-        print(item.name + &#39;, &#39; + item.value + &#39;, &#39; + item.domain + &#39;, &#39; + str(item.expires))
-    # 之后，opener.open()访问同一个域中的其他url会自动带上cookie
-
-# c. 通过CookieJar获取cookie（保存到文件中）
-# filename = &#39;mozillaCookie.txt&#39;
-# fileCJ = cookiejar.MozillaCookieJar(filename)
-filename = &#39;lwpCookie.txt&#39;
-fileCJ = cookiejar.LWPCookieJar(filename)
-handler = request.HTTPCookieProcessor(cookiejar=fileCJ)
-
-opener = request.build_opener(handler)
-
-url = &#39;http://www.baidu.com/&#39;
-with opener.open(url) as f:
-    # 保存到文件
-    # ignore_discard=True：表示即使cookie将被丢弃也将其保存
-    # ignore_expires=True：表示即使cookies已过期也将其保存
-    fileCJ.save(ignore_discard=True, ignore_expires=True)
-    for item in fileCJ:
-        print(item.name + &#39;, &#39; + item.value + &#39;, &#39; + item.domain + &#39;, &#39; + str(item.expires))
-
-# d. 加载cookie，并利用cookie模拟登陆
-# 登陆失败，则报错HTTP Error 401: Unauthorized
-# 登陆成功，则打印header信息
-# lwpCookie.txt内容如下:
-# #LWP-Cookies-2.0
-# Set-Cookie3: JSESSIONID=&quot;D0A8F2D81D533497AC7A7BA22E35A041&quot;; path=&quot;/manager/&quot;; domain=&quot;127.0.0.1&quot;; path_spec; discard; version=0
-
-filename = &#39;lwpCookie.txt&#39;
-fileCJ = cookiejar.LWPCookieJar()
-# 从文件中加载cookie
-fileCJ.load(filename, ignore_discard=True, ignore_expires=True)
-handler = request.HTTPCookieProcessor(cookiejar=fileCJ)
-
-opener = request.build_opener(handler)
-
-url = &#39;http://127.0.0.1:8080/manager/html&#39;
-with opener.open(url) as f:
-    print(f.info())
-</code></pre></li>
-<li><p>调试：输出HTPP Debug Log</p>
-
-<pre><code class="language-python"># 输出Log方式1：
-from urllib import request
-from http.client import HTTPConnection, HTTPSConnection
-
-HTTPConnection.debuglevel = 1
-HTTPSConnection.debuglevel = 1
-
-request.urlopen(&#39;http://www.baidu.com/&#39;)
-print(&#39;.....&#39;)
-
-# 输出Log方式2：（通过Handler；未验证通过）
-from urllib import request
-
-httpHandler = request.HTTPHandler(debuglevel=1)
-httpsHandler = request.HTTPSHandler(debuglevel=1)
-
-opener = request.build_opener(httpHandler, httpsHandler)
-
-opener.open(&#39;http://www.baidu.com/&#39;)
-print(&#39;.....&#39;)
-</code></pre></li>
 </ul>
-
-<h4 id="toc_9">六、实战</h4>
-
+</li>
+<li>
+<p>处理cookie</p>
+<pre><code class="language-python"> from urllib import request
+ from http import cookiejar
+ 
+ # a. 直接从response的header中获取cookie
+ url = 'http://www.baidu.com/haha'
+ req = request.Request(url)
+ with request.urlopen(req) as f:
+     print(f.info())  # header有Set-Cookie字段
+ 
+ 
+ # b. 通过CookieJar获取cookie（保存到CookieJar中）
+ cj = cookiejar.CookieJar()
+ handler = request.HTTPCookieProcessor(cookiejar=cj)
+ 
+ opener = request.build_opener(handler)
+ 
+ url = 'http://www.baidu.com/'
+ with opener.open(url) as f:
+     print(f.info())
+     print('............')
+     for item in cj:  # item为http.cookiejar.Cookie对象
+         print(item.name + ', ' + item.value + ', ' + item.domain + ', ' + str(item.expires))
+     # 之后，opener.open()访问同一个域中的其他url会自动带上cookie
+ 
+ 
+ # c. 通过CookieJar获取cookie（保存到文件中）
+ # filename = 'mozillaCookie.txt'
+ # fileCJ = cookiejar.MozillaCookieJar(filename)
+ filename = 'lwpCookie.txt'
+ fileCJ = cookiejar.LWPCookieJar(filename)
+ handler = request.HTTPCookieProcessor(cookiejar=fileCJ)
+ 
+ opener = request.build_opener(handler)
+ 
+ url = 'http://www.baidu.com/'
+ with opener.open(url) as f:
+     # 保存到文件
+     # ignore_discard=True：表示即使cookie将被丢弃也将其保存
+     # ignore_expires=True：表示即使cookies已过期也将其保存
+     fileCJ.save(ignore_discard=True, ignore_expires=True)
+     for item in fileCJ:
+         print(item.name + ', ' + item.value + ', ' + item.domain + ', ' + str(item.expires))
+ 
+ 
+ # d. 加载cookie，并利用cookie模拟登陆
+ # 登陆失败，则报错HTTP Error 401: Unauthorized
+ # 登陆成功，则打印header信息
+ # lwpCookie.txt内容如下:
+ # #LWP-Cookies-2.0
+ # Set-Cookie3: JSESSIONID=&quot;D0A8F2D81D533497AC7A7BA22E35A041&quot;; path=&quot;/manager/&quot;; domain=&quot;127.0.0.1&quot;; path_spec; discard; version=0
+ 
+ filename = 'lwpCookie.txt'
+ fileCJ = cookiejar.LWPCookieJar()
+ # 从文件中加载cookie
+ fileCJ.load(filename, ignore_discard=True, ignore_expires=True)
+ handler = request.HTTPCookieProcessor(cookiejar=fileCJ)
+ 
+ opener = request.build_opener(handler)
+ 
+ url = 'http://127.0.0.1:8080/manager/html'
+ with opener.open(url) as f:
+     print(f.info())
+</code></pre>
+</li>
+<li>
+<p>调试：输出HTPP Debug Log</p>
+<pre><code class="language-python"> # 输出Log方式1：
+ from urllib import request
+ from http.client import HTTPConnection, HTTPSConnection
+ 
+ HTTPConnection.debuglevel = 1
+ HTTPSConnection.debuglevel = 1
+ 
+ request.urlopen('http://www.baidu.com/')
+ print('.....')
+ 
+ 
+ # 输出Log方式2：（通过Handler；未验证通过）
+ from urllib import request
+ 
+ httpHandler = request.HTTPHandler(debuglevel=1)
+ httpsHandler = request.HTTPSHandler(debuglevel=1)
+ 
+ opener = request.build_opener(httpHandler, httpsHandler)
+ 
+ opener.open('http://www.baidu.com/')
+ print('.....')
+</code></pre>
+</li>
+</ul>
+<h4><a id="%E5%85%AD%E3%80%81%E5%AE%9E%E6%88%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、实战</h4>
 <ul>
-<li><p>抓取糗事百科</p>
-
-<pre><code class="language-python"># http://www.qiushibaike.com/hot/page/1/
-# 匹配的文字内容格式：&lt;div class=&quot;content&quot;&gt;这个一定能过&lt;/div&gt;
-from urllib import request
-import re
-from threading import Thread
-import time
-
-def get_contents_by_page(page):
-    url = &#39;http://www.qiushibaike.com/hot/page/%d/&#39; % page
-    req = request.Request(url)
-    req.add_header(&#39;User-Agent&#39;, &#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0) Gecko/20100101 Firefox/45.0&#39;)
-
-    with request.urlopen(req) as f:
-        html = f.read().decode(&#39;utf-8&#39;, errors=&#39;ignore&#39;)
-        # 方式1:
-        # 使用非贪婪匹配：&lt;div class=&quot;content&quot;&gt;([.|\n]*?)&lt;/div&gt;或者&lt;div class=&quot;content&quot;&gt;([\s\S]*?)&lt;/div&gt;
-        # .默认匹配除换行之外的任意字符
-        # pattern = r&#39;&lt;div class=&quot;content&quot;&gt;([\s\S]*?)&lt;/div&gt;&#39;
-        # contents = re.findall(pattern, html)
-
-        # 方式2:
-        pattern = r&#39;&lt;div class=&quot;content&quot;&gt;(.*?)&lt;/div&gt;&#39;
-        # 设置re.S标志位，让.也可以匹配换行符
-        contents = re.findall(pattern, html, re.S)
-
-        pageContents = []
-        for content in contents:
-            pageContents.append(content.replace(&#39;\n&#39;, &#39;&#39;))
-        return pageContents
+<li>
+<p>抓取糗事百科</p>
+<pre><code class="language-python"> # http://www.qiushibaike.com/hot/page/1/
+ # 匹配的文字内容格式：&lt;div class=&quot;content&quot;&gt;这个一定能过&lt;/div&gt;
+ from urllib import request
+ import re
+ from threading import Thread
+ import time
+ 
+ def get_contents_by_page(page):
+ 	url = 'http://www.qiushibaike.com/hot/page/%d/' % page
+ 	req = request.Request(url)
+ 	req.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0) Gecko/20100101 Firefox/45.0')
+ 	
+ 	with request.urlopen(req) as f:
+ 		html = f.read().decode('utf-8', errors='ignore')
+ 		# 方式1:
+ 		# 使用非贪婪匹配：&lt;div class=&quot;content&quot;&gt;([.|\n]*?)&lt;/div&gt;或者&lt;div class=&quot;content&quot;&gt;([\s\S]*?)&lt;/div&gt;
+ 		# .默认匹配除换行之外的任意字符
+ 		# pattern = r'&lt;div class=&quot;content&quot;&gt;([\s\S]*?)&lt;/div&gt;'
+ 		# contents = re.findall(pattern, html)
+ 		
+ 		# 方式2:
+ 		pattern = r'&lt;div class=&quot;content&quot;&gt;(.*?)&lt;/div&gt;'
+ 		# 设置re.S标志位，让.也可以匹配换行符
+ 		contents = re.findall(pattern, html, re.S)
+ 		
+ 		pageContents = []
+ 		for content in contents:
+ 			pageContents.append(content.replace('\n', ''))
+ 		return pageContents
 </code></pre>
-
-<pre><code class="language-python">totalPageContents = []
-
-def get_pages_contents():
-    page = 1
-    while True:
-        # totalPageContents最多只能存放两页的数据，超过就暂停抓取
-        if len(totalPageContents) &lt; 2:
-            page_contents = get_contents_by_page(page)
-            page += 1
-            totalPageContents.append(page_contents)
-        else:
-            time.sleep(1.0)
-
-def print_pages_contents():
-    page = 1
-    while True:
-        if len(totalPageContents):  # 有数据
-            page_contents = totalPageContents.pop(0)
-            print(&#39;------------第%d页数据------------&#39; % page)
-            for content in page_contents:
-                print(&quot;&gt;&gt;&quot; + content)
-                page += 1
-        else:
-            time.sleep(1.0)
+<pre><code class="language-python"> totalPageContents = []
+ 
+ def get_pages_contents():
+ 	page = 1
+ 	while True:
+ 		# totalPageContents最多只能存放两页的数据，超过就暂停抓取
+ 		if len(totalPageContents) &lt; 2:
+ 			page_contents = get_contents_by_page(page)
+ 			page += 1
+ 			totalPageContents.append(page_contents)
+ 		else:
+ 			time.sleep(1.0)
+ 
+ def print_pages_contents():
+ 	page = 1
+ 	while True:
+ 		if len(totalPageContents):  # 有数据
+ 			page_contents = totalPageContents.pop(0)
+ 			print('------------第%d页数据------------' % page)
+ 			for content in page_contents:
+ 				print(&quot;&gt;&gt;&quot; + content)
+ 				page += 1
+ 		else:
+ 			time.sleep(1.0)
 </code></pre>
-
-<pre><code class="language-python">def start():
-    print(&#39;------------开始爬虫------------&#39;)
-    Thread(target=get_pages_contents).start()
-    print_pages_contents()
-
-if __name__ == &#39;__main__&#39;:
-    start()
-</code></pre></li>
-<li><p>抓取百度贴吧连载小说</p>
-
-<pre><code class="language-python"># http://tieba.baidu.com/p/3829840554?see_lz=1&amp;pn=1
-from urllib import request
-import re
-
-allData = []
-
-def get_pages_contents(url, page_count):
-    for i in range(1, int(page_count) + 1):
-        print(&#39;正在抓取第%s页的数据...&#39; % i)
-        req = request.Request(&#39;%s&amp;pn=%d&#39; % (url, i))
-        req.add_header(&#39;User-Agent&#39;,&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0) Gecko/20100101 Firefox/45.0&#39;)
-
-        with request.urlopen(req) f:
-          html = f.read().decode(&#39;utf-8&#39;)
-          pattern = r&#39;&lt;div id=&quot;post_content_\d+?&quot; class=&quot;d_post_content j_d_post_content &quot;&gt;(.+?)&lt;/div&gt;&#39;
-          contents = re.findall(pattern, html)
-          print(&#39;正在处理第%s页的数据...&#39; % i)
-          for co in contents:  # 处理每一楼层内容；sub方法为进行字符串替换
-              co = re.sub(r&#39;^\s*&#39;, r&#39;&#39;, co)  # 处理最前面的空格
-              co = re.sub(r&#39;&lt;br&gt;&#39;, r&#39;\n&#39;, co)  # 处理换行
-              co = re.sub(r&#39;&lt;a .+?&gt;(.+?)&lt;/a&gt;&#39;, r&#39;\1&#39;, co)  # 处理超链接
-              allData.append(co) # 注：不严谨，无法保证每页的顺序正确
+<pre><code class="language-python"> def start():
+ 	print('------------开始爬虫------------')
+ 	Thread(target=get_pages_contents).start()
+ 	print_pages_contents()
+ 
+ if __name__ == '__main__':
+ 	start()
 </code></pre>
+</li>
+<li>
+<p>抓取百度贴吧连载小说</p>
+<pre><code class="language-python"> # http://tieba.baidu.com/p/3829840554?see_lz=1&amp;pn=1
+ from urllib import request
+ import re
+ 
+ allData = []
+ 
+ def get_pages_contents(url, page_count):
+ 	for i in range(1, int(page_count) + 1):
+ 		print('正在抓取第%s页的数据...' % i)
+ 		req = request.Request('%s&amp;pn=%d' % (url, i))
+ 		req.add_header('User-Agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0) Gecko/20100101 Firefox/45.0')
 
-<pre><code class="language-python">url = &#39;http://tieba.baidu.com/p/3829840554?see_lz=1&#39;
-req = request.Request(url)
-req.add_header(&#39;User-Agent&#39;, &#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0) Gecko/20100101 Firefox/45.0&#39;)
-
-with request.urlopen(req) as f:
-    html = f.read().decode(&#39;utf-8&#39;)
-    title = re.search(r&#39;&lt;h3 class=&quot;core_title_txt.*?&gt;(.+?)&lt;/h3&gt;&#39;, html).group(1)
-    print(&#39;标题为: %s&#39; % title)
-    page_count = re.search(r&#39;&lt;span class=&quot;red\&quot;&gt;(\d+?)&lt;/span&gt;&#39;, html).group(1)
-    print(&#39;一共有%s页数据&#39; % page_count)
-
-    get_pages_contents(url, page_count)
-
-    with open(title + &#39;.txt&#39;, &#39;w&#39;) as ff:
-        ff.writelines(allData)
-        print(&#39;数据保存完毕...&#39;)
-</code></pre></li>
+ 		with request.urlopen(req) f:
+ 		  html = f.read().decode('utf-8')
+ 		  pattern = r'&lt;div id=&quot;post_content_\d+?&quot; class=&quot;d_post_content j_d_post_content &quot;&gt;(.+?)&lt;/div&gt;'
+ 		  contents = re.findall(pattern, html)
+ 		  print('正在处理第%s页的数据...' % i)
+ 		  for co in contents:  # 处理每一楼层内容；sub方法为进行字符串替换
+ 		      co = re.sub(r'^\s*', r'', co)  # 处理最前面的空格
+ 		      co = re.sub(r'&lt;br&gt;', r'\n', co)  # 处理换行
+ 		      co = re.sub(r'&lt;a .+?&gt;(.+?)&lt;/a&gt;', r'\1', co)  # 处理超链接
+ 		      allData.append(co) # 注：不严谨，无法保证每页的顺序正确
+</code></pre>
+<pre><code class="language-python"> url = 'http://tieba.baidu.com/p/3829840554?see_lz=1'
+ req = request.Request(url)
+ req.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0) Gecko/20100101 Firefox/45.0')
+ 
+ with request.urlopen(req) as f:
+     html = f.read().decode('utf-8')
+     title = re.search(r'&lt;h3 class=&quot;core_title_txt.*?&gt;(.+?)&lt;/h3&gt;', html).group(1)
+     print('标题为: %s' % title)
+     page_count = re.search(r'&lt;span class=&quot;red\&quot;&gt;(\d+?)&lt;/span&gt;', html).group(1)
+     print('一共有%s页数据' % page_count)
+ 
+     get_pages_contents(url, page_count)
+ 
+     with open(title + '.txt', 'w') as ff:
+         ff.writelines(allData)
+         print('数据保存完毕...')
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -727,7 +737,7 @@ with request.urlopen(req) as f:
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

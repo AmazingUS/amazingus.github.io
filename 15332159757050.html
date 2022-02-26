@@ -108,134 +108,138 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">一、散列算法、加密算法、Base64</a>
-</li>
-<li>
-<a href="#toc_1">二、CA、（数字）证书、PKI、扩展名</a>
-</li>
-<li>
-<a href="#toc_2">三、OpenSSL库使用</a>
-</li>
-<li>
-<a href="#toc_3">四、苹果开发者证书、HTTPS、Charles</a>
-</li>
-<li>
-<a href="#toc_4">五、HTTPS单向、双向认证</a>
-</li>
-<li>
-<a href="#toc_5">六、参考</a>
-</li>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E6%95%A3%E5%88%97%E7%AE%97%E6%B3%95%E3%80%81%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E3%80%81base64">一、散列算法、加密算法、Base64</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81ca%E3%80%81%EF%BC%88%E6%95%B0%E5%AD%97%EF%BC%89%E8%AF%81%E4%B9%A6%E3%80%81pki%E3%80%81%E6%89%A9%E5%B1%95%E5%90%8D">二、CA、（数字）证书、PKI、扩展名</a></li>
+<li><a href="#%E4%B8%89%E3%80%81openssl%E5%BA%93%E4%BD%BF%E7%94%A8">三、OpenSSL库使用</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81%E8%8B%B9%E6%9E%9C%E5%BC%80%E5%8F%91%E8%80%85%E8%AF%81%E4%B9%A6%E3%80%81https%E3%80%81charles">四、苹果开发者证书、HTTPS、Charles</a></li>
+<li><a href="#%E4%BA%94%E3%80%81https%E5%8D%95%E5%90%91%E3%80%81%E5%8F%8C%E5%90%91%E8%AE%A4%E8%AF%81">五、HTTPS单向、双向认证</a></li>
+<li><a href="#%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83">六、参考</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、散列算法、加密算法、Base64</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E6%95%A3%E5%88%97%E7%AE%97%E6%B3%95%E3%80%81%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E3%80%81base64" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、散列算法、加密算法、Base64</h4>
 <ul>
-<li><p>一）散列算法</p>
-
+<li>
+<p>一）散列算法</p>
 <ul>
 <li>又称为摘要算法，用于信息的签名、防篡改；运算结果不可逆；</li>
 <li>常见算法有MD5（将任意长度的内容散列成128bit）、SHA1（将任意长度的信息散列成160bit）、HMAC（Hash-based Message Authentication Code，需要输入一个密钥和一个信息，生成一个信息摘要）等；</li>
-</ul></li>
-<li><p>二）加密算法分类</p>
-
+</ul>
+</li>
+<li>
+<p>二）加密算法分类</p>
 <ul>
-<li><p>a. 对称加密：</p>
-
+<li>
+<p>a. 对称加密：</p>
 <ul>
 <li>加密和解密使用同一密钥，加密速度快，适用于大量内容的加密；</li>
 <li>常见算法有DES（Data Encryption Standard）、3DES（Triple DES）、AES（Advanced Encryption Standard）等；</li>
-</ul></li>
-<li><p>b. 非对称加密：</p>
-
+</ul>
+</li>
+<li>
+<p>b. 非对称加密：</p>
 <ul>
 <li>加密和解密使用不同的两个密钥，分别为<code>公钥</code>和<code>私钥</code>，并且需要配对使用，加密速度比较慢，适用于小量内容的加密；</li>
 <li>常见算法有RSA、DSA（Digital Signature Algorithm）、ECC（Elliptic Curves Cryptography）等；</li>
 <li><strong>使用公钥加密私钥加密，RSA每次能够运算的数据长度不能超过RSA密钥长度，当超过时需要分段处理；</strong></li>
-</ul></li>
-</ul></li>
 </ul>
-
-<span id="more"></span><!-- more -->   
-
+</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span><!-- more -->	
 <ul>
-<li><p>三）加密算法的使用</p>
-
+<li>
+<p>三）加密算法的使用</p>
 <ul>
-<li><p>a. 非对称加密中，一般将公钥公开给其他人，私钥自己保存；其他人使用公钥加密相关内容，自己使用私钥解密出相关内容；</p>
-
+<li>
+<p>a. 非对称加密中，一般将公钥公开给其他人，私钥自己保存；其他人使用公钥加密相关内容，自己使用私钥解密出相关内容；</p>
 <ul>
 <li>当A和B需要互发消息时，需要将A和B的公钥互相公开，当一端需要向另一端发送消息时，使用对端的公钥进行加密，对端再使用自己的私钥进行解密，反之亦然；</li>
 <li>在实际使用中，由于非对称加密速度比较慢，一般先使用其传递对称加密的秘钥，然后再用该对称加密的秘钥加密真正的数据；这样就集成两种加密算法的优点，既加密可靠又加密速度快；</li>
-</ul></li>
-<li><p>b. 但是也可以自己将消息内容使用私钥进行加密，让其他人使用公钥进行解密，此方式可用于其他人验证消息是否来自于私钥的持有者（自己）；</p>
-
+</ul>
+</li>
+<li>
+<p>b. 但是也可以自己将消息内容使用私钥进行加密，让其他人使用公钥进行解密，此方式可用于其他人验证消息是否来自于私钥的持有者（自己）；</p>
 <ul>
 <li><strong>公钥加密/私钥解密用于<code>加密</code>，私钥加密/公钥解密用于<code>认证</code>；</strong></li>
 <li><strong>这里也可以看出公钥和私钥可以<code>相互加密解密</code>；</strong></li>
-</ul></li>
-<li><p><strong>c. 当只是进行消息内容的是否被篡改校验时，一般不会仅仅使用散列算法，还会使用私钥加密/公钥解密进行<code>认证</code>消息源是否正确；</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>c. 当只是进行消息内容的是否被篡改校验时，一般不会仅仅使用散列算法，还会使用私钥加密/公钥解密进行<code>认证</code>消息源是否正确；</strong></p>
 <ul>
 <li><strong>本端先使用散列算法生成<code>摘要</code>，然后再对摘要使用私钥进行加密，生成的内容称为<code>数字签名（signature）</code>；</strong></li>
 <li><strong>对端收到原始内容和数字签名，先解密数字签名进行认证，然后自己对原始内容进行散列生成摘要，比较接收的和生成的摘要，进行防篡改校验；</strong></li>
-</ul></li>
-</ul></li>
-<li><p>四）Base64编码</p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>四）Base64编码</p>
 <ul>
 <li>一种运算结果可逆的编码算法（不是加密算法），通常用于将二进制数据编码为可写的字符形式的数据以适合传输（比如图片），编码后的字符串理论上将要比原来的长1/3；</li>
-</ul></li>
 </ul>
-
-<h4 id="toc_1">二、CA、（数字）证书、PKI、扩展名</h4>
-
+</li>
+</ul>
+<h4><a id="%E4%BA%8C%E3%80%81ca%E3%80%81%EF%BC%88%E6%95%B0%E5%AD%97%EF%BC%89%E8%AF%81%E4%B9%A6%E3%80%81pki%E3%80%81%E6%89%A9%E5%B1%95%E5%90%8D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、CA、（数字）证书、PKI、扩展名</h4>
 <ul>
-<li><p><strong>一）CA、证书</strong></p>
-
+<li>
+<p><strong>一）CA、证书</strong></p>
 <ul>
-<li><p>A、B通信时互相使用对方的公钥加密消息，可能会出现一个冒充A的C，给B发送自己的C公钥（冒充A的公钥）及消息，这样A、B间的加密通讯就被破解了；</p>
-
+<li>
+<p>A、B通信时互相使用对方的公钥加密消息，可能会出现一个冒充A的C，给B发送自己的C公钥（冒充A的公钥）及消息，这样A、B间的加密通讯就被破解了；</p>
 <ul>
 <li><strong>a). 为了解决上述问题，需要一个机构对A的公钥进行认证，保证A的公钥的正确可靠性，该机构被称为<code>CA（certificate authority，证书中心）</code>；</strong></li>
 <li><strong>b). CA会使用<code>自己的私钥</code>对<code>A的公钥及A的相关信息</code>进行加密签名，生成<code>数字证书（Digital Certificate）</code>，简称<code>证书</code>；</strong></li>
 <li><strong>c). 之后A向B发送<code>证书</code>，B收到后使用CA的公钥解密，获取到其中的A的公钥，之后再使用A的公钥与A进行通信；</strong></li>
-</ul></li>
-<li><p><strong>CA除了可以签名非CA的公钥，也可以签名其他CA的公钥（该CA被称为<code>非根CA</code>），还可以签名自己的公钥（<code>自签名</code>；该CA被称为<code>根CA</code>，证书被称为<code>根证书</code>）；</strong></p></li>
-<li><p><strong>当系统信任某个CA的根证书时，则使用该CA进行加密签名生成的非根CA的证书、普通证书都会被系统所信任；</strong></p></li>
-</ul></li>
-<li><p><strong>二）证书的标准</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>CA除了可以签名非CA的公钥，也可以签名其他CA的公钥（该CA被称为<code>非根CA</code>），还可以签名自己的公钥（<code>自签名</code>；该CA被称为<code>根CA</code>，证书被称为<code>根证书</code>）；</strong></p>
+</li>
+<li>
+<p><strong>当系统信任某个CA的根证书时，则使用该CA进行加密签名生成的非根CA的证书、普通证书都会被系统所信任；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>二）证书的标准</strong></p>
 <ul>
 <li>定义了证书中应该包含哪些内容；<strong>X.509是一种常见的证书标准（SSL就是采用该标准）</strong>，其有两种编码格式：
-
 <ul>
 <li><strong>PEM（Privacy Enhanced Mail）</strong>：文本格式，BASE64编码，以&quot;-----BEGIN...&quot;开头，&quot;-----END...&quot;结尾；常用于Apache、*nix服务器；</li>
 <li><strong>DER（Distinguished Encoding Rules）</strong>：二进制格式，不可读；常用于Java、Windows服务器；</li>
-</ul></li>
-</ul></li>
-<li><p><strong>三）PKI(Public Key Infrastructure)</strong></p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>三）PKI(Public Key Infrastructure)</strong></p>
 <ul>
-<li><p><strong>PKI：Public Key Infrastructure，公钥基础设施；一个典型的PKI系统包括PKI策略、软硬件系统、证书机构CA、注册机构RA、证书发布系统和PKI应用等；</strong></p></li>
-<li><p>PKI采用证书进行公钥管理，通过第三方的可信任机构CA，把用户的公钥和其他标识信息捆绑在一起，以便于在Internet上验证用户的身份；PKI把公钥和对称秘钥结合起来，在Internet上实现密钥的自动管理，保证网上数据的安全传输；</p></li>
-<li><p><strong>PKI的标准可分为两个部分：一类用于定义PKI，另一类用于应用PKI；</strong></p></li>
-<li><p><strong>定义PKI的常见标准</strong></p>
-
+<li>
+<p><strong>PKI：Public Key Infrastructure，公钥基础设施；一个典型的PKI系统包括PKI策略、软硬件系统、证书机构CA、注册机构RA、证书发布系统和PKI应用等；</strong></p>
+</li>
+<li>
+<p>PKI采用证书进行公钥管理，通过第三方的可信任机构CA，把用户的公钥和其他标识信息捆绑在一起，以便于在Internet上验证用户的身份；PKI把公钥和对称秘钥结合起来，在Internet上实现密钥的自动管理，保证网上数据的安全传输；</p>
+</li>
+<li>
+<p><strong>PKI的标准可分为两个部分：一类用于定义PKI，另一类用于应用PKI；</strong></p>
+</li>
+<li>
+<p><strong>定义PKI的常见标准</strong></p>
 <ul>
-<li><p><strong>a）. 国际电信联盟的X.509协议</strong></p>
-
+<li>
+<p><strong>a）. 国际电信联盟的X.509协议</strong></p>
 <ul>
 <li><strong>PKI技术体系中使用最为广泛、最为基础的一个国际标准；</strong></li>
 <li><strong>其主要目的在于定义一个规范的数字证书的格式，以便为基于X.500协议的目录服务提供一种强认证手段；但是该标准并非要定义一个完整的、可互操作的PKI认证体系；</strong></li>
-</ul></li>
-<li><p><strong>b）. RSA数据安全公司的PKCS</strong></p>
-
+</ul>
+</li>
+<li>
+<p><strong>b）. RSA数据安全公司的PKCS</strong></p>
 <ul>
 <li>定义了一组公钥密码学标准，其中包括证书申请、证书更新、证书作废发布、扩展证书内容以及数字签名、数字信封的格式等方面的一系列相关协议；比较常见的有
-
 <ul>
 <li>PKCS#1：定义RSA公开密钥算法加密和签名机制，主要用于组织PKCS#7中所描述的数字签名和数字信封；</li>
 <li>PKCS#3：定义Diffie-Hellman密钥交换协议；</li>
@@ -243,266 +247,304 @@
 <li><strong>PKCS#7</strong>：定义一种通用的消息语法，包括数字签名和加密等用于增强的加密机制；PKCS#7与PEM兼容，所以不需其他密码操作就可以将加密的消息转换成PEM消息；</li>
 <li><strong>PKCS#8：描述私有密钥信息格式，该信息包括公开密钥算法的私有密钥以及可选的属性集等；</strong></li>
 <li><strong>PKCS#12</strong>：描述个人信息交换语法标准，描述了将用户公钥、私钥、证书和其他相关信息打包的语法；</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p><strong>应用PKI的常见标准</strong></p>
-
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>应用PKI的常见标准</strong></p>
 <ul>
 <li>许多依赖于PKI的安全标准，如安全的套接层协议SSL、传输层安全协议TLS、安全的多用途互连网邮件扩展协议S/MIME、IP安全协议IPSEC等；</li>
-</ul></li>
-</ul></li>
-<li><p><strong>四）常见文件的扩展名</strong></p>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>四）常见文件的扩展名</strong></p>
 <ul>
 <li><strong>.crt</strong>：证书，certificate的简称；常见于*nix系统，可能是pem编码（大多数），也可能是der编码；</li>
 <li><strong>.cer</strong>：还是证书，certificate的简称，常见于Windows系统，可能是pem编码，也可能是der编码（大多数）；</li>
 <li><strong>.key</strong>：不是证书，通常用来存放一个公钥或私钥；可能是pem编码，也可能是der编码；</li>
 <li><strong>.csr</strong>：不是证书，而是证书签名请求（Certificate Signing Request），用于向权威证书颁发机构获得签名证书的申请，其核心内容是一个公钥(还附带了一些别的信息)；在生成该文件时，同时还会自动生成一个私钥；</li>
 <li><strong>.pfx、.p12</strong>：一般证书和私钥是分开存放在不同文件中的，但是该类型的文件包含了证书及私钥；而且为了安全性，通常有一个“提取密码”；</li>
-</ul></li>
 </ul>
-
-<h4 id="toc_2">三、OpenSSL库使用</h4>
-
+</li>
+</ul>
+<h4><a id="%E4%B8%89%E3%80%81openssl%E5%BA%93%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、OpenSSL库使用</h4>
 <ul>
-<li><p>一）SSL与OpenSSL</p>
-
+<li>
+<p>一）SSL与OpenSSL</p>
 <ul>
-<li><p>SSL：Secure Sockets Layer，安全套接层协议，其目标是保证两个应用间通信的保密性和可靠性，可在服务器端和用户端同时实现支持；</p></li>
-<li><p>OpenSSL：一个强大的安全套接字层密码库，包含主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用；</p></li>
-</ul></li>
-<li><p>二）常见命令</p>
-
+<li>
+<p>SSL：Secure Sockets Layer，安全套接层协议，其目标是保证两个应用间通信的保密性和可靠性，可在服务器端和用户端同时实现支持；</p>
+</li>
+<li>
+<p>OpenSSL：一个强大的安全套接字层密码库，包含主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用；</p>
+</li>
+</ul>
+</li>
+<li>
+<p>二）常见命令</p>
 <ul>
-<li><p>a. genrsa</p>
-
+<li>
+<p>a. genrsa</p>
 <pre><code class="language-shell">// 生成RSA私钥命令（私钥默认是PEM编码格式）
 openssl genrsa [-out filename] [-des|-des3...] [num]
 
 [-out filename]：将生成的RSA私钥保存到文件中，默认控制台输出；
-[-des|-des3...]：使用加密算法加密生成的RSA私钥，之后使用时需要输入密码；
-[num]：密钥长度（必须最后一个参数）；
 </code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>[-des|-des3...]：使用加密算法加密生成的RSA私钥，之后使用时需要输入密码；<br />
+[num]：密钥长度（必须最后一个参数）；<br />
+```</p>
+<pre><code class="language-plain_text">    ```shell
+    openssl genrsa -out private.key
+    ```
 
-<pre><code class="language-shell">openssl genrsa -out private.key
-</code></pre></li>
-<li><p>b. rsa</p>
+- b. rsa
 
-<pre><code class="language-shell">// RSA密钥管理命令（去除私钥的密码、给私钥添加密码、私钥编码格式转换、
-// 私钥导出公钥、检查私钥完整性、输出私钥内容等）
-openssl rsa [-in filename] [-out filename] [-outform pem|net|der] 
-[-des|-des3...] [-pubin] [-pubout] [-text] [-noout] [-check]
+    ```shell
+    // RSA密钥管理命令（去除私钥的密码、给私钥添加密码、私钥编码格式转换、
+    // 私钥导出公钥、检查私钥完整性、输出私钥内容等）
+    openssl rsa [-in filename] [-out filename] [-outform pem|net|der] 
+    [-des|-des3...] [-pubin] [-pubout] [-text] [-noout] [-check]
+    
+    [-in filename]：指定输入文件，若是加密的密钥需要输入密码；
+    [-out filename]：指定输出文件；
+    [-outform PEM|NET|DER]：指定输出格式，可以是PEM、NET、DER格式；
+    [-des|-des3...]：使用加密算法加密生成的RSA私钥，之后使用时需要输入密码；
+    [-pubin]：指定读取的为公钥（默认为私钥）；
+    [-pubout]：指定输出的为公钥（默认为私钥），可用于私钥导出公钥；设置了pubin，pubout也会被默认设置；
+    [-text]：以只读方式输出密钥及组件信息；
+    [-noout]：不输出密钥；
+    [-check]：检查RSA密钥完整性；
+    ```
 
-[-in filename]：指定输入文件，若是加密的密钥需要输入密码；
-[-out filename]：指定输出文件；
-[-outform PEM|NET|DER]：指定输出格式，可以是PEM、NET、DER格式；
-[-des|-des3...]：使用加密算法加密生成的RSA私钥，之后使用时需要输入密码；
-[-pubin]：指定读取的为公钥（默认为私钥）；
-[-pubout]：指定输出的为公钥（默认为私钥），可用于私钥导出公钥；设置了pubin，pubout也会被默认设置；
-[-text]：以只读方式输出密钥及组件信息；
-[-noout]：不输出密钥；
-[-check]：检查RSA密钥完整性；
+    ```shell
+    openssl rsa -in private.key -des3 -out private_s.key
+    openssl rsa -in private_s.key -outform der -out private_der.key
+    openssl rsa -in private.key -pubout
+    openssl rsa -in private.key -pubout -out public.key
+    openssl rsa -in private.key -check
+    openssl rsa -in private.key -check -noout
+    ```
+    
+- c. rsautil
+
+    ```shell
+    // RSA命令，包含RSA算法签名、身份验证、加密/解密数据等功能；
+    openssl rsautl [-in filename] [-out filename] [-inkey filename] 
+    [-encrypt|-decrypt] [-sign|-verify] [-pubin] [-certin]
+    
+    [-inkey filename]：加密/解密数据时使用的密钥文件；
+    [-encrypt|-decrypt]：数据加密、解密（只是单纯的加密解密；解密必须使用私钥）；
+    [-sign|-verify]：数据签名、验证（只是单纯的认证；签名必须使用私钥）；
+    [-pubin]：指定inkey是公钥（默认为私钥）
+    [-certin]：标记使用证书文件加密/解密，-inkey指定证书文件；
+    ```
+    
+    ```shell
+    // 加密、解密
+    openssl rsautl -encrypt -in 123.txt -out 123.enc -inkey public.key  -pubin
+    openssl rsautl -decrypt -in 123.enc -inkey private.key # openssl限制解密只能使用私钥
+    // 签名、认证
+    openssl rsautl -sign -in 123.txt -out 123.sig -inkey private.key 
+    openssl rsautl -verify -in 123.sig -inkey public.key -pubin
+    ```
+- d. req
+
+    ```shell
+    // 创建、处理证书请求的命令，还可以建立根证书（RootCA，默认不被系统信任）；
+    openssl req [-in filename] [-out filename] [-outform pem|net|der] [-new] 
+    [-keyout filename] [-key filename] [-newkey rsa:bits|dsa:fileec:file] [keyout -filename]
+    [-text] [-noout] [-pubkey] [-verify] [-x509] [-md5|-sha1|...] [-days]
+    
+    [-new]：创建新的CSR(证书请求，不是证书)，需要用户输入一些必要信息；
+            若没有指定-key，将会生成新的带密码的私钥（默认名称为 privkey.pem）；
+    [-nodes]：设置不带密码；
+    [-keyout filename]：若产生了新的私钥，则把私钥保存到指定文件中；
+    [-key filename]：指定私钥文件；
+    [-newkey rsa:bits|dsa:fileec:file]：指定新的私钥的算法及位数；
+    [keyout -filename]：设置输出私钥文件；
+    [-text]：以可读方式输出CSR的内容；
+    [-noout]：不输出CSR的编码信息；
+    [-pubkey]：解析CSR的的公钥信息并输出；
+    [-verify]：检验CSR；
+    [-x509]：直接产生根证书（默认不被系统信任），不生成CSR了；
+    [-md5|-sha1|...]：指定证书的摘要算法；
+    [-days]：证书的有效期（默认30天）；
+    ```
+    
+    ```shell
+    openssl req -new -out req.csr
+    openssl req -new -out req.csr -nodes
+    openssl req -new -out req.csr -key private.key 
+    openssl req -new -out req.csr -newkey rsa:2048
+    openssl req -in req.csr -text
+    openssl req -in req.csr -pubkey
+    openssl req -in req.csr -verify -noout
+    openssl req -new -x509 -out rootca.crt -key private.key // 注意每次生成的证书内容不一样
+    openssl req -new -x509 -out rootca.crt -key private.key -sha256 -days 200
+    openssl req -new -x509 -out rootca.crt
+    ```
+
+- e. x509
+
+    ```shell
+    // 证书管理命令，可以用来显示证书的内容、证书格式转换，为CSR签名等；
+    openssl x509 [-in filename] [-out filename] [-outform pem|net|der]
+    [-text] [-noout] [-pubkey] [-purpose] [-req] [-signkey] 
+    [-CA filename] [-CAkey filename] [-set_serial num]
+    
+    [-purpose]：显示证书用途；
+    [-req]：表示输入文件为一个CSR（默认为一个证书）；
+    [-signkey]：CSR的对应私钥，用于生成根证书并自签名；
+    [-CA filename]：指定签名用的CA证书文件，对CSR进行签名；
+    [-CAkey filename]：指定CA的私钥文件，对CSR进行签名；
+    [-set_serial num]：设置证书的序号，证书过期或泄露，重新签名加1；
+    ```
+    
+    ```shell
+    openssl x509 -in rootca.crt
+    openssl x509 -in crt.crt
+    openssl x509 -in rootca.crt -purpose -noout
+    openssl x509 -in rootca.crt -pubkey -noout &gt; public.key
+    openssl x509 -req -in req.csr -signkey private.key -out rootcaselfsign.crt
+    openssl x509 -req -in req.csr -CA rootca.crt -CAkey private.key -out crt.crt -set_serial 01
+    
+    // 将证书转为CSR（不用再输入一些信息生成了），-signkey为该证书的对应的私钥
+    openssl x509 -x509toreq -in crt.crt -out req.csr -signkey private.key
+    
+    openssl x509 -in crt.crt -out crt_dem.crt -outform der
+    openssl x509 -in crt_dem.crt -out crt.crt -inform der
+    ```
+    
+- f. pkcs12
+
+    ```shell
+    // PKCS#12编码证书管理命令，可用于PEM格式与P12格式互转
+    // pem转p12（含有CA公钥、公钥、私钥）
+    openssl pkcs12 -export -out crt.p12 -inkey private1.key -in crt.crt -certfile rootca.crt
+    // p12转pem（含有CA公钥、公钥）
+    openssl pkcs12 -in crt.p12 -out my.crt -nodes
+    ```
+    
+- g. enc
+
+    ```shell
+    // 对称加密命令
+    openssl enc [-in filename] [-out filename] [-e -des|-aes128|...] [-d-des|-aes128|...] [-a/-base64]
+    
+    [-e]：指定加密算法，若不指定使用默认
+    [-d]：指定解密算法，若不指定使用默认
+    [-a/-base64]：使用base64编码
+    ```
+    
+    ```shell
+    openssl enc -e -des3 -in 123.txt -a -out 123.enc
+    openssl enc -d -des3 -in 123.enc -a
+    ```   
+    
+- h. dgst
+
+    ```shell
+    // 摘要算法命令
+    openssl dgst [-md5|-sha|...][-c] [-d] [-hex] [-binary] FILE_NAME
+    
+    [-c]：使用冒号分隔结果；
+    [-d]：输出调试信息；
+    [-hex]：以十六进制输出（默认值）；
+    [-binary]：以二进制输出；
+    [FILE_NAME]：输入文件（必须最后一个）
+    ```
+    
+    ```shell
+    openssl dgst -md5 1234abc.txt 
+    echo &quot;hello&quot; | openssl dgst -md5
+    echo &quot;hello&quot; | openssl dgst -md5 -out a.txt
+    ```
+    
+- i. 其他
+ 
+    ```shell
+    // 验证证书
+    openssl verify -CAfile rootca.crt crt.crt
+    
+    // 将key和证书写到同一个文件中
 </code></pre>
+<p>cat server.crt server_private.key &gt; server.p12<br />
+```</p>
+<pre><code class="language-plain_text">- j. QUICK
 
-<pre><code class="language-shell">openssl rsa -in private.key -des3 -out private_s.key
-openssl rsa -in private_s.key -outform der -out private_der.key
-openssl rsa -in private.key -pubout
-openssl rsa -in private.key -pubout -out public.key
-openssl rsa -in private.key -check
-openssl rsa -in private.key -check -noout
-</code></pre></li>
-<li><p>c. rsautil</p>
-
-<pre><code class="language-shell">// RSA命令，包含RSA算法签名、身份验证、加密/解密数据等功能；
-openssl rsautl [-in filename] [-out filename] [-inkey filename] 
-[-encrypt|-decrypt] [-sign|-verify] [-pubin] [-certin]
-
-[-inkey filename]：加密/解密数据时使用的密钥文件；
-[-encrypt|-decrypt]：数据加密、解密（只是单纯的加密解密；解密必须使用私钥）；
-[-sign|-verify]：数据签名、验证（只是单纯的认证；签名必须使用私钥）；
-[-pubin]：指定inkey是公钥（默认为私钥）
-[-certin]：标记使用证书文件加密/解密，-inkey指定证书文件；
+    ```shell
+    // CA
+    openssl genrsa -out ca_private.key 1024
+    openssl req -new -x509 -out rootca.crt -key ca_private.key
+    OR
+    openssl genrsa -out ca_private.key 1024
+    openssl req -new -out ca_req.csr -key ca_private.key 
+    openssl x509 -req -in ca_req.csr -signkey ca_private.key -out rootca.crt
+    
+    // SERVER
+    openssl genrsa -out server_private.key 1024
+    openssl req -new -out server_req.csr -key server_private.key 
+    openssl x509 -req -in server_req.csr -CA rootca.crt -CAkey ca_private.key -out server_crt.crt -set_serial 01
+    ```
 </code></pre>
-
-<pre><code class="language-shell">// 加密、解密
-openssl rsautl -encrypt -in 123.txt -out 123.enc -inkey public.key  -pubin
-openssl rsautl -decrypt -in 123.enc -inkey private.key # openssl限制解密只能使用私钥
-// 签名、认证
-openssl rsautl -sign -in 123.txt -out 123.sig -inkey private.key 
-openssl rsautl -verify -in 123.sig -inkey public.key -pubin
-</code></pre></li>
-<li><p>d. req</p>
-
-<pre><code class="language-shell">// 创建、处理证书请求的命令，还可以建立根证书（RootCA，默认不被系统信任）；
-openssl req [-in filename] [-out filename] [-outform pem|net|der] [-new] 
-[-keyout filename] [-key filename] [-newkey rsa:bits|dsa:fileec:file] [keyout -filename]
-[-text] [-noout] [-pubkey] [-verify] [-x509] [-md5|-sha1|...] [-days]
-
-[-new]：创建新的CSR(证书请求，不是证书)，需要用户输入一些必要信息；
-        若没有指定-key，将会生成新的带密码的私钥（默认名称为 privkey.pem）；
-[-nodes]：设置不带密码；
-[-keyout filename]：若产生了新的私钥，则把私钥保存到指定文件中；
-[-key filename]：指定私钥文件；
-[-newkey rsa:bits|dsa:fileec:file]：指定新的私钥的算法及位数；
-[keyout -filename]：设置输出私钥文件；
-[-text]：以可读方式输出CSR的内容；
-[-noout]：不输出CSR的编码信息；
-[-pubkey]：解析CSR的的公钥信息并输出；
-[-verify]：检验CSR；
-[-x509]：直接产生根证书（默认不被系统信任），不生成CSR了；
-[-md5|-sha1|...]：指定证书的摘要算法；
-[-days]：证书的有效期（默认30天）；
-</code></pre>
-
-<pre><code class="language-shell">openssl req -new -out req.csr
-openssl req -new -out req.csr -nodes
-openssl req -new -out req.csr -key private.key 
-openssl req -new -out req.csr -newkey rsa:2048
-openssl req -in req.csr -text
-openssl req -in req.csr -pubkey
-openssl req -in req.csr -verify -noout
-openssl req -new -x509 -out rootca.crt -key private.key // 注意每次生成的证书内容不一样
-openssl req -new -x509 -out rootca.crt -key private.key -sha256 -days 200
-openssl req -new -x509 -out rootca.crt
-</code></pre></li>
-<li><p>e. x509</p>
-
-<pre><code class="language-shell">// 证书管理命令，可以用来显示证书的内容、证书格式转换，为CSR签名等；
-openssl x509 [-in filename] [-out filename] [-outform pem|net|der]
-[-text] [-noout] [-pubkey] [-purpose] [-req] [-signkey] 
-[-CA filename] [-CAkey filename] [-set_serial num]
-
-[-purpose]：显示证书用途；
-[-req]：表示输入文件为一个CSR（默认为一个证书）；
-[-signkey]：CSR的对应私钥，用于生成根证书并自签名；
-[-CA filename]：指定签名用的CA证书文件，对CSR进行签名；
-[-CAkey filename]：指定CA的私钥文件，对CSR进行签名；
-[-set_serial num]：设置证书的序号，证书过期或泄露，重新签名加1；
-</code></pre>
-
-<pre><code class="language-shell">openssl x509 -in rootca.crt
-openssl x509 -in crt.crt
-openssl x509 -in rootca.crt -purpose -noout
-openssl x509 -in rootca.crt -pubkey -noout &gt; public.key
-openssl x509 -req -in req.csr -signkey private.key -out rootcaselfsign.crt
-openssl x509 -req -in req.csr -CA rootca.crt -CAkey private.key -out crt.crt -set_serial 01
-
-// 将证书转为CSR（不用再输入一些信息生成了），-signkey为该证书的对应的私钥
-openssl x509 -x509toreq -in crt.crt -out req.csr -signkey private.key
-
-openssl x509 -in crt.crt -out crt_dem.crt -outform der
-openssl x509 -in crt_dem.crt -out crt.crt -inform der
-</code></pre></li>
-<li><p>f. pkcs12</p>
-
-<pre><code class="language-shell">// PKCS#12编码证书管理命令，可用于PEM格式与P12格式互转
-// pem转p12（含有CA公钥、公钥、私钥）
-openssl pkcs12 -export -out crt.p12 -inkey private1.key -in crt.crt -certfile rootca.crt
-// p12转pem（含有CA公钥、公钥）
-openssl pkcs12 -in crt.p12 -out my.crt -nodes
-</code></pre></li>
-<li><p>g. enc</p>
-
-<pre><code class="language-shell">// 对称加密命令
-openssl enc [-in filename] [-out filename] [-e -des|-aes128|...] [-d-des|-aes128|...] [-a/-base64]
-
-[-e]：指定加密算法，若不指定使用默认
-[-d]：指定解密算法，若不指定使用默认
-[-a/-base64]：使用base64编码
-</code></pre>
-
-<pre><code class="language-shell">openssl enc -e -des3 -in 123.txt -a -out 123.enc
-openssl enc -d -des3 -in 123.enc -a
-</code></pre></li>
-<li><p>h. dgst</p>
-
-<pre><code class="language-shell">// 摘要算法命令
-openssl dgst [-md5|-sha|...][-c] [-d] [-hex] [-binary] FILE_NAME
-
-[-c]：使用冒号分隔结果；
-[-d]：输出调试信息；
-[-hex]：以十六进制输出（默认值）；
-[-binary]：以二进制输出；
-[FILE_NAME]：输入文件（必须最后一个）
-</code></pre>
-
-<pre><code class="language-shell">openssl dgst -md5 1234abc.txt 
-echo &quot;hello&quot; | openssl dgst -md5
-echo &quot;hello&quot; | openssl dgst -md5 -out a.txt
-</code></pre></li>
-<li><p>i. 其他</p>
-
-<pre><code class="language-shell">// 验证证书
-openssl verify -CAfile rootca.crt crt.crt
-
-// 将key和证书写到同一个文件中
-cat server.crt server_private.key &gt; server.p12
-</code></pre></li>
-<li><p>j. QUICK</p>
-
-<pre><code class="language-shell">// CA
-openssl genrsa -out ca_private.key 1024
-openssl req -new -x509 -out rootca.crt -key ca_private.key
-OR
-openssl genrsa -out ca_private.key 1024
-openssl req -new -out ca_req.csr -key ca_private.key 
-openssl x509 -req -in ca_req.csr -signkey ca_private.key -out rootca.crt
-
-// SERVER
-openssl genrsa -out server_private.key 1024
-openssl req -new -out server_req.csr -key server_private.key 
-openssl x509 -req -in server_req.csr -CA rootca.crt -CAkey ca_private.key -out server_crt.crt -set_serial 01
-</code></pre></li>
-</ul></li>
-<li><p>三）注意事项</p>
-
 <ul>
-<li><p>OpenSSL（LibreSSL）版本：</p>
-
+<li>
+<p>三）注意事项</p>
+<ul>
+<li>
+<p>OpenSSL（LibreSSL）版本：</p>
 <ul>
 <li>macOS Sierra（10.12.*）默认自带OpenSSL，版本为<code>0.9.8zh 14 Jan 2016</code>；</li>
 <li><strong>macOS High Sierra（10.13.*）开始替换成LibreSSL（比OpenSSL更安全），版本为<code>2.2.7</code>；</strong></li>
 <li><strong>在OpenSSL中，通过<code>openssl req -new -x509</code>一步生成的证书被称为<code>Root certificate authority</code>（默认不被信任），而通过<code>openssl x509 -req</code>两步命令生成的证书为<code>Self-signed root certificate</code>（默认被信任）；</strong></li>
 <li><strong>在LibreSSL中，无论是一步命令还是两步命令生成的证书，都是<code>Self-signed root certificate</code>（默认被信任）；</strong></li>
-</ul></li>
-<li><p>私钥位数、系统信任</p>
-
+</ul>
+</li>
+<li>
+<p>私钥位数、系统信任</p>
 <ul>
 <li><strong><code>openssl genrsa</code>命令若不主动添加私钥位数，OpenSSL 0.9默认生成512位的私钥，OpenSSL 1.0及LibreSSL默认生成2048位的私钥；</strong></li>
 <li><strong>在macOS系统中，若使用私自的CA签名一些证书，相关的私钥的位数必须大于等于1024位，否则即使CA根证书被系统信任，被签名的证书也不会被信任；</strong></li>
-</ul></li>
-<li><p>浏览器信任</p>
-
+</ul>
+</li>
+<li>
+<p>浏览器信任</p>
 <ul>
 <li><strong>通常服务器证书使用的CSR的<code>Common Name</code>必须设置且是相应的域名，否则不被信任；CA的CSR的<code>Common Name</code>可以随意；</strong></li>
 <li><strong>不论是CA的CSR还是服务器的CSR，在生成时最好将相关信息都填写完全，否则生成的证书证书可能无效；私钥的位数最好适当的多一些，比如2048位；</strong></li>
 <li>不同的浏览的安全策略不同，对证书的验证程度也不同：
-
 <ul>
 <li>Safari：满足上面的基本要求就可以了；</li>
 <li>Chrome、Chromium：
-
 <ul>
 <li>version 58之前，支持检查SSL证书对域名生效的&quot;通用名称&quot;字段；</li>
 <li><strong>从version 58开始，只通过校验SAN属性验证证书的有效性，所以可能会出现ERR_CERT_COMMON_NAME_INVALID错误；</strong></li>
 <li>Subject Alternative Names (SAN) must contain proper DNS or IP entry.</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
 </ul>
-
-<h4 id="toc_3">四、苹果开发者证书、HTTPS、Charles</h4>
-
-<h4 id="toc_4">五、HTTPS单向、双向认证</h4>
-
-<h4 id="toc_5">六、参考</h4>
-
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E5%9B%9B%E3%80%81%E8%8B%B9%E6%9E%9C%E5%BC%80%E5%8F%91%E8%80%85%E8%AF%81%E4%B9%A6%E3%80%81https%E3%80%81charles" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、苹果开发者证书、HTTPS、Charles</h4>
+<h4><a id="%E4%BA%94%E3%80%81https%E5%8D%95%E5%90%91%E3%80%81%E5%8F%8C%E5%90%91%E8%AE%A4%E8%AF%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、HTTPS单向、双向认证</h4>
+<h4><a id="%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、参考</h4>
 <ul>
 <li>那些证书相关的玩意儿(SSL,X.509,PEM,DER,CRT,CER,KEY,CSR,P12等)<code>http://www.cnblogs.com/guogangj/p/4118605.htm</code>；</li>
 <li>[Daozy]PKI系统深入介绍<code>https://www.jianshu.com/p/7684341acd92</code>；</li>
-<li>openssl常用命令，签名、非对称加解密
+<li>openssl常用命令，签名、非对称加解密<br />
 <code>http://abcdxyzk.github.io/blog/2018/02/09/tools-openssl/</code></li>
 </ul>
 
@@ -569,7 +611,7 @@ openssl x509 -req -in server_req.csr -CA rootca.crt -CAkey ca_private.key -out s
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

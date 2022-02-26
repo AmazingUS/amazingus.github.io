@@ -108,137 +108,92 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">01. 简介</a>
+        <div class="mweb_toc"><ul>
+<li><a href="#01%E7%AE%80%E4%BB%8B">01. 简介</a>
 <ul>
-<li>
-<a href="#toc_1">1.1 Python模式</a>
-</li>
-<li>
-<a href="#toc_2">1.2 输入、输出函数</a>
-</li>
-<li>
-<a href="#toc_3">1.3 细节</a>
-</li>
-<li>
-<a href="#toc_4">1.4 字符转义</a>
-</li>
-<li>
-<a href="#toc_5">1.5 换行</a>
-</li>
+<li><a href="#1-1-python%E6%A8%A1%E5%BC%8F">1.1 Python模式</a></li>
+<li><a href="#1-2%E8%BE%93%E5%85%A5%E3%80%81%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0">1.2 输入、输出函数</a></li>
+<li><a href="#1-3%E7%BB%86%E8%8A%82">1.3 细节</a></li>
+<li><a href="#1-4%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89">1.4 字符转义</a></li>
+<li><a href="#1-5%E6%8D%A2%E8%A1%8C">1.5 换行</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_6">02. 基础</a>
+<li><a href="#02%E5%9F%BA%E7%A1%80">02. 基础</a>
 <ul>
-<li>
-<a href="#toc_7">2.1 数据类型、变量</a>
-</li>
-<li>
-<a href="#toc_8">2.2 字符编码</a>
-</li>
-<li>
-<a href="#toc_9">2.3 字符串</a>
-</li>
-<li>
-<a href="#toc_10">2.4 str格式化</a>
-</li>
-<li>
-<a href="#toc_11">2.5 str.format()方法</a>
-</li>
-<li>
-<a href="#toc_12">2.6 list类</a>
-</li>
-<li>
-<a href="#toc_13">2.7 tuple类</a>
-</li>
-<li>
-<a href="#toc_14">2.8 条件判断、循环</a>
-</li>
-<li>
-<a href="#toc_15">2.9 dict类</a>
-</li>
-<li>
-<a href="#toc_16">2.10 set类</a>
-</li>
-<li>
-<a href="#toc_17">2.11 可变、不可变对象</a>
-</li>
+<li><a href="#2-1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E5%8F%98%E9%87%8F">2.1 数据类型、变量</a></li>
+<li><a href="#2-2%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81">2.2 字符编码</a></li>
+<li><a href="#2-3%E5%AD%97%E7%AC%A6%E4%B8%B2">2.3 字符串</a></li>
+<li><a href="#2-4-str%E6%A0%BC%E5%BC%8F%E5%8C%96">2.4 str格式化</a></li>
+<li><a href="#2-5-str-format%E6%96%B9%E6%B3%95">2.5 str.format()方法</a></li>
+<li><a href="#2-6-list%E7%B1%BB">2.6 list类</a></li>
+<li><a href="#2-7-tuple%E7%B1%BB">2.7 tuple类</a></li>
+<li><a href="#2-8%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E3%80%81%E5%BE%AA%E7%8E%AF">2.8 条件判断、循环</a></li>
+<li><a href="#2-9-dict%E7%B1%BB">2.9 dict类</a></li>
+<li><a href="#2-10-set%E7%B1%BB">2.10 set类</a></li>
+<li><a href="#2-11%E5%8F%AF%E5%8F%98%E3%80%81%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1">2.11 可变、不可变对象</a></li>
 </ul>
 </li>
 </ul>
-
-
-<h4 id="toc_0">01. 简介</h4>
-
-<h5 id="toc_1">1.1 Python模式</h5>
-
+</div>
+<h4><a id="01%E7%AE%80%E4%BB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>01. 简介</h4>
+<h5><a id="1-1-python%E6%A8%A1%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 Python模式</h5>
 <ul>
 <li>交互模式（终端输入“python3”进入交互模式，输入“exit()”退出）</li>
 <li>命令行模式（终端输入“python3 文件名.py”直接运行）</li>
 </ul>
-
-<h5 id="toc_2">1.2 输入、输出函数</h5>
-
+<h5><a id="1-2%E8%BE%93%E5%85%A5%E3%80%81%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 输入、输出函数</h5>
 <ul>
-<li>输出函数print(a1, a2, ...)，输出参数间遇到一个“,”就会拼接一个空格符，例如print(&#39;hello&#39;,&#39;world&#39;)结果为“hello world”</li>
-<li>输入函数input()，函数返回值为输入数据，例如name = input()、 带提示信息的输入name = input(&#39;please enter your name:&#39;)</li>
+<li>输出函数print(a1, a2, ...)，输出参数间遇到一个“,”就会拼接一个空格符，例如print('hello','world')结果为“hello world”</li>
+<li>输入函数input()，函数返回值为输入数据，例如name = input()、 带提示信息的输入name = input('please enter your name:')</li>
 </ul>
-
 <span id="more"></span><!-- more -->
-
-<h5 id="toc_3">1.3 细节</h5>
-
+<h5><a id="1-3%E7%BB%86%E8%8A%82" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 细节</h5>
 <ul>
 <li><strong>Python是区分大小写的</strong></li>
 <li>注释是以#开头</li>
 <li>一行Python代码通常为一条语句；当语句以“:”结尾时，之后下面缩进的代码为一个代码块，相当于其他语言中的大括号中的代码；建议使用4个空格进行缩进</li>
 </ul>
-
-<h5 id="toc_4">1.4 字符转义</h5>
-
+<h5><a id="1-4%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B9%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.4 字符转义</h5>
 <ul>
-<li>“\”表示转义，例如print(&#39;I\&#39;m learning\nPython.&#39;)</li>
-<li><strong>若字符串中的所有特殊字符都需要转义，则使用r&#39;&#39;，例如print(r&#39;\tabc\r\&#39;&#39;) # 结果为\tabc\r\&#39;</strong></li>
+<li>“\”表示转义，例如print('I'm learning\nPython.')</li>
+<li><strong>若字符串中的所有特殊字符都需要转义，则使用r''，例如print(r'\tabc\r'') # 结果为\tabc\r'</strong></li>
 </ul>
-
-<h5 id="toc_5">1.5 换行</h5>
-
+<h5><a id="1-5%E6%8D%A2%E8%A1%8C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.5 换行</h5>
 <ul>
-<li>若字符串中需要输出换行，可以使用\n，也可以使用&#39;&#39;&#39;abc&#39;&#39;&#39;的形式输入（此时输出也会是换行）</li>
-<li><p>&#39;&#39;&#39;abc&#39;&#39;&#39;的形式输入：使用3个“&#39;”代替1个“&#39;”，回车换行时“&gt;&gt;&gt;”变成“...”，表示接着上一行内容输入（输入内容被添加了换行符），可以多次回车换行，输入完毕以3个“&#39;”结束</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; s = &#39;&#39;&#39;a 
-... b  
-... c  
-...   
-... &#39;&#39;&#39;  
-&gt;&gt;&gt; s  
-&#39;a\nb\nc\n\n&#39;
-</code></pre></li>
-<li><p>注意：无论是在&#39; &#39;形式，还是在&#39;&#39;&#39; &#39;&#39;&#39;形式的输入过程中，语句末尾使用“\”都只是显示换行（防止单行书写过多，导致阅读代码不便）</p>
-
-<pre><code class="language-python">&gt;&gt;&gt; s1 = &#39;a&#39;\
-... &#39;b&#39;\
-... &#39;c&#39;
-&gt;&gt;&gt; s1
-&#39;abc&#39;
-
-&gt;&gt;&gt; s2 = &#39;&#39;&#39;a \
-... b \
-... c
-... 
-... &#39;&#39;&#39;
-&gt;&gt;&gt; s2
-&#39;a b c\n\n&#39;
-</code></pre></li>
+<li>
+<p>若字符串中需要输出换行，可以使用\n，也可以使用'''abc'''的形式输入（此时输出也会是换行）</p>
+</li>
+<li>
+<p>'''abc'''的形式输入：使用3个“'”代替1个“'”，回车换行时“&gt;&gt;&gt;”变成“...”，表示接着上一行内容输入（输入内容被添加了换行符），可以多次回车换行，输入完毕以3个“'”结束</p>
+<pre><code class="language-python"> &gt;&gt;&gt; s = '''a 
+ ... b  
+ ... c  
+ ...   
+ ... '''  
+ &gt;&gt;&gt; s  
+ 'a\nb\nc\n\n'
+</code></pre>
+</li>
+<li>
+<p>注意：无论是在' '形式，还是在''' '''形式的输入过程中，语句末尾使用“\”都只是显示换行（防止单行书写过多，导致阅读代码不便）</p>
+<pre><code class="language-python"> &gt;&gt;&gt; s1 = 'a'\
+ ... 'b'\
+ ... 'c'
+ &gt;&gt;&gt; s1
+ 'abc'
+ 
+ &gt;&gt;&gt; s2 = '''a \
+ ... b \
+ ... c
+ ... 
+ ... '''
+ &gt;&gt;&gt; s2
+ 'a b c\n\n'
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_6">02. 基础</h4>
-
-<h5 id="toc_7">2.1 数据类型、变量</h5>
-
+<h4><a id="02%E5%9F%BA%E7%A1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>02. 基础</h4>
+<h5><a id="2-1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1 数据类型、变量</h5>
 <ul>
 <li>布尔值：False、True；布尔运算：and、or、not；空值：使用None表示该特殊值</li>
 <li>Python中变量名都是一个引用</li>
@@ -246,186 +201,191 @@
 <li>Python是动态语言，a = 10之后还可以进行a = &quot;ABC&quot;</li>
 <li>除法：/结果为浮点数、//结果为整数（地板除，取整）、%结果为余数</li>
 </ul>
-
-<h5 id="toc_8">2.2 字符编码</h5>
-
+<h5><a id="2-2%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2 字符编码</h5>
 <ul>
 <li>ASCII编码为一个字节（表示数字字符、英文字符、特殊字符），GB2312编码为两个字节（表示中文字符）</li>
 <li>为了统一包含所有的语言字符创造了Unicode编码（一个字符使用两个字节，高版本Unicode为3个字节；ASCII中的字符在Unicode中通过前一个字节补0表示）</li>
 <li>若文本中都是英文字符（ASCII中的字符），则使用Unicode编码浪费一半的字节，故创造了“可变长编码”UTF-8</li>
 <li>在UTF-8编码中，英文字符为1个字节，中文字符为3个字节，生僻字符为4~6个字节；可以认为ASCII编码是UTF-8编码的一部分</li>
 <li><strong>计算机内存中统一使用Unicode编码，当需要保存到硬盘或传输时才转为UTF-8编码或其他编码（为了节约存储）</strong>；Python3中的字符为Unicode编码（Python2不是）</li>
-<li><strong>ord()函数：获取单个字符对应的10进制的Unicode编码值，例如ord(&#39;A&#39;)为65、ord(&#39;中&#39;)为20013</strong></li>
-<li><strong>chr()函数：将10进制的Unicode编码值转换为对应字符，例如chr(66)为&#39;B&#39;、chr(20013)为&#39;中&#39;</strong></li>
+<li><strong>ord()函数：获取单个字符对应的10进制的Unicode编码值，例如ord('A')为65、ord('中')为20013</strong></li>
+<li><strong>chr()函数：将10进制的Unicode编码值转换为对应字符，例如chr(66)为'B'、chr(20013)为'中'</strong></li>
 <li><strong>Python中表示字符：</strong>
-
 <ul>
-<li><strong>a. 直接表示，如&#39;A&#39;、&#39;中&#39;</strong></li>
-<li><strong>b. 加\u前缀的16进制的的特殊字符串（Unicode编码值），例如&#39;\u4e2d&#39;为&#39;中&#39;，4e2d的16进制就是10进制的20013</strong>
-
+<li><strong>a. 直接表示，如'A'、'中'</strong></li>
+<li><strong>b. 加\u前缀的16进制的的特殊字符串（Unicode编码值），例如'\u4e2d'为'中'，4e2d的16进制就是10进制的20013</strong>
 <ul>
 <li><strong>a) 必须16进制</strong></li>
 <li><strong>b) 必须加\u前缀，否则和普通字符串没有区别</strong></li>
-</ul></li>
-</ul></li>
 </ul>
-
-<h5 id="toc_9">2.3 字符串</h5>
-
-<ul>
-<li>Python中的字符串类型为str；在内存中以Unicode表示，若保存到硬盘或传输时需将str进行编码，变成以字节为单位的bytes</li>
-<li><strong>Python中的bytes类型的数据（单、多字节）是加“b”前缀的16进制的特殊字符串（不加“b”前缀就是字符串了），例如x = b&#39;ABC&#39;，输出打印为b&#39;ABC&#39;</strong></li>
-<li><strong>bytes类型的数据输出打印时，无法显示为ASCII字符的字节使用b&#39;\x##&#39;表示</strong></li>
-<li><p><strong>encode()函数：将str转为指定编码的bytes（注意中文无法使用ASCII编码）</strong></p>
-
-<pre><code class="language-python">&#39;ABC&#39;.encode(&#39;ascii&#39;) # 输出打印为b&#39;ABC&#39;
-&#39;ABC&#39;.encode(&#39;utf-8&#39;) # 输出打印为b&#39;ABC&#39;
-&#39;中文&#39;.encode(&#39;utf-8&#39;) # 输出打印为b&#39;\xe4\xb8\xad\xe6\x96\x87&#39;
-</code></pre></li>
-<li><p><strong>decode()函数：将bytes转为str，例如b&#39;\xe4\xb8\xad\xe6\x96\x87&#39;.decode(&#39;utf-8&#39;)结果为&#39;中文&#39;</strong></p></li>
-<li><p>len()函数可计算str的字符数，也可计算bytes的字节数，例如len(&#39;中文&#39;)为2、len(&#39;中文&#39;.encode(&#39;utf-8&#39;))为6</p></li>
-<li><p>为了让Python源代码文件被读取时是以UTF-8编码读取，应在最前面添加注释 <code># -*- codeing: utf-8 -*-</code> ，同时保存Python源代码文件时必须以“UTF-8 without BOM”编码保存</p></li>
+</li>
 </ul>
-
-<h5 id="toc_10">2.4 str格式化</h5>
-
-<ul>
-<li><p>参数使用%s、%d、%f、%x(十六进制)等代替，格式化语句与实际值之间使用%分割，例如</p>
-
-<pre><code class="language-python">&#39;Hello, %s&#39; % &#39;world&#39;
-&#39;%2d-%02d&#39; % (3, 1)
-&#39;growth rate: %d %%&#39; % 7 
-
-s = &#39;world&#39;
-print(&#39;hello&#39;, s)           # hello world
-print(&#39;hello %s&#39; % s)       # hello world
-&#39;hello %s&#39; % s              # &#39;hello world&#39;
-print(&#39;hello %s&#39; % s, s)    # hello world world
-</code></pre></li>
+</li>
 </ul>
-
-<h5 id="toc_11">2.5 str.format()方法</h5>
-
+<h5><a id="2-3%E5%AD%97%E7%AC%A6%E4%B8%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3 字符串</h5>
 <ul>
-<li><p>format()方法会返回一个新的字符串；在新的字符串中，原字符串的“替换字段（大括号及其中的数字等为替换字段）”被方法中的参数所代替</p>
-
-<pre><code class="language-python"># 按照位置
-&gt;&gt;&gt; &#39;{0}, {1}&#39;.format(&#39;tom&#39;, 123)
-&#39;tom, 123&#39;
-&gt;&gt;&gt; &#39;{}, {}&#39;.format(&#39;tom&#39;, 123)
-&#39;tom, 123&#39;
-&gt;&gt;&gt; &#39;{1}, {0}, {1}&#39;.format(&#39;tom&#39;, 123)
-&#39;123, tom, 123&#39;
-&gt;&gt;&gt; &#39;{{{1}}}&#39;.format(&#39;tom&#39;, 123) # 两个{转义后一个{
-&#39;{123}&#39;
-&gt;&gt;&gt; &#39;{{1}}&#39;.format(&#39;tom&#39;, 123)
-&#39;{1}&#39;
-
-# 按照字段名
-&gt;&gt;&gt; &#39;{name}\&#39;age is {age}&#39;.format(name=&#39;Tom&#39;, age=123)
-&quot;Tom&#39;age is 123&quot;
-&gt;&gt;&gt; &#39;{name}\&#39;weight is {0},{1}&#39;.format(123, 456, name=&#39;Tom&#39;)  # 可变参数(123，456)要放在关键字参数(name)之前
-&quot;Tom&#39;age is 123,456&quot;
-
-# 按照索引
-&gt;&gt;&gt; names = [&#39;Tom&#39;, &#39;Jack&#39;]
-&gt;&gt;&gt; ages = [123, 456, 789, 111]
-&gt;&gt;&gt; &#39;{0[1]}\&#39;age is {1[2]}&#39;.format(names, ages) # 数组
-&quot;Jack&#39;age is 789&quot;
-&gt;&gt;&gt; person = {&#39;name&#39;: &#39;Tom&#39;, &#39;age&#39;: 123}
-&gt;&gt;&gt; &#39;{0[name]}\&#39;age is {0[age]}&#39;.format(person) # 字典
-&quot;Tom&#39;age is 123&quot;
-
-# 按照对象
-&gt;&gt;&gt; import math
-&gt;&gt;&gt; &#39;math.pi = {0.pi}&#39;.format(math)
-&#39;math.pi = 3.141592653589793&#39;
-
-# 格式化（“:”之后为限定格式）
-&gt;&gt;&gt; &#39;{0:b}&#39;.format(16)  # 转为二进制
-&#39;10000&#39;
-&gt;&gt;&gt; &#39;{0:x}&#39;.format(16)  # 转为十六进制
-&#39;10&#39;
-</code></pre></li>
+<li>
+<p>Python中的字符串类型为str；在内存中以Unicode表示，若保存到硬盘或传输时需将str进行编码，变成以字节为单位的bytes</p>
+</li>
+<li>
+<p><strong>Python中的bytes类型的数据（单、多字节）是加“b”前缀的16进制的特殊字符串（不加“b”前缀就是字符串了），例如x = b'ABC'，输出打印为b'ABC'</strong></p>
+</li>
+<li>
+<p><strong>bytes类型的数据输出打印时，无法显示为ASCII字符的字节使用b'\x##'表示</strong></p>
+</li>
+<li>
+<p><strong>encode()函数：将str转为指定编码的bytes（注意中文无法使用ASCII编码）</strong></p>
+<pre><code class="language-python"> 'ABC'.encode('ascii') # 输出打印为b'ABC'
+ 'ABC'.encode('utf-8') # 输出打印为b'ABC'
+ '中文'.encode('utf-8') # 输出打印为b'\xe4\xb8\xad\xe6\x96\x87'
+</code></pre>
+</li>
+<li>
+<p><strong>decode()函数：将bytes转为str，例如b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')结果为'中文'</strong></p>
+</li>
+<li>
+<p>len()函数可计算str的字符数，也可计算bytes的字节数，例如len('中文')为2、len('中文'.encode('utf-8'))为6</p>
+</li>
+<li>
+<p>为了让Python源代码文件被读取时是以UTF-8编码读取，应在最前面添加注释 <code># -*- codeing: utf-8 -*-</code> ，同时保存Python源代码文件时必须以“UTF-8 without BOM”编码保存</p>
+</li>
 </ul>
-
-<h5 id="toc_12">2.6 list类</h5>
-
+<h5><a id="2-4-str%E6%A0%BC%E5%BC%8F%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.4 str格式化</h5>
 <ul>
-<li>数组，有序可变，同一个数组中的元素的数据类型可以不同（元素可以同时是&#39;ABC&#39;、123、True、list），</li>
-<li>classmates = [&#39;Tom&#39;, &#39;Jack&#39;, 123, True]创建一个list对象</li>
+<li>
+<p>参数使用%s、%d、%f、%x(十六进制)等代替，格式化语句与实际值之间使用%分割，例如</p>
+<pre><code class="language-python"> 'Hello, %s' % 'world'
+ '%2d-%02d' % (3, 1)
+ 'growth rate: %d %%' % 7 
+ 
+ s = 'world'
+ print('hello', s) 			# hello world
+ print('hello %s' % s) 		# hello world
+ 'hello %s' % s				# 'hello world'
+ print('hello %s' % s, s) 	# hello world world
+</code></pre>
+</li>
+</ul>
+<h5><a id="2-5-str-format%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.5 str.format()方法</h5>
+<ul>
+<li>
+<p>format()方法会返回一个新的字符串；在新的字符串中，原字符串的“替换字段（大括号及其中的数字等为替换字段）”被方法中的参数所代替</p>
+<pre><code class="language-python"> # 按照位置
+ &gt;&gt;&gt; '{0}, {1}'.format('tom', 123)
+ 'tom, 123'
+ &gt;&gt;&gt; '{}, {}'.format('tom', 123)
+ 'tom, 123'
+ &gt;&gt;&gt; '{1}, {0}, {1}'.format('tom', 123)
+ '123, tom, 123'
+ &gt;&gt;&gt; '{{{1}}}'.format('tom', 123) # 两个{转义后一个{
+ '{123}'
+ &gt;&gt;&gt; '{{1}}'.format('tom', 123)
+ '{1}'
+ 
+ # 按照字段名
+ &gt;&gt;&gt; '{name}\'age is {age}'.format(name='Tom', age=123)
+ &quot;Tom'age is 123&quot;
+ &gt;&gt;&gt; '{name}\'weight is {0},{1}'.format(123, 456, name='Tom')  # 可变参数(123，456)要放在关键字参数(name)之前
+ &quot;Tom'age is 123,456&quot;
+ 
+ # 按照索引
+ &gt;&gt;&gt; names = ['Tom', 'Jack']
+ &gt;&gt;&gt; ages = [123, 456, 789, 111]
+ &gt;&gt;&gt; '{0[1]}\'age is {1[2]}'.format(names, ages) # 数组
+ &quot;Jack'age is 789&quot;
+ &gt;&gt;&gt; person = {'name': 'Tom', 'age': 123}
+ &gt;&gt;&gt; '{0[name]}\'age is {0[age]}'.format(person) # 字典
+ &quot;Tom'age is 123&quot;
+ 
+ # 按照对象
+ &gt;&gt;&gt; import math
+ &gt;&gt;&gt; 'math.pi = {0.pi}'.format(math)
+ 'math.pi = 3.141592653589793'
+ 
+ # 格式化（“:”之后为限定格式）
+ &gt;&gt;&gt; '{0:b}'.format(16)  # 转为二进制
+ '10000'
+ &gt;&gt;&gt; '{0:x}'.format(16)  # 转为十六进制
+ '10'
+</code></pre>
+</li>
+</ul>
+<h5><a id="2-6-list%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.6 list类</h5>
+<ul>
+<li>数组，有序可变，同一个数组中的元素的数据类型可以不同（元素可以同时是'ABC'、123、True、list），</li>
+<li>classmates = ['Tom', 'Jack', 123, True]创建一个list对象</li>
 <li>classmates[0]访问第一个元素，classmates[-1]访问最后一个元素，s[1][0]访问s的第二个元素（list）中的第一个元素</li>
 <li>classmates.append(&quot;ABC&quot;)追加一个元素到尾部，classmates.insert(1, &quot;ABC&quot;)将元素插入到指定位置</li>
 <li>classmates.pop()删除最后一个元素，classmates.pop(1)删除第二个元素</li>
-<li>classmates[1] = &#39;TEST&#39;替换第二个元素</li>
+<li>classmates[1] = 'TEST'替换第二个元素</li>
 <li>len(classmates)计算数组的元素个数，l = []表示l是一个空数组</li>
 </ul>
-
-<h5 id="toc_13">2.7 tuple类</h5>
-
+<h5><a id="2-7-tuple%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.7 tuple类</h5>
 <ul>
 <li>元组，有序不可变，同一个元组中的元素的数据类型可以不同</li>
 <li>只能访问不能修改，没有append、insert、pop等修改方法，定义tuple对象时元素就已确定</li>
-<li>classmates = (&#39;Tom&#39;, &quot;JACK&quot;, 123)创建一个tuple对象</li>
+<li>classmates = ('Tom', &quot;JACK&quot;, 123)创建一个tuple对象</li>
 <li>t = ()定义一个空元组，t = (1,)定义一个只有一个元素的元组（为避歧义必须增加一个逗号，否则认为是数学计算结果）</li>
-<li>元组不可被修改是指某个位置索引不能再指向其他对象，但该位置索引所指向的对象本身是可以被修改的，例如t = (&#39;a&#39;, &#39;b&#39;, [&#39;A&#39;, &#39;B&#39;])之后t[2][0] = &#39;X&#39;进行修改</li>
+<li>元组不可被修改是指某个位置索引不能再指向其他对象，但该位置索引所指向的对象本身是可以被修改的，例如t = ('a', 'b', ['A', 'B'])之后t[2][0] = 'X'进行修改</li>
 </ul>
-
-<h5 id="toc_14">2.8 条件判断、循环</h5>
-
+<h5><a id="2-8%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E3%80%81%E5%BE%AA%E7%8E%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.8 条件判断、循环</h5>
 <ul>
-<li><p>注意要写冒号“:”，缩进表示代码块“{}”；elif是“else if”的缩写</p>
-
-<pre><code class="language-python">age = 0
-
-if age &gt; 18:
-   print(&#39;your age is&#39;, age)
-   print(&#39;adult&#39;)
-print(&#39;haha&#39;)
-</code></pre></li>
-<li><p>input()函数返回的数据类型是str，数值判断时必须进行类型转换，例如使用int()函数进行转换 <code>if int(age) &lt; 20:</code></p></li>
-<li><p>range()函数可以生产一个整数“序列”，再通过list()函数转为list，例如list(range(5))产生数组[0, 1, 2, 3, 4]</p></li>
-<li><p>Python中的类型转换函数，可以认为就是构造函数</p></li>
-<li><p>循环方式：for x in arr:、while bool:</p></li>
+<li>
+<p>注意要写冒号“:”，缩进表示代码块“{}”；elif是“else if”的缩写</p>
+<pre><code class="language-python"> age = 0
+ 
+ if age &gt; 18:
+    print('your age is', age)
+    print('adult')
+ print('haha')
+</code></pre>
+</li>
+<li>
+<p>input()函数返回的数据类型是str，数值判断时必须进行类型转换，例如使用int()函数进行转换 <code>if int(age) &lt; 20:</code></p>
+</li>
+<li>
+<p>range()函数可以生产一个整数“序列”，再通过list()函数转为list，例如list(range(5))产生数组[0, 1, 2, 3, 4]</p>
+</li>
+<li>
+<p>Python中的类型转换函数，可以认为就是构造函数</p>
+</li>
+<li>
+<p>循环方式：for x in arr:、while bool:</p>
+</li>
 </ul>
-
-<h5 id="toc_15">2.9 dict类</h5>
-
+<h5><a id="2-9-dict%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.9 dict类</h5>
 <ul>
 <li>根据key找value：查找插入速度快，不会随key的增加而变慢；占用内存多，是一种空间换时间的方法</li>
 <li>字典，无序可变（key的类型可以不同，value亦然）</li>
 <li>dict的key是唯一且不可变，且key对应的value也是唯一的</li>
 <li>dict根据key通过Hash计算value的内存位置，字符串、整数都可作为key，list不可作为key</li>
-<li>d = {&#39;Tom&#39;: 95, &#39;Bob&#39;: 75, &#39;Jack&#39;: 85}创建一个dict，使用len()获取dict的key-value对数</li>
-<li>d[&#39;Tom&#39;]访问&#39;Tom&#39;对应的value；若不存在此key则报KeyError，可先通过&#39;Tom&#39; in d的方式判断key是否存在，再取值</li>
-<li>也可以通过d.get(&#39;Tom&#39;)方法取值（不存在返回None；交互命令行None不显示结果），同时也可以在key不存在时赋默认值：d.get(&#39;Tom&#39;, &#39;haha&#39;)</li>
-<li>d.pop(&#39;Tom&#39;)根据key删除key-value对并返回对应的value</li>
-<li>d[&#39;abc&#39;] = 67添加或重新赋值key-value对</li>
+<li>d = {'Tom': 95, 'Bob': 75, 'Jack': 85}创建一个dict，使用len()获取dict的key-value对数</li>
+<li>d['Tom']访问'Tom'对应的value；若不存在此key则报KeyError，可先通过'Tom' in d的方式判断key是否存在，再取值</li>
+<li>也可以通过d.get('Tom')方法取值（不存在返回None；交互命令行None不显示结果），同时也可以在key不存在时赋默认值：d.get('Tom', 'haha')</li>
+<li>d.pop('Tom')根据key删除key-value对并返回对应的value</li>
+<li>d['abc'] = 67添加或重新赋值key-value对</li>
 </ul>
-
-<h5 id="toc_16">2.10 set类</h5>
-
+<h5><a id="2-10-set%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.10 set类</h5>
 <ul>
 <li>由key（类型可以不同）组成的无序唯一的集合（可以认为是只含有key的“特殊”dict）</li>
 <li>集合中不可存放list对象，但可存放tuple对象（含有list对象的tuple对象也不可存放）</li>
-<li>创建：s = set([1, 2, 3])； 添加：s.add(&#39;a&#39;)，删除：s.remove(&#39;a&#39;)，交集：s1 &amp; s2，并集：s1 | s2</li>
+<li>创建：s = set([1, 2, 3])； 添加：s.add('a')，删除：s.remove('a')，交集：s1 &amp; s2，并集：s1 | s2</li>
 </ul>
-
-<h5 id="toc_17">2.11 可变、不可变对象</h5>
-
+<h5><a id="2-11%E5%8F%AF%E5%8F%98%E3%80%81%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.11 可变、不可变对象</h5>
 <ul>
-<li><p>调用不可变对象的任何方法，不会改变对象自身的内容，方法会创建新的对象并进行返回</p>
-
+<li>
+<p>调用不可变对象的任何方法，不会改变对象自身的内容，方法会创建新的对象并进行返回</p>
 <pre><code class="language-python"># 可变，如list
-a = [&#39;d&#39;, &#39;b&#39;, &#39;c&#39;] 
+a = ['d', 'b', 'c'] 
 a.sort()
-a  # [&#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
-
+a  # ['b', 'c', 'd']
+	
 # 不可变，如str
-a = &#39;abc&#39;
-a.replace(&#39;a&#39;, &#39;A&#39;)  # 返回&#39;Abc&#39;
-a   # &#39;abc&#39;
-</code></pre></li>
+a = 'abc'
+a.replace('a', 'A')	 # 返回'Abc'
+a	# 'abc'
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -491,7 +451,7 @@ a   # &#39;abc&#39;
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

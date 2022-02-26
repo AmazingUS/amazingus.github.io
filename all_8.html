@@ -95,102 +95,6 @@
 
       
       <div class="article">
-        <a class="clearlink" href="15125773962317.html">
-          
-          <h1>Python3笔记(15网络编程、16访问数据库)</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <ul>
-<li>
-<a href="#toc_0">15. 网络编程</a>
-<ul>
-<li>
-<a href="#toc_1">15.1 TCP/IP简介</a>
-</li>
-<li>
-<a href="#toc_2">15.2 TCP编程</a>
-</li>
-<li>
-<a href="#toc_3">15.3 UDP编程</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_4">16. 访问数据库</a>
-<ul>
-<li>
-<a href="#toc_5">16.1 概述</a>
-</li>
-<li>
-<a href="#toc_6">16.2 SQLite</a>
-</li>
-<li>
-<a href="#toc_7">16.3 MySQL</a>
-</li>
-<li>
-<a href="#toc_8">16.4 使用SQLAlchemy</a>
-</li>
-</ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">15. 网络编程</h4>
-
-<h5 id="toc_1">15.1 TCP/IP简介</h5>
-
-<ul>
-<li>为了实现把全世界的所有不同类型的计算机都连接起来，规定了一套全球通用的协议（互联网协议簇，Internet Protocol Suite）</li>
-<li>互联网协议簇包含了上百种协议标准，但最重要的两个协议是TCP和IP协议，故把互联网协议簇简称TCP/IP协议</li>
-<li>IP协议负责把包数据从一台计算机通过网络发送到另一台计算机
-
-<ul>
-<li>IP包数据会被按块发送，途径多个路由，但不保证能到达，也不保证顺序到达</li>
-<li>传输数据时，双方必须知道对方的互联网上的唯一标识IP地址</li>
-<li>IPv4地址为32bit位数字，通常使用点分十进制表示（192.168.0.1）</li>
-<li>IPv6地址为128bit为数字，通常使用冒号分十六进制表示（2001:0db8:85a3:0042:1000:8a2e:0370:7334）</li>
-</ul></li>
-<li>TCP协议负责两台计算机之间建立可靠连接，保证数据包按顺序到达
-
-<ul>
-<li>TCP协议是建立在IP协议之上的</li>
-<li>TCP协议通过握手建立连接，然后对每个IP包编号，确保对方按顺序收到，若IP包丢失则自动重发</li>
-<li>许多常用的更高级的协议都是建立在TCP协议基础上的，比如用于浏览器的HTTP协议、发送邮件的SMTP协议等</li>
-</ul></li>
-<li>端口是用来区分同一台计算机上运行的不同网络程序，每个网络程序都会向系统申请可用的端口号
-
-<ul>
-<li>一个IP包除了包含要传输的数据外，还包含源IP和目标IP，源端口和目标端口</li>
-<li>计算机之间的两个进程在建立网络连接，就需要各自的的IP及端口</li>
-<li>一个进程也可能同时与其他多个计算机建立链接，因此可以同时申请多个端口</li>
-<li>一个端口被占用了，就不可以再被使用了；TCP的端口和UDP的端口之间是独立的，可以使用相同的端口号</li>
-</ul></li>
-</ul>
-
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15125773962317.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2017/12/7</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
         <a class="clearlink" href="15125773962250.html">
           
           <h1>Python3笔记(13常见内建模块(下)、14常用第三方模块)</h1>
@@ -198,68 +102,47 @@
             
             <div class="a-content-text">
                
-			  <ul>
-<li>
-<a href="#toc_0">13. 常见内建模块(下)</a>
+			  <div class="mweb_toc"><ul>
+<li><a href="#13%E5%B8%B8%E8%A7%81%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97%E4%B8%8B">13. 常见内建模块(下)</a>
+<ul>
+<li><a href="#13-5-hashlib">13.5 hashlib</a></li>
+<li><a href="#13-6-itertools">13.6 itertools</a></li>
+<li><a href="#13-7-parsercreate%EF%BC%88xml%EF%BC%89">13.7 ParserCreate（XML）</a></li>
+<li><a href="#13-8-htmlparser%EF%BC%88html%EF%BC%89">13.8 HTMLParser（HTML）</a></li>
+<li><a href="#13-9-urllib">13.9 urllib</a></li>
+</ul>
+</li>
+<li><a href="#14%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97">14. 常用第三方模块</a>
+<ul>
+<li><a href="#14-1%E6%A6%82%E8%BF%B0">14.1 概述</a></li>
+<li><a href="#14-2-pil">14.2 PIL</a></li>
+<li><a href="#14-3-virturalenv">14.3 virturalenv</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h4><a id="13%E5%B8%B8%E8%A7%81%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97%E4%B8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>13. 常见内建模块(下)</h4>
+<h5><a id="13-5-hashlib" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>13.5 hashlib</h5>
 <ul>
 <li>
-<a href="#toc_1">13.5 hashlib</a>
-</li>
-<li>
-<a href="#toc_2">13.6 itertools</a>
-</li>
-<li>
-<a href="#toc_3">13.7 ParserCreate（XML）</a>
-</li>
-<li>
-<a href="#toc_4">13.8 HTMLParser（HTML）</a>
-</li>
-<li>
-<a href="#toc_5">13.9 urllib</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#toc_6">14. 常用第三方模块</a>
-<ul>
-<li>
-<a href="#toc_7">14.1 概述</a>
-</li>
-<li>
-<a href="#toc_8">14.2 PIL</a>
-</li>
-<li>
-<a href="#toc_9">14.3 virturalenv</a>
+<p>hashlib提供了常见的摘要算法（如MD5、SHA等）；摘要算法又称为哈希算法、散列算法，通过把任意长度的数据转换为一个长度固定的字符串（16进制表示的字符串）</p>
+<pre><code class="language-python"> import hashlib
+ 
+ md5 = hashlib.md5()
+ # 先转成字节，再进行hash
+ md5.update('how to use md5 in python hashlib?'.encode('utf-8'))
+ m = md5.hexdigest()
+ print(m)  # d26a53750bc40b38b65a520292f69306
+ 
+ # 若数据量较大，可分多次调用update()，最后计算的结果是一样的
+ md5 = hashlib.md5()
+ md5.update('how to use md5 in '.encode('utf-8'))
+ md5.update('python hashlib?'.encode('utf-8'))
+ m = md5.hexdigest()
+ print(m)  # d26a53750bc40b38b65a520292f69306
+</code></pre>
 </li>
 </ul>
-</li>
-</ul>
-
-
-<h4 id="toc_0">13. 常见内建模块(下)</h4>
-
-<h5 id="toc_1">13.5 hashlib</h5>
-
-<ul>
-<li><p>hashlib提供了常见的摘要算法（如MD5、SHA等）；摘要算法又称为哈希算法、散列算法，通过把任意长度的数据转换为一个长度固定的字符串（16进制表示的字符串）</p>
-
-<pre><code class="language-python">import hashlib
-
-md5 = hashlib.md5()
-# 先转成字节，再进行hash
-md5.update(&#39;how to use md5 in python hashlib?&#39;.encode(&#39;utf-8&#39;))
-m = md5.hexdigest()
-print(m)  # d26a53750bc40b38b65a520292f69306
-
-# 若数据量较大，可分多次调用update()，最后计算的结果是一样的
-md5 = hashlib.md5()
-md5.update(&#39;how to use md5 in &#39;.encode(&#39;utf-8&#39;))
-md5.update(&#39;python hashlib?&#39;.encode(&#39;utf-8&#39;))
-m = md5.hexdigest()
-print(m)  # d26a53750bc40b38b65a520292f69306
-</code></pre></li>
-</ul>
-
  
             </div>
           </div>
@@ -289,45 +172,27 @@ print(m)  # d26a53750bc40b38b65a520292f69306
             
             <div class="a-content-text">
                
-			  <ul>
-<li>
-<a href="#toc_0">12. 正则表达式</a>
+			  <div class="mweb_toc"><ul>
+<li><a href="#12%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">12. 正则表达式</a>
 <ul>
-<li>
-<a href="#toc_1">12.1 基础</a>
-</li>
-<li>
-<a href="#toc_2">12.2 re模块</a>
-</li>
+<li><a href="#12-1%E5%9F%BA%E7%A1%80">12.1 基础</a></li>
+<li><a href="#12-2-re%E6%A8%A1%E5%9D%97">12.2 re模块</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_3">13. 常见内建模块(上)</a>
+<li><a href="#13%E5%B8%B8%E8%A7%81%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97%E4%B8%8A">13. 常见内建模块(上)</a>
 <ul>
-<li>
-<a href="#toc_4">13.1 datetime</a>
-</li>
-<li>
-<a href="#toc_5">13.2 collections</a>
-</li>
-<li>
-<a href="#toc_6">13.3 base64</a>
-</li>
-<li>
-<a href="#toc_7">13.4 struct</a>
-</li>
+<li><a href="#13-1-datetime">13.1 datetime</a></li>
+<li><a href="#13-2-collections">13.2 collections</a></li>
+<li><a href="#13-3-base64">13.3 base64</a></li>
+<li><a href="#13-4-struct">13.4 struct</a></li>
 </ul>
 </li>
 </ul>
-
-
-<h4 id="toc_0">12. 正则表达式</h4>
-
-<h5 id="toc_1">12.1 基础</h5>
-
+</div>
+<h4><a id="12%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>12. 正则表达式</h4>
+<h5><a id="12-1%E5%9F%BA%E7%A1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>12.1 基础</h5>
 <ul>
 <li>匹配字符：
-
 <ul>
 <li>\d匹配一个数字，\D匹配一个非数字</li>
 <li>\w匹配一个数字字母，\W匹配一个非数字字母</li>
@@ -335,22 +200,22 @@ print(m)  # d26a53750bc40b38b65a520292f69306
 <li>.匹配任意一个字符</li>
 <li>[]表示精确匹配范围，例如[a-zA-Z]匹配一个字母、[0-9a-zA-Z_]匹配找一个数字、字母或下划线</li>
 <li>特殊字符使用\进行转义，例如-</li>
-</ul></li>
+</ul>
+</li>
 <li>匹配长度：
-
 <ul>
 <li>*表示任意个字符（包含0个）</li>
 <li>+表示至少一个</li>
 <li>?表示0个或1个</li>
 <li>{n}表示n个，{n, m}表示n~m个，例如[a-zA-Z_][0-9a-zA-Z_]{0, 19}匹配长度为1-20个字符（前面1个是字母或下划线，后面最多19个数字、字母或下划线）</li>
-</ul></li>
+</ul>
+</li>
 <li>^表示行的开头，例如^\d表示必须以数字开头</li>
-<li>$表示行的结束，\d$表示必须以数字结束，py可以匹配python，但是<sup>py$就只能匹配py</sup></li>
+<li>$表示行的结束，\d$表示必须以数字结束，py可以匹配python，但是^py$就只能匹配py</li>
 <li>A|B表示可以匹配A或B，但有时候需要加小括号()进行限制长度（此时也就会出现了分组）；例如(P|p)ython可以匹配Python或python，P|python只能匹配P或python</li>
 <li>单个字符的或匹配，也可以使用字符集[]来实现，例如[Pp]ython可以匹配Python或python</li>
-<li><strong>若字符串中的所有特殊字符都需要转义，则使用r&#39;&#39;，例如print(r&#39;\tabc\r\&#39;&#39;) # 结果为\tabc\r\&#39;</strong></li>
+<li><strong>若字符串中的所有特殊字符都需要转义，则使用r''，例如print(r'\tabc\r'') # 结果为\tabc\r'</strong></li>
 </ul>
-
  
             </div>
           </div>
@@ -380,94 +245,61 @@ print(m)  # d26a53750bc40b38b65a520292f69306
             
             <div class="a-content-text">
                
-			  <ul>
-<li>
-<a href="#toc_0">11. 进程和线程</a>
-</li>
-<li>
-<a href="#toc_1">11.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">11.2 多进程</a>
+			  <div class="mweb_toc"><ul>
+<li><a href="#11%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B">11. 进程和线程</a></li>
+<li><a href="#11-1%E6%A6%82%E8%BF%B0">11.1 概述</a></li>
+<li><a href="#11-2%E5%A4%9A%E8%BF%9B%E7%A8%8B">11.2 多进程</a>
 <ul>
-<li>
-<a href="#toc_3">a. fork()函数</a>
-</li>
-<li>
-<a href="#toc_4">b. Process（multiprocessing模块）</a>
-</li>
-<li>
-<a href="#toc_5">c. Pool（multiprocessing模块）</a>
-</li>
-<li>
-<a href="#toc_6">d. subprocess</a>
-</li>
+<li><a href="#a-fork%E5%87%BD%E6%95%B0">a. fork()函数</a></li>
+<li><a href="#b-process%EF%BC%88multiprocessing%E6%A8%A1%E5%9D%97%EF%BC%89">b. Process（multiprocessing模块）</a></li>
+<li><a href="#c-pool%EF%BC%88multiprocessing%E6%A8%A1%E5%9D%97%EF%BC%89">c. Pool（multiprocessing模块）</a></li>
+<li><a href="#d-subprocess">d. subprocess</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_7">11.3 进程间通信</a>
-</li>
-<li>
-<a href="#toc_8">11.4 多线程</a>
+<li><a href="#11-3%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1">11.3 进程间通信</a></li>
+<li><a href="#11-4%E5%A4%9A%E7%BA%BF%E7%A8%8B">11.4 多线程</a>
 <ul>
-<li>
-<a href="#toc_9">a. Lock（线程同步）</a>
-</li>
-<li>
-<a href="#toc_10">b. 多核CPU（多线程执行）</a>
-</li>
-<li>
-<a href="#toc_11">c. ThreadLocal（数据独立）</a>
-</li>
+<li><a href="#a-lock%EF%BC%88%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%EF%BC%89">a. Lock（线程同步）</a></li>
+<li><a href="#b%E5%A4%9A%E6%A0%B8-cpu%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%89%A7%E8%A1%8C%EF%BC%89">b. 多核CPU（多线程执行）</a></li>
+<li><a href="#c-threadlocal%EF%BC%88%E6%95%B0%E6%8D%AE%E7%8B%AC%E7%AB%8B%EF%BC%89">c. ThreadLocal（数据独立）</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_12">11.5 进程 VS 线程</a>
+<li><a href="#11-5%E8%BF%9B%E7%A8%8B-vs%E7%BA%BF%E7%A8%8B">11.5 进程 VS 线程</a>
 <ul>
-<li>
-<a href="#toc_13">a. 计算密集型 VS IO密集型</a>
-</li>
-<li>
-<a href="#toc_14">b. 异步IO</a>
-</li>
+<li><a href="#a%E8%AE%A1%E7%AE%97%E5%AF%86%E9%9B%86%E5%9E%8B-vs-io%E5%AF%86%E9%9B%86%E5%9E%8B">a. 计算密集型 VS IO密集型</a></li>
+<li><a href="#b%E5%BC%82%E6%AD%A5-io">b. 异步IO</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_15">11.6 分布式进程</a>
-</li>
+<li><a href="#11-6%E5%88%86%E5%B8%83%E5%BC%8F%E8%BF%9B%E7%A8%8B">11.6 分布式进程</a></li>
 </ul>
-
-
-<h4 id="toc_0">11. 进程和线程</h4>
-
-<h4 id="toc_1">11.1 概述</h4>
-
+</div>
+<h4><a id="11%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>11. 进程和线程</h4>
+<h4><a id="11-1%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>11.1 概述</h4>
 <ul>
 <li>多任务：简单地说就是系统可以同时运行多个任务</li>
 <li>对于系统来说，一个任务就是一个进程（Process）
-
 <ul>
 <li>单核CPU：系统轮流让各个任务交替执行，由于CPU的执行速度太快，感觉所有任务都是在同时执行</li>
 <li>多核CPU：真正实现并行执行多任务，由于任务数量远远多于CPU的核心数量，所以系统会自动把多任务轮流调度到每个核心上执行</li>
-</ul></li>
+</ul>
+</li>
 <li>有些进程要同时干多件事（比如Word，同时进行打字、拼写检查、打印等），就需要同时运行多个“子任务”，进程内的这些“子任务”称之为线程（Thread）
-
 <ul>
 <li>线程是最小的执行单元</li>
 <li>由于每个进程至少要干一件事，所以，一个进程至少有一个线程</li>
 <li>多个线程也是可以同时执行，执行方式和多个进程类似，由系统在多个线程之间快速切换；但真正地同时执行多线程需要多核CPU</li>
-</ul></li>
+</ul>
+</li>
 <li>同时执行多个任务有以下解决方案：
-
 <ul>
 <li>a. 多进程模式：启动多个进程，每个进程虽然只有一个线程，但多个进程可以一起执行多个任务</li>
 <li>b. 多线程模式：启动一个进程，在一个进程内启动多个线程，这样多个线程可以一起执行多个任务</li>
 <li>c. 多进程+多线程模式：启动多个进程，每个进程再启动多个线程，这样同时执行的任务就更多了；这种模型更复杂，实际很少采用</li>
-</ul></li>
+</ul>
+</li>
 <li>同时执行多个任务，通常各个任务之间并不是没有关联的，而是需要互相通信和协调的；多进程和多线程的程序涉及到同步、数据共享的问题，编写起来更复杂</li>
 <li>Python既支持多进程，又支持多线程</li>
 </ul>
-
  
             </div>
           </div>
@@ -497,66 +329,44 @@ print(m)  # d26a53750bc40b38b65a520292f69306
             
             <div class="a-content-text">
                
-			  <ul>
-<li>
-<a href="#toc_0">10. IO编程</a>
-</li>
-<li>
-<a href="#toc_1">10.1 概述</a>
-</li>
-<li>
-<a href="#toc_2">10.2 读写文件</a>
+			  <div class="mweb_toc"><ul>
+<li><a href="#10-io%E7%BC%96%E7%A8%8B">10. IO编程</a></li>
+<li><a href="#10-1%E6%A6%82%E8%BF%B0">10.1 概述</a></li>
+<li><a href="#10-2%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6">10.2 读写文件</a>
 <ul>
-<li>
-<a href="#toc_3">a. 读文件</a>
-</li>
-<li>
-<a href="#toc_4">b. 写文件</a>
-</li>
+<li><a href="#a%E8%AF%BB%E6%96%87%E4%BB%B6">a. 读文件</a></li>
+<li><a href="#b%E5%86%99%E6%96%87%E4%BB%B6">b. 写文件</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_5">10.3 StringIO、BytesIO</a>
-</li>
-<li>
-<a href="#toc_6">10.4 操作文件和目录</a>
-</li>
-<li>
-<a href="#toc_7">10.5 序列化</a>
+<li><a href="#10-3-stringio%E3%80%81bytesio">10.3 StringIO、BytesIO</a></li>
+<li><a href="#10-4%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95">10.4 操作文件和目录</a></li>
+<li><a href="#10-5%E5%BA%8F%E5%88%97%E5%8C%96">10.5 序列化</a>
 <ul>
-<li>
-<a href="#toc_8">a. JSON</a>
-</li>
-<li>
-<a href="#toc_9">b. JSON进阶</a>
-</li>
+<li><a href="#a-json">a. JSON</a></li>
+<li><a href="#b-json%E8%BF%9B%E9%98%B6">b. JSON进阶</a></li>
 </ul>
 </li>
 </ul>
-
-
-<h4 id="toc_0">10. IO编程</h4>
-
-<h4 id="toc_1">10.1 概述</h4>
-
+</div>
+<h4><a id="10-io%E7%BC%96%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>10. IO编程</h4>
+<h4><a id="10-1%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>10.1 概述</h4>
 <ul>
 <li>流只能单向流动；既收又发数据就必须建立两个流（输入流、输出流）</li>
 <li>在IO编程中，存在着速度严重不匹配额问题，解决方式有两种：
-
 <ul>
 <li>a. CPU暂停执行后续代码，等待数据读取或写入完毕后再执行（同步IO模式）</li>
 <li>b. CPU不等待继续执行后续代码，数据读取或写入一边进行着（异步IO模式）</li>
-</ul></li>
+</ul>
+</li>
 <li>同步IO和异步IO的区别是否等待IO执行的结果；使用异步IO来编写的程序性能远远高于同步IO，但是异步IO的缺点是编程模型复杂，异步IO需要“通知”别人其已执行完毕，“通知”有两种：
-
 <ul>
 <li>a. 回调，IO主动告诉别人</li>
 <li>b. 轮询，别人不断去检查IO是否执行完毕</li>
-</ul></li>
+</ul>
+</li>
 <li>操作IO的能力是由操作系统提供的，每一种编程语言都会把操作系统提供的低级C接口封装起来方便使用，Python也不例外</li>
 <li>本章讨论的IO编程都是同步模式的</li>
 </ul>
-
  
             </div>
           </div>
@@ -565,6 +375,108 @@ print(m)  # d26a53750bc40b38b65a520292f69306
           <div class="more-left left">
             
             <a href="15125773962028.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/7</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
+        <a class="clearlink" href="15125773961976.html">
+          
+          <h1>Python3笔记(09异常、测试)</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <div class="mweb_toc"><ul>
+<li><a href="#09%E5%BC%82%E5%B8%B8%E3%80%81%E6%B5%8B%E8%AF%95">09. 异常、测试</a></li>
+<li><a href="#9-1%E5%BC%82%E5%B8%B8">9.1 异常</a>
+<ul>
+<li><a href="#a%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8">a. 捕获异常</a></li>
+<li><a href="#b%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8">b. 抛出异常</a></li>
+<li><a href="#c%E6%8D%95%E8%8E%B7%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8">c. 捕获抛出异常</a></li>
+</ul>
+</li>
+<li><a href="#9-2%E8%B0%83%E8%AF%95">9.2 调试</a>
+<ul>
+<li><a href="#a%E6%96%AD%E8%A8%80">a. 断言</a></li>
+<li><a href="#b-logging">b. logging</a></li>
+<li><a href="#c-pdb">c. pdb</a></li>
+<li><a href="#d-pdb-set-trace">d. pdb.set_trace()</a></li>
+<li><a href="#e%E4%BD%BF%E7%94%A8-ide%E8%B0%83%E8%AF%95">e. 使用IDE调试</a></li>
+</ul>
+</li>
+<li><a href="#9-3%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">9.3 单元测试</a>
+<ul>
+<li><a href="#a%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">a. 编写单元测试</a></li>
+<li><a href="#b%E8%BF%90%E8%A1%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">b. 运行单元测试</a></li>
+</ul>
+</li>
+<li><a href="#9-4%E6%96%87%E6%A1%A3%E6%B5%8B%E8%AF%95">9.4 文档测试</a></li>
+</ul>
+</div>
+<h4><a id="09%E5%BC%82%E5%B8%B8%E3%80%81%E6%B5%8B%E8%AF%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>09. 异常、测试</h4>
+<h4><a id="9-1%E5%BC%82%E5%B8%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>9.1 异常</h4>
+<h5><a id="a%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>a. 捕获异常</h5>
+<ul>
+<li>
+<p>可以用多个“except”（except：把…除外）来捕获不同类型的异常；但是需要将父类型的异常写在后面，否则父类型的异常会捕获其子类型的所有异常</p>
+</li>
+<li>
+<p>所有的异常继承于BaseException，比如Exception； UnicodeError是ValueError的子类</p>
+</li>
+<li>
+<p>使用“try...except”捕获异常有一个好处，就是可以跨越多层调用；也就是说，不需要在每个可能出错的地方捕获异常错误，只要在合适的层次地方去捕获异常错误就可以</p>
+<pre><code class="language-python"> try:
+     print('try...')
+     # r = 10 / 0
+     # r = 10 / int('a')
+     r = 10 / 2
+     print('result:', r)
+ except ZeroDivisionError as e:
+     print('ZeroDivisionError, except:', e)
+ except ValueError as e:
+     print('ValueError, except:', e)
+ else: # 其它情况（没有异常、其它异常）
+     print('no error')
+ finally:
+     print('finally...')  # 最终都会执行（不论是否有异常）
+ print('END') # 程序会继续执行（不论是否有异常）
+ 
+ # 比如函数的main()调用了fun1()，fun1()调用了fun2()，结果fun2()出错了
+ def fun2(s):
+     return 10 / int(s)
+ def fun1(s):
+     return fun2(s) * 2
+ # 	只在main()中捕获到处理  
+ def main():
+     try:
+         fun1('s')
+     except Exception as e:
+         print('Error:', e)
+     finally:
+         print('finally...')
+         
+ main()
+</code></pre>
+</li>
+</ul>
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15125773961976.html">Read more</a>&nbsp;&nbsp; 
             <span class="date">2017/12/7</span>
              
 			
@@ -633,7 +545,7 @@ print(m)  # d26a53750bc40b38b65a520292f69306
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

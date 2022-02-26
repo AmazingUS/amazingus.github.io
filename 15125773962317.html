@@ -108,422 +108,414 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">15. 网络编程</a>
+        <div class="mweb_toc"><ul>
+<li><a href="#15%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B">15. 网络编程</a>
 <ul>
-<li>
-<a href="#toc_1">15.1 TCP/IP简介</a>
-</li>
-<li>
-<a href="#toc_2">15.2 TCP编程</a>
-</li>
-<li>
-<a href="#toc_3">15.3 UDP编程</a>
-</li>
+<li><a href="#15-1-tcpip%E7%AE%80%E4%BB%8B">15.1 TCP/IP简介</a></li>
+<li><a href="#15-2-tcp%E7%BC%96%E7%A8%8B">15.2 TCP编程</a></li>
+<li><a href="#15-3-udp%E7%BC%96%E7%A8%8B">15.3 UDP编程</a></li>
 </ul>
 </li>
-<li>
-<a href="#toc_4">16. 访问数据库</a>
+<li><a href="#16%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE%E5%BA%93">16. 访问数据库</a>
 <ul>
-<li>
-<a href="#toc_5">16.1 概述</a>
-</li>
-<li>
-<a href="#toc_6">16.2 SQLite</a>
-</li>
-<li>
-<a href="#toc_7">16.3 MySQL</a>
-</li>
-<li>
-<a href="#toc_8">16.4 使用SQLAlchemy</a>
-</li>
+<li><a href="#16-1%E6%A6%82%E8%BF%B0">16.1 概述</a></li>
+<li><a href="#16-2-sqlite">16.2 SQLite</a></li>
+<li><a href="#16-3-mysql">16.3 MySQL</a></li>
+<li><a href="#16-4%E4%BD%BF%E7%94%A8-sqlalchemy">16.4 使用SQLAlchemy</a></li>
 </ul>
 </li>
 </ul>
-
-
-<h4 id="toc_0">15. 网络编程</h4>
-
-<h5 id="toc_1">15.1 TCP/IP简介</h5>
-
+</div>
+<h4><a id="15%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>15. 网络编程</h4>
+<h5><a id="15-1-tcpip%E7%AE%80%E4%BB%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>15.1 TCP/IP简介</h5>
 <ul>
 <li>为了实现把全世界的所有不同类型的计算机都连接起来，规定了一套全球通用的协议（互联网协议簇，Internet Protocol Suite）</li>
 <li>互联网协议簇包含了上百种协议标准，但最重要的两个协议是TCP和IP协议，故把互联网协议簇简称TCP/IP协议</li>
 <li>IP协议负责把包数据从一台计算机通过网络发送到另一台计算机
-
 <ul>
 <li>IP包数据会被按块发送，途径多个路由，但不保证能到达，也不保证顺序到达</li>
 <li>传输数据时，双方必须知道对方的互联网上的唯一标识IP地址</li>
 <li>IPv4地址为32bit位数字，通常使用点分十进制表示（192.168.0.1）</li>
 <li>IPv6地址为128bit为数字，通常使用冒号分十六进制表示（2001:0db8:85a3:0042:1000:8a2e:0370:7334）</li>
-</ul></li>
+</ul>
+</li>
 <li>TCP协议负责两台计算机之间建立可靠连接，保证数据包按顺序到达
-
 <ul>
 <li>TCP协议是建立在IP协议之上的</li>
 <li>TCP协议通过握手建立连接，然后对每个IP包编号，确保对方按顺序收到，若IP包丢失则自动重发</li>
 <li>许多常用的更高级的协议都是建立在TCP协议基础上的，比如用于浏览器的HTTP协议、发送邮件的SMTP协议等</li>
-</ul></li>
+</ul>
+</li>
 <li>端口是用来区分同一台计算机上运行的不同网络程序，每个网络程序都会向系统申请可用的端口号
-
 <ul>
 <li>一个IP包除了包含要传输的数据外，还包含源IP和目标IP，源端口和目标端口</li>
 <li>计算机之间的两个进程在建立网络连接，就需要各自的的IP及端口</li>
 <li>一个进程也可能同时与其他多个计算机建立链接，因此可以同时申请多个端口</li>
 <li>一个端口被占用了，就不可以再被使用了；TCP的端口和UDP的端口之间是独立的，可以使用相同的端口号</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <span id="more"></span><!-- more -->
-
-<h5 id="toc_2">15.2 TCP编程</h5>
-
+<h5><a id="15-2-tcp%E7%BC%96%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>15.2 TCP编程</h5>
 <ul>
-<li>Socket是网络编程的一个抽象概念，通常用一个Socket表示“打开了一个网络链接”
-
+<li>
+<p>Socket是网络编程的一个抽象概念，通常用一个Socket表示“打开了一个网络链接”</p>
 <ul>
 <li>创建Socket时，指定IPv4协议使用 <code>AF_INET</code>，指定IPv6协议使用 <code>AF_INET6</code>；指定使用TCP协议使用 <code>SOCK_STREAM</code>，指定使用UDP协议使用<code>SOCK_DGRAM</code></li>
 <li>创建成功Socket后，还需要手动建立连接</li>
 <li>多数连接都是使用可靠的TCP连接；创建TCP连接时，主动发起连接的叫客户端，被动响应连接的叫服务器</li>
 <li>作为服务器提供什么样的服务，端口就必须固定下来；比如，常用的HTTP的端口为80，FTP的端口为21</li>
 <li>端口号小于1024的是Internet标准服务端口，端口号大于1024的可以任意使用</li>
-</ul></li>
-<li><p>TCP连接创建的是双向通道，双方都可以同时给对方发送数据</p>
-
+</ul>
+</li>
+<li>
+<p>TCP连接创建的是双向通道，双方都可以同时给对方发送数据</p>
 <ul>
 <li>但是谁先发送谁后发，怎么协调，要根据具体的协议来决定；比如，HTTP协议规定客户端必须先发请求给服务器，服务器收到后才发送数据给客户端</li>
 <li>调用recv(max)方法接收数据，一次最多接收指定数量的字节数据；因此，需要在一个while循环中反复进行接收数据，直到recv()返回空数据表示接收完毕，退出循环</li>
 <li>接收完毕数据后，调用close()方法关闭Socket，这样一次完整的网络通信就结束了</li>
 </ul>
-
-<pre><code class="language-python"># 创建一个基于TCP连接的Socket
-import socket  # 导入socket库
-
-# 创建一个socket
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-# 建立连接, 注意参数是个tuple
-s.connect((&#39;www.sina.com.cn&#39;, 80))
-# 发送符合HTTP标准格式的数据（进行GET请求）
-s.send(b&#39;GET / HTTP/1.1\r\nHost: www.sina.com.cn\r\nConnection: close\r\n\r\n&#39;)  
-
-# 接收数据
-buffer = []
-while True:
-    # 每次最多接收1k数据
-    d = s.recv(1024)
-    if d:
-        buffer.append(d)
-    else:
-        break
-data = b&#39;&#39;.join(buffer)
-# 关闭连接
-s.close() 
-
-# 处理接收到的数据
-header, html = data.split(b&#39;\r\n\r\n&#39;, 1)
-print(header.decode(&#39;utf-8&#39;))
-with open(&#39;sina.html&#39;, &#39;wb&#39;) as f:
-    f.write(html)
-</code></pre></li>
-<li><p>服务器端的进程需要先开启一个端口，并监听来自其他客户端的连接</p>
-
+<pre><code class="language-python"> # 创建一个基于TCP连接的Socket
+ import socket  # 导入socket库
+ 
+ # 创建一个socket
+ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+ # 建立连接, 注意参数是个tuple
+ s.connect(('www.sina.com.cn', 80))
+ # 发送符合HTTP标准格式的数据（进行GET请求）
+ s.send(b'GET / HTTP/1.1\r\nHost: www.sina.com.cn\r\nConnection: close\r\n\r\n')  
+ 
+ # 接收数据
+ buffer = []
+ while True:
+     # 每次最多接收1k数据
+     d = s.recv(1024)
+     if d:
+         buffer.append(d)
+     else:
+         break
+ data = b''.join(buffer)
+ # 关闭连接
+ s.close() 
+ 	
+ # 处理接收到的数据
+ header, html = data.split(b'\r\n\r\n', 1)
+ print(header.decode('utf-8'))
+ with open('sina.html', 'wb') as f:
+     f.write(html)
+</code></pre>
+</li>
+<li>
+<p>服务器端的进程需要先开启一个端口，并监听来自其他客户端的连接</p>
 <ul>
 <li>若某个客户端连接过来，服务器就与该客户端建立一个Socket连接，随后的通信就靠这个Socket连接</li>
 <li>服务器可以区分不同的客户端，一个Socket连接唯一确定一个客户端</li>
 <li>一个Socket依赖4项：服务器地址、服务器端口、客户端地址、客户端端口</li>
 <li>服务器需要同时响应多个客户端的请求；所以，每个连接都需要一个新的进程或新的线程来处理，否则，服务器在处理连接的过程中，无法接受其他客户端的连接</li>
 </ul>
-
-<pre><code class="language-python"># 案例：服务器将客户端发的字符串加上Hello再发回去
-# tcp_server.py
-import socket, threading, time
-
-def tcplink(sock, addr):
-    print(&#39;Accept new connection from %s:%s&#39; % addr)
-    sock.send(b&#39;Welcome!&#39;)
-    while True:
-        d = sock.recv(1024)
-        time.sleep(1)
-        if not d or d.decode(&#39;utf-8&#39;) == &#39;exit&#39;:
-            break
-        d = (&#39;Hello, %s!&#39; % d.decode(&#39;utf-8&#39;)).encode(&#39;utf-8&#39;)
-        sock.send(d)
-    sock.close()
-    print(&#39;Connection from %s:%s closed.&#39; % addr)
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# 绑定端口
-s.bind((&#39;127.0.0.1&#39;, 9999))
-# 调用listen()方法开始监听端口，传入的参数指定等待连接的最大数量
-s.listen(5)
-print(&#39;Waiting for connection...&#39;)
-
-# 服务器通过一个永久循环来接受客户端的连接，
-# accept()会等待连接（阻塞线程）并返回一个客户端的连接
-while True:
-    sock, addr = s.accept()  # 接受一个新的TCP连接
-    # 创建新线程来处理TCP连接
-    t = threading.Thread(target=tcplink, args=(sock, addr))
-    t.start()
+<pre><code class="language-python"> # 案例：服务器将客户端发的字符串加上Hello再发回去
+ # tcp_server.py
+ import socket, threading, time
+ 
+ def tcplink(sock, addr):
+     print('Accept new connection from %s:%s' % addr)
+     sock.send(b'Welcome!')
+     while True:
+         d = sock.recv(1024)
+         time.sleep(1)
+         if not d or d.decode('utf-8') == 'exit':
+             break
+         d = ('Hello, %s!' % d.decode('utf-8')).encode('utf-8')
+         sock.send(d)
+     sock.close()
+     print('Connection from %s:%s closed.' % addr)
+ 
+ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ # 绑定端口
+ s.bind(('127.0.0.1', 9999))
+ # 调用listen()方法开始监听端口，传入的参数指定等待连接的最大数量
+ s.listen(5)
+ print('Waiting for connection...')
+ 
+ # 服务器通过一个永久循环来接受客户端的连接，
+ # accept()会等待连接（阻塞线程）并返回一个客户端的连接
+ while True:
+     sock, addr = s.accept()  # 接受一个新的TCP连接
+     # 创建新线程来处理TCP连接
+     t = threading.Thread(target=tcplink, args=(sock, addr))
+     t.start()
 </code></pre>
-
-<pre><code class="language-python"># tcp_client.py
-import socket
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((&#39;127.0.0.1&#39;, 9999))
-print(s.recv(1024).decode(&#39;utf-8&#39;))
-for data in [b&#39;Tom&#39;, b&#39;Jack&#39;, b&#39;HaHa&#39;]:
-    s.send(data)
-    print(s.recv(1024).decode(&#39;utf-8&#39;))
-s.send(b&#39;exit&#39;)
-s.close()
-</code></pre></li>
+<pre><code class="language-python"> # tcp_client.py
+ import socket
+ 
+ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+ s.connect(('127.0.0.1', 9999))
+ print(s.recv(1024).decode('utf-8'))
+ for data in [b'Tom', b'Jack', b'HaHa']:
+     s.send(data)
+     print(s.recv(1024).decode('utf-8'))
+ s.send(b'exit')
+ s.close()
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_3">15.3 UDP编程</h5>
-
+<h5><a id="15-3-udp%E7%BC%96%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>15.3 UDP编程</h5>
 <ul>
-<li>TCP协议是建立可靠连接，并且通信双方都可以以流的形式发送数据；而UDP协议则是面向无连接的协议
-
+<li>
+<p>TCP协议是建立可靠连接，并且通信双方都可以以流的形式发送数据；而UDP协议则是面向无连接的协议</p>
 <ul>
 <li>使用UDP协议不需要建立连接，只需要知道对方的IP及端口，就可以直接发送数据包，但是不能确定数据包师傅到达</li>
 <li>虽然使用UDP传输数据不可靠，但它的优点是比TCP速度快；对于不要求可靠到达的数据，就可以使用UDP</li>
-</ul></li>
-<li><p>和TCP类似，使用UDP的通信双方也分为客户端和服务器，服务器也需要先绑定端口，但不需要监听了</p>
-
-<pre><code class="language-python"># udp_server.py
-import socket
-
-# 使用socket.SOCK_DGRAM指明是UDP
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-# 绑定端口（不需要调用listen()方法，而是直接接收任何客户端的数据）
-s.bind((&#39;127.0.0.1&#39;, 9999))
-print(&#39;Bind UDP on 9999...&#39;)
-while True:
-    # recvfrom()方法接收数据，返回值为客户端的地址与端口，
-    # 这样服务器就能使用sendto()方法返回数据给客户端
-    data, addr = s.recvfrom(1024)
-    print(&#39;Received from %s:%s&#39; % addr)
-    s.sendto(b&#39;Hello, %s!&#39; % data, addr)
-</code></pre></li>
-<li><p>客户端使用UDP时，首先创建基于UDP的Socket，然后直接通过sendto()给服务器发送数据，不需要调用connect()进行连接</p>
-
-<pre><code class="language-python"># udp_client.py
-import socket
-
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-for data in [b&#39;Tom&#39;, b&#39;Jack&#39;, b&#39;HaHa&#39;]:
-    # 发送数据
-    s.sendto(data, (&#39;127.0.0.1&#39;, 9999))
-    # 接收数据（从服务器端接收数据仍然调用recv()方法）
-    print(s.recv(1024).decode(&#39;utf-8&#39;))
-s.close()
-</code></pre></li>
 </ul>
-
-<h4 id="toc_4">16. 访问数据库</h4>
-
-<h5 id="toc_5">16.1 概述</h5>
-
+</li>
+<li>
+<p>和TCP类似，使用UDP的通信双方也分为客户端和服务器，服务器也需要先绑定端口，但不需要监听了</p>
+<pre><code class="language-python"> # udp_server.py
+ import socket
+ 
+ # 使用socket.SOCK_DGRAM指明是UDP
+ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+ # 绑定端口（不需要调用listen()方法，而是直接接收任何客户端的数据）
+ s.bind(('127.0.0.1', 9999))
+ print('Bind UDP on 9999...')
+ while True:
+     # recvfrom()方法接收数据，返回值为客户端的地址与端口，
+     # 这样服务器就能使用sendto()方法返回数据给客户端
+     data, addr = s.recvfrom(1024)
+     print('Received from %s:%s' % addr)
+     s.sendto(b'Hello, %s!' % data, addr)
+</code></pre>
+</li>
+<li>
+<p>客户端使用UDP时，首先创建基于UDP的Socket，然后直接通过sendto()给服务器发送数据，不需要调用connect()进行连接</p>
+<pre><code class="language-python"> # udp_client.py
+ import socket
+ 
+ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+ for data in [b'Tom', b'Jack', b'HaHa']:
+     # 发送数据
+     s.sendto(data, ('127.0.0.1', 9999))
+     # 接收数据（从服务器端接收数据仍然调用recv()方法）
+     print(s.recv(1024).decode('utf-8'))
+ s.close()
+</code></pre>
+</li>
+</ul>
+<h4><a id="16%E8%AE%BF%E9%97%AE%E6%95%B0%E6%8D%AE%E5%BA%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>16. 访问数据库</h4>
+<h5><a id="16-1%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>16.1 概述</h5>
 <ul>
 <li>数据库类型：关系型数据库（Oracle、MySQL、SQLite、SQL Server等）、NoSQL（非关系型数据库）</li>
 </ul>
-
-<h5 id="toc_6">16.2 SQLite</h5>
-
+<h5><a id="16-2-sqlite" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>16.2 SQLite</h5>
 <ul>
-<li>要操作关系型数据库，首先要连接数据库，一个数据库连接称为Connection</li>
-<li>连接到数据库后，打开游标Cursor，通过Cursor执行SQL语句，然后获取执行结果</li>
-<li>Python定义了一套操作数据库的API接口；只需要提供符合Python标准的数据库驱动，即可通过Python连接到任何数据库</li>
-<li><p>Python标准库内置了SQLite3驱动，可以直接使用</p>
-
-<pre><code class="language-python"># sqlite使用
-import sqlite3  # 导入SQLite驱动
-
-# 连接到SQLite数据库，数据库文件test.db若不存在则在当前目录进行创建
-conn = sqlite3.connect(&#39;test.db&#39;)
-# 创建一个cursor
-cursor = conn.cursor()
-
-# 执行创建user表的sql
-cursor.execute(&#39;create table user (id varchar(20) primary key, name varchar(20))&#39;)
-# 执行插入一条记录的sql
-cursor.execute(&#39;insert into user (id, name) values (\&#39;1\&#39;, \&#39;Tom\&#39;)&#39;)
-# 通过rowcount获取上面执行sql后影响的行数
-cursor.rowcount # 1
-
-# 执行查询sql
-cursor.execute(&#39;select * from user where id=?&#39;, (&#39;1&#39;,))
-# 获取查询结果集
-values = cursor.fetchall() # [(&#39;1&#39;, &#39;Tom&#39;)]
-# 再次获取为空
-values = cursor.fetchall() # []
-
-# 关闭cursor
-cursor.close()
-# 提交事务
-conn.commit()
-# 关闭连接
-conn.close()
-</code></pre></li>
-<li><p>对Cursor执行insert、update、delete语句后，影响的行数由rowcount返回</p></li>
-<li><p>对Cursor执行select语句后，通过featchall()获取结果集；结果集是一个list，每一个元素都是一个tuple，对应表中一行记录</p></li>
-<li><p>若sql语句带有参数，需要把参数按照位置传递给execute()方法，有几个?占位符就必须对应几个参数，参数以tuple形式提供：
-<code>cursor.execute(&#39;select * from user where name=? and pwd=?&#39;, (&#39;abc&#39;, &#39;password&#39;))</code></p></li>
-<li><p>执行产生数据库变化的操作要进行commit()提交事务</p></li>
-<li><p>打开的Connection对象、Cursor对象要被正确地关闭，否则就会泄漏资源；可使用 <code>try...except...finally...</code> ，确保在出错的情况也能关闭掉Cursor对象、Connection对象</p>
-
-<pre><code class="language-python"># 练习：根据分数段查找指定的名字
-import os, sqlite3
-
-db_file = os.path.join(os.path.dirname(__file__), &#39;test.db&#39;)
-if os.path.isfile(db_file):
-    os.remove(db_file)
-
-# 初始数据
-conn = sqlite3.connect(db_file)
-cursor = conn.cursor()
-cursor.execute(&#39;create table user(id varchar(20) primary key, name varchar(20), score int)&#39;)
-cursor.execute(r&quot;insert into user values (&#39;A-001&#39;, &#39;Adam&#39;, 95)&quot;)
-cursor.execute(r&quot;insert into user values (&#39;A-002&#39;, &#39;Bart&#39;, 62)&quot;)
-cursor.execute(r&quot;insert into user values (&#39;A-003&#39;, &#39;Lisa&#39;, 78)&quot;)
-cursor.close()
-conn.commit()
-conn.close()
-
-def get_score_in(low, high):
-    # 返回指定分数区间的名字，按分数从低到高排序
-    try:
-        conn = sqlite3.connect(db_file)
-        cursor = conn.cursor()
-        cursor.execute(&#39;select name from user where score &gt;= ? and score &lt;= ?&#39;, (low, high))
-        values = cursor.fetchall()
-    finally:
-        if cursor:
-            cursor.close()
-        if conn:
-            conn.close()
-    return [v[0] for v in values]
-
-# 测试
-assert get_score_in(80, 95) == [&#39;Adam&#39;], &quot;%s失败&quot; % get_score_in(80, 95)
-assert get_score_in(60, 80) == [&#39;Bart&#39;, &#39;Lisa&#39;], &quot;%s失败&quot; % get_score_in(60, 80)
-assert get_score_in(60, 100) == [&#39;Bart&#39;, &#39;Lisa&#39;, &#39;Adam&#39;], &quot;%s失败&quot; % get_score_in(60, 100)
-print(&#39;Pass&#39;)
-</code></pre></li>
+<li>
+<p>要操作关系型数据库，首先要连接数据库，一个数据库连接称为Connection</p>
+</li>
+<li>
+<p>连接到数据库后，打开游标Cursor，通过Cursor执行SQL语句，然后获取执行结果</p>
+</li>
+<li>
+<p>Python定义了一套操作数据库的API接口；只需要提供符合Python标准的数据库驱动，即可通过Python连接到任何数据库</p>
+</li>
+<li>
+<p>Python标准库内置了SQLite3驱动，可以直接使用</p>
+<pre><code class="language-python"> # sqlite使用
+ import sqlite3  # 导入SQLite驱动
+ 
+ # 连接到SQLite数据库，数据库文件test.db若不存在则在当前目录进行创建
+ conn = sqlite3.connect('test.db')
+ # 创建一个cursor
+ cursor = conn.cursor()
+ 
+ # 执行创建user表的sql
+ cursor.execute('create table user (id varchar(20) primary key, name varchar(20))')
+ # 执行插入一条记录的sql
+ cursor.execute('insert into user (id, name) values (\'1\', \'Tom\')')
+ # 通过rowcount获取上面执行sql后影响的行数
+ cursor.rowcount # 1
+ 
+ # 执行查询sql
+ cursor.execute('select * from user where id=?', ('1',))
+ # 获取查询结果集
+ values = cursor.fetchall() # [('1', 'Tom')]
+ # 再次获取为空
+ values = cursor.fetchall() # []
+ 
+ # 关闭cursor
+ cursor.close()
+ # 提交事务
+ conn.commit()
+ # 关闭连接
+ conn.close()
+</code></pre>
+</li>
+<li>
+<p>对Cursor执行insert、update、delete语句后，影响的行数由rowcount返回</p>
+</li>
+<li>
+<p>对Cursor执行select语句后，通过featchall()获取结果集；结果集是一个list，每一个元素都是一个tuple，对应表中一行记录</p>
+</li>
+<li>
+<p>若sql语句带有参数，需要把参数按照位置传递给execute()方法，有几个?占位符就必须对应几个参数，参数以tuple形式提供：<br />
+<code>cursor.execute('select * from user where name=? and pwd=?', ('abc', 'password'))</code></p>
+</li>
+<li>
+<p>执行产生数据库变化的操作要进行commit()提交事务</p>
+</li>
+<li>
+<p>打开的Connection对象、Cursor对象要被正确地关闭，否则就会泄漏资源；可使用 <code>try...except...finally...</code> ，确保在出错的情况也能关闭掉Cursor对象、Connection对象</p>
+<pre><code class="language-python"> # 练习：根据分数段查找指定的名字
+ import os, sqlite3
+ 
+ db_file = os.path.join(os.path.dirname(__file__), 'test.db')
+ if os.path.isfile(db_file):
+     os.remove(db_file)
+ 
+ # 初始数据
+ conn = sqlite3.connect(db_file)
+ cursor = conn.cursor()
+ cursor.execute('create table user(id varchar(20) primary key, name varchar(20), score int)')
+ cursor.execute(r&quot;insert into user values ('A-001', 'Adam', 95)&quot;)
+ cursor.execute(r&quot;insert into user values ('A-002', 'Bart', 62)&quot;)
+ cursor.execute(r&quot;insert into user values ('A-003', 'Lisa', 78)&quot;)
+ cursor.close()
+ conn.commit()
+ conn.close()
+ 
+ def get_score_in(low, high):
+     # 返回指定分数区间的名字，按分数从低到高排序
+     try:
+         conn = sqlite3.connect(db_file)
+         cursor = conn.cursor()
+         cursor.execute('select name from user where score &gt;= ? and score &lt;= ?', (low, high))
+         values = cursor.fetchall()
+     finally:
+         if cursor:
+             cursor.close()
+         if conn:
+             conn.close()
+     return [v[0] for v in values]
+ 
+ # 测试
+ assert get_score_in(80, 95) == ['Adam'], &quot;%s失败&quot; % get_score_in(80, 95)
+ assert get_score_in(60, 80) == ['Bart', 'Lisa'], &quot;%s失败&quot; % get_score_in(60, 80)
+ assert get_score_in(60, 100) == ['Bart', 'Lisa', 'Adam'], &quot;%s失败&quot; % get_score_in(60, 100)
+ print('Pass')
+</code></pre>
+</li>
 </ul>
-
-<h5 id="toc_7">16.3 MySQL</h5>
-
+<h5><a id="16-3-mysql" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>16.3 MySQL</h5>
 <ul>
-<li>MysQL数据库默认的编码为UTF-8，执行SQL语句 <code>show variables like &#39;%char%&#39;;</code> 可以查询配置的编码格式</li>
-<li>my.cnf为MySQL的配置文件，若要修改编码格式可以修改此文件；修改文件后需要重启MySQL</li>
-<li><p>若MySQL的版本&gt;=5.5.3，可以将编码设置为utf8mb4（和utf8完全兼容），该编码支持最新的Unicode标准，可以存储显示emoji字符</p>
-
-<pre><code class="language-text">[client]
+<li>
+<p>MysQL数据库默认的编码为UTF-8，执行SQL语句 <code>show variables like '%char%';</code> 可以查询配置的编码格式</p>
+</li>
+<li>
+<p>my.cnf为MySQL的配置文件，若要修改编码格式可以修改此文件；修改文件后需要重启MySQL</p>
+</li>
+<li>
+<p>若MySQL的版本&gt;=5.5.3，可以将编码设置为utf8mb4（和utf8完全兼容），该编码支持最新的Unicode标准，可以存储显示emoji字符</p>
+<pre><code class="language-plain_text">[client]
 default-character-set = utf8mb4
 
 [mysqld]
 character-set-server = utf8mb4
 collation-server = utf8mb4_general_ci
 </code></pre>
-
-<pre><code class="language-sql"># SQL语句
-show databases;  # 查询所有的数据库
-use test;  # 使用test数据库
-show tables;  # 查询当前数据库下的所有的表
-describe 表名;  # 显示表的数据结构
-</code></pre></li>
-<li><p>MySQL服务器以独立的进程运行，并通过网络对外服务，所以Python需要MySQL驱动来连接MySQL服务器</p></li>
-<li><p>MySQL提供了官方驱动mysql-connector-python，但是在安装的时候需要给pip命令添加参数-allow-external，安装命令为<code>pip install mysql-connector-python --allow-external mysql-connector-python</code>，或者手动安装</p></li>
-<li><p>Python的DB API定义都是通用的，所以操作MySQL和SQLite类似；<strong>不过，MySQL使用的占位符是%s，SQLite使用的是?</strong></p>
-
+<pre><code class="language-sql"> # SQL语句
+ show databases;  # 查询所有的数据库
+ use test;  # 使用test数据库
+ show tables;  # 查询当前数据库下的所有的表
+ describe 表名;  # 显示表的数据结构
+</code></pre>
+</li>
+<li>
+<p>MySQL服务器以独立的进程运行，并通过网络对外服务，所以Python需要MySQL驱动来连接MySQL服务器</p>
+</li>
+<li>
+<p>MySQL提供了官方驱动mysql-connector-python，但是在安装的时候需要给pip命令添加参数-allow-external，安装命令为<code>pip install mysql-connector-python --allow-external mysql-connector-python</code>，或者手动安装</p>
+</li>
+<li>
+<p>Python的DB API定义都是通用的，所以操作MySQL和SQLite类似；<strong>不过，MySQL使用的占位符是%s，SQLite使用的是?</strong></p>
 <pre><code class="language-python">import mysql.connector
 
-conn = mysql.connector.connect(user=&#39;root&#39;, password=&#39;&#39;, database=&#39;test&#39;)
+conn = mysql.connector.connect(user='root', password='', database='test')
 cursor = conn.cursor()
 
-cursor.execute(&#39;create table user (id varchar(20) primary key, name varchar(20))&#39;)
-cursor.execute(&#39;insert into user (id, name) values (%s, %s)&#39;, [&#39;1&#39;, &#39;Tom&#39;])
+cursor.execute('create table user (id varchar(20) primary key, name varchar(20))')
+cursor.execute('insert into user (id, name) values (%s, %s)', ['1', 'Tom'])
 cursor.rowcount # 1
 
 cursor.close() 
 conn.commit()
 
 cursor = conn.cursor()
-cursor.execute(&#39;select * from user where id = %s&#39;, (&#39;1&#39;,))
-values = cursor.fetchall() # [(&#39;1&#39;, &#39;Tom&#39;)]
+cursor.execute('select * from user where id = %s', ('1',))
+values = cursor.fetchall() # [('1', 'Tom')]
 
 cursor.close()
 conn.close()
-</code></pre></li>
-</ul>
-
-<h5 id="toc_8">16.4 使用SQLAlchemy</h5>
-
-<ul>
-<li><p>ORM（Object-Relational Mapping）：把关系数据库的表结构映射到对象上；Python中最有名的ORM框架是SQLAlchemy</p>
-
-<pre><code class="language-python">from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, create_engine
-from sqlalchemy.orm import sessionmaker
-
-# 第1步：创建基类Base
-Base = declarative_base()
-
-# 定义User，继承Base
-class User(Base):
-    # 表的名称
-    __tablename__ = &#39;user&#39;
-
-    # 表的结构
-    id = Column(String(20), primary_key=True)
-    name = Column(String(20))
-
-# 第2步：初始化数据库连接，创建DBSession
-engine = create_engine(&#39;mysql+mysqlconnector://root:@localhost:3306/test&#39;)
-DBSession = sessionmaker(bind=engine)
 </code></pre>
-
+</li>
+</ul>
+<h5><a id="16-4%E4%BD%BF%E7%94%A8-sqlalchemy" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>16.4 使用SQLAlchemy</h5>
+<ul>
+<li>
+<p>ORM（Object-Relational Mapping）：把关系数据库的表结构映射到对象上；Python中最有名的ORM框架是SQLAlchemy</p>
+<pre><code class="language-python"> from sqlalchemy.ext.declarative import declarative_base
+ from sqlalchemy import Column, String, create_engine
+ from sqlalchemy.orm import sessionmaker
+ 
+ # 第1步：创建基类Base
+ Base = declarative_base()
+ 
+ # 定义User，继承Base
+ class User(Base):
+     # 表的名称
+     __tablename__ = 'user'
+ 
+     # 表的结构
+     id = Column(String(20), primary_key=True)
+     name = Column(String(20))
+ 
+ # 第2步：初始化数据库连接，创建DBSession
+ engine = create_engine('mysql+mysqlconnector://root:@localhost:3306/test')
+ DBSession = sessionmaker(bind=engine)
+</code></pre>
 <ul>
 <li>上述代码完成了SQLAlchemy的初始化和具体每个表的class定义</li>
 <li><strong>create_engine()用于初始化数据库连接，SQLAlchemy用一个字符串表示连接信息，格式如下：<code>数据库类型+数据库驱动名称://用户名:口令@机器地址:端口/数据库库名</code></strong></li>
 </ul>
-
-<pre><code class="language-python"># 第3步：创建DBSession对象
-session = DBSession()
-
-# 第4步：创建User，添加到session
-new_user = User(id=&#39;5&#39;, name=&#39;Bob&#39;)
-session.add(new_user)
-
-# 第5步：提交(保存)到数据库
-session.commit()
-
-# 第6步：关闭session
-session.close()
+<pre><code class="language-python"> # 第3步：创建DBSession对象
+ session = DBSession()
+ 
+ # 第4步：创建User，添加到session
+ new_user = User(id='5', name='Bob')
+ session.add(new_user)
+ 
+ # 第5步：提交(保存)到数据库
+ session.commit()
+ 
+ # 第6步：关闭session
+ session.close()
 </code></pre>
-
 <ul>
 <li>DBSession对象可以视为当前数据库连接</li>
 <li>向数据库表中添加一行记录（添加一个User对象），需要先获取session，然后把对象添加到session，最后提交并关闭</li>
 </ul>
-
 <pre><code class="language-python">session = DBSession()
 
 # 创建Query查询，filter是where条件；
 # 调用one()返回唯一行，调用all()返回所有行；
 # 从数据库中查询出来的不再是tuple，而是User对象
-user = session.query(User).filter(User.id==&#39;5&#39;).one()
+user = session.query(User).filter(User.id=='5').one()
 
-print(&#39;type:&#39;, type(user)) # type: &lt;class &#39;__main__.User&#39;&gt;
-print(&#39;name:&#39;, user.name) # name: Bob
+print('type:', type(user)) # type: &lt;class '__main__.User'&gt;
+print('name:', user.name) # name: Bob
 session.close()
-</code></pre></li>
-<li><p>数据库的多个表可以用外键实现一对多、多对多等关联；相应的，ORM框架也可以提供两个对象之间的一对多、多对多等功能</p>
-
+</code></pre>
+</li>
+<li>
+<p>数据库的多个表可以用外键实现一对多、多对多等关联；相应的，ORM框架也可以提供两个对象之间的一对多、多对多等功能</p>
 <pre><code class="language-python">from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
@@ -531,23 +523,24 @@ from sqlalchemy.orm import relationship
 Base = declarative_base()
 
 class User(Base):
-    __tablename__ = &#39;user&#39;
+    __tablename__ = 'user'
 
     id = Column(String(20), primary_key=True)
     name = Column(String(20))
     # 一对多
-    book = relationship(&#39;Book&#39;)
+    book = relationship('Book')
 
 class Book(Base):
-    __tablename__ = &#39;book&#39;
+    __tablename__ = 'book'
 
     id = Column(String(20), primary_key=True)
     name = Column(String(20))
     # &quot;多&quot;的一方的book表是通过外键关联到user表的
-    user_id = Column(String(20), ForeignKey(&#39;user.id&#39;))
+    user_id = Column(String(20), ForeignKey('user.id'))
 
 # 当查询到一个User对象时，其books属性是一个包含若干个Book对象的list
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -613,7 +606,7 @@ class Book(Base):
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>

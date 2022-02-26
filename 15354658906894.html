@@ -108,44 +108,35 @@
       </div>
 
       <div class="article-content">
-        <ul>
-<li>
-<a href="#toc_0">一、概述、安装</a>
-</li>
-<li>
-<a href="#toc_1">二、Redis命令行客户端</a>
-</li>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85">一、概述、安装</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81redis%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%A2%E6%88%B7%E7%AB%AF">二、Redis命令行客户端</a></li>
 </ul>
-
-
-<h4 id="toc_0">一、概述、安装</h4>
-
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述、安装</h4>
 <ul>
 <li>Redis是一个key-value存储系统，与和Memcached类似；
-
 <ul>
 <li>其支持存储的value类型有string(字符串)、list(链表)、set(集合)、zset(有序集合)等，并且对这些数据类型支持原子性的push/pop、add/remove、交并和差集等操作；</li>
 <li>为了保证效率，数据先缓存在内存中，之后会周期性地将更新的数据写入磁盘或把修改操作写入追加的记录文件中，进而可以实现了master-slave(主从)同步；</li>
-</ul></li>
 </ul>
-
-<span id="more"></span><!-- more -->   
-
+</li>
+</ul>
+<span id="more"></span><!-- more -->	
 <ul>
-<li><p>安装</p>
-
+<li>
+<p>安装</p>
 <pre><code class="language-shell">apt-get install redis-server
 // 配置文件为/etc/redis/redis.conf
 
 systemctl status|restart redis.service
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-
-<h4 id="toc_1">二、Redis命令行客户端</h4>
-
+<h4><a id="%E4%BA%8C%E3%80%81redis%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%A2%E6%88%B7%E7%AB%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、Redis命令行客户端</h4>
 <ul>
-<li><p>安装Redis服务器（redis-server）时，会自动安装Redis命令行客户端程序；在本机终端中输入<code>redis-cli</code>命令就可以启动，访问Redis服务器；</p>
-
+<li>
+<p>安装Redis服务器（redis-server）时，会自动安装Redis命令行客户端程序；在本机终端中输入<code>redis-cli</code>命令就可以启动，访问Redis服务器；</p>
 <pre><code class="language-shell">redis-cli
 
 # 查看所有的key列表
@@ -166,9 +157,10 @@ lpush key3 b
 rpush key3 c
 # 打印列表记录（从左到右）
 lrange key3 0 2
-</code></pre></li>
-<li><p>默认情况下，访问Redis服务器是不需要密码的；修改配置文件redis.conf，取消注释<code>requirepass</code>设置访问密码；</p>
-
+</code></pre>
+</li>
+<li>
+<p>默认情况下，访问Redis服务器是不需要密码的；修改配置文件redis.conf，取消注释<code>requirepass</code>设置访问密码；</p>
 <pre><code class="language-shell">root@ubuntu:~# redis-cli
 127.0.0.1:6379&gt; keys *
 (error) NOAUTH Authentication required.
@@ -177,11 +169,13 @@ redis-cli -a mypass # 添加密码参数方法
 root@ubuntu:~# redis-cli -a mypass
 127.0.0.1:6379&gt; keys *
 1) &quot;key1&quot;
-</code></pre></li>
-<li><p>默认情况下，Redis服务器不允许远程访问，只允许本机访问；修改配置文件redis.conf，注释掉<code>bind 127.0.0.1 ::1</code>打开远程访问；</p>
-
+</code></pre>
+</li>
+<li>
+<p>默认情况下，Redis服务器不允许远程访问，只允许本机访问；修改配置文件redis.conf，注释掉<code>bind 127.0.0.1 ::1</code>打开远程访问；</p>
 <pre><code class="language-shell">redis-cli -a mypass -h 192.168.1.100
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -247,7 +241,7 @@ root@ubuntu:~# redis-cli -a mypass
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
+              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>
