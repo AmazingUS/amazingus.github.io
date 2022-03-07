@@ -114,6 +114,7 @@
 <li><a href="#%E4%B8%89%E3%80%81%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%A8%A1%E5%BC%8F%E3%80%81%E7%9B%91%E5%90%AC%E6%A8%A1%E5%BC%8F%E5%8F%98%E5%8C%96%E3%80%81%E5%A4%84%E7%90%86%E6%A8%A1%E5%BC%8F%E5%8F%98%E5%8C%96">三、获取当前模式、监听模式变化、处理模式变化</a></li>
 <li><a href="#%E5%9B%9B%E3%80%81%E7%A6%81%E7%94%A8%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F">四、禁用暗黑模式</a></li>
 <li><a href="#%E4%BA%94%E3%80%81%E5%85%B6%E4%BB%96">五、其他</a></li>
+<li><a href="#%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83">六、参考</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E9%A2%9C%E8%89%B2%E9%80%82%E9%85%8D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、颜色适配</h4>
@@ -170,7 +171,6 @@ view.backgroundColor = color
 <li>
 <p><code>https://developer.apple.com/documentation/uikit/appearance_customization/supporting_dark_mode_in_your_interface</code></p>
 <pre><code class="language-swift">// UIView
-
 traitCollectionDidChange(_:)
 layoutSubviews()
 draw(_:)
@@ -178,20 +178,17 @@ updateConstraints()
 tintColorDidChange()
 </code></pre>
 <pre><code class="language-swift">// UIViewController
-
 traitCollectionDidChange(_:)
 updateViewConstraints()
 viewWillLayoutSubviews()
 viewDidLayoutSubviews()
 </code></pre>
 <pre><code class="language-swift">// UIPresentationController
-
 traitCollectionDidChange(_:)
 containerViewWillLayoutSubviews()
 containerViewDidLayoutSubviews()
 </code></pre>
 <pre><code class="language-swift">// NSView
-
 updateLayer()
 draw(_:)
 layout()
@@ -207,7 +204,7 @@ updateConstraints()
 <p>1）<strong>一般情况下，只要使用了动态的颜色、图片等，模式切换时，系统会自动更换相关样式；</strong></p>
 </li>
 <li>
-<p>2）<strong>但是某些情况下，还需要手动处理模式变化，如没有动态的样式、一些不支持动态的样式等（如CGColor，还是只能表示一种颜色）；</strong></p>
+<p>2）<strong>但是某些情况下，还需要手动处理模式变化，如没有动态的样式、一些不支持动态的样式等（如<code>CALayer</code>中的<code>CGColor</code>，只能表示一种颜色）；</strong></p>
 </li>
 <li>
 <p>3）<strong>一般都是在UIView、UIViewController的<code>traitCollectionDidChange(_:)</code>方法中进行手动处理；</strong></p>
@@ -219,8 +216,12 @@ updateConstraints()
     
     // 模式发生了变化
     if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-        
+        self.handleColorAppearanceDidChanged()
     }
+}
+
+private func handleColorAppearanceDidChanged() {
+    // TODO
 }
 </code></pre>
 </li>
@@ -263,6 +264,10 @@ updateConstraints()
 <li><strong>注意，window对象别为nil；</strong></li>
 </ul>
 </li>
+</ul>
+<h4><a id="%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、参考</h4>
+<ul>
+<li><strong>Implementing Dark Mode and using CGColor：<code>https://www.jessesquires.com/blog/2020/03/23/implementing-dark-mode-with-cgcolor/</code></strong></li>
 </ul>
 
       </div>

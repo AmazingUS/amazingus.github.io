@@ -294,209 +294,184 @@
 openssl genrsa [-out filename] [-des|-des3...] [num]
 
 [-out filename]：将生成的RSA私钥保存到文件中，默认控制台输出；
+[-des|-des3...]：使用加密算法加密生成的RSA私钥，之后使用时需要输入密码；
+[num]：密钥长度（必须最后一个参数）；
+</code></pre>
+<pre><code class="language-shell">openssl genrsa -out private.key
+</code></pre>
+</li>
+<li>
+<p>b. rsa</p>
+<pre><code class="language-shell">// RSA密钥管理命令（去除私钥的密码、给私钥添加密码、私钥编码格式转换、
+// 私钥导出公钥、检查私钥完整性、输出私钥内容等）
+openssl rsa [-in filename] [-out filename] [-outform pem|net|der] 
+[-des|-des3...] [-pubin] [-pubout] [-text] [-noout] [-check]
+
+[-in filename]：指定输入文件，若是加密的密钥需要输入密码；
+[-out filename]：指定输出文件；
+[-outform PEM|NET|DER]：指定输出格式，可以是PEM、NET、DER格式；
+[-des|-des3...]：使用加密算法加密生成的RSA私钥，之后使用时需要输入密码；
+[-pubin]：指定读取的为公钥（默认为私钥）；
+[-pubout]：指定输出的为公钥（默认为私钥），可用于私钥导出公钥；设置了pubin，pubout也会被默认设置；
+[-text]：以只读方式输出密钥及组件信息；
+[-noout]：不输出密钥；
+[-check]：检查RSA密钥完整性；
+</code></pre>
+<pre><code class="language-shell">openssl rsa -in private.key -des3 -out private_s.key
+openssl rsa -in private_s.key -outform der -out private_der.key
+openssl rsa -in private.key -pubout
+openssl rsa -in private.key -pubout -out public.key
+openssl rsa -in private.key -check
+openssl rsa -in private.key -check -noout
+</code></pre>
+</li>
+<li>
+<p>c. rsautil</p>
+<pre><code class="language-shell">// RSA命令，包含RSA算法签名、身份验证、加密/解密数据等功能；
+openssl rsautl [-in filename] [-out filename] [-inkey filename] 
+[-encrypt|-decrypt] [-sign|-verify] [-pubin] [-certin]
+
+[-inkey filename]：加密/解密数据时使用的密钥文件；
+[-encrypt|-decrypt]：数据加密、解密（只是单纯的加密解密；解密必须使用私钥）；
+[-sign|-verify]：数据签名、验证（只是单纯的认证；签名必须使用私钥）；
+[-pubin]：指定inkey是公钥（默认为私钥）
+[-certin]：标记使用证书文件加密/解密，-inkey指定证书文件；
+</code></pre>
+<pre><code class="language-shell">// 加密、解密
+openssl rsautl -encrypt -in 123.txt -out 123.enc -inkey public.key  -pubin
+openssl rsautl -decrypt -in 123.enc -inkey private.key # openssl限制解密只能使用私钥
+// 签名、认证
+openssl rsautl -sign -in 123.txt -out 123.sig -inkey private.key 
+openssl rsautl -verify -in 123.sig -inkey public.key -pubin
+</code></pre>
+</li>
+<li>
+<p>d. req</p>
+<pre><code class="language-shell">// 创建、处理证书请求的命令，还可以建立根证书（RootCA，默认不被系统信任）；
+openssl req [-in filename] [-out filename] [-outform pem|net|der] [-new] 
+[-keyout filename] [-key filename] [-newkey rsa:bits|dsa:fileec:file] [keyout -filename]
+[-text] [-noout] [-pubkey] [-verify] [-x509] [-md5|-sha1|...] [-days]
+
+[-new]：创建新的CSR(证书请求，不是证书)，需要用户输入一些必要信息；
+        若没有指定-key，将会生成新的带密码的私钥（默认名称为 privkey.pem）；
+[-nodes]：设置不带密码；
+[-keyout filename]：若产生了新的私钥，则把私钥保存到指定文件中；
+[-key filename]：指定私钥文件；
+[-newkey rsa:bits|dsa:fileec:file]：指定新的私钥的算法及位数；
+[keyout -filename]：设置输出私钥文件；
+[-text]：以可读方式输出CSR的内容；
+[-noout]：不输出CSR的编码信息；
+[-pubkey]：解析CSR的的公钥信息并输出；
+[-verify]：检验CSR；
+[-x509]：直接产生根证书（默认不被系统信任），不生成CSR了；
+[-md5|-sha1|...]：指定证书的摘要算法；
+[-days]：证书的有效期（默认30天）；
+</code></pre>
+<pre><code class="language-shell">openssl req -new -out req.csr
+openssl req -new -out req.csr -nodes
+openssl req -new -out req.csr -key private.key 
+openssl req -new -out req.csr -newkey rsa:2048
+openssl req -in req.csr -text
+openssl req -in req.csr -pubkey
+openssl req -in req.csr -verify -noout
+openssl req -new -x509 -out rootca.crt -key private.key // 注意每次生成的证书内容不一样
+openssl req -new -x509 -out rootca.crt -key private.key -sha256 -days 200
+openssl req -new -x509 -out rootca.crt
+</code></pre>
+</li>
+<li>
+<p>e. x509</p>
+<pre><code class="language-shell">// 证书管理命令，可以用来显示证书的内容、证书格式转换，为CSR签名等；
+openssl x509 [-in filename] [-out filename] [-outform pem|net|der]
+[-text] [-noout] [-pubkey] [-purpose] [-req] [-signkey] 
+[-CA filename] [-CAkey filename] [-set_serial num]
+
+[-purpose]：显示证书用途；
+[-req]：表示输入文件为一个CSR（默认为一个证书）；
+[-signkey]：CSR的对应私钥，用于生成根证书并自签名；
+[-CA filename]：指定签名用的CA证书文件，对CSR进行签名；
+[-CAkey filename]：指定CA的私钥文件，对CSR进行签名；
+[-set_serial num]：设置证书的序号，证书过期或泄露，重新签名加1；
+</code></pre>
+<pre><code class="language-shell">openssl x509 -in rootca.crt
+openssl x509 -in crt.crt
+openssl x509 -in rootca.crt -purpose -noout
+openssl x509 -in rootca.crt -pubkey -noout &gt; public.key
+openssl x509 -req -in req.csr -signkey private.key -out rootcaselfsign.crt
+openssl x509 -req -in req.csr -CA rootca.crt -CAkey private.key -out crt.crt -set_serial 01
+
+// 将证书转为CSR（不用再输入一些信息生成了），-signkey为该证书的对应的私钥
+openssl x509 -x509toreq -in crt.crt -out req.csr -signkey private.key
+
+openssl x509 -in crt.crt -out crt_dem.crt -outform der
+openssl x509 -in crt_dem.crt -out crt.crt -inform der
+</code></pre>
+</li>
+<li>
+<p>f. pkcs12</p>
+<pre><code class="language-shell">// PKCS#12编码证书管理命令，可用于PEM格式与P12格式互转
+// pem转p12（含有CA公钥、公钥、私钥）
+openssl pkcs12 -export -out crt.p12 -inkey private1.key -in crt.crt -certfile rootca.crt
+// p12转pem（含有CA公钥、公钥）
+openssl pkcs12 -in crt.p12 -out my.crt -nodes
+</code></pre>
+</li>
+<li>
+<p>g. enc</p>
+<pre><code class="language-shell">// 对称加密命令
+openssl enc [-in filename] [-out filename] [-e -des|-aes128|...] [-d-des|-aes128|...] [-a/-base64]
+
+[-e]：指定加密算法，若不指定使用默认
+[-d]：指定解密算法，若不指定使用默认
+[-a/-base64]：使用base64编码
+</code></pre>
+<pre><code class="language-shell">openssl enc -e -des3 -in 123.txt -a -out 123.enc
+openssl enc -d -des3 -in 123.enc -a
+</code></pre>
+</li>
+<li>
+<p>h. dgst</p>
+<pre><code class="language-shell">// 摘要算法命令
+openssl dgst [-md5|-sha|...][-c] [-d] [-hex] [-binary] FILE_NAME
+
+[-c]：使用冒号分隔结果；
+[-d]：输出调试信息；
+[-hex]：以十六进制输出（默认值）；
+[-binary]：以二进制输出；
+[FILE_NAME]：输入文件（必须最后一个）
+</code></pre>
+<pre><code class="language-shell">openssl dgst -md5 1234abc.txt 
+echo &quot;hello&quot; | openssl dgst -md5
+echo &quot;hello&quot; | openssl dgst -md5 -out a.txt
+</code></pre>
+</li>
+<li>
+<p>i. 其他</p>
+<pre><code class="language-shell">// 验证证书
+openssl verify -CAfile rootca.crt crt.crt
+
+// 将key和证书写到同一个文件中
+cat server.crt server_private.key &gt; server.p12
+</code></pre>
+</li>
+<li>
+<p>j. QUICK</p>
+<pre><code class="language-shell">// CA
+openssl genrsa -out ca_private.key 1024
+openssl req -new -x509 -out rootca.crt -key ca_private.key
+OR
+openssl genrsa -out ca_private.key 1024
+openssl req -new -out ca_req.csr -key ca_private.key 
+openssl x509 -req -in ca_req.csr -signkey ca_private.key -out rootca.crt
+
+// SERVER
+openssl genrsa -out server_private.key 1024
+openssl req -new -out server_req.csr -key server_private.key 
+openssl x509 -req -in server_req.csr -CA rootca.crt -CAkey ca_private.key -out server_crt.crt -set_serial 01
 </code></pre>
 </li>
 </ul>
 </li>
-</ul>
-<p>[-des|-des3...]：使用加密算法加密生成的RSA私钥，之后使用时需要输入密码；<br />
-[num]：密钥长度（必须最后一个参数）；<br />
-```</p>
-<pre><code class="language-plain_text">    ```shell
-    openssl genrsa -out private.key
-    ```
-
-- b. rsa
-
-    ```shell
-    // RSA密钥管理命令（去除私钥的密码、给私钥添加密码、私钥编码格式转换、
-    // 私钥导出公钥、检查私钥完整性、输出私钥内容等）
-    openssl rsa [-in filename] [-out filename] [-outform pem|net|der] 
-    [-des|-des3...] [-pubin] [-pubout] [-text] [-noout] [-check]
-    
-    [-in filename]：指定输入文件，若是加密的密钥需要输入密码；
-    [-out filename]：指定输出文件；
-    [-outform PEM|NET|DER]：指定输出格式，可以是PEM、NET、DER格式；
-    [-des|-des3...]：使用加密算法加密生成的RSA私钥，之后使用时需要输入密码；
-    [-pubin]：指定读取的为公钥（默认为私钥）；
-    [-pubout]：指定输出的为公钥（默认为私钥），可用于私钥导出公钥；设置了pubin，pubout也会被默认设置；
-    [-text]：以只读方式输出密钥及组件信息；
-    [-noout]：不输出密钥；
-    [-check]：检查RSA密钥完整性；
-    ```
-
-    ```shell
-    openssl rsa -in private.key -des3 -out private_s.key
-    openssl rsa -in private_s.key -outform der -out private_der.key
-    openssl rsa -in private.key -pubout
-    openssl rsa -in private.key -pubout -out public.key
-    openssl rsa -in private.key -check
-    openssl rsa -in private.key -check -noout
-    ```
-    
-- c. rsautil
-
-    ```shell
-    // RSA命令，包含RSA算法签名、身份验证、加密/解密数据等功能；
-    openssl rsautl [-in filename] [-out filename] [-inkey filename] 
-    [-encrypt|-decrypt] [-sign|-verify] [-pubin] [-certin]
-    
-    [-inkey filename]：加密/解密数据时使用的密钥文件；
-    [-encrypt|-decrypt]：数据加密、解密（只是单纯的加密解密；解密必须使用私钥）；
-    [-sign|-verify]：数据签名、验证（只是单纯的认证；签名必须使用私钥）；
-    [-pubin]：指定inkey是公钥（默认为私钥）
-    [-certin]：标记使用证书文件加密/解密，-inkey指定证书文件；
-    ```
-    
-    ```shell
-    // 加密、解密
-    openssl rsautl -encrypt -in 123.txt -out 123.enc -inkey public.key  -pubin
-    openssl rsautl -decrypt -in 123.enc -inkey private.key # openssl限制解密只能使用私钥
-    // 签名、认证
-    openssl rsautl -sign -in 123.txt -out 123.sig -inkey private.key 
-    openssl rsautl -verify -in 123.sig -inkey public.key -pubin
-    ```
-- d. req
-
-    ```shell
-    // 创建、处理证书请求的命令，还可以建立根证书（RootCA，默认不被系统信任）；
-    openssl req [-in filename] [-out filename] [-outform pem|net|der] [-new] 
-    [-keyout filename] [-key filename] [-newkey rsa:bits|dsa:fileec:file] [keyout -filename]
-    [-text] [-noout] [-pubkey] [-verify] [-x509] [-md5|-sha1|...] [-days]
-    
-    [-new]：创建新的CSR(证书请求，不是证书)，需要用户输入一些必要信息；
-            若没有指定-key，将会生成新的带密码的私钥（默认名称为 privkey.pem）；
-    [-nodes]：设置不带密码；
-    [-keyout filename]：若产生了新的私钥，则把私钥保存到指定文件中；
-    [-key filename]：指定私钥文件；
-    [-newkey rsa:bits|dsa:fileec:file]：指定新的私钥的算法及位数；
-    [keyout -filename]：设置输出私钥文件；
-    [-text]：以可读方式输出CSR的内容；
-    [-noout]：不输出CSR的编码信息；
-    [-pubkey]：解析CSR的的公钥信息并输出；
-    [-verify]：检验CSR；
-    [-x509]：直接产生根证书（默认不被系统信任），不生成CSR了；
-    [-md5|-sha1|...]：指定证书的摘要算法；
-    [-days]：证书的有效期（默认30天）；
-    ```
-    
-    ```shell
-    openssl req -new -out req.csr
-    openssl req -new -out req.csr -nodes
-    openssl req -new -out req.csr -key private.key 
-    openssl req -new -out req.csr -newkey rsa:2048
-    openssl req -in req.csr -text
-    openssl req -in req.csr -pubkey
-    openssl req -in req.csr -verify -noout
-    openssl req -new -x509 -out rootca.crt -key private.key // 注意每次生成的证书内容不一样
-    openssl req -new -x509 -out rootca.crt -key private.key -sha256 -days 200
-    openssl req -new -x509 -out rootca.crt
-    ```
-
-- e. x509
-
-    ```shell
-    // 证书管理命令，可以用来显示证书的内容、证书格式转换，为CSR签名等；
-    openssl x509 [-in filename] [-out filename] [-outform pem|net|der]
-    [-text] [-noout] [-pubkey] [-purpose] [-req] [-signkey] 
-    [-CA filename] [-CAkey filename] [-set_serial num]
-    
-    [-purpose]：显示证书用途；
-    [-req]：表示输入文件为一个CSR（默认为一个证书）；
-    [-signkey]：CSR的对应私钥，用于生成根证书并自签名；
-    [-CA filename]：指定签名用的CA证书文件，对CSR进行签名；
-    [-CAkey filename]：指定CA的私钥文件，对CSR进行签名；
-    [-set_serial num]：设置证书的序号，证书过期或泄露，重新签名加1；
-    ```
-    
-    ```shell
-    openssl x509 -in rootca.crt
-    openssl x509 -in crt.crt
-    openssl x509 -in rootca.crt -purpose -noout
-    openssl x509 -in rootca.crt -pubkey -noout &gt; public.key
-    openssl x509 -req -in req.csr -signkey private.key -out rootcaselfsign.crt
-    openssl x509 -req -in req.csr -CA rootca.crt -CAkey private.key -out crt.crt -set_serial 01
-    
-    // 将证书转为CSR（不用再输入一些信息生成了），-signkey为该证书的对应的私钥
-    openssl x509 -x509toreq -in crt.crt -out req.csr -signkey private.key
-    
-    openssl x509 -in crt.crt -out crt_dem.crt -outform der
-    openssl x509 -in crt_dem.crt -out crt.crt -inform der
-    ```
-    
-- f. pkcs12
-
-    ```shell
-    // PKCS#12编码证书管理命令，可用于PEM格式与P12格式互转
-    // pem转p12（含有CA公钥、公钥、私钥）
-    openssl pkcs12 -export -out crt.p12 -inkey private1.key -in crt.crt -certfile rootca.crt
-    // p12转pem（含有CA公钥、公钥）
-    openssl pkcs12 -in crt.p12 -out my.crt -nodes
-    ```
-    
-- g. enc
-
-    ```shell
-    // 对称加密命令
-    openssl enc [-in filename] [-out filename] [-e -des|-aes128|...] [-d-des|-aes128|...] [-a/-base64]
-    
-    [-e]：指定加密算法，若不指定使用默认
-    [-d]：指定解密算法，若不指定使用默认
-    [-a/-base64]：使用base64编码
-    ```
-    
-    ```shell
-    openssl enc -e -des3 -in 123.txt -a -out 123.enc
-    openssl enc -d -des3 -in 123.enc -a
-    ```   
-    
-- h. dgst
-
-    ```shell
-    // 摘要算法命令
-    openssl dgst [-md5|-sha|...][-c] [-d] [-hex] [-binary] FILE_NAME
-    
-    [-c]：使用冒号分隔结果；
-    [-d]：输出调试信息；
-    [-hex]：以十六进制输出（默认值）；
-    [-binary]：以二进制输出；
-    [FILE_NAME]：输入文件（必须最后一个）
-    ```
-    
-    ```shell
-    openssl dgst -md5 1234abc.txt 
-    echo &quot;hello&quot; | openssl dgst -md5
-    echo &quot;hello&quot; | openssl dgst -md5 -out a.txt
-    ```
-    
-- i. 其他
- 
-    ```shell
-    // 验证证书
-    openssl verify -CAfile rootca.crt crt.crt
-    
-    // 将key和证书写到同一个文件中
-</code></pre>
-<p>cat server.crt server_private.key &gt; server.p12<br />
-```</p>
-<pre><code class="language-plain_text">- j. QUICK
-
-    ```shell
-    // CA
-    openssl genrsa -out ca_private.key 1024
-    openssl req -new -x509 -out rootca.crt -key ca_private.key
-    OR
-    openssl genrsa -out ca_private.key 1024
-    openssl req -new -out ca_req.csr -key ca_private.key 
-    openssl x509 -req -in ca_req.csr -signkey ca_private.key -out rootca.crt
-    
-    // SERVER
-    openssl genrsa -out server_private.key 1024
-    openssl req -new -out server_req.csr -key server_private.key 
-    openssl x509 -req -in server_req.csr -CA rootca.crt -CAkey ca_private.key -out server_crt.crt -set_serial 01
-    ```
-</code></pre>
-<ul>
 <li>
 <p>三）注意事项</p>
 <ul>

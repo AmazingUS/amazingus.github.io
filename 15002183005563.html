@@ -204,26 +204,6 @@ IdentityFile ~/.ssh/me
 # new: git clone backup:USERNAME/REPO_NAME.git
 
 
-# Only for git
-# Host same as Hostname
-Host gitee.com
-User git
-Hostname gitee.com
-IdentityFile ~/.ssh/me
-# example:
-# old: git clone git@gitee.com:USERNAME/REPO_NAME.git
-# new: git clone gitee.com:USERNAME/REPO_NAME.git
-
-
-# No User param, for git、ssh...
-# Host same as Hostname, and No User param
-Host gitee.com
-Hostname gitee.com
-IdentityFile ~/.ssh/me
-# example:
-# old、new: git clone git@gitee.com:USERNAME/REPO_NAME.git
-
-
 # No User param, for git、ssh...
 # *: All Host
 Host *

@@ -142,7 +142,8 @@
 <li><a href="#%E5%8D%81%E4%B8%80%E3%80%81%E7%BC%96%E8%AF%91%E5%99%A8%E5%90%88%E6%88%90synthesize">十一、编译器合成 (synthesize)</a></li>
 <li><a href="#%E5%8D%81%E4%BA%8C%E3%80%81%E4%BB%A3%E7%90%86">十二、代理</a></li>
 <li><a href="#%E5%8D%81%E4%B8%89%E3%80%81kvo%E3%80%81kvc">十三、KVO、KVC</a></li>
-<li><a href="#%E5%8D%81%E5%9B%9B%E3%80%81%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF">十四、常见错误</a></li>
+<li><a href="#%E5%8D%81%E5%9B%9B%E3%80%81%E6%9E%9A%E4%B8%BE%E5%88%A4%E6%96%AD%EF%BC%88switch-case%E3%80%81-if-case%E3%80%81-switch-case-let%E3%80%81-if-case-let%EF%BC%89">十四、枚举判断（<code>switch case</code>、<code>if case</code>、<code>switch case let</code>、<code>if case let</code>）</a></li>
+<li><a href="#%E5%8D%81%E4%BA%94%E3%80%81%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF">十五、常见错误</a></li>
 </ul>
 </div>
 <span id="more"></span><!-- more -->
@@ -326,7 +327,7 @@ let rightButton: UIButton = {
 </code></pre>
 </li>
 <li>
-<p><strong>延迟属性使用闭包方式创建，在闭包中使用self不会产生循环引用；全局的常/变量、类的属性、对象的属性使用闭包方式创建，在闭包中无法使用self；</strong></p>
+<p><strong>延迟属性使用“闭包方式”创建，在闭包中可以使用self，且不会产生循环引用；全局的常/变量、类的属性、对象的属性使用“闭包方式”创建，在闭包中无法使用self；</strong></p>
 </li>
 </ul>
 <h4><a id="%E5%9B%9B%E3%80%81dispatch-once" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、dispatch_once</h4>
@@ -1737,7 +1738,78 @@ override func viewDidLoad() {
 <p><strong>2、KVC</strong></p>
 </li>
 </ul>
-<h4><a id="%E5%8D%81%E5%9B%9B%E3%80%81%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>十四、常见错误</h4>
+<h4><a id="%E5%8D%81%E5%9B%9B%E3%80%81%E6%9E%9A%E4%B8%BE%E5%88%A4%E6%96%AD%EF%BC%88switch-case%E3%80%81-if-case%E3%80%81-switch-case-let%E3%80%81-if-case-let%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>十四、枚举判断（<code>switch case</code>、<code>if case</code>、<code>switch case let</code>、<code>if case let</code>）</h4>
+<ul>
+<li>
+<p>1、<strong><code>switch case</code>、<code>if case</code>，都是简单的模式匹配；</strong></p>
+<pre><code class="language-swift">enum CarBrand {
+    case benz
+    case audi
+    case bmv
+}
+
+var myCarBrand: CarBrand = .benz
+
+
+// switch case
+switch myCarBrand {
+case .benz:
+    print(&quot;switch case benz&quot;)
+case .audi:
+    print(&quot;switch case audi&quot;)
+case .bmv:
+    print(&quot;switch case bmv&quot;)
+}
+
+// if case
+if case .benz = myCarBrand {
+    print(&quot;if case benz&quot;)
+} else {
+    print(&quot;if case else&quot;)
+}
+</code></pre>
+</li>
+<li>
+<p>2、<strong><code>switch case let</code>、<code>if case let</code>，都是模式匹配+关联值（可以为非可选类型，也可以为可选类型）；</strong></p>
+<pre><code class="language-swift">enum CarBrand {
+    case benz(price: Int?)
+    case audi(production: String)
+    case bmv(cnName: String)
+}
+
+var myCarBrand: CarBrand = .benz(price: 200_0000)
+
+
+// switch case let   
+switch myCarBrand {
+case let .benz(price):
+    print(&quot;switch case let benz&quot;, &quot;price: \(price)&quot;)
+    
+case .audi(let production): // let也可以放到里面
+    print(&quot;switch case let audi&quot;, &quot;production: \(production)&quot;)
+    
+    // case .bmv: // 不需要关联值，直接忽略let
+case .bmv(_):
+    print(&quot;switch case let bmv&quot;)
+}
+    
+// if case let   
+if case let .benz(price) = myCarBrand {
+    // if case .benz(let price) = myCarBrand { // let也可以放到里面
+    print(&quot;if case let benz&quot;, &quot;price: \(price)&quot;)
+} else {
+    print(&quot;if case let else&quot;)
+}
+</code></pre>
+</li>
+<li>
+<p>3、参考：</p>
+<ul>
+<li>Swift中一些常见的关键字二(if let，guard let, if case, if case let)：<code>https://www.jianshu.com/p/3a9fbeef56a1</code></li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E5%8D%81%E4%BA%94%E3%80%81%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>十五、常见错误</h4>
 <ul>
 <li>
 <p>1、&quot;Cannot use instance member 'XXX' within property initializer; property initializers run before 'self's available&quot;</p>
