@@ -481,30 +481,99 @@ SVProgressHUD.framework/SVProgressHUD: Mach-O 64-bit dynamically linked shared l
 <h4><a id="%E4%B8%83%E3%80%81xcode-12" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、Xcode 12</h4>
 <ul>
 <li>
-<p>1、Apple M1（只能运行Xcode 12=+）, Xcode 12，模拟器运行，报 <code>building for iOS Simulator, but linking in object file built for iOS, for architecture arm64</code> 错误；</p>
+<p>1、<strong>Apple M1, Xcode 12，模拟器运行，报错：</strong></p>
+<pre><code class="language-plain_text">// 错误1:
+building for iOS Simulator, but linking in object file built for iOS, for file 'XXYY' for architecture arm64
+
+// 错误1:
+building for iOS Simulator-x86_64 but attempting to link with file built for iOS Simulator-arm64
+Undefined symbols for architecture x86_64:
+  &quot;_OBJC_CLASS_$_XXYY&quot;, referenced from:
+      objc-class-ref in SqflitePlugin.o
+ld: symbol(s) not found for architecture x86_64
+</code></pre>
 <ul>
-<li><strong>原因：Apple M1，Xcode 12模拟器的库需要的是arm64架构；但是很多第三方针对模拟器编译后的库并不包含arm64，因此报错；</strong></li>
-<li><strong><code>真正解决方法</code>：使用Rossetta 2运行Xcode；而设置Excluded Architectures移除arm64是都是无效的；</strong></li>
-<li>参考：
+<li>
+<p>1）<strong>之前：</strong></p>
 <ul>
-<li><code>https://www.jianshu.com/p/5f5aaf0fc56d</code></li>
+<li><strong>Intel的模拟器，使用<code>x86_64</code>架构的模拟器库；</strong></li>
+<li><strong>真机，使用<code>arm64</code>架构的真机库；</strong></li>
+<li><strong>一般情况，我们也会将这两个库合并在一起使用；</strong></li>
+</ul>
+</li>
+<li>
+<p>2）<strong>现在：</strong></p>
+<ul>
+<li><strong>Apple M1的模拟器，使用需要包含<code>arm64</code>架构的模拟器库；</strong></li>
+<li><strong>很多第三方，针对模拟器编译后的库并不包含<code>arm64</code>架构，所以报错；</strong></li>
+</ul>
+</li>
+<li>
+<p>3）<strong>解决：</strong></p>
+<ul>
+<li>
+<p><strong>方法1：以<code>Rossetta 2</code>模式运行Xcode；</strong></p>
+<ul>
+<li><strong>该方式会将x86指令转译成ARM指令运行，有一些性能损失；</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>方法2：通过设置<code>Excluded Architectures</code>移除<code>arm64</code>；</strong></p>
+<ul>
+<li>
+<p><strong>当在M1上，移除了模拟器的arm64架构后，模拟器还是会以arm64的方式运行，但模拟器中的app以x86的方式运行；此时，模拟器和app通过XPC进行通信，长久通信后，可能会有一些问题；</strong></p>
+</li>
+<li>
+<p><strong>有时设置了移除，依然无法编译通过，一般是项目设置和Cocoapods的设置不一致导致的，需要在Podfile添加以下内容，以保持一致；</strong></p>
+<pre><code class="language-rb">post_install do |install    er|
+  installer.pods_project.targets.each do |target|
+    
+    target.build_configurations.each do |config|
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
+    
+  end
+end
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>方法3：编译同时包含<code>x86_64</code>和<code>arm64</code>架构的模拟器库；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>4）参考：</p>
+<ul>
+<li><strong>M1设备的Xcode编译问题深究：<code>https://juejin.cn/post/7037037120158269448</code></strong></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>2、Xcode 12.3，模拟器运行（真机运行同理），报 <code>Building for iOS Simulator, but the linked and embedded framework 'xxx.framework' was built for iOS + iOS Simulator.</code> 错误；</p>
+<p>2、<strong>Xcode 12.3，模拟器运行（真机运行同样），报错；</strong></p>
+<pre><code class="language-plain_text">Building for iOS Simulator, but the linked and embedded framework 'XX' was built for iOS + iOS Simulator.
+</code></pre>
 <ul>
-<li><strong>原因：Xcode 12.3开始，不允许使用类似于“模拟器的库 + 真机的库”这种含有多架构的库（x86_64+armv7+arm64）；因为模拟器的库和真机的库都有arm64了；</strong></li>
-<li>解决办法有4种方式：
+<li>
+<p>1）<strong>原因：Xcode 12.3开始，不允许使用“模拟器的库 + 真机的库”这种含有多架构的库（x86_64+armv7+arm64）；因为模拟器的库和真机的库都有arm64；</strong></p>
+</li>
+<li>
+<p>2）解决：</p>
 <ul>
-<li>方式1：Files -&gt; WorkSpace Setting -&gt; Build System -&gt; Legacy Build System（Deprecated）；</li>
-<li>方式2：Build Setting -&gt; Build Options -&gt; Validate WorkSpace -&gt; YES；</li>
-<li>方式3：改用.xcframework；</li>
-<li>方式4：改为只包含“模拟器库”或“真机库”的库；（如CocoaPods、Carthage的处理）</li>
+<li>方法1：Files -&gt; WorkSpace Setting -&gt; Build System -&gt; Legacy Build System（Deprecated）；</li>
+<li>方法2：Build Setting -&gt; Build Options -&gt; Validate WorkSpace -&gt; YES；</li>
+<li><strong>方法3：改用.xcframework；</strong></li>
+<li><strong>方法4：改为只包含“模拟器库”或“真机库”的库；（如CocoaPods、Carthage的处理）</strong></li>
 </ul>
 </li>
-<li>参考：<code>https://blog.csdn.net/qq_43377749/article/details/111592751</code></li>
+<li>
+<p>3）参考：</p>
+<ul>
+<li><strong>升级XCode12.3报错 Building for , but the linked and embedded framework was built for iOS + iOS Simulator：<code>https://blog.csdn.net/qq_43377749/article/details/111592751</code></strong></li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -575,7 +644,7 @@ SVProgressHUD.framework/SVProgressHUD: Mach-O 64-bit dynamically linked shared l
               <a href="16204916511807.html">iOS 13暗黑模式适配总结</a>
               </li>
                  <li class="post">
-              <a href="15859991604863.html">Apple 多线程与GCD总结</a>
+              <a href="15859991604863.html">iOS 多线程与GCD总结</a>
               </li>
                  <li class="post">
               <a href="15705573115081.html">iOS、macOS应用启动逻辑总结</a>
