@@ -95,55 +95,6 @@
 
       
       <div class="article">
-        <a class="clearlink" href="15230908846113.html">
-          
-          <h1>Android Studio配置使用</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <div class="mweb_toc"><ul>
-<li><a href="#%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE">一、配置</a></li>
-<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8">二、使用</a></li>
-<li><a href="#%E4%B8%89%E3%80%81%E8%A1%A5%E5%85%85">三、补充</a></li>
-</ul>
-</div>
-<h4><a id="%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、配置</h4>
-<ul>
-<li>
-<p>配置文件目录</p>
-<ul>
-<li>Configuration Path：<code>~/Library/Preferences/&lt;PRODUCT&gt;&lt;VERSION&gt;</code>，删除该目录即还原默认配置</li>
-<li>Caches Path：<code>~/Library/Caches/&lt;PRODUCT&gt;&lt;VERSION&gt;</code></li>
-<li>Logs Path：<code>~/Library/Logs/&lt;PRODUCT&gt;&lt;VERSION&gt;</code></li>
-</ul>
-</li>
-<li>
-<p>禁止AS首次启动下载SDK：显示包内容，bin目录下的idea.properties增加<code>disable.android.first.run=true</code>；</p>
-</li>
-</ul>
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15230908846113.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/3/25</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
         <a class="clearlink" href="15219669294797.html">
           
           <h1>GitBook配置使用</h1>
@@ -379,6 +330,59 @@
             
             <a href="15594138145337.html">Read more</a>&nbsp;&nbsp; 
             <span class="date">2018/3/7</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
+        <a class="clearlink" href="15147939316129.html">
+          
+          <h1>Carthage配置使用</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85">一、概述、安装</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8">二、使用</a></li>
+<li><a href="#%E4%B8%89%E3%80%81%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">三、其他说明</a></li>
+</ul>
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述、安装</h4>
+<ul>
+<li>
+<p>Carthage类似于CocoaPods，用于iOS、macOS平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持）</strong>；</p>
+<ul>
+<li>Carthage是基于Swift的，而Swift只支持Dynamic framework（从Xcode 9开始，Swift 4.0支持静态库）；</li>
+<li>之后手动拖入到项目中；其对项目工程文件的入侵性较小，并且可以与CocoaPods无缝集成，一个项目可以同时拥有CocosPods和Carthage；</li>
+</ul>
+</li>
+<li>
+<p>可以通过Homebrew进行安装Carthage；</p>
+<pre><code class="language-plain_text"># 安装carthage（安装升级carthage，注意可能出现多版本共存bug）
+brew install carthage
+
+carthage version  # 查看安装的版本
+</code></pre>
+</li>
+</ul>
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15147939316129.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2018/1/1</span>
              
 			
           </div>

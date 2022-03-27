@@ -95,37 +95,6 @@
 
       
       <div class="article">
-        <a class="clearlink" href="15142060028487.html">
-          
-          <h1>Swift语法概要(01~02)</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <h4><a id="%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B%E5%80%BC%E7%B1%BB%E5%9E%8B%E3%80%81%E6%8E%A7%E5%88%B6%E6%B5%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、基本概念、基础类型(值类型)、控制流</h4>
-<h4><a id="%E4%BA%8C%E3%80%81%E5%87%BD%E6%95%B0%E3%80%81%E9%97%AD%E5%8C%85%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、函数、闭包(引用类型)</h4>
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15142060028487.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2017/12/25</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
         <a class="clearlink" href="15129255415379.html">
           
           <h1>Python3爬虫总结</h1>
@@ -420,6 +389,76 @@ body data goes here...
           <div class="more-left left">
             
             <a href="15125773962317.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/7</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
+        <a class="clearlink" href="15125773962250.html">
+          
+          <h1>Python3笔记(13常见内建模块(下)、14常用第三方模块)</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <div class="mweb_toc"><ul>
+<li><a href="#13%E5%B8%B8%E8%A7%81%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97%E4%B8%8B">13. 常见内建模块(下)</a>
+<ul>
+<li><a href="#13-5-hashlib">13.5 hashlib</a></li>
+<li><a href="#13-6-itertools">13.6 itertools</a></li>
+<li><a href="#13-7-parsercreate%EF%BC%88xml%EF%BC%89">13.7 ParserCreate（XML）</a></li>
+<li><a href="#13-8-htmlparser%EF%BC%88html%EF%BC%89">13.8 HTMLParser（HTML）</a></li>
+<li><a href="#13-9-urllib">13.9 urllib</a></li>
+</ul>
+</li>
+<li><a href="#14%E5%B8%B8%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97">14. 常用第三方模块</a>
+<ul>
+<li><a href="#14-1%E6%A6%82%E8%BF%B0">14.1 概述</a></li>
+<li><a href="#14-2-pil">14.2 PIL</a></li>
+<li><a href="#14-3-virturalenv">14.3 virturalenv</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h4><a id="13%E5%B8%B8%E8%A7%81%E5%86%85%E5%BB%BA%E6%A8%A1%E5%9D%97%E4%B8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>13. 常见内建模块(下)</h4>
+<h5><a id="13-5-hashlib" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>13.5 hashlib</h5>
+<ul>
+<li>
+<p>hashlib提供了常见的摘要算法（如MD5、SHA等）；摘要算法又称为哈希算法、散列算法，通过把任意长度的数据转换为一个长度固定的字符串（16进制表示的字符串）</p>
+<pre><code class="language-python"> import hashlib
+ 
+ md5 = hashlib.md5()
+ # 先转成字节，再进行hash
+ md5.update('how to use md5 in python hashlib?'.encode('utf-8'))
+ m = md5.hexdigest()
+ print(m)  # d26a53750bc40b38b65a520292f69306
+ 
+ # 若数据量较大，可分多次调用update()，最后计算的结果是一样的
+ md5 = hashlib.md5()
+ md5.update('how to use md5 in '.encode('utf-8'))
+ md5.update('python hashlib?'.encode('utf-8'))
+ m = md5.hexdigest()
+ print(m)  # d26a53750bc40b38b65a520292f69306
+</code></pre>
+</li>
+</ul>
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15125773962250.html">Read more</a>&nbsp;&nbsp; 
             <span class="date">2017/12/7</span>
              
 			
