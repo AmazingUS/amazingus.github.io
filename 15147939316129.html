@@ -110,21 +110,22 @@
       <div class="article-content">
         <div class="mweb_toc"><ul>
 <li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85">一、概述、安装</a></li>
-<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8">二、使用</a></li>
-<li><a href="#%E4%B8%89%E3%80%81%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">三、其他说明</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">二、使用步骤</a></li>
+<li><a href="#%E4%B8%89%E3%80%81%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B1%BB%E5%BA%93%E6%94%AF%E6%8C%81carthage">三、自己的类库支持Carthage</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">四、其他说明</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述、安装</h4>
 <ul>
 <li>
-<p>Carthage类似于CocoaPods，用于iOS、macOS平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持）</strong>；</p>
+<p>1、Carthage类似于CocoaPods，用于iOS、macOS平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持）</strong>；</p>
 <ul>
-<li>Carthage是基于Swift的，而Swift只支持Dynamic framework（从Xcode 9开始，Swift 4.0支持静态库）；</li>
+<li><strong>Carthage是基于Swift的，而Swift只支持Dynamic framework（从Xcode 9开始，Swift 4.0支持静态库）；</strong></li>
 <li>之后手动拖入到项目中；其对项目工程文件的入侵性较小，并且可以与CocoaPods无缝集成，一个项目可以同时拥有CocosPods和Carthage；</li>
 </ul>
 </li>
 <li>
-<p>可以通过Homebrew进行安装Carthage；</p>
+<p>2、可以通过Homebrew进行安装Carthage；</p>
 <pre><code class="language-plain_text"># 安装carthage（安装升级carthage，注意可能出现多版本共存bug）
 brew install carthage
 
@@ -133,10 +134,10 @@ carthage version  # 查看安装的版本
 </li>
 </ul>
 <span id="more"></span><!-- more -->
-<h4><a id="%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、使用</h4>
+<h4><a id="%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、使用步骤</h4>
 <ul>
 <li>
-<p>1、在项目根目录更加一个名称为Cartfile的文件，其作用和Podfile一样，描述所需要的第三方框架；</p>
+<p>1、在项目根目录更加一个名称为<code>Cartfile</code>的文件，其作用和<code>Podfile</code>一样，描述所需要的第三方框架；</p>
 <pre><code class="language-plain_text">touch Cartfile
 open -a Xcode Cartfile  # 使用Xcode打开编辑
 
@@ -146,13 +147,16 @@ github &quot;PureLayout/PureLayout&quot;
 </code></pre>
 </li>
 <li>
-<p>2、执行更新命令，生成framework文件；</p>
-<pre><code class="language-plain_text">carthage update --platform iOS # 只生成iOS平台的framework
+<p>2、执行更新命令，生成<code>.framework</code>文件；</p>
+<pre><code class="language-plain_text">carthage update
+carthage update --platform iOS # 只生成iOS平台的framework
 </code></pre>
-<p>执行完成后，会生成以下文件目录结构：</p>
 <ul>
 <li>
-<p>Carfile.resolved用于版本控制；Build目录为生成的Dynamic framework；Checkouts为从github上clone的源代码；</p>
+<p><strong>执行完成后，会自动将第三方库clone到<code>Carthage/Checkouts</code>文件夹下，然后会自动打包成相应的<code>.framework</code>文件，打包完的文件会保存在<code>Carthage/Build</code>文件夹下；</strong></p>
+</li>
+<li>
+<p><strong><code>Carfile.resolved</code>：用于版本控制；</strong></p>
 <p><img src="media/15147939316129/carthage_files.png" alt="carthage_files" style="width:684px;" /></p>
 </li>
 </ul>
@@ -161,33 +165,33 @@ github &quot;PureLayout/PureLayout&quot;
 <p>3、添加Dynamic framework到项目中；</p>
 <ul>
 <li>
-<p><strong>方式一：Embedded Binaries（不建议使用）</strong></p>
+<p>1）<strong>方式一：Embedded Binaries（不建议使用）</strong></p>
 <p><img src="media/15147939316129/embedded_binaries.png" alt="embedded_binaries" style="width:672px;" /></p>
 <ul>
-<li><strong>a. 由于是生成的是Dynamic framework，可以手动直接添加framework到General或Build Phase界面的&quot;Embedded Binaries&quot;中，之后就可以直接使用；</strong></li>
-<li><strong>b. 添加了&quot;Embedded Binaries&quot;后，&quot;Link Binary With Libraries&quot;中会自动添加上面手动添加的framework；</strong></li>
-<li><strong>c. 若只是仅仅手动添加framework到&quot;Link Binary With Libraries&quot;，则该framework只能是Static Framework，不可以为Dynamic framework；</strong></li>
-<li><strong>d. 手动拖拽.framework到工程中，只会添加.framework到&quot;Link Binary With Libraries&quot;中；</strong></li>
+<li><strong>a. 由于是生成的是Dynamic framework，可以手动直接添加.framework，到General或Build Phase界面的“Embedded Binaries”中，之后就可以直接使用；</strong></li>
+<li><strong>b. 添加到“Embedded Binaries”后，“Link Binary With Libraries”中会自动添加，上面手动添加的.framework；</strong></li>
+<li><strong>c. 若只是仅仅手动添加.framework到“Link Binary With Libraries”，则该.framework只能是Static Framework，不可以为Dynamic framework；</strong></li>
+<li><strong>d. 若手动拖拽.framework到工程中，则只会添加.framework到“Link Binary With Libraries”中；</strong></li>
 </ul>
 </li>
 <li>
-<p><strong>方式二：Link Binary With Libraries + Run Script；</strong></p>
+<p>2）<strong>方式二：Link Binary With Libraries + Run Script</strong></p>
 <ul>
 <li>
-<p><strong>a. 添加添加framework到&quot;Link Binary With Libraries&quot;后，在Build Phase界面点击左上角+按钮，添加一个Run Script，并做以下配置；</strong></p>
+<p><strong>a. 添加.framework到“Link Binary With Libraries”后；在Build Phase界面，点击左上角+按钮，添加一个Run Script，并做以下配置；</strong></p>
 <p><img src="media/15147939316129/carthage_run_script.png" alt="carthage_run_script" style="width:491px;" /></p>
 <ul>
 <li>
 <p><strong>a) 添加命令：<code>usr/local/bin/carthage copy-frameworks</code></strong></p>
 </li>
 <li>
-<p><strong>b) Input Files中添加每一个framework的输入路径（注意避免空格换行符），比如：</strong></p>
+<p><strong>b) <code>Input Files</code>中添加每一个framework的输入路径（注意避免空格换行符），比如：</strong></p>
 <pre><code class="language-plain_text">$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework
 $(SRCROOT)/Carthage/Build/iOS/PureLayout.framework
 </code></pre>
 </li>
 <li>
-<p><strong>c)（可选，建议配置）Output Files中添加每一个framework的输出路径，比如：</strong></p>
+<p><strong>c)（可选；建议配置）<code>Output Files</code>中添加每一个framework的输出路径，比如：</strong></p>
 <pre><code class="language-plain_text">$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 </code></pre>
@@ -195,13 +199,15 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 </ul>
 </li>
 <li>
-<p><strong>b. <code>carthage copy-frameworks</code>命令的作用</strong></p>
+<p><strong>b. <code>carthage copy-frameworks</code>命令的作用：</strong></p>
 <ul>
-<li><strong>a) 拷贝Dynamic framework，进而不需要在手动添加到&quot;Embedded Binaries&quot;中了；</strong></li>
+<li><strong>a) 拷贝Dynamic framework，进而不需要在手动添加到“Embedded Binaries”；</strong></li>
 <li><strong>b)（最重要）裁减Dynamic framework；</strong>
 <ul>
-<li><strong>Carthage生成的Dynamic framework是包含模拟器和真机平台的，而App Store提交的包内不可以有不需要的平台的代码（模拟器的），使用该脚本就是自动将无用代码去除；（<code>http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/</code>）</strong></li>
-<li><strong>为了优化编译速度，添加Output Files路径，这样只有在Input Files中的文件修改了或Output Files中的文件丢失的情况下，才会执行命令，否则每次运行都会去执行；（详情查看<code>https://github.com/Carthage/</code>）</strong></li>
+<li><strong>Carthage生成的Dynamic framework是包含模拟器和真机平台的，而App Store提交的包内，不可以有不需要的平台的代码（模拟器的），使用该脚本就是自动将无用代码去除；（<code>http://ikennd.ac/blog/2015/02/stripping-unwanted-architectures-from-dynamic-libraries-in-xcode/</code>）</strong></li>
+<li><strong>添加<code>Output Files</code>路径后，编译速度会加快；只有在<code>Input Files</code>中的文件更改了，或<code>Output Files</code>中的文件丢失的情况下，才会执行命令，否则每次运行都会去执行；</strong></li>
+<li><code>With output files specified alongside the input files, Xcode only needs to run the script when the input files have changed or the output files are missing. This means dirty builds will be faster when you haven't rebuilt frameworks with Carthage.</code></li>
+<li><strong>参考：<code>https://github.com/Carthage/Carthage/tree/baa4f23db422bcec17c278c8e62df17c747bb289</code></strong></li>
 </ul>
 </li>
 </ul>
@@ -211,17 +217,58 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 </ul>
 </li>
 </ul>
-<h4><a id="%E4%B8%89%E3%80%81%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、其他说明</h4>
+<h4><a id="%E4%B8%89%E3%80%81%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B1%BB%E5%BA%93%E6%94%AF%E6%8C%81carthage" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、自己的类库支持Carthage</h4>
 <ul>
 <li>
-<p>若更新了Cartfile文件（库的版本、增删库），则只需要重新执行 <code>carthage update</code> 命令即可；</p>
+<p>1、步骤：</p>
+<ul>
+<li>
+<p><strong>1）新建一个动态库(Dynamic framework)的Project或Target，按照创建动态库的方式进行配置；</strong></p>
+<ul>
+<li>使用分类，<code>Other Linker Flags</code>中加<code>-all_load</code>；</li>
+<li>使用bitcode，<code>Other C Flags</code>中加<code>-fembed-bitcode</code>；</li>
+<li><code>Produce Module Name</code>、<code>Produce Name</code>配置framework的名称；</li>
+</ul>
 </li>
 <li>
-<p><strong>注意：不要直接删除Xcode Simulator的文件目录(<code>~/Library/Developer/CoreSimulator/Devices/</code>)；</strong></p>
+<p><strong>2）配置<code>Manage Schemes</code>，将<code>Framework Target</code>的<code>Shared</code>选项选中（就这一步，就支持Carthage）；</strong></p>
 <ul>
-<li>若需要删除，可以通过<code>Xcode-&gt;Window-&gt;Devices and Simulators</code>进行删除；</li>
-<li><strong>直接删除可能导致执行xcodebuild命令失败，报错<code>xcodebuild: error: Unable to find a destination matching the provided destination specifier: { platform:iOS Simulator, id:</code>，进而导致执行 <code>carthage update</code> 命令失败</strong>；</li>
-<li>若出现上面的问题，解决方式为将所有模拟器手动删除后再新建一些模拟器即可；</li>
+<li><strong>Carthage在build时，会自动将设置为Shared的framework target构建成framework；</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>3）构建.framework，并拖拽到项目中测试使用；</strong></p>
+<ul>
+<li>
+<p>cd到工程目录下，执行以下命令，其会自动在工程的Carthage/Build目录下，创建.framework；</p>
+<pre><code class="language-plain_text"># build：只是构建
+# update：拉取代码，并构建
+
+carthage build --no-skip-current
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、参考：</p>
+<ul>
+<li><strong>【iOS 开发】给自己项目添加 Carthage 支持的方法：<code>https://www.jianshu.com/p/8ccb26206730</code></strong></li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、其他说明</h4>
+<ul>
+<li>
+<p>1、若更新了Cartfile文件（库的版本、增删库），则只需要重新执行 <code>carthage update</code> 命令即可；</p>
+</li>
+<li>
+<p>2、<strong>Carthage也支持XCFramework（Xcode 11开始支持，用于替代<code>.framework</code>），此时生成<code>.xcframework</code>文件后，拖入到项目中即可，不需要配置<code>Run Script</code>（<code>carthage copy-frameworks</code>，裁减Dynamic framework）了；</strong></p>
+<pre><code class="language-plain_text">carthage update --use-xcframeworks
+</code></pre>
+<ul>
+<li>参考：<code>https://github.com/Carthage/Carthage#quick-start</code></li>
 </ul>
 </li>
 </ul>

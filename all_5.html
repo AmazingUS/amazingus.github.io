@@ -147,26 +147,29 @@
 <li><a href="#%E4%BA%8C%E3%80%81%E7%B1%BB%E5%BA%93%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81">二、类库类型支持</a></li>
 <li><a href="#%E4%B8%89%E3%80%81iphone%E8%AE%BE%E5%A4%87cpu%E6%9E%B6%E6%9E%84">三、iPhone设备CPU架构</a></li>
 <li><a href="#%E5%9B%9B%E3%80%81%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86">四、资源文件处理</a></li>
-<li><a href="#%E4%BA%94%E3%80%81%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86">五、补充知识</a></li>
+<li><a href="#%E4%BA%94%E3%80%81%E8%A1%A5%E5%85%85">五、补充</a></li>
 <li><a href="#%E5%85%AD%E3%80%81xcframework">六、XCFramework</a></li>
 <li><a href="#%E4%B8%83%E3%80%81xcode-12">七、Xcode 12</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E7%B1%BB%E5%BA%93%E5%88%86%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、类库分类</h4>
 <ul>
-<li>静态库：
+<li>
+<p>1、静态库：</p>
 <ul>
 <li>.a库：使用时需要将.h头文件及资源文件（比如图片等）拖入到工程项目中，配置一些header、lib路径之类的；使用起来比较麻烦；</li>
 <li>.framework库：Apple平台独有，其本质是将.a库文件、.h头文件及资源文件打包在一起的包文件；使用时直接将其拖到工程项目中即可，或在 <code>General</code> -&gt; <code>Link Binary With Libraries</code> 中添加使用；</li>
 </ul>
 </li>
-<li>动态库：
+<li>
+<p>2、动态库：</p>
 <ul>
 <li>.tdb库：Xcode 7（iOS9）开始使用，之前名称为.dylib；在 <code>General</code> -&gt; <code>Link Binary With Libraries</code> 中添加使用；</li>
 <li>.framework库：必须在 <code>General</code> -&gt; <code>Embedded Binaries</code> 中添加使用；</li>
 </ul>
 </li>
-<li>区别：
+<li>
+<p>3、区别：</p>
 <ul>
 <li><strong>对于静态库：</strong>
 <ul>
@@ -352,21 +355,22 @@
                
 			  <div class="mweb_toc"><ul>
 <li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85">一、概述、安装</a></li>
-<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8">二、使用</a></li>
-<li><a href="#%E4%B8%89%E3%80%81%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">三、其他说明</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">二、使用步骤</a></li>
+<li><a href="#%E4%B8%89%E3%80%81%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B1%BB%E5%BA%93%E6%94%AF%E6%8C%81carthage">三、自己的类库支持Carthage</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">四、其他说明</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述、安装</h4>
 <ul>
 <li>
-<p>Carthage类似于CocoaPods，用于iOS、macOS平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持）</strong>；</p>
+<p>1、Carthage类似于CocoaPods，用于iOS、macOS平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持）</strong>；</p>
 <ul>
-<li>Carthage是基于Swift的，而Swift只支持Dynamic framework（从Xcode 9开始，Swift 4.0支持静态库）；</li>
+<li><strong>Carthage是基于Swift的，而Swift只支持Dynamic framework（从Xcode 9开始，Swift 4.0支持静态库）；</strong></li>
 <li>之后手动拖入到项目中；其对项目工程文件的入侵性较小，并且可以与CocoaPods无缝集成，一个项目可以同时拥有CocosPods和Carthage；</li>
 </ul>
 </li>
 <li>
-<p>可以通过Homebrew进行安装Carthage；</p>
+<p>2、可以通过Homebrew进行安装Carthage；</p>
 <pre><code class="language-plain_text"># 安装carthage（安装升级carthage，注意可能出现多版本共存bug）
 brew install carthage
 

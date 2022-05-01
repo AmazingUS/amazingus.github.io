@@ -115,20 +115,18 @@
 <li><a href="#%E5%9B%9B%E3%80%81pod%E5%91%BD%E4%BB%A4">四、pod命令</a></li>
 <li><a href="#%E4%BA%94%E3%80%81%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%A7%BB%E9%99%A4cocoapods">五、项目中移除CocoaPods</a></li>
 <li><a href="#%E5%85%AD%E3%80%81podfile%E6%96%87%E4%BB%B6">六、Podfile文件</a></li>
-<li><a href="#%E4%B8%83%E3%80%81podspec%E6%96%87%E4%BB%B6%E7%BC%96%E5%86%99">七、podspec文件编写</a></li>
+<li><a href="#%E4%B8%83%E3%80%81%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B1%BB%E5%BA%93%E6%94%AF%E6%8C%81cocoapods%EF%BC%88%E7%BC%96%E5%86%99-podspec%E6%96%87%E4%BB%B6%EF%BC%89">七、自己的类库支持CocoaPods（编写<code>.podspec</code>文件）</a></li>
+<li><a href="#%E5%85%AB%E3%80%81cocoapods%E7%B1%BB%E5%BA%93%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8C%96">八、CocoaPods类库二进制化</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
 <ul>
 <li>CocoaPods是iOS、macOS平台的第三方框架的管理工具，类似于Android中的Gradle；但是没有Gradle强大，Gradle不仅可以自动下载配置所需要的框架，还可以进行自动化构建；</li>
-<li>CocoaPods基于Ruby，是Ruby的一个包（库）；需要确保使用最新的Ruby/Gem进行安装CocoaPods，或者直接安装CocoaPods APP；</li>
+<li>CocoaPods基于Ruby，是Ruby的一个包（库）；需要确保使用最新的Ruby/Gem进行安装CocoaPods，或者直接安装CocoaPods APP（已废弃）；</li>
 </ul>
 <span id="more"></span><!-- more -->
 <h4><a id="%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、安装、初始化</h4>
 <ul>
-<li>
-<p><strong>最新安装方式可以通过官网的CocosPods App进行安装，方便快捷；以下是通过命令行方式进行安装；</strong></p>
-</li>
 <li>
 <p>1、安装最新的Ruby（建议使用rbenv安装）；</p>
 </li>
@@ -137,7 +135,7 @@
 </li>
 <li>
 <p>3、安装CocoaPods；</p>
-<pre><code class="language-plain_text">gem install cocoapods
+<pre><code class="language-shell">gem install cocoapods
 </code></pre>
 <ul>
 <li>
@@ -145,7 +143,7 @@
 </li>
 <li>
 <p>若使用macOS默认的Ruby安装CocoaPods，会报错误 <code>... Operation not permitted - /usr/bin/fuzzy_match</code>，这是由于OS X 10.11引入了Rootless机制导致的，其不仅仅只是对安装CocoaPods有影响；解决办法如下：</p>
-<pre><code class="language-plain_text">sudo gem install -n /usr/local/bin cocoapods
+<pre><code class="language-shell">sudo gem install -n /usr/local/bin cocoapods
 </code></pre>
 </li>
 </ul>
@@ -155,7 +153,7 @@
 <ul>
 <li>
 <p>使用CocoaPods之前，必须先将第三方框架的镜像索引文件（spec repo）缓存到本地，镜像索引文件存放在GitHub上；</p>
-<pre><code class="language-plain_text">pod repo remove master
+<pre><code class="language-shell">pod repo remove master
 pod repo add master https://git.oschina.net/akuandev/Specs.git
 </code></pre>
 </li>
@@ -163,7 +161,7 @@ pod repo add master https://git.oschina.net/akuandev/Specs.git
 </li>
 <li>
 <p>5、获取CocoaPods的镜像索引文件；</p>
-<pre><code class="language-plain_text">pod setup
+<pre><code class="language-shell">pod setup
 </code></pre>
 <ul>
 <li>执行该命令后，终端卡在 <code>Setting up CocoaPods master repo</code> ，Cocoapods正在将镜像索引文件下载到 <code>~/.cocoapods</code> 目录中；可在该目录中执行 <code>du -sh *</code> 查看此刻已下载进度；</li>
@@ -174,24 +172,27 @@ pod repo add master https://git.oschina.net/akuandev/Specs.git
 <ul>
 <li>
 <p>使用gem卸载CocoaPods的相关包后，还需要进行以下操作：清理镜像索引文件、删除pod执行文件、重启终端；</p>
-<pre><code class="language-shell">gem list | grep cocoapods # 查找与cocoapods相关的包
+<pre><code class="language-shell"># 1、删除cocoapods
+gem list | grep cocoapods # 查找与cocoapods相关的包
 sudo gem uninstall &lt;PACKAGE&gt; # 删除上面查找到的cocoapods的相关包
-// 或
+# 或
 gem list | grep cocoapods | awk '{print $1}' | while read line; do sudo gem uninstall $line; done
-	
-rm -rf ~/.cocoapods # 删除镜像索引文件
-	
-which pod # 查找cocoapods的pod可执行文件的路径
+
+# 2、删除镜像索引文件
+rm -rf ~/.cocoapods 
+
+# 3、删除可执行文件pod
+which pod # 查找pod可执行文件的路径
 rm /usr/local/bin/pod # 删除可执行文件pod
 	
-# 重启终端
+# 4、重启终端
 </code></pre>
 </li>
 </ul>
 <h4><a id="%E5%9B%9B%E3%80%81pod%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、pod命令</h4>
 <ul>
 <li>
-<p>使用CocoaPods前，需要在工程目录下创建一个名为<code>Podfile</code>的文本文件（描述需要使用哪些第三方框架及使用这些框架的Target）；</p>
+<p>使用CocoaPods前，需要在工程目录下创建一个名为<code>Podfile</code>的文本文件（描述需要使用哪些第三方框架及使用这些框架的Target），也可以使用<code>pod init</code>命令创建；</p>
 </li>
 <li>
 <p>执行 <code>pod install</code> 或 <code>pod update</code> 命令时，CocoaPods默认每次都会，先进行主动更新CocoaPods的镜像索引文件，加参数 <code>--no-repo-update</code> 则略过此步，以加速执行速度；<strong>（注：新版本的<code>pod install</code>是不再进行主动更新）</strong></p>
@@ -213,7 +214,7 @@ pod update [--no-repo-update]
 <ul>
 <li>相关原理：
 <ul>
-<li>CocoaPods根据所需要相关类库信息自动生成一个新的名为Pods.xcodeproj工程，然后编译出一个libPods.a的静态库文件，引入到原有工程中，并自动设置相关配置信息（比如<code>Header Search Paths</code>、<code>Library Search Paths</code>、<code>Other Linker Flags</code>），同时也创建一个和原有工程同名的工程组文件*.xcworkspace；</li>
+<li>CocoaPods根据所需要相关类库信息自动生成一个新的名为Pods.xcodeproj工程，然后编译出一个libPods.a的静态库文件，引入到原有工程中，并自动设置相关配置信息（比如<code>Header Search Paths</code>、<code>Library Search Paths</code>、<code>Other Linker Flags</code>），同时也创建一个和原有工程同名的工程组文件<code>*.xcworkspace</code>；</li>
 <li>Xcode工程文件的配置信息（比如经常修改的<code>Header Search Paths等</code>）可以在多个地方可以修改：
 <ul>
 <li>a. <code>Project</code> 中的 <code>Configurations</code>（需创建*.xcconfig文件；有Project级别、Target级别）</li>
@@ -276,16 +277,61 @@ pod 'AFNetworking', '~&gt;0.1' # 使用大于等于0.1但小于1.0的版本
 </code></pre>
 </li>
 </ul>
-<h4><a id="%E4%B8%83%E3%80%81podspec%E6%96%87%E4%BB%B6%E7%BC%96%E5%86%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、podspec文件编写</h4>
+<h4><a id="%E4%B8%83%E3%80%81%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B1%BB%E5%BA%93%E6%94%AF%E6%8C%81cocoapods%EF%BC%88%E7%BC%96%E5%86%99-podspec%E6%96%87%E4%BB%B6%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、自己的类库支持CocoaPods（编写<code>.podspec</code>文件）</h4>
 <ul>
-<li>字段含义
+<li>1、<code>.podspec</code>文件字段含义
 <ul>
 <li><code>s.libraries</code>：依赖的系统库；</li>
-<li><code>s.frameworks</code>：依赖的系统框架；如<code>s.frameworks = 'UIKit','AVFoundation'</code></li>
-<li><code>s.vendored_libraries</code>：依赖的非系统库（三方库），本地管理的；如<code>s.vendored_libraries = 'Library/Classes/libWeChatSDK.a'</code></li>
-<li><code>s.vendored_frameworks</code>：依赖的非系统框架（三方框架），本地管理的；如<code>s.vendored_frameworks = 'ThirdParty.framework' </code></li>
-<li><code>s.dependency</code>：依赖的非系统库（三方库），pod管理的；如<code>s.dependency 'RxSwift', '5.0.0'</code></li>
+<li><code>s.frameworks</code>：依赖的系统框架；
+<ul>
+<li>如<code>s.frameworks = 'UIKit','AVFoundation'</code></li>
+</ul>
+</li>
+<li><code>s.vendored_libraries</code>：依赖的非系统库（三方库），本地管理的；
+<ul>
+<li>如<code>s.vendored_libraries = 'Library/Classes/libWeChatSDK.a'</code></li>
+</ul>
+</li>
+<li><code>s.vendored_frameworks</code>：依赖的非系统框架（三方框架），本地管理的；
+<ul>
+<li>如<code>s.vendored_frameworks = 'ThirdParty.framework' </code></li>
+</ul>
+</li>
+<li><code>s.dependency</code>：依赖的非系统库（三方库），pod管理的；
+<ul>
+<li>如<code>s.dependency 'RxSwift', '5.0.0'</code></li>
+</ul>
+</li>
 <li><code>s.public_header_files</code>：暴露给外部的头文件；</li>
+<li><strong><code>s.static_framework</code>：若打成framework库，是否为静态库，默认是打成framework动态库库；</strong></li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E5%85%AB%E3%80%81cocoapods%E7%B1%BB%E5%BA%93%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>八、CocoaPods类库二进制化</h4>
+<ul>
+<li>
+<p>1、步骤：</p>
+<ul>
+<li>
+<p><strong>1）通过Cartage将类库打成framework，具体参考“自己的类库支持Carthage”；不建议直接使用CocoaPods类库二进制化插件（如cocoapods-packager等），支持性不好；</strong></p>
+</li>
+<li>
+<p><strong>2）创建<code>.podspec</code>文件，依赖上面的framework；</strong></p>
+<pre><code class="language-plain_text">s.ios.vendored_frameworks = 'Carthage/Build/iOS/*.framework'
+s.dependency 'Alamofire' # 依赖的库（可能是vendored_frameworks所依赖库）
+</code></pre>
+<ul>
+<li><strong>相对于“将Cartage打成的framework，然后直接拖拽到项目中使用”，有以下好处；</strong></li>
+<li><strong>若该framework还依赖其他库，则需要使用该framework时，还需要手动添加其他依赖库；</strong></li>
+<li><strong>而使用CocoaPods再包裹一层，使用时无需手动添加依赖（<code>.podspec</code>文件中指明依赖）；并且类库是以二进制派发，安全性也有保证；</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、参考：</p>
+<ul>
+<li><strong>【iOS 开发】利用 Carthage 将项目打包 Framework 并依赖 CocoaPods 第三方库的方法：<code>https://www.jianshu.com/p/6e5491b72bad</code></strong></li>
 </ul>
 </li>
 </ul>
