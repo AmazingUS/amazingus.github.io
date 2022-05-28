@@ -588,6 +588,9 @@ end
 <li>
 <p>3、<strong>Xcode 12，模拟器运行以pod方式引入的.xcframework库报错，则需要将Xcode、CocoaPods升级到最新版本(1.10.0)，并再次执行一次pod install；</strong></p>
 </li>
+<li>
+<p>4、<strong>有时（Apple M1，运行iPhone 13模拟器后，再运行iPhone 11模拟器时）运行报错：<code>The linked framework 'Pods_XX.framework' is missing one or more architectures required by this target: x86_64.</code>，此时<code>Xcode -&gt; Product -&gt; Clean Build Folder</code>即可；</strong></p>
+</li>
 </ul>
 
       </div>

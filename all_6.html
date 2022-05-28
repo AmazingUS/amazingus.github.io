@@ -95,45 +95,6 @@
 
       
       <div class="article">
-        <a class="clearlink" href="15147921816573.html">
-          
-          <h1>iOS 视图布局方式总结</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <div class="mweb_toc"><ul>
-<li><a href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E5%B0%BA%E5%AF%B8">一、基本尺寸</a></li>
-<li><a href="#%E4%BA%8C%E3%80%81ios-7%E4%B9%8B%E5%89%8D%E7%89%B9%E6%80%A7">二、iOS 7之前特性</a></li>
-<li><a href="#%E4%B8%89%E3%80%81ios-7%E7%89%B9%E6%80%A7">三、iOS 7特性</a></li>
-<li><a href="#%E5%9B%9B%E3%80%81ios-9%E7%89%B9%E6%80%A7">四、iOS 9特性</a></li>
-<li><a href="#%E4%BA%94%E3%80%81ios-11%E7%89%B9%E6%80%A7">五、iOS 11特性</a></li>
-<li><a href="#%E5%85%AD%E3%80%81%E8%A1%A5%E5%85%85">六、补充</a></li>
-<li><a href="#%E4%B8%83%E3%80%81%E5%8F%82%E8%80%83">七、参考</a></li>
-</ul>
-</div>
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15147921816573.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2018/1/1</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
         <a class="clearlink" href="15147467512006.html">
           
           <h1>Swift语法概要(07~08)</h1>
@@ -245,6 +206,78 @@
             
             <a href="15142060028487.html">Read more</a>&nbsp;&nbsp; 
             <span class="date">2017/12/25</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
+        <a class="clearlink" href="15129255415379.html">
+          
+          <h1>Python3爬虫总结</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81uri%E3%80%81url">一、URI、URL</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81urllib%E5%BA%93">二、urllib库</a></li>
+<li><a href="#%E4%B8%89%E3%80%81urlerror%E3%80%81httperror">三、URLError、HTTPError</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81%E8%AE%BE%E7%BD%AEheader%E3%80%81timeout">四、设置header、timeout</a></li>
+<li><a href="#%E4%BA%94%E3%80%81opener%E3%80%81handler">五、Opener、Handler</a>
+<ul>
+<li><a href="#5-1-httpbasicauthhandler">5.1 HTTPBasicAuthHandler</a></li>
+<li><a href="#5-2-proxyhandler">5.2 ProxyHandler</a></li>
+<li><a href="#5-3-httpredirecthandler">5.3 HTTPRedirectHandler</a></li>
+<li><a href="#5-4-httpcoookieprocessor">5.4 HTTPCoookieProcessor</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AD%E3%80%81%E5%AE%9E%E6%88%98">六、实战</a></li>
+</ul>
+</div>
+<h4><a id="%E4%B8%80%E3%80%81uri%E3%80%81url" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、URI、URL</h4>
+<ul>
+<li>URI（Universal Resource Identifier）：统一资源标识符，一种语义上的抽象概念；可以是绝对的，也可以是相对的</li>
+<li>URL（Uniform Resource Locator）：统一资源定位符，一种具体的绝对的URI，是URI的一个子集；不仅唯一标识资源，而且还提供足够的信息定位该资源的信息</li>
+</ul>
+<h4><a id="%E4%BA%8C%E3%80%81urllib%E5%BA%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、urllib库</h4>
+<ul>
+<li>Python 2.x中有urllib、urllib2两个HTTP请求模块；urllib2是urllib的增强，但urllib中有urllib2中所没有的函数，它们一起搭配使用、不可相互替代
+<ul>
+<li>
+<p>a). urllib仅仅可以接受url，不可以设置请求的headers，意味着不可以进行伪装“User Agent”等操作</p>
+</li>
+<li>
+<p>b). urllib2可以通过接受一个Request实例，来设置HTTP请求的headers</p>
+</li>
+<li>
+<p>c). urllib提供urlencode函数用来“拼接”请求参数字符串</p>
+</li>
+<li>
+<p>d). urllib2没有“拼接”请求参数字符串功能的函数；</p>
+</li>
+<li>
+<p>urlencode函数是将一个dit或一个含有两个元素tuple的list变成一个url查询字符串（如name=Tom&amp;age=12)，并不是进行字符编码</p>
+</li>
+</ul>
+</li>
+</ul>
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="15129255415379.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2017/12/11</span>
              
 			
           </div>

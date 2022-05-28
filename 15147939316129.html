@@ -120,7 +120,7 @@
 <li>
 <p>1、Carthage类似于CocoaPods，用于iOS、macOS平台的第三方框架的管理；其原理为将源代码编译成<strong>Dynamic framework（Xcode 6.0开始支持）</strong>；</p>
 <ul>
-<li><strong>Carthage是基于Swift的，而Swift只支持Dynamic framework（从Xcode 9开始，Swift 4.0支持静态库）；</strong></li>
+<li><strong>Carthage是基于Swift的，而Swift只支持Dynamic framework；从Xcode 9开始，Swift 4.0支持静态库，故Carthage也开始支持静态库；</strong></li>
 <li>之后手动拖入到项目中；其对项目工程文件的入侵性较小，并且可以与CocoaPods无缝集成，一个项目可以同时拥有CocosPods和Carthage；</li>
 </ul>
 </li>
@@ -223,7 +223,7 @@ $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/PureLayout.framework
 <p>1、步骤：</p>
 <ul>
 <li>
-<p><strong>1）新建一个动态库(Dynamic framework)的Project或Target，按照创建动态库的方式进行配置；</strong></p>
+<p><strong>1）新建一个Framework（动态库、静态库均可)的Project或Target，并进行配置；</strong></p>
 <ul>
 <li>使用分类，<code>Other Linker Flags</code>中加<code>-all_load</code>；</li>
 <li>使用bitcode，<code>Other C Flags</code>中加<code>-fembed-bitcode</code>；</li>

@@ -303,7 +303,7 @@ pod 'AFNetworking', '~&gt;0.1' # 使用大于等于0.1但小于1.0的版本
 </ul>
 </li>
 <li><code>s.public_header_files</code>：暴露给外部的头文件；</li>
-<li><strong><code>s.static_framework</code>：若打成framework库，是否为静态库，默认是打成framework动态库库；</strong></li>
+<li><strong><code>s.static_framework</code>：是否将库为打成framework静态库（<code>MACH_O_TYPE</code>为<code>Static Library</code>），默认打成framework动态库（<code>MACH_O_TYPE</code>为<code>Dynamic Library</code>）；</strong></li>
 </ul>
 </li>
 </ul>

@@ -95,47 +95,6 @@
 
       
       <div class="article">
-        <a class="clearlink" href="15002183005563.html">
-          
-          <h1>本地多个SSH Key配置使用</h1>
-          <div class="a-content">
-            
-            <div class="a-content-text">
-               
-			  <div class="mweb_toc"><ul>
-<li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0">一、概述</a></li>
-<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AAssh-key">二、使用多个SSH Key</a></li>
-<li><a href="#%E4%B8%89%E3%80%81sshconfig%E6%96%87%E4%BB%B6">三、.ssh/config文件</a></li>
-</ul>
-</div>
-<h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
-<ul>
-<li>执行 <code>ssh-keygen -t rsa -C &quot;xx@email.com&quot;</code>，回车确认，默认在~/.ssh/目录中生成名称为“id_rsa”的private key和“id_rsa_pub”的public key；<strong>注意：每次执行生成的key是不一样的；</strong></li>
-<li><strong>对于不同的网站（如github.com、gitee.com等），虽然是不同的账号，一般使用同一个key进行认证，也可以使用不同的key（配置.ssh/config）；</strong></li>
-<li><strong>对于同一网站，若需要使用不同的账号，就需要配置不同的key（配置.ssh/config），同一个key只能用于一个账号；</strong></li>
-</ul>
- 
-            </div>
-          </div>
-        </a>
-        <div class="read-more clearfix">
-          <div class="more-left left">
-            
-            <a href="15002183005563.html">Read more</a>&nbsp;&nbsp; 
-            <span class="date">2017/7/16</span>
-             
-			
-          </div>
-          <div class="more-right right">
-            <span class="comments">
-               
-			  
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="article">
         <a class="clearlink" href="14709318994406.html">
           
           <h1>Ruby配置使用</h1>
@@ -343,6 +302,64 @@
             
             <a href="14694520920617.html">Read more</a>&nbsp;&nbsp; 
             <span class="date">2016/7/25</span>
+             
+			
+          </div>
+          <div class="more-right right">
+            <span class="comments">
+               
+			  
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="article">
+        <a class="clearlink" href="14699747303062.html">
+          
+          <h1>Hexo配置使用</h1>
+          <div class="a-content">
+            
+            <div class="a-content-text">
+               
+			  <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4">一、搭建步骤</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81hexo%E4%BD%BF%E7%94%A8">二、Hexo使用</a></li>
+<li><a href="#%E4%B8%89%E3%80%81%E5%A4%87%E4%BB%BD%E7%AE%A1%E7%90%86">三、备份管理</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85">四、重新安装</a></li>
+</ul>
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、搭建步骤</h4>
+<ul>
+<li>
+<p>1、安装Git；</p>
+</li>
+<li>
+<p>2、安装Node.js；</p>
+</li>
+<li>
+<p>3、通过Node.js安装hexo-cli模块（这样就可以执行hexo命令了）；</p>
+<pre><code class="language-plain_text">sudo npm install hexo-cli -g
+</code></pre>
+</li>
+<li>
+<p>4、创建Hexo博客；</p>
+<pre><code class="language-plain_text">hexo init &lt;BLOG_FOLDER&gt; # 创建博客，会自动安装Hexo所需要的模块
+
+cd &lt;BLOG_FOLDER&gt;
+npm ls --depth=0 # 查看安装的本地模块
+</code></pre>
+</li>
+</ul>
+ 
+            </div>
+          </div>
+        </a>
+        <div class="read-more clearfix">
+          <div class="more-left left">
+            
+            <a href="14699747303062.html">Read more</a>&nbsp;&nbsp; 
+            <span class="date">2016/4/17</span>
              
 			
           </div>
