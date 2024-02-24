@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -244,29 +244,22 @@
 </div>
 <h4><a id="%E4%B8%80%E3%80%81uri%E3%80%81url" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、URI、URL</h4>
 <ul>
-<li>URI（Universal Resource Identifier）：统一资源标识符，一种语义上的抽象概念；可以是绝对的，也可以是相对的</li>
-<li>URL（Uniform Resource Locator）：统一资源定位符，一种具体的绝对的URI，是URI的一个子集；不仅唯一标识资源，而且还提供足够的信息定位该资源的信息</li>
+<li>URI（Universal Resource Identifier）：统一资源标识符，一种语义上的抽象概念；可以是绝对的，也可以是相对的；</li>
+<li>URL（Uniform Resource Locator）：统一资源定位符，一种具体的绝对的URI，是URI的一个子集；不仅唯一标识资源，而且还提供足够的信息定位该资源的信息；</li>
 </ul>
 <h4><a id="%E4%BA%8C%E3%80%81urllib%E5%BA%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、urllib库</h4>
 <ul>
-<li>Python 2.x中有urllib、urllib2两个HTTP请求模块；urllib2是urllib的增强，但urllib中有urllib2中所没有的函数，它们一起搭配使用、不可相互替代
+<li>
+<p>Python 2.x中有urllib、urllib2两个HTTP请求模块；urllib2是urllib的增强，但urllib中有urllib2中所没有的函数，它们一起搭配使用、不可相互替代；</p>
 <ul>
-<li>
-<p>a). urllib仅仅可以接受url，不可以设置请求的headers，意味着不可以进行伪装“User Agent”等操作</p>
-</li>
-<li>
-<p>b). urllib2可以通过接受一个Request实例，来设置HTTP请求的headers</p>
-</li>
-<li>
-<p>c). urllib提供urlencode函数用来“拼接”请求参数字符串</p>
-</li>
-<li>
-<p>d). urllib2没有“拼接”请求参数字符串功能的函数；</p>
-</li>
-<li>
-<p>urlencode函数是将一个dit或一个含有两个元素tuple的list变成一个url查询字符串（如name=Tom&amp;age=12)，并不是进行字符编码</p>
-</li>
+<li>a）urllib仅仅可以接受url，不可以设置请求的headers，意味着不可以进行伪装“User Agent”等操作；</li>
+<li>b）urllib2可以通过接受一个Request实例，来设置HTTP请求的headers；</li>
+<li>c）urllib提供urlencode函数用来“拼接”请求参数字符串；</li>
+<li>d）urllib2没有“拼接”请求参数字符串功能的函数；</li>
 </ul>
+</li>
+<li>
+<p>urlencode函数是将一个dit或一个含有两个元素tuple的list变成一个url查询字符串（如name=Tom&amp;age=12)，并不是进行字符编码；</p>
 </li>
 </ul>
  

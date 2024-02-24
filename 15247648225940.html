@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -1187,13 +1187,13 @@ mWebView.loadUrl(mUri.toString());
 </code></pre>
 <ul>
 <li>
-<p>**加载URL必须等webView配置完成后进行；**可以调用<code>getSettings()</code>方法获取WebSetting实例，webSetting是修改WebView配置的三种途径之一；</p>
+<p><strong>加载URL必须等webView配置完成后进行；</strong> 可以调用<code>getSettings()</code>方法获取WebSetting实例，webSetting是修改WebView配置的三种途径之一；</p>
 </li>
 <li>
-<p>**WebViewClient是一个事件接口，实现该接口可以响应各种渲染事件；比如可检测渲染器何时开始从指定URL加载图片等；**该接口有多个方法可被实现，其中<code>shouldOverrideUrlLoading(WebView, String)</code>方法（已废弃）决定当有新的URL加载到WebView时（如点击某个链接）是否需要自己处理，true为自己处理，false为系统默认处理（会发送附有URL数据的隐式intent）；</p>
+<p><strong>WebViewClient是一个事件接口，实现该接口可以响应各种渲染事件；比如可检测渲染器何时开始从指定URL加载图片等；</strong> 该接口有多个方法可被实现，其中<code>shouldOverrideUrlLoading(WebView, String)</code>方法（已废弃）决定当有新的URL加载到WebView时（如点击某个链接）是否需要自己处理，true为自己处理，false为系统默认处理（会发送附有URL数据的隐式intent）；</p>
 </li>
 <li>
-<p>**WebChromeClient也是一个事件接口，用来响应那些改变浏览器中装饰元素的事件；**比如JavaScript警告信息、网页图标、状态条加载，以及当前网页标题的刷新；进度条、标题栏更新都有各自的回调方法，即<code>onProgressChanged(WebView, int)（从0到100的数值）</code>、 <code>onReceivedTitle(WebView, String)</code>方法；</p>
+<p><strong>WebChromeClient也是一个事件接口，用来响应那些改变浏览器中装饰元素的事件；</strong> 比如JavaScript警告信息、网页图标、状态条加载，以及当前网页标题的刷新；进度条、标题栏更新都有各自的回调方法，即<code>onProgressChanged(WebView, int)（从0到100的数值）</code>、 <code>onReceivedTitle(WebView, String)</code>方法；</p>
 </li>
 </ul>
 </li>

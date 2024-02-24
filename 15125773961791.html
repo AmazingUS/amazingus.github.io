@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -133,7 +133,7 @@
 <li>不论A、B是否为负数，截取总是从左向右开始；截取后的数据类型和之前的数据类型相同</li>
 <li>注意无法对数字进行截取</li>
 </ul>
-<pre><code class="language-python"> &gt;&gt;&gt; L = ['Michael', 'Search', 'Tracy', 'Bob', 'Jack']
+<pre><code class="language-py"> &gt;&gt;&gt; L = ['Michael', 'Search', 'Tracy', 'Bob', 'Jack']
  &gt;&gt;&gt; L[1:3]
  ['Search', 'Tracy']
  &gt;&gt;&gt; L[-2:-1]
@@ -173,7 +173,7 @@
 </li>
 <li>
 <p>for迭代中可以同时引入两个变量</p>
-<pre><code class="language-python"> &gt;&gt;&gt; for ch in 'ABC':
+<pre><code class="language-py"> &gt;&gt;&gt; for ch in 'ABC':
  ...    print(ch)
  ... 
  A
@@ -226,7 +226,7 @@
 <ul>
 <li>
 <p>Python内置了简单强大的列表生成式功能（comprehension：理解、理解力）</p>
-<pre><code class="language-python"> &gt;&gt;&gt; list(range(1, 11))
+<pre><code class="language-py"> &gt;&gt;&gt; list(range(1, 11))
  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
  
  &gt;&gt;&gt; [x * x for x in range(1, 11)]
@@ -272,7 +272,7 @@
 <ul>
 <li>
 <p>a. 方式一：将列表生成式的[]改成()即创建了一个generator</p>
-<pre><code class="language-python"> &gt;&gt;&gt; g = (x * x for x in range(10))
+<pre><code class="language-py"> &gt;&gt;&gt; g = (x * x for x in range(10))
  &gt;&gt;&gt; g
  &lt;generator object &lt;genexpr&gt; at 0x101a4c438&gt;
  &gt;&gt;&gt; next(g)
@@ -300,7 +300,7 @@
 <li>对于函数式generator，无法通过函数next()、for循环迭代的方式获取generator的return语句的返回值，只能获取到 <code>yield</code> 语句后面的值</li>
 <li>若要获取return语句的返回值，就必须捕获“StopIteration”错误，返回值包含在“StopIteration”错误的value中</li>
 </ul>
-<pre><code class="language-python"> &gt;&gt;&gt; def odd():
+<pre><code class="language-py"> &gt;&gt;&gt; def odd():
  ...     print('a')
  ...     yield 1
  ...     print('b')
@@ -331,7 +331,7 @@
 </li>
 <li>
 <p>练习：费布那切数列</p>
-<pre><code class="language-python"> def fib(max):
+<pre><code class="language-py"> def fib(max):
  	n, a, b = 0, 0, 1
  	while n &lt; max:
  		yield b
@@ -362,7 +362,7 @@
 </li>
 <li>
 <p>练习：杨辉三角</p>
-<pre><code class="language-python"> def triangles():
+<pre><code class="language-py"> def triangles():
  	b = [1]
  	while True:
  		yield b
@@ -381,9 +381,7 @@
 <h5><a id="4-5-generator%E8%A1%A5%E5%85%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4.5 Generator补充</h5>
 <ul>
 <li>
-<blockquote>
-<p><a href="http://www.cnblogs.com/huxi/archive/2011/07/14/2106863.html">http://www.cnblogs.com/huxi/archive/2011/07/14/2106863.html</a></p>
-</blockquote>
+<p>参考：<code>http://www.cnblogs.com/huxi/archive/2011/07/14/2106863.html</code></p>
 </li>
 <li>
 <p>从Python2.5开始，<code>yield语句（yield 5）</code>可以写成 <code>yield表达式（m = yield 5）</code>，yield可以有一个值m，这个值由send()方法被调用执行时传入，与yield关键字后面的值无关</p>
@@ -397,7 +395,7 @@
 </li>
 <li>
 <p>在Python2中，迭代器（Iterator）有一个<code>next()方法</code>用来返回序列中的下一个元素（调用方式为 <code>g.next()</code> ）；在Python3中，则使用 <code>__next__()方法</code> 来实现返回序列中的下一个元素，同时还提供具有相同功能的全局函数<code>next()</code>（调用方式为 <code> next(g)</code> ）</p>
-<pre><code class="language-python"> def f():
+<pre><code class="language-py"> def f():
  	print('A')
  	a = yield 1
  	print('a' + a)
@@ -439,7 +437,7 @@
 </li>
 <li>
 <p>Python的for循环的本质上是通过不断调用next()函数实现的</p>
-<pre><code class="language-python"> &gt;&gt;&gt; from collections import Iterable
+<pre><code class="language-py"> &gt;&gt;&gt; from collections import Iterable
  &gt;&gt;&gt; isinstance([], Iterable)
  True
  &gt;&gt;&gt; isinstance({}, Iterable)

@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -147,7 +147,7 @@
 </li>
 <li>
 <p>使用“try...except”捕获异常有一个好处，就是可以跨越多层调用；也就是说，不需要在每个可能出错的地方捕获异常错误，只要在合适的层次地方去捕获异常错误就可以</p>
-<pre><code class="language-python"> try:
+<pre><code class="language-py"> try:
      print('try...')
      # r = 10 / 0
      # r = 10 / int('a')
@@ -197,7 +197,7 @@
 <li>若要抛出自定义的异常，首先根据需要定义一个异常的class，选择好继承关系，然后用raise语句抛出一个异常的实例对象</li>
 <li>只有在必要的时候才定义我们自己的异常类型，尽量使用Python内置的异常类型</li>
 </ul>
-<pre><code class="language-python"> class FooError(ValueError):
+<pre><code class="language-py"> class FooError(ValueError):
      pass
      
  def fun2(s):
@@ -220,7 +220,7 @@
 </li>
 <li>
 <p><strong>raise语句若不带参数，就会把当前异常错误原样抛出</strong></p>
-<pre><code class="language-python"> def fun2(s):
+<pre><code class="language-py"> def fun2(s):
      n = int(s)
      if n == 0:
          raise ValueError('invalid value: %s' % s)
@@ -239,7 +239,7 @@
 </li>
 <li>
 <p>此外，先except后raise一个异常时，还可以把该类型的异常转化成另一种类型的异常；只要是合理的转换逻辑就可以，但决不应该把一个IOError转换成毫不相干的ValueError</p>
-<pre><code class="language-python"> try:
+<pre><code class="language-py"> try:
      10 / 0
  except ZeroDivisionError:
      raise ValueError('input error!')
@@ -254,7 +254,7 @@
 </li>
 <li>
 <p>启动Python解释器时，可以用-O参数来关闭assert，此时assert语句被当成pass来看，比如 <code>python -O err.py</code></p>
-<pre><code class="language-python"> def foo(s):
+<pre><code class="language-py"> def foo(s):
      n = int(s)
      assert n != 0, 'n is zero!'  # 逗号后面的内容（'n is zero!'）为断言失败输出的信息
      return 10 / n
@@ -276,7 +276,7 @@
 </li>
 <li>
 <p>logging的另外一个好处就是通过简单的配置，将日志信息可以同时输出到不同的地方，比如console、文件</p>
-<pre><code class="language-python"> import logging
+<pre><code class="language-py"> import logging
  # 加上配置信息，否则除了ZeroDivisionError，无内容输出
  logging.basicConfig(level=logging.INFO)
  
@@ -332,7 +332,7 @@
 </li>
 <li>
 <p><code>import pdb</code> 后，在可能出错的位置放一个 <code>pdb.set_trace()</code> ，就是设置一个断点，之后输入命令c继续运行</p>
-<pre><code class="language-python"> import pdb
+<pre><code class="language-py"> import pdb
  
  s = '0'
  n = int(s)
@@ -346,7 +346,7 @@
 <ul>
 <li>
 <p>编写一个Dict类，这个类的行为和dict一致，但是可以通过属性来访问</p>
-<pre><code class="language-python"> class Dict(dict):
+<pre><code class="language-py"> class Dict(dict):
      def __init__(self, **kwargs):
          super().__init__(**kwargs)
   
@@ -370,7 +370,7 @@
 <li>可以在单元测试中，编写两个特殊的方法setUp()、tearDown()，这两个方法会分别在每调用一个测试方法的前后分别被执行，通常用于初始化、扫尾操作</li>
 <li>比如测试需要启动一个数据库，可以在setUp()方法中连接数据库，在tearDown()方法中关闭数据库，这样就不必在每一个测试方法中写重复相同的代码</li>
 </ul>
-<pre><code class="language-python"> import unittest
+<pre><code class="language-py"> import unittest
  
  class TestDict(unittest.TestCase):
      def test_init(self):
@@ -413,13 +413,13 @@
 <ul>
 <li>
 <p>方式一：在单元测试类中加入以下代码，然后运行 <code>python3 dicttest.py(当前Python文件)</code></p>
-<pre><code class="language-python"> if __name__ == '__main__':
+<pre><code class="language-py"> if __name__ == '__main__':
      unittest.main()
 </code></pre>
 </li>
 <li>
 <p>方式二（推荐使用）：命令行运行时加&quot;-m unittest&quot;参数，例如 <code>python -m unittest dicttest.py(当前Python文件)</code></p>
-<pre><code class="language-python"> &gt;python -m unittest dicttest.py # 测试通过打.，测试不通过打E
+<pre><code class="language-py"> &gt;python -m unittest dicttest.py # 测试通过打.，测试不通过打E
  .....
  ----------------------------------------------------------------------
  Ran 5 tests in 0.001s
@@ -437,7 +437,7 @@
 <li>doctest严格按照Python交互命令行中的“输入输出”来判断测试结果是否正确；可以用“...”代替测试中出现的大段输出的异常日志</li>
 <li>文档测试通过则什么也不输出，测试失败则打印实际执行结果（注意编写时的空格，比如&gt;&gt;&gt; dl = Dict()）</li>
 </ul>
-<pre><code class="language-python"> # 用doctest来测试之前编写的Dict类
+<pre><code class="language-py"> # 用doctest来测试之前编写的Dict类
  class Dict(dict):
      '''  # 文档测试开始
      Simple dict
@@ -478,7 +478,7 @@
      import doctest
      doctest.testmod()
 </code></pre>
-<pre><code class="language-python"> # 用doctest来测试fact(n)函数
+<pre><code class="language-py"> # 用doctest来测试fact(n)函数
  def fact(n):
      '''
      &gt;&gt;&gt; fact(0)

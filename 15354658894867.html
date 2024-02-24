@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>
-     Nginx配置使用（Linux） - TIME TO GO 
+     Nginx配置使用（Ubuntu） - TIME TO GO 
   </title>
    
   <link href="atom.xml" rel="alternate" title="TIME TO GO" type="application/atom+xml">
@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -97,7 +97,7 @@
 
       <div class="article">
         
-        <h1>Nginx配置使用（Linux）</h1>
+        <h1>Nginx配置使用（Ubuntu）</h1>
         <div class="read-more clearfix">
           <span class="date">2018/8/28</span>
            
@@ -111,333 +111,823 @@
         <div class="mweb_toc"><ul>
 <li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85">一、概述、安装</a></li>
 <li><a href="#%E4%BA%8C%E3%80%81%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E4%B8%8E%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5">二、静态网页与动态网页</a></li>
-<li><a href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6nginx-conf">三、配置文件nginx.conf</a></li>
-<li><a href="#%E5%9B%9B%E3%80%81%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%8C%B9%E9%85%8D%E5%8F%8A%E7%A6%81%E6%AD%A2%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AEip">四、虚拟主机匹配及禁止直接访问IP</a></li>
+<li><a href="#%E4%B8%89%E3%80%81nginx-conf%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">三、nginx.conf配置文件</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81nginx%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B">四、Nginx配置案例</a></li>
+<li><a href="#%E4%BA%94%E3%80%81nginx%E6%94%AF%E6%8C%81websocket">五、Nginx支持WebSocket</a></li>
+<li><a href="#%E5%85%AD%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">六、注意事项</a></li>
+<li><a href="#%E4%B8%83%E3%80%81%E5%8F%82%E8%80%83">七、参考</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0%E3%80%81%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述、安装</h4>
 <ul>
-<li>Nginx是一个免费的开源高性能服务器，其有以下主要功能：<strong>静态HTTP服务器、<br />
-反向代理服务器、负载均衡、虚拟主机等，其中负载均衡、虚拟主机是基于反向代理实现的</strong>；（参考<code>http://xxgblog.com/2015/05/17/nginx-start/</code>）
+<li>1、Nginx是一个免费的开源高性能服务器，有以下主要功能：<strong>静态HTTP服务器、<br />
+反向代理服务器、负载均衡、虚拟主机等，其中负载均衡、虚拟主机是基于反向代理实现的；</strong>（参考<code>http://xxgblog.com/2015/05/17/nginx-start/</code>）
 <ul>
-<li>a. Nginx可以将服务器上的静态文件（如HTML、图片）通过HTTP协议返回给客户端；</li>
-<li>b. 客户端本来可以直接访问某网站的应用服务器，若在这中间加上Nginx，则客户端先请求Nginx，Nginx再请求应用服务器，此时Nginx就是反向代理服务器；</li>
-<li><strong>c. 当网站访问量非常大时，可以将相同的应用部署在多台服务器上，使用Nginx反向代理，让大量用户的请求分配给多台机器处理，实现负载均衡；</strong></li>
-<li>**d. 网站访问量大需要负载均衡，网站访问量小，为节省成本，可以将多个网站部署在同一台服务器上（通过配置文件中的<code>server_name</code>来区分）；**如将www.aaa.com、www.bbb.com两个网站部署在同一台服务器上，两个域名解析到同一个IP，但用户通过两个域名却打开两个完全不同的网站，互相不影响，就像访问两个服务器一样，所以叫两个<code>虚拟主机</code>；</li>
+<li>
+<p>a. Nginx可以将服务器上的静态文件（如HTML、图片）通过HTTP协议返回给客户端；</p>
+</li>
+<li>
+<p>b. 客户端本来可以直接访问某网站的应用服务器；若在这中间加上Nginx，则客户端先请求Nginx，Nginx再请求应用服务器，此时Nginx就是<code>反向代理服务器</code>；</p>
+</li>
+<li>
+<p><strong>c. 当网站访问量非常大时，可以将相同的应用部署在多台服务器上，使用Nginx反向代理，让大量用户的请求分配给多台机器处理，实现负载均衡；</strong></p>
+</li>
+<li>
+<p><strong>d. 网站访问量大，需要负载均衡；网站访问量小，为节省成本，可以将多个网站部署在同一台服务器上（通过配置文件中的<code>server_name</code>来区分）；</strong> 如将www.aaa.com、www.bbb.com两个网站部署在同一台服务器上，两个域名解析到同一个IP，但用户通过两个域名却打开两个完全不同的网站，互相不影响，就像访问两个服务器一样，所以叫两个<code>虚拟主机</code>；</p>
+</li>
 </ul>
 </li>
 </ul>
 <span id="more"></span><!-- more -->
 <ul>
 <li>
-<p>安装</p>
+<p>2、安装：</p>
 <pre><code class="language-shell">apt install nginx
 
 nginx -v
 systemctl status nginx
 
-// reload重新加载配置文件，服务不中断
-// enable开机自启动
-systemctl start|stop|restart|reload|enable|disable nginx
+# reload、force-reload重新加载配置文件，服务不中断
+# SSL证书过期进行替换，重新加载新的证书，需要使用force-reload
+systemctl start|stop|restart|reload|force-reload nginx
+
+# enable开机自启动
+systemctl enable|disable nginx
 </code></pre>
 <ul>
-<li>文件目录位置：<code>/usr/sbin/nginx（主程序</code>）、<code>/etc/nginx（存放配置文件）</code>、<code>/var/log/nginx（存放日志）</code>、<code>/usr/share/nginx（存放静态文件）</code>；<strong>Nginx默认加载<code>/etc/nginx/nginx.conf</code>配置文件；</strong></li>
-<li><strong>Linux系统的运行程序一般放在/usr/sbin或/usr/bin，配置文件一般放在/etc，日志一般放在/var/log；</strong></li>
+<li>1）<strong>文件目录位置：</strong>
+<ul>
+<li><strong>主程序：<code>/usr/sbin/nginx</code>；</strong></li>
+<li><strong>配置文件目录：<code>/etc/nginx/</code>，默认加载<code>/etc/nginx/nginx.conf</code>配置文件；</strong></li>
+<li><strong>日志目录：<code>/var/log/nginx</code>；</strong></li>
+<li><strong>默认静态文件的目录：<code>/var/www/html（Ubuntu系统默认）</code>、<code>/usr/share/nginx/html（CentOS系统默认）</code>，具体见配置文件中<code>server块root指令的值</code>；</strong></li>
+</ul>
+</li>
+<li>2）<strong>一般情况下，Linux系统的运行程序放在<code>/usr/sbin或/usr/bin</code>，配置文件放在<code>/etc</code>，日志放在<code>/var/log；</code></strong></li>
 </ul>
 </li>
 </ul>
 <h4><a id="%E4%BA%8C%E3%80%81%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E4%B8%8E%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、静态网页与动态网页</h4>
 <ul>
 <li>
-<p>协议规范</p>
+<p>1、协议规范：</p>
 <ul>
-<li>Web Server只是简单地响应浏览器发来的HTTP请求，并将存储在服务器上的HTML文件（静态HTML）返回给浏览器；</li>
-<li>Web Server并不能直接运行动态网页（如php、jsp、asp、python等），而是需要让第三方程序处理；其把请求参数（如CONTENT_TYPE、QUERY_STRING等）发送给第三方，然后第三方将处理结果返回回来；<strong>Web Server与第三方程序的数据交互规范称为<code>CGI（Common Gateway Interface）</code></strong>；（参考：CGI、FastCGI和PHP-FPM关系图解<code>https://www.awaimai.com/371.html</code>）</li>
-<li>**CGI只是接口协议，有多种语言实现；**CGI对于每次Web Server的请求都会生成新的进程进行处理，处理完毕后就立即销毁，效率低；</li>
-<li>为了解决CGI的问题，产生了FastCGI；<strong><code>FastCGI</code>像是一个常驻型（long-live）的CGI，会同时生成和回收多个CGI进程，以内存空间换取处理时间；</strong></li>
-<li><code>SCGI（Simple Common Gateway Interface）</code>也是CGI的替代版本；</li>
-<li><code>WSGI（Web Server Gateway Interface）</code>是Python的专有协议，作用与CGI、FastCGI、SCGI一样；运行在该协议之上的web框架有Django、Flask、Bottle;</li>
-<li><code>uwsgi</code>是一种作用和WSGI一样的通信协议，该协议是uWSGI服务器的独占协议；</li>
+<li>
+<p>Web Server只是简单地响应浏览器发来的HTTP请求，并将存储在服务器上的HTML文件（静态HTML）返回给浏览器；</p>
+</li>
+<li>
+<p>Web Server并不能直接运行动态网页（如PHP、JSP、ASP、Python等），而是需要让第三方程序处理；其把请求参数（如CONTENT_TYPE、QUERY_STRING等）发送给第三方，然后第三方将处理结果返回回来；<strong>Web Server与第三方程序的数据交互规范称为<code>CGI（Common Gateway Interface）</code></strong>；（参考：CGI、FastCGI和PHP-FPM关系图解<code>https://www.awaimai.com/371.html</code>）</p>
+</li>
+<li>
+<p><strong>CGI只是接口协议，有多种语言实现；</strong> CGI对于每次Web Server的请求都会生成新的进程进行处理，处理完毕后就立即销毁，效率低；</p>
+</li>
+<li>
+<p>为了解决CGI的问题，产生了FastCGI；<strong><code>FastCGI</code>像是一个常驻型（long-live）的CGI，会同时生成和回收多个CGI进程，以内存空间换取处理时间；</strong></p>
+</li>
+<li>
+<p><code>SCGI（Simple Common Gateway Interface）</code>也是一个CGI的替代版本；</p>
+</li>
+<li>
+<p><code>WSGI（Web Server Gateway Interface）</code>是Python的专有协议，作用与CGI、FastCGI、SCGI一样；运行在该协议之上的web框架有Django、Flask、Bottle；</p>
+</li>
+<li>
+<p><code>uwsgi</code>是一种作用和WSGI一样的通信协议，该协议是uWSGI服务器的独占协议；</p>
+</li>
 </ul>
 </li>
 <li>
-<p>协议实现</p>
+<p>2、协议实现：</p>
 <ul>
-<li><strong><code>PHP-FPM</code>是一个针对于PHP的FastCGI实现</strong>，同时也额外提供以一些功能；</li>
-<li><strong><code>uWSGI</code>是一个Web服务器，同时实现了WSGI、uwsgi、HTTp等协议</strong>，使用C编写，效率高性能稳定，支持Python、Ruby、Go等；</li>
+<li>
+<p><strong><code>PHP-FPM</code>是一个针对于PHP的FastCGI实现</strong>，同时也额外提供以一些功能；</p>
+</li>
+<li>
+<p><strong><code>uWSGI</code>是一个Web Server，同时实现了WSGI、uwsgi、HTTP等协议</strong>，使用C编写，效率高性能稳定，支持Python、Ruby、Go等；</p>
+</li>
 </ul>
 </li>
 <li>
-<p>Web Server</p>
+<p>3、Web Server：</p>
 <ul>
-<li>Nginx是一个Web Server，需要通过以下配置指令<code>fastcgi_pass</code>、<code>scgi_pass</code>、<code>uwsgi_pass</code>与FastCGI的实现、SCGI的实现、uwsgi的实现进行交互；</li>
-<li>Apache也是一个Web Server，但是可以通过**Module加载（另一种Web Server与第三方程序的数据交互的方式）**的方式支持PHP；</li>
-<li>Tomcat是Apache的一个子项目，一个动态网页处理容器，但是同时也支持web服务器的功能；<strong>一般情况下使用Apache处理静态网页，使用Tomcat处理动态网页；</strong></li>
+<li>
+<p>Nginx是一个Web Server，需要通过以下配置指令<code>fastcgi_pass</code>、<code>scgi_pass</code>、<code>uwsgi_pass</code>与FastCGI的实现、SCGI的实现、uWSGI的实现进行交互；</p>
+</li>
+<li>
+<p>Apache也是一个Web Server，但是可以通过 <strong>Module加载（另一种Web Server与第三方程序的数据交互的方式）</strong> 的方式支持PHP；</p>
+</li>
+<li>
+<p>Tomcat是Apache的一个子项目，一个动态网页处理容器，但是同时也支持web服务器的功能；<strong>一般情况下，使用Apache处理静态网页，使用Tomcat处理动态网页；</strong></p>
+</li>
 </ul>
 </li>
 </ul>
-<h4><a id="%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6nginx-conf" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、配置文件nginx.conf</h4>
+<h4><a id="%E4%B8%89%E3%80%81nginx-conf%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、nginx.conf配置文件</h4>
 <ul>
 <li>
-<p>nginx.conf文件结构</p>
+<p>1、<strong>Nginx所有的指令及默认值：<code>https://nginx.org/en/docs/dirindex.html</code></strong></p>
+</li>
+<li>
+<p>2、nginx.conf默认配置：</p>
+<pre><code class="language-shell">user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+        worker_connections 768;
+        # multi_accept on;
+}
+
+http {
+
+        ##
+        # Basic Settings
+        ##
+
+        sendfile on;
+        tcp_nopush on;
+        types_hash_max_size 2048;
+        # server_tokens off;
+
+        # server_names_hash_bucket_size 64;
+        # server_name_in_redirect off;
+
+        include /etc/nginx/mime.types;
+        default_type application/octet-stream;
+
+        ##
+        # SSL Settings
+        ##
+
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+        ssl_prefer_server_ciphers on;
+
+        ##
+        # Logging Settings
+        ##
+
+        access_log /var/log/nginx/access.log;
+        error_log /var/log/nginx/error.log;
+
+        ##
+        # Gzip Settings
+        ##
+
+        gzip on;
+
+        # gzip_vary on;
+        # gzip_proxied any;
+        # gzip_comp_level 6;
+        # gzip_buffers 16 8k;
+        # gzip_http_version 1.1;
+        # gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+        ##
+        # Virtual Host Configs
+        ##
+
+        include /etc/nginx/conf.d/*.conf;
+        include /etc/nginx/sites-enabled/*;
+}
+
+
+#mail {
+#       # See sample authentication script at:
+#       # http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript
+#
+#       # auth_http localhost/auth.php;
+#       # pop3_capabilities &quot;TOP&quot; &quot;USER&quot;;
+#       # imap_capabilities &quot;IMAP4rev1&quot; &quot;UIDPLUS&quot;;
+#
+#       server {
+#               listen     localhost:110;
+#               protocol   pop3;
+#               proxy      on;
+#       }
+#
+#       server {
+#               listen     localhost:143;
+#               protocol   imap;
+#               proxy      on;
+#       }
+#}
+</code></pre>
+<ul>
+<li><strong><code>/etc/nginx/sites-enabled/default</code>：</strong></li>
+</ul>
+<pre><code class="language-shell">##
+# You should look at the following URL's in order to grasp a solid understanding
+# of Nginx configuration files in order to fully unleash the power of Nginx.
+# https://www.nginx.com/resources/wiki/start/
+# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+# https://wiki.debian.org/Nginx/DirectoryStructure
+#
+# In most cases, administrators will remove this file from sites-enabled/ and
+# leave it as reference inside of sites-available where it will continue to be
+# updated by the nginx packaging team.
+#
+# This file will automatically load configuration files provided by other
+# applications, such as Drupal or Wordpress. These applications will be made
+# available underneath a path with that package name, such as /drupal8.
+#
+# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+##
+
+# Default server configuration
+#
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        # SSL configuration
+        #
+        # listen 443 ssl default_server;
+        # listen [::]:443 ssl default_server;
+        #
+        # Note: You should disable gzip for SSL traffic.
+        # See: https://bugs.debian.org/773332
+        #
+        # Read up on ssl_ciphers to ensure a secure configuration.
+        # See: https://bugs.debian.org/765782
+        #
+        # Self signed certs generated by the ssl-cert package
+        # Don't use them in a production server!
+        #
+        # include snippets/snakeoil.conf;
+
+        root /var/www/html;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+
+        # pass PHP scripts to FastCGI server
+        #
+        #location ~ \.php$ {
+        #       include snippets/fastcgi-php.conf;
+        #
+        #       # With php-fpm (or other unix sockets):
+        #       fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        #       # With php-cgi (or other tcp sockets):
+        #       fastcgi_pass 127.0.0.1:9000;
+        #}
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #       deny all;
+        #}
+}
+
+
+# Virtual Host configuration for example.com
+#
+# You can move that to a different file under sites-available/ and symlink that
+# to sites-enabled/ to enable it.
+#
+#server {
+#       listen 80;
+#       listen [::]:80;
+#
+#       server_name example.com;
+#
+#       root /var/www/example.com;
+#       index index.html;
+#
+#       location / {
+#               try_files $uri $uri/ =404;
+#       }
+#}
+</code></pre>
+</li>
+<li>
+<p>3、<code>nginx.conf</code>配置文件结构：</p>
 <pre><code class="language-shell"># 全局块
 events { # events块
     ...
 }
 
 http { # http块
-
     server { # server块
-		location [PATTERN] { # location块
-			...
+		   location [PATTERN] { # location块
+			    ...
         }
         location [PATTERN] { # location块
-			...
+			    ...
         }
         ...
     }
 
-	server { # server块
-		location [PATTERN] { # location块
-			...
+	  server { # server块
+		   location [PATTERN] { # location块
+			    ...
         }
         location [PATTERN] { # location块
-			...
+			    ...
         }
         ...
     }
-
+    
     ...
 }
 
 ... # 其他块
 </code></pre>
 <ul>
-<li><code>全局块</code>：配置影响nginx全局的指令；比如运行nginx的用户组、进程pid存放路径、日志存放路径、配置文件引入、允许生成worker process数等；</li>
-<li><code>events块</code>：配置影响nginx与用户的网络连接；比如每个进程的最大连接数、事件驱动模型、是否允许同时接受多个网络连接、多个网络连接序列化等；</li>
-<li><code>http块</code>：可以配置多个server、配置代理、缓存、日志定义、第三方模块等；</li>
-<li><code>server块</code>：配置虚拟主机的相关参数，一个http中可以配置多个server；</li>
-<li><code>location块</code>：配置请求的路由、及各种页面的处理情况，一个server中可以配置多个location；</li>
+<li>
+<p>a. <code>全局块</code>：配置影响nginx全局的指令；比如运行nginx的用户组、进程pid存放路径、日志存放路径、配置文件引入、允许生成worker process数等；</p>
+</li>
+<li>
+<p>b. <code>events块</code>：配置影响nginx与用户的网络连接；比如每个进程的最大连接数、事件驱动模型、是否允许同时接受多个网络连接、多个网络连接序列化等；</p>
+</li>
+<li>
+<p>c. <code>http块</code>：可以配置多个server、配置代理、缓存、日志定义、第三方模块等；</p>
+</li>
+<li>
+<p>d. <strong><code>server块</code>：配置虚拟主机的相关参数，一个http中可以配置多个server；</strong></p>
+</li>
+<li>
+<p>e. <strong><code>location块</code>：配置请求的路由、及各种页面的处理情况，一个server中可以配置多个location；</strong></p>
+</li>
 </ul>
 </li>
 <li>
-<p>nginx.conf文件举例</p>
-<pre><code class="language-shell">#user root root; # 用户或者组，默认为nobody nobody
-#worker_processes 2; # 允许生成的进程数，默认为1
-#pid /nginx/pid/nginx.pid; # nginx进程运行文件存放地址
-error_log log/error.log debug;  # 错误日志路径及级别；该设置可放入全局块、http块、server块，
-# 级别为debug、info、notice、warn、error等
+<p>4、nginx.conf配置含义：</p>
+<pre><code class="language-shell"># user nobody nobody; # 用户、用户组
+# worker_processes 2; # 允许生成的进程数
+# pid /nginx/pid/nginx.pid; # nginx进程运行文件地址
+error_log log/error.log debug;  # 错误日志路径及级别
+# 该设置可放入全局块、http块、server块，级别有debug、info、notice、warn、error
 
 events {
-    accept_mutex on; # 设置网路连接序列化，默认为on
-    multi_accept on; # 设置一个进程是否同时接受多个网络连接，默认为off
-    #use epoll; # 事件驱动模型，可以设置为select、poll、epoll等
+    accept_mutex on; # 网路连接序列化，默认为on
+    multi_accept on; # 一个进程是否同时接受多个网络连接，默认为off
+    # use epoll; # 事件驱动模型，可以设置为select、poll、epoll等
     worker_connections 1024; # 最大连接数
 }
 
 http {
-	include mime.types; # 文件扩展名与文件类型映射表
+    include mime.types; # 文件扩展名与文件类型映射表
     default_type  application/octet-stream; # 默认文件类型，默认为text/plain
 
     access_log on; # 开启服务日志
-    # 自定义日志格式
-    log_format myFormat '$remote_addr $time_local $request $status $http_user_agent';
+    log_format myFormat '$remote_addr $time_local $request $status $http_user_agent'; # 自定义日志格式
     access_log log/access.log myFormat; # 设置访问日志路径及格式
 
-    keepalive_timeout 60; # 连接超时时间，该设置可放入http，server，location块。
-
-    upstream mysvr {   
-      server 192.168.1.1:8080;
-      server 192.168.1.2:8888 backup;
-    }
-
+    keepalive_timeout 60; # 连接超时时间，该设置可放入http、server、location块
+    
     error_page 404 /404.html; # 404页
     
     server { # 配置一个虚拟服务器
         keepalive_requests 120; # 单连接请求次数上限
         listen 4545; # 监听端口 
         server_name example.com www.example.com;
-        # 请求url正则匹配，~为区分大小写，~*为不区分大小写
+        
+        # 请求URL正则匹配；~为区分大小写，~*为不区分大小写
         location  ~*^.+$ {
-           #root path;  # 根目录
-           #index index.html; # 默认页
-           deny 192.168.1.3; # 拒绝访问的ip
-           allow 192.168.1.4; # 允许访问的ip           
+           # root path;  # 根目录
+           index index.html; # 默认页
+           deny 192.168.1.3; # 拒绝访问的IP
+           allow 192.168.1.4; # 允许访问的IP      
         }
     }
-
+    
 }
 </code></pre>
 <ul>
 <li>
-<p>常见日志参数：</p>
+<p>1）Nginx中常见的变量：</p>
 <ul>
-<li>$remote_addr：客户端的ip地址</li>
-<li>$remote_user：客户端用户名称</li>
-<li>$time_local 访问时间与时区</li>
-<li>$request：请求的url与http协议</li>
+<li>$remote_addr：客户端的IP；</li>
+<li>$remote_port：客户端的端口；</li>
+<li>$remote_user：客户端的用户名称；</li>
+<li>$host：请求主机头字段，否则为服务器名称；</li>
+<li>$request：请求的URL与HTTP协议，如GET ?a=1&amp;b=2 HTTP/1.1；</li>
 <li>$status：请求状态，成功为200；</li>
-<li>$http_user_agent：客户端agent</li>
-<li>$query_string：GET请求的查询参数</li>
+<li><strong><code>$http_user_agent：客户端agent；</code></strong></li>
+<li><strong><code>$args：与$query_string相同，等于当中URL的参数(GET)，如a=1&amp;b=2；</code></strong></li>
+<li><strong><code>$query_string：与$args相同，等于当中URL的参数(GET)，如a=1&amp;b=2；</code></strong></li>
+<li><strong><code>$request_body	：记录POST过来的数据信息；</code></strong></li>
+<li>$request_method：客户端请求的动作，通常为GET或POST，如GET；</li>
+<li>$request_uri：包含请求参数的原始URI，不包含主机名，如/aa/bb.html?a=1&amp;b=2；</li>
+<li>$server_addr：服务器IP地址，在完成一次系统调用后可以确定该值；</li>
+<li>$server_name：服务器名称，如wiki.xxyy.com；</li>
+<li>$server_port：请求到达服务器的端口号，如80；</li>
 </ul>
 </li>
 <li>
-<p>指令分类根据其形式可分为两种类型：</p>
+<p>2）指令分类根据其形式可分为两种类型：</p>
 <ul>
 <li>a. 简单指令：由指令名和参数组成，必须以分号结尾；如user、root、index等；</li>
 <li>b. 复合指令（块指令）：包含一对大括号，其中又可以嵌套其它指令，如events、http、server、location等指令；</li>
 </ul>
 </li>
 <li>
-<p><strong>server：http中可以配置多个server，比如，一个监听80端口，用于处理http请求，另一个监听443端口，用于处理https请求；</strong></p>
+<p>3）<strong><code>server</code>：http中可以配置多个server；比如，一个监听80端口，用于处理http请求，另一个监听443端口，用于处理https请求；</strong></p>
 </li>
 <li>
-<p><strong>server_name：应用场景，多个域名建多个网站时，但只有一台服务器，可以配置多个server（监听相同的IP和端口），而配置不同的server_name，从而实现多个网站共用一台服务器；</strong></p>
+<p>4）<strong><code>server_name</code>：应用场景，当有多个域名建多个网站时，但只有一台服务器，可以配置多个server（监听相同的IP和端口），而配置不同的server_name，从而实现多个网站共用一台服务器；</strong></p>
 </li>
 <li>
-<p>root：指定网站根目录，可在server、location中配置（里层location配置的会覆盖server配置的）；</p>
+<p>5）<code>root</code>：指定网站根目录，可在server、location中配置（里层location的配置，会覆盖server的配置）；</p>
 </li>
 <li>
-<p>index：用于指定index文件，可在server、location中配置（里层location配置的会覆盖server配置的）；</p>
+<p>6）<code>index</code>：用于指定index文件，可在server、location中配置（里层location的配置，会覆盖server的配置）；</p>
 </li>
 <li>
-<p>location：指定匹配请求路径（request path）；</p>
+<p>7）<strong><code>location</code>：规则匹配请求路径（Nginx变量<code>$request_uri</code>），不管后面的参数$query_string（$args）；</strong></p>
+</li>
+<li>
+<p>8）<strong><code>proxy_pass</code>：会修改请求的协议、host、路径，然后转发给具体的服务端；</strong></p>
+</li>
+<li>
+<p>9）<strong><code>proxy_redirect</code>：在具体的服务端返回一个302响应报文的时候，根据该参数的规则去<code>修改响应报文中的Location</code>；</strong></p>
+<pre><code class="language-shell">location /test {
+    proxy_pass http://localhost:8881/internal;
+}
+</code></pre>
+<ul>
+<li>a. 用户访问<code>http://xxyy/test/path1</code>，被反向代理（转发）到<code>http://localhost:8081/internal/path1</code>（<code>把/test/path1去掉/test，再拼接到http://localhost:8081/internal后面</code>）；</li>
+<li>b. <strong><code>proxy_pass</code>的参数，不要求用户可以访问，只要服务器可以访问就可以了；</strong></li>
+<li>c. 但是，若服务器发生了重定向（<code>/internal/path2</code>），响应头<code>Location</code>不能直接返回<code>/internal/path2</code>（服务器可以访问到，用户无法访问到）；</li>
+<li>d. <strong>此时，需要设置<code>proxy_redirect /internal /test</code>，这样用户就可以通过<code>http://xxyy/test/path2</code>进行访问；</strong></li>
+<li>e. <strong>注意，<code>proxy_redirect</code>只会修改<code>响应的Location头信息</code>，不会修改<code>Body中的内容</code>；</strong></li>
+</ul>
 </li>
 </ul>
 </li>
 <li>
-<p>Nginx配置案例</p>
+<p>5、<strong>配置<code>proxy_pass</code>时，可以实现<code>URL路径的部分替换</code>；</strong></p>
+<ul>
+<li>
+<p>1）<strong>若<code>proxy_pass</code>的目标地址，<code>不带有/，表示只代理域名（IP和端口）</code>，直接把请求的<code>PATH</code>和<code>QUERY</code>，拼接到<code>proxy_pass</code>的目标地址后面，作为最终的代理目标URL；</strong></p>
+<pre><code class="language-shell"># 比如请求/a/b.html
+location /a {
+    proxy_pass http://server;
+}
+
+# 最终的代理目标URL是http://server/a/b.html
+#   （把/a/b.html，直接拼接到http://server后面）；
+</code></pre>
+</li>
+<li>
+<p>2）<strong>若<code>proxy_pass</code>的目标地址，<code>带有‘/’、‘/xx/yy’、‘/xx/yy/’等目录</code>，表示把<code>PATH</code>中的<code>location</code>匹配成功的部分剪切掉之后，然后和<code>QUERY</code>一起，再拼接到<code>proxy_pass</code>的目标地址后面，作为最终的代理目标URL；</strong></p>
+<pre><code class="language-shell"># 比如请求/a/b.html
+location /a/ {
+    proxy_pass http://server/;
+}
+
+# 最终的代理目标URL是http://server/b.html
+#   （把/a/b.html中的/a/去掉之后，再拼接到http://server/后面）；
+</code></pre>
+</li>
+<li>
+<p>3）<strong>location后的斜杆“/”与proxy_pass后的斜杆“/”问题，最好要么两者都加斜杆，要么都不加；以用户的访问地址是<code>http://127.0.0.1/api/test/getById</code>，实际的服务地址是<code>http://127.0.0.1:5053/api/test/getById</code>为例说明；</strong></p>
+<ul>
+<li>a. location、proxy_pass都不加斜杠；✅</li>
+</ul>
+<pre><code class="language-shell">location /api {
+　　proxy_pass http://127.0.0.1:5053;
+}
+
+# 最终的代理目标URL：http://127.0.0.1:5053/api/test/getById
+</code></pre>
+<ul>
+<li>b. location加斜杠，proxy_pass不加斜杠；✅</li>
+</ul>
+<pre><code class="language-shell">location /api/ {
+　　proxy_pass http://127.0.0.1:5053;
+}
+
+# 最终的代理目标URL：http://127.0.0.1:5053/api/test/getById
+</code></pre>
+<ul>
+<li>c. location不加斜杠，proxy_pass加斜杠；❌，出现了双斜杠</li>
+</ul>
+<pre><code class="language-shell">location /api {
+　　proxy_pass http://127.0.0.1:5053/;
+}
+
+# 最终的代理目标URL：http://127.0.0.1:5053//test/getById
+</code></pre>
+<ul>
+<li>d. location、proxy_pass都加斜杠；❌，最终的代理目标URL不对</li>
+</ul>
+<pre><code class="language-shell">location /api/ {
+　　proxy_pass http://127.0.0.1:5053/;
+}
+
+# 最终的代理目标URL：http://127.0.0.1:5053/test/getById
+</code></pre>
+<ul>
+<li>e. location不加斜杠，proxy_pass加“api”；✅</li>
+</ul>
+<pre><code class="language-shell">location /api {
+　　proxy_pass http://127.0.0.1:5053/api;
+}
+
+# 最终的代理目标URL：http://127.0.0.1:5053/api/test/getById
+</code></pre>
+<ul>
+<li>f. location加斜杠，proxy_pass加“api”；❌，少了一个斜杆</li>
+</ul>
+<pre><code class="language-shell">location /api/ {
+　　proxy_pass http://127.0.0.1:5053/api;
+}
+
+# 最终的代理目标URL：http://127.0.0.1:5053/apitest/getById
+</code></pre>
+<ul>
+<li>g. location不加斜杠，proxy_pass加“api/”；❌，出现双斜杠</li>
+</ul>
+<pre><code class="language-shell">location /api {
+　　proxy_pass http://127.0.0.1:5053/api/;
+}
+
+# 最终的代理目标URL：http://127.0.0.1:5053/api//test/getById
+</code></pre>
+<ul>
+<li>h. location加斜杠，proxy_pass加“api/”；✅</li>
+</ul>
+<pre><code class="language-shell">location /api/ {
+　　proxy_pass http://127.0.0.1:5053/api/;
+}
+
+# 最终的代理目标URL：http://127.0.0.1:5053/api/test/getById
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>6、<strong>localtion匹配规则</strong></p>
+<ul>
+<li>
+<p>1）<strong>location匹配规则类型（有两种）：</strong></p>
+<ul>
+<li>
+<p>a. <strong>匹配URL类型，有4种location modifier（<code>=或~或~*或^~</code>）可选，也可以不带location modifier（<code>空格</code>）；</strong></p>
+<pre><code class="language-shell">location 【 = ┇ ^~ ┇ ~ ┇ ~* ┇ 空格 】PATTERN {
+    ... ...
+}
+</code></pre>
+<ul>
+<li><strong><code>=</code>：表示<code>精确匹配</code>，若找到，则<code>立即停止搜索</code>并立即处理此请求；</strong></li>
+<li><strong><code>^~</code>：表示<code>^~字符串前缀匹配</code>，<code>只匹配普通字符（和空格匹配类似，但其优先级比空格高）</code>；若匹配成功，并且<code>所匹配的字符串是最长的</code>，则不再匹配其他的location；^表示“非”，即不查询正则表达式；</strong></li>
+<li><strong><code>~</code>：表示正则匹配，区分大小写；</strong></li>
+<li><strong><code>~*</code>：表示正则匹配，忽略大小写；若是运行Nginx的系统本身对大小写不敏感，比如Windows，那么~和~*表现一样；</strong></li>
+<li><strong><code>空格</code>：就是不带location modifier，表示匹配那些<code>以指定的PATTERN开头URI</code>，PATTERN只能是普通字符串，不可以使用正则表达式；比如，<code>/会通用匹配，任何请求都会匹配到</code>；</strong></li>
+</ul>
+</li>
+<li>
+<p>b. <strong>命名location，用<code>@</code>标识，类似于goto语句块；</strong></p>
+<pre><code class="language-shell">location /index/ {
+    error_page 404 @index_error;
+}
+
+location @index_error {
+    ... ...
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>2）<strong>location匹配规则优先级：</strong></p>
+<ul>
+<li>a. <strong>先<code>精确匹配（=）</code>，若匹配上请求的URI，则匹配立即结束；再进行<code>字符串前缀匹配（~^和空格）</code>，找到<code>匹配最长的那个PATTERN</code>，若这个匹配最长的PATTERN是<code>^~前缀（不是空格）</code>，则匹配立即结束；然后进行<code>正则匹配（~或~*）</code>，此时根据在配置文件定义的顺序，取<code>最上面的配置</code>（和匹配长度没关系，只跟位置有关系）；最后进行<code>空格字符串前缀匹配</code>；</strong></li>
+<li>b. <strong><code>精确匹配 》 ^~字符串前缀匹配（长 &gt; 短） 》 正则匹配（上 &gt; 下） 》 空格字符串前缀匹配（长 &gt; 短）</code></strong>；</li>
+<li>c. <strong><code>= 》 ^~ 》 ~或~* 》 空格</code></strong>；</li>
+<li>d. 补充：
+<ul>
+<li><strong><code>字符串前缀匹配，是按前缀匹配（从根开始），而正则匹配，是包含匹配，只要包含就可以匹配上；</code></strong></li>
+<li><strong><code>~和~*的优先级一样，取决于在配置文件中的位置；</code></strong></li>
+<li><strong><code>空格和^~都是字符串前缀匹配，所以若两个后面的匹配字符串一样，是会报错的；</code></strong></li>
+<li><strong><code>错误谣言1：~比~*优先级高；</code></strong></li>
+<li><strong><code>错误谣言2：location modifier包含!~、!~*；</code></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3）<strong>location匹配规则案例：</strong></p>
+<pre><code class="language-shell">server {
+    listen 80 default_server;
+
+    location / {
+        return 200 '404';
+    }
+
+    location ~ /hello {
+        return 200 '1';
+    }
+
+    location ^~ /hello {
+        return 200 '2';
+    }
+
+    location = /hello {
+        return 200 '3';
+    }
+
+    location ~* /hello {
+        return 200 '4';
+    }
+}
+
+curl 127.0.0.1/hello # 3；精确匹配
+curl 127.0.0.1/hellodef # 2；字符串前缀匹配，并且最大长度的匹配~^
+curl 127.0.0.1/hell # 404；都不匹配（必须以/hello为前缀，或者包含/hello），取通用匹配/
+curl 127.0.0.1/hello/def # 2；字符串前缀匹配，并且最大长度的匹配~^
+
+
+curl 127.0.0.1/abc/hello # 1；字符串前缀不匹配，进行正则匹配，有2个，取最上面的那个
+curl 127.0.0.1/abc/Hello # 4；字符串前缀不匹配，进行正则匹配，有1个（区分大小写），取最上面的那个
+curl 127.0.0.1/abc/Hell # 404；都不匹配（必须以/hello为前缀，或者包含/hello），取通用匹配/
+curl 127.0.0.1/abc/hello/def # 1；# 1；字符串前缀不匹配，进行正则匹配，有2个，取最上面的那个
+</code></pre>
+<pre><code class="language-shell">location /images/test.png {
+    return 200  '1';     
+}        
+
+location ^~ /images/ { 
+    return 200  '2';      
+}    
+
+location ~ /images/ {        
+    return 200  '3';   
+} 
+
+location ~ /images/test.png {        
+    return 200  '4';   
+}
+
+
+curl http://127.0.0.1/images/test.png # 3
+# 因为^~字符串前缀匹配不是最长的，最长的是空格字符串前缀匹配，所以进行正则匹配；正则匹配满足条件的有两个，取最上面那个，所以是3；
+# 这里若去掉后面的两个正则匹配，那么返回的是1；
+
+curl http://127.0.0.1/images/a # 2
+# 此时，^~字符串前缀匹配是最长的，所以返回的是2；
+</code></pre>
+<pre><code class="language-shell">location /images/test.png {
+    return 200  '1';     
+}  
+
+location ^~ /images/test.png {
+    return 200 '2';
+}
+
+# ❌报错，两个匹配的规则是一样的，有冲突
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E5%9B%9B%E3%80%81nginx%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、Nginx配置案例</h4>
+<ul>
+<li>
+<p>1、简单案例</p>
 <pre><code class="language-shell"># 静态HTTP
 server {
-	listen 80;
-	location / {
-		root /usr/html; # 静态文件路径
-	}
+    listen 80;
+	  location / {
+	     root /usr/html; # 静态文件路径
+	  }
 }
-
-# 反向代理
+</code></pre>
+<pre><code class="language-shell"># 反向代理
 server {
-	listen 80;
-	location / {
-		proxy_pass http://192.168.1.1:8080; # 应用服务器HTTP地址
-	}
+    listen 80;
+    location / {
+        proxy_pass http://192.168.1.1:8080; # 应用服务器的HTTP地址
+    }
 }
-
-# 负载均衡
+</code></pre>
+<pre><code class="language-shell"># 负载均衡
 upstream myapp {
-	server 192.168.0.1:8080; # 应用服务器1
-	server 192.168.0.2:8080; # 应用服务器2
-}
-server {
-	listen 80;
-	location / {
-		proxy_pass http://myapp;
-	}
+    server 192.168.0.1:8080; # 应用服务器1
+    server 192.168.0.2:8080; # 应用服务器2
 }
 
-# 虚拟主机
 server {
-	listen 80 default_server;
-	server_name _;
-	return 444; # 过滤其他域名的请求，返回444状态码
+    listen 80;
+    location / {
+        proxy_pass http://myapp;
+    }
 }
+</code></pre>
+<pre><code class="language-shell"># 虚拟主机
 server {
-	listen 80;
-	server_name www.aaa.com; # www.aaa.com域名
-	location / {
-		proxy_pass http://localhost:8080; # 对应端口号8080
-	}
-}
-server {
-	listen 80;
-	server_name www.bbb.com; # www.bbb.com域名
-	location / {
-		proxy_pass http://localhost:8081; # 对应端口号8081
-	}
+    listen 80 default_server;
+    server_name _;
+    return 444; # 过滤其他域名的请求，返回444状态码
 }
 
-# FastCGI
 server {
-	listen 80;
-	location ~\.php$ {
-		include fastcgi_params;
-		fastcgi_pass 127.0.0.1:9000;
-		# 传递一些参数信息（可选）
-		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; #PHP文件路径
-	}
+    listen 80;
+    server_name www.aaa.com; # 匹配www.aaa.com域名
+    location / {
+        proxy_pass http://localhost:8080; # 对应端口号8080
+    }
 }
 
-# uwsgi
 server {
-	listen 80;
-	location $ {
-		include uwsgi_params;
-		uwsgi_pass 127.0.0.1:9090;
-		# 传递一些参数信息（可选）
-		# uwsgi_param UWSGI_PYHOME /var/www/myenv;
-	}
+    listen 80;
+    server_name www.bbb.com; # 匹配www.bbb.com域名
+    location / {
+        proxy_pass http://localhost:8081; # 对应端口号8081
+    }
+}
+</code></pre>
+<pre><code class="language-shell"># FastCGI
+server {
+    listen 80;
+    location ~\.php$ {
+		    include fastcgi_params;
+		    fastcgi_pass 127.0.0.1:9000;
+		    # 传递一些参数信息（可选）
+		    # PHP文件路径
+		    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;        
+    }
+}
+</code></pre>
+<pre><code class="language-shell"># uWSGI
+server {
+    listen 80;
+    location $ {
+        include uwsgi_params;
+        uwsgi_pass 127.0.0.1:9090;
+        # 传递一些参数信息（可选）
+        uwsgi_param UWSGI_PYHOME /var/www/myenv;
+    }
+}
+</code></pre>
+<pre><code class="language-shell"># 不允许访问隐藏文件
+server {
+    listen 80;
+    location ~ /\. {
+        deny all;
+    }
 }
 </code></pre>
 </li>
 <li>
-<p>Nginx日志按日期保存归档，在server块中配置一下内容：</p>
-<pre><code class="language-shell">if ($time_iso8601 ~ &quot;^(\d{4})-(\d{2})-(\d{2})&quot;) {
-	set $year $1;
-	set $month $2;
-	set $day $3;
+<p>2、Nginx日志按日期保存归档，需要在server块中配置以下内容：</p>
+<pre><code class="language-shell">server {
+    if ($time_iso8601 ~ &quot;^(\d{4})-(\d{2})-(\d{2})&quot;) {
+    	set $year $1;
+    	set $month $2;
+    	set $day $3;
+    }
+    
+    access_log /var/log/nginx/access_${year}_${month}_${day}.log;
 }
-
-access_log /var/log/nginx/access_${year}_${month}_${day}.log;
 </code></pre>
 <ul>
 <li>注意事项：
 <ul>
-<li>a. 必须在server块中，否则启动Nginx报错（<code>systemctl status nginx -l</code>查看具体错误信息）；</li>
+<li>a. 必须配置在server块中，否则启动Nginx报错（<code>systemctl status nginx -l</code>查看具体错误信息）；</li>
 <li>b. 按日期保存归档只对access_log有效，对error_log无效；</li>
-<li><strong>c. 若无法生成日志文件，查看error.log日志，发现报错<code>open() &quot;XXX-access.log&quot; failed (13: Permission denied)</code>，需要将nginx.config中配置的user修改为和启动用户一致；</strong></li>
+<li><strong>c. 若无法生成日志文件，查看错误信息<code>open() &quot;XXX-access.log&quot; failed (13: Permission denied)</code>，需要确保nginx.config中配置的user，对保存日志文件的目录<code>有写的权限</code>；</strong></li>
 </ul>
 </li>
 </ul>
 </li>
-</ul>
-<h4><a id="%E5%9B%9B%E3%80%81%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E5%8C%B9%E9%85%8D%E5%8F%8A%E7%A6%81%E6%AD%A2%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AEip" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、虚拟主机匹配及禁止直接访问IP</h4>
+<li>
+<p>3、虚拟主机匹配规则</p>
 <ul>
 <li>
-<p>虚拟主机匹配规则</p>
+<p>1）匹配规则</p>
 <ul>
-<li>
-<ol>
-<li>当一个网络请求到来时，Nginx检查请求头部的“Host”，以决定该请求应由哪个虚拟主机来处理；</li>
-</ol>
-</li>
-<li>
-<ol start="2">
-<li>若“Host”没有匹配任意一个虚拟主机（“server_name”指令参数），或请求头部没有“Host”，那么Nginx会将该请求分发到定义在此端口上的默认虚拟主机；</li>
-</ol>
-</li>
-<li>
-<ol start="3">
-<li>若没有显式地设置某个主机为默认虚拟主机（即在&quot;listen&quot;指令中设置&quot;default_server&quot;参数，之前版本为&quot;default&quot;参数），则此端口上的从上至下第一个被列出的虚拟主机，即为默认虚拟主机（Nginx的默认行为）；</li>
-</ol>
-</li>
-<li>注意：&quot;default_server&quot;参数在同一IP:Port下只能有一个，否则报错“nginx: [emerg] a duplicate default server for 0.0.0.0:80 in /etc/nginx/m...”</li>
+<li>a. 当一个网络请求到来时，Nginx检查请求头部的<code>Host</code>，以决定该请求应由哪个虚拟主机来处理；</li>
+<li>b. 若<code>Host</code>没有匹配任意一个虚拟主机（<code>server_name</code>指令参数），或请求头部没有<code>Host</code>，那么Nginx会将该请求，分发到定义在此端口上的默认虚拟主机；</li>
+<li>c. 若没有显式地设置某个主机为默认虚拟主机（即在<code>listen</code>指令中设置<code>default_server</code>参数，之前版本为<code>default</code>参数），则此端口上的从上至下第一个被列出的虚拟主机，即为默认虚拟主机（Nginx的默认行为）；</li>
+<li>d. 注意：<code>default_server</code>参数在同一IP:Port下只能有一个，否则报错“nginx: [emerg] a duplicate default server for 0.0.0.0:80 in /etc/nginx/m...”</li>
 </ul>
 <pre><code class="language-shell">server {
     listen      80;
     server_name www.example.com;
-    ...
+    ... ...
 }
 </code></pre>
-<pre><code class="language-shell">// 显式地设置某个主机为默认虚拟主机
+<pre><code class="language-shell"># 显式地设置某个主机，为默认虚拟主机
 server {
     listen      80 default_server;
     server_name www.example.com;
-    ...
+    ... ...
 }
 </code></pre>
 </li>
 <li>
-<p>若不允许请求头中缺少“Host”，可以定义如下主机，丢弃这些请求；<strong>返回了一个nginx特有的、非http标准的返回码444，可以用来关闭连接；</strong></p>
+<p>2）若不允许请求头中缺少<code>Host</code>，可以定义如下主机，丢弃这些请求；<strong>返回了一个Nginx特有的、非HTTP标准的返回码444，可以用来关闭连接；</strong></p>
 <pre><code class="language-shell">server {
     listen       80;
     server_name  &quot;&quot;; # 默认值（可以不配置）
@@ -446,42 +936,50 @@ server {
 </code></pre>
 </li>
 <li>
-<p>&quot;listen&quot;指令中也可以设置IP（即可同时监听该设备上的不同网卡IP上的请求），不是从该网卡IP上来的请求，设置的虚拟主机不参与匹配；</p>
+<p>3）<code>listen</code>指令中也可以设置IP（即可同时监听该设备上的，不同网卡IP上的请求），不是从该网卡IP上来的请求，设置的虚拟主机不参与匹配；</p>
 <pre><code class="language-shell">server {
     listen      192.168.1.1:80;
     server_name www.example.com;
-    ...
+    ... ...
 }
 
 server {
     listen      192.168.1.2:80;
     server_name www.example.org;
-    ...
+    ... ...
 }
 </code></pre>
 </li>
+</ul>
+</li>
 <li>
-<p>禁止IP直接访问</p>
+<p>4、禁止IP直接访问</p>
 <ul>
 <li>
-<p>方式一：</p>
-<pre><code class="language-shell">server_name _;
-if ($host ~ &quot;\d+\.\d+\.\d+\.\d+&quot;) {
-    return 444;
-}
-# 该方式有个缺点：其他人可以绑定其他域名到该IP上进行访问；
-</code></pre>
-</li>
-<li>
-<p>方式二：</p>
-<pre><code class="language-shell">server_name _;
-if ($host != &quot;www.example.com&quot;) {
-    return 444;
+<p>1）方式一：</p>
+<pre><code class="language-shell"># 该方式的缺点：其他人可以绑定其他域名到该IP上，然后进行访问
+server {
+    server_name _;
+    if ($host ~ &quot;\d+\.\d+\.\d+\.\d+&quot;) {
+        return 444;
+    }
+    ... ...
 }
 </code></pre>
 </li>
 <li>
-<p>方式三：</p>
+<p>2）方式二：</p>
+<pre><code class="language-shell">server {
+    server_name _;
+    if ($host != &quot;www.example.com&quot;) {
+        return 444;
+    }
+    ... ...
+}
+</code></pre>
+</li>
+<li>
+<p>3）方式三：</p>
 <pre><code class="language-shell"># 新增server
 server {
     listen 80 default_server;
@@ -492,12 +990,146 @@ server {
 server {
     listen 80;
     server_name  www.example.com blog.example.com;
-    ....
+    ... ...
 }
 </code></pre>
 </li>
 </ul>
 </li>
+</ul>
+<h4><a id="%E4%BA%94%E3%80%81nginx%E6%94%AF%E6%8C%81websocket" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、Nginx支持WebSocket</h4>
+<ul>
+<li>
+<p>1、概述</p>
+<ul>
+<li>WebSocket是一个和HTTP类似的应用层协议，但可以在客户端和服务器之间，保持长时间运行的连接，都能主动向对方发送或接收数据，就像Scoket一样可以双向通信；</li>
+<li><strong><code>WebSocket需要先建立连接，连接成功后才能相互通信；在建立连接时，数据是通过HTTP传输的，在建立之后，在真正传输时候是不需要HTTP的；</code></strong></li>
+<li>WebSocket是全双工方式的，可以互相主动请求，而HTTP长连接是基于HTTP的，是传统的客户端对服务器发起请求的模式；</li>
+<li><strong><code>可以使用“HTTP升级机制（通过Upgrade、Connection协议头）”，实现从HTTP到WebSocket的升级；</code></strong></li>
+<li>现在的浏览器都支持WebSocket；WebSocket的请求地址格式：<code>ws://domain:port/path</code>；</li>
+</ul>
+</li>
+<li>
+<p>2、实现</p>
+<ul>
+<li>
+<p>1）<strong>编辑nginx.conf，在<code>http区域内</code>添加以下配置：</strong></p>
+<pre><code class="language-shell">map $http_upgrade $connection_upgrade {
+    default upgrade;
+    '' close;
+}
+</code></pre>
+<ul>
+<li><strong>根据客户端请求中<code>$http_upgrade</code>的值，来构造改变<code>$connection_upgrade</code>的值；</strong></li>
+<li><code>{}</code>定义了构造改变的规则；若没有匹配到规则，则使用<code>default</code>值，即<code>$connection_upgrade</code>的值为<code>upgrade</code>；</li>
+<li>若匹配到<code>$http_upgrade</code>为<code>空字符串''</code>，则<code>$connection_upgrade</code>的值为<code>close</code>；</li>
+</ul>
+</li>
+<li>
+<p>2）<strong>编辑虚拟主机的配置，在<code>location区域内</code>添加以下配置；</strong></p>
+<pre><code class="language-shell">proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $connection_upgrade;
+</code></pre>
+<ul>
+<li>比如：</li>
+</ul>
+<pre><code class="language-shell"># Nginx负载均衡
+upstream wsbackend {
+    hash $remote_addr consistent;
+    server 10.0.0.111:8000;
+    server 10.0.0.112:8000;
+}
+
+location / {
+    proxy_pass http://wsbackend/;
+    proxy_redirect off;
+    
+    # proxy_set_header表示设置请求头
+    # 表示传递时Host请求头加上端口号，$host、$server_port等是Nginx内置变量
+    proxy_set_header Host $host:$server_port;
+    # 表示传递时来源的IP还是客户端的IP
+    proxy_set_header X-Real-IP $remote_addr;
+    # 表示传递时X-Forwarded-For请求头不发生改变
+    #   X-Forwarded-For协议头的格式：X-Forwarded-For: client, proxy1, proxy2
+    #   client表示用户的真实IP，每经过一次代理服务器，代理服务器会在这个头增加自己的IP
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+    
+    # 表示两次请求之间的间隔超过3600s，关闭该连接，默认为60s
+    proxy_read_timeout 3600s;
+    proxy_send_timeout 60s;
+    proxy_connect_timeout 60s;
+    
+    # 表示WebSocket连接进入时，进行一个连接升级将HTTP连接变成WebSocket的连接
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade; 
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>3、wss协议</p>
+<ul>
+<li>1）<strong><code>wss协议</code>就是<code>WebSocket+SSL</code>，在websocket协议上加入SSL，类似HTTPS（HTTP+SSL）；</strong></li>
+<li>2）Nginx代理wss原理：
+<ul>
+<li>a. 客户端发起wss连接连到Nginx；</li>
+<li>b. <strong>Nginx将wss协议的数据转，换成ws协议数据并转发到Workerman的WebSocket协议端口；</strong></li>
+<li>c. Workerman收到数据后做业务逻辑处理；</li>
+<li>d. Workerman给客户端发送消息时，则是相反的过程，数据经过Nginx，转换成wss协议，然后发给客户端；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E5%85%AD%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、注意事项</h4>
+<ul>
+<li>
+<p>1、<strong><code>Nginx的配置文件（nginx.conf）中的user，与启动Nginx的用户的区别；</code></strong></p>
+<ul>
+<li>1）<strong>配置文件（nginx.conf）中的<code>user user [group];指令</code>，用于指定在Nginx进程运行时，所使用的用户、用户组；<code>决定了Nginx主进程以及派生的工作进程所使用的用户身份，比如读入写入文件的权限；</code></strong></li>
+<li>2）<strong><code>启动Nginx的用户</code>，是<code>执行启动命令的用户，具有管理和操作服务的权限</code>，比如root用户；</strong></li>
+<li>3）<strong><code>将这个两个用户分开，可以限制Nginx进程以特定的非特权用户身份运行，避免若Nginx受到恶意攻击，因为特权用户从而导致影响整个系统；</code>同时也通过权限控制，也降低对系统资源的访问权限；</strong></li>
+<li>4）<strong><code>配置user user [group];指令时</code>，选择一个不属于系统管理员组的普通用户，并且<code>确保该用户对Nginx所需的文件和目录，有适当的访问权限</code>；</strong></li>
+</ul>
+</li>
+<li>
+<p>2、<strong><code>www-data</code>与<code>/var/www/html/</code></strong></p>
+<ul>
+<li>1）<strong><code>www-data</code>是是Debian/、Ubuntu中默认创建的处理Web服务的用户/用户组，而<code>/var/www/html/</code>是<code>该用户的家目录</code>；</strong></li>
+<li>2）<strong>通过<code>cat /etc/passwd</code>，查看<code>系统中所有用户的信息</code>，包括用户名、用户ID、组ID、用户家目录等；</strong></li>
+</ul>
+</li>
+<li>
+<p>3、<strong><code>Nginx中，sites-available、sites-enabled的区别；</code></strong></p>
+<ul>
+<li>1）<strong>sites-available、sites-enabled目录，都是用于组织和管理网站配置；</strong></li>
+<li>2）<strong><code>sites-available</code>目录：</strong>
+<ul>
+<li><strong>包含了所有可用的网站配置文件，可以包含激活的、未激活的或正在测试中；</strong></li>
+<li><strong>修改或添加新的网站配置，通常先在该目录下进行；</strong></li>
+</ul>
+</li>
+<li>3）<strong><code>sites-enabled</code>目录：</strong>
+<ul>
+<li><strong>是正在被Nginx读取使用的网站配置文件（<code>include /etc/nginx/sites-enabled/*</code>）；</strong></li>
+<li><strong>通常该目录，<code>有指向sites-available目录中配置文件的符号链接</code>；这样通过创建或删除符号链接，<code>来激活或禁用特定网站的配置</code>，而无需直接修改配置文件；比如同一个网站，在sites-available目录中有多个不同版本的配置文件；</strong></li>
+<li><code>ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E4%B8%83%E3%80%81%E5%8F%82%E8%80%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、参考</h4>
+<ul>
+<li><strong>nginx 一把梭！（超详细讲解+实操）：<code>https://juejin.cn/post/7306041273822527514</code></strong></li>
+<li><strong>Nginx配置WebSocket：<code>https://www.cnblogs.com/xiedy001/p/16347379.html</code></strong></li>
+<li><strong>Nginx 支持 WebSocket 反向代理 - 学习小结：<code>https://blog.51cto.com/kenkao/5996559</code></strong></li>
+<li><strong>Nginx的location路径匹配规则：<code>https://blog.csdn.net/beichengliulixue/article/details/121971227</code></strong></li>
+<li><strong>吐血整理-关于Nginx 的 location 匹配规则总结看这一篇就够了：<code>https://juejin.cn/post/6908623305129852942</code></strong></li>
+<li>NGINX杂谈——proxy和rewrite的区别：<code>https://www.cnblogs.com/xuanyu-10-18/p/15291345.html</code></li>
 </ul>
 
       </div>
@@ -506,14 +1138,14 @@ server {
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15354658906894.html" title="Previous Post: Redis配置使用（Linux）">&laquo; Redis配置使用（Linux）</a>
+            <a href="15354658906894.html" title="Previous Post: Redis配置使用（Ubuntu）">&laquo; Redis配置使用（Ubuntu）</a>
             
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15354665260298.html" title="Next Post: MySQL配置使用（Linux）">MySQL配置使用（Linux） &raquo;</a>
+            <a href="15354665260298.html" title="Next Post: MySQL配置使用（Ubuntu）">MySQL配置使用（Ubuntu） &raquo;</a>
             
           </p>
         </div>

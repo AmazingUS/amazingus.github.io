@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -179,7 +179,7 @@
 </li>
 <li>
 <p>有了fork()，一个进程在接到新任务时就可以复制出一个子进程来处理新任务；常见的Apcache Server就是由父进程监听端口，当有新的http请求时，就fork出子进程来处理新的http请求</p>
-<pre><code class="language-python"> import os
+<pre><code class="language-py"> import os
  
  print(&quot;Process (%s) start...&quot;, os.getpid())
  
@@ -200,7 +200,7 @@
 <ul>
 <li>
 <p>Python是跨平台的，提供了multiprocessing模块支持跨平台的多进程；其中Process类代表一个子进程</p>
-<pre><code class="language-python"> import os
+<pre><code class="language-py"> import os
  from multiprocessing import Process
  
  # 子进程要执行的代码
@@ -230,7 +230,7 @@
 <ul>
 <li>
 <p>若要启动大量的子进程，可以用进程池Pool批量创建子进程</p>
-<pre><code class="language-python"> import os, time, random
+<pre><code class="language-py"> import os, time, random
  from multiprocessing import Pool
  
  
@@ -266,7 +266,7 @@
 </li>
 <li>
 <p>之前其他进程是自己创建的子进程，很容易控制子进程的输入和输出；对于外部进程，subprocess模块提供启动外部进程、控制其输入和输出的功能</p>
-<pre><code class="language-python"> # 举例：在python代码中运行命令&quot;nslookup www.python.org&quot;
+<pre><code class="language-py"> # 举例：在python代码中运行命令&quot;nslookup www.python.org&quot;
  import subprocess
  
  # 调用nslookup并添加参数，返回结果码
@@ -292,7 +292,7 @@
 <ul>
 <li>
 <p>系统提供了很多机制来实现进程间的通信；Python的multiprocessing模块包装了底层的机制，提供了Queue、Pipes等多种方式供进程间交换数据</p>
-<pre><code class="language-python"> # 以Queue方式交换数据
+<pre><code class="language-py"> # 以Queue方式交换数据
  # 在父进程中创建两个进程，一个往Queue中写数据，一个从Queue中读数据
  from multiprocessing import Process, Queue
  import os, time, random
@@ -335,7 +335,7 @@
 </li>
 <li>
 <p>启动一个线程：创建Threading实例并把一个函数传入，然后调用start()开始执行</p>
-<pre><code class="language-python"> import time, threading
+<pre><code class="language-py"> import time, threading
  
  # 新线程执行的代码
  def loop():
@@ -365,7 +365,7 @@
 </li>
 <li>
 <p>在多进程中，变量在每个进程各自有一份拷贝，互不影响；而在多线程中，变量是所有线程共享，都可以被任何一个线程修改</p>
-<pre><code class="language-python"> # 模拟由于多线程，导致的数据错乱
+<pre><code class="language-py"> # 模拟由于多线程，导致的数据错乱
  import time, threading
  
  balance = 0  # 假设银行存款
@@ -391,7 +391,7 @@
  t2.join()
  print(balance)
 </code></pre>
-<pre><code class="language-python"> # 为确保balance计算正确，要给change_it()上一把锁；
+<pre><code class="language-py"> # 为确保balance计算正确，要给change_it()上一把锁；
  # 当某个线程开始执行change_it()时获取了锁，因此其他线程不能同时
  # 执行change_it()，只能等到锁被释放后，获取到该锁以后才能改
  import time, threading
@@ -444,7 +444,7 @@
 <li>使用Python启动CPU核心数量的多个线程，比如在4核CPU上，会监控到CPU占用率为102%，也就是使用1核</li>
 <li>使用C、C++、Java来改写相同的死循环，却可以把全部核心跑满（4核就用400%，8核就用800%），而Python却不可以</li>
 </ul>
-<pre><code class="language-python"> # 尝试使用Python编写一个死循环（谨慎使用）
+<pre><code class="language-py"> # 尝试使用Python编写一个死循环（谨慎使用）
  import threading, multiprocessing
  
  def loop():
@@ -477,7 +477,7 @@
 <ul>
 <li>
 <p>每个线程都有自己的数据；一个线程使用自己的局部变量比使用全局变量好，因为局部变量只有当前线程可见，不会影响其他线程，而全局变量的修改必须加锁；但是使用局部变量，在函数调用的时候传递起来很麻烦</p>
-<pre><code class="language-python"> def process_thread():
+<pre><code class="language-py"> def process_thread():
  	# std是局部变量，每个函数调用都必须传入
  	# 这里不能使用全局变量，因为每个线程（process_thread）要处理不同的Student对象
  	std = Student(name)
@@ -489,7 +489,7 @@
 </li>
 <li>
 <p>解决方案：使用一个全局的dict存放所有的Student对象，然后以thread自身作为key获取该线程对应的Student对象</p>
-<pre><code class="language-python"> global_dict = {}
+<pre><code class="language-py"> global_dict = {}
  
  def process_thread():
  	std = Student(name)
@@ -504,7 +504,7 @@
 </li>
 <li>
 <p>Python的ThreadLocal提供上面的代码的封装，不用人为创建用于查找的dict，ThreadLocal自动做这件事情</p>
-<pre><code class="language-python"> import threading
+<pre><code class="language-py"> import threading
  
  class Student(object):
      def __init__(self, name):
@@ -592,7 +592,7 @@
 <li>之前的Queue不仅可以让两个进程在同一机器上进行通信，也可以让这两个进程在两个机器进行通信；继续使用原来的Queue，使用managers模块把Queue通过网络暴露出去，就可以让其他机器的进程访问该Queue了</li>
 <li>服务进程负责启动Queue，把Queue注册到网络上，然后往Queue里面写入任务</li>
 </ul>
-<pre><code class="language-python"> # 服务进程：task_master.py
+<pre><code class="language-py"> # 服务进程：task_master.py
  import random, queue
  from multiprocessing.managers import BaseManager
  
@@ -632,7 +632,7 @@
 </li>
 <li>
 <p>当在一台机器上编写多进程时，创建的Queue可以直接拿来使用；但是在分布式多进程情况下，不可以直接对原始的task_queue进行“添加任务到Queue”操作，必须使用通过manager.get_task_queue()获取Queue，进行添加（否则绕过了QueueManager对Queue的封装，注册Queue也就没有意义）；result_queue同理</p>
-<pre><code class="language-python"> # 任务进程：task_worker.py
+<pre><code class="language-py"> # 任务进程：task_worker.py
  import time, queue
  from multiprocessing.managers import BaseManager
  

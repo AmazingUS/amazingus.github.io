@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -1005,7 +1005,7 @@ activity.getWindowManager().getDefaultDisplay().getSize(size);
 <p>没有配置修饰符的资源就是Android的默认资源；提供默认资源非常重要，若无法找到匹配当前配置的资源，Android就会使用默认资源，其能保证应用正常运行；</p>
 </li>
 <li>
-<p>**Android的默认资源使用规则并不适用于<code>屏幕显示密度</code>；**项目的drawable目录通常按屏幕显示密度，带有-mdpi、-xxhdpi这样的修饰符；Android决定使用哪一类drawable资源并不是简单地匹配设备的屏幕显示密度，也不是在没有匹配的资源时直接使用默认资源，而是综合考虑屏幕尺寸和显示密度；<strong>故不要在res/drawable/目录下放置<code>所谓的默认的drawable资源</code>；</strong></p>
+<p><strong>Android的默认资源使用规则并不适用于<code>屏幕显示密度</code>；</strong> 项目的drawable目录通常按屏幕显示密度，带有-mdpi、-xxhdpi这样的修饰符；Android决定使用哪一类drawable资源并不是简单地匹配设备的屏幕显示密度，也不是在没有匹配的资源时直接使用默认资源，而是综合考虑屏幕尺寸和显示密度；<strong>故不要在res/drawable/目录下放置<code>所谓的默认的drawable资源</code>；</strong></p>
 </li>
 <li>
 <p><strong>检查资源本地化完成情况：在Android Studio选择<code>Android窗口</code>查看文件（不是Project窗口），打开res/values/文件夹，右击默认字符串资源strings.xml，选择<code>Open Translations Editor</code>进行查看；若没有改选项将Android窗口的文件目录先收起再展开；</strong></p>
@@ -1029,7 +1029,7 @@ activity.getWindowManager().getDefaultDisplay().getSize(size);
 <p>考虑到有那么多匹配资源的配置修饰符，有时会出现设备配置与好几个可选资源都匹配的情况，此时Android会根据<code>修饰符的优先级</code>使用；比如，同时有values-w600dp/strings.xml、values-zh/strings.xml；</p>
 </li>
 <li>
-<p>**可以在同一资源目录上使用多个配置修饰符，各配置修饰符需要按照优先级别顺序排列；新建资源文件对话框中，工具会自动配置正确的目录名；**比如，values-zh-land是一个有效的资源目录名，而values-land-zh则是无效的资源目录名；</p>
+<p><strong>可以在同一资源目录上使用多个配置修饰符，各配置修饰符需要按照优先级别顺序排列；新建资源文件对话框中，工具会自动配置正确的目录名；</strong> 比如，values-zh-land是一个有效的资源目录名，而values-land-zh则是无效的资源目录名；</p>
 </li>
 <li>
 <p><strong>寻找最匹配的资源：Android首先排除不兼容<code>当前设备配置</code>的资源目录，之后按配置修饰符的优先级排除不兼容的目录（有高优先级的目录，低优先级的目录会被排除）；</strong></p>

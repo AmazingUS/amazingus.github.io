@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -128,7 +128,7 @@
 <ul>
 <li>
 <p>types模块MethodType()函数可以创建一个方法，给实例变量、类动态绑定方法</p>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
      pass
      
  # 注意是带有self参数的函数，不是方法
@@ -169,7 +169,7 @@
 </li>
 <li>
 <p>注意，__slots__定义的属性仅对当前类的实例限制作用，对继承的子类不起作用；除非在子类中也定义了__slots__，这样子类实例允许定义的属性就是自身的__slots__加上父类的__slots__</p>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
      __slots__ = ('name', 'age')  # 用tuple定义允许绑定的属性名称
   
  s = Student()
@@ -202,7 +202,7 @@
 <li>把一个getter方法XXX变成属性，只需要加上@property即可；此时@property本身又创建另一个装饰器@XXX.setter，负责把一个setter方法变成属性赋值，这样我们就拥有一个可控的属性操作</li>
 <li>还可以定义只读属性（只定义getter方法，不定义setter方法）</li>
 </ul>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
  	@property	
  	def score(self):
  		return self._score
@@ -273,7 +273,7 @@
 </li>
 <li>
 <p>Python自带很多库也使用了MixIn；比如TCPServer和UDPServer这两类网络服务，而要同时服务多个用户就必须使用多进程或多线程模型，这两种模型由ForkingMixIn和ThreadingMaxIn提供，通过组合可以创造出合适的服务</p>
-<pre><code class="language-python"> class MyTCPServer(TCPServer, ForkingMixIn):  # 多进程TCP服务
+<pre><code class="language-py"> class MyTCPServer(TCPServer, ForkingMixIn):  # 多进程TCP服务
  	pass
  	
  class MyUDPServer(UDPServer, ThreadingMixIn):  # 多线程UDP服务
@@ -292,7 +292,7 @@
 <li>print()打印对象，内容就是__str__方法返回的字符串</li>
 <li>直接打印对象（调试中使用），内容就是__repr__方法返回的字符串；通常让__str__和__repr__返回的内容一样</li>
 </ul>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
      def __init__(self, name):
          self.name = name
   
@@ -327,7 +327,7 @@
 <li>若一个对象可以像list直接按照位置索引取值，需要实现__getitem__()方法</li>
 <li>若一个对象可以使用切片，也是需要实现__getitem__()方法，只是要做一下参数类型判断，参数是int（位置索引取值）还是切片（切片取值）</li>
 </ul>
-<pre><code class="language-python"> class Fib(object):
+<pre><code class="language-py"> class Fib(object):
  	def __init__(self):
  		self.a, self.b = 0, 1
  	def __iter__(self):  # 返回需要被循环的对象（self）
@@ -394,7 +394,7 @@
 <li>正常情况下，当调用对象的属性、方法时，若不存在则报错</li>
 <li>为避免此错误，可以重写__getattr__()方法动态返回一个属性、方法；比如调用不存在的属性score时，Python解释器会试图调用__getattr__(self, 'score')来尝试获得属性，重写该方法就可以控制返回score的值</li>
 </ul>
-<pre><code class="language-python"> # 返回属性
+<pre><code class="language-py"> # 返回属性
  class Student(object):
      def __getattr__(self, attr):
          if attr == 'score':
@@ -423,7 +423,7 @@
 <li><strong>注意，只有在没有找到属性、方法的情况下（以obj.x对象方式、getattr(obj, 'x', NO=one)函数方式），才调用__getattr__()；若已存在属性、方法则不会调用__getattr__()</strong></li>
 <li>此外，若重写了__getattr__()时要设置返回默认处理；比如，上面定义的__getattr__()默认返回None，这样将导致调用任何不存在且没有处理的属性、方法时都会返回None；要让class只响应特定的几个不存在的属性、方法，其他不存在的则抛出AttributeError错误</li>
 </ul>
-<pre><code class="language-python"> &gt;&gt;&gt; s.abc  # 不报任何错误（返回None）
+<pre><code class="language-py"> &gt;&gt;&gt; s.abc  # 不报任何错误（返回None）
  
  class Student(object):
      def __getattr__(self, attr):
@@ -459,7 +459,7 @@
 <ul>
 <li>一个实例变量可以有自己的属性和方法，当调用实例的方法时使用instance.method()的方式来调用；但是也可以直接调用实例本身上，只需要实现__call__()方法即可</li>
 </ul>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
      def __init__(self, name):
          self.name = name
      def __call__(self):
@@ -473,7 +473,7 @@
 <li><strong>__call__()方法还可以定义参数，对实例的直接调用相当于对一个函数调用</strong>；完全可以将对象和函数看成一样，函数本身也是运行期动态创建出来的，对象也是运行期创建出来的</li>
 <li>一个对象是若能被调用则该对象是一个Callable对象，可使用callable()函数来判断</li>
 </ul>
-<pre><code class="language-python"> &gt;&gt;&gt; callable(Student('Tom'))
+<pre><code class="language-py"> &gt;&gt;&gt; callable(Student('Tom'))
  True
  &gt;&gt;&gt; callable(max)
  True
@@ -493,7 +493,7 @@
 </li>
 <li>
 <p>更好的方式是将这样的类型定义一个class类型（枚举类型），然后每一个常量都是class的一个唯一实例；Python提供了Enum类来实现该功能</p>
-<pre><code class="language-python"> from enum import Enum
+<pre><code class="language-py"> from enum import Enum
  M = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
  
  # 获取到Month类型的枚举类，可以直接使用如Month.Jan的方式来引用一个常量
@@ -516,7 +516,7 @@
 </li>
 <li>
 <p>若需要精确控制枚举类型，可以从Enum派生出自定义类</p>
-<pre><code class="language-python"> from enum import Enum, unique
+<pre><code class="language-py"> from enum import Enum, unique
  @unique  # @unique装饰器可以检查保证没有重复值
  class WeekDay(Enum):
      Sun = 0  # Sum的value被设定为0
@@ -596,7 +596,7 @@
 <li>先有metaclass，再有类，最后才是实例</li>
 <li>按照默认习惯，metaclass的类名总是以Metaclass结尾，以便清楚地表示这是一个metaclass</li>
 </ul>
-<pre><code class="language-python"> class ListMetaclass(type):
+<pre><code class="language-py"> class ListMetaclass(type):
      def __new__(cls, name, base, attrs):  # 实现__new__()方法，增加add()方法
          attrs['add'] = lambda self, value: self.append(value)
          return type.__new__(cls, name, base, attrs)
@@ -634,7 +634,7 @@
 <ul>
 <li>
 <p>编写底层模块的第一步，就是先把接口写出来；比如，定义一个User类来操作对应的数据库User</p>
-<pre><code class="language-python"> # 使用
+<pre><code class="language-py"> # 使用
  class User(Model): 
      id = IntegerField('t_id') # 类属性
      name = StringField('t_username')
@@ -645,7 +645,7 @@
  # dict语法； Model继承于dict，不需要实现__init__()方法进行绑定属性    
  u.save()
 </code></pre>
-<pre><code class="language-python"> # Field类负责保存数据库表的字段名和字段类型
+<pre><code class="language-py"> # Field类负责保存数据库表的字段名和字段类型
  class Field(object):  # IntegerField、StringField的父类
      def __init__(self, name, col_type):
          self.name = name
@@ -665,7 +665,7 @@
          # super() -&gt; same as super(__class__, &lt;first argument&gt;)
          super().__init__(name, 'varchar(100)')
 </code></pre>
-<pre><code class="language-python"> class ModelMetaclass(type):
+<pre><code class="language-py"> class ModelMetaclass(type):
      def __new__(cls, name, base, attrs):
          if name == 'Model':
              return type.__new__(cls, name, base, attrs)
@@ -688,7 +688,7 @@
          attrs['__table__'] = name
          return type.__new__(cls, name, base, attrs)
 </code></pre>
-<pre><code class="language-python"> # Model继承于dict，初始化对象时其内部会初始化一个字典
+<pre><code class="language-py"> # Model继承于dict，初始化对象时其内部会初始化一个字典
  # m.id访问的是id属性，m['id']访问的是字典中‘id’对应的value
  class Model(dict, metaclass=ModelMetaclass):
      def __init__(self, **kwargs):

@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -132,7 +132,7 @@
 <ul>
 <li>
 <p>hashlib提供了常见的摘要算法（如MD5、SHA等）；摘要算法又称为哈希算法、散列算法，通过把任意长度的数据转换为一个长度固定的字符串（16进制表示的字符串）</p>
-<pre><code class="language-python"> import hashlib
+<pre><code class="language-py"> import hashlib
  
  md5 = hashlib.md5()
  # 先转成字节，再进行hash
@@ -156,7 +156,7 @@
 </li>
 <li>
 <p>比SHA1更安全的算法是SHA256和SH512；不过，越安全的算法不仅生成越慢，而且摘要长度更长</p>
-<pre><code class="language-python"> sha1 = hashlib.sha1()
+<pre><code class="language-py"> sha1 = hashlib.sha1()
  sha1.update('how to use md5 in '.encode('utf-8'))
  sha1.update('python hashlib?'.encode('utf-8'))
  m = sha1.hexdigest()
@@ -173,7 +173,7 @@
 </li>
 <li>
 <p><strong>摘要算法不是加密算法，不能用于加密（因为无法通过摘要反推明文），只能用于防篡改；但是它的单向计算特性决定了可以在不存储明文口令的情况下++验证++用户口令</strong></p>
-<pre><code class="language-python"> # 举例：模拟用户注册登录
+<pre><code class="language-py"> # 举例：模拟用户注册登录
  import hashlib
  
  db = {}
@@ -214,7 +214,7 @@
 </li>
 <li>
 <p>“无限”迭代器：count()、cycle()、repeat()</p>
-<pre><code class="language-python"> import itertools
+<pre><code class="language-py"> import itertools
  
  # count()：创建一个无限的迭代器，遍历时无法停止，只能强行退出
  natuals = itertools.count(1) # 1表示从数字1开始
@@ -231,7 +231,7 @@
  for n in ns:
      print(n)
 </code></pre>
-<pre><code class="language-python"> natuals = itertools.count(1)
+<pre><code class="language-py"> natuals = itertools.count(1)
  # 通常使用takewhile()等函数根据条件判断来截取出一个有限的序列
  ns = itertools.takewhile(lambda x: x &lt; 10, natuals)
  l = list(ns)
@@ -240,7 +240,7 @@
 </li>
 <li>
 <p>迭代组合：chian()、groupby()</p>
-<pre><code class="language-python"> # chian()：把一组迭代对象串联起来，形成一个更大的迭代器
+<pre><code class="language-py"> # chian()：把一组迭代对象串联起来，形成一个更大的迭代器
  for c in itertools.chain('ABC', 'XYZ'):
      print(c) # 迭代效果：'A' 'B' 'C' 'X' 'Y' 'Z'
  
@@ -256,7 +256,7 @@
 </li>
 <li>
 <p>groupby()的挑选规则实际上是通过函数完成的，只要两个元素的函数返回值相同，这两个元素就被认为是在一组的，函数返回值作为这组的key</p>
-<pre><code class="language-python"> # 忽略大小写分组
+<pre><code class="language-py"> # 忽略大小写分组
  for key, group in itertools.groupby('AaaBBbcCAAa', lambda c: c.upper()):
      print(key, list(group))
   
@@ -282,7 +282,7 @@
 </li>
 <li>
 <p>当SAX解析器读到一个节点时，比如，<code>&lt;p name=&quot;p&quot;&gt;python&lt;/p&gt;</code> 会产生3个事件：start_element事件（读取到<code>&lt;p name=&quot;p&quot;&gt;</code>时）、char_data事件（读取到<code>python</code>时）、end_element事件（读取到<code>&lt;/p&gt;</code>时）</p>
-<pre><code class="language-python"> # 解析XML
+<pre><code class="language-py"> # 解析XML
  from xml.parsers.expat import ParserCreate
  
  class MySaxHandler(object):
@@ -316,7 +316,7 @@
 </li>
 <li>
 <p>生成XML最简单有效的方法就是拼接字符串</p>
-<pre><code class="language-python"> # 生成XML
+<pre><code class="language-py"> # 生成XML
  l = []
  l.append(r'&lt;?xml version=&quot;1.0&quot;?&gt;')
  l.append(r'&lt;root&gt;')
@@ -325,7 +325,7 @@
  s = ''.join(l)
  print(s)
 </code></pre>
-<pre><code class="language-python"> # 练习：解析天气XML
+<pre><code class="language-py"> # 练习：解析天气XML
  data = r'''&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot; ?&gt;
  &lt;rss version=&quot;2.0&quot; xmlns:yweather=&quot;http://xml.weather.yahoo.com/ns/rss/1.0&quot; xmlns:geo=&quot;http://www.w3.org/2003/01/geo/wgs84_pos#&quot;&gt;
      &lt;channel&gt;
@@ -402,7 +402,7 @@
 <ul>
 <li>
 <p>HTML本质上是XML的子集，但是HTML的语法没有XML那么严格，所以不能用标准的DOM或SAX来解析HTML；Python提供了HTMLParser来解析HTML</p>
-<pre><code class="language-python"> from html.parser import HTMLParser
+<pre><code class="language-py"> from html.parser import HTMLParser
  
  class MyHTMLParser(HTMLParser):
      def handle_starttag(self, tag, attrs):
@@ -442,7 +442,7 @@
 </li>
 <li>
 <p>特殊字符有两种，一种是英文表示的 <code>&amp;nbsp;</code> ，一种是数字表示的 <code>&amp;#1234;</code> ；它们都可以通过HTMLParser被解析出来</p>
-<pre><code class="language-python">  # 练习：解析Python官网发布的会议时间、名称、地点
+<pre><code class="language-py">  # 练习：解析Python官网发布的会议时间、名称、地点
  from html.parser import HTMLParser
  
  class MyHTMLParser(HTMLParser):
@@ -487,7 +487,7 @@
 <ul>
 <li>
 <p>urllib的request模块可以指定URL发送HTTP请求，并返回HTTP的响应</p>
-<pre><code class="language-python"> from urllib import request
+<pre><code class="language-py"> from urllib import request
  
  with request.urlopen('https://api.douban.com/v2/book/2129650') as f:
      print('Status:', f.status, f.reason)
@@ -498,7 +498,7 @@
 </li>
 <li>
 <p>若要模拟浏览器发送请求需要使用Request对象；通过向Request对象添加HTTP头部相关信息，就可以伪装成浏览器发送请求</p>
-<pre><code class="language-python"> # 模拟iPhone6去请求豆瓣首页
+<pre><code class="language-py"> # 模拟iPhone6去请求豆瓣首页
  from urllib import request
  
  req = request.Request('http://www.douban.com/')
@@ -517,7 +517,7 @@
 </li>
 <li>
 <p>若以POST形式发送网络请求，只需要增加参数data，数据以bytes形式传入</p>
-<pre><code class="language-python"> from urllib import request, parse
+<pre><code class="language-py"> from urllib import request, parse
  
  req = request.Request('https://passport.weibo.cn/sso/login')
  req.add_header('Referer', 'https://passport.weibo.cn/signin/login?entry=mweibo'
@@ -534,7 +534,7 @@
 </li>
 <li>
 <p>若需要更复杂的请求控制，比如通过一个Proxy去访问，就需要使用ProxyHandler来处理</p>
-<pre><code class="language-python"> proxy_handler = urllib.request.ProxyHandler({'http': 'http://www.example.com:3128/'})
+<pre><code class="language-py"> proxy_handler = urllib.request.ProxyHandler({'http': 'http://www.example.com:3128/'})
  
  proxy_auth_handler = urllib.request.ProxyBasicAuthHandler()
  proxy_auth_handler.add_password('realm', 'host', 'username', 'password')
@@ -559,7 +559,7 @@
 <li>安装Pillow：pip3 install pillow</li>
 <li>Pillow支持图像缩放、切片、旋转、滤镜、输出文字、调色板等功能</li>
 </ul>
-<pre><code class="language-python"> # 图片缩放
+<pre><code class="language-py"> # 图片缩放
  from PIL import Image
  
  img = Image.open('git.jpg')  # 打开一个jpge文件，注意路径
@@ -581,7 +581,7 @@
 </li>
 <li>
 <p>PIL的ImageDraw提供了一系列绘图方法，比如可以用来生成字母验证码图片</p>
-<pre><code class="language-python"> from PIL import Image, ImageDraw, ImageFont, ImageFilter
+<pre><code class="language-py"> from PIL import Image, ImageDraw, ImageFont, ImageFilter
  import random
  
  # 随机字母
@@ -622,7 +622,7 @@
 </li>
 <li>
 <p>virtualenv就是用来创建一套“隔离”的Python运行环境；安装virtualenv：<code>pip3 install virturalenv</code> ；注意使用pip3进行安装，这样创建的“隔离”的运行环境才是Python3的</p>
-<pre><code class="language-python"> # 假设开发一个新的项目，需要一套独立的Python运行环境
+<pre><code class="language-py"> # 假设开发一个新的项目，需要一套独立的Python运行环境
  # 第一步，创建目录
  XXPro:Desktop xx$ mkdir myproject
  

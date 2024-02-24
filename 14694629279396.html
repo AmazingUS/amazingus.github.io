@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -120,14 +120,14 @@
 <h4><a id="%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、安装、卸载</h4>
 <ul>
 <li>
-<p>Node.js的安装方式有多种，可以通过Node.js安装包、Homebrew、nvm等方式；</p>
+<p>1、Node.js的安装方式有多种，可以通过Node.js安装包、Homebrew、nvm等方式；</p>
 </li>
 <li>
-<p>nvm（Node Version Manager）可以很好地进行Node.js多版本管理；在这里使用nvm进行安装Node.js</p>
+<p>2、nvm（Node Version Manager）可以很好地进行Node.js多版本管理；在这里使用nvm进行安装Node.js</p>
 <ul>
 <li>
 <p>第1步：安装nvm（安装方式也有多种，这里使用brew）；</p>
-<pre><code class="language-plain_text">brew install nvm
+<pre><code class="language-shell">brew install nvm
 </code></pre>
 <p><img src="media/14694629279396/nvm_caveats.png" alt="nvm_caveats" style="width:634px;" /></p>
   <span id="more"></span><!-- more -->
@@ -142,11 +142,11 @@
 </ul>
 </li>
 <li>
-<p>通过nvm安装Node.js，卸载也需要通过nvm进行卸载；若手动直接安装Node.js则需要手动卸载，相关命令如下：</p>
+<p>3、通过nvm安装Node.js，卸载也需要通过nvm进行卸载；若手动直接安装Node.js则需要手动卸载，相关命令如下：</p>
 <ul>
 <li>
 <p>手动直接安装，node命令被自动安装在/usr/local/bin/node/目录中，npm命令在/usr/local/lib/node_modules/npm/目录中；</p>
-<pre><code class="language-plain_text">sudo rm /usr/local/bin/node # 删除node
+<pre><code class="language-shell">sudo rm /usr/local/bin/node # 删除node
 sudo rm -rf /usr/local/lib/node_modules # 删除全局node_modules
 
 cd  /usr/local/bin &amp;&amp; ls -l | grep &quot;../lib/node_modules/&quot; | awk '{print $9}'| xargs rm # 删除node_modules注册的软链接
@@ -160,8 +160,8 @@ sudo rm /var/db/receipts/org.nodejs.*
 <h4><a id="%E4%BA%8C%E3%80%81nvm" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、nvm</h4>
 <ul>
 <li>
-<p>nvm是Node.js多版本管理工具，类似于Python的pyenv；</p>
-<pre><code class="language-plain_text">nvm ls # 查看本地安装及使用的node版本
+<p>1、nvm是Node.js多版本管理工具，类似于Python的pyenv；</p>
+<pre><code class="language-shell">nvm ls # 查看本地安装及使用的node版本
 nvm ls-remote # 查看远程可以安装的node版本
 
 nvm install stable # 安装最新稳定版node
@@ -180,15 +180,15 @@ nvm which &lt;VERSION&gt; # 查看指定版本node的安装路径
 <h4><a id="%E4%B8%89%E3%80%81npm%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、npm模块</h4>
 <ul>
 <li>
-<p>npm（node package manager）用于管理Node.js的模块，比如安装、卸载、更新、查看、搜索、发布等，相当于Python的pip、Ruby的Gem；</p>
+<p>1、npm（node package manager）用于管理Node.js的模块，比如安装、卸载、更新、查看、搜索、发布等，相当于Python的pip、Ruby的Gem；</p>
 </li>
 <li>
-<p>Node.js的模块的安装分两种：</p>
+<p>2、Node.js的模块的安装分两种：</p>
 <ul>
 <li>a. 本地安装：模块会被安装到当前目录下的node_modules目录中，只能在当前目录下使用；</li>
 <li>b. 全局安装：模块会被安装到Node.js的lib/node_modules中，可以在所有目录下使用；</li>
 </ul>
-<pre><code class="language-plain_text">npm &lt;list | ls&gt; [-g] # 查看本地（全局）已安装模块（以层级关系显示所依赖的模块）
+<pre><code class="language-shell">npm &lt;list | ls&gt; [-g] # 查看本地（全局）已安装模块（以层级关系显示所依赖的模块）
 npm ls --depth=0 # 查看本地已安装模块（只显示顶层的安装模块）
 npm outdated [-g] [&lt;PACKAGE&gt;] # 查看本地（全局）的某个或所有模块是否为最新版本
     
@@ -198,6 +198,7 @@ npm update [-g] [PACKAGE] # 更新本地（全局）的某个或所有模块
 
 # 本地（全局）安装（某个版本的）模块，例如npm install -g express@4.0
 npm install [-g] &lt;PACKAGE&gt;[@版本号]
+
 # 本地安装模块，并且在package.json中添加该模块到依赖中，这样就不用提交node_modules文件夹
 npm install &lt;PACKAGE&gt; --save
     
@@ -206,18 +207,50 @@ npm search &lt;PACKAGE&gt; # 搜索某个模块（不建议使用）
 </code></pre>
 <p><img src="media/14694629279396/npm_install.png" alt="npm_instal" style="width:315px;" /></p>
 <ul>
-<li>第一行的路径为安装路径，@前面的为模块的name，@后面的数字为模块的版本号，下面的模块为其所依赖的模块；</li>
+<li>
+<p>a. 第一行的路径为安装路径，@前面的为模块的name，@后面的数字为模块的版本号，下面的模块为其所依赖的模块；</p>
+</li>
+<li>
+<p>b. <code>--save</code>、<code>–-save-dev</code>参数：</p>
+<ul>
+<li><strong><code>--save</code>可简写为<code>-S</code>，<code>–-save-dev</code>可简写为<code>-D</code>；</strong></li>
+<li><code>devDependencies</code>中的package只用于开发环境，而<code>dependencies</code>中的是需要发布到生产环境；</li>
+</ul>
+<pre><code class="language-shell"># 该模块，依赖会写入dependencies节点，安装在该项目的node_modules目录下
+npm install xx_package
+
+# 该模块，依赖会写入dependencies节点，安装在该项目的node_modules目录下
+npm install xx_package --save
+
+# 该模块，依赖会写入devDependencies节点，安装在该项目的node_modules目录下
+npm install xx_package --save-dev
+
+# 该模块，依赖不会被写入devDependencies、dependencies节点，安装在全局下
+npm install xx_package -g
+</code></pre>
+</li>
 </ul>
 </li>
 <li>
-<p><strong>npm的本地安装路径问题：<code>http://www.zhihu.com/question/33302274/</code></strong></p>
+<p>3、<strong>npm的本地安装路径问题：<code>http://www.zhihu.com/question/33302274/</code></strong></p>
 <ul>
 <li><strong>npm会从当前目录往父目录找，找到哪个目录有node_modules文件夹就认为这才是真正的项目目录，模块被安装到那里；</strong></li>
 <li><strong>需要保证从当前的目录开始一直到根目录都没有node_modules文件夹，npm才会“正常”地把模块安装到到当前目录下的node_modules文件夹中（没有则创建）；</strong></li>
 </ul>
 </li>
 <li>
-<p>执行npm install或npm uninstall等操作时，需要当前目录中有package.json文件（用于管理项目的依赖项、元数据）；一般情况下，<code>本地安装</code>是没有该文件的，需要手动创建，否则会报警告 <code>npm WARN ENOENT ENOENT: no such file or directory, open...package.json</code>；消除警告，有三种方式解决：</p>
+<p>4、<strong>使用<code>nvm use node_version</code>切换node版本之后，需要使用<code>npm list</code>，确认之后要安装的<code>xx_package</code>的安装目录是否正确，正常应该为<code>folder_name/node_modules</code>；正确方式：先<code>cd 目录</code>，再<code>nvm use Node版本</code>；</strong></p>
+<pre><code class="language-shell">cd folder_name
+nvm use node_version
+
+# 确认安装目录是否正确
+npm list
+
+npm install xx_package
+</code></pre>
+</li>
+<li>
+<p>5、执行npm install或npm uninstall等操作时，需要当前目录中有package.json文件（用于管理项目的依赖项、元数据）；一般情况下，<code>本地安装</code>是没有该文件的，需要手动创建，否则会报警告 <code>npm WARN ENOENT ENOENT: no such file or directory, open...package.json</code>；消除警告，有三种方式解决：</p>
 <p><img src="media/14694629279396/npm_install_warn.png" alt="npm_install_warn" style="width:596px;" /></p>
 <ul>
 <li>
@@ -228,15 +261,15 @@ npm search &lt;PACKAGE&gt; # 搜索某个模块（不建议使用）
 </li>
 <li>
 <p>c. 使用npm-autoinit（自动生成插件），并且配置运行npm指令时，执行自动生成命令； 但是使用nvm进行多版本Node.js切换时会报缺少相关文件错误，<strong>这是因为不同版本Node.js的npm配置文件都是同一个（~/.npmrc）</strong>，而该插件只安装在某个版本Node.js上；解决办法是在切换到的Node.js版本上也安装该插件；</p>
-<pre><code class="language-plain_text">npm install -g npm-autoinit # 安装自动生成插件
+<pre><code class="language-shell">npm install -g npm-autoinit # 安装自动生成插件
 npm config set onload-script npm-autoinit/autoinit # 配置运行npm指令时，执行自动生成命令
 </code></pre>
 </li>
 </ul>
 </li>
 <li>
-<p>npm相关配置命令</p>
-<pre><code class="language-plain_text">npm config &lt;list | ls&gt; [-l] # 查看所有配置信息
+<p>6、npm相关配置命令</p>
+<pre><code class="language-shell">npm config &lt;list | ls&gt; [-l] # 查看所有配置信息
 npm [config] set XXX # 设置相关配置（config关键字可省略）
 # 也可以直接修改用户目录下.npmrc文件；
 
@@ -249,8 +282,8 @@ npm config delete proxy # 删除proxy（config关键字不可省略）
 </code></pre>
 </li>
 <li>
-<p>npm发布包相关命令</p>
-<pre><code class="language-plain_text">npm adduser # 注册registry帐号
+<p>7、npm发布包相关命令</p>
+<pre><code class="language-shell">npm adduser # 注册registry帐号
 npm login # 登录
 
 mpm publish # 发布项目
@@ -260,16 +293,16 @@ mpm publish # 发布项目
 <h4><a id="%E5%9B%9B%E3%80%81n%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、n模块</h4>
 <ul>
 <li>
-<p>n模块是一个Node.js多版本管理工具，类似于nvm；<strong>但是强烈建议不使用n模块，进行多版本管理</strong>；</p>
+<p>1、n模块是一个Node.js多版本管理工具，类似于nvm；<strong>但是强烈建议不使用n模块，进行多版本管理</strong>；</p>
 </li>
 <li>
-<p>nvm与n模块比较：</p>
+<p>2、nvm与n模块比较：</p>
 <ul>
 <li>a. nvm是一个独立于Node.js/npm的外部shell脚本；n模块是一个Node.js全局的模块，需要使用npm全局安装；</li>
 <li>b. 使用nvm安装的Node.js，npm安装的模块路径为 <code>/Users/USERNAE/.nvm/versions/node/VERSION/lib/node_modules</code> ；使用n安装（或直接安装）的Node.js，npm安装的模块路径为 <code>/usr/local/lib/node_modules</code> ，Node.js被安装在/usr/local/lib/；</li>
 <li>c. 使用n模块切换不同版本的Node.js，会使用相同的全局npm目录，无法根据不同的Node.js版本使用不同的全局模块；</li>
 </ul>
-<pre><code class="language-plain_text">npm install -g n # 安装n（必须全局安装，否则无法在终端中执行n命令）
+<pre><code class="language-shell">npm install -g n # 安装n（必须全局安装，否则无法在终端中执行n命令）
 
 n # 查看当前通过n安装的Node版本
 n stable # 安装最新稳定版Node
@@ -282,7 +315,7 @@ n rm &lt;VERSION&gt; # 卸载某个Node版本
 <h4><a id="%E4%BA%94%E3%80%81package-json" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、package.json</h4>
 <ul>
 <li>
-<p>package.json文件用于管理项目的依赖项、元数据；该文件有以下相关必填、非必填字段，下面只列举部分：</p>
+<p>1、package.json文件用于管理项目的依赖项、元数据；该文件有以下相关必填、非必填字段，下面只列举部分：</p>
 <ul>
 <li>
 <ol>
@@ -317,10 +350,10 @@ n rm &lt;VERSION&gt; # 卸载某个Node版本
 </ul>
 </li>
 <li>
-<p>版本号格式：<code>主版本号(Major).副版本号(Minor).补丁版本号(Patch)</code> ，例如1.2.3；</p>
+<p>2、版本号格式：<code>主版本号(Major).副版本号(Minor).补丁版本号(Patch)</code> ，例如1.2.3；</p>
 </li>
 <li>
-<p>~表示使用最接近的版本，空格、x、*表示任意版本；</p>
+<p>3、<code>~</code>表示使用最接近的版本，<code>空格</code>、<code>x</code>、<code>*</code>表示任意版本；</p>
 <ul>
 <li>~1：表示1.0.0~1.1.0之间的版本；</li>
 <li>~1.1：表示1.1.0~1.2.0之间的版本；</li>
@@ -331,7 +364,7 @@ n rm &lt;VERSION&gt; # 卸载某个Node版本
 <h4><a id="%E5%85%AD%E3%80%81http-demo" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、HTTP Demo</h4>
 <ul>
 <li>
-<p>创建一个example.js文件写入以下内容并运行（<code>node example.js</code>），打开浏览器进行访问；</p>
+<p>1、创建一个example.js文件写入以下内容并运行（<code>node example.js</code>），打开浏览器进行访问；</p>
 <pre><code class="language-js">http = require('http');
 
 http.createServer(function(req, res) {
@@ -350,7 +383,7 @@ console.log('Server running at http://127.0.0.1:8080/');
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="14702376488769.html" title="Previous Post: Python3配置使用">&laquo; Python3配置使用</a>
+            <a href="14709318994406.html" title="Previous Post: Ruby配置使用">&laquo; Ruby配置使用</a>
             
           </p>
         </div>

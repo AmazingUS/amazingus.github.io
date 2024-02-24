@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -165,7 +165,7 @@
 </li>
 <li>
 <p>'''abc'''的形式输入：使用3个“'”代替1个“'”，回车换行时“&gt;&gt;&gt;”变成“...”，表示接着上一行内容输入（输入内容被添加了换行符），可以多次回车换行，输入完毕以3个“'”结束</p>
-<pre><code class="language-python"> &gt;&gt;&gt; s = '''a 
+<pre><code class="language-py"> &gt;&gt;&gt; s = '''a 
  ... b  
  ... c  
  ...   
@@ -176,7 +176,7 @@
 </li>
 <li>
 <p>注意：无论是在' '形式，还是在''' '''形式的输入过程中，语句末尾使用“\”都只是显示换行（防止单行书写过多，导致阅读代码不便）</p>
-<pre><code class="language-python"> &gt;&gt;&gt; s1 = 'a'\
+<pre><code class="language-py"> &gt;&gt;&gt; s1 = 'a'\
  ... 'b'\
  ... 'c'
  &gt;&gt;&gt; s1
@@ -235,7 +235,7 @@
 </li>
 <li>
 <p><strong>encode()函数：将str转为指定编码的bytes（注意中文无法使用ASCII编码）</strong></p>
-<pre><code class="language-python"> 'ABC'.encode('ascii') # 输出打印为b'ABC'
+<pre><code class="language-py"> 'ABC'.encode('ascii') # 输出打印为b'ABC'
  'ABC'.encode('utf-8') # 输出打印为b'ABC'
  '中文'.encode('utf-8') # 输出打印为b'\xe4\xb8\xad\xe6\x96\x87'
 </code></pre>
@@ -254,7 +254,7 @@
 <ul>
 <li>
 <p>参数使用%s、%d、%f、%x(十六进制)等代替，格式化语句与实际值之间使用%分割，例如</p>
-<pre><code class="language-python"> 'Hello, %s' % 'world'
+<pre><code class="language-py"> 'Hello, %s' % 'world'
  '%2d-%02d' % (3, 1)
  'growth rate: %d %%' % 7 
  
@@ -270,7 +270,7 @@
 <ul>
 <li>
 <p>format()方法会返回一个新的字符串；在新的字符串中，原字符串的“替换字段（大括号及其中的数字等为替换字段）”被方法中的参数所代替</p>
-<pre><code class="language-python"> # 按照位置
+<pre><code class="language-py"> # 按照位置
  &gt;&gt;&gt; '{0}, {1}'.format('tom', 123)
  'tom, 123'
  &gt;&gt;&gt; '{}, {}'.format('tom', 123)
@@ -332,7 +332,7 @@
 <ul>
 <li>
 <p>注意要写冒号“:”，缩进表示代码块“{}”；elif是“else if”的缩写</p>
-<pre><code class="language-python"> age = 0
+<pre><code class="language-py"> age = 0
  
  if age &gt; 18:
     print('your age is', age)
@@ -375,7 +375,7 @@
 <ul>
 <li>
 <p>调用不可变对象的任何方法，不会改变对象自身的内容，方法会创建新的对象并进行返回</p>
-<pre><code class="language-python"># 可变，如list
+<pre><code class="language-py"># 可变，如list
 a = ['d', 'b', 'c'] 
 a.sort()
 a  # ['b', 'c', 'd']

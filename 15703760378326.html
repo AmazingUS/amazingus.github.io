@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -142,7 +142,7 @@
 <p>4、<strong>StoryBoard</strong></p>
 <ul>
 <li>iOS 5开始，Apple提供了一种全新的方式StoryBoard，来拖拉创建界面；</li>
-<li>**StoryBoard是一组ViewController对应的XIB，以及它们之间的转换方式的集合；**在StoryBoard中，不仅可以看到每个ViewController的布局样式，也可以知道各个ViewController之间的转换关系；</li>
+<li><strong>StoryBoard是一组ViewController对应的XIB，以及它们之间的转换方式的集合；</strong> 在StoryBoard中，不仅可以看到每个ViewController的布局样式，也可以知道各个ViewController之间的转换关系；</li>
 </ul>
 </li>
 </ul>
@@ -153,10 +153,10 @@
 <p>1、XIB文件的下面这些配置，决定 <code>从哪里</code> <code>如何加载</code> XIB中的视图；</p>
 <ul>
 <li>a. XIB文件名；</li>
-<li>b. XIB文件的**<code>File’s Owner</code>的<code>Class</code>（默认为NSObject类型）**；</li>
-<li>c. XIB文件的**<code>File’s Owner</code>中的<code>Outlet指向</code>**；</li>
-<li>d. XIB文件的**<code>视图（View）</code>的<code>Custom Class（默认为UIView类型）</code>**；</li>
-<li>e. XIB文件的**<code>视图（View）</code>中的<code>Outlet指向</code>**；</li>
+<li>b. XIB文件的 <strong><code>File’s Owner</code>的<code>Class</code>（默认为NSObject类型）</strong>；</li>
+<li>c. XIB文件的 <strong><code>File’s Owner</code>中的<code>Outlet指向</code></strong>；</li>
+<li>d. XIB文件的 <strong><code>视图（View）</code>的<code>Custom Class（默认为UIView类型）</code></strong>；</li>
+<li>e. XIB文件的 <strong><code>视图（View）</code>中的<code>Outlet指向</code></strong>；</li>
 </ul>
 </li>
 <li>
@@ -290,6 +290,12 @@ class ViewController: UIViewController {
     }
 }
 </code></pre>
+</li>
+<li>
+<p>d) <strong>配置<code>File’s Owner</code>的<code>Class</code>：适用于代码创建此类、嵌套到其他XIB中；配置<code>视图（View）</code>的<code>Custom Class</code>：只适用于代码创建此类；</strong></p>
+<ul>
+<li><strong>封装的带XIB的view，若支持嵌套在其他XIB中，则不能绑定顶级对象View的类名，只能通过绑定File’s Owner的类名，否则出现死循环；</strong></li>
+</ul>
 </li>
 </ul>
 </li>
@@ -493,11 +499,12 @@ if cell == nil {
 </ul>
 <h4><a id="%E5%9B%9B%E3%80%81%E5%8F%82%E8%80%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、参考</h4>
 <ul>
-<li>a、关于xib文件和storyboard文件的那些事儿 <code>https://www.cnblogs.com/tgycoder/p/5677121.html</code></li>
-<li>b、loadNibNamed:owner:options:的理解 <code>http://blog.sina.com.cn/s/blog_5fde60890102vus9.html</code></li>
-<li>c、使用xib开发界面 <code>http://www.cocoachina.com/articles/11086</code></li>
-<li>d、<strong>xib 原理、嵌套、可视化、继承 <code>https://www.jianshu.com/p/50ee2ce6d513</code></strong></li>
-<li>e、iOS关于使用xib创建cell的3种初始化方式 <code>https://blog.csdn.net/Bolted_snail/article/details/80244046</code></li>
+<li>关于xib文件和storyboard文件的那些事儿 <code>https://www.cnblogs.com/tgycoder/p/5677121.html</code></li>
+<li>loadNibNamed:owner:options:的理解 <code>http://blog.sina.com.cn/s/blog_5fde60890102vus9.html</code></li>
+<li>使用xib开发界面 <code>http://www.cocoachina.com/articles/11086</code></li>
+<li><strong>xib 原理、嵌套、可视化、继承 <code>https://www.jianshu.com/p/50ee2ce6d513</code></strong></li>
+<li>iOS关于使用xib创建cell的3种初始化方式 <code>https://blog.csdn.net/Bolted_snail/article/details/80244046</code></li>
+<li><strong>Nested Xib Views - 使用XIB实现嵌套自定义视图：<code>https://blog.wtlucky.com/blog/2014/08/10/nested-xib-views/</code></strong> <a href="media/15703760378326/simpread-Nested%20Xib%20Views%20-%20%E4%BD%BF%E7%94%A8%20XIB%20%E5%AE%9E%E7%8E%B0%E5%B5%8C%E5%A5%97%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A7%86%E5%9B%BE%20-%20GeekerProbe.html">simpread-Nested Xib Views - 使用 XIB 实现嵌套自定义视图.html</a></li>
 </ul>
 
       </div>

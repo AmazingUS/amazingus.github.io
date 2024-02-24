@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -165,7 +165,7 @@
 </li>
 <li>
 <p>由于文件读写可能产生IOError，一旦异常错误会导致后面的close()方法不被调用了，所以要处理异常（在此位置关闭文件）</p>
-<pre><code class="language-python"> # try...finally来实现
+<pre><code class="language-py"> # try...finally来实现
  try:
      f = open('modeltest.py', 'r')  # 默认调用read()方法时返回文本字符串（以UTF-8解码）
      print(f.read())
@@ -176,7 +176,7 @@
 </li>
 <li>
 <p>Python引入了<code>with</code>语句可以自动调用close()方法，不需要认为调用close()方法，简化代码书写</p>
-<pre><code class="language-python"> with open('modeltest.py', 'r') as f:
+<pre><code class="language-py"> with open('modeltest.py', 'r') as f:
      print(f.read())
 </code></pre>
 </li>
@@ -188,7 +188,7 @@
 </li>
 <li>
 <p>若文件小则调用read()，若不确定文件大小则反复调用read(size)比较保险，若是配置文件则调用readlines()最方便</p>
-<pre><code class="language-python"> with open('modeltest.py', 'r') as f:
+<pre><code class="language-py"> with open('modeltest.py', 'r') as f:
      for line in f.readlines():
          print(line.strip())  # 将末尾的'\n'删掉
 </code></pre>
@@ -198,7 +198,7 @@
 </li>
 <li>
 <p>上面讲的都是调用read()方法时返回文本字符串（以UTF-8解码），若要调用read()方法时返回二进制数据，比如读取图片、视频等，则使用'rb'模式打开文件即可</p>
-<pre><code class="language-python"> with open('git.jpg', 'rb') as f:
+<pre><code class="language-py"> with open('git.jpg', 'rb') as f:
      print(f.read())
  # 返回数据
  b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x00..'
@@ -211,13 +211,13 @@
 </li>
 <li>
 <p>字符编码：若要以指定编码读取文本文件，需要给open()函数传入encoding参数（二进制文件不需要encoding参数）；比如，读取UTF-8编码的文件</p>
-<pre><code class="language-python"> with open('orm.py', 'r', encoding='utf-8') as f:
+<pre><code class="language-py"> with open('orm.py', 'r', encoding='utf-8') as f:
      print(f.read())
 </code></pre>
 </li>
 <li>
 <p>有些编码不规范的文本文件，可能夹杂了一些非法编码的字符，此时打开文件会抛出“UnicodeDecodeError”异常；open()函数还可接收一个errors参数，表示若遇到编码错误后该如何处理，最简单的方式是直接忽略</p>
-<pre><code class="language-python"> with open('orm.py', 'r', errors='ignore') as f:
+<pre><code class="language-py"> with open('orm.py', 'r', errors='ignore') as f:
      print(f.read())
 </code></pre>
 </li>
@@ -238,7 +238,7 @@
 </li>
 <li>
 <p><strong>编码是为了节约空间、标记数据类型，所以硬盘存储、网页传输都需要先编码</strong></p>
-<pre><code class="language-python"> with open('test.txt', 'w') as f:
+<pre><code class="language-py"> with open('test.txt', 'w') as f:
      f.write('hello world')
 </code></pre>
 </li>
@@ -247,7 +247,7 @@
 <ul>
 <li>
 <p>数据的读写操作的不一定是文件，也可以是内存；StringIO就是在内存中读写str</p>
-<pre><code class="language-python"> from io import StringIO
+<pre><code class="language-py"> from io import StringIO
  
  f = StringIO()
  f.write('hello')  # 写入数据
@@ -266,7 +266,7 @@
 </li>
 <li>
 <p>StringIO操作的只能是str，若需要操作二进制数据就需要使用BytesIO</p>
-<pre><code class="language-python"> from io import BytesIO
+<pre><code class="language-py"> from io import BytesIO
  
  f = BytesIO()
  # 注意写入的不是str，而是经过UTF-8编码的bytes
@@ -282,7 +282,7 @@
 <ul>
 <li>
 <p>要操作文件、目录，可以在命令行下输入系统提供的各种命令来完成，比如dir、cp等命令；其实系统提供的命令只是调用了系统提供的接口函数，Python内置的os模块也可以直接调用系统提供的接口函数</p>
-<pre><code class="language-python"> import os  # 导入os模块，注意os模块的某些函数与特定操作系统相关的
+<pre><code class="language-py"> import os  # 导入os模块，注意os模块的某些函数与特定操作系统相关的
  
  print(os.name)  # 系统类型，Linux、Unix、OSX是posix，Windows是nt
  print(os.uname())  # 详细系统信息（Windows不支持）
@@ -293,7 +293,7 @@
 </li>
 <li>
 <p>操作文件、目录的函数有些在os模块中，有些在os.path模块中</p>
-<pre><code class="language-python"> os.mkdir(new) # 创建目录
+<pre><code class="language-py"> os.mkdir(new) # 创建目录
  os.rmdir(new) # 删除目录
  
  base = os.path.abspath('.')  # 获取当前的绝对路径
@@ -307,7 +307,7 @@
 </li>
 <li>
 <p>文件路径的拼接、拆分函数并不要求目录和文件真实存在，它们只是对字符串进行操作</p>
-<pre><code class="language-python"> # split拆分一个路径为两部分，后面一部分为最后级别的目录或文件名
+<pre><code class="language-py"> # split拆分一个路径为两部分，后面一部分为最后级别的目录或文件名
  print(os.path.split('/Users/scott/Desktop/task_master.py'))  
  # 结果：('/Users/scott/Desktop', 'task_master.py')
  
@@ -324,14 +324,14 @@
 </li>
 <li>
 <p>shutil模块提供了copyfile()函数用于复制文件；该模块中还有其他实用函数，可以看作是os模块的补充</p>
-<pre><code class="language-python"> import shutil
+<pre><code class="language-py"> import shutil
  
  shutil.copyfile(&quot;orm.py&quot;, 'orm.txt')  # 复制文件
 </code></pre>
 </li>
 <li>
 <p>os.listdir()函数可以列举文件；并且可以进一步进行过滤</p>
-<pre><code class="language-python"> # 列出当前目录下的所有目录
+<pre><code class="language-py"> # 列出当前目录下的所有目录
  l = [x for x in os.listdir('.') if os.path.isdir(x)]
  print(l)
  
@@ -339,7 +339,7 @@
  l = [x for x in os.listdir('.') if os.path.isfile(x) and os.path.splitext(x)[1]=='.py']
  print(l)
 </code></pre>
-<pre><code class="language-python"> # 练习1：利用os模块编写一个实现ls -l输出程序
+<pre><code class="language-py"> # 练习1：利用os模块编写一个实现ls -l输出程序
  import os
  from datetime import datetime
  
@@ -385,7 +385,7 @@
 </li>
 <li>
 <p>picke.dump()函数（dump：倾倒、倾销）将对象序列化后写入一个file-like Object；picke.dumps()函数将对象序列化成一个bytes数据</p>
-<pre><code class="language-python"> import pickle
+<pre><code class="language-py"> import pickle
  
  d = dict(name='Tom', age=20, score=99)
  # 方式一：
@@ -400,7 +400,7 @@
 </li>
 <li>
 <p>pickle.load()函数从一个file-like Object中直接反序列化出对象；pickle.loads()函数将一个bytes数据序列化出对象</p>
-<pre><code class="language-python"> # 方式一：
+<pre><code class="language-py"> # 方式一：
  with open('dump.txt', 'rb') as f:
      d = pickle.load(f) 	    
  print(d)
@@ -421,7 +421,7 @@
 <ul>
 <li>
 <p>Python内置的json模块提供了Python对象到JSON字符串的转换</p>
-<pre><code class="language-python"> import json
+<pre><code class="language-py"> import json
  
  # Obj TO Json str方式一：
  # 将Python对象序列化成JSON字符串后写入file-like Object
@@ -452,7 +452,7 @@
 <ul>
 <li>
 <p>对自定义对象进行序列化、反序列化需要设置“转换函数”（告诉dump如何去序列化），否则报TypeError错误</p>
-<pre><code class="language-python"> import json
+<pre><code class="language-py"> import json
  
  class Student(object):
      def __init__(self, name, age, score):

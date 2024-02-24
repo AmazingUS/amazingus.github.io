@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -117,7 +117,7 @@
 <h4><a id="%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、配置</h4>
 <ul>
 <li>
-<p>配置文件目录</p>
+<p>1、配置文件目录</p>
 <ul>
 <li>Configuration Path：<code>~/Library/Preferences/&lt;PRODUCT&gt;&lt;VERSION&gt;</code>，删除该目录即还原默认配置</li>
 <li>Caches Path：<code>~/Library/Caches/&lt;PRODUCT&gt;&lt;VERSION&gt;</code></li>
@@ -125,13 +125,13 @@
 </ul>
 </li>
 <li>
-<p>禁止AS首次启动下载SDK：显示包内容，bin目录下的idea.properties增加<code>disable.android.first.run=true</code>；</p>
+<p>2、禁止AS首次启动下载SDK：显示包内容，bin目录下的idea.properties增加<code>disable.android.first.run=true</code>；</p>
 </li>
 </ul>
 <span id="more"></span><!-- more -->
 <ul>
 <li>
-<p>Apperance&amp;Behavior</p>
+<p>3、Apperance&amp;Behavior</p>
 <ul>
 <li>主题（程序外观、文本编辑器）： Appearance --&gt; 修改Themes为Darcula</li>
 <li>显示内存使用：Appearance --&gt; 勾选Show memory indicator</li>
@@ -140,7 +140,7 @@
 </ul>
 </li>
 <li>
-<p>Editor</p>
+<p>4、Editor</p>
 <ul>
 <li>API文档悬浮提示：General --&gt; 勾选Show quick documentation...</li>
 <li>自动导包：General --&gt; Auto Import --&gt; 勾选Add unambigous...、Optimize...</li>
@@ -157,19 +157,19 @@
 <h4><a id="%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、使用</h4>
 <ul>
 <li>
-<p>工程区别（AS --&gt; Eclipse）：project --&gt; workspace、module --&gt; project；</p>
+<p>1、工程区别（AS --&gt; Eclipse）：project --&gt; workspace、module --&gt; project；</p>
 </li>
 <li>
-<p>AS 2.1版本开始，新建的Activity默认继承AppCompatActivity；</p>
+<p>2、AS 2.1版本开始，新建的Activity默认继承AppCompatActivity；</p>
 </li>
 <li>
-<p>删除module：需要先Open Module Settings删除对应module，之后右键才有delete选项，之后进行删除；</p>
+<p>3、删除module：需要先Open Module Settings删除对应module，之后右键才有delete选项，之后进行删除；</p>
 </li>
 <li>
-<p>代码自动换行：View --&gt; Active Editor --&gt; Use soft Wraps；</p>
+<p>4、代码自动换行：View --&gt; Active Editor --&gt; Use soft Wraps；</p>
 </li>
 <li>
-<p>常见快捷键</p>
+<p>5、常见快捷键</p>
 <table>
 <thead>
 <tr>
@@ -301,7 +301,7 @@
 <h4><a id="%E4%B8%89%E3%80%81%E8%A1%A5%E5%85%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、补充</h4>
 <ul>
 <li>
-<p><strong>各种Version</strong></p>
+<p>1、<strong>各种Version</strong></p>
 <ul>
 <li>
 <p><strong>a、compileSdkVersion</strong></p>
@@ -369,7 +369,7 @@
 </ul>
 </li>
 <li>
-<p><strong>SDK目录文件</strong></p>
+<p>2、<strong>SDK目录文件</strong></p>
 <ul>
 <li><strong>a、platforms</strong>
 <ul>
@@ -398,7 +398,7 @@
 </ul>
 </li>
 <li>
-<p>Android版本和SDK API Level</p>
+<p>3、Android版本和SDK API Level</p>
 <table>
 <thead>
 <tr>
@@ -457,7 +457,7 @@
 </table>
 </li>
 <li>
-<p>引入第三方库</p>
+<p>4、引入第三方库</p>
 <ul>
 <li>a. 通过将第三方jar包复制到工程的libs目录下，然后选中jar包，之后进行grandle同步；</li>
 <li>b. 通过配置Gradle导入（易于升级）：右键Open Module Settings --&gt; Dependencies，点击 + 后，选择Library dependency，其会自动下载相关的lib；</li>
@@ -465,13 +465,13 @@
 </ul>
 </li>
 <li>
-<p>Gradle使用：略</p>
+<p>5、Gradle使用：略</p>
 </li>
 <li>
-<p>APK签名：略</p>
+<p>6、APK签名：略</p>
 </li>
 <li>
-<p>APK混淆：略</p>
+<p>7、APK混淆：略</p>
 </li>
 </ul>
 

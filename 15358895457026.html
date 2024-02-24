@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -116,24 +116,13 @@
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
 <ul>
-<li>
-<p>Fabric是一个Python库，其提供了丰富的与SSH交互的接口，可以用来在本地或远程机器上自动化、流水化地执行Shell命令，因此非常适合用来做应用的远程部署及系统维护；</p>
-</li>
-<li>
-<p>Fabric分为Python2和Python3版本的，安装Python3版本：<code>pip install fabric3</code>；</p>
-</li>
-<li>
-<p>fab是Fabric程序的命令行执行命令，默认执行一个fabfile.py的文件（若需执行其他文件，使用-f参数指定文件即可）；</p>
+<li>1、Fabric是一个Python库，其提供了丰富的与ssh交互的接口，可以用来在本地或远程机器上自动化、流水化地执行Shell命令，因此非常适合用来做应用的远程部署及系统维护；</li>
+<li>2、Fabric分为Python2和Python3版本的，安装Python3版本：<code>pip install fabric3</code>；</li>
+<li>3、fab是Fabric程序的命令行执行命令，默认执行一个fabfile.py的文件（若需执行其他文件，使用-f参数指定文件即可）；
 <ul>
-<li>
-<p><strong>fabfile.py文件中每个函数就是一个任务，任务名即函数名；</strong></p>
-</li>
-<li>
-<p><strong>fab命令就是用来执行fabfile.py中定义的任务，且必须显式地指定任务名；可以使用-l参数列举当前fabfile.py文件中定义了哪些任务；</strong></p>
-</li>
-<li>
-<p>fab命令语法为 <code>fab [options] &lt;command&gt; [arg1,arg2:val2,host=foo]</code> ；</p>
-</li>
+<li>1）<strong>fabfile.py文件中每个函数就是一个任务，任务名即函数名；</strong></li>
+<li>2）<strong>fab命令就是用来执行fabfile.py中定义的任务，且必须显式地指定任务名；可以使用-l参数列举当前fabfile.py文件中定义了哪些任务；</strong></li>
+<li>3）fab命令语法为 <code>fab [options] &lt;command&gt; [arg1,arg2:val2,host=foo]</code> ；</li>
 </ul>
 </li>
 </ul>
@@ -141,8 +130,8 @@
 <h4><a id="%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、使用</h4>
 <ul>
 <li>
-<p>简单示例</p>
-<pre><code class="language-python">from fabric.api import *
+<p>1、简单示例</p>
+<pre><code class="language-py">from fabric.api import *
 
 def hello1():
     local('uname -a') # 获取当前主机信息
@@ -157,7 +146,7 @@ Darwin s.lan 16.7.0 Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; 
 </code></pre>
 </li>
 <li>
-<p>常见参数</p>
+<p>2、常见参数</p>
 <pre><code class="language-shell">-l：列举定义的任务函数名
 -f：指定fab入口文件，默认为fabfile.py
 -w：当命令失败时，发出警告而不是终止任务
@@ -167,7 +156,7 @@ Darwin s.lan 16.7.0 Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; 
 </code></pre>
 </li>
 <li>
-<p>env（全局环境变量）</p>
+<p>3、env（全局环境变量）</p>
 <pre><code class="language-plain_text">from fabric.api import env
 
 env.hosts：定义目标主机（list）
@@ -183,12 +172,12 @@ env.roledefs：定义角色分组，
 </code></pre>
 <ul>
 <li>也可以自定义全局变量，如env.name、env.age等；</li>
-<li><strong>配置使用public key登陆SSH，需要设置<code>env.use_ssh_config = True</code>；</strong>（参考<code>http://docs.fabfile.org/en/1.10/usage/execution.html#leveraging-native-ssh-config-files</code>）</li>
+<li><strong>配置使用public key登陆ssh，需要设置<code>env.use_ssh_config = True</code>；</strong>（参考<code>http://docs.fabfile.org/en/1.10/usage/execution.html#leveraging-native-ssh-config-files</code>）</li>
 </ul>
 </li>
 <li>
-<p>常用API</p>
-<pre><code class="language-python">lcd：切换本地目录
+<p>4、常用API</p>
+<pre><code class="language-py">lcd：切换本地目录
 local：执行本地命令
 
 cd：切换远程目录
@@ -208,13 +197,13 @@ confirm：获得提示信息确认
 <h4><a id="%E4%B8%89%E3%80%81%E6%A1%88%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、案例</h4>
 <ul>
 <li>
-<p>打包nginx日志并下载解压</p>
-<pre><code class="language-python">from fabric.api import *
+<p>1、打包nginx日志并下载解压</p>
+<pre><code class="language-py">from fabric.api import *
 
 env.hosts = ['IP']
 env.port = 'PORT'
 env.user = 'root'
-env.use_ssh_config = True # 使用public key登陆SSH
+env.use_ssh_config = True # 使用public key登陆ssh
 
 def pack_download():
     with cd('/var/log/nginx'):
@@ -234,8 +223,8 @@ fab -w pack_download
 </code></pre>
 </li>
 <li>
-<p>在不同服务器进行不同操作</p>
-<pre><code class="language-python">from fabric.api import *
+<p>2、在不同服务器进行不同操作</p>
+<pre><code class="language-py">from fabric.api import *
 
 env.roledefs = {
     'websrv': ['root@192.168.0.1:22', 'root@192.168.0.2:22'],
@@ -260,8 +249,8 @@ def test():
 </code></pre>
 </li>
 <li>
-<p>彩色打印</p>
-<pre><code class="language-python">from fabric.colors import *
+<p>3、彩色打印</p>
+<pre><code class="language-py">from fabric.colors import *
 
 def show():
     print(green('success'))
@@ -270,8 +259,8 @@ def show():
 </code></pre>
 </li>
 <li>
-<p>错误及异常处理</p>
-<pre><code class="language-python"># http://docs.fabfile.org/en/1.12.1/tutorial.html#failure-handling
+<p>4、错误及异常处理</p>
+<pre><code class="language-py"># http://docs.fabfile.org/en/1.12.1/tutorial.html#failure-handling
 
 from fabric.colors import *
 from fabric.contrib.console import confirm
@@ -292,14 +281,14 @@ def error_handle():
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15360828386434.html" title="Previous Post: Nginx+uWSGI运行Python Web应用">&laquo; Nginx+uWSGI运行Python Web应用</a>
+            <a href="15360828386434.html" title="Previous Post: Nginx+uWSGI+Flask运行Python Web应用">&laquo; Nginx+uWSGI+Flask运行Python Web应用</a>
             
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15355589911528.html" title="Next Post: Ubuntu常见命令">Ubuntu常见命令 &raquo;</a>
+            <a href="15339807662944.html" title="Next Post: Ubuntu配置使用">Ubuntu配置使用 &raquo;</a>
             
           </p>
         </div>

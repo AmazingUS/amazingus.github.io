@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -126,47 +126,34 @@
 </div>
 <h4><a id="%E4%B8%80%E3%80%81uri%E3%80%81url" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、URI、URL</h4>
 <ul>
-<li>URI（Universal Resource Identifier）：统一资源标识符，一种语义上的抽象概念；可以是绝对的，也可以是相对的</li>
-<li>URL（Uniform Resource Locator）：统一资源定位符，一种具体的绝对的URI，是URI的一个子集；不仅唯一标识资源，而且还提供足够的信息定位该资源的信息</li>
+<li>URI（Universal Resource Identifier）：统一资源标识符，一种语义上的抽象概念；可以是绝对的，也可以是相对的；</li>
+<li>URL（Uniform Resource Locator）：统一资源定位符，一种具体的绝对的URI，是URI的一个子集；不仅唯一标识资源，而且还提供足够的信息定位该资源的信息；</li>
 </ul>
 <h4><a id="%E4%BA%8C%E3%80%81urllib%E5%BA%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、urllib库</h4>
 <ul>
-<li>Python 2.x中有urllib、urllib2两个HTTP请求模块；urllib2是urllib的增强，但urllib中有urllib2中所没有的函数，它们一起搭配使用、不可相互替代
+<li>
+<p>Python 2.x中有urllib、urllib2两个HTTP请求模块；urllib2是urllib的增强，但urllib中有urllib2中所没有的函数，它们一起搭配使用、不可相互替代；</p>
 <ul>
-<li>
-<p>a). urllib仅仅可以接受url，不可以设置请求的headers，意味着不可以进行伪装“User Agent”等操作</p>
-</li>
-<li>
-<p>b). urllib2可以通过接受一个Request实例，来设置HTTP请求的headers</p>
-</li>
-<li>
-<p>c). urllib提供urlencode函数用来“拼接”请求参数字符串</p>
-</li>
-<li>
-<p>d). urllib2没有“拼接”请求参数字符串功能的函数；</p>
-</li>
-<li>
-<p>urlencode函数是将一个dit或一个含有两个元素tuple的list变成一个url查询字符串（如name=Tom&amp;age=12)，并不是进行字符编码</p>
-</li>
+<li>a）urllib仅仅可以接受url，不可以设置请求的headers，意味着不可以进行伪装“User Agent”等操作；</li>
+<li>b）urllib2可以通过接受一个Request实例，来设置HTTP请求的headers；</li>
+<li>c）urllib提供urlencode函数用来“拼接”请求参数字符串；</li>
+<li>d）urllib2没有“拼接”请求参数字符串功能的函数；</li>
 </ul>
+</li>
+<li>
+<p>urlencode函数是将一个dit或一个含有两个元素tuple的list变成一个url查询字符串（如name=Tom&amp;age=12)，并不是进行字符编码；</p>
 </li>
 </ul>
 <span id="more"></span><!-- more -->
 <ul>
 <li>
-<p>Python 3.x中urllib和urilib2两个模块统一合并成了urllib模块，其中urllib2被修改为urllib.request</p>
+<p>Python 3.x中urllib和urilib2两个模块统一合并成了urllib模块，其中urllib2被修改为urllib.request；</p>
 <ul>
-<li>
-<p>a). urllib.urlencode()变成了urllib.parse.urlencode()</p>
-</li>
-<li>
-<p>b). urllib2.urlopen()变成了urllib.request.urlopen()</p>
-</li>
-<li>
-<p>c). urllib2.Request()变成了urllib.request.Request()</p>
-</li>
+<li>a）urllib.urlencode()变成了urllib.parse.urlencode()；</li>
+<li>b）urllib2.urlopen()变成了urllib.request.urlopen()；</li>
+<li>c）urllib2.Request()变成了urllib.request.Request()；</li>
 </ul>
-<pre><code class="language-python"> from urllib import request, parse
+<pre><code class="language-py"> from urllib import request, parse
  
  # 方式1: 使用url（GET）
  url = 'http://www.baidu.com/'
@@ -228,8 +215,8 @@
 <h4><a id="%E4%B8%89%E3%80%81urlerror%E3%80%81httperror" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、URLError、HTTPError</h4>
 <ul>
 <li>
-<p>URLError是HTTPError的父类；URLError有reason属性，HTTPError既有reason属性，也有code属性</p>
-<pre><code class="language-python"> from urllib import request, error
+<p>URLError是HTTPError的父类；URLError有reason属性，HTTPError既有reason属性，也有code属性；</p>
+<pre><code class="language-py"> from urllib import request, error
  
  # Error处理方式1:
  try:
@@ -268,14 +255,14 @@
 <h4><a id="%E5%9B%9B%E3%80%81%E8%AE%BE%E7%BD%AEheader%E3%80%81timeout" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、设置header、timeout</h4>
 <ul>
 <li>
-<p>request的Content-Type（通常用于表单提交）有两种：application/x-www-form-urlencoded（没有附件上传的表单）、multipart/form-data（有附件上传的表单）</p>
+<p>request的Content-Type（通常用于表单提交）有两种：application/x-www-form-urlencoded（没有附件上传的表单）、multipart/form-data（有附件上传的表单）；</p>
 </li>
 <li>
-<p>response的Content-Type通常是text/html、application/json、application/json</p>
+<p>response的Content-Type通常是text/html、application/json、application/json；</p>
 </li>
 <li>
-<p>某些网站的简单“反盗链”设置，就检查request header的 <code>referer</code> 字段的值是不是该网站自身，若不是则认为“被盗链”了；应对“反盗链”只需将referer的值设置为当前请求的网站即可</p>
-<pre><code class="language-python"> # timeout设置方式1: 全局timeout(设置socket)
+<p>某些网站的简单“反盗链”设置，就检查request header的 <code>referer</code> 字段的值是不是该网站自身，若不是则认为“被盗链”了；应对“反盗链”只需将referer的值设置为当前请求的网站即可；</p>
+<pre><code class="language-py"> # timeout设置方式1: 全局timeout(设置socket)
  import  socket
  socket.setdefaulttimeout(0.25)
  
@@ -302,40 +289,43 @@
 </ul>
 <h4><a id="%E4%BA%94%E3%80%81opener%E3%80%81handler" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、Opener、Handler</h4>
 <ul>
-<li><strong>urllib.request.urlopen()本质是使用一个默认创建的Opener对象去发送网络请求，但其不支持验证、cookie、其他HTTP高级功能</strong>
+<li>
+<p><strong>urllib.request.urlopen()本质是使用一个默认创建的Opener对象去发送网络请求，但其不支持验证、cookie、其他HTTP高级功能；</strong></p>
 <ul>
-<li><strong>若要支持上述高级那些功能，必须使用build_opener()函数创建自定义的Opener对象；build_opener()函数的参数为Handlers，返回为Opener对象；若不传入Handlers参数，则Opener对象会被默认添加一些Hanlder</strong></li>
-<li>Opener对象也可通过add_handler()方法手动添加Handler</li>
-<li>Opener对象具有open()方法，和request的urlopen()方法的功能一样，也支持通过addHeaders()方法设置headers</li>
-<li>可以将某个Opener对象装载变为全局的（调用request.install_opener(opener)方法），之后使用request.urlopen()就是使用该Opener对象去发送请求</li>
+<li><strong>若要支持上述高级那些功能，必须使用build_opener()函数创建自定义的Opener对象；build_opener()函数的参数为Handlers，返回为Opener对象；若不传入Handlers参数，则Opener对象会被默认添加一些Hanlder；</strong></li>
+<li>Opener对象也可通过add_handler()方法手动添加Handler；</li>
+<li>Opener对象具有open()方法，和request的urlopen()方法的功能一样，也支持通过addHeaders()方法设置headers；</li>
+<li>可以将某个Opener对象装载变为全局的（调用request.install_opener(opener)方法），之后使用request.urlopen()就是使用该Opener对象去发送请求；</li>
 </ul>
 </li>
-<li>HTTPBasicAuthHandler是处理WWW-Authenticate的Handler，ProxyHandler是处理代理的Handler，HTTPRedirectHandler是处理重定向的Handler（需要子类），HTTPCoookieProcessor是处理Cookies的Handler，等等</li>
+<li>
+<p>HTTPBasicAuthHandler是处理WWW-Authenticate的Handler，ProxyHandler是处理代理的Handler，HTTPRedirectHandler是处理重定向的Handler（需要子类），HTTPCoookieProcessor是处理Cookies的Handler，等等；</p>
+</li>
 </ul>
 <h5><a id="5-1-httpbasicauthhandler" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.1 HTTPBasicAuthHandler</h5>
 <ul>
 <li>
-<p>WWW-Authenticate是早期的一种简单身份认证技术，通常用在嵌入式领域（如早期的家用路由器的登录）或者一些需要简单认证的应用（如Tomcat的Application管理的登录）；该认证采用的用户名密码的加密方式为Base64（即明码传输），验证简单容易被破解</p>
+<p>WWW-Authenticate是早期的一种简单身份认证技术，通常用在嵌入式领域（如早期的家用路由器的登录）或者一些需要简单认证的应用（如Tomcat的Application管理的登录）；该认证采用的用户名密码的加密方式为Base64（即明码传输），验证简单容易被破解；</p>
 </li>
 <li>
 <p>WWW-Authenticate认证过程：</p>
 <ul>
-<li>1). 客户端浏览器向服务端发送HTTP请求（比如192.168.1.1）</li>
-<li>2). 服务端收到请求，解析请求的header，判断是否有 <code>Authorization: Basic XXXX</code> 字段；若没有，则服务器的响应的header设置 <code>WWW-Authenticate: Basic realm=&quot;YYYY&quot;</code>（要求客户端发送用户名密码到服务端）</li>
-<li>3). 当客户端浏览器收到响应的header中含有 <code>WWW-Authenticate: Basic realm=&quot;YYYY&quot;</code> 时，会弹出对话框要求用户输入相关信息</li>
-<li>4). 用户输入相关信息后，客户端将发送含有 <code>Authorization: Basic XXXX</code> 请求给服务器进行认证</li>
+<li>1）客户端浏览器向服务端发送HTTP请求（比如192.168.1.1）；</li>
+<li>2）服务端收到请求，解析请求的header，判断是否有 <code>Authorization: Basic XXXX</code> 字段；若没有，则服务器的响应的header设置 <code>WWW-Authenticate: Basic realm=&quot;YYYY&quot;</code>（要求客户端发送用户名密码到服务端）；</li>
+<li>3）当客户端浏览器收到响应的header中含有 <code>WWW-Authenticate: Basic realm=&quot;YYYY&quot;</code> 时，会弹出对话框要求用户输入相关信息；</li>
+<li>4）用户输入相关信息后，客户端将发送含有 <code>Authorization: Basic XXXX</code> 请求给服务器进行认证；</li>
 </ul>
 </li>
 <li>
 <p>验证WWW-Authenticate认证</p>
-<pre><code class="language-python"> 
+<pre><code class="language-py"> 
  # 1. 环境准备：安装Tomcat，修改文件权限，修改tomcat-users.xml，启动服务器
   	a. 修改文件权限：sudo chmod 755 xxx/bin/*.sh
   	b. 修改tomcat-users.xml：增加如下内容
  	  &lt;role rolename=&quot;manager-gui&quot;/&gt;
  	  &lt;user username=&quot;tomcat&quot; password=&quot;tomcat&quot; roles=&quot;manager-gui&quot;/&gt;
 </code></pre>
-<pre><code class="language-python"> # 2. 验证
+<pre><code class="language-py"> # 2. 验证
  from urllib import request
  
  # a. 不使用HTTPBasicAuthHandler，访问失败
@@ -370,7 +360,7 @@
 <ul>
 <li>
 <p>设置HTTP代理</p>
-<pre><code class="language-python"> from urllib import request
+<pre><code class="language-py"> from urllib import request
  	
  # a. 不使用代理
  url = 'http://ip.chinaz.com/getip.aspx'
@@ -411,13 +401,13 @@
 <li>
 <p>重定向类型：</p>
 <ul>
-<li>301重定向（Moved Permanently）：表示本网页永久性转移到另一个地址，搜索引擎在抓取新内容时，会将旧的网址替换为重定向之后的网址，比如<a href="http://www.360buy.com/">http://www.360buy.com/</a></li>
-<li>302重定向（Temporarily Moved）：表示暂时重定向，搜索引擎在抓取新内容时，会保留旧的网址，比如<a href="http://www.baidu.com/haha">http://www.baidu.com/haha</a></li>
+<li><code>301重定向（Moved Permanently）</code>：表示本网页永久性转移到另一个地址，搜索引擎在抓取新内容时，会将旧的网址替换为重定向之后的网址，比如<a href="http://www.360buy.com/%EF%BC%89%EF%BC%9B">http://www.360buy.com/）；</a></li>
+<li><code>302重定向（Temporarily Moved）</code>：表示暂时重定向，搜索引擎在抓取新内容时，会保留旧的网址，比如<a href="http://www.baidu.com/haha%EF%BC%9B">http://www.baidu.com/haha；</a></li>
 </ul>
 </li>
 <li>
 <p>处理重定向（需要自定义Handler继承HTTPRedirectHandler，并重写相关处理方法）</p>
-<pre><code class="language-python"> from urllib import request
+<pre><code class="language-py"> from urllib import request
  
  # a. 不进行重定向处理
  url = 'http://www.baidu.com/haha'
@@ -450,28 +440,28 @@
 <h5><a id="5-4-httpcoookieprocessor" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.4 HTTPCoookieProcessor</h5>
 <ul>
 <li>
-<p>利用http.cookiejar模块的CookieJar对象可以捕获、保存、在后续请求时加载cookie（这些操作都使用了handler来实现的），以实现模拟登录的功能；在Python 2.x中，CookieJar在cookielib模块下</p>
+<p>利用http.cookiejar模块的CookieJar对象可以捕获、保存、在后续请求时加载cookie（这些操作都使用了handler来实现的），以实现模拟登录的功能；在Python 2.x中，CookieJar在cookielib模块下；</p>
 </li>
 <li>
 <p>cookie保存的方式有两大类型：</p>
 <ul>
-<li>CookieJar（保存到内存中）</li>
-<li>FileCookieJar（保存到文件中）：无法直接使用，需要用其子类MozillaCookieJar（保存格式为Mozilla格式）、LWPCookieJar（保存格式为LWP格式）</li>
+<li>1）CookieJar（保存到内存中）；</li>
+<li>2）FileCookieJar（保存到文件中）：无法直接使用，需要用其子类MozillaCookieJar（保存格式为Mozilla格式）、LWPCookieJar（保存格式为LWP格式）；</li>
 </ul>
 </li>
 <li>
-<p>一个cookie的大小是有限制的；对于同一个url可以有多个cookie，但发送给服务器时会自动将多个cookie拼接一起设置在request的header的“Cookie”字段中</p>
+<p>一个cookie的大小是有限制的；对于同一个url可以有多个cookie，但发送给服务器时会自动将多个cookie拼接一起设置在request的header的“Cookie”字段中；</p>
 </li>
 <li>
 <p>使用cookie的方式：</p>
 <ul>
-<li>直接从response的header中获取cookie：之后访问同一个域中的其他url，request的header中是默认不会带“Cookie”字段的，需要手动设置cookie</li>
-<li><strong>通过CookieJar获取cookie：之后访问同一个域中的其他url，会自动带上之前获取的cookie，不需要手动设置</strong></li>
+<li>1）直接从response的header中获取cookie：之后访问同一个域中的其他url，request的header中是默认不会带“Cookie”字段的，需要手动设置cookie；</li>
+<li>2）<strong>通过CookieJar获取cookie：之后访问同一个域中的其他url，会自动带上之前获取的cookie，不需要手动设置；</strong></li>
 </ul>
 </li>
 <li>
 <p>处理cookie</p>
-<pre><code class="language-python"> from urllib import request
+<pre><code class="language-py"> from urllib import request
  from http import cookiejar
  
  # a. 直接从response的header中获取cookie
@@ -537,7 +527,7 @@
 </li>
 <li>
 <p>调试：输出HTPP Debug Log</p>
-<pre><code class="language-python"> # 输出Log方式1：
+<pre><code class="language-py"> # 输出Log方式1：
  from urllib import request
  from http.client import HTTPConnection, HTTPSConnection
  
@@ -565,7 +555,7 @@
 <ul>
 <li>
 <p>抓取糗事百科</p>
-<pre><code class="language-python"> # http://www.qiushibaike.com/hot/page/1/
+<pre><code class="language-py"> # http://www.qiushibaike.com/hot/page/1/
  # 匹配的文字内容格式：&lt;div class=&quot;content&quot;&gt;这个一定能过&lt;/div&gt;
  from urllib import request
  import re
@@ -595,7 +585,7 @@
  			pageContents.append(content.replace('\n', ''))
  		return pageContents
 </code></pre>
-<pre><code class="language-python"> totalPageContents = []
+<pre><code class="language-py"> totalPageContents = []
  
  def get_pages_contents():
  	page = 1
@@ -620,7 +610,7 @@
  		else:
  			time.sleep(1.0)
 </code></pre>
-<pre><code class="language-python"> def start():
+<pre><code class="language-py"> def start():
  	print('------------开始爬虫------------')
  	Thread(target=get_pages_contents).start()
  	print_pages_contents()
@@ -631,7 +621,7 @@
 </li>
 <li>
 <p>抓取百度贴吧连载小说</p>
-<pre><code class="language-python"> # http://tieba.baidu.com/p/3829840554?see_lz=1&amp;pn=1
+<pre><code class="language-py"> # http://tieba.baidu.com/p/3829840554?see_lz=1&amp;pn=1
  from urllib import request
  import re
  
@@ -654,7 +644,7 @@
  		      co = re.sub(r'&lt;a .+?&gt;(.+?)&lt;/a&gt;', r'\1', co)  # 处理超链接
  		      allData.append(co) # 注：不严谨，无法保证每页的顺序正确
 </code></pre>
-<pre><code class="language-python"> url = 'http://tieba.baidu.com/p/3829840554?see_lz=1'
+<pre><code class="language-py"> url = 'http://tieba.baidu.com/p/3829840554?see_lz=1'
  req = request.Request(url)
  req.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0) Gecko/20100101 Firefox/45.0')
  

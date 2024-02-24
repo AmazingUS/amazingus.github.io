@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -99,7 +99,7 @@
         
         <h1>Ubuntu配置使用</h1>
         <div class="read-more clearfix">
-          <span class="date">2018/8/11</span>
+          <span class="date">2018/8/30</span>
            
           <span class="comments">
              
@@ -109,134 +109,292 @@
 
       <div class="article-content">
         <div class="mweb_toc"><ul>
-<li><a href="#%E4%B8%80%E3%80%81%E5%86%85%E6%A0%B8%E7%AE%A1%E7%90%86">一、内核管理</a></li>
-<li><a href="#%E4%BA%8C%E3%80%81%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86">二、服务管理</a></li>
-<li><a href="#%E4%B8%89%E3%80%81vim%E4%BD%BF%E7%94%A8">三、vim使用</a></li>
-<li><a href="#%E5%9B%9B%E3%80%81%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4">四、系统时间</a></li>
-<li><a href="#%E4%BA%94%E3%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90">五、域名解析</a></li>
-<li><a href="#%E5%85%AD%E3%80%81ssh%E7%99%BB%E5%BD%95">六、SSH登录</a></li>
-<li><a href="#%E4%B8%83%E3%80%81%E6%9F%A5%E8%AF%A2%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E6%97%B6%E9%97%B4">七、查询软件安装时间</a></li>
+<li><a href="#001%E3%80%81%E5%86%85%E6%A0%B8%E7%AE%A1%E7%90%86">001、内核管理</a></li>
+<li><a href="#002%E3%80%81%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86">002、服务管理</a></li>
+<li><a href="#003%E3%80%81%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4">003、系统时间</a></li>
+<li><a href="#004%E3%80%81vim%E4%BD%BF%E7%94%A8">004、vim使用</a></li>
+<li><a href="#005%E3%80%81ssh%E7%99%BB%E5%BD%95">005、SSH登录</a></li>
+<li><a href="#006%E3%80%81ubuntu-root%E9%BB%98%E8%AE%A4%E5%AF%86%E7%A0%81%E3%80%81root-ssh%E7%99%BB%E9%99%86">006、Ubuntu root默认密码、root SSH登陆</a></li>
+<li><a href="#007%E3%80%81%E6%9F%A5%E8%AF%A2%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E6%97%B6%E9%97%B4">007、查询软件安装时间</a></li>
+<li><a href="#008%E3%80%81%E6%9F%A5%E7%9C%8B%E5%AE%9E%E6%97%B6%E7%BD%91%E9%80%9F">008、查看实时网速</a></li>
+<li><a href="#009%E3%80%81%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%8D%A1%EF%BC%88%E5%85%A8%E9%83%A8%E3%80%81%E8%99%9A%E6%8B%9F%E3%80%81%E7%89%A9%E7%90%86%EF%BC%89">009、查看网卡（全部、虚拟、物理）</a></li>
+<li><a href="#010%E3%80%81%E4%BD%BF%E7%94%A8systemd%EF%BC%8C%E9%85%8D%E7%BD%AE%E5%BC%80%E6%9C%BA%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC">010、使用systemd，配置开机执行脚本</a></li>
+<li><a href="#011%E3%80%81%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%EF%BC%88iptables%E3%80%81ipset%E3%80%81dnsmasq%EF%BC%89">011、基于域名的流量管理（iptables、ipset、dnsmasq）</a></li>
+<li><a href="#012%E3%80%81crontab%EF%BC%88%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%89">012、Crontab（定时任务）</a></li>
+<li><a href="#013%E3%80%81%E5%BC%80%E5%90%AFbbr%EF%BC%8C%E4%BC%98%E5%8C%96tcp%E9%80%9F%E5%BA%A6">013、开启BBR，优化TCP速度</a></li>
+<li><a href="#014%E3%80%81%E5%A4%9A%E8%AF%AD%E8%A8%80%EF%BC%88%E5%A6%82%E7%BB%88%E7%AB%AF%E6%98%BE%E7%A4%BA%E8%8B%B1%E6%96%87%EF%BC%89">014、多语言（如终端显示英文）</a></li>
+<li><a href="#015%E3%80%81%E6%9B%B4%E6%8D%A2ubuntu%E8%BD%AF%E4%BB%B6%E6%BA%90">015、更换Ubuntu软件源</a></li>
 </ul>
 </div>
-<h4><a id="%E4%B8%80%E3%80%81%E5%86%85%E6%A0%B8%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、内核管理</h4>
+<h4><a id="001%E3%80%81%E5%86%85%E6%A0%B8%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>001、内核管理</h4>
 <ul>
 <li>
-<p>清理多余的Linux内核</p>
+<p>1、清理多余的Linux内核</p>
 <ul>
-<li>
-<p>当系统升级的时，旧的内核版本并不会被清理，之后就会导致/boot空间不足；卸载旧的内核版本可解决此问题；</p>
-<pre><code class="language-shell">// 查看系统已经安装的内核版本
-// 状态install说明已安装的版本
+<li>当系统升级的时，旧的内核版本并不会被清理，之后就会导致/boot空间不足；卸载旧的内核版本可解决此问题；</li>
+</ul>
+<pre><code class="language-shell"># 查看系统已经安装的内核版本
+# 状态install说明已安装的版本
 dpkg --get-selections | grep linux
 dpkg --list | grep linux
 
-// 查看系统当前使用的内核版本
+# 查看系统当前使用的内核版本
 uname -r
 </code></pre>
-<pre><code class="language-shell">// 使用purge命令删除相应的内核
-// Ubuntu内核镜像包含: linux-headers-(内核头文件)、linux-image-(内核镜像)、linux-image-extra-（额外的内核模块）
-apt-get purge linux-image-4.4.0-103-generic
-// 或
-apt-get purge linux-image-4.4.0*
+<pre><code class="language-shell"># 使用purge命令删除相应的内核
+# Ubuntu内核镜像包含: linux-headers-(内核头文件)、linux-image-(内核镜像)、linux-image-extra-（额外的内核模块）
+apt purge linux-image-4.4.0-103-generic
+# 或
+apt purge linux-image-4.4.0*
 
-// 若删除时，出现类似以下错误
-// “linux-headers-generic : Depends: linux-headers
-// -XXX-generic but it is not going to be installed”
-// 进入/boot目录，将把4.4.0版本的config-4.4.0-*、vmlinuz-4.4.0-*、
-// initrd.img-4.4.0-*、abi-4.4.0-*、System.map-4.4.0-*、retpoline-4.4.0-*都删除
-// 然后执行apt-get install -f命令进行修复
-// 最后，再次使用purge命令删除相应的内核
+# 若删除时，出现类似以下错误
+# “linux-headers-generic : Depends: linux-headers
+# -XXX-generic but it is not going to be installed”
+# 进入/boot目录，将把4.4.0版本的config-4.4.0-*、vmlinuz-4.4.0-*、
+# initrd.img-4.4.0-*、abi-4.4.0-*、System.map-4.4.0-*、retpoline-4.4.0-*都删除
+# 然后执行apt-get install -f命令进行修复
+# 最后，再次使用purge命令删除相应的内核
 
-// 若GRUB配置在删除旧内核后没有正确升级，执行以下命令更新配置
+# 若GRUB配置在删除旧内核后没有正确升级，执行以下命令更新配置
 update-grub2 或 update-grub
 
 清理/usr/src目录，删除已经卸载的内核目录
 </code></pre>
 </li>
 </ul>
-</li>
-</ul>
 <span id="more"></span><!-- more -->
 <ul>
 <li>
-<p>升级Linux内核</p>
+<p>2、升级Linux内核</p>
 <pre><code class="language-shell">uname -r
 
-apt-get update
+apt update
 
-// 查看可用的Linux内核版本
+# 查看可用的Linux内核版本
 apt-cache showpkg linux-image
 
-// 安装想要升级的Linux内核版本，如inux-image-4.10.0-22-generic
+# 安装想要升级的Linux内核版本，如linux-image-4.10.0-22-generic
 apt-get install linux-image-4.10.0-22-generic
 
-// 更新GRUB
+# 更新GRUB
 update-grub
 
-// 安装完成后重启
-sudo reboot
+# 安装完成后重启
+reboot
 </code></pre>
 </li>
 </ul>
-<h4><a id="%E4%BA%8C%E3%80%81%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、服务管理</h4>
+<h4><a id="002%E3%80%81%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>002、服务管理</h4>
 <ul>
 <li>
-<p>Linux服务有/etc/init.d、service、systemctl三种方式管理；</p>
+<p>1、Linux的服务，有<code>/etc/init.d</code>、<code>service</code>、<code>systemctl</code>三种方式管理：</p>
 <ul>
 <li>
-<p>a. <code>/etc/init.d/XXX start/stop/...</code></p>
+<p>1）<strong><code>/etc/init.d/XX start|stop|...</code></strong></p>
 <ul>
-<li>到/etc/init.d目录执行相关程序；</li>
-<li><strong>缺点：启动时间长（init进程是串行启动）、启动脚本复杂（脚本中需要处理各种case）；</strong></li>
+<li><strong>本质上会去/etc/init.d目录，查找执行相关的程序文件；</strong></li>
+<li>缺点：启动时间长（init进程是串行启动）、启动脚本复杂（脚本中需要处理各种case）；</li>
 <li>一般常用软件的脚本都已编写好，不需要再编写，但其他软件需要自己编写；</li>
 </ul>
 <pre><code class="language-shell">/etc/init.d/mysql start
 </code></pre>
 </li>
 <li>
-<p>b. <code>service XXX start/stop/...</code></p>
+<p>2）<strong><code>service XX start|stop|...</code></strong></p>
 <ul>
-<li>其实本质就是/etc/init.d，也是到/etc/init.d目录执行相关程序；</li>
+<li><strong>本质还是/etc/init.d，还是会去/etc/init.d目录，查找执行相关的程序文件；</strong></li>
 </ul>
 <pre><code class="language-shell">service mysql start
 </code></pre>
 </li>
 <li>
-<p>c. <code>systemctl start/stop/... XXX</code></p>
+<p>3）<strong><code>systemctl start|stop|... XX</code></strong></p>
 <ul>
-<li>systemctl是systemd的主命令，用于管理系统及进程；</li>
-<li>systemd是Linux系统最新的初始化系统（init），用于提高系统的启动速度；systemd是一组命令，其还包括systemd-analyze（查看启动耗时）、hostnamectl（查看当前主机的信息）等命令；</li>
-<li><strong>systemctl需要的服务脚本（.service类型的systemd的Unit）更简洁，只需要配置执行文件、pid文件路径等即可；</strong></li>
-</ul>
-<pre><code class="language-shell">systemctl start mysql
+<li>
+<p>systemd（system daemon，系统守护进程）是Linux系统最新的初始化系统（init），用于提高系统的启动速度；systemd是一组命令，其包括systemctl、systemd-analyze（查看启动耗时）、hostnamectl（查看当前主机的信息）等命令；</p>
+</li>
+<li>
+<p><code>systemctl</code>是systemd的主命令，用于管理系统及进程，其需要的配置文件更简洁，只需要配置执行文件、pid文件路径等即可；</p>
+<pre><code class="language-shell"># 执行
+systemctl start mysql
 systemctl start mysql.service
 </code></pre>
 </li>
 </ul>
 </li>
-<li>
-<p>systemctl作用</p>
-<ul>
-<li><strong>a. systemctl管理着systemd的Unit，主要有四种类型文件：.mount、.target、.wants、.service；</strong>
-<ul>
-<li>.mount定义一个挂载点，[Mount]节点里配置What、Where、Type三个数据项；</li>
-<li>.target定义一些基础的组件，以供.service调用；</li>
-<li>.wants定义要执行的文件集合，每次执行时，.wants文件夹里面的文件都会执行；</li>
-<li>.service定义了一个服务，分为[Unit]、[Service]、[Install]三个小节；</li>
-<li>Ubuntu的systemd的Unit在<code>/etc/systemd/system</code>，Centos的在<code>/usr/lib/systemd/system</code>；</li>
 </ul>
 </li>
-<li><strong>b. systemctl也兼容了service，也会去/etc/init.d目录查找执行相关程序；</strong></li>
-</ul>
-</li>
-</ul>
-<h4><a id="%E4%B8%89%E3%80%81vim%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、vim使用</h4>
+<li>
+<p>2、systemctl命令</p>
 <ul>
 <li>
-<p>vim是vi的升级版本，其不仅兼容vi的所有指令，而且还支持无限制多级撤消、语法高亮等特性；vi适用于文本编辑，vim更适用于编码；<strong>注意：vim使用vim命令打开文件，而不是vi命令；</strong></p>
+<p>1）<strong>systemctl管理着systemd的Unit，主要有4种类型文件：<code>.mount</code>、<code>.target</code>、<code>.wants</code>、<code>.service</code>；这里<code>主要介绍.service（结尾文件）</code>；</strong></p>
+<ul>
+<li>.mount（结尾文件）：定义一个挂载点，[Mount]节点里配置What、Where、Type三个数据项；</li>
+<li>.target（结尾文件）：定义一些基础的组件，以供.service调用；</li>
+<li>.wants（结尾文件）：定义要执行的文件集合，每次执行时，.wants文件夹里面的文件都会执行；</li>
+<li><strong><code>.service（结尾文件）</code>：定义了一个服务，分为<code>[Unit]（控制单元，表示启动顺序和依赖关系）</code>、<code>[Service]（服务，表示服务的定义）</code>、<code>[Install]（安装，表示如何安装配置文件）</code>3个模块；</strong></li>
+</ul>
 </li>
 <li>
-<p>vi模式</p>
+<p>2）<strong><code>systemctl</code>也兼容了<code>service</code>，也会去<code>/etc/init.d</code>目录，查找执行相关的程序文件；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>3、案例：httpd.service配置文件</p>
+<pre><code class="language-shell">[Unit]                   
+Description=httpd # 当前配置文件的描述信息
+After=network.target # 表示当前服务是在哪个服务后面启动；一般定义为网络服务启动后启动
+
+[Service]               
+Type=forking # 定义启动类型
+ExecStart=/usr/local/apache/bin/apachectl start # 定义启动进程时，执行的命令
+ExecReload=/usr/local/apache/bin/apachectl restart # 重启服务时，执行的命令
+ExecStop=/usr/local/apache/bin/apachectl stop # 定义关闭进程时，执行的命令
+PrivateTmp=true # 是否分配独立空间
+
+[Install]
+WantedBy=multi-user.target # 表示多用户命令行状态
+</code></pre>
+</li>
+<li>
+<p>4、<strong><code>XX.service</code>（结尾文件）配置文件的字段含义</strong></p>
+<ul>
+<li>
+<p>1）<strong><code>[Unit]</code>字段（主要给出服务描述、启动顺序和依赖关系）</strong></p>
+<ul>
+<li>a. <code>Description</code>：当前服务的简单描述；</li>
+<li>b. <code>Documentation</code>：服务文档位置；</li>
+<li>c. <strong><code>After、Before</code>：表示启动顺序，不涉及依赖关系；Before=xx.service，表示本服务在xx.service启动之前启动；After=yy.service，表示本服务在yy.service之后启动；</strong></li>
+<li>d. <strong><code>Wants</code>：表示该服务和某服务存在某种弱依赖关系，即某服务停止运行或退出，不影响该服务继续运行；</strong></li>
+<li>e. <code>Requires</code>：表示”强依赖”关系，即某服务停止运行或退出，该服务也必须停止运行；</li>
+<li>f. <code>Wants与Requires</code>：只涉及依赖关系，与启动顺序无关，默认情况下是同时启动的；</li>
+</ul>
+</li>
+<li>
+<p>2）<strong><code>[Service]</code>字段（服务的启动行为，以及如何启动、重启、停止等信息）</strong></p>
+<ul>
+<li>a. <code>Type</code>字段：定义启动类型；
+<ul>
+<li><strong><code>simple</code>（默认值）：ExecStart字段启动的进程为主进程，进程不会fork；</strong></li>
+<li><strong><code>forking</code>：ExecStart字段将以fork()方式启动，此时父进程将会退出，子进程将成为主进程；使用此启动类型，应同时指定PIDFile=，以便systemd能够跟踪服务的主进程；</strong></li>
+<li>oneshot：类似于simple，但只执行一次，systemd会等它执行完，才启动其他服务；可能需要同时设置RemainAfterExit=yes，使得systemd在服务进程退出之后，仍然认为服务处于激活状态；该方式允许指定多个希望顺序执行的用户自定义命令；</li>
+<li>notify：类似于simple，启动结束后会发出通知信号，然后systemd再启动其他服务；</li>
+<li>dbus：类似于simple，但会等待D-Bus信号后启动；</li>
+<li>idle：类似于simple，但是要等到其他任务都执行完，才会启动该服务；一种使用场合是为让该服务的输出，不与其他服务的输出相混；</li>
+</ul>
+</li>
+<li>b. 执行命令的相关字段；
+<ul>
+<li><strong><code>ExecStart</code>：定义启动进程时执行的命令，就是手动启动时执行的命令；</strong></li>
+<li><strong><code>ExecReload</code>：重启服务时执行的命令；</strong></li>
+<li><strong><code>ExecStop</code>：停止服务时执行的命令；</strong></li>
+<li>ExecStartPre：启动服务之前执行的命令；</li>
+<li>ExecStartPost：启动服务之后执行的命令；</li>
+<li>ExecStopPost：停止服务之后执行的命令；</li>
+</ul>
+</li>
+<li>c. KillMode：定义systemd如何停止服务；
+<ul>
+<li>control-group（默认值）：当前控制组里面的所有子进程，都会被杀掉；</li>
+<li>process：只杀主进程；</li>
+<li>mixed：主进程将收到SIGTERM信号，子进程收到SIGKILL信号；</li>
+<li>none：没有进程会被杀掉，只是执行服务的stop命令；</li>
+</ul>
+</li>
+<li>d. Restart：定义服务退出后，systemd的重启方式；
+<ul>
+<li>no（默认值）：退出后不会重启；</li>
+<li>on-success：只有正常退出时（退出状态码为0），才会重启；</li>
+<li>on-failure：只有非正常退出时（退出状态码非0），包括被信号终止和超时，才会重启；</li>
+<li>on-abnormal：只有被信号终止和超时，才会重启；</li>
+<li>on-abort：只有在收到没有捕捉到的信号终止时，才会重启；</li>
+<li>on-watchdog：只有超时退出，才会重启；</li>
+<li>always：不管是什么退出原因，总是重启；</li>
+<li><strong>对于守护进程，推荐设为on-failure；对于那些允许发生错误退出的服务，可以设为on-abnormal；</strong></li>
+</ul>
+</li>
+<li>e. RestartSec：表示systemd重启服务之前，需要等待的秒数；</li>
+<li>f. <strong>User：设置服务的用户名；</strong></li>
+<li>g. WorkingDirectory：指定服务的安装目录；</li>
+<li>h. <strong><code>PIDFile</code>：pid文件路径；</strong></li>
+<li>i. PrivateTmp=True：表示给服务分配独立的临时空间；</li>
+<li>j. RemainAfterExit：若设置为True，服务会被认为是在激活状态，即使所以的进程已经退出；默认的值为False，该选项只有在Type=oneshot时需要被配置；</li>
+</ul>
+</li>
+<li>
+<p>3）<strong><code>[Install]</code>字段（何安装这个配置文件，即怎样做到开机自启）</strong></p>
+<ul>
+<li><strong><code>WantedBy</code>：表示该服务所在的Target；Target表示服务组，表示一组服务；</strong>
+<ul>
+<li><strong>systemd有默认的启动Target就是<code>multi-user.target</code>，在这个组里的所有服务，都将开机启动；<code>WantedBy=multi-user.target：表示服务所在的Target是multi-user.target；</code></strong></li>
+</ul>
+</li>
+<li>Alias：为服务提供一个空间分离的附加名字；</li>
+<li>RequiredBy：服务被允许运行需要的一系列依赖服务，RequiredBy列表从Require获得依赖信息；</li>
+<li>Also：指出和服务一起安装或者被协助的服务；</li>
+<li>DefaultInstance：实例服务的限制，该选项指定如果服务被允许运行默认的实例；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>5、<strong><code>/lib/systemd/system/</code>、<code>/usr/lib/systemd/system/</code>、<code>/etc/systemd/system/</code>的差异：</strong></p>
+<ul>
+<li>1）<strong>它们都是与systemd系统管理工具相关的目录，用于存储系统服务单元文件（<code>.service</code>）；</strong></li>
+<li>2）<strong><code>/lib/systemd/system/</code>：包含了<code>系统默认</code>的systemd服务单元文件；</strong></li>
+<li>3）<strong><code>/usr/lib/systemd/system/</code>：包含了<code>软件包安装</code>所提供的systemd服务单元文件；</strong></li>
+<li>4）<strong><code>/etc/systemd/system/</code>：系统管理员用来存储<code>自定义</code>和覆盖默认设置的地方；</strong></li>
+<li>5）<strong>在配置系统服务时，最好使用<code>/etc/systemd/system/</code>目录，来添加或修改服务单元文件，以便保留系统更新时的原始设置；</strong></li>
+</ul>
+</li>
+<li>
+<p>6、参考：</p>
+<ul>
+<li><strong>Linux中service文件详解：<code>https://blog.csdn.net/a913909626/article/details/118405378</code></strong></li>
+<li>linux 之.service文件简介 （新版systemctl服务）：<code>https://juejin.cn/post/7037000593839243301</code></li>
+</ul>
+</li>
+</ul>
+<h4><a id="003%E3%80%81%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>003、系统时间</h4>
+<ul>
+<li>
+<p>1、<strong>格林尼治标准时</strong>：<code>GMT，Greenwish Mean Time</code>，指位于伦敦郊区的皇家格林尼治天文台（本初子午线）的标准时间，因为地球自转的速度是不均衡的，该时间不够精确；</p>
+</li>
+<li>
+<p>2、<strong>协调世界时</strong>：<code>UTC，Coordinated Universal Time</code> ，基于原子物理学的特性，更加精确基本不会产生误差，被应用在互联网标准中；</p>
+</li>
+<li>
+<p>3、<strong>基本上可以认为<code>GMT = UTC</code>（误差不超过0.9秒），例如<code>北京时间 = UTC+8 = GMT+8</code>；</strong></p>
+<pre><code class="language-shell"># 查看当前系统时间
+date -R   
+
+# 执行以下命令，按提示操作，修改时区到UTC
+dpkg-reconfigure tzdata
+
+# 同步网络时间
+apt-get install ntpdate // 安装ntpdate工具
+ntpdate cn.pool.ntp.org
+
+# 将时间写入硬件（防止重启时间被还原）
+hwclock --systohc
+</code></pre>
+</li>
+<li>
+<p>4、<strong>修改系统时间后，必须手动重启重启crontab、rsyslog服务（只是重启服务器是不行的），否则crontab日志时间与系统时间不一致；</strong></p>
+<pre><code class="language-shell">systemctl restart cron
+systemctl restart rsyslog
+</code></pre>
+</li>
+</ul>
+<h4><a id="004%E3%80%81vim%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>004、vim使用</h4>
+<ul>
+<li>
+<p>1、vim是vi的升级版本，其不仅兼容vi的所有指令，而且还支持无限制多级撤消、语法高亮等特性；vi适用于文本编辑，vim更适用于编码；<strong>注意：vim使用vim命令打开文件，而不是vi命令；</strong></p>
+</li>
+<li>
+<p>2、vi模式</p>
 <ul>
 <li>插入模式：可以进行输入字符，按ESC回到命令模式；</li>
 <li>命令模式：可以进行移动光标、删除复制移动字符、行等操作；</li>
@@ -244,168 +402,657 @@ systemctl start mysql.service
 </ul>
 </li>
 <li>
-<p>常见命令</p>
-<pre><code class="language-shell">// 命令模式下：
-按gg：移到内容的开头；
-按G：移动到内容的结束；
-按x：删除光标后的一个字符；
-按5x：删除光标后的五个字符；
-按dd：删除光标所在行；
-按yy：复制光标所在行到缓冲区；
-按u：撤销上一步操作；
-按p：粘贴
-按ctrl+f：下一页
-按Ctrl+b：上一页
+<p>3、常见命令</p>
+<pre><code class="language-shell">:set nu # 显示行号
 
-// 底行模式下（命令模式下输入:进入）：
-:set nu：设置显示行号
-:15：跳到15行
-:/a：查找字符a，之后回车，按n查找下一个
-:w：保存
-:q：退出
-:q!：不保存退出
+:w # 保存文件，不退出vim
+:w FileName # 将修改另外保存到FileName，不退出vim
+:w! # 强制保存，不退出vim
+
+:q # 不保存文件，退出vim
+:q! # 不保存文件，强制退出vim
+
+:wq # 保存文件，退出vim
+:wq! # 强制保存文件，退出vim
+
+:e! # 放弃所有修改，从上次保存文件开始再编辑
+
+:%d # 清空所有内容
+</code></pre>
+<pre><code class="language-shell"># 跳到文件首行
+方式1：输入gg
+方式2：输入:0或:1，然后回车
+
+# 跳到文件尾行
+方式1：输入G（Shift+g）
+方式2：输入:$，然后回车
+
+# 跳到指定行
+方式1：先输入数字行数，再输入gg；例如，跳转到123行，输入123gg
+方式2：:数字行数
+
+# 跳到当前行的行首
+输入0（数字）
+
+# 跳到当前行的行尾
+输入$
+
+# 跳到基于当前行偏移的行尾
+先输入数字偏移行数，再输入$；1$表示当前行的行尾；例如，向下偏移到4行，输入5$
+</code></pre>
+<pre><code class="language-shell"># 整个文本内容将被选中
+输入ggVG；其中，gg将光标移动到文本的开头，V进入可视模式，G将光标移动到文本的结尾
+
+
+# 复制
+y # 复制选中内容
+
+yy # 复制光标所在的行
+数字yy # 复制多行（从光标所在的行，向下开始）
+
+y$ # 复制光标所在位置到行尾
+数字y$ # 复制光标开始的多行
+
+yG # 复制当前行到文件首行
+ygg # 复制当前行到文件末尾
+
+yw # 复制光标所在的单词
+数字yw # 复制光标开始的多个单词
+
+
+# 粘贴
+p # 粘贴到当前行的行尾
+P（大写） # 粘贴到当前行的行首
+
+
+# 删除
+dd # 删除光标所在的行
+数字dd # 删除多行（从光标所在的行，向下开始）
+
+dw # 删除光标所在的单词
+数字dw # 删除光标开始的多个的单词
+
+d$ # 删除光标所在位置到行尾
+nd$ # 删除光标开始的多行
+
+x # 删除一个字符
+数字x # 删除多个字符（从光标所在的位置，向后开始）
+
+
+u # 撤回
+U # 大撤回
+</code></pre>
+<pre><code class="language-shell"># 搜索
+:/word # 向下查找
+:?word # 向上查找
+
+# n查找下一个，按N查找上一个
+
+
+# 替换
+输入:[RANGE]s/pattern/string/[c,e,g,i]，或者将/换成#
+
+# RANGE：指查找替换范围；如：
+#   1,20表示从第1行至第20行；
+#   1,$表示从第1行至最后一行，或者用%表示；
+#   .,$表示从当前行到最后一行；
+# s：表示替换操作；
+# pattern：需要替换掉的字符串；
+# string：将pattern替换为string；
+# 标志符
+#   c：即confirm，每次替换前会询问；
+#   e：不显示error；
+#   g：globe，不询问，整行替换；
+#   i：ignore不分大小写；
+#   I：大小写敏感；
+
+# 在当前行查找oldWords，并将查找到的第一个oldWords替换为newWords
+:s/oldWords/newWords/
+
+# 在当前行查找oldWords，并将查找到的所有oldWords替换为newWords
+:s/oldWords/newWords/g
+
+# 从第n行到最后一行查找oldWords，并将查找到的每一行中的第一个oldWords替换为newWords
+:n,$s/oldWords/newWords/
+
+# 从第n行到最后一行查找 oldWords，并将查找到的每一行中的所有oldWords替换为newWords
+:n,$s/oldWords/newWords/g
+:1,$s/
+:%s/
+</code></pre>
+</li>
+<li>
+<p>4、VI编辑模式，使用方向键出现字母乱码</p>
+<ul>
+<li>
+<p>1）<strong>Ubuntu中，在vi编辑模式下，使用方向键时没有移动光标，而是在出现[A [B [C [D之类的字母乱码，使用退格键(Backspace键)无法删除，只能用Delete键删除；</strong></p>
+</li>
+<li>
+<p>2）解决办法：</p>
+<ul>
+<li>
+<p>a. 办法1：</p>
+<ul>
+<li><strong>修改<code>/etc/vim/vimrc.tiny</code>，将“compatible”改成“nocompatible”（非兼容模式），set nocompatible，解决方向键变ABCD问题；</strong></li>
+<li><strong>添加<code>set backspace=2</code>，解决退格键(Backspace键)无法删除问题；</strong></li>
+</ul>
+</li>
+<li>
+<p>b. 办法2：</p>
+<ul>
+<li>
+<p><strong>Ubuntu预安装的的是tiny版本，安装vim full版本，就可以正常了；</strong></p>
+<pre><code class="language-shell">apt remove vim-common
+apt install vim
 </code></pre>
 </li>
 </ul>
-<h4><a id="%E5%9B%9B%E3%80%81%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、系统时间</h4>
-<ul>
-<li>
-<p><strong>格林尼治标准时</strong>：<code>GMT，Greenwish Mean Time</code>，指位于伦敦郊区的皇家格林尼治天文台（本初子午线）的标准时间，因为地球自转的速度是不均衡的，该时间不够精确；</p>
-</li>
-<li>
-<p><strong>协调世界时</strong>：<code>UTC，Coordinated Universal Time</code> ，基于原子物理学的特性，更加精确基本不会产生误差，被应用在互联网标准中；</p>
-</li>
-<li>
-<p><strong>基本上可以认为<code>GMT = UTC</code>（误差不超过0.9秒），例如<code>北京时间 = UTC+8 = GMT+8</code>；</strong></p>
-<pre><code class="language-shell">// 查看当前系统时间
-date -R   
-
-// 执行以下命令，按提示操作，修改时区到UTC
-dpkg-reconfigure tzdata
-
-// 同步网络时间
-apt-get install ntpdate // 安装ntpdate工具
-ntpdate cn.pool.ntp.org
-
-// 将时间写入硬件（防止重启时间被还原）
-hwclock --systohc
-</code></pre>
-</li>
-<li>
-<p><strong>修改系统时间后，必须手动重启重启crontab、rsyslog服务（只是重启服务器是不行的），否则crontab日志时间与系统时间不一致；</strong></p>
-<pre><code class="language-shell">systemctl restart cron
-systemctl restart rsyslog
-</code></pre>
 </li>
 </ul>
-<h4><a id="%E4%BA%94%E3%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、域名解析</h4>
-<ul>
-<li>
-<p>A记录</p>
-<ul>
-<li>用于指定域名对应的IP地址；</li>
-<li>适应于独立主机、有固定IP地址；</li>
-<li>相同域名下的子域名也可以对应不同的IP地址，比如<code>www.domain1.com-&gt;1.1.1.1、ftp.domain1.com-&gt;2.2.2.2</code>；</li>
-<li>不同域名下的子域名也可以对应相同的IP地址，比如<code>www.domain1.com-&gt;1.1.1.1、www.domain2.com-&gt;1.1.1.1</code>；</li>
-<li>泛域名解析：<code>主机名</code>中填入<code>*</code>，这样该域名所有未指定的子域名都对应该IP地址；</li>
-<li>负载均衡（Server Load Balancing，SLB）：相同域名配置多个不同的IP地址，轮循访问；</li>
-</ul>
 </li>
 <li>
-<p>AAAA记录：</p>
+<p>3）参考：</p>
 <ul>
-<li>IPv6版的A记录，对应的IP地址为IPv6地址；</li>
-</ul>
-</li>
-<li>
-<p>CNAME记录（Canonical Name，别名记录）</p>
-<ul>
-<li>用于指定域名对应的其他域名；</li>
-<li>适应于虚拟主机、变动IP地址主机；</li>
-<li>可以将相同域名下的子域名先对应一个域名下，然后再对该域名添加一个A记录，比如<code>www.domain1.com-&gt;host.domain1.com、ftp.domain1.com-&gt;host.domain1.com、host.domain1.com-&gt;1.1.1.1</code>；当然也可以直接添加多个A记录，但是当IP地址变动时需要修改所有的A记录，而使用上面的方式只需要修改那个唯一的A记录；</li>
-</ul>
-</li>
-<li>
-<p>MX记录（Mail Exchange，邮件路由记录）</p>
-<ul>
-<li>用于指定邮件路由请求对应的IP地址或域名；</li>
-</ul>
-</li>
-<li>
-<p>URL转发（(Uniform Resource Locator）</p>
-<ul>
-<li>不属于域名解析，重定向一个域名到另一个域名，使用HTTP 301状态码；类型还分显式和隐式；</li>
-<li>适应于更换域名又不想抛弃老用户；</li>
-<li>URL转发与CNAME记录的区别：URL转发可以转发到某个目录及文件上，CNAME记录不可以；</li>
-</ul>
-</li>
-<li>
-<p>TTL值</p>
-<ul>
-<li>解析记录在DNS服务器中的缓存时间，单位为秒，一般为3600秒；</li>
-<li>若缓存过期了，才会NS服务器进行请求；</li>
-</ul>
-</li>
-<li>
-<p>NS记录（Name Server）</p>
-<ul>
-<li>域名服务器记录，用于指定该域名由哪个NS服务器来进行解析，就是要在哪个NS服务器对应的管理后台配置上述的A记录、CNAME记录等；</li>
+<li><strong>Ubuntu Vi方向键[A [B [C [D问题解决：<code>https://www.awaimai.com/262.html</code></strong></li>
 </ul>
 </li>
 </ul>
-<h4><a id="%E5%85%AD%E3%80%81ssh%E7%99%BB%E5%BD%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、SSH登录</h4>
+</li>
+</ul>
+<h4><a id="005%E3%80%81ssh%E7%99%BB%E5%BD%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>005、SSH登录</h4>
 <ul>
 <li>
-<p>若需要SSH登录到其他机器上，需要安装openssh-client；若需要本机开启SSH服务，需要安装openssh-server；</p>
-<pre><code class="language-shell">// 查看是否已安装相关包
+<p>1、若需要SSH登录到其他机器上，需要安装<code>openssh-client</code>；若需要本机开启SSH服务，需要安装<code>openssh-server</code>；</p>
+<pre><code class="language-shell"># 查看是否已安装相关包
 dpkg --get-selections | grep openssh-client
 dpkg --get-selections | grep openssh-server
 
-// 若出现sshd，则说明ssh-server已经启动
+# 若出现sshd，则说明ssh-server已经启动
 ps -aux | grep ssh
 </code></pre>
 </li>
 <li>
-<p><strong>ssh-server配置文件位于/etc/ssh/sshd_config；</strong></p>
+<p>2、<strong>ssh-server配置文件位于<code>/etc/ssh/sshd_config（不是ssh_config）</code>；</strong></p>
 <ul>
 <li><code>RSAAuthentication yes</code>：允许使用纯RSA公钥认证（仅用于SSH1）；</li>
 <li><code>PubkeyAuthentication yes</code>：允许公钥认证（仅用于SSH2）；</li>
 <li><code>PasswordAuthentication no</code>：不允许密码认证（默认允许）；</li>
-<li><strong><code>AuthorizedKeysFile XX</code>：用于认证的公钥路径；</strong></li>
+<li><strong><code>AuthorizedKeysFile xx</code>：用于认证的公钥路径；</strong></li>
 </ul>
 </li>
 <li>
-<p>SSH（Secure SHell）目前有两个不兼容的版本：SSH1、SSH2；</p>
+<p>3、SSH（Secure SHell）目前有两个不兼容的版本：SSH1、SSH2；</p>
 <ul>
 <li>SSH1采用DES、3DES、Blowfish、RC4等对称加密算法保护数据安全传输，而对称加密算法的密钥是通过非对称加密算法（RSA）来完成交换；使用循环冗余校验码（CRC）来保证数据的完整性（这种方法有缺陷）；</li>
 <li>SSH2避免了RSA的专利问题，并修补了CRC的缺陷；使用数字签名算法（DSA）和Diffie-Hellman（DH）算法代替RSA来完成对称密钥的交换，用消息证实代码（HMAC）来代替CRC，并且也增加了AES、Twofish等对称加密算法；</li>
 </ul>
 </li>
 <li>
-<p><strong>配置ssh公钥认证</strong></p>
+<p>4、<strong>配置ssh公钥认证</strong></p>
 <ul>
-<li>a. 将<code>RSAAuthentication</code>、<code>PubkeyAuthentication</code>前#注释去掉，设置公钥登录；并重启ssh服务<code>systemctl reload ssh</code>；</li>
-<li><strong>b. 将公钥内容粘贴到登录用户名目录下的<code>.ssh/authorized_keys</code>文件中（默认的认证公钥的路径）；</strong></li>
-<li>c. 在客户端，将私钥放在~/.ssh/目录中；</li>
-<li>d. <strong>客户端进行连接：<code>ssh -p PORT USERNAME@DOMAIN</code>（若为密码认证，之后还需要输入密码）；ssh默认的端口为22，若为默认端口则可省略-p参数，比如ssh root@192.168.1.1；</strong></li>
-<li>e. 客户端断开连接：exit；</li>
+<li>1）服务端将<code>RSAAuthentication</code>、<code>PubkeyAuthentication</code>前#注释去掉，设置允许公钥登录；并重启ssh服务<code>systemctl reload sshd</code>；</li>
+<li>2）<strong>将客户端的公钥内容，粘贴到服务端的登录用户名目录下的<code>.ssh/authorized_keys</code>文件中（默认的认证公钥的路径）；</strong></li>
+<li>3）在客户端，将私钥放在~/.ssh/目录中；</li>
+<li>4）<strong>客户端进行连接：<code>ssh -p PORT USERNAME@DOMAIN</code>（若为密码认证，之后还需要输入密码）；ssh默认的端口为22，若为默认端口则可省略-p参数，比如ssh root@192.168.1.1；</strong></li>
+<li>5）客户端断开连接：<code>exit</code>；</li>
+<li>6）<strong>客户端生成公钥私钥命令：<code>ssh-keygen -t rsa -C &quot;xx@email.com&quot;</code> 或者 <code>ssh-keygen</code>；</strong></li>
 </ul>
 </li>
 <li>
-<p><strong>ssh-server可以配置成同时支持公钥认证和密码认证，客户端优先使用公钥进行认证，若尝试不通过则会使用密码进行认证；</strong></p>
+<p>5、<strong>ssh-server可以配置成<code>同时支持公钥认证和密码认证</code>，客户端优先使用公钥进行认证，若尝试不通过则会使用密码进行认证；</strong></p>
 </li>
 <li>
-<p><strong>注意：使用公钥认证，可能还需要输入密码，这个密码是生成私钥时配置的密码，不是密码认证的密码；</strong></p>
+<p>6、<strong>注意：使用公钥认证，可能还需要输入密码，这个密码是生成私钥时配置的密码，不是密码认证的密码；</strong></p>
 </li>
 </ul>
-<h4><a id="%E4%B8%83%E3%80%81%E6%9F%A5%E8%AF%A2%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E6%97%B6%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、查询软件安装时间</h4>
+<h4><a id="006%E3%80%81ubuntu-root%E9%BB%98%E8%AE%A4%E5%AF%86%E7%A0%81%E3%80%81root-ssh%E7%99%BB%E9%99%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>006、Ubuntu root默认密码、root SSH登陆</h4>
 <ul>
 <li>
-<p><code>/var/log/apt/</code>目录的文件<code>history.log.*</code>（如history.log.1.gz）文件中有所有安装软件的信息，文件的格式如下：</p>
+<p>1、<strong>在Ubuntu系统中，为安全考虑，默认是没有设置root用户的密码的，也就是说，root用户是不能直接登录的；需要切换到root账号后，手动设置密码<code>passwd</code>；</strong></p>
+</li>
+<li>
+<p>2、<strong>在Ubuntu系统中，默认禁止root SSH登陆；开启步骤如下：</strong></p>
+<ul>
+<li>
+<p>1）<strong>设置root密码；</strong></p>
+</li>
+<li>
+<p>2）<strong>修改<code>/etc/ssh/sshd_config</code>配置，并重启sshd；</strong></p>
+<ul>
+<li>
+<p>a) <strong>将<code>#PermitRootLogin prohibit-password</code>配置项，修改为<code>PermitRootLogin yes</code>；</strong></p>
+</li>
+<li>
+<p>b) <strong>以下配置项，去掉注释：</strong></p>
+<pre><code class="language-shell">StrictModes yes # 让ssh服务器在用户认证过程中，检查用户的家目录、~/.ssh/目录以及相关文件的权限设置
+MaxAuthTries 6 # 允许用户尝试认证的最大次数
+MaxSessions 10 # 单个网络连接上允许的最大会话数
+</code></pre>
+</li>
+<li>
+<p>c) <strong><code>systemctl restart sshd</code>；</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><a id="007%E3%80%81%E6%9F%A5%E8%AF%A2%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E6%97%B6%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>007、查询软件安装时间</h4>
+<ul>
+<li>
+<p>1、<code>/var/log/apt/</code>目录的文件<code>history.log.*</code>（如history.log.1.gz）文件中有所有安装软件的信息，文件的格式如下：</p>
 <pre><code class="language-shell">Start-Date: 2018-08-27  14:50:38
 Commandline: apt-get install vim
 Install: vim-runtime:amd64....
 </code></pre>
+</li>
+</ul>
+<h4><a id="008%E3%80%81%E6%9F%A5%E7%9C%8B%E5%AE%9E%E6%97%B6%E7%BD%91%E9%80%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>008、查看实时网速</h4>
+<ul>
+<li>
+<p>1、<strong>需要安装<code>nload</code>工具（<code>apt install nload</code>）；</strong></p>
+<pre><code class="language-shell"># 查看所有网卡的实时网速
+nload -m 
+
+# 查看指定网卡的实时网速
+nload eth0 -m
+</code></pre>
+</li>
+<li>
+<p>2、macOS可以通过“活动监视器”下的“网络”标签底部的信息，查看实时网速；</p>
+</li>
+</ul>
+<h4><a id="009%E3%80%81%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%8D%A1%EF%BC%88%E5%85%A8%E9%83%A8%E3%80%81%E8%99%9A%E6%8B%9F%E3%80%81%E7%89%A9%E7%90%86%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>009、查看网卡（全部、虚拟、物理）</h4>
+<pre><code class="language-shell"># 查看 全部网卡
+ls /sys/class/net/
+
+# 查看 虚拟网卡
+ls /sys/devices/virtual/net/
+
+# 查看 物理网卡
+ls /sys/class/net/ | grep -v &quot;`ls /sys/devices/virtual/net/`&quot;
+</code></pre>
+<h4><a id="010%E3%80%81%E4%BD%BF%E7%94%A8systemd%EF%BC%8C%E9%85%8D%E7%BD%AE%E5%BC%80%E6%9C%BA%E6%89%A7%E8%A1%8C%E8%84%9A%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>010、使用systemd，配置开机执行脚本</h4>
+<ul>
+<li>
+<p>1、配置步骤：</p>
+<ul>
+<li>
+<p>1）创建要执行的脚本；</p>
+<ul>
+<li><strong>脚本开头，一定要加<code>#! /bin/bash</code>，表示此脚本使用<code>/bin/bash</code>来解释执行；</strong></li>
+<li><strong>脚本末尾，添加<code>exit 0</code>，表示<code>脚本执行到此结束，并以成功的状态退出</code>；</strong></li>
+</ul>
+<pre><code class="language-shell">vi my_startup_scipt.sh
+==============================
+
+#! /bin/bash
+
+cd /
+touch &quot;$(date +&quot;%Y-%m-%d_%T&quot;).txt&quot;
+echo &quot;Create File Done!&quot;
+
+exit 0
+</code></pre>
+</li>
+<li>
+<p>2）给要执行的脚本，添加执行权限；</p>
+<pre><code class="language-shell">chmod u+x my_startup_scipt.sh
+chmod g+x my_startup_scipt.sh
+
+# 或
+
+chmod +x my_startup_scipt.sh  # 其他用户组也有执行权限
+</code></pre>
+</li>
+<li>
+<p>3）<strong>新增执行服务；</strong></p>
+<ul>
+<li><strong>在<code>/etc/systemd/system</code>目录，创建一个新的<code>xx.service文</code>件，用于配置开机启动脚本；</strong></li>
+</ul>
+<pre><code class="language-shell">cd /etc/systemd/system
+
+vi StartupExample.service
+==============================
+
+[Unit]
+Description=Startup Example
+
+[Service]
+ExecStart=/home/kk/my_startup_scipt.sh
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+</li>
+<li>
+<p>4）<strong>设置开机自启动；</strong></p>
+<ul>
+<li><strong>“新增执行服务”、“设置开机自启动”都需要root权限，所以该自启动服务是由root用户创建的；并且<code>在开机后，登陆账号前就执行了，与登陆的用户无关</code>；</strong></li>
+</ul>
+<pre><code class="language-shell"># 设置开机自启动
+systemctl enable StartupExample.service
+
+# 禁止开机自启动
+systemctl disable StartupExample.service
+
+# 手动运行
+systemctl start StartupExample.service
+# 查看状态
+systemctl status StartupExample.service
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>2、参考：</p>
+<ul>
+<li>ubuntu 系统配置软件脚本自启动：<code>https://blog.csdn.net/qq_43371556/article/details/130507007</code></li>
+<li>在 Ubuntu 上使用 systemd 配置开机执行脚本：<code>https://zhuanlan.zhihu.com/p/340755873</code></li>
+<li>【精选】systemctl 命令和配置整理：<code>https://blog.csdn.net/baidu_41553551/article/details/125303909</code></li>
+</ul>
+</li>
+</ul>
+<h4><a id="011%E3%80%81%E5%9F%BA%E4%BA%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E6%B5%81%E9%87%8F%E7%AE%A1%E7%90%86%EF%BC%88iptables%E3%80%81ipset%E3%80%81dnsmasq%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>011、基于域名的流量管理（iptables、ipset、dnsmasq）</h4>
+<ul>
+<li>
+<p>1、概述</p>
+<ul>
+<li>
+<p><code>iptables</code>只能根据IP地址进行转发，不能识别域名；</p>
+</li>
+<li>
+<p><code>dnsmasq-full</code>不仅可以实现“域名-IP”的映射，还可以把这个映射关系存储在<code>ipset</code>中，所以使用<code>dnsmasq+ipset</code>就可以实现<code>iptables</code>对域名的转发，从而实现很多功能，如禁止浏览某些网站、对国内外的流量进行不同路径的转发或者代理；</p>
+</li>
+<li>
+<p>原理：<code>dnsmasq</code>接收到一个DNS查询结果，首先匹配配置文件（<code>/etc/dnsmasq.conf</code>）中的域名列表；若匹配成功某域名，就把IP的查询结果存储在一个或几个<code>ipset</code>集合中，然后使用<code>iptables</code>对这个<code>ipset</code>中的全部ip进行匹配并做相应的处理，如DROP或者REDIRECT；</p>
+</li>
+</ul>
+</li>
+<li>
+<p>2、步骤：</p>
+<ul>
+<li>
+<p>1）安装<code>dnsmasq-full</code>、<code>ipset</code>；</p>
+</li>
+<li>
+<p>2）先建立vpn ipset表；</p>
+<pre><code class="language-shell">sudo ipset create 列表名 hash:ip
+
+// 建立完成之后，列出这个表的所有ip记录（目前当然是空的）
+sudo ipset list 列表名
+</code></pre>
+<p><img src="media/15339807662944/ipset_create_01.png" alt="ipset_create_01" style="width:300px;" /></p>
+</li>
+<li>
+<p>3）<strong>将本机的dns服务器设置为<code>dnsmasq</code>；编辑<code>dnsmasq</code>的配置文件（<code>/etc/dnsmasq.conf</code>）；</strong></p>
+<p><img src="media/15339807662944/dnsmasq_config.png" alt="dnsmasq_config" style="width:450px;" /></p>
+<ul>
+<li>前两行（黄色）是将所有.com 和.hk结尾的域名请求，都发往OpenDNS的服务器（端口5353），这样可以防止ISP的一些域名污染；</li>
+<li>最后一行（黄色）是将yahoo.com和google.com的域名解析IP结果，存储到vpn的ipset中，准备交给iptables识别和转发；</li>
+</ul>
+</li>
+<li>
+<p>4）使用<code>nslookup</code>命令，依次查询yahoo.com和google.com，然后<code>dnsmasq</code>就会自动将这两个域名的解析结果，存放到刚刚建立的ipset中去；</p>
+<p><img src="media/15339807662944/ipset_list_01.png" alt="ipset_list_01" style="width:300px;" /></p>
+<p><img src="media/15339807662944/ipset_list_02.png" alt="ipset_list_02" style="width:300px;" /></p>
+</li>
+<li>
+<p>5）再使用<code>iptables</code>做相应的规则转发即可，比如把目标地址为这两个域名的流量转发到1080端口代理出去；</p>
+<pre><code class="language-shell">sudo iptables -t nat -I PREROUTING -m set --match-set 列表名 dst -j REDIRECT --to-ports 1080
+// 也可以做DROP或者RETURN处理
+sudo iptables -t nat -I PREROUTING -m set --match-set 列表名 dst -j RETURN
+
+// 若IP集合不是目标地址而是原地址，需要把dst换成src
+</code></pre>
+</li>
+<li>
+<p>6）若要处理的域名很多，写在<code>/etc/dnsmasq.conf</code>会显得凌乱，可以新建一个配置文件（如ip_filter.conf），将配置写在这里，然后在<code>/etc/dnsmasq.con</code>f中引用该配置文件；</p>
+<p><img src="media/15339807662944/dnsmasq_config_01.png" alt="dnsmasq_config_01" style="width:250px;" /></p>
+<p><img src="media/15339807662944/dnsmasq_config_02.png" alt="dnsmasq_config_02" style="width:360px;" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>3、参考：</p>
+<ul>
+<li><strong>Dnsmasq+ipset+iptables基于域名的流量管理：<code>https://blog.csdn.net/lvshaorong/article/details/52981169</code></strong></li>
+</ul>
+</li>
+</ul>
+<h4><a id="012%E3%80%81crontab%EF%BC%88%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>012、Crontab（定时任务）</h4>
+<ul>
+<li>
+<p>1、安装管理Crontab</p>
+<pre><code class="language-shell"># 安装cron
+apt install cron 
+
+# 管理cron服务
+systemctl start|stop|restart|reload|status cron
+
+# 查看所有定时任务
+crontab -l
+或者
+cat /etc/crontab
+
+# 添加、修改定时任务
+crontab -e，进入编辑环境（首次选择编辑器：vi、nano）；
+</code></pre>
+</li>
+<li>
+<p>2、Crontab任务格式</p>
+<pre><code class="language-shell">m h dom mon dow COMMAND
+
+# m：分钟，取值0~59，当为*时表示每分钟；
+# h：小时，取值0~23，当为*时表示每小时；
+# dom：天，取值1~31，当为*时表示每天；
+# mon：月，取值1~12，当为*时表示每月；
+# dow：星期，取值1~6，0表示星期天，当为*时表示每周；
+    
+# m/2：表示每半分钟；
+# h/3：表示每20分钟；
+
+# 表示离散值，使用,分隔；如m位置表示第1、3、20分钟，则使用1,3,20
+</code></pre>
+<pre><code class="language-shell"># 1点的每分钟都会执行一次任务，也就是执行了60次
+* 1 * * * COMMAND
+
+# 每天3点0时执行一次任务
+0 1 * * * COMMAND
+</code></pre>
+<pre><code class="language-shell"># 每分钟执行一次date命令，将当前日期和时间追加到time.txt文件中，
+# 并且若有任何错误产生，也会被追加到同一个文件中
+* * * * * date &gt;&gt; /time.txt 2&gt;&amp;1
+
+# 在每个月的前七天中的每个星期一的0点，执行date命令
+0 0 1-7 * 1 date &gt;&gt; /time.txt 2&gt;&amp;1
+</code></pre>
+</li>
+</ul>
+<h4><a id="013%E3%80%81%E5%BC%80%E5%90%AFbbr%EF%BC%8C%E4%BC%98%E5%8C%96tcp%E9%80%9F%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>013、开启BBR，优化TCP速度</h4>
+<ul>
+<li>
+<p>1、概述：</p>
+<ul>
+<li>BBR是Google最新开发的TCP拥塞控制算法，有着较好的带宽提升效果；</li>
+<li>Linux kernel 4.9开始引入BBR，若内核小于4.9则需要先升级内核；Ubuntu 18.04 LTS的Linux内核为4.15；</li>
+</ul>
+</li>
+<li>
+<p>2、安装开启BBR：</p>
+<pre><code class="language-shell"># 运行`lsmod | grep bbr`，若结果中没有tcp_bbr，则先运行以下内容
+modprobe tcp_bbr
+echo &quot;tcp_bbr&quot; &gt;&gt; /etc/modules-load.d/modules.conf
+</code></pre>
+<pre><code class="language-shell"># 添加配置
+echo &quot;net.core.default_qdisc=fq&quot; &gt;&gt; /etc/sysctl.conf
+echo &quot;net.ipv4.tcp_congestion_control=bbr&quot; &gt;&gt; /etc/sysctl.conf
+
+# 保存生效
+sysctl -p  
+</code></pre>
+<pre><code class="language-shell"># 运行结果若均有bbr，则开启BBR成功
+sysctl net.ipv4.tcp_available_congestion_control # 查看支持的算法
+sysctl net.ipv4.tcp_congestion_control # 查看当前使用的算法
+</code></pre>
+</li>
+</ul>
+<h4><a id="014%E3%80%81%E5%A4%9A%E8%AF%AD%E8%A8%80%EF%BC%88%E5%A6%82%E7%BB%88%E7%AB%AF%E6%98%BE%E7%A4%BA%E8%8B%B1%E6%96%87%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>014、多语言（如终端显示英文）</h4>
+<ul>
+<li>
+<p>1、<strong>Locale是软件在运行时的语言环境，包括<code>语言（Language）、地域（Territory）、字符集（Codeset）</code>；其书写格式为：<code>语言 [_地域 [.字符集]] [@修正值]</code>；比如<code>en_US.UTF-8、zh_CN.GB2312（表示中文_中华人民共和国.国标2312字符集）</code>等；</strong></p>
+</li>
+<li>
+<p>2、<strong>Locale按照所涉及到的文化传统的各个方面，分成<code>12个大类</code>，分别：</strong></p>
+<ul>
+<li>语言符号及其分类（LC_CTYPE）；</li>
+<li>数字（LC_NUMERIC）；</li>
+<li>比较和排序习惯（LC_COLLATE）；</li>
+<li>时间显示格式（LC_TIME）；</li>
+<li>货币单位（LC_MONETARY）；</li>
+<li>信息主要是提示信息、错误信息、状态信息、标题、标签、按钮和菜单等（LC_MESSAGES）；</li>
+<li>姓名书写方式（LC_NAME）；</li>
+<li>地址书写方式（LC_ADDRESS）；</li>
+<li>电话号码书写方式（LC_TELEPHONE）；</li>
+<li>度量衡表达方式（LC_MEASUREMENT）；</li>
+<li>默认纸张尺寸大小（LC_PAPER）；</li>
+<li>对locale自身包含信息的概述（LC_IDENTIFICATION)；</li>
+</ul>
+</li>
+<li>
+<p>3、其他的变量：</p>
+<ul>
+<li><strong><code>LANG</code>：所有与locale有关的变量的默认值；</strong></li>
+<li><strong><code>LC_ALL</code>：设置所有的LC_*的变量；</strong></li>
+<li><strong><code>LANGUAGE</code>：大多数程序将此作为其界面语言；</strong></li>
+</ul>
+</li>
+<li>
+<p>4、<strong>Locale设定的优先级（高 到 低）：</strong></p>
+<ul>
+<li>1）<strong><code>LANGUAGE</code>：优先级最高，指定个人对语言环境值的主次偏好，例如zh_CN:en_US:en，冒号分隔的是多种选择；</strong></li>
+<li>2）<strong><code>LC_ALL</code>设置的值；</strong></li>
+<li>3）<strong><code>LC_*</code>设定的locale各方面（category）的值，可以覆盖LANG的值；</strong></li>
+<li>4）<strong><code>LANG</code>设置的默认值；</strong></li>
+</ul>
+</li>
+<li>
+<p>5、案例：</p>
+<ul>
+<li>比如设置LC_ALL＝zh_CN.UTF-8，那么不管LC_*、LANG设定成什么值，它们都会被强制服从LC_ALL的设定，成为zh_CN.UTF-8；</li>
+<li>若需要一个纯中文的系统，设定LC_ALL=zh_CN.XXXX，或者LANG=zh_CN.XXXX都可以；</li>
+<li>若需要一个可以输入中文的环境，而保持菜单、标题、系统信息等等为英文界面，设定LC_CTYPE＝zh_CN.XXXX和LANG=en_US.XXXX就可以；<strong><code>LC_CTYPE</code>规定了系统内有效的字符以及分类，与输入有关；</strong></li>
+</ul>
+</li>
+<li>
+<p>6、<strong><code>C</code>是系统默认的locale，<code>POSIX是C的别名</code>；当新安装完一个系统时，<code>默认的locale就是C或POSIX</code>；<code>设置LC_ALL=C，会把所有的LC_\*的变量设置一遍，可以去除所有的本地化设置，让命令能正确执行；</code></strong></p>
+<ul>
+<li>若需要终端显示英文，可以<code>export LC_ALL=C（之后再unset LC_ALL）</code>，或者<code>export LANGUAGE=en_US、export LANG=en_US.UTF-8（之后再unset LANGUAGE、LANG）</code>；</li>
+</ul>
+</li>
+</ul>
+<h4><a id="015%E3%80%81%E6%9B%B4%E6%8D%A2ubuntu%E8%BD%AF%E4%BB%B6%E6%BA%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>015、更换Ubuntu软件源</h4>
+<ul>
+<li>
+<p>1、图形界面更换：</p>
+<ul>
+<li>
+<p>1）<code>Software &amp; Updates</code> -》<code>Ubuntu Software</code> -》 <code>Download From</code>；</p>
+<p><img src="media/15339807662944/%E6%9B%B4%E6%8D%A2Ubuntu%E8%BD%AF%E4%BB%B6%E6%BA%90.png" alt="更换Ubuntu软件源" style="width:480px;" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>2、命令行替换：</p>
+<ul>
+<li>
+<p>1）配置文件：<code>/etc/apt/sources.list</code>；</p>
+<pre><code class="language-shell"># See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+# newer versions of the distribution.
+deb http://archive.ubuntu.com/ubuntu jammy main restricted
+# deb-src http://archive.ubuntu.com/ubuntu jammy main restricted
+
+## Major bug fix updates produced after the final release of the
+## distribution.
+deb http://archive.ubuntu.com/ubuntu jammy-updates main restricted
+# deb-src http://archive.ubuntu.com/ubuntu jammy-updates main restricted
+
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## team. Also, please note that software in universe WILL NOT receive any
+## review or updates from the Ubuntu security team.
+deb http://archive.ubuntu.com/ubuntu jammy universe
+# deb-src http://archive.ubuntu.com/ubuntu jammy universe
+deb http://archive.ubuntu.com/ubuntu jammy-updates universe
+# deb-src http://archive.ubuntu.com/ubuntu jammy-updates universe
+
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## team, and may not be under a free licence. Please satisfy yourself as to
+## your rights to use the software. Also, please note that software in
+## multiverse WILL NOT receive any review or updates from the Ubuntu
+## security team.
+deb http://archive.ubuntu.com/ubuntu jammy multiverse
+# deb-src http://archive.ubuntu.com/ubuntu jammy multiverse
+deb http://archive.ubuntu.com/ubuntu jammy-updates multiverse
+# deb-src http://archive.ubuntu.com/ubuntu jammy-updates multiverse
+
+## N.B. software from this repository may not have been tested as
+## extensively as that contained in the main release, although it includes
+## newer versions of some applications which may provide useful features.
+## Also, please note that software in backports WILL NOT receive any review
+## or updates from the Ubuntu security team.
+deb http://archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
+# deb-src http://archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu jammy-security main restricted
+# deb-src http://archive.ubuntu.com/ubuntu jammy-security main restricted
+deb http://archive.ubuntu.com/ubuntu jammy-security universe
+# deb-src http://archive.ubuntu.com/ubuntu jammy-security universe
+deb http://archive.ubuntu.com/ubuntu jammy-security multiverse
+# deb-src http://archive.ubuntu.com/ubuntu jammy-security multiverse
+</code></pre>
+<ul>
+<li>
+<p>a. <strong><code>deb</code>是非源码软件的源，<code>deb-src</code>是源码软件的源；默认注释了源码软件的源，提高<code>apt update</code>的速度；</strong></p>
+</li>
+<li>
+<p>b. <strong><code>jammy</code>、<code>jammy-updates</code>、<code>jammy-backports</code>、<code>jammy-security</code>分别是Ubuntu 22.04（代号Jammy）的<code>主要仓库、更新仓库、补丁仓库、安全更新仓库</code>；另外，还有一个<code>jammy-proposed</code>是<code>预发布软件仓库</code>；其他版本的Ubuntu（如<code>20.04：focal，18.04：bionic</code>），仓库名中替换一下Ubuntu代号即可；</strong></p>
+</li>
+<li>
+<p>c. 上述的源，可以合并为：</p>
+<pre><code class="language-shell">deb http://archive.ubuntu.com/ubuntu jammy main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
+
+deb http://archive.ubuntu.com/ubuntu jammy-security main restricted universe multiverse 
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>2）国内源（22.04）</p>
+<pre><code class="language-shell">deb http://cn.ubuntu.com/ubuntu jammy main restricted universe multiverse
+deb http://cn.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse
+deb http://cn.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu jammy-security main restricted universe multiverse 
+</code></pre>
+<pre><code class="language-shell">deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu jammy main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu jammy-updates main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu jammy-backports main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+</code></pre>
+<ul>
+<li><code>https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>3、参考：</p>
+<ul>
+<li>ubuntu 换源：<code>https://blog.csdn.net/qq_45878098/article/details/126037838</code></li>
+</ul>
 </li>
 </ul>
 
@@ -415,14 +1062,14 @@ Install: vim-runtime:amd64....
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15354665260298.html" title="Previous Post: MySQL配置使用（Linux）">&laquo; MySQL配置使用（Linux）</a>
+            <a href="15358895457026.html" title="Previous Post: Python Fabric模块">&laquo; Python Fabric模块</a>
             
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15332159757050.html" title="Next Post: 证书、SSL、HTTPS">证书、SSL、HTTPS &raquo;</a>
+            <a href="15355589911528.html" title="Next Post: Ubuntu常见命令">Ubuntu常见命令 &raquo;</a>
             
           </p>
         </div>

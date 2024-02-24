@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -107,7 +107,7 @@
 <li><a href="#%E4%BA%8C%E3%80%81ca%E3%80%81%EF%BC%88%E6%95%B0%E5%AD%97%EF%BC%89%E8%AF%81%E4%B9%A6%E3%80%81pki%E3%80%81%E6%89%A9%E5%B1%95%E5%90%8D">二、CA、（数字）证书、PKI、扩展名</a></li>
 <li><a href="#%E4%B8%89%E3%80%81openssl%E5%BA%93%E4%BD%BF%E7%94%A8">三、OpenSSL库使用</a></li>
 <li><a href="#%E5%9B%9B%E3%80%81%E8%8B%B9%E6%9E%9C%E5%BC%80%E5%8F%91%E8%80%85%E8%AF%81%E4%B9%A6%E3%80%81https%E3%80%81charles">四、苹果开发者证书、HTTPS、Charles</a></li>
-<li><a href="#%E4%BA%94%E3%80%81https%E5%8D%95%E5%90%91%E3%80%81%E5%8F%8C%E5%90%91%E8%AE%A4%E8%AF%81">五、HTTPS单向、双向认证</a></li>
+<li><a href="#%E4%BA%94%E3%80%81https%E5%8D%95%E5%90%91%E3%80%81%E5%8F%8C%E5%90%91%E8%AE%A4%E8%AF%81%E3%80%81https%E8%AF%81%E4%B9%A6">五、HTTPS单向、双向认证、HTTPS证书</a></li>
 <li><a href="#%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83">六、参考</a></li>
 </ul>
 </div>
@@ -171,13 +171,30 @@
             <div class="a-content-text">
                
 			  <div class="mweb_toc"><ul>
-<li><a href="#%E4%B8%80%E3%80%81is%E3%80%81%E3%80%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%83%E5%B0%94%E5%80%BC%EF%BC%88-if-obja%EF%BC%89%E3%80%81none%E3%80%81not">一、is、==、对象的布尔值（if ObjA）、None、not</a></li>
+<li><a href="#001%E3%80%81is%E3%80%81%E3%80%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%83%E5%B0%94%E5%80%BC%EF%BC%88-if-obja%EF%BC%89%E3%80%81none%E3%80%81not">001、is、==、对象的布尔值（if ObjA）、None、not</a></li>
+<li><a href="#002%E3%80%81%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA%E7%9A%84%E6%96%B9%E5%BC%8F">002、格式化输出的方式</a></li>
+<li><a href="#003%E3%80%81-if-name-main%E4%BD%9C%E7%94%A8">003、<code>if __name__ == 'main'</code>作用</a></li>
+<li><a href="#004%E3%80%81-from-future-import%E4%BD%9C%E7%94%A8">004、<code>from __future__ import *</code>作用</a></li>
+<li><a href="#005%E3%80%81numpy%E7%9A%84-np-reshape%E3%80%81-obj-reshape%E3%80%81-np-resize%E3%80%81-obj-resize%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB">005、NumPy的<code>np.reshape()</code>、<code>obj.reshape()</code>、<code>np.resize()</code>、<code>obj.resize()</code>方法区别</a></li>
+<li><a href="#006%E3%80%81python%E4%B8%AD%E7%9A%84%E5%8F%8D%E8%BD%AC-1%E3%80%81-1">006、Python中的反转[::-1]、[:,:,::-1]</a></li>
+<li><a href="#007%E3%80%81matplotlibdeprecationwarning%E8%AD%A6%E5%91%8A">007、MatplotlibDeprecationWarning警告</a></li>
+<li><a href="#008%E3%80%81matplotlib%E7%9A%84-plt-imshow%E3%80%81-plt-show%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB">008、Matplotlib的<code>plt.imshow()</code>、<code>plt.show()</code>方法区别</a></li>
+<li><a href="#009%E3%80%81pil%EF%BC%88pillow%EF%BC%89%E3%80%81matplotlib%E3%80%81opencv%E3%80%81skimage%EF%BC%88scikit-image%EF%BC%89%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E3%80%81%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E3%80%81%E5%9B%BE%E7%89%87%E9%80%9A%E9%81%93%E8%BD%AC%E6%8D%A2">009、PIL（Pillow）、Matplotlib、OpenCV、skimage（scikit-image）加载图片、显示图片、图片通道转换</a></li>
+<li><a href="#010%E3%80%81numpy-array%E5%9B%BE%E7%89%87%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AD%98">010、numpy.array图片数据，文件保存</a></li>
+<li><a href="#011%E3%80%81pil%EF%BC%88pillow%EF%BC%89%E4%B8%8D%E6%94%AF%E6%8C%81bgr%E3%80%81%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F">011、PIL（pillow）不支持BGR、处理方式</a></li>
+<li><a href="#012%E3%80%81-requests%E7%9A%84-post%E6%96%B9%E6%B3%95-data%E3%80%81json%E5%8F%82%E6%95%B0%E5%8C%BA%E5%88%AB%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%90%8C%E6%97%B6%E5%8F%91%E9%80%81%E5%8F%82%E6%95%B0%E5%92%8C%E4%B8%8A%E4%BC%A0%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6">012、<code>requests</code>的<code>post()</code>方法data、json参数区别，以及同时发送参数和上传多个文件</a></li>
+<li><a href="#013%E3%80%81-pprint-pprint%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%89%93%E5%8D%B0">013、<code>pprint.pprint()</code>格式化打印</a></li>
+<li><a href="#014%E3%80%81python%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90-argparse">014、Python命令行参数解析<code>argparse</code></a></li>
+<li><a href="#015%E3%80%81python-dev%E3%80%81-devel">015、python-dev、*-devel</a></li>
+<li><a href="#016%E3%80%81python%E4%B8%AD%E6%B2%A1%E6%9C%89%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F">016、Python中没有块级作用域</a></li>
+<li><a href="#017%E3%80%81shutil%E6%A8%A1%E5%9D%97">017、shutil模块</a></li>
+<li><a href="#018%E3%80%81python%E5%85%B6%E4%BB%96%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B%E3%80%81json%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%ACpython-json%E5%AF%B9%E8%B1%A1">018、Python其他类型转布尔类型、JSON字符串转Python JSON对象</a></li>
 </ul>
 </div>
-<h4><a id="%E4%B8%80%E3%80%81is%E3%80%81%E3%80%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%83%E5%B0%94%E5%80%BC%EF%BC%88-if-obja%EF%BC%89%E3%80%81none%E3%80%81not" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、is、==、对象的布尔值（if ObjA）、None、not</h4>
+<h4><a id="001%E3%80%81is%E3%80%81%E3%80%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B8%83%E5%B0%94%E5%80%BC%EF%BC%88-if-obja%EF%BC%89%E3%80%81none%E3%80%81not" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>001、is、==、对象的布尔值（if ObjA）、None、not</h4>
 <ul>
 <li>
-<p><strong>1. <code>is</code>：</strong></p>
+<p><strong>1、<code>is</code>：</strong></p>
 <ul>
 <li>
 <p><strong>比较两个对象的内存地址(<code>id(a)</code>)是否相同，若是相同则返回True，否则为False；</strong></p>

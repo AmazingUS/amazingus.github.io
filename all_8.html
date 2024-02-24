@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -292,7 +292,7 @@
 </li>
 <li>
 <p>使用“try...except”捕获异常有一个好处，就是可以跨越多层调用；也就是说，不需要在每个可能出错的地方捕获异常错误，只要在合适的层次地方去捕获异常错误就可以</p>
-<pre><code class="language-python"> try:
+<pre><code class="language-py"> try:
      print('try...')
      # r = 10 / 0
      # r = 10 / int('a')
@@ -375,7 +375,7 @@
 <ul>
 <li>
 <p>types模块MethodType()函数可以创建一个方法，给实例变量、类动态绑定方法</p>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
      pass
      
  # 注意是带有self参数的函数，不是方法

@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -157,7 +157,7 @@
 <ul>
 <li>
 <p>Python中的re模块提供了正则表达式的功能；注意Python的字符串本身也用\进行转义</p>
-<pre><code class="language-python"> s = 'ABC\\-001' # 字符串为'ABC\-001'
+<pre><code class="language-py"> s = 'ABC\\-001' # 字符串为'ABC\-001'
  # 使用Python的r前缀，就不用考虑转义的问题了
  s = r'ABC\\-001' # 字符串为'ABC\\-001'  
 </code></pre>
@@ -176,7 +176,7 @@
 </li>
 <li>
 <p>re.findall()：以list形式返回全部匹配的子串</p>
-<pre><code class="language-python"> import re
+<pre><code class="language-py"> import re
  
  m = re.match(r'a', 'cba')
  print(m)  # None
@@ -215,7 +215,7 @@
 </li>
 <li>若匹配不成功，返回None，调用group(0)、group(1)会报错</li>
 </ul>
-<pre><code class="language-python"> # ^(\d{3})-(\d{3,8})$定义两个组用于提取出区号和号码
+<pre><code class="language-py"> # ^(\d{3})-(\d{3,8})$定义两个组用于提取出区号和号码
  m = re.match(r'^(\d{3})-(\d{3,8})$', '010-12345')
  
  print(m) # &lt;_sre.SRE_Match object; span=(0, 9), match='010-12345'&gt;
@@ -226,7 +226,7 @@
 </li>
 <li>
 <p>贪婪匹配：正则匹配默认是贪婪匹配，也就是匹配尽可能多的字符</p>
-<pre><code class="language-python"> m = re.match(r'^(\d+)(0*)$', '102300').groups()
+<pre><code class="language-py"> m = re.match(r'^(\d+)(0*)$', '102300').groups()
  print(m)  # ('102300', '')
  
  # 加个?就让\d+采用非贪婪匹配（也就是尽可能少匹配）
@@ -244,7 +244,7 @@
 </li>
 <li>
 <p>若一个正则表达式需要被重复使用多次，可以预编译该正则表达式，之后重复使用时就不需要编译这个步骤，直接进行匹配</p>
-<pre><code class="language-python"> # 编译，生成Regular Expression对象（包含正则表达式）
+<pre><code class="language-py"> # 编译，生成Regular Expression对象（包含正则表达式）
  re_phone = re.compile(r'^(\d{3})-(\d{3,8})$') 
  # 匹配使用
  m = re_phone.match('010-12345').groups()
@@ -270,7 +270,7 @@
 <ul>
 <li>
 <p>datetime模块是Python处理日期和时间的标准库，datetime模块还包含一个datetime类</p>
-<pre><code class="language-python"> from datetime import datetime
+<pre><code class="language-py"> from datetime import datetime
  
  # 获取当前日期和时间
  now = datetime.now()  # 返回类型为datatime
@@ -290,7 +290,7 @@
 </li>
 <li>
 <p>Python中的timestamp是一个浮点数，小数位表示毫秒数；某些编程语言（如Java和JS）的timestamp使用整数表示毫秒数，此时只需要把timestamp除以1000就得到Python的timestamp</p>
-<pre><code class="language-python"> # 将datetime转timestamp
+<pre><code class="language-py"> # 将datetime转timestamp
  #（若datetime的时区属性为None，转换时时区取当前时区）
  now = datetime.now()
  print(now.timestamp())
@@ -306,7 +306,7 @@
 </li>
 <li>
 <p>datetime格式化：字符串'%Y-%m-%d %H:%M:%S'规定了日期和时间部分的格式</p>
-<pre><code class="language-python"> # datetime转str
+<pre><code class="language-py"> # datetime转str
  now = datetime.now()
  print(now.strftime('%a, %b %d %H:%M'))
  
@@ -317,7 +317,7 @@
 </li>
 <li>
 <p>对日期和时间进行加减就是把datetime往后往前计算得到新的datetime；加减可直接用+、-运算符操作timedelta类</p>
-<pre><code class="language-python">from datetime import timedelta
+<pre><code class="language-py">from datetime import timedelta
 
 print(now)
 newNow = now + timedelta(hours=10)  # 加10小时
@@ -332,7 +332,7 @@ print(newNow)
 </li>
 <li>
 <p><strong>datetime有一个时区属性tzinfo，默认为None</strong>，所以无法区分该datetime是哪个时区的，需要人为设置一个时区</p>
-<pre><code class="language-python">from datetime import datetime, timedelta, timezone
+<pre><code class="language-py">from datetime import datetime, timedelta, timezone
 
 # 强制设置时区（使用replace()方法）
 # 举例1
@@ -359,7 +359,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 </li>
 <li>
 <p>datetime不含有时区信息时表示为当前本地时间；存储datetime的最佳方法是将其转为timestamp再存储</p>
-<pre><code class="language-python"> # 练习：将日期时间字符串及时区信息字符串转为timestamp
+<pre><code class="language-py"> # 练习：将日期时间字符串及时区信息字符串转为timestamp
  import re
  from datetime import datetime, timezone, timedelta
  
@@ -391,7 +391,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 <li>tuple是不可变集合，使用tuple可以表示一个坐标(x, y)，但是无法直接以x、y属性形式去访问值，而定义一个class又小题大做</li>
 <li>namedtuple是一个函数，可以创建一个自定义的tuple对象，之后可以以属性形式而不是索引形式去访问tuple的某个元素，使用非常方便</li>
 </ul>
-<pre><code class="language-python"> from collections import namedtuple
+<pre><code class="language-py"> from collections import namedtuple
  
  Point = namedtuple('Point', ['x', 'y'])
  p = Point(1, 2)
@@ -410,7 +410,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 <li>deque是双向链表，可以高效地插入删除元素，适合用于队列和栈</li>
 <li>deque除了实现list的append()和pop()外，还支持appendleft()和popleft()可以高效地向队列的头部添加删除元素，也可以按照索引取值</li>
 </ul>
-<pre><code class="language-python"> from collections import deque
+<pre><code class="language-py"> from collections import deque
  
  q = deque(['a', 'b', 'c'])
  q.append('x')
@@ -426,7 +426,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 <li>默认值是由创建defaultdict对象时传入的函数调用返回的</li>
 <li>除了在key不存在时返回一个默认值，defaultdict的使用和dict是完全一样</li>
 </ul>
-<pre><code class="language-python"> from collections import defaultdict
+<pre><code class="language-py"> from collections import defaultdict
  
  dd = defaultdict(lambda: 'N/A')  # 传入提供默认值的函数
  dd['key1'] = 'abc'
@@ -439,7 +439,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 <ul>
 <li>dict的key是无序的，在对dict做迭代时无法确定key的顺序；若要保持key的顺序可以用OrderDict</li>
 </ul>
-<pre><code class="language-python"> from collections import OrderedDict
+<pre><code class="language-py"> from collections import OrderedDict
  
  l = [('a', 1), ('b', 2), ('c', 3)]
  
@@ -457,7 +457,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
  od['x'] = 3
  print(list(od.keys()))
 </code></pre>
-<pre><code class="language-python"> # 使用OrderedDict实现一个FIFO的dict，当容量超出限制时，先删除最早添加的元素
+<pre><code class="language-py"> # 使用OrderedDict实现一个FIFO的dict，当容量超出限制时，先删除最早添加的元素
  from collections import OrderedDict
  
  class LastUpdateOrderedDict(OrderedDict):
@@ -478,7 +478,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
              print('add:', (key, value))
          OrderedDict.__setitem__(self, key, value)  # 调用父类方法，添加元素
 </code></pre>
-<pre><code class="language-python"> # 补充（两个list合并成dict）：
+<pre><code class="language-py"> # 补充（两个list合并成dict）：
  list1 = ['key1', 'key2', 'key3']
  list2 = ['1', '2', '3']
  d = dict(zip(list1, list2))
@@ -490,7 +490,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 <ul>
 <li>一个简单的计数器，实际上是dict的一个子类</li>
 </ul>
-<pre><code class="language-python"> # 统计字符出现的个数
+<pre><code class="language-py"> # 统计字符出现的个数
  from collections import Counter
  
  c = Counter()
@@ -524,7 +524,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 </li>
 <li>
 <p>Python内置了支持base64编码解码的base64模块</p>
-<pre><code class="language-python"> import base64
+<pre><code class="language-py"> import base64
  
  en = base64.b64encode(b'binary\x00string')  # 编码，一共6+1+6个字节
  print(en)  # b'YmluYXJ5AHN0cmluZw=='
@@ -534,7 +534,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 </li>
 <li>
 <p>使用标准的base64编码可能出现字符/和+，但是字符/和+在URL中不能直接作为参数，所以出现了一种“url safe”的base64编码（其实就是把字符/和+分别变成_和-）</p>
-<pre><code class="language-python"> en = base64.b64encode(b'i\xb7\x1d\xfb\xef\xff')
+<pre><code class="language-py"> en = base64.b64encode(b'i\xb7\x1d\xfb\xef\xff')
  print(en)  # b'abcd++//'
  
  sf_en = base64.urlsafe_b64encode(b'i\xb7\x1d\xfb\xef\xff')
@@ -554,7 +554,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 </li>
 <li>
 <p>base64适用于小段内容的编码，比如数字证书签名、Cookie、URL等</p>
-<pre><code class="language-python"> # 处理去掉=的base64的解码
+<pre><code class="language-py"> # 处理去掉=的base64的解码
  import base64
  
  def safe_base64_decode(s):
@@ -581,7 +581,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 <ul>
 <li>
 <p>Python没有专门处理字节的数据类型，虽然str既可以表示字符串，又可以表示字节（b'\x00\x9c'）</p>
-<pre><code class="language-python"> # 把一个32位无符号整数变成字节（4个bytes），需要使用位运算（若是浮点数就无解了）
+<pre><code class="language-py"> # 把一个32位无符号整数变成字节（4个bytes），需要使用位运算（若是浮点数就无解了）
  n = 10240099
  print('%x' % n)  # 9c4063
  
@@ -596,7 +596,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 </li>
 <li>
 <p>struct模块可以解决bytes和二进制数据类型的转换（二进制文件的编码解码存储；这一部分操作通常是系统底层自动完成）；decode、endcode解决的是bytes和str的转换</p>
-<pre><code class="language-python"> import struct
+<pre><code class="language-py"> import struct
  
  # pack: 把任意数据类型变成bytes
  # 第1参数是处理指令；&gt;表示字节顺序是big-endian，也就是网络序，
@@ -620,7 +620,7 @@ print(tokyo_dt)  # 2015-11-05 13:41:30.332392+09:00
 </li>
 <li>
 <p>尽管Python不适合编写底层操作字节流的代码，但是对性能要求不高的地方使用struct还是比较方便</p>
-<pre><code class="language-python"> # 举例：使用struct分析Windows的位图文件（.bmp)，读取前30个字节来分析
+<pre><code class="language-py"> # 举例：使用struct分析Windows的位图文件（.bmp)，读取前30个字节来分析
  s = b'\x42\x4d\x38\x8c\x0a\x00\x00\x00\x00\x00\x36\x00' \
      b'\x00\x00\x28\x00\x00\x00\x80\x02\x00\x00\x68\x01' \
      b'\x00\x00\x01\x00\x18\x00'

@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -220,8 +220,11 @@ override var preferredStatusBarStyle: UIStatusBarStyle {
 <li>
 <p>2）当Navigation Bar可见时，由NavigationController负责管理Status Bar Style；NavigationController往往都是系统默认的UINavigationController，若Status Bar Style不符合要求，有两种解决方式：</p>
 <ul>
-<li><strong>a. 继承UINavigationController，重写preferredStatusBarStyle属性；</strong></li>
-<li><strong>b. 不继承UINavigationController（没有办法继承，如系统组件MFMailComposeViewController）:</strong>
+<li>
+<p><strong>a. 继承UINavigationController，重写preferredStatusBarStyle属性；</strong></p>
+</li>
+<li>
+<p><strong>b. 不继承UINavigationController（没有办法继承，如系统组件MFMailComposeViewController）:</strong></p>
 <ul>
 <li>a）Navigation Bar的barStyle属性决定外观，修改barStyle会联动改变Status Bar Style：</li>
 <li>b）当barStyle = .default时，Navigation Bar显示为黑色，此时Status Bar显示为白色；</li>

@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -109,16 +109,16 @@
 
       <div class="article-content">
         <div class="mweb_toc"><ul>
-<li><a href="#%E4%B8%80%E3%80%81%E7%B1%BB%E5%BA%93%E5%88%86%E7%B1%BB">一、类库分类</a></li>
-<li><a href="#%E4%BA%8C%E3%80%81%E7%B1%BB%E5%BA%93%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81">二、类库类型支持</a></li>
+<li><a href="#%E4%B8%80%E3%80%81%E7%B1%BB%E5%BA%93%E7%B1%BB%E5%9E%8B">一、类库类型</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81xcode%E6%94%AF%E6%8C%81%E7%9A%84%E7%B1%BB%E5%BA%93%E7%B1%BB%E5%9E%8B">二、Xcode支持的类库类型</a></li>
 <li><a href="#%E4%B8%89%E3%80%81iphone%E8%AE%BE%E5%A4%87cpu%E6%9E%B6%E6%9E%84">三、iPhone设备CPU架构</a></li>
 <li><a href="#%E5%9B%9B%E3%80%81%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86">四、资源文件处理</a></li>
-<li><a href="#%E4%BA%94%E3%80%81%E8%A1%A5%E5%85%85">五、补充</a></li>
+<li><a href="#%E4%BA%94%E3%80%81%E8%A1%A5%E5%85%85%EF%BC%9A%E8%B0%83%E8%AF%95%E7%B1%BB%E5%BA%93%E3%80%81%E5%8C%BA%E5%88%86%E7%B1%BB%E5%BA%93%E7%9A%84%E7%B1%BB%E5%9E%8B">五、补充：调试类库、区分类库的类型</a></li>
 <li><a href="#%E5%85%AD%E3%80%81xcframework">六、XCFramework</a></li>
-<li><a href="#%E4%B8%83%E3%80%81xcode-12">七、Xcode 12</a></li>
+<li><a href="#%E4%B8%83%E3%80%81xcode-12%EF%BC%88ios-14-2020%EF%BC%89%E4%B8%8Eapple-m1%EF%BC%882020%EF%BC%89%E9%80%82%E9%85%8D">七、Xcode 12（iOS 14, 2020）与Apple M1（2020）适配</a></li>
 </ul>
 </div>
-<h4><a id="%E4%B8%80%E3%80%81%E7%B1%BB%E5%BA%93%E5%88%86%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、类库分类</h4>
+<h4><a id="%E4%B8%80%E3%80%81%E7%B1%BB%E5%BA%93%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、类库类型</h4>
 <ul>
 <li>
 <p>1、静态库：</p>
@@ -165,46 +165,57 @@
 </li>
 </ul>
 <span id="more"></span><!-- more -->
-<h4><a id="%E4%BA%8C%E3%80%81%E7%B1%BB%E5%BA%93%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、类库类型支持</h4>
+<h4><a id="%E4%BA%8C%E3%80%81xcode%E6%94%AF%E6%8C%81%E7%9A%84%E7%B1%BB%E5%BA%93%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、Xcode支持的类库类型</h4>
 <ul>
 <li>
-<p>1、Xcode 6（iOS8）之前：</p>
+<p>1、Xcode 6（iOS 8）之前：</p>
 <ul>
 <li>
-<p>出于安全考虑，Xcode只支持创建.a静``态库（注意需要将相关的.h头文件public出来）；不支持创建.framework静态库，但是可以通过第三方工具创建（如iOS-Universal-Framework），这种被称为伪（Fake）Framework；</p>
+<p>1）出于安全考虑，Xcode只支持创建.a静态库（注意需要将相关的.h头文件public出来）；不支持创建.framework静态库，但是可以通过第三方工具创建（如iOS-Universal-Framework），这种被称为伪（Fake）Framework；一般情况下都使用第三方工具创建.framework静态库，因为这样之后使用起来比.a形式更方便；</p>
 </li>
 <li>
-<p>一般情况下都使用第三方工具创建.framework静态库，因为这样之后使用起来比.a形式更方便；</p>
+<p>2）Xcode也不支持创建任何形式的动态库；</p>
 </li>
 <li>
-<p>Xcode也不支持创建任何形式的动态库；</p>
-</li>
-<li>
-<p>.tdb/.dylib动态库、.framework动态库都是系统内置的（如libz.dylib、UIKit.framework），故开发者只能使用系统内置的动态库；</p>
+<p>3）.tdb/.dylib动态库、.framework动态库都是系统内置的（如libz.dylib、UIKit.framework），故开发者只能使用系统内置的动态库；</p>
 <p><img src="media/15210408337160/xcode_5.png" alt="xcode_5" style="width:311px;" /></p>
 </li>
 </ul>
 </li>
 <li>
-<p>2、Xcode 6（iOS8）开始：</p>
+<p>2、Xcode 6（iOS 8）开始：</p>
 <ul>
 <li>
-<p>Xcode支持创建.a静态库、.framework静态库（修改<code>Mach-O Type</code>，默认为动态库）；</p>
+<p>1）Xcode支持创建.a静态库、.framework静态库（修改<code>Mach-O Type</code>，默认为动态库）；</p>
 </li>
 <li>
-<p><strong>Xcode也支持创建.framework动态库了，但这是一种特殊的动态库（使用时需要被添加到 <code>Embedded Binaries</code> 中，并且添加后也会默认自动添加到<code>Link Binary With Libraries</code>中）；其只支持主程序和扩展程序共用该动态库，其他应用还是无法进行共用，这和系统的（如UIKit.framework）还是有着很大区别的；</strong></p>
+<p>2）<strong>Xcode也支持创建.framework动态库了，但这是一种特殊的动态库（使用时需要被添加到 <code>Embedded Binaries</code> 中，并且添加后也会默认自动添加到<code>Link Binary With Libraries</code>中）；其只支持主程序和扩展程序共用该动态库，其他应用还是无法进行共用，这和系统的（如UIKit.framework）还是有着很大区别的；</strong></p>
 <p><img src="media/15210408337160/xcode_6.png" alt="xcode_6" style="width:300px;" /></p>
+</li>
+<li>
+<p>3）<strong>Xcode 6（iOS 8）发布了Swift 1.0，但Swift只支持动态库（.tdb/.dylib、.framework），不支持静态库（.a、.framework）；</strong></p>
+</li>
+<li>
+<p>4）<strong>CocoaPods</strong></p>
+<ul>
+<li>a. <strong>在纯ObjC项目中，默认将第三方库源码，编译成<code>.a静态库</code>集成到项目中；</strong></li>
+<li>b. <strong>若含有Swift的类库则必须添加 <code>use_frameworks!</code> 标识（纯ObjC项目中也可使用该标识），进而生成<code>.framework动态库</code>；</strong></li>
+</ul>
+</li>
+<li>
+<p>5）Carthage</p>
+<ul>
+<li><strong>由于Carthage是通过Swift语言编写而成的，故其只支持生成<code>.framework动态库</code>，支持的项目最低版本为8.0；</strong></li>
+</ul>
 </li>
 </ul>
 </li>
 <li>
-<p><strong>3、Xcode 6（iOS8）发布了Swift 1.0，但是Swift不支持静态库（.a、.framework），只支持动态库（.tdb/.dylib、.framework）；从Xcode 9开始，Swift 4.0支持静态库；</strong></p>
-</li>
-<li>
-<p>4、CocoaPods在纯ObjC项目中，默认将第三方库源码，编译成<code>.a静态库</code>集成到项目中；若含有Swift的类库则必须添加 <code>use_frameworks!</code> 标识（纯ObjC项目中也可以使用该标识），进而生成<code>.framework动态库</code>（默认）；</p>
-</li>
-<li>
-<p>5、Carthage只支持生成<code>.framework动态库</code>（原因：Carthage是通过Swift语言编写而成的），故其支持的项目最低版本为8.0；</p>
+<p>3、Xcode 9（iOS 11）开始：</p>
+<ul>
+<li>1）Swift 4.0开始支持静态库（.a、.framework）；</li>
+<li>2）CocoaPods、Carthage也开始支持静态库（.a、.framework）；</li>
+</ul>
 </li>
 </ul>
 <h4><a id="%E4%B8%89%E3%80%81iphone%E8%AE%BE%E5%A4%87cpu%E6%9E%B6%E6%9E%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、iPhone设备CPU架构</h4>
@@ -317,11 +328,11 @@
 <li>d. 可以使用 <code>lipo -create</code> 命令合并相关的库文件；</li>
 <li>e. <code>Valid Architectures（VALID_ARCHS）</code>
 <ul>
-<li><strong>Xcode 12-：与Architectures（ARCHS）配合使用（取交集），用来配置需要的架构；</strong></li>
+<li><strong>Xcode 12-：与Architectures（ARCHS）配合使用（取交集形式），用来配置需要的架构；</strong></li>
 <li><strong>Xcode 12=+：被废弃移除；</strong>
 <ul>
 <li><strong>若之前修改配置过该值（不再是默认值），则Xcode自动将其迁移到<code>User-Defined -&gt; VALID_ARCHS</code>；</strong></li>
-<li><strong>Xcode 12新增<code>Excluded Architectures（EXCLUDED_ARCHS）</code>，用来配置不需要的架构；</strong></li>
+<li><strong>Xcode 12新增<code>Excluded Architectures（EXCLUDED_ARCHS）</code>（取差集形式，“去掉”不需要的架构），也是用来配置需要的架构；</strong></li>
 </ul>
 </li>
 </ul>
@@ -384,7 +395,7 @@ open &quot;${INSTALL_DIR}&quot;
 </li>
 <li>
 <p>b. 使用时需要手动添加.bundle到主项目中，之后通过以下方式使用：</p>
-<pre><code class="language-objc">[UIImage iamgeNamed:&quot;A.bundle/test.png&quot;];
+<pre><code class="language-ObjC">[UIImage iamgeNamed:&quot;A.bundle/test.png&quot;];
 </code></pre>
 </li>
 </ul>
@@ -400,13 +411,16 @@ open &quot;${INSTALL_DIR}&quot;
 </li>
 <li>
 <p>c. <strong>需要注意的是：Xcode在添加.framework到项目中的时候，.framework中的资源文件不会自动添加到<code>Copy Bundle Resources</code>中（单独添加.bundle，会自动添加的），需要在<code>Copy Bundle Resources</code>中，手动添加对应的.framework</strong>，之后通过以下方式使用：</p>
-<pre><code class="language-objc">// .framework中直接包含图片
-[UIImage iamgeNamed:&quot;A.framework/test.png&quot;]
-// .framework中还有bundle，bundle中包含图片
-[UIImage iamgeNamed:&quot;A.framework/A.bundle/test.png&quot;]
+<pre><code class="language-swift">// .framework中直接包含图片 路径
+&quot;A.framework/test.png&quot;
+// .framework中还有bundle，bundle中包含图片 路径
+&quot;A.framework/A.bundle/test.png&quot;
+</code></pre>
+<pre><code class="language-swift">// 动态获取相关的Bundle
+let frameworkBundle = Bundle(for: XXClass.self)
 
-// 路径
-[[NSBundle mainBundle] pathForResource:@&quot;a.framework/a.bundle/test.png&quot; ofType:nil];
+let path = frameworkBundle.path(forResource: &quot;A&quot;, ofType: &quot;bundle&quot;)!
+let assetsBundle = Bundle.init(path: path) 
 </code></pre>
 </li>
 <li>
@@ -429,7 +443,7 @@ open &quot;${INSTALL_DIR}&quot;
 </ul>
 </li>
 </ul>
-<h4><a id="%E4%BA%94%E3%80%81%E8%A1%A5%E5%85%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、补充</h4>
+<h4><a id="%E4%BA%94%E3%80%81%E8%A1%A5%E5%85%85%EF%BC%9A%E8%B0%83%E8%AF%95%E7%B1%BB%E5%BA%93%E3%80%81%E5%8C%BA%E5%88%86%E7%B1%BB%E5%BA%93%E7%9A%84%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、补充：调试类库、区分类库的类型</h4>
 <ul>
 <li>
 <p><strong>1、若需要边开发边调试类库：在现有工程中添加一个库Lib Target，设置一些相关配置（默认情况下自动添加，比如主Target的Build Phases的Target Dependencies添加lib Target、Embedded Binaries添加Lib、Link Binary With Libraries添加Lib、Public头文件、Copy Bundle Resources等），之后就可以进行调试；</strong></p>
@@ -454,7 +468,7 @@ SVProgressHUD.framework/SVProgressHUD: Mach-O 64-bit dynamically linked shared l
 <h4><a id="%E5%85%AD%E3%80%81xcframework" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、XCFramework</h4>
 <ul>
 <li>
-<p>1、Xcode 11开始支持，用于替代.framework，可以是静态库，也可以是动态库；</p>
+<p>1、Xcode 11（iOS13）开始支持，用于替代.framework，可以是静态库，也可以是动态库；</p>
 <ul>
 <li>可以包含模拟器和真机（和之前的.framework没有区别）；</li>
 <li>可以包含多个平台（之前不同的平台，需要创建不同的库）；</li>
@@ -481,57 +495,103 @@ SVProgressHUD.framework/SVProgressHUD: Mach-O 64-bit dynamically linked shared l
 </ul>
 </li>
 </ul>
-<h4><a id="%E4%B8%83%E3%80%81xcode-12" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、Xcode 12</h4>
+<h4><a id="%E4%B8%83%E3%80%81xcode-12%EF%BC%88ios-14-2020%EF%BC%89%E4%B8%8Eapple-m1%EF%BC%882020%EF%BC%89%E9%80%82%E9%85%8D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、Xcode 12（iOS 14, 2020）与Apple M1（2020）适配</h4>
 <ul>
 <li>
-<p>1、<strong>Apple M1，Xcode 12，模拟器运行，报错：</strong></p>
-<pre><code class="language-plain_text">// 错误1:
-building for iOS Simulator, but linking in object file built for iOS, for file 'XXYY' for architecture arm64
+<p>1、<strong>Xcode 12.3报错（不论是否是Apple M1设备）:</strong></p>
+<pre><code class="language-shell">// 模拟器编译
+Building for iOS Simulator, but the linked and embedded framework 'xx.framework' was built for iOS + iOS Simulator.
 
-// 错误2:
+// 真机编译
+Building for iOS, but the linked and embedded framework 'xx.framework' was built for iOS + iOS Simulator.
+</code></pre>
+<ul>
+<li>
+<p>1）原因：</p>
+<ul>
+<li><strong>Xcode 12.3开始，不允许使用“模拟器的库 + 真机的库”这种含有多架构的库（x86_64+armv7+arm64）；因为模拟器的库和真机的库都有arm64；WWDC 2019推出XCFramework后，对于多架构的库，Xcode 11只是warning；</strong></li>
+</ul>
+</li>
+<li>
+<p>2）解决：</p>
+<ul>
+<li>方法1：Files -&gt; WorkSpace Setting -&gt; Build System -&gt; Legacy Build System（Deprecated）；</li>
+<li>方法2：Build Setting -&gt; Build Options -&gt; Validate WorkSpace -&gt; YES；</li>
+<li><strong>方法3：改用.xcframework；</strong></li>
+<li><strong>方法4：改为只包含“模拟器库”或“真机库”的库；</strong></li>
+</ul>
+</li>
+<li>
+<p>3）参考：</p>
+<ul>
+<li><strong>升级XCode12.3报错 Building for , but the linked and embedded framework was built for iOS + iOS Simulator：<code>https://blog.csdn.net/qq_43377749/article/details/111592751</code></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、<strong>Xcode 12开始报错（Apple M1设备）：</strong></p>
+<pre><code class="language-shell">// 错误1：为“（arm64）iOS模拟器”构建，但链接的文件是“arm64 iOS（真机）”架构的
+// 模拟器编译
+building for iOS Simulator, but linking in object file built for iOS, file for architecture arm64
+// 参考：https://blog.csdn.net/u011224726/article/details/124453819
+
+// 错误2：为“arm64 iOS模拟器”构建，但链接的文件是“x86_64 iOS模拟器”架构的
+// 模拟器编译（Xcode 13）
 building for iOS Simulator-arm64 but attempting to link with file built for iOS Simulator-x86_64
+// 参考：https://blog.csdn.net/Morris_/article/details/122077251
 
-// 错误3:
+// 错误3：
+// 模拟器编译（Xcode 14）
+Could not find module 'xx' for target 'arm64-apple-ios-simulator'; found: x86_64-apple-ios-simulator, at: ../xx.swiftmodule
+
+// 为“arm64 iOS模拟器”构建时，先去找arm64架构的（可能找到“arm64 iOS真机”，然后报错1），
+// 没有找到，然后找模拟器的（可能找到“x86_64 iOS模拟器”，然后报错2、3）；
+// 只有，“arm64 iOS模拟器”，才是正确的；
+</code></pre>
+<pre><code class="language-shell">// 错误1：为“x86_64 iOS模拟器”构建，但链接的文件是“arm64 iOS模拟器”架构的
+// 模拟器编译
 building for iOS Simulator-x86_64 but attempting to link with file built for iOS Simulator-arm64
-Undefined symbols for architecture x86_64:
-  &quot;_OBJC_CLASS_$_XXYY&quot;, referenced from:
-      objc-class-ref in SqflitePlugin.o
-ld: symbol(s) not found for architecture x86_64
+
+// 错误2：
+// 模拟器编译（Xcode 14）
+Could not find module 'xx' for target 'x86_64-apple-ios-simulator'; found: arm64-apple-ios-simulator, at: ../xx.swiftmodule
 </code></pre>
 <ul>
 <li>
 <p>1）<strong>之前：</strong></p>
 <ul>
-<li><strong>Intel的模拟器，使用“<code>x86_64</code>架构的模拟器库”；</strong></li>
-<li><strong>真机，使用“<code>arm64</code>架构的真机库”；</strong></li>
-<li><strong>然后将这两个库合并在一起使用；</strong></li>
+<li><strong>模拟器（Intel）：使用“<code>x86_64</code>架构的<code>模拟器库</code>”；</strong></li>
+<li><strong>真机（ARM）：使用“<code>arm64</code>架构的<code>真机库</code>”；</strong></li>
+<li><strong>然后，将这两个库合并在一起使用；</strong></li>
 </ul>
 </li>
 <li>
 <p>2）<strong>现在：</strong></p>
 <ul>
-<li><strong>Apple M1的模拟器，使用需要包含“<code>arm64</code>架构的模拟器库”；</strong></li>
-<li><strong>很多第三方，针对模拟器编译后的库并不包含<code>arm64</code>架构，所以报错；</strong></li>
+<li><strong>Apple M1的模拟器，使用需要包含“<code>arm64</code>架构的<code>模拟器库</code>”；</strong></li>
+<li><strong>很多第三方，针对<code>模拟器</code>编译后的库，并不包含<code>arm64</code>架构；</strong></li>
 </ul>
 </li>
 <li>
 <p>3）<strong>解决：</strong></p>
 <ul>
 <li>
-<p><strong>方法1：以<code>Rossetta 2</code>模式运行Xcode；</strong></p>
+<p><strong>方法1：以<code>Rosetta 2</code>模式运行Xcode；</strong></p>
 <ul>
-<li><strong>该方式会将x86指令转译成ARM指令运行，有一些性能损失；</strong></li>
+<li><strong>此时，就可以正常链接包含<code>x86_64</code>架构的<code>模拟器库</code>（只包含<code>x86_64</code>，或同时包含<code>x86_64</code>和<code>arm64</code>的，都可以；只包含<code>arm64</code>的不可以）；模拟器中的app以Intel架构方式运行；</strong></li>
+<li><strong>Xcode此时以Intel架构（x86指令）方式运行，有一些性能损失；</strong></li>
 </ul>
 </li>
 <li>
-<p><strong>方法2：通过设置<code>Excluded Architectures</code>，移除<code>arm64</code>；</strong></p>
+<p><strong>方法2：通过设置<code>Excluded Architectures</code>，移除<code>arm64</code>；清空<code>VALID_ARCHS</code>（已被废弃，被移到<code>User-Defined</code>中了）；</strong></p>
 <ul>
 <li>
-<p><strong>当在M1上，移除了模拟器的arm64架构后，模拟器还是会以arm64的方式运行，但模拟器中的app以x86的方式运行；此时，模拟器和app通过XPC进行通信，长久通信后，可能会有一些问题；</strong></p>
+<p><strong>此时，就可以正常链接包含<code>x86_64</code>架构的<code>模拟器库</code>（只包含<code>x86_64</code>，或同时包含<code>x86_64</code>和<code>arm64</code>的，都可以；只包含<code>arm64</code>的不可以）；模拟器中的app以Intel架构方式运行；</strong></p>
 </li>
 <li>
-<p><strong>有时设置了移除，依然无法编译通过，一般是项目设置和Cocoapods的设置不一致导致的，需要在Podfile添加以下内容，以保持一致；</strong></p>
-<pre><code class="language-rb">post_install do |install    er|
+<p><strong>若使用了Cocoapods，需要在Podfile添加以下内容，以保持和项目设置一致；</strong></p>
+<pre><code class="language-rb">post_install do |installer|
   installer.pods_project.targets.each do |target|
     
     target.build_configurations.each do |config|
@@ -545,10 +605,7 @@ end
 </ul>
 </li>
 <li>
-<p><strong>方法3：编译同时包含<code>x86_64</code>和<code>arm64</code>架构的模拟器库；</strong></p>
-</li>
-<li>
-<p><strong>方法4：若是CocoaPods生成库，重新执行pod即可；</strong></p>
+<p><strong>方法3：使用同时包含<code>x86_64</code>和<code>arm64</code>架构的<code>模拟器库</code>；</strong></p>
 </li>
 </ul>
 </li>
@@ -561,35 +618,55 @@ end
 </ul>
 </li>
 <li>
-<p>2、<strong>Xcode 12.3，模拟器运行（真机运行同样），报错；</strong></p>
-<pre><code class="language-plain_text">Building for iOS Simulator, but the linked and embedded framework 'XX' was built for iOS + iOS Simulator.
+<p>3、<strong>非Apple M1设备的相关错误：</strong></p>
+<pre><code class="language-shell">// 错误1：真机编译，使用了模拟器（非Apple M1设备的）的库；
+// 与Xcode版本无关
+building for iOS-arm64 but attempting to link file built for i0S Simulator-x86_64
+// 参考：https://www.jianshu.com/p/936f6522036b
+
+// 错误2：模拟器（非Apple M1设备的）编译，使用了真机的库；
+// 与Xcode版本无关
+Building for iOS Simulator, but the linked and embedded framework 'xx.framework' was built for iOS.
+// 参考：https://www.jianshu.com/p/74ecc7971931
+// 解决：Build Settings中配置Excluded Source File Names；
 </code></pre>
-<ul>
-<li>
-<p>1）<strong>原因：Xcode 12.3开始，不允许使用“模拟器的库 + 真机的库”这种含有多架构的库（x86_64+armv7+arm64）；因为模拟器的库和真机的库都有arm64；</strong></p>
 </li>
 <li>
-<p>2）解决：</p>
+<p>4、Pods相关错误：</p>
 <ul>
-<li>方法1：Files -&gt; WorkSpace Setting -&gt; Build System -&gt; Legacy Build System（Deprecated）；</li>
-<li>方法2：Build Setting -&gt; Build Options -&gt; Validate WorkSpace -&gt; YES；</li>
-<li><strong>方法3：改用.xcframework；</strong></li>
-<li><strong>方法4：改为只包含“模拟器库”或“真机库”的库；（如CocoaPods、Carthage的处理）</strong></li>
+<li>
+<p>1）<strong>以Pods方式引入的.xcframework库报错（模拟器编译），则需要将Xcode、CocoaPods升级到最新版本(1.10.0, 2020-10-20；<code>https://github.com/CocoaPods/CocoaPods/blob/master/CHANGELOG.md</code>)，并再次执行一次pod install；</strong></p>
+</li>
+<li>
+<p>2）<strong>Apple M1设备，有时运行iPhone 13模拟器后，再运行iPhone 11模拟器时报错：<code>The linked framework 'Pods_XX.framework' is missing one or more architectures required by this target: x86_64.</code>；此时<code>Xcode -&gt; Product -&gt; Clean Build Folder</code>即可；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>5、排除解决错误的思路：</p>
+<ul>
+<li>
+<p>1）<strong>编译出错，主要涉及3个编译目标的架构：</strong></p>
+<ul>
+<li><strong>Pods管理的三方库的的架构（使用源码的：无需处理；不使用源码的：需要有支持架构，或特殊处理）；</strong></li>
+<li><strong>非Pods管理（本地编译的、手动拖拽的）的三方库的的架构（使用源码的：无需处理；不使用源码的：需要有支持架构，或特殊处理）；</strong></li>
+<li><strong>依赖上面的库，并运行在设备上（模拟器、真机）的架构；</strong></li>
+</ul>
+</li>
+<li>
+<p>2）<strong>解决方法（在不使用<code>Rosetta 2</code>模式的情况下）：</strong></p>
+<ul>
+<li><strong>修改<code>Excluded Architectures</code>、<code>Build Active Architecture Only</code>，让3个编译目标的架构可以统一；</strong></li>
+<li><strong>主工程、Pods工程都需要修改；</strong></li>
 </ul>
 </li>
 <li>
 <p>3）参考：</p>
 <ul>
-<li><strong>升级XCode12.3报错 Building for , but the linked and embedded framework was built for iOS + iOS Simulator：<code>https://blog.csdn.net/qq_43377749/article/details/111592751</code></strong></li>
+<li><strong>M1芯片Mac搭建ios开发环境踩坑：<code>https://juejin.cn/post/6989958874740555789</code></strong></li>
 </ul>
 </li>
 </ul>
-</li>
-<li>
-<p>3、<strong>Xcode 12，模拟器运行以pod方式引入的.xcframework库报错，则需要将Xcode、CocoaPods升级到最新版本(1.10.0)，并再次执行一次pod install；</strong></p>
-</li>
-<li>
-<p>4、<strong>有时（Apple M1，运行iPhone 13模拟器后，再运行iPhone 11模拟器时）运行报错：<code>The linked framework 'Pods_XX.framework' is missing one or more architectures required by this target: x86_64.</code>，此时<code>Xcode -&gt; Product -&gt; Clean Build Folder</code>即可；</strong></p>
 </li>
 </ul>
 

@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -111,99 +111,286 @@
         <div class="mweb_toc"><ul>
 <li><a href="#%E4%B8%80%E3%80%81%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4">一、管理命令</a>
 <ul>
-<li><a href="#1-apt-get">1. apt-get</a></li>
-<li><a href="#2%E3%80%81df%E3%80%81du">2、df、du</a></li>
-<li><a href="#3%E3%80%81netstat">3、netstat</a></li>
-<li><a href="#4%E3%80%81ps">4、ps</a></li>
-<li><a href="#5%E3%80%81lsof">5、lsof</a></li>
-<li><a href="#6%E3%80%81kill">6、kill</a></li>
-<li><a href="#7%E3%80%81useradd%E3%80%81userdel%E3%80%81su">7、useradd、userdel、su</a></li>
+<li><a href="#001%E3%80%81apt-get%E3%80%81apt">001、apt-get、apt</a></li>
+<li><a href="#002%E3%80%81ps%EF%BC%88cpu%E3%80%81memory%EF%BC%89%E3%80%81nvidia-smi%EF%BC%88gpu%EF%BC%89">002、ps（CPU、Memory）、nvidia-smi（GPU）</a></li>
+<li><a href="#003%E3%80%81df%EF%BC%88disk%EF%BC%89%E3%80%81du">003、df（Disk）、du</a></li>
+<li><a href="#004%E3%80%81lsof">004、lsof</a></li>
+<li><a href="#005%E3%80%81kill">005、kill</a></li>
+<li><a href="#006%E3%80%81netstat">006、netstat</a></li>
+<li><a href="#007%E3%80%81useradd%E3%80%81userdel%E3%80%81su">007、useradd、userdel、su</a></li>
+<li><a href="#008%E3%80%81history">008、history</a></li>
+<li><a href="#009%E3%80%81mv">009、mv</a></li>
+<li><a href="#010%E3%80%81cp-r%E4%B8%8Ecp-r%E7%9A%84%E5%8C%BA%E5%88%AB">010、cp -r与cp -R的区别</a></li>
+<li><a href="#011%E3%80%81%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%EF%BC%9Aalias%E3%80%81unalias">011、设置别名：alias、unalias</a></li>
+<li><a href="#012%E3%80%81%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%9Aexport%E3%80%81unset">012、设置环境变量：export、unset</a></li>
+<li><a href="#013%E3%80%81shutdown">013、shutdown</a></li>
 </ul>
 </li>
 <li><a href="#%E4%BA%8C%E3%80%81%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4">二、工具命令</a>
 <ul>
-<li><a href="#1%E3%80%81scp">1、scp</a></li>
-<li><a href="#2%E3%80%81tar">2、tar</a></li>
+<li><a href="#001%E3%80%81scp">001、scp</a></li>
+<li><a href="#002%E3%80%81rsync">002、rsync</a></li>
+<li><a href="#003%E3%80%81tar">003、tar</a></li>
+<li><a href="#004%E3%80%81nohup%E3%80%81%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8B%E5%90%AF%E5%8A%A8%E6%97%A5%E5%BF%97">004、nohup、&amp;的作用、实时查看启动日志</a></li>
+<li><a href="#005%E3%80%81%E6%9F%A5%E8%AF%A2%E6%9F%90%E4%B8%AA%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E6%96%87%E4%BB%B6%E3%80%81%E7%9B%AE%E5%BD%95%E7%9A%84%E6%95%B0%E9%87%8F">005、查询某个目录下，文件、目录的数量</a></li>
 </ul>
 </li>
-<li><a href="#%E4%B8%89%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">三、注意事项</a>
+<li><a href="#%E4%B8%89%E3%80%81%E5%85%B6%E4%BB%96%E4%BA%8B%E9%A1%B9">三、其他事项</a>
 <ul>
-<li><a href="#1%E3%80%81linux%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%AD%E5%8C%85%E5%90%AB%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6">1、Linux文件名中包含特殊字符</a></li>
+<li><a href="#001%E3%80%81linux%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%AD%E5%8C%85%E5%90%AB%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6">001、Linux文件名中包含特殊字符</a></li>
+<li><a href="#002%E3%80%81linux%E8%BE%93%E5%85%A5%E3%80%81%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91">002、Linux输入、输出重定向</a></li>
+<li><a href="#003%E3%80%81%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E3%80%81%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81">003、创建用户、用户密码</a></li>
+<li><a href="#004%E3%80%81%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90">004、用户权限</a></li>
+<li><a href="#005%E3%80%81shell%E5%91%BD%E4%BB%A4%E8%84%9A%E6%9C%AC%E4%B8%AD%E7%9A%84%E7%AC%A6%E5%8F%B7">005、Shell命令脚本中的符号</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、管理命令</h4>
-<h5><a id="1-apt-get" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. apt-get</h5>
+<h5><a id="001%E3%80%81apt-get%E3%80%81apt" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>001、apt-get、apt</h5>
 <ul>
-<li>概述
+<li>1）概述：
 <ul>
-<li>Linux软件包按封装类型分为：<strong>.deb</strong>（Debian/Ubuntu等系列使用）、<strong>.rpm</strong>（RedHat等系列使用）、Tarball源码压缩包（<strong>.tar.gz、.tar.bz2</strong>）；</li>
+<li>Linux软件包按封装类型分为：<strong><code>.deb</code></strong>（Debian/Ubuntu等系列使用）、<strong><code>.rpm</code></strong>（RedHat等系列使用）、Tarball源码压缩包（<strong><code>.tar.gz</code>、<code>.tar.bz2</code></strong>）；</li>
 <li>软件仓库：存放软件包的地方；Ubuntu通过特定的命令（<code>apt-get</code>）就能完成软件的索引、安装、更新等操作，让相关步骤更简单、更安全；</li>
 <li>软件依赖：安装的一个软件需要依赖其他的软件或某些函数，才能实现该软件的功能；使用<code>apt-get</code>维护软件时，其会自动识别下载并安装相应的依赖软件；</li>
-<li>为了解决命令过于分散的问题，Ubuntu 16.04 引入了<code>apt</code>命令，其包括了apt-get中使用最广泛的功能选项，以及apt-cache、apt-config命令中很少用到的功能；<strong>简单来说，apt = apt-get + apt-cache + apt-config；可以用apt替换部分apt-get系列命令（不是全部，低级操作仍然需要apt-get）</strong>；</li>
+<li>为了解决命令过于分散的问题，Ubuntu 16.04 引入了<code>apt</code>命令，其包括了<code>apt-get</code>中使用最广泛的功能选项，以及<code>apt-cache</code>、<code>apt-config</code>命令中很少用到的功能；<strong>简单来说，<code>apt</code> = <code>apt-get</code> + <code>apt-cache</code> + <code>apt-config</code>；可以用<code>apt</code>替换部分<code>apt-get</code>系列命令（不是全部，低级操作仍然需要<code>apt-get</code>）；</strong>；</li>
 </ul>
 </li>
 </ul>
 <span id="more"></span><!-- more -->	    
 <ul>
 <li>
-<p>参数说明</p>
-<pre><code class="language-shell">// 安装软件（会自动安装依赖软件）
-apt-get install XXX
+<p>2）参数说明：</p>
+<pre><code class="language-shell"># 安装软件包（会自动安装依赖软件包）可能需要先apt update，更新软件源中的索引记录
+apt install XX
 
-// 若安装软件时，发现安装的其他软件包不兼容可能导致安装出错时，
-// 可以根据以下命令解决此问题
-apt-get install -f
-</code></pre>
-<pre><code class="language-shell">// 更新软件源中的索引记录
-//（/etc/apt/sources.list配置了软件源）
-apt-get update
-// 更新软件
-apt-get upgrade XXX
-</code></pre>
-<pre><code class="language-shell">// 卸载软件，不会卸载依赖软件（保留配置文件）
-apt-get remove XXX
-// 卸载软件，不会卸载依赖软件（不保留配置文件）
-apt-get &lt;remove --purge | purge&gt; XXX 
+# 更新软件源中的索引记录（/etc/apt/sources.list配置了软件源）
+apt update
 
-// 卸载软件及不再需要的依赖软件（保留配置文件）
-apt-get autoremove XXX
-// 卸载软件及不再需要的依赖软件（不保留配置文件）
-apt-get autoremove --purge XXX
-// 卸载系统不再使用的孤立软件 
-apt-get autoremove --purge
+# 安装软件包及其他依赖软件包不兼容，可能导致安装出错；可以根据下面的命令解决（针对系统所有软件包）
+apt install -f
+
+# 安装deb软件包
+dpkg -i XX.db
 </code></pre>
-<pre><code class="language-shell">// 查询相关的软件安装卸载状态
-dpkg --get-selections | grep XXX
+<pre><code class="language-shell"># 查看已安装软件包（只是展示方式不同）
+apt list --installed
+# 或
+dpkg --list
 </code></pre>
-<pre><code class="language-shell">// apt-get的底层是dpkg，而dpkg安装包时会将*.deb放在/var/cache/apt/archives/中
-// 删除/var/cache/apt/archives/中所有deb
-apt-get clean
-// 删除/var/cache/apt/archives/中已过期的deb
-apt-get autoclean
+<pre><code class="language-shell"># 更新软件包
+apt upgrade XX
+</code></pre>
+<pre><code class="language-shell"># 卸载软件包，删除配置文件，但不会卸载依赖软件包
+apt &lt;remove --purge | purge&gt; XX
+# 输入y确认执行
+
+# 卸载软件包，保留配置文件，但不会卸载依赖软件包
+apt remove XX
+# 输入y确认执行
+
+# 卸载不再使用的依赖软件包（针对系统所有软件包），保留配置文件
+apt autoremove
+# 输入y确认执行
+
+# 卸载不再使用的依赖软件包（针对系统所有软件包），删除配置文件
+apt autoremove --purge
+# 输入y确认执行
+
+# 卸载软件包，删除配置文件，并卸载依赖软件包
+apt purge --auto-remove XX
+# 输入y确认执行
+</code></pre>
+<pre><code class="language-shell"># 卸载软件包，保留配置文件，并卸载依赖软件包
+apt autoremove XX
+# 输入y确认执行
+
+# 卸载软件包，删除配置文件，并卸载依赖软件包
+apt autoremove --purge XX
+# 输入y确认执行
+</code></pre>
+<pre><code class="language-shell"># apt的底层是dpkg，而dpkg安装包时，会将*.deb放在/var/cache/apt/archives/中
+
+# 删除/var/cache/apt/archives/中所有deb
+apt clean
+
+# 删除/var/cache/apt/archives/中已过期的deb
+apt autoclean
 </code></pre>
 </li>
 </ul>
-<h5><a id="2%E3%80%81df%E3%80%81du" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2、df、du</h5>
+<h5><a id="002%E3%80%81ps%EF%BC%88cpu%E3%80%81memory%EF%BC%89%E3%80%81nvidia-smi%EF%BC%88gpu%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>002、ps（CPU、Memory）、nvidia-smi（GPU）</h5>
 <ul>
 <li>
-<p>查看存储空间大小；</p>
-<pre><code class="language-shell">// 查看磁盘空间使用状况
-df -h
+<p>1）<code>ps</code>显示当前系统的进程运行状态及占用资源等信息；可以搭配<code>kill</code>指令随时中断不需要的进程；</p>
+<ul>
+<li>
+<p>a. Linux上进程有5种状态：</p>
+<ul>
+<li>R：运行（正在运行，或在运行队列中等待）</li>
+<li>S：中断（休眠，受阻，在等待某个条件的形成，或接受到信号）</li>
+<li>D：不可中断（收到信号不唤醒，不可运行，必须等待直到有中断发生）</li>
+<li>Z：僵死（进程已终止，但进程描述符存在，直到父进程调用wait4()系统调用后释放）</li>
+<li>T：停止（进程收到SIGSTOP、SIGSTP、SIGTIN、SIGTOU信号后停运行）</li>
+</ul>
+</li>
+<li>
+<p>b. 使用说明：</p>
+<pre><code class="language-shell">ps -ef # 使用标准格式，显示所有进程信息（用户信息）
+ps -axu # 使用BSD格式，显示所有进程信息（用户、内存、CPU使用情况等信息）
 
-// 查看当前目录内中的文件目录的使用大小
-du -h --max-depth=1 
+ps -axu | grep ssh
+</code></pre>
+<pre><code class="language-shell">ps -axu
+# a表示all，所有的进程；
+# u表示userid，执行该进程的用户id；
+# x表示显示所有程序，不以终端机来区分；
+# ps -aux的输出的第3、4个位置分别是CPU、MEM（内存）；
 
-// 查看/root目录内中的文件目录的使用大小
-du -h --max-depth=1 /root
+| sort -k4nr # 根据%MEM的数值进行由大到小的排序；
+# k表示从第几个位置开始，后面的数字4即开始位置，结束位置若没有，则默认到最后；
+# n表示numberic sort，根据其数值排序；
+# r表示reverse，反向结果，默认从小到大，反向后从大到小；
+
+| head -n # 即输出前几个进程；
+# n表示行数，如需10个进程，则n=10；
+
+ps -aux | sort -k3nr | head -10 # 查看使用CPU最多的10个进程
+
+ps -aux | sort -k4nr | head -10 # 查看使用MEM（内存）最多的10个进程
+</code></pre>
+<ul>
+<li>
+<p><strong>macOS无法使用<code>ps -aux</code>，可以替代使用<code>ps -Ao user,pid,%cpu,%mem,time,command</code>；</strong></p>
+</li>
+<li>
+<p><strong>查看CPU使用情况，也可以使用<code>top</code>命令，查看MEM（内存）使用情况，也可以使用<code>free -m</code>命令；</strong></p>
+</li>
+<li>
+<p>参考：</p>
+<ul>
+<li><strong>Linux查看当前占用CPU或内存最多的n个进程：<code>https://blog.csdn.net/m0_37886429/article/details/127224793</code></strong></li>
+<li><strong>Linux命令查看Linux服务器内存、CPU、显卡、硬盘使用情况：<code>https://blog.csdn.net/qq_53904578/article/details/125469362</code></strong></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-shell">🌟🌟🌟
+# 杀死端口号为8080的进程（结果中会包含grep命令自身查找进程）
+ps -aux | grep 'port 8080' | awk '{print $2}' | xargs kill
+
+# 使用“grep -v 参数”，将“grep命令自身查找进程”排除掉
+ps -aux | grep 'port 8080' | grep -v grep | awk '{print $2}' | xargs kill
+# 或
+# 使用“正则匹配字符串”，将“grep命令自身查找进程”排除掉
+ps -aux | grep 'port 8080' | awk '/正则匹配字符串/ {print $2}' | xargs kill
+
+ps -aux | grep v2r | grep -v grep | awk '{print $2}'
+ps -aux | grep v2r | awk '/json/ {print $2}'
+</code></pre>
+<pre><code class="language-shell"># 根据进程号，找到程序的具体路径（完整路径）
+readlink -f /proc/&lt;PID&gt;/exe # 如readlink -f /proc/6394/exe
+# 或 
+ls -l /proc/&lt;PID&gt;/exe
 </code></pre>
 </li>
 </ul>
-<h5><a id="3%E3%80%81netstat" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3、netstat</h5>
+</li>
+<li>
+<p>2）<code>nvidia-smi</code>：查看Nvidia显卡信息；</p>
+</li>
+<li>
+<p>3）<strong>Linux服务器性能测试脚本：<code>wget -qO- bench.sh | bash</code>；</strong></p>
+</li>
+</ul>
+<h5><a id="003%E3%80%81df%EF%BC%88disk%EF%BC%89%E3%80%81du" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>003、df（Disk）、du</h5>
 <ul>
 <li>
-<p>netstat命令可以用来显示各种网络相关信息，如网络连接、路由表、接口状态等；执行netstat后的输出结果分为两部分：</p>
+<p>1）<code>df</code>：查看磁盘空间大小；</p>
+<pre><code class="language-shell"># 查看磁盘空间使用情况（在任意目录路径下）
+df -h # 不可加s
+</code></pre>
+</li>
+<li>
+<p>2）<code>du</code>：查看目录空间大小；</p>
+<pre><code class="language-shell"># 查看当前目录的总共占容量
+du -sh
+
+# 查看当前目录下，每个文件、文件夹的大小
+du -sh *
+
+# 查看当前目录下，每个文件夹的大小
+du -h --max-depth=1 # -s与--max-depth不并存
+du -h --max-depth=1 /root # 查看/root目录
+</code></pre>
+<ul>
+<li><code>-h</code>：以人类可读的方式显示；</li>
+<li><strong><code>-s</code>：当前目录，不包含子目录；</strong></li>
+<li><code>-a</code>：当前目录，包含子目录；（默认）</li>
+</ul>
+</li>
+</ul>
+<h5><a id="004%E3%80%81lsof" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>004、lsof</h5>
+<ul>
+<li>
+<p>1）在Linux中，任何事物都是以文件的形式存在，通过文件不仅可以访问常规数据，还可以访问网络连接、硬件等；所以比如传输控制协议（TCP）、用户数据报协议（UDP）套接字等，系统都为该程序分配了一个文件描述符；</p>
+</li>
+<li>
+<p>2）lsof（list open files）可用来列出当前系统打开文件、打开文件的进程、端口（TCP、UDP）等；</p>
+</li>
+<li>
+<p>3）<strong>lsof打开的文件可以为：普通文件、目录、符号链接、网络文件系统的文件、管道、设备文件、网络文件（如socket）等；</strong></p>
+</li>
+<li>
+<p>4）命令说明</p>
+<pre><code class="language-shell"># 列出某个用户打开的文件信息
+lsof -u username
+
+
+# 列出网络连接的文件信息
+lsof -i
+
+# 列出tcp网络连接的文件信息
+lsof -i tcp
+
+# 列出使用端口3306的文件
+lsof -i :3306
+
+# 列出使用TCP端口3306的文件
+lsof -i tcp:80
+</code></pre>
+</li>
+</ul>
+<h5><a id="005%E3%80%81kill" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>005、kill</h5>
+<ul>
+<li>
+<p>1）该命令用于向某个PID传送一个信号，通常通常与ps命令一起使用，基本语法为 <code>kill -signal PID</code> ；</p>
+</li>
+<li>
+<p>2）signal的常用参数（前为信号的代号数字，可以用来代替相应的信号）：</p>
+<ul>
+<li>9、SIGKILL：强制终止进程</li>
+<li>15、SIGTERM：以正常的方式终止进程</li>
+<li>2、SIGINT：相当于输入Ctrl+c，中断进程</li>
+<li>17、SIGSTOP：相当于输入Ctrl+z，暂停进程</li>
+</ul>
+</li>
+<li>
+<p>3）命令说明：</p>
+<pre><code class="language-shell"># 正常结束进程
+kill -SIGTER PID
+kill -15 PID
+
+# 强制结束进程
+kill -SIGKILL PID
+kill -9 PID
+</code></pre>
+</li>
+</ul>
+<h5><a id="006%E3%80%81netstat" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>006、netstat</h5>
+<ul>
+<li>
+<p>1）netstat命令可以用来显示各种网络相关信息，如网络连接、路由表、接口状态等；执行netstat后的输出结果分为两部分：</p>
 <ul>
 <li>a. Active Internet connections (w/o servers)：网络连接；
 <ul>
@@ -224,7 +411,7 @@ du -h --max-depth=1 /root
 </ul>
 </li>
 <li>
-<p>参数说明</p>
+<p>2）参数说明：</p>
 <pre><code class="language-shell">-a：显示所有选项，默认不显示LISTEN状态的；
 -l：仅显示处于Listen状态的；
 -t：仅显示tcp相关；
@@ -257,176 +444,617 @@ netstat -r # 显示核心路由
 </code></pre>
 </li>
 </ul>
-<h5><a id="4%E3%80%81ps" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4、ps</h5>
+<h5><a id="007%E3%80%81useradd%E3%80%81userdel%E3%80%81su" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>007、useradd、userdel、su</h5>
 <ul>
 <li>
-<p>显示当前系统的进程运行状态及占用资源等信息；可以搭配kill指令随时中断不需要的进程；</p>
-</li>
-<li>
-<p>Linux上进程有5种状态：</p>
-<ul>
-<li>R：运行（正在运行，或在运行队列中等待）</li>
-<li>S：中断（休眠，受阻，在等待某个条件的形成，或接受到信号）</li>
-<li>D：不可中断（收到信号不唤醒，不可运行，必须等待直到有中断发生）</li>
-<li>Z：僵死（进程已终止，但进程描述符存在，直到父进程调用wait4()系统调用后释放）</li>
-<li>T：停止（进程收到SIGSTOP、SIGSTP、SIGTIN、SIGTOU信号后停运行）</li>
-</ul>
-</li>
-<li>
-<p>参数说明</p>
-<pre><code class="language-shell">// 都会显示PID
--a：显示当前终端下的所有进程
--u：显示用户、内存、CPU使用情况
--l：显示PPID
--x：显示所有进程
-
-ps -ef # 使用标准格式，显示所有进程信息（用户信息）
-ps -ax # 使用BSD格式，显示所有进程信息
-ps -axu # 显示所有进程信息（用户、内存、CPU使用情况信息）
-
-ps -aux | more # 分页查看内容
-ps -axu | grep ssh
-</code></pre>
-</li>
-</ul>
-<h5><a id="5%E3%80%81lsof" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5、lsof</h5>
-<ul>
-<li>
-<p>在Linux中，任何事物都是以文件的形式存在，通过文件不仅可以访问常规数据，还可以访问网络连接、硬件等；所以比如传输控制协议（TCP）、用户数据报协议（UDP）套接字等，系统都为该程序分配了一个文件描述符；</p>
-</li>
-<li>
-<p>lsof（list open files）可用来列出当前系统打开文件、打开文件的进程、端口（TCP、UDP）等；</p>
-</li>
-<li>
-<p><strong>lsof打开的文件可以为：普通文件、目录、符号链接、网络文件系统的文件、管道、设备文件、网络文件（如socket）等；</strong></p>
-</li>
-<li>
-<p>命令说明</p>
-<pre><code class="language-shell">// 列出某个用户打开的文件信息
-lsof -u username
-
-
-// 列出网络连接的文件信息
-lsof -i
-列出tcp网络连接的文件信息
-lsof -i tcp
-// 列出使用端口3306的文件
-lsof -i :3306
-// 列出使用TCP端口3306的文件
-lsof -i tcp:80
-</code></pre>
-</li>
-</ul>
-<h5><a id="6%E3%80%81kill" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6、kill</h5>
-<ul>
-<li>
-<p>该命令用于向某个PID传送一个信号，通常通常与ps命令一起使用，基本语法为 <code>kill -signal PID</code> ；</p>
-</li>
-<li>
-<p>signal的常用参数（前为信号的代号数字，可以用来代替相应的信号）：</p>
-<ul>
-<li>9、SIGKILL：强制终止进程</li>
-<li>15、SIGTERM：以正常的方式终止进程</li>
-<li>2、SIGINT：相当于输入Ctrl+c，中断进程</li>
-<li>17、SIGSTOP：相当于输入Ctrl+z，暂停进程</li>
-</ul>
-</li>
-<li>
-<p>命令说明</p>
-<pre><code class="language-shell">// 正常结束进程
-kill -SIGTER PID
-kill -15 PID
-
-// 强制结束进程
-kill -SIGKILL PID
-kill -9 PID
-</code></pre>
-</li>
-</ul>
-<h5><a id="7%E3%80%81useradd%E3%80%81userdel%E3%80%81su" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>7、useradd、userdel、su</h5>
-<ul>
-<li>
-<p>创建、删除、切换用户；</p>
-<pre><code class="language-shell">// 创建用户
+<p>1）创建、删除、切换用户；</p>
+<pre><code class="language-shell"># 创建用户
 useradd USER_NAME -m
-// 查看passwd文件中是否有添加的用户
+# 看passwd文件中是否有添加的用户
 cat /etc/passwd
-// 在弹出来的提示窗口中设置密码
+# 在弹出来的提示窗口中设置密码
 passwd USER_NAME
 
-// 删除用户，并删除/home/路径下的用户文件夹
+# 删除用户，并删除/home/路径下的用户文件夹
 userdel -r USER_NAME
 
-// 切换用户
+# 切换用户
 su USER_NAME
 </code></pre>
 </li>
 </ul>
-<h4><a id="%E4%BA%8C%E3%80%81%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、工具命令</h4>
-<h5><a id="1%E3%80%81scp" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1、scp</h5>
+<h5><a id="008%E3%80%81history" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>008、history</h5>
 <ul>
 <li>
-<p>SCP（Secure Copy）是用来定义“本地机器和远端机器之间”或者“远端机器和远端机器之间”传输文件的过程的协议，SCP协议分为SCP Client、SCP Server；</p>
+<p>1）命令行的历史操作（命令）记录存放在<code>~/.bash_history</code>文件中；</p>
 </li>
 <li>
-<p><strong>SCP基于SSH协议，使用建立的SSH连接隧道作为数据传输通道，因而文件传输是安全的；</strong></p>
-</li>
-<li>
-<p>命令说明</p>
-<pre><code class="language-shell">**scp的-P参数为大写，ssh的为小写；**
-**ssh端口若为默认值，则-P参数可省略；**
+<p>2）命令说明：</p>
+<pre><code class="language-shell"># 历史操作记录
+history
 
-// 将本地文件拷贝到远程主机上
-scp -P PORT LOCAL_FILE USERNAME@DOMAIN:REMOTE_FILE
-// 将本地文件夹目录拷贝到远程主机上
-scp -P PORT -r LOCAL_FOLDER USERNAME@DOMAIN:REMOTE_FOLDER
+# 历史操作记录（显示时间）
+#export HISTTIMEFORMAT='%F %T '
+history
 
-// 将远程主机上的文件拷贝到本地
-scp -P PORT USERNAME@DOMAIN:REMOTE_FILE LOCAL_FILE
-// 将远程主机上的文件夹目录拷贝到本地
-scp -P PORT -r USERNAME@DOMAIN:REMOTE_FOLDER LOCAL_FOLDER
+# 清空历史操作记录，但是不会删除~/.bash_history文件中的内容
+history -c
 </code></pre>
 </li>
 </ul>
-<h5><a id="2%E3%80%81tar" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2、tar</h5>
+<h5><a id="009%E3%80%81mv" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>009、mv</h5>
 <ul>
 <li>
-<p>该命令用于对文件进行打包；默认不会压缩，若指定相应的参数调用相应的压缩程序，如gzip、bzip等进行压缩和解压；</p>
+<p>1）移动文件或目录，重命名文件或目录；</p>
+<pre><code class="language-shell"># 将源文件改为目标文件名
+mv 文件名 文件名
+
+# 将文件移动到目标目录
+mv 文件名 目录名（必须已存在）
+
+# 目标目录已存在，将源目录移动到目标目录
+# 目标目录不存在，则为从目录
+mv 目录名 目录名
+
+# 错误
+mv 目录名 文件名
+</code></pre>
+</li>
+</ul>
+<h5><a id="010%E3%80%81cp-r%E4%B8%8Ecp-r%E7%9A%84%E5%8C%BA%E5%88%AB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>010、cp -r与cp -R的区别</h5>
+<ul>
+<li>
+<p>1）概述：</p>
+<ul>
+<li>a. 小写<code>-r</code>是一个较旧的选项（在4.1 BSD中引入），它会将所有非目录复制为文件；也就是说，若遇到设备等情况，其将打开读取内容，并在目标位置创建一个包含内容的文件；</li>
+<li>b. 大写<code>-R</code>是一个标准化的选项（在4.4 BSD中引入到），在遇到设备等情况时，会在目标位置创建一个等效的特殊文件；</li>
+<li>c. <strong>有些系统实现，仍然保留了这种区别；但有些系统实现，仅提供<code>-R</code>语义，<code>-r</code>作为同义词；</strong></li>
+<li>d. <strong><code>cp -r</code>：会把所有源文件，当作普通文件（regular文件）；比如，<code>cp -r /dev/dev_a</code>时，会将磁盘设备中的数据进行一次拷贝，而不是仅仅建立设备文件；</strong></li>
+<li>e. <strong><code>cp -R</code>：会对特殊文件（管道文件、块设备文件、字符设备文件）进行创建操作，而不是拷贝；</strong></li>
+</ul>
 </li>
 <li>
-<p>命令说明</p>
-<pre><code class="language-shell">-c：新建打包文件
--x：解打包或解压缩，可搭配-C（大写）指定解压的目录
--t：查看打包文件包含的文件；
+<p>2）参考：</p>
+<ul>
+<li><strong><code>https://unix.stackexchange.com/questions/18712/difference-between-cp-r-and-cp-r-copy-command/18722#18722</code></strong></li>
+<li>cp -r 和 cp -R 的区别：<code>https://blog.csdn.net/lh2016rocky/article/details/52853221</code></li>
+</ul>
+</li>
+</ul>
+<h5><a id="011%E3%80%81%E8%AE%BE%E7%BD%AE%E5%88%AB%E5%90%8D%EF%BC%9Aalias%E3%80%81unalias" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>011、设置别名：alias、unalias</h5>
+<ul>
+<li>
+<p>1）<strong>alias为命令创建简单的名称或缩写；<code>设置别名，等号两边不能有空格，各个命令使用分号分隔；</code></strong></p>
+<pre><code class="language-shell"># 设置别名
+alias set_proxy='export http_proxy=http://127.0.0.1:3213;export https_proxy=http://127.0.0.1:3213;'
+alias unset_proxy='unset http_proxy &amp;&amp; unset https_proxy'
+
+ll='ls -l' # macOS中没有ll命令
+
+# 执行别名
+set_proxy
+unset_proxy
+
+ll # 对当前目录进行ls -l
+ll /home # 对/home目录进行ls -l
+</code></pre>
+<pre><code class="language-shell"># 查看设置的别名（全部、某个）
+alias
+alias set_proxy
+
+# 取消设置别名
+unalias set_proxy
+unalias unset_proxy
+unalias ll
+</code></pre>
+</li>
+<li>
+<p>2）<strong>在命令行中，设置别名，只对当前命令行有效；可以将设置别名，写入到配置文件中；</strong></p>
+<ul>
+<li><strong><code>~/.bashrc、~/.profile</code>；</strong></li>
+<li><strong><code>/etc/bashrc（Debian、Ubuntu系统使用/etc/bash.bashrc）、/etc/profile</code>；</strong></li>
+</ul>
+</li>
+</ul>
+<h5><a id="012%E3%80%81%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%9Aexport%E3%80%81unset" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>012、设置环境变量：export、unset</h5>
+<ul>
+<li>
+<p>1）<strong><code>设置环境变量，和设置别名的方式，十分地类似；可以在命令行中，设置环境变量，只对当前命令行有效；也可以将设置环境变量，写入到配置文件中；</code></strong></p>
+<pre><code class="language-shell"># a. 命令行设置；
+
+# 设置环境变量A
+export A=123
+
+# 取消设置环境变量A
+unset A
+</code></pre>
+<pre><code class="language-shell"># b. 配置文件中设置，同设置别名；
+</code></pre>
+</li>
+<li>
+<p>2）<strong>Linux系统中也有单独的配置文件（<code>/etc/environment</code>），用于设置环境变量；</strong></p>
+</li>
+<li>
+<p>3）<strong><code>也可以在启动命令前面，设置环境变量（不用加export）；此时该环境变量，只对当前的执行命令有效，对后续的命令无效；</code></strong></p>
+<pre><code class="language-shell">CUDA_VISIBLE_DEVICES=0 python a.py
+</code></pre>
+</li>
+<li>
+<p>4）<strong><code>环境变量的多个值，使用:隔开；引用之前的环境变量的值使用$，防止覆盖掉之前的值；</code></strong></p>
+<pre><code class="language-shell">PATH=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;
+
+PATH=&quot;/opt/homebrew/opt/go@1.18/bin:$PATH&quot;
+</code></pre>
+</li>
+</ul>
+<h5><a id="013%E3%80%81shutdown" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>013、shutdown</h5>
+<pre><code class="language-shell"># 立即关机
+shutdown -h now
+# 立即关机重启，reboot
+shutdown -r now
+
+# 10分钟后关机
+shutdown -h +10
+# 10:00关机
+shutdown -h 10:00
+
+# 10分钟后关机重启
+shutdown -r +10
+# 10:00关机重启
+shutdown -r 10:00
+</code></pre>
+<h4><a id="%E4%BA%8C%E3%80%81%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、工具命令</h4>
+<h5><a id="001%E3%80%81scp" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>001、scp</h5>
+<ul>
+<li>
+<p>1）SCP（Secure Copy）是用来定义“本地机器和远端机器之间”或者“远端机器和远端机器之间”传输文件的过程的协议，SCP协议分为SCP Client、SCP Server；</p>
+</li>
+<li>
+<p>2）<strong>SCP基于SSH协议，使用建立的SSH连接隧道作为数据传输通道，因而文件传输是安全的；</strong></p>
+</li>
+<li>
+<p>3）命令说明：</p>
+<pre><code class="language-shell"># scp的端口参数为大写-P，ssh的为小写-p；
+# scp端口若为默认值，则-P参数可省略；
+
+# 将本地文件，拷贝到远程主机上
+scp -P PORT LOCAL_FILE_PATH USERNAME@DOMAIN:REMOTE_FILE_PATH
+# 将本地文件夹目录，拷贝到远程主机上（添加-r参数）
+scp -P PORT -r LOCAL_FOLDER_PATH USERNAME@DOMAIN:REMOTE_FOLDER_PATH
+
+# 将远程主机上的文件，拷贝到本地
+scp -P PORT USERNAME@DOMAIN:REMOTE_FILE_PATH LOCAL_FILE_PATH
+# 将远程主机上的文件夹目录，拷贝到本地（添加-r参数）
+scp -P PORT -r USERNAME@DOMAIN:REMOTE_FOLDER_PATH LOCAL_FOLDER_PATH
+</code></pre>
+</li>
+</ul>
+<h5><a id="002%E3%80%81rsync" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>002、rsync</h5>
+<ul>
+<li>
+<p>1）<strong>cp本地拷贝、scp远程拷贝都没有“<code>断点续传</code>”功能，rsync拷贝，支持本地拷贝，也支持远程拷贝，并且有“断点续传”功能；</strong></p>
+<ul>
+<li><strong>rsync必须同时装在源主机和目标主机上；</strong></li>
+<li><strong>“<code>自动断点续传</code>”还需要使用脚本进行控制；</strong></li>
+</ul>
+</li>
+<li>
+<p>2）命令说明：</p>
+<pre><code class="language-shell"># 本地拷贝文件
+rsync -avP test_a.tar test_b.tar
+
+# 本地拷贝目录
+rsync -avP folder_a /root
+
+# 远程拷贝文件
+rsync -avP --rsh=ssh test.tar root@192.168.100.1:/root/test.tar
+
+# 远程拷贝目录
+rsync -avP --rsh=ssh folder_test root@192.168.100.1:/root
+
+# 远程拷贝目录（指定ssh端口：-e 'ssh -p PORT'）
+rsync -avP -e 'ssh -p PORT' folder_test root@192.168.100.1:/root
+
+# 远程拷贝目录（指定ssh端口，并使用sshpass）
+rsync -avP -e 'sshpass -p PASSWORD ssh -p PORT' folder_test root@192.168.100.1:/root
+</code></pre>
+<ul>
+<li><strong>使用<code>Ctrl+C</code>是<code>中断传输</code>，使用<code>jobs</code>命令可以查看“传输任务ID”，之后使用<code>bg %传输任务ID</code>命令，可以<code>恢复传输任务</code>；而使用<code>Ctrl+Z</code>是<code>取消传输</code>；</strong></li>
+<li><strong>使用<code>-e</code>参数，或者也可以设置<code>RSYNC_RSH</code>环境变量，指定要执行的ssh命令；</strong></li>
+</ul>
+</li>
+<li>
+<p>3）详细命令参数说明：</p>
+<pre><code class="language-shell">-r参数：表示递归，即包含子目录；
+-a参数：可以替代-r，除了可以递归同步以外，还可以同步元信息（比如修改时间、权限等）；
+        rsync默认使用文件大小和修改时间，决定文件是否需要更新，所以-a比-r更有用；
+
+-n参数：模拟执行的结果，便于调试；
+
+--delete参数：默认rsync不删除目标目录中已存在的其他文件；
+            加此参数后，将删除只存在于目标目录、不存在于源目录的文件，
+            会使得目标目录成为源目录的一个镜像；
+
+-v参数：表示输出细节，-vv表示输出更详细的信息，-vvv表示输出最详细的信息；
+-u参数：表示同步时跳过目标目录中修改时间更新的文件，即不同步有更新的时间戳的文件；
+
+--partial参数：允许恢复中断的传输，否则会重新从头传输；
+--progress参数：显示进展；
+-P参数：--progress和--partial这两个参数的结合；
+
+--exclude参数：排除某些文件或目录（可以添加多个该参数）；
+--exclude-from参数：若排除的很多，将它们写入一个文件，每个排除项一行，该参数指定此文件；
+
+--include参数：必须同步某些文件或目录（可以添加多个该参数）；
+--include-from参数：若必须同步的很多，将它们写入一个文件，每个必须同步项一行，该参数指定此文件；
+--include、--include-from参数，需要在--exclude参数之前；
+</code></pre>
+<pre><code class="language-shell"># 复制source1、source2到destination中
+rsync -a source1 source2 destination
+
+# 复制source到destination中（在destination中，会创建source文件夹）
+rsync -a source destination
+
+# 复制source的内容到destination中（在destination中，不会创建source文件夹）
+rsync -a source/ destination
+
+# 排除所有文件，但包括TXT文件
+rsync -av --include=&quot;*.txt&quot; --exclude='*' source/ destination
+</code></pre>
+<pre><code class="language-shell"># 排除所有的，名称为abc文件(目录)
+rsync --exclude='abc' -a folder_a /root/
+
+#排除所有的，名称为abc目录下，名称为a件(目录)
+rsync --exclude='abc/a' -a folder_a /root/
+
+# abc目录下的idx文件，会被复制
+rsync --include='idx' --exclude='abc/*' -a folder_a /root/ 
+
+# abc目录下的idx文件，不会被复制
+rsync --include='idx' --exclude='abc' -a folder_a /root/  
+</code></pre>
+</li>
+<li>
+<p>4）参考：</p>
+<ul>
+<li>使用Rsync解决SCP传输中断问题：<code>https://www.cnblogs.com/muen2020/p/15147636.html</code></li>
+<li>Rsync with a custom port：<code>https://zellwk.com/blog/rsync-with-custom-port/</code></li>
+<li>scp 断点续传：<code>https://blog.csdn.net/hepeng597/article/details/8960885</code></li>
+<li><strong>rsync 用法教程：<code>https://www.ruanyifeng.com/blog/2020/08/rsync.html</code></strong></li>
+</ul>
+</li>
+</ul>
+<h5><a id="003%E3%80%81tar" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>003、tar</h5>
+<ul>
+<li>
+<p>1）该命令用于对文件进行打包；默认不会压缩，若指定相应的参数调用相应的压缩程序，如gzip、bzip等进行压缩和解压；</p>
+</li>
+<li>
+<p>2）命令说明：</p>
+<pre><code class="language-shell">-c：新建打包
+-x：解打包，可搭配-C（大写）指定解打包的目录
+-t：查看打包文件包含的文件
 
 -j：通过bzip2进行压缩/解压
 -z：通过gzip进行压缩/解压
 
--f filename：指定要处理的文件
--C dir：指定压缩/解压的目录
+-f filename：指定打包的文件
+-C dir：指定解打包的目录
 
 -v：在压缩/解压过程中，显示正在处理的文件名
+
+--exclude：压缩排除某些文件；必须在源目录参数之前，否则无效
 
 注意：-c、-x、-t不可在同一条命令中同时出现；
 压缩时需要指定使用何种压缩程序，解压时tar会自动识别，故可以不指定压缩程序；
 </code></pre>
-<pre><code class="language-shell">// 打包
+<pre><code class="language-shell"># 打包
 tar -cv -f a.tar *
-// 压缩（体积会小）
-tar -cjv -f a.tar *
-// 解压
-tar -xjv -f a.tar -c aa
+
+# 压缩（体积会小）
+tar -cvj -f a.tar *
+
+# 解打包
+tar -xv -f a.tar
 tar -xv -f a.tar -c aa
-// 查看
-tar -tjv -f a.tar
+
+# 查看
+tar -tv -f a.tar
+</code></pre>
+<pre><code class="language-shell"># 排除所有的，名称为venv文件(目录)
+--exclude=venv
+
+# 排除所有的，名称为stable-diffusion-webui目录下，名称为venv文件(目录)
+--exclude=stable-diffusion-webui/venv
+
+tar -cvf stable-diffusion-webui.tar 
+    --exclude=stable-diffusion-webui/venv 
+    --exclude=stable-diffusion-webui/models 
+    --exclude=stable-diffusion-webui/extensions/sd-webui-controlnet
+    stable-diffusion-webui
 </code></pre>
 </li>
 </ul>
-<h4><a id="%E4%B8%89%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、注意事项</h4>
-<h5><a id="1%E3%80%81linux%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%AD%E5%8C%85%E5%90%AB%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1、Linux文件名中包含特殊字符</h5>
+<h5><a id="004%E3%80%81nohup%E3%80%81%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8B%E5%90%AF%E5%8A%A8%E6%97%A5%E5%BF%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>004、nohup、&amp;的作用、实时查看启动日志</h5>
 <ul>
-<li><strong>名称前不是-的处理方式（两种）：使用转移符\、使用双引号，比如 <code>rm a\&amp;b.log</code> ；</strong></li>
-<li><strong>名称前是-的处理方式：使用--分割，比如 <code>rm -- -ab.log</code> ；</strong></li>
+<li>
+<p>1）概述：</p>
+<ul>
+<li>
+<p>a. <strong><code>输入Ctrl+C</code>，命令行程序会收到一个<code>SIGINT</code>信号，若不做特殊处理，程序的默认行为是<code>终止</code>；</strong></p>
+</li>
+<li>
+<p>b. <strong><code>关掉终端session</code>，命令行程序会收到一个<code>SIGHUP</code>信号，若不做特殊处理，程序的默认行为是<code>终止</code>；</strong></p>
+</li>
+<li>
+<p>c. <strong>使用<code>&amp;</code>执行命令行程序后，程序会对<code>SIGINT</code>信号“免疫”，<code>不会终止</code>；同时还有以下特点：<code>终端显示进程号</code>、<code>内容依然输出到终端中</code>、<code>依然响应SIGHUP终止（关掉终端session）</code>；</strong></p>
+<pre><code class="language-shell">./test &amp;
+</code></pre>
+</li>
+<li>
+<p>d. <strong>使用<code>nohup</code>执行命令行程序后，程序会对<code>SIGHUP</code>信号“免疫”，<code>不会终止</code>；同时还有以下特点：<code>终端不显示进程号</code>、<code>内容不再输出到终端中，有一个输出到nohup.out提示</code>、<code>依然响应SIGINT终止（输入Ctrl+C）</code>；</strong></p>
+<pre><code class="language-shell">nohup ./test
+</code></pre>
+</li>
+<li>
+<p>e. <strong>经常使用<code>nohup</code>和<code>&amp;</code>配合来启动程序，同时免疫<code>SIGINT</code>和<code>SIGHUP</code>信号；并送使用<code>tail -f nohup.out</code>实时查看启动日志；</strong></p>
+<pre><code class="language-shell">nohup ./test &amp;
+</code></pre>
+<pre><code class="language-shell"># 实时查看启动日志，Ctrl+C退出
+tail -f nohup.out
+
+# 查看最近500行日志
+tail -500 nohup.out
+</code></pre>
+</li>
+<li>
+<p>f. <strong>进程挂了，也可以通过使用<code>supervisor</code>工具，实现自动启动恢复；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>2）参考：</p>
+<ul>
+<li><strong>一分钟了解nohup和&amp;的功效：<code>https://mp.weixin.qq.com/s/nyT-FPdIUdJUiUCYVGEnTg</code></strong> <a href="media/15355589911528/simpread-%E4%B8%80%E5%88%86%E9%92%9F%E4%BA%86%E8%A7%A3nohup%E5%92%8C-%E7%9A%84%E5%8A%9F%E6%95%88.html">simpread-一分钟了解nohup和-的功效.html</a></li>
+<li>linux中nohup实时查看启动日志的解决办法：<code>https://www.cnblogs.com/zhangshijiezsj/p/14800270.html</code></li>
+<li>服务挂了，怎么自动恢复？：<code>https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651961088&amp;idx=1&amp;sn=1d63b0dd0a0ed90f94296c58cc95cd7c</code></li>
+</ul>
+</li>
+</ul>
+<h5><a id="005%E3%80%81%E6%9F%A5%E8%AF%A2%E6%9F%90%E4%B8%AA%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E6%96%87%E4%BB%B6%E3%80%81%E7%9B%AE%E5%BD%95%E7%9A%84%E6%95%B0%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>005、查询某个目录下，文件、目录的数量</h5>
+<ul>
+<li>
+<p>1）查询当前目录下（不包含子目录中的文件），文件的数量</p>
+<pre><code class="language-shell"># grep &quot;^-&quot;：使用正则匹配；^表示开始，-表示文件，^-表示匹配以-开始的行，即匹配文件
+# wc -l：表示统计输出信息的行数
+ls -l | grep &quot;^-&quot; | wc -l
+</code></pre>
+</li>
+<li>
+<p>2）查询当前目录下（包含子目录中的文件），文件的数量</p>
+<pre><code class="language-shell"># -R：表示包含子目录
+ls -lR | grep &quot;^-&quot; | wc -l
+</code></pre>
+</li>
+<li>
+<p>3）查查询当前目录下（不包含子目录中的目录），目录的个数</p>
+<pre><code class="language-shell"># ^d：表示匹配以d开始的行，即匹配目录
+ls -l | grep &quot;^d&quot; | wc -l
+</code></pre>
+</li>
+<li>
+<p>4）查询指定目录下（包含子目录），文件的数量</p>
+<pre><code class="language-shell"># 查询/home目录下（包含子目录）
+ls -lR /home | grep &quot;^-&quot; | wc -l
+</code></pre>
+</li>
+</ul>
+<h4><a id="%E4%B8%89%E3%80%81%E5%85%B6%E4%BB%96%E4%BA%8B%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、其他事项</h4>
+<h5><a id="001%E3%80%81linux%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%AD%E5%8C%85%E5%90%AB%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>001、Linux文件名中包含特殊字符</h5>
+<ul>
+<li>1）<strong>文件名不是以-开头，的处理方式（两种）：<code>使用转移符\、使用双引号</code>，比如 <code>rm a\&amp;b.log</code> ；</strong></li>
+<li>2）<strong>文件名是以-开头，的处理方式：<code>使用--分割</code>，比如 <code>rm -- -ab.log</code> ；</strong></li>
+</ul>
+<h5><a id="002%E3%80%81linux%E8%BE%93%E5%85%A5%E3%80%81%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>002、Linux输入、输出重定向</h5>
+<ul>
+<li>
+<p>1、基本概念</p>
+<ul>
+<li>
+<p><code>/dev/null</code>：表示空设备文件，表示丢弃；</p>
+</li>
+<li>
+<p><code>0</code>：表示stdin标准输入；</p>
+</li>
+<li>
+<p><code>1</code>：表示stdout标准输出；</p>
+</li>
+<li>
+<p><code>2</code>：表示stderr标准错误；</p>
+</li>
+<li>
+<p><code>&gt;</code>：输出到文件，若文件不存在，则先创建；若文件存在，则先清空；</p>
+</li>
+<li>
+<p><code>&gt;&gt;</code>：输出到文件，若文件不存在，则先创建；若文件存在，则在文件的末尾进行追加；</p>
+</li>
+<li>
+<p><strong><code>&lt;</code>：将一个文件的内容，作为输入提供给命令</strong>；</p>
+</li>
+<li>
+<p><strong><code>&lt;&lt;</code>：输入重定向，但它通常与&lt;&lt;后面的标识符一起使用，用于在shell脚本中定义多行输入；</strong></p>
+<pre><code class="language-plain_text">cat &lt;&lt; EOF
+This is a multi-line input.
+It allows for text input until it encounters the specified EOF (End Of File) marker.
+EOF
+</code></pre>
+</li>
+<li>
+<p><strong><code>1&gt;</code>：将stdout标准输出，输出到文件；可以简写成&gt;；</strong></p>
+</li>
+<li>
+<p><strong><code>1&gt;&gt;</code>：将stdout标准输出，输出到文件；可以简写成&gt;&gt;；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>2、案例</p>
+<ul>
+<li>
+<p>1）<strong><code>&gt;/dev/null 2&gt;&amp;1</code></strong></p>
+<ul>
+<li><code>&gt;/dev/null</code>：就是<code>1&gt;/dev/null</code>，表示“1标准输出”输出重定向到“空设备文件”，也就是不输出任何信息到终端，丢弃输出；</li>
+<li><code>2&gt;&amp;1</code>：<code>&amp;</code>表示等同于的意思，故<code>2&gt;&amp;1</code>表示“2标准错误”的输出重定向，等同于“1标准输出”（处理方式一样，都是重定向到空设备文件）；</li>
+</ul>
+</li>
+<li>
+<p>2）<strong>将<code>ls</code>命令的正确结果追加<code>normal.txt</code>，错误信息追加到<code>error.txt</code>；</strong></p>
+<pre><code class="language-shell">ls a.txt &gt;&gt;normal.txt 2&gt;&gt;error.txt
+
+ls b_folder &gt;&gt;normal.txt 2&gt;&gt;error.txt
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h5><a id="003%E3%80%81%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E3%80%81%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>003、创建用户、用户密码</h5>
+<pre><code class="language-shell"># 创建用户
+# 添加-m参数，创建家目录；Ubuntu需要添加-m，才会创建家目录；CentOS不需要添加-m
+adduser -m &lt;username&gt;
+
+# 创建用户，但不允许ssh登陆
+adduser -m &lt;username&gt; -s /sbin/nologin
+
+# 用户需要属于sudoers组，否则无法使用sudo命令；
+# `-aG`表示将用户添加到sudo组，而不是替换原有的sudo组
+usermod -aG sudo &lt;username&gt;
+# 或者
+# a. 使用visudo命令，本质会打开编辑sudoers文件；
+# b. 添加新的一行，格式为：username ALL=(ALL) ALL，username替换为要添加的用户名称；
+# c. 最后按Esc键，然后输入:wq来保存并退出；
+
+# 查看用户信息
+id &lt;username&gt;
+
+# 设置密码
+passwd &lt;username&gt;
+
+# 删除用户
+userdel &lt;username&gt;
+
+# 删除用户，并删除用户的家目录
+userdel --remove &lt;username&gt;
+
+# 切换用户
+su - &lt;username&gt;
+</code></pre>
+<pre><code class="language-shell"># 存储Linux用户的基本信息，所有用户都具有读取权限；x代表账户有密码
+cat /etc/passwd
+
+# 存储Linux用户的密码信息
+cat /etc/shadow
+
+# 存储Linux用户组的基本信息
+cat /etc/group
+
+# 存储Linux用户组的密码信息
+cat /etc/gshadow
+</code></pre>
+<h5><a id="004%E3%80%81%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>004、用户权限</h5>
+<ul>
+<li>
+<p>1、<code>chmod</code>是Linux下设置文件、目录的权限的命令，后面的数字表示不同用户或用户组的权限；<strong>权限一般是3个数字：第1个数字表示<code>文件所有者的权限</code>，第2个数字表示<code>与文件所有者同属一个用户组的其他用户的权限</code>，第3个数字表示<code>其他用户组的权限</code>；</strong></p>
+<ul>
+<li>权限分为三种：<code>读（r＝4），写（w＝2），执行（x＝1）</code>；</li>
+<li>综合起来还有，<code>可读可执行（rx＝5＝4＋1）、可读可写（rw＝6＝4＋2）、可读可写可执行（rwx＝7＝4＋2＋1）</code>；</li>
+<li>所以，<strong><code>755代表rwxr-xr-x</code>，当前用户可读可写可执行，其他用户可读可执行；<code>777代表rwxrrwxrwx</code>，所有用户都可读可写可执行；</strong></li>
+</ul>
+</li>
+<li>
+<p>2、<strong><code>创建的文件、目录的权限，默认值为644（-rw-r--r--，文件）、755（drwxr-xr-x，目录）；默认值是通过umask设定的；</code></strong></p>
+</li>
+<li>
+<p>3、相关命令</p>
+<pre><code class="language-shell"># 修改目录及子目录的拥有用户
+chown -R www-data /var/www/html/
+
+# 修改目录及子目录的拥有用户组
+chgrp -R www-data /var/www/html/
+
+# 修改目录及子目录的权限
+sudo chmod -R 755 /var/www/html/
+</code></pre>
+</li>
+</ul>
+<h5><a id="005%E3%80%81shell%E5%91%BD%E4%BB%A4%E8%84%9A%E6%9C%AC%E4%B8%AD%E7%9A%84%E7%AC%A6%E5%8F%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>005、Shell命令脚本中的符号</h5>
+<ul>
+<li>
+<p>1、<strong>当<code>${}</code>用于“引用变量”，等价于<code>$</code>；<code>一般使用${}，以增加脚本的可读性，指定变量边界；</code></strong></p>
+<pre><code class="language-shell">a=123
+
+b=$a
+echo $b
+
+c=${a}
+echo ${c}
+</code></pre>
+</li>
+<li>
+<p>2、<strong><code>$()</code>用于“命令替换”，等价于``（反引号）；<code>一般使用$()，以增加脚本的可读性，而且``不能嵌套使用；</code></strong></p>
+<pre><code class="language-shell">echo $(date +%Y%m%d)
+echo `date +%Y%m%d`
+</code></pre>
+</li>
+<li>
+<p>3、<strong>字符串，不加引号</strong></p>
+<ul>
+<li><strong><code>若内容中有变量等，会先把变量$解析出结果，再输出内容；</code></strong></li>
+<li><strong><code>不会将含有空格的字符串视为一个整体输出，会截断输出，此时需要使用双引号；</code></strong></li>
+</ul>
+<pre><code class="language-shell"># ❌，zsh: command not found: san
+name=zhang san
+
+# ✅
+name=&quot;zhang san&quot;
+</code></pre>
+</li>
+<li>
+<p>4、<strong>字符串，加单引号</strong></p>
+<ul>
+<li><strong><code>所见即所得，即将单引号内的内容原样输出，不会把变量解析出结果；</code></strong></li>
+</ul>
+</li>
+<li>
+<p>5、<strong>字符串，加双引号</strong></p>
+<ul>
+<li><strong><code>若内容中有变量等，会先把变量$解析出结果，再输出双引号内的内容；</code></strong></li>
+</ul>
+<pre><code class="language-shell">echo &quot;$name&quot;
+
+echo $(date)
+echo &quot;$(date)&quot;
+echo `date`
+echo &quot;`date`&quot;
+</code></pre>
+</li>
+<li>
+<p>6、<strong>字符串，加反引号</strong></p>
+<ul>
+<li><strong><code>等价于$()，用于调用命令的输出结果；</code></strong></li>
+</ul>
+</li>
+<li>
+<p>7、<strong>shell中空格的规定：<code>赋值语句等号两边不能有空格；字符串比较，等号两边必须有空格；</code></strong></p>
+<pre><code class="language-shell"># 赋值时
+# =用于赋值时，两边绝对不能有空格
+a=1
+b=$(b)
+
+# 比较时：
+# =用于比较判断时，两边必须有空格
+if [ $a = $b ]
+</code></pre>
+</li>
 </ul>
 
       </div>
@@ -435,14 +1063,14 @@ tar -tjv -f a.tar
         <div class="large-6 columns">
           <p class="text-left" style="padding:15px 0px;">
             
-            <a href="15358895457026.html" title="Previous Post: Python Fabric模块">&laquo; Python Fabric模块</a>
+            <a href="15339807662944.html" title="Previous Post: Ubuntu配置使用">&laquo; Ubuntu配置使用</a>
             
           </p>
         </div>
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="15354658906894.html" title="Next Post: Redis配置使用（Linux）">Redis配置使用（Linux） &raquo;</a>
+            <a href="15354658906894.html" title="Next Post: Redis配置使用（Ubuntu）">Redis配置使用（Ubuntu） &raquo;</a>
             
           </p>
         </div>

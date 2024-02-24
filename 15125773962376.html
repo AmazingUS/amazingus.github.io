@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -140,7 +140,7 @@
 </li>
 <li>
 <p>每个HTTP请求和响应报文都遵循相同的格式，包含Header、Body（可选的）</p>
-<pre><code class="language-python"> # 1. HTTP GET请求格式
+<pre><code class="language-py"> # 1. HTTP GET请求格式
  GET /path HTTP/1.1
  Header1: Value1
  Header2: Value2
@@ -152,7 +152,7 @@
 <li>c. HTTP/1.1表示采用HTTP协议版本为1.1；HTTP/1.1允许多个HTTP请求复用同一个TCP连接，加快传输速度，HTTP/1.0不可以</li>
 <li>d. 每个Header一行一个，换行符为\r\n</li>
 </ul>
-<pre><code class="language-python"># 2. HTTP POST请求格式
+<pre><code class="language-py"># 2. HTTP POST请求格式
 POST /path HTTP/1.1
 Header1: Value1
 Header2: Value2
@@ -163,7 +163,7 @@ body data goes here...
 <ul>
 <li>a. 当遇到连续两个\r\n，表示Header部分结束，后面的数据全部是Body</li>
 </ul>
-<pre><code class="language-python"># 3. HTTP 响应格式
+<pre><code class="language-py"># 3. HTTP 响应格式
 200 OK
 Header1: Value1
 Header2: Value2
@@ -206,7 +206,7 @@ body data goes here...
 </li>
 <li>
 <p>WSGI接口定义非常简单，只需要实现一个HTTP处理函数（名称无所谓）就可以响应HTTP请求</p>
-<pre><code class="language-python">def app(environ, start_response):
+<pre><code class="language-py">def app(environ, start_response):
     start_response('200 OK', [('Content-Type', 'text/html')])
     # 必须返回一个数组（元素必须为字节类型）
     return [b'&lt;h1&gt;Hello, web!&lt;/h1&gt;']
@@ -230,7 +230,7 @@ body data goes here...
 </li>
 <li>
 <p>有很多符合WSGI规范的服务器可以使用，Python内置的wsgiref模块就是一个WSGI服务器的参考实现；所谓“参考实现”就是指实现完全符合WSGI标准，但不考虑运行效率，仅供开发测试使用</p>
-<pre><code class="language-python"> # hello.py，实现Web应用程序的WSGI处理函数
+<pre><code class="language-py"> # hello.py，实现Web应用程序的WSGI处理函数
  def app(environ, start_response):
      start_response('200 OK', [('Content-Type', 'text/html')])
      return [b'&lt;h1&gt;Hello, web!&lt;/h1&gt;']
@@ -252,7 +252,7 @@ body data goes here...
  	
  # 浏览器输入“http://127.0.0.1:8000”进行访问
 </code></pre>
-<pre><code class="language-python"> # 从environ中读取PATH_INFO，显示动态内容
+<pre><code class="language-py"> # 从environ中读取PATH_INFO，显示动态内容
  def app(environ, start_response):
  	start_response('200 OK', [('Content-Type', 'text/html')])
  	# print(environ)
@@ -286,7 +286,7 @@ body data goes here...
 <li>Flask就是这样的Web框架，其通过Python的装饰器在内部把URL和函数给关联起来，简化Web开发</li>
 <li>除了Flask，常见的Python Web框架还有Django、web. py、Bottle、Tornado（异步）</li>
 </ul>
-<pre><code class="language-python"> # Flask使用，处理3个URL：
+<pre><code class="language-py"> # Flask使用，处理3个URL：
  # a. GET /（首页，返回Home）、
  # b. GET /signin（登录页，显示登录表单）、
  # c. POST /signin（处理登录表单，显示登录结果）
@@ -341,7 +341,7 @@ body data goes here...
 </li>
 <li>
 <p>除了Jinja2，常见的Python模板还有Mako、Cheetah、Django</p>
-<pre><code class="language-python"> from flask import Flask, request, render_template
+<pre><code class="language-py"> from flask import Flask, request, render_template
  
  app = Flask(__name__)
  
@@ -427,7 +427,7 @@ body data goes here...
 <ul>
 <li>
 <p>异步IO模型需要一个消息循环，在消息循环中，主线程不断地重复“读取消息-处理消息”这一过程</p>
-<pre><code class="language-python"> loop = get_event_loop()
+<pre><code class="language-py"> loop = get_event_loop()
  while True:
  	event = loop.get_event()
  	process_event(event)
@@ -478,7 +478,7 @@ body data goes here...
 </li>
 <li>
 <p>传统的生产者-消费者模型是一个线程写消息，一个线程取消息，通过锁机制控制队列和等待，但是一不小心可能产生死锁；可以通过generator，生产者生产消息后，直接通过send跳转到消费者开始执行，待消费者执行完毕后，yield返回到生产者继续生产</p>
-<pre><code class="language-python"> # 生产者-消费者模型（注意：这里还不是协程，只是generator）
+<pre><code class="language-py"> # 生产者-消费者模型（注意：这里还不是协程，只是generator）
  def consumer():
      r = ''
      while True:
@@ -521,7 +521,7 @@ body data goes here...
 </li>
 <li>
 <p>asyncio的编程模型就是一个消息循环，从asyncio中直接获取EventLoop，然后把需要执行的协程放到EventLoop中执行，就实现异步IO</p>
-<pre><code class="language-python"> import asyncio
+<pre><code class="language-py"> import asyncio
  import threading
  
  # 这才是一个协程
@@ -576,7 +576,7 @@ body data goes here...
 </li>
 <li>
 <p><strong>异步操作需要在coroutine中通过yield from完成，多个coroutine封装一起然后并发执行</strong></p>
-<pre><code class="language-python"> # 异步网络连接来获取sina、sohu、163的首页
+<pre><code class="language-py"> # 异步网络连接来获取sina、sohu、163的首页
  import asyncio
  
  @asyncio.coroutine
@@ -616,7 +616,7 @@ body data goes here...
 </li>
 <li>
 <p>为了简化使用和代码简洁，Python 3.5引入新的语法 <code>async（代替@asyncio.coroutine）</code> 和 <code>await（代替yield from）</code></p>
-<pre><code class="language-python">import asyncio
+<pre><code class="language-py">import asyncio
 import threading
 
 async def hello():
@@ -634,7 +634,7 @@ async def hello():
 </li>
 <li>
 <p>aiohttp是基于asyncio实现的HTTP框架；asyncio实现了TCP、UDP、SSL等协议，loop_create_server()则利用asyncio创建TCP服务</p>
-<pre><code class="language-python"> # 编写Web应用：
+<pre><code class="language-py"> # 编写Web应用：
  # /（首页返回b'&lt;h1&gt;Index&lt;/h1&gt;'）、
  # /hello/{name}（根据URL参数返回文本hello, %s!）
  import asyncio

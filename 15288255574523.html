@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -128,7 +128,7 @@
 </li>
 <li>
 <p>项目结构：</p>
-<pre><code class="language-python">awesome-python3-webapp # 根目录
+<pre><code class="language-py">awesome-python3-webapp # 根目录
 ../backup # 备份目录
 ../conf # 配置文件
 ../dist # 打包目录
@@ -170,7 +170,7 @@
 <ul>
 <li>
 <p><strong>async with</strong></p>
-<pre><code class="language-python"># 同步读文件
+<pre><code class="language-py"># 同步读文件
 f = open('1.txt')
 try:
     content = f.read()
@@ -195,7 +195,7 @@ async with async_open('1.txt') as f:
 </li>
 <li>
 <p><strong>async for</strong></p>
-<pre><code class="language-python"># 同步遍历文件
+<pre><code class="language-py"># 同步遍历文件
 f = open('1.txt')
 it = iter(f)
 while True:
@@ -348,11 +348,11 @@ def find(cls, pk):
 </li>
 <li>
 <p>示例: 处理函数</p>
-<pre><code class="language-python">@get('/blog/{id}') # 可变路径路由{NAME}需要和函数参数名一致
+<pre><code class="language-py">@get('/blog/{id}') # 可变路径路由{NAME}需要和函数参数名一致
 def get_blog(id):
     pass
 </code></pre>
-<pre><code class="language-python">@get('/api/comments')
+<pre><code class="language-py">@get('/api/comments')
 def api_comments(*, page='1'):
     pass
 </code></pre>
@@ -370,7 +370,7 @@ def api_comments(*, page='1'):
 </li>
 <li>
 <p>**middleware是一种拦截器，一个URL在被某个函数处理前，可以经过一系列的middleware的处理；**其可以改变URL的输入、输出，甚至可以决定不继续处理而直接返回；其主要用于把通用的功能从每个URL处理函数中拿出来，集中放到一个地方，比如一个一个记录URL日志的logger；</p>
-<pre><code class="language-python">async def logger_factory(app, handler):
+<pre><code class="language-py">async def logger_factory(app, handler):
     async def logger(request):
         logging.info('Request1: %s %s' % (request.method, request.path))
         # 继续处理请求
@@ -383,7 +383,7 @@ app = web.Application(loop=loop, middlewares=[logger_factory, response_factory])
 </li>
 <li>
 <p>jinja2渲染</p>
-<pre><code class="language-python">def init_jinja2(app, **kw):
+<pre><code class="language-py">def init_jinja2(app, **kw):
     logging.info('init jinja2...')
     options = dict(
         autoescape=kw.get('autoescape', True),
@@ -515,7 +515,7 @@ $.add(3, 4);
 <pre><code class="language-javascript">$.fn.extend({
     postJSON: function(url, data, callback) {
         return this.each(function () {
-            // TODO
+            // code
         });
     }
 });

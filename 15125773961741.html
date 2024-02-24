@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -144,7 +144,7 @@
 </li>
 <li>
 <p>若无值需要返回，则可省略return语句，其实也是有返回结果，值为None；return None可简写为return或不写</p>
-<pre><code class="language-python"> def my_abs(x):
+<pre><code class="language-py"> def my_abs(x):
  	if x &gt; 0:
  		return x
  	else:
@@ -159,13 +159,13 @@
 </li>
 <li>
 <p>空函数：定义一个什么都不做的函数，使用pass关键字占位（让程序可以正常运行，否则由于无法识别代码块范围而报错）</p>
-<pre><code class="language-python"> def nop():
+<pre><code class="language-py"> def nop():
      pass
 </code></pre>
 </li>
 <li>
 <p>pass关键字也可以用在其他语句中</p>
-<pre><code class="language-python"> if age &gt;= 18:
+<pre><code class="language-py"> if age &gt;= 18:
      pass
 </code></pre>
 </li>
@@ -177,7 +177,7 @@
 </li>
 <li>
 <p>可以使用isinstance()内置函数进行数据类型检查，若传入参数类型错误可以手动抛出一个“异常”</p>
-<pre><code class="language-python"> def my_abs(x):
+<pre><code class="language-py"> def my_abs(x):
  	if not isinstance(x, (int, float)):
  		raise TypeError('Bad Type~~~')
  	if x &gt; 0:
@@ -194,13 +194,13 @@
 </li>
 <li>
 <p>多个变量可以同时接收一个tuple对象，会按位进行赋值</p>
-<pre><code class="language-python"> import math
+<pre><code class="language-py"> import math
  def move(x, y, step, angle = 0):
  	nx = x + step * math.cos(angle)
  	ny = y + step * math.sin(angle)
  	return nx, ny
 </code></pre>
-<pre><code class="language-python"> import math
+<pre><code class="language-py"> import math
  from abstest import move
  
  x, y = move(100, 200, 50, math.pi / 6)
@@ -211,7 +211,7 @@
 </li>
 <li>
 <p>练习：解一元二次方程</p>
-<pre><code class="language-python">import math
+<pre><code class="language-py">import math
 
 def quadratic(a, b, c):
 	if not isinstance(a, (int, float)):
@@ -282,7 +282,7 @@ def quadratic(a, b, c):
 </li>
 <li>
 <p><strong>注意：在调用时，传入的命名关键字参数、关键字参数的参数名称不要和函数定义时的位置参数、默认参数的参数名称冲突，否则报错或传入的数据位置对应错误</strong></p>
-<pre><code class="language-python"> # 默认参数1:
+<pre><code class="language-py"> # 默认参数1:
  &gt;&gt;&gt; def enroll(name, gender, age = 6, city='Beijing'):
  ...     print('name:', name)
  ...     print('gender:', gender)
@@ -319,7 +319,7 @@ def quadratic(a, b, c):
  &gt;&gt;&gt; add_end()  # L指向函数定义时系统默认计算出的数组
  ['END', 'END'] # 错误
 </code></pre>
-<pre><code class="language-python"> # 可变参数:
+<pre><code class="language-py"> # 可变参数:
  &gt;&gt;&gt; def calc(*nums):
  ...     sum = 0
  ...     for n in nums:
@@ -341,7 +341,7 @@ def quadratic(a, b, c):
  &gt;&gt;&gt; calc(*s)
  14
 </code></pre>
-<pre><code class="language-python"> # 关键字参数:
+<pre><code class="language-py"> # 关键字参数:
  &gt;&gt;&gt; def person(name, age, **kw):
  ...     print('name:', name, 'age:', age, 'other:', kw)
  &gt;&gt;&gt; person('Tom', 20, city='Beijing', job = 'Student')
@@ -352,7 +352,7 @@ def quadratic(a, b, c):
  &gt;&gt;&gt; person('Tom', 20, **d)
  name: Tom age: 20 other: {'A': 1, 'B': 2}
 </code></pre>
-<pre><code class="language-python"> # 命名关键字参数:
+<pre><code class="language-py"> # 命名关键字参数:
  &gt;&gt;&gt; def person(name, age, *, city, job): 
  ...     print(name, age, city, job)
  &gt;&gt;&gt; person('Tom', 12, city='Beijing', job='Student')
@@ -362,7 +362,7 @@ def quadratic(a, b, c):
  &gt;&gt;&gt; person('Tom', 12, 'Beijing', 'Student')
  # 报错，TypeError: person() takes 2 positional arguments but 4 were given
 </code></pre>
-<pre><code class="language-python"> # 组合参数:
+<pre><code class="language-py"> # 组合参数:
  &gt;&gt;&gt; def f1(a, b, c=0, *args, **kw):
  ...     print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)
  ...
@@ -410,7 +410,7 @@ def quadratic(a, b, c):
 </li>
 <li>
 <p>可以将循环看成是一种特殊的尾递归；尾递归事实上和循环是等价的，没有循环语句的编程语言只能通过尾递归实现循环</p>
-<pre><code class="language-python"> # 递归
+<pre><code class="language-py"> # 递归
  def fact(n):
     if n == 1:
         return 1
@@ -428,7 +428,7 @@ def quadratic(a, b, c):
 </li>
 <li>
 <p>练习：汉诺塔</p>
-<pre><code class="language-python"> def move(n, a, b, c):
+<pre><code class="language-py"> def move(n, a, b, c):
     if 1 == n:
         print(a, '--&gt;', c) # 直接将从a移到c
     else:

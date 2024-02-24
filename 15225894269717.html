@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -264,14 +264,13 @@
 <li>
 <p>LayoutInflater、ViewGroup是实例化布局的必要参数，Bundle用来存储恢复数据，可供该方法从保存状态下重建视图；</p>
 <pre><code class="language-java">@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View v = inflater.inflate(R.layout.fragment_crime, container, false);
+    return v; 
+}
 </code></pre>
 </li>
 </ul>
-<p>public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {<br />
-View v = inflater.inflate(R.layout.fragment_crime, container, false);<br />
-return v;<br />
-}<br />
-```</p>
 </li>
 <li>
 <p><strong>在onCreateView()方法中，fragment的视图是直接通过用<code>LayoutInflater.inflate(...)</code>方法生成的，之后完成布局中组件的设置（如给组件添加监听等）；</strong></p>
@@ -730,7 +729,7 @@ protected void onCreate(Bundle savedInstanceState) {
 <pre><code class="language-java">public class DatePickerFragment extends DialogFragment { 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // TODO
+        // code
     }
 }
 </code></pre>
@@ -790,16 +789,14 @@ public void show(FragmentTransaction transaction, String tag)
 // requestCode: 目标fragment（父fragment）用来区分是哪个fragment在回传数据
 </code></pre>
 <pre><code class="language-java">FragmentManager manager = getFragmentManager();
+DatePickerFragment dialog = DatePickerFragment.newInstance(mCrime.getDate());
+dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE); // 设置目标fragment，用于回传数据
+dialog.show(manager, DIALOG_DATE);
 </code></pre>
 </li>
-</ul>
-<p>DatePickerFragment dialog = DatePickerFragment<br />
-.newInstance(mCrime.getDate());<br />
-dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE); // 设置目标fragment，用于回传数据<br />
-dialog.show(manager, DIALOG_DATE);<br />
-```</p>
-<ul>
-<li><strong>目标fragment和requestCode由FragmentManager负责跟踪管理，可调用fragment(子fragment，设置了<code>目标fragment</code>的fragment)的<code>getTargetFragment()</code>方法和<code>getTargetRequestCode()</code>方法获取；</strong></li>
+<li>
+<p><strong>目标fragment和requestCode由FragmentManager负责跟踪管理，可调用fragment(子fragment，设置了<code>目标fragment</code>的fragment)的<code>getTargetFragment()</code>方法和<code>getTargetRequestCode()</code>方法获取；</strong></p>
+</li>
 </ul>
 </li>
 <li>

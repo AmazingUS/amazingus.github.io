@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -162,7 +162,7 @@
 // OR
 let queue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
 </code></pre>
-<pre><code class="language-OC">dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0); // iOS 8.0 deprecated
+<pre><code class="language-ObjC">dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0); // iOS 8.0 deprecated
 // OR
 dispatch_queue_attr_t queue = dispatch_queue_attr_make_with_qos_class(nil, QOS_CLASS_DEFAULT, 0);
 </code></pre>
@@ -171,7 +171,7 @@ dispatch_queue_attr_t queue = dispatch_queue_attr_make_with_qos_class(nil, QOS_C
 <p><strong>b. 手动创建并行队列；</strong></p>
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;, attributes: [.concurrent])
 </code></pre>
-<pre><code class="language-OC">dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DISPATCH_QUEUE_CONCURRENT);
+<pre><code class="language-ObjC">dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DISPATCH_QUEUE_CONCURRENT);
 </code></pre>
 </li>
 </ul>
@@ -184,7 +184,7 @@ dispatch_queue_attr_t queue = dispatch_queue_attr_make_with_qos_class(nil, QOS_C
 <pre><code class="language-swift">let queue = DispatchQueue(label: &quot;com.test.gcdDemo&quot;)
 
 </code></pre>
-<pre><code class="language-OC">// DISPATCH_QUEUE_SERIAL也可换成NULL
+<pre><code class="language-ObjC">// DISPATCH_QUEUE_SERIAL也可换成NULL
 dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DISPATCH_QUEUE_SERIAL); 
 </code></pre>
 </li>
@@ -192,7 +192,7 @@ dispatch_queue_t queue = dispatch_queue_create(&quot;com.test.gcdDemo&quot;, DIS
 <p><strong>b. 使用主队列（特殊的串行队列，和主线程相关联的队列）；</strong></p>
 <pre><code class="language-swift">let queue = DispatchQueue.main
 </code></pre>
-<pre><code class="language-OC">dispatch_queue_t queue = dispatch_get_main_queue();
+<pre><code class="language-ObjC">dispatch_queue_t queue = dispatch_get_main_queue();
 </code></pre>
 </li>
 </ul>
@@ -684,12 +684,12 @@ Read Task D..., &lt;NSThread: 0x600001052740&gt;{number = 4, name = (null)}
 <p>a. 互斥锁：给需要同步的代码块加一个互斥锁，保证每次只有一个线程访问此代码块；</p>
 <pre><code class="language-swift">// Swift
 objc_sync_enter(self)
-// TODO Code
+// code
 objc_sync_exit(self)
 
 // OC
 @synchronized(self) {
-    // TODO Code
+    // dode
 }
 </code></pre>
 </li>

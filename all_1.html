@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -102,13 +102,25 @@
             
             <div class="a-content-text">
                
-			  <ul>
+			  <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88c%E3%80%81-python%EF%BC%89">一、安装配置（C++、Python）</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81%E8%A1%A5%E5%85%85">二、补充</a>
+<ul>
+<li><a href="#1%E3%80%81opencv%E7%9A%84%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9D%97">1、OpenCV的常见模块</a></li>
+<li><a href="#2%E3%80%81opencv%E7%9A%84mat">2、OpenCV的Mat</a></li>
+<li><a href="#3%E3%80%81ios%E4%B8%AD%E4%BD%BF%E7%94%A8opencv%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%88apple-m1%E8%AE%BE%E5%A4%87%EF%BC%8C%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BF%90%E8%A1%8C%EF%BC%89">3、iOS中使用OpenCV注意事项（Apple M1设备，模拟器运行）</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88c%E3%80%81-python%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、安装配置（C++、Python）</h4>
+<ul>
 <li>
 <p>1、安装OpenCV</p>
-<pre><code class="language-plain_text">brew install opencv
+<pre><code class="language-shell">brew install opencv
 </code></pre>
 <ul>
-<li>安装路径：<code>/usr/local/Cellar/opencv</code>；</li>
+<li>安装路径：<code>/usr/local/Cellar/opencv</code>（<code>M1：/opt/homebrew/Cellar/opencv</code>）；</li>
 </ul>
 </li>
 </ul>
@@ -145,6 +157,7 @@
 <li><a href="#%E4%B8%80%E3%80%81%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE">一、个人配置</a></li>
 <li><a href="#%E4%BA%8C%E3%80%81%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">二、插件安装</a></li>
 <li><a href="#%E4%B8%89%E3%80%81%E5%BF%AB%E6%8D%B7%E9%94%AE">三、快捷键</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96">四、其他</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E4%B8%AA%E4%BA%BA%E9%85%8D%E7%BD%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、个人配置</h4>
@@ -153,10 +166,13 @@
 <p><strong>Preference -&gt; Package Setting -&gt; Package Control -&gt; Setting-User</strong></p>
 </li>
 <li>
-<p>1、添加以下配置，设置代理：</p>
+<p>1、设置代理，添加以下配置：</p>
 <pre><code class="language-plain_text">&quot;http_proxy&quot;: &quot;http://127.0.0.1:8001&quot;,
 &quot;https_proxy&quot;: &quot;http://127.0.0.1:8001&quot;,
 </code></pre>
+</li>
+<li>
+<p>2、提示 <code>FileNotFoundError: [Errno 2] No such file or directory: '/Users/XX/Library/Caches/Sublime Text/Cache/Package Control/http_cache'</code> 错误，添加以下配置 <code>&quot;http_cache&quot;: false,</code>；</p>
 </li>
 </ul>
  
@@ -190,22 +206,22 @@
                
 			  <div class="mweb_toc"><ul>
 <li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0">一、概述</a></li>
-<li><a href="#%E4%BA%8C%E3%80%81crontab%EF%BC%88%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%EF%BC%89">二、Crontab（定时任务）</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81logrotate%E4%B8%8Ecrontab">二、Logrotate与Crontab</a></li>
 <li><a href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AE%E6%A1%88%E4%BE%8B">三、配置案例</a></li>
-<li><a href="#%E4%B8%89%E3%80%81%E5%85%B6%E4%BB%96%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E6%96%B9%E6%B3%95">三、其他日志切割方法</a></li>
+<li><a href="#%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E6%96%B9%E6%B3%95">四、其他日志切割方法</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
 <ul>
 <li>
-<p>Logrotate是一个非常有用的管理日志工具，其可以自动对日志进行切割（轮循）、压缩以及删除旧的日志文件；比如让设置logrotate自动化运作，让/var/log/acc日志文件每30天轮循，并删除超过6个月的日志；</p>
+<p>1、Logrotate是一个非常有用的管理日志工具，其可以自动对日志进行切割（轮循）、压缩以及删除旧的日志文件；比如让设置logrotate自动化运作，让/var/log/acc日志文件每30天轮循，并删除超过6个月的日志；</p>
 </li>
 <li>
-<p>Linux默认安装了Logrotate，其默认的配置文件为：<code>/etc/logrotate.conf</code>、<code>/etc/logrotate.d/目录</code>；</p>
+<p>2、Linux默认安装了Logrotate，其默认的配置文件为：<code>/etc/logrotate.conf</code>、<code>/etc/logrotate.d/目录</code>；</p>
 <ul>
-<li><strong>logrotate.conf为主要的配置文件，logrotate.d是一个目录，该目录中的所有文件默认都会被导入到/etc/logrotate.conf中（<code>include /etc/logrotate.d</code>），在logrotate.conf被logrotate时，同时也被logrotate</strong>；</li>
-<li>若/etc/logrotate.d/里面的文件中没有配置一些设置，则使用/etc/logrotate.conf中设置的默认值；</li>
-<li><strong>对于多数Service，即使系统没有安装Logrotate，一个默认的logrotate配置文件会在安装程序包时自动创建；若是使用源代码编译手动安装，就需要手动在/etc/logrotate.d/目录中手动创建一个logrotate配置文件；</strong></li>
+<li>1）<strong>logrotate.conf为主要的配置文件，logrotate.d是一个目录，该目录中的所有文件默认都会被导入到<code>/etc/logrotate.conf</code>中（<code>include /etc/logrotate.d</code>）；</strong></li>
+<li>2）若/etc/logrotate.d/里面的文件中没有配置一些设置，则使用/etc/logrotate.conf中设置的默认值；</li>
+<li>3）<strong>对于多数Service，即使系统没有安装Logrotate，一个默认的logrotate配置文件会在安装程序包时自动创建；若是使用源代码编译手动安装，就需要手动在<code>/etc/logrotate.d/</code>目录中手动创建一个logrotate配置文件；</strong></li>
 </ul>
 </li>
 </ul>
@@ -233,7 +249,7 @@
       <div class="article">
         <a class="clearlink" href="15360828386434.html">
           
-          <h1>Nginx+uWSGI运行Python Web应用</h1>
+          <h1>Nginx+uWSGI+Flask运行Python Web应用</h1>
           <div class="a-content">
             
             <div class="a-content-text">
@@ -241,25 +257,25 @@
 			  <div class="mweb_toc"><ul>
 <li><a href="#%E4%B8%80%E3%80%81uwsgi%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">一、uWSGI基本使用</a></li>
 <li><a href="#%E4%BA%8C%E3%80%81uwsgi%E8%BF%90%E8%A1%8Cflask%E5%BA%94%E7%94%A8">二、uWSGI运行Flask应用</a></li>
-<li><a href="#%E4%B8%89%E3%80%81nginx-uwsgi%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8">三、Nginx+uWSGI配合使用</a></li>
+<li><a href="#%E4%B8%89%E3%80%81nginx-uwsgi-flask%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8">三、Nginx+uWSGI+Flask配合使用</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81uwsgi%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、uWSGI基本使用</h4>
 <ul>
 <li>
-<p>新建一个python文件，定义一个application函数（其实就是wsgi的处理函数）；</p>
-<pre><code class="language-python"># server.py
+<p>1、新建一个python文件，定义一个<code>application</code>函数（其实就是wsgi的处理函数）；</p>
+<pre><code class="language-py"># server.py
 def application(env, response):
     response('200 OK', [('Content-Type', 'text/html')])
-    return [b'&lt;h1&gt;Hello,Web!&lt;/h1&gt;'] # 注意: 返回的是字节
+    return [b'&lt;h1&gt;Hello, Web!&lt;/h1&gt;'] # 注意: 返回的是字节
 </code></pre>
 </li>
 <li>
-<p>终端中运行：<code>uwsgi --http :9090 --wsgi-file server.py</code> ，之后就可以访问<code>http://127.0.0.1:9090/</code>；</p>
+<p>2、终端中运行：<code>uwsgi --http :9090 --wsgi-file server.py</code> ，之后就可以访问<code>http://127.0.0.1:9090/</code>；</p>
 <ul>
-<li>a. --http参数指定HTTP监听地址端口；</li>
-<li>b. --wsgi-file参数指定WSGI应用程序入口；</li>
-<li>c. uWSGI会自动搜寻名为”application”的应用对象并调用，也可以使用--callable参数修改该默认名称；</li>
+<li>a. <code>--http</code>参数指定HTTP监听地址端口；</li>
+<li>b. <code>--wsgi-file</code>参数指定WSGI应用程序入口；</li>
+<li>c. uWSGI会自动搜寻名为<code>application</code>的应用对象并调用，也可以使用<code>--callable</code>参数修改该默认名称；</li>
 </ul>
 </li>
 </ul>
@@ -300,24 +316,13 @@ def application(env, response):
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
 <ul>
-<li>
-<p>Fabric是一个Python库，其提供了丰富的与SSH交互的接口，可以用来在本地或远程机器上自动化、流水化地执行Shell命令，因此非常适合用来做应用的远程部署及系统维护；</p>
-</li>
-<li>
-<p>Fabric分为Python2和Python3版本的，安装Python3版本：<code>pip install fabric3</code>；</p>
-</li>
-<li>
-<p>fab是Fabric程序的命令行执行命令，默认执行一个fabfile.py的文件（若需执行其他文件，使用-f参数指定文件即可）；</p>
+<li>1、Fabric是一个Python库，其提供了丰富的与ssh交互的接口，可以用来在本地或远程机器上自动化、流水化地执行Shell命令，因此非常适合用来做应用的远程部署及系统维护；</li>
+<li>2、Fabric分为Python2和Python3版本的，安装Python3版本：<code>pip install fabric3</code>；</li>
+<li>3、fab是Fabric程序的命令行执行命令，默认执行一个fabfile.py的文件（若需执行其他文件，使用-f参数指定文件即可）；
 <ul>
-<li>
-<p><strong>fabfile.py文件中每个函数就是一个任务，任务名即函数名；</strong></p>
-</li>
-<li>
-<p><strong>fab命令就是用来执行fabfile.py中定义的任务，且必须显式地指定任务名；可以使用-l参数列举当前fabfile.py文件中定义了哪些任务；</strong></p>
-</li>
-<li>
-<p>fab命令语法为 <code>fab [options] &lt;command&gt; [arg1,arg2:val2,host=foo]</code> ；</p>
-</li>
+<li>1）<strong>fabfile.py文件中每个函数就是一个任务，任务名即函数名；</strong></li>
+<li>2）<strong>fab命令就是用来执行fabfile.py中定义的任务，且必须显式地指定任务名；可以使用-l参数列举当前fabfile.py文件中定义了哪些任务；</strong></li>
+<li>3）fab命令语法为 <code>fab [options] &lt;command&gt; [arg1,arg2:val2,host=foo]</code> ；</li>
 </ul>
 </li>
 </ul>

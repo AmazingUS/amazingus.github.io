@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -117,17 +117,17 @@
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、安装</h4>
 <ul>
-<li>Ruby安装方式有多种方式，可以通Ruby安装包、Homebrew、rbenv或RVM等方式；</li>
-<li>rbenv和RVM都可进行Ruby多版本管理，等同于Node.js中的nvm、Python中的pyenv；这里使用rbenv进行安装（rbenv的GitHub Star比RVM的多）；
+<li>1、Ruby安装方式有多种方式，可以通Ruby安装包、Homebrew、rbenv或RVM等方式；</li>
+<li>2、rbenv和RVM都可进行Ruby多版本管理，等同于Node.js中的nvm、Python中的pyenv；这里使用rbenv进行安装（rbenv的GitHub Star比RVM的多）；
 <ul>
 <li>
-<p>第1步：安装rbenv</p>
-<pre><code class="language-plain_text">brew install rbenv
+<p>1）第1步：安装rbenv</p>
+<pre><code class="language-shell">brew install rbenv
 </code></pre>
 <p><img src="media/14709318994406/install_rbenv.png" alt="install_rbenv" style="width:595px;" /></p>
 </li>
 <li>
-<p>第2步：安装某个版本的Ruby；</p>
+<p>2）第2步：安装某个版本的Ruby；</p>
 <pre><code class="language-plain_text">rbenv install &lt;VERSION&gt;
 </code></pre>
 </li>
@@ -138,8 +138,8 @@
 <h4><a id="%E4%BA%8C%E3%80%81rbenv" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、rbenv</h4>
 <ul>
 <li>
-<p>rbenv的原理及使用和Python中的pyenv几乎是一样的；</p>
-<pre><code class="language-plain_text">rbenv version # 查看当前Ruby版本（以ruby --version为准）
+<p>1、rbenv的原理及使用和Python中的pyenv几乎是一样的；</p>
+<pre><code class="language-shell">rbenv version # 查看当前Ruby版本（以ruby --version为准）
 rbenv versions # 查看已安装的Ruby版本（system为系统默认安装的）
 
 rbenv install -l # 查看可以安装的Ruby版本
@@ -157,8 +157,8 @@ rbenv &lt;local | shell&gt; --unset # 取消某个级别设置的Ruby版本
 <h4><a id="%E4%B8%89%E3%80%81gem%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、gem模块</h4>
 <ul>
 <li>
-<p>gem（Ruby Gems）是Ruby的包管理工具（其也是一个包），类似于Node.js的npm、Python的pip；</p>
-<pre><code class="language-plain_text">gem -v # 查看gem版本
+<p>1、gem（Ruby Gems）是Ruby的包管理工具（其也是一个包），类似于Node.js的npm、Python的pip；</p>
+<pre><code class="language-shell">gem -v # 查看gem版本
 gem environment # 查看gem的环境信息
 gem help [COMMAND] # 查看相关帮助
 
@@ -184,7 +184,7 @@ gem sources -c # 删除所有gem的安装源
 </ul>
 <h4><a id="%E5%9B%9B%E3%80%81gemset%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、gemset模块</h4>
 <ul>
-<li>gemset可以为不同项目设置独立的虚拟的gem环境，其等同于Python中的virtualenv；</li>
+<li>1、gemset可以为不同项目设置独立的虚拟的gem环境，其等同于Python中的virtualenv；</li>
 </ul>
 
       </div>
@@ -200,7 +200,7 @@ gem sources -c # 删除所有gem的安装源
         <div class="large-6 columns">
           <p class="text-right" style="padding:15px 0px;">
             
-            <a href="14702376488769.html" title="Next Post: Python3配置使用">Python3配置使用 &raquo;</a>
+            <a href="14694629279396.html" title="Next Post: Node.js配置使用">Node.js配置使用 &raquo;</a>
             
           </p>
         </div>

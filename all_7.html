@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -122,7 +122,7 @@
 </li>
 <li>
 <p>项目结构：</p>
-<pre><code class="language-python">awesome-python3-webapp # 根目录
+<pre><code class="language-py">awesome-python3-webapp # 根目录
 ../backup # 备份目录
 ../conf # 配置文件
 ../dist # 打包目录
@@ -195,7 +195,7 @@
 </li>
 <li>
 <p>每个HTTP请求和响应报文都遵循相同的格式，包含Header、Body（可选的）</p>
-<pre><code class="language-python"> # 1. HTTP GET请求格式
+<pre><code class="language-py"> # 1. HTTP GET请求格式
  GET /path HTTP/1.1
  Header1: Value1
  Header2: Value2
@@ -207,7 +207,7 @@
 <li>c. HTTP/1.1表示采用HTTP协议版本为1.1；HTTP/1.1允许多个HTTP请求复用同一个TCP连接，加快传输速度，HTTP/1.0不可以</li>
 <li>d. 每个Header一行一个，换行符为\r\n</li>
 </ul>
-<pre><code class="language-python"># 2. HTTP POST请求格式
+<pre><code class="language-py"># 2. HTTP POST请求格式
 POST /path HTTP/1.1
 Header1: Value1
 Header2: Value2
@@ -218,7 +218,7 @@ body data goes here...
 <ul>
 <li>a. 当遇到连续两个\r\n，表示Header部分结束，后面的数据全部是Body</li>
 </ul>
-<pre><code class="language-python"># 3. HTTP 响应格式
+<pre><code class="language-py"># 3. HTTP 响应格式
 200 OK
 Header1: Value1
 Header2: Value2
@@ -362,7 +362,7 @@ body data goes here...
 <ul>
 <li>
 <p>hashlib提供了常见的摘要算法（如MD5、SHA等）；摘要算法又称为哈希算法、散列算法，通过把任意长度的数据转换为一个长度固定的字符串（16进制表示的字符串）</p>
-<pre><code class="language-python"> import hashlib
+<pre><code class="language-py"> import hashlib
  
  md5 = hashlib.md5()
  # 先转成字节，再进行hash

@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -175,7 +175,7 @@
 <li>调用recv(max)方法接收数据，一次最多接收指定数量的字节数据；因此，需要在一个while循环中反复进行接收数据，直到recv()返回空数据表示接收完毕，退出循环</li>
 <li>接收完毕数据后，调用close()方法关闭Socket，这样一次完整的网络通信就结束了</li>
 </ul>
-<pre><code class="language-python"> # 创建一个基于TCP连接的Socket
+<pre><code class="language-py"> # 创建一个基于TCP连接的Socket
  import socket  # 导入socket库
  
  # 创建一个socket
@@ -213,7 +213,7 @@
 <li>一个Socket依赖4项：服务器地址、服务器端口、客户端地址、客户端端口</li>
 <li>服务器需要同时响应多个客户端的请求；所以，每个连接都需要一个新的进程或新的线程来处理，否则，服务器在处理连接的过程中，无法接受其他客户端的连接</li>
 </ul>
-<pre><code class="language-python"> # 案例：服务器将客户端发的字符串加上Hello再发回去
+<pre><code class="language-py"> # 案例：服务器将客户端发的字符串加上Hello再发回去
  # tcp_server.py
  import socket, threading, time
  
@@ -245,7 +245,7 @@
      t = threading.Thread(target=tcplink, args=(sock, addr))
      t.start()
 </code></pre>
-<pre><code class="language-python"> # tcp_client.py
+<pre><code class="language-py"> # tcp_client.py
  import socket
  
  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -270,7 +270,7 @@
 </li>
 <li>
 <p>和TCP类似，使用UDP的通信双方也分为客户端和服务器，服务器也需要先绑定端口，但不需要监听了</p>
-<pre><code class="language-python"> # udp_server.py
+<pre><code class="language-py"> # udp_server.py
  import socket
  
  # 使用socket.SOCK_DGRAM指明是UDP
@@ -288,7 +288,7 @@
 </li>
 <li>
 <p>客户端使用UDP时，首先创建基于UDP的Socket，然后直接通过sendto()给服务器发送数据，不需要调用connect()进行连接</p>
-<pre><code class="language-python"> # udp_client.py
+<pre><code class="language-py"> # udp_client.py
  import socket
  
  s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -319,7 +319,7 @@
 </li>
 <li>
 <p>Python标准库内置了SQLite3驱动，可以直接使用</p>
-<pre><code class="language-python"> # sqlite使用
+<pre><code class="language-py"> # sqlite使用
  import sqlite3  # 导入SQLite驱动
  
  # 连接到SQLite数据库，数据库文件test.db若不存在则在当前目录进行创建
@@ -364,7 +364,7 @@
 </li>
 <li>
 <p>打开的Connection对象、Cursor对象要被正确地关闭，否则就会泄漏资源；可使用 <code>try...except...finally...</code> ，确保在出错的情况也能关闭掉Cursor对象、Connection对象</p>
-<pre><code class="language-python"> # 练习：根据分数段查找指定的名字
+<pre><code class="language-py"> # 练习：根据分数段查找指定的名字
  import os, sqlite3
  
  db_file = os.path.join(os.path.dirname(__file__), 'test.db')
@@ -436,7 +436,7 @@ collation-server = utf8mb4_general_ci
 </li>
 <li>
 <p>Python的DB API定义都是通用的，所以操作MySQL和SQLite类似；<strong>不过，MySQL使用的占位符是%s，SQLite使用的是?</strong></p>
-<pre><code class="language-python">import mysql.connector
+<pre><code class="language-py">import mysql.connector
 
 conn = mysql.connector.connect(user='root', password='', database='test')
 cursor = conn.cursor()
@@ -461,7 +461,7 @@ conn.close()
 <ul>
 <li>
 <p>ORM（Object-Relational Mapping）：把关系数据库的表结构映射到对象上；Python中最有名的ORM框架是SQLAlchemy</p>
-<pre><code class="language-python"> from sqlalchemy.ext.declarative import declarative_base
+<pre><code class="language-py"> from sqlalchemy.ext.declarative import declarative_base
  from sqlalchemy import Column, String, create_engine
  from sqlalchemy.orm import sessionmaker
  
@@ -485,7 +485,7 @@ conn.close()
 <li>上述代码完成了SQLAlchemy的初始化和具体每个表的class定义</li>
 <li><strong>create_engine()用于初始化数据库连接，SQLAlchemy用一个字符串表示连接信息，格式如下：<code>数据库类型+数据库驱动名称://用户名:口令@机器地址:端口/数据库库名</code></strong></li>
 </ul>
-<pre><code class="language-python"> # 第3步：创建DBSession对象
+<pre><code class="language-py"> # 第3步：创建DBSession对象
  session = DBSession()
  
  # 第4步：创建User，添加到session
@@ -502,7 +502,7 @@ conn.close()
 <li>DBSession对象可以视为当前数据库连接</li>
 <li>向数据库表中添加一行记录（添加一个User对象），需要先获取session，然后把对象添加到session，最后提交并关闭</li>
 </ul>
-<pre><code class="language-python">session = DBSession()
+<pre><code class="language-py">session = DBSession()
 
 # 创建Query查询，filter是where条件；
 # 调用one()返回唯一行，调用all()返回所有行；
@@ -516,7 +516,7 @@ session.close()
 </li>
 <li>
 <p>数据库的多个表可以用外键实现一对多、多对多等关联；相应的，ORM框架也可以提供两个对象之间的一对多、多对多等功能</p>
-<pre><code class="language-python">from sqlalchemy.ext.declarative import declarative_base
+<pre><code class="language-py">from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 

@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -123,46 +123,54 @@
 <li><a href="#%E5%85%AD%E3%80%81%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7">六、管理工具</a>
 <ul>
 <li><a href="#6-1-cakebrew">6.1 Cakebrew</a></li>
-<li><a href="#6-2-launchrocket">6.2 LaunchRocket</a></li>
+<li><a href="#6-2-launchrocket%EF%BC%88%E5%B7%B2%E5%BA%9F%E5%BC%83%EF%BC%89">6.2 LaunchRocket（已废弃）</a></li>
 </ul>
 </li>
+<li><a href="#%E4%B8%83%E3%80%81%E5%8F%98%E6%9B%B4%E9%95%9C%E5%83%8F%E7%AB%99%EF%BC%88%E5%8A%A0%E9%80%9F%E5%AE%89%E8%A3%85%EF%BC%89">七、变更镜像站（加速安装）</a></li>
+<li><a href="#%E5%85%AB%E3%80%81homebrew%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD">八、Homebrew相关术语</a></li>
+<li><a href="#%E4%B9%9D%E3%80%81apple-m1%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98">九、Apple M1的相关问题</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
 <ul>
-<li>Homebrew（简称brew）是macOS中的软件管理工具，可以方便地安装、更新、卸载软件，类似Ubuntu系统中的apt-get；</li>
-<li>**macOS默认安装了Python、Ruby、Perl、Apache/PHP等开发程序，但是版本比较旧；**若直接使用新版本替换系统的旧版本，会引发一些问题，Homebrew可以很好地将其安装的开发工具与系统默认的隔离开来；</li>
+<li>1、Homebrew（简称brew）是macOS中的软件管理工具，可以方便地安装、更新、卸载软件，类似Ubuntu系统中的apt（apt-get）；</li>
+<li>2、<strong>macOS默认安装了<code>Python</code>、<code>Ruby</code>、<code>Perl</code>、<code>PHP</code>、<code>Apache</code>等开发程序，但是版本比较旧；</strong> 若直接使用新版本替换系统的旧版本，会引发一些问题，Homebrew可以很好地将其安装的开发工具与系统默认的隔离开来；</li>
 </ul>
 <h4><a id="%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、安装、卸载</h4>
 <ul>
 <li>
-<p>brew是基于Ruby运行的工具，必须先安装Ruby；</p>
-</li>
-<li>
-<p>在终端中执行以下指令（可在 <code>https://brew.sh/</code> 页面中获取）即可自动安装，路径为/usr/local/Homebrew/，其中/usr/local/Homebrew/Library/是brew系统的自身目录；</p>
-<pre><code class="language-shell">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+<p>1、在2020之前，brew是基于Ruby运行的工具，必须先安装Ruby；在终端中，执行以下指令（可在 <code>https://brew.sh/</code> 页面中获取）即可自动安装，路径为<code>/usr/local/Homebrew/</code>，其中<code>/usr/local/Homebrew/Library/</code>是brew的自身目录；</p>
+<pre><code class="language-shell">// 2020之前（使用Ruby）
+/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+
+// 2020开始（使用Shell）
+/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
 </code></pre>
   <span id="more"></span><!-- more -->
 <ul>
-<li>brew会创建<code>/usr/local/Cellar/</code>目录，用于存放通过其安装的程序，文件夹结构为“程序名/版本号”；</li>
-<li><strong>/usr/local/bin/目录是操作系统用来存放程序的启动链接（相当于快捷方式）；brew也会在此创建通过其安装的程序的启动链接；</strong></li>
-<li>通过brew安装的程序的配置文件，默认存放在/usr/local/etc/目录中；</li>
+<li>a. brew会创建<code>/usr/local/Cellar/</code>（<code>M1：/opt/homebrew/Cellar/</code>）目录，用于存放通过其安装的程序，文件夹结构为“程序名/版本号”；</li>
+<li>b. <strong><code>/usr/local/bin/</code>（<code>M1：/opt/homebrew/bin/</code>）目录是操作系统用来存放程序的软链接（相当于快捷方式）；brew也会在此，创建通过其安装的程序的软链接，这里可能会出现软链接冲突；</strong></li>
+<li>c. 通过brew安装的程序的配置文件，默认存放在<code>/usr/local/etc/</code>（<code>M1：/opt/homebrew/etc/</code>）目录中；</li>
 </ul>
 </li>
 <li>
-<p>在终端中执行以下指令（可在 <code>https://docs.brew.sh/FAQ.html</code> 页面中获取）即可自动卸载brew；</p>
-<pre><code class="language-shell">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&quot;
+<p>2、在终端中执行以下指令（可在 <code>https://docs.brew.sh/FAQ.html</code> 页面中获取）即可自动卸载brew；</p>
+<pre><code class="language-shell">// 2020之前（使用Ruby）
+/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)&quot;
+
+// 2020开始（使用Shell）
+/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)&quot;
 </code></pre>
 </li>
 </ul>
 <h4><a id="%E4%B8%89%E3%80%81brew%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、brew常用命令</h4>
 <ul>
 <li>
-<p>可以使用 <code>brew doctor</code> 命令检测操作brew（安装、卸载程序等）后是否有什么问题；比如若报以下警告，则按照提示进行解决（之后再执行 <code>source .bash_profile</code>）；</p>
+<p>1、可以使用 <code>brew doctor</code> 命令检测操作brew（安装、卸载程序等）后是否有什么问题；比如若报以下警告，则按照提示进行解决（之后再执行 <code>source .bash_profile</code>）；</p>
 <p><img src="media/14694520920617/brew_warning.png" alt="brew_warning" style="width:597px;" /></p>
 </li>
 <li>
-<p>执行 <code>brew install</code> 之后，要注意终端输出日志，从而采取进一步的操作；（caveats: 警告、附加说明）</p>
+<p>2、执行 <code>brew install</code> 之后，要注意终端输出日志，从而采取进一步的操作；（caveats: 警告、附加说明）</p>
 <p><img src="media/14694520920617/caveats.png" alt="caveats" style="width:628px;" /></p>
 <pre><code class="language-shell">brew -h | --help # 查看brew帮助（使用--时，命令要写全）
 brew -v | --version # 查看brew当前的版本
@@ -176,13 +184,22 @@ brew install &lt;NAME&gt; # 安装某个程序，例如brew install wget
 brew uninstall | remove &lt;NAME&gt; # 卸载某个程序（不会卸载相关包依赖），例如brew uninstall wget
 brew upgrade [NAME] # 更新所有程序（或某个程序）
 
-brew info &lt;NAME&gt; # 查看某个程序的相关信息（如安装之后需要配置信息）
-brew deps &lt;NAME&gt; # 查看某个程序的包依赖
+brew info &lt;NAME&gt; # 查看某个程序的相关信息（如安装之后需要配置信息、安装所需要的依赖等）
 brew home [NAME] # 使用浏览器打开brew（或某个程序）的主页
+
+brew deps &lt;NAME&gt; # 查看某个程序的包依赖
+brew deps &lt;NAME&gt; --tree # 以树形结构，查看某个程序的包依赖
+
+brew deps --installed --tree #  以树形结构，查看所有的包依赖
+
+brew switch &lt;NAME&gt; &lt;VERSION&gt; # 切换版本
+# 或者手动关联
+brew unlink &lt;NAME&gt;
+brew link &lt;NAME&gt;
 </code></pre>
 </li>
 <li>
-<p>对于通过Homebrew安装的services（如mysql等），可以使用 <code>brew services</code> 相关命令进行管理；</p>
+<p>3、对于通过Homebrew安装的services（如mysql等），可以使用 <code>brew services</code> 相关命令进行管理；</p>
 <pre><code class="language-shell">brew services list # 查看所有services的状态
 brew services cleanup # 清除所有无用的services
 
@@ -194,20 +211,64 @@ brew services restart &lt;NAME&gt; # 重启某个services，并将设置开机�
 brew services stop &lt;NAME&gt;  # 关闭某个services，并将取消开机自启动
 </code></pre>
 </li>
+<li>
+<p>4、<strong>Homebrew安装软件时，先把软件放到<code>XX/Cellar/</code>中，然后通过软链接（通过<code>brew link</code>命令实现），链接到<code>/usr/local/bin</code>；Homebrew对于每个软件的不同版本依赖，会单独下载安装；</strong></p>
+<ul>
+<li>在执行<code>brew install</code>或<code>brew upgrade</code>时，会自动执行<code>brew link</code>；</li>
+<li><code>brew unlink</code>：删除到<code>/usr/local/bin</code>的软链接；</li>
+<li><strong>通过<code>brew link、unlink</code>可以实现切换工具的版本；</strong></li>
+</ul>
+<pre><code class="language-shell"># 安装最新版本 go1.19.5
+scott@localhost Desktop % brew install go
+
+scott@localhost Desktop % go version 
+go version go1.19.5 darwin/arm64
+</code></pre>
+<pre><code class="language-shell"># 安装历史版本 go@1.18
+scott@localhost Desktop % brew install go@1.18  
+... ...
+==&gt; Caveats
+go@1.18 is keg-only, which means it was not symlinked into /opt/homebrew,
+because this is an alternate version of another formula.
+
+If you need to have go@1.18 first in your PATH, run:
+  echo 'export PATH=&quot;/opt/homebrew/opt/go@1.18/bin:$PATH&quot;' &gt;&gt; ~/.zshrc
+</code></pre>
+<pre><code class="language-shell"># 切换go的版本
+scott@localhost Desktop % brew unlink go
+Unlinking /opt/homebrew/Cellar/go/1.19.5... 2 symlinks removed.
+
+scott@localhost % brew link go@1.18
+Linking /opt/homebrew/Cellar/go@1.18/1.18.10... 2 symlinks created.
+If you need to have this software first in your PATH instead consider running:
+  echo 'export PATH=&quot;/opt/homebrew/opt/go@1.18/bin:$PATH&quot;' &gt;&gt; ~/.zshrc
+
+scott@localhost Desktop % go version
+go version go1.18.10 darwin/arm64
+</code></pre>
+<ul>
+<li>参考：
+<ul>
+<li>在MacOS下通过brew link切换golang版本：<code>https://blog.csdn.net/weixin_45413603/article/details/125999543</code></li>
+<li>macos通过homebrew安装多版本node：<code>https://blog.csdn.net/Mint6/article/details/128509548</code></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h4><a id="%E5%9B%9B%E3%80%81homebrew-cask" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、Homebrew-cask</h4>
 <ul>
 <li>
-<p>Homebrew-cask是Homebrew的一个扩展，用于安装图形界面程序（例如Chrome、QQMusic等），其命令为 <code>brew cask ...</code> ；</p>
+<p>1、Homebrew-cask是Homebrew的一个扩展，用于安装图形界面程序（例如Chrome、QQMusic等），其命令为 <code>brew cask ...</code> ；</p>
 </li>
 <li>
-<p>brew用于安装不带界面的命令行工具，brew cask用于安装带界面的应用软件；</p>
+<p>2、<code>brew</code>用于安装不带界面的命令行工具，<code>brew cask</code>用于安装带界面的应用软件；</p>
 </li>
 <li>
-<p>Homebrew-cask有两个安装索引源，一个是稳定版本 <code>https://github.com/phinze/homebrew-cask</code> ，一个是开发版本 <code>https://github.com/caskroom/homebrew-versions</code> ；安装了Homebrew，即可直接使用Homebrew-cask稳定版本的索引源；</p>
+<p>3、Homebrew-cask有两个安装索引源，一个是稳定版本 <code>https://github.com/phinze/homebrew-cask</code> ，一个是开发版本 <code>https://github.com/caskroom/homebrew-versions</code> ；<strong>安装了Homebrew，即可直接使用Homebrew-cask稳定版本的索引源；</strong></p>
 </li>
 <li>
-<p><strong>Homebrew-cask和Homebrew的搜索、安装、卸载、更新等操作是独立的；</strong></p>
+<p>4、<strong>Homebrew-cask和Homebrew的搜索、安装、卸载、更新等操作是独立的；</strong></p>
 <pre><code class="language-shell">brew cask list # 查看通过Homebrew-cask安装的程序
 brew cask search &lt;NAME&gt; # 搜索某个程序，例如brew cask search qqmusic
 
@@ -219,19 +280,29 @@ brew cask uninstall | remove &lt;NAME&gt; # 卸载某个程序，例如brew cask
 <li><strong>注意：Homebrew-cask没有提供<code>brew cask upgrade [NAME]</code>的命令升级程序版本，只能重新安装程序；</strong></li>
 </ul>
 </li>
+<li>
+<p>5、<strong>⚠️从brew 2.6.0版本开始，<code>brew cask &lt;command&gt;</code>命令被废弃，替代命令：<code>brew &lt;command&gt; --cask</code>；从brew 2.7.0版本开始，<code>brew cask &lt;command&gt;</code>命令被删除；</strong></p>
+<pre><code class="language-shell">Error: `brew cask` is no longer a `brew` command. Use `brew &lt;command&gt; --cask` instead.
+</code></pre>
+<ul>
+<li><strong><code>https://github.com/Homebrew/discussions/discussions/340</code></strong></li>
+<li><code>https://brew.sh/2020/12/01/homebrew-2.6.0/</code></li>
+<li><code>https://brew.sh/2020/12/21/homebrew-2.7.0/</code></li>
+</ul>
+</li>
 </ul>
 <h4><a id="%E4%BA%94%E3%80%81%E5%B8%B8%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>五、常用开发工具</h4>
 <h5><a id="5-1-mysql" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.1 MySQL</h5>
 <ul>
 <li>
-<p>安装MySQL后，根据相关的信息配置MySQL；</p>
+<p>1、安装MySQL后，根据相关的信息配置MySQL；</p>
 <pre><code class="language-shell">brew install msysql
 </code></pre>
-<p><img src="media/14694520920617/brew_install_mysql.png" alt="brew_install_mysq" style="width:788px;" /></p>
+<p><img src="media/14694520920617/brew_install_mysql.png" alt="brew_install_mysq" style="width:620px;" /></p>
 <ul>
-<li>首先执行 <code>mysql.server start</code> 或 <code>brew services start mysql</code> 启动MySQL（关闭使用stop命令），之后才可以连接数据库（<code>mysql -uroot</code>）；否则会报错：<code>Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)</code> ；</li>
-<li>MySQL默认没有设置密码；若需要设置密码，执行 <code>mysql_secure_installation</code> ，此时会提醒安装“VALIDATE PASSWORD PLUGIN”，选择<strong>NO</strong>，否则无法设置简单密码，之后按照后续提示进行操作即可；</li>
-<li><strong>注意：若一些工具连接MySQL报2003错误，修改<code>/usr/local/Cellar/mysql/VERSION/homebrew.mxcl.mysql.plist</code>中的<code>ProgramArguments</code>，添加<code>&lt;string&gt;--bind-address=0.0.0.0&lt;/string&gt;</code>；（非brew安装的MySQL，修改<code>/etc/my.cnf</code>，添加<code>[mysqld]换行bind-address=0.0.0.0</code>）；</strong>
+<li>1）首先执行 <code>mysql.server start</code> 或 <code>brew services start mysql</code> 启动MySQL（关闭使用stop命令），之后才可以连接数据库（<code>mysql -uroot</code>）；否则会报错：<code>Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)</code> ；</li>
+<li>2）MySQL默认没有设置密码；若需要设置密码，执行 <code>mysql_secure_installation</code> ，此时会提醒安装“VALIDATE PASSWORD PLUGIN”，选择<strong>NO</strong>，否则无法设置简单密码，之后按照后续提示进行操作即可；</li>
+<li>3）<strong>注意：若一些工具连接MySQL报2003错误，修改<code>/usr/local/Cellar/mysql/VERSION/homebrew.mxcl.mysql.plist</code>中的<code>ProgramArguments</code>，添加<code>&lt;string&gt;--bind-address=0.0.0.0&lt;/string&gt;</code>；（非brew安装的MySQL，修改<code>/etc/my.cnf</code>，添加<code>[mysqld]换行bind-address=0.0.0.0</code>）；</strong>
 <ul>
 <li>参考：<code>https://stackoverflow.com/questions/43873367/error-2003-hy000-cant-connect-to-mysql-server-on-15-29-92-100-61</code></li>
 </ul>
@@ -239,11 +310,11 @@ brew cask uninstall | remove &lt;NAME&gt; # 卸载某个程序，例如brew cask
 </ul>
 </li>
 <li>
-<p>MySQL的数据库文件默认存放在/usr/local/var/mysql/目录中，可执行SQL语句进行查看：<code>show global variables like &quot;%datadir%&quot;;</code> ；当卸载时，若要完全删除MySQL，必须手动删除该数据库文件；</p>
-<p><img src="media/14694520920617/datadir.png" alt="datadi" style="width:373px;" /></p>
+<p>2、MySQL的数据库文件默认存放在/usr/local/var/mysql/目录中，可执行SQL语句进行查看：<code>show global variables like &quot;%datadir%&quot;;</code> ；当卸载时，若要完全删除MySQL，必须手动删除该数据库文件；</p>
+<p><img src="media/14694520920617/datadir.png" alt="datadi" style="width:300px;" /></p>
 </li>
 <li>
-<p>通过brew安装MySQL，卸载时通过brew卸载即可；若是手动安装，则需要手动卸载，命令如下：</p>
+<p>3、通过brew安装MySQL，卸载时通过brew卸载即可；若是手动安装，则需要手动卸载，命令如下：</p>
 <pre><code class="language-shell">sudo rm /usr/local/mysql
 sudo rm -rf /usr/local/mysql*
 sudo rm -rf /Library/StartupItems/MySQLCOM
@@ -261,13 +332,13 @@ sudo rm -rf /usr/local/var/mysql # 删除数据库文件
 <h5><a id="5-2-oracle-java" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.2 Oracle Java</h5>
 <ul>
 <li>
-<p>注意：使用Homebrew-cask进行安装（可以执行 <code>brew search java</code> 命令查询安装源是Homebrew，还是Homebrew-cask）；</p>
+<p>1、注意：使用Homebrew-cask进行安装（可以执行 <code>brew search java</code> 命令查询安装源是Homebrew，还是Homebrew-cask）；</p>
 <pre><code class="language-shell">brew cask install java # 安装Oracle Java
 brew cask uninstall java # 卸载Oracle Java
 </code></pre>
 </li>
 <li>
-<p>若之前手动安装过Oracle Java，需要先进行手动卸载，相关命令如下：</p>
+<p>2、若之前手动安装过Oracle Java，需要先进行手动卸载，相关命令如下：</p>
 <pre><code class="language-shell">sudo rm -rf /Library/Java
 
 sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
@@ -282,7 +353,7 @@ sudo rm /var/db/receipts/com.oracle.*
 </code></pre>
 </li>
 <li>
-<p>Shell命令补充：查找匹配、删除文件</p>
+<p>3、Shell命令补充：查找匹配、删除文件</p>
 <pre><code class="language-shell"># 全盘查找带“编程”的目录（d）、普通文件（f）、链接文件（l）等文件
 find / -name &quot;*编程*&quot; 
 
@@ -306,7 +377,7 @@ find . -name &quot;*编程*&quot; -type f -maxdepth 1
 <h5><a id="5-3-tomcat" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5.3 Tomcat</h5>
 <ul>
 <li>
-<p>Tomcat后运行服务后，默认网址为 <code>http://localhost:8080/</code> ；</p>
+<p>1、Tomcat后运行服务后，默认网址为 <code>http://localhost:8080/</code> ；</p>
 <pre><code class="language-shell">brew install tomcat # 安装tomcat
 
 catalina run # 在当前窗口中运行tomcat
@@ -319,18 +390,184 @@ catalina stop # 关闭tomcat
 <h5><a id="6-1-cakebrew" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.1 Cakebrew</h5>
 <ul>
 <li>
-<p>Cakebrew是一个图形化的Homebrew，通过该工具可以不使用brew命令就可以进行Homebrew的管理（<code>https://www.cakebrew.com/</code>）；</p>
-<p><img src="media/14694520920617/cakebrew.png" alt="cakebre" style="width:560px;" /></p>
+<p>1、Cakebrew是一个图形化的Homebrew，通过该工具可以不使用brew命令就可以进行Homebrew的管理（<code>https://www.cakebrew.com/</code>）；</p>
+<p><img src="media/14694520920617/cakebrew.png" alt="cakebre" style="width:500px;" /></p>
 </li>
 </ul>
-<h5><a id="6-2-launchrocket" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.2 LaunchRocket</h5>
+<h5><a id="6-2-launchrocket%EF%BC%88%E5%B7%B2%E5%BA%9F%E5%BC%83%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6.2 LaunchRocket（已废弃）</h5>
 <ul>
 <li>
-<p>LaunchRocket可以管理通过Homebrew安装的Service，查看Service的运行状态（<code>https://github.com/jimbojsb/launchrocket</code>）；</p>
+<p>1、LaunchRocket可以管理通过Homebrew安装的Service，查看Service的运行状态（<code>https://github.com/jimbojsb/launchrocket</code>）；</p>
 </li>
 <li>
-<p>注意：先将service关闭后，再通过LaunchRocket进行管理；</p>
-<p><img src="media/14694520920617/launchrocket.png" alt="launchrocket" style="width:664px;" /></p>
+<p>2、注意：先将service关闭后，再通过LaunchRocket进行管理；</p>
+<p><img src="media/14694520920617/launchrocket.png" alt="launchrocket" style="width:500px;" /></p>
+</li>
+</ul>
+<h4><a id="%E4%B8%83%E3%80%81%E5%8F%98%E6%9B%B4%E9%95%9C%E5%83%8F%E7%AB%99%EF%BC%88%E5%8A%A0%E9%80%9F%E5%AE%89%E8%A3%85%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、变更镜像站（加速安装）</h4>
+<ul>
+<li>
+<p>1、<strong>Homebrew主要分为两部分：git repo（位于GitHub）和二进制bottles；</strong></p>
+</li>
+<li>
+<p>2、<strong>替换为阿里云镜像站：</strong></p>
+<pre><code class="language-shell"># 1、更换brew.git
+cd &quot;$(brew --repo)&quot;
+git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git
+
+# 2、更换homebrew-core.git
+cd &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-core&quot;
+git remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git
+
+# 3、进行更新
+brew update 
+
+// 通过brew config，可以查看配置信息
+
+# 4、更换homebrew-bottles
+echo $SHELL // 查看Shell类型
+
+a. 若是zsh，则
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles' &gt;&gt; ~/.zshrc
+source ~/.zshrc // 重新加载配置文件
+
+b. 若是bash，则
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles' &gt;&gt; ~/.bash_profile
+source ~/.bash_profile // 重新加载配置文件
+</code></pre>
+</li>
+<li>
+<p>3、<strong>重置为官方镜像站：</strong></p>
+<pre><code class="language-shell"># 1、重置brew.git
+cd &quot;$(brew --repo)&quot;
+git remote set-url origin https://github.com/Homebrew/brew
+
+# 2、重置homebrew-core.git
+cd &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-core&quot;
+git remote set-url origin https://github.com/Homebrew/homebrew-core
+
+# 3、重置homebrew-bottles
+删除~/.zsh或~/.bash_profile文件中的以下内容
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+source ~/.zshrc OR ~/.bash_profile
+</code></pre>
+</li>
+<li>
+<p>4、参考：</p>
+<ul>
+<li>Homebrew 更换阿里云镜像源或还原官方镜像站：<code>https://blog.csdn.net/qq_41664096/article/details/108243129</code></li>
+<li>HomeBrew配置阿里云镜像：<code>https://www.cnblogs.com/sexintercourse/p/16656215.html</code></li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E5%85%AB%E3%80%81homebrew%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>八、Homebrew相关术语</h4>
+<ul>
+<li>
+<p>1、<strong><code>Homebrew</code>可以翻译成&quot;家酿&quot;，所以该软件是对酒相关的一个抽象，主要的结构包括：</strong></p>
+<p><img src="media/14694520920617/brew_formulae_casks.png" alt="brew_formulae_casks" style="width:500px;" /></p>
+<ul>
+<li>
+<p>1）<strong><code>Formula（配方）</code></strong></p>
+<ul>
+<li><strong>表示使用Ruby文件描述的软件信息，包含软件基本信息、依赖、编译等；</strong> 如/<code>opt/homebrew/Library/Taps/homebrew/homebrew-core/Formula/mysql.rb</code>；</li>
+<li>要安装历史版本，就是需要拿到历史版本的formula就可以安装了；</li>
+<li>可以在<code>formulae.brew.sh/</code>查找软件信息以及相关的formula历史版本（GitHub历史记录）；</li>
+</ul>
+</li>
+<li>
+<p>2）<strong><code>Tap（酒吧）</code></strong></p>
+<ul>
+<li><strong>表示所有Formula或命令，对应的Git仓库；</strong></li>
+<li>如<code>/opt/homebrew/Library/Taps/homebrew/homebrew-core/</code>对应<code>https://github.com/Homebrew/homebrew-core</code>仓库；</li>
+<li><code>brew update</code>就是同步所有的Tap对应分支的更新；</li>
+<li><code>brew install XX-formula</code>也是从所有Tap中查找<code>XX-formula</code>进行安装；</li>
+</ul>
+</li>
+<li>
+<p>3）<strong><code>Bottle（酒瓶）</code></strong></p>
+<ul>
+<li><strong>表示基于操作系统已编译好的二进制包，可以直接使用，省去自己编译；</strong></li>
+</ul>
+</li>
+<li>
+<p>4）<strong><code>Cask（木酒桶）</code></strong></p>
+<ul>
+<li><strong>用于描述、安装macOS App软件</strong>；使用<code>brew install --cask</code>安装，和使用DMG安装到Applications中的效果一样；</li>
+</ul>
+</li>
+<li>
+<p>5）<strong><code>Cellar（酒窖）</code></strong></p>
+<ul>
+<li><strong>表示所有已安装软件的存储仓库路径</strong>，<code>/opt/homebrew/Cellar/</code>；</li>
+</ul>
+</li>
+<li>
+<p>6）<strong><code>Keg（小桶）</code></strong></p>
+<ul>
+<li><strong>表示一个已安装的软件版本路径</strong>，如<code>/opt/homebrew/Cellar/opencv/4.7.0_1/</code>；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、参考：</p>
+<ul>
+<li><strong>使用brew安装历史版本的几种方式：<code>https://juejin.cn/post/7179202980191666233</code></strong></li>
+</ul>
+</li>
+</ul>
+<h4><a id="%E4%B9%9D%E3%80%81apple-m1%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>九、Apple M1的相关问题</h4>
+<ul>
+<li>
+<p>1、当前安装的Homebrew是什么架构？</p>
+<ul>
+<li>
+<p>1）方法1：<code>which brew</code></p>
+<ul>
+<li><code>usr/local/bin/brew</code>：x86架构；</li>
+<li><code>/opt/homebrew/bin/brew</code>：arm64架构；</li>
+</ul>
+</li>
+<li>
+<p>2）方法2：<code>brew config</code></p>
+<ul>
+<li><code>Rosetta 2: true</code>：x86架构；</li>
+<li><code>Rosetta 2: true</code>：arm64架构；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2、在Apple M1上，如何安装x86架构的Homebrew？</p>
+<ul>
+<li>x86架构的Homebrew，无法在ARM环境下安装；需要有一个x86环境，解决方法有两种：</li>
+<li>方法1：<code>终端 -》显示简介 -》使用Rosetta打开</code>；之后，所有的终端会话中，运行的命令都运行在x86环境下；</li>
+<li>方法2：执行<code>arch -x86_64 $SHELL</code>，之后，在当前终端会话中，运行的命令都运行在x86环境下；</li>
+</ul>
+</li>
+<li>
+<p>3、Homebrew安装的包是什么架构？</p>
+<ul>
+<li><strong>x86架构的Homebrew，安装的软件包是x86架构；</strong></li>
+<li><strong>arm64架构的Homebrew，安装的软件包是arm64架构；</strong></li>
+</ul>
+</li>
+<li>
+<p>4、<strong>在arm64的终端环境下，若安装了Rosetta2（<code>softwareupdate --install-rosetta</code>），系统可以运行x86架构的软件包（系统会自动使用Rosetta2，进行转换）；</strong></p>
+</li>
+<li>
+<p>5、应用的种类</p>
+<ul>
+<li><strong><code>终端 -》显示简介 -》通用 -》种类</code>，有“<code>应用程序（通用）</code>”、<code>“应用程序（Intel）</code>”；</strong></li>
+<li><strong>若种类是“<code>应用程序（Intel）</code>”，其只包含x86架构；系统会自动使用Rosetta2，所以<code>没有“使用Rosetta打开”选项</code>；</strong></li>
+<li><strong>若种类是“<code>应用程序（通用）</code>”，其会包含x86架构和arm64架构，并且会使用arm64架构；若要让其使用x86架构运行（兼容一些插件等），需要勾选“使用Rosetta打开”选项；</strong></li>
+</ul>
+</li>
+<li>
+<p>6、参考</p>
+<ul>
+<li><strong>在 M1 芯片 Mac 上使用 Homebrew：<code>https://sspai.com/post/63935</code></strong></li>
+</ul>
 </li>
 </ul>
 

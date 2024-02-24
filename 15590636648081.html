@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -108,43 +108,85 @@
       </div>
 
       <div class="article-content">
-        <ul>
+        <div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88c%E3%80%81-python%EF%BC%89">一、安装配置（C++、Python）</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81%E8%A1%A5%E5%85%85">二、补充</a>
+<ul>
+<li><a href="#1%E3%80%81opencv%E7%9A%84%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9D%97">1、OpenCV的常见模块</a></li>
+<li><a href="#2%E3%80%81opencv%E7%9A%84mat">2、OpenCV的Mat</a></li>
+<li><a href="#3%E3%80%81ios%E4%B8%AD%E4%BD%BF%E7%94%A8opencv%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%88apple-m1%E8%AE%BE%E5%A4%87%EF%BC%8C%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BF%90%E8%A1%8C%EF%BC%89">3、iOS中使用OpenCV注意事项（Apple M1设备，模拟器运行）</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h4><a id="%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88c%E3%80%81-python%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、安装配置（C++、Python）</h4>
+<ul>
 <li>
 <p>1、安装OpenCV</p>
-<pre><code class="language-plain_text">brew install opencv
+<pre><code class="language-shell">brew install opencv
 </code></pre>
 <ul>
-<li>安装路径：<code>/usr/local/Cellar/opencv</code>；</li>
+<li>安装路径：<code>/usr/local/Cellar/opencv</code>（<code>M1：/opt/homebrew/Cellar/opencv</code>）；</li>
 </ul>
 </li>
 </ul>
 <span id="more"></span><!-- more -->
 <ul>
 <li>
-<p>2、新建Xcode工程，配置Build Settings、Build Phases；</p>
+<p>2、Xcode新建Command Line Tool工程，并支持C++；</p>
+</li>
+<li>
+<p>3、配置<code>Header Search Paths</code>、<code>Library Search Paths</code>等信息；</p>
 <ul>
 <li>
-<p><strong>a. Header Search Paths</strong></p>
+<p>1）方式一：（引入所有库）</p>
+<ul>
+<li>
+<p><strong>a. 设置<code>Header Search Paths</code>；</strong></p>
 <pre><code class="language-plain_text">$(PROJECT_DIR)  // 当前工程路径
-/usr/local/Cellar/opencv/4.1.0_2/include/opencv4  // OpenCV的头文件路径
+/opt/homebrew/Cellar/opencv/4.7.0_1/include/opencv4  // OpenCV的头文件路径
 </code></pre>
 <ul>
-<li><strong>注意：OpenCV的头文件路径不要以<code>...opencv4/opencv2</code>结尾，否则<code>#include &quot;opencv2/opencv_modules.hpp&quot;报错file not found</code>；</strong></li>
+<li><strong>注意：OpenCV的头文件路径不要以<code>.../opencv4/opencv2</code>结尾，否则<code>#include &quot;opencv2/opencv_modules.hpp&quot;报错file not found</code>；</strong></li>
 </ul>
 </li>
 <li>
-<p><strong>b. Library Search Paths</strong></p>
+<p><strong>b. 将OpenCV的库文件夹，拖拽到当前项目中；</strong></p>
+<ul>
+<li>不勾选<code>Copy items if needed</code>，勾选<code>Create groups</code>和<code>Add to targets</code>；</li>
+<li>OpenCV的库文件夹路径：<code>/opt/homebrew/Cellar/opencv/4.7.0_1/lib</code>；</li>
+</ul>
+</li>
+<li>
+<p>参考：</p>
+<ul>
+<li>OpenCV在macOS下的开发环境搭建：<code>https://blog.csdn.net/lxl122412/article/details/114472759</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2）方式二：（按需引入库）</p>
+<ul>
+<li>
+<p><strong>a. 设置<code>Header Search Paths</code>；</strong></p>
+<ul>
+<li>和方式一中的设置一样；</li>
+</ul>
+</li>
+<li>
+<p><strong>b. 设置<code>Library Search Paths</code>；</strong></p>
 <pre><code class="language-plain_text">$(PROJECT_DIR)  // 当前工程路径
-/usr/local/Cellar/opencv/4.1.0_2/lib  // OpenCV的库文件路径
+/opt/homebrew/Cellar/opencv/4.7.0_1/lib  // OpenCV的库文件路径
 </code></pre>
 </li>
 <li>
-<p><strong>c. Link Binary With Libraries</strong></p>
+<p><strong>c. 设置<code>Link Binary With Libraries</code>；</strong></p>
 <ul>
-<li>点击+选择Add Other...，<code>CMD + Shift + G</code>直接定位到<code>/usr/local/Cellar/opencv/4.1.0_2/lib</code> ；</li>
-<li>CMD多选，图标不带箭头的，并且后缀为.dylib的库文件；（也可以只选几个常用的库文件）
+<li>点击+选择<code>Add Other... -》Add Files...</code>，<code>CMD + Shift + G</code>直接定位到<code>/opt/homebrew/Cellar/opencv/4.7.0_1/lib</code> ；</li>
+<li>CMD多选，不带版本号的，并且后缀为<code>.dylib</code>的库文件；（只选几个常用的库文件即可）；
 <ul>
-<li>impgpro、highgui、ml、core、imagecodecs</li>
+<li><strong><code>core</code>、<code>imagecodecs</code>、<code>highgui</code>、<code>impgproc</code></strong></li>
 </ul>
 </li>
 </ul>
@@ -152,15 +194,63 @@
 </ul>
 </li>
 <li>
-<p>3、测试代码（C++）</p>
-<pre><code class="language-C++">#include &lt;iostream&gt;
+<p>3）<strong>方式三：（按需引入库；通过.xcconfig配置文件 + pkg-config✅）</strong></p>
+<ul>
+<li>
+<p>a、<strong>运行<code>pkg-config</code>，获取链接器符号（Linker Flags）等信息；</strong></p>
+<pre><code class="language-shell"># 安装pkg-config（安装OpenCV时会自动安装）
+brew install pkg-config
+
+# OpenCV自带的opencv.pc文件路径为XX/Cellar/opencv/&lt;版本号&gt;/lib/pkgconfig/opencv.pc
+
+# 获取链接器符号（Linker Flags）等信息
+pkg-config --cflags --libs /opt/homebrew/Cellar/opencv/4.7.0_1/lib/pkgconfig/opencv4.pc 
+</code></pre>
+<pre><code class="language-shell"># 输出结果包含`Header Search Paths`（HEADER_SEARCH_PATHS）、
+`Library Search Paths`（LIBRARY_SEARCH_PATHS）、
+`Other Linkers Flags`（OTHER_LDFLAGS）
+-I/opt/homebrew/opt/opencv/include/opencv4 -L/opt/homebrew/opt/opencv/lib -lopencv_gapi -lopencv_stitching -lopencv_alphamat -lopencv_aruco -lopencv_barcode -lopencv_bgsegm -lopencv_bioinspired -lopencv_ccalib -lopencv_dnn_objdetect -lopencv_dnn_superres -lopencv_dpm -lopencv_face -lopencv_freetype -lopencv_fuzzy -lopencv_hfs -lopencv_img_hash -lopencv_intensity_transform -lopencv_line_descriptor -lopencv_mcc -lopencv_quality -lopencv_rapid -lopencv_reg -lopencv_rgbd -lopencv_saliency -lopencv_sfm -lopencv_stereo -lopencv_structured_light -lopencv_phase_unwrapping -lopencv_superres -lopencv_optflow -lopencv_surface_matching -lopencv_tracking -lopencv_highgui -lopencv_datasets -lopencv_text -lopencv_plot -lopencv_videostab -lopencv_videoio -lopencv_viz -lopencv_wechat_qrcode -lopencv_xfeatures2d -lopencv_shape -lopencv_ml -lopencv_ximgproc -lopencv_video -lopencv_xobjdetect -lopencv_objdetect -lopencv_calib3d -lopencv_imgcodecs -lopencv_features2d -lopencv_dnn -lopencv_flann -lopencv_xphoto -lopencv_photo -lopencv_imgproc -lopencv_core
+</code></pre>
+<ul>
+<li><strong>pkg-config是在编译应用程序和库时使用的辅助工具，可以帮助找到库（如OpenCV）的链接器符号（<code>Linker Flags</code>）等信息；</strong></li>
+</ul>
+</li>
+<li>
+<p>b、<strong>新建.xcconfig配置文件，配置<code>Header Search Paths</code>（<code>HEADER_SEARCH_PATHS</code>）、<code>Library Search Paths</code>（<code>LIBRARY_SEARCH_PATHS</code>）、<code>Other Linkers Flags</code>（<code>OTHER_LDFLAGS</code>）；</strong></p>
+<pre><code class="language-shell">HEADER_SEARCH_PATHS = $(inherited) /opt/homebrew/opt/opencv/include/opencv4
+
+LIBRARY_SEARCH_PATHS = $(inherited) /opt/homebrew/opt/opencv/lib
+
+OTHER_LDFLAGS = $(inherited) -lopencv_core -lopencv_imgcodecs -lopencv_highgui  -lopencv_imgproc
+</code></pre>
+</li>
+<li>
+<p>参考：</p>
+<ul>
+<li><strong>在Mac上配置Xcode与OpenCV开发环境：<code>https://zhuanlan.zhihu.com/p/371401625</code></strong></li>
+<li>Mac上OpenCV的安装与运行：<code>https://max2d.com/archives/979</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>4、测试代码（C++）</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
 #include &lt;opencv2/opencv.hpp&gt;
 
 using namespace cv;
 
 int main(int argc, const char * argv[]) {
-    Mat image;
-    image = imread(&quot;/Users/scott/Desktop/a.png&quot;, IMREAD_COLOR);
+    std::string imagePath = &quot;/Users/scott/Desktop/a.png&quot;;
+    
+    Mat image = imread(imagePath, IMREAD_COLOR);
+    
+    if (!image.data) {
+        std::cout &lt;&lt;  &quot;Image does not exist!&quot; &lt;&lt; std::endl;
+        return -1;
+    }
     
     namedWindow(&quot;Display Image&quot;, WINDOW_AUTOSIZE);
     imshow(&quot;Display Image&quot;, image);
@@ -168,36 +258,22 @@ int main(int argc, const char * argv[]) {
     Mat gray;
     cvtColor(image, gray, COLOR_RGBA2GRAY);
     
-    namedWindow(&quot;gray&quot;);
-    imshow(&quot;gray&quot;, gray);
+    namedWindow(&quot;Display Gray Image&quot;);
+    imshow(&quot;Display Gray Image&quot;, gray);
     
-    waitKey(0);
+    waitKey(0); // // 按键等待，需要在窗口任意输入字符退出；0代表永久等待
     
     return 0;
 }
 </code></pre>
-</li>
-<li>
-<p>4、支持Python3</p>
 <ul>
-<li>
-<p>若使用brew安装了OpenCV，再使用pip直接安装opencv-python会造成重复安装，brew安装的OpenCV本身就可以支持Python；</p>
-</li>
-<li>
-<p><strong>方式：将OpenCV安装路径下的<code>cv2.cpython-36m-darwin.so</code>文件复制到Python环境下的<code>site-packages</code>目录中，并重命名为<code>cv.so</code>；注意若进行软连接，还是会报错的；</strong></p>
-<pre><code class="language-plain_text"># .so文件的具体路径
-/usr/local/Cellar/opencv/3.3.1_1/lib/python3.6/site-packages/cv2.cpython-36m-darwin.so
-
-# Python的site-packages目录的具体路径
-/Users/scott/.pyenv/versions/3.6.6/lib/python3.6/site-packages
-</code></pre>
-<ul>
-<li><strong>a. 此时虽然可以import cv2，但是运行时还会报numpy错误，还需要numpy库；</strong></li>
-<li><strong>b. 虽然brew安装OpenCV时会安装numpy（/usr/local/Cellar目录下），但是将其ln -s到Python的site-packages目录下时，还是会报错的，所以需要<code>pip install numpy</code>；</strong></li>
 <li>补充：
 <ul>
-<li>PyCharm Cleaning System Cache：选择File -&gt; Invalidate Caches/Restart；</li>
-<li>site-packages为第三方库的安装路径；</li>
+<li><strong>文件路径可以使用“相对路径”，此时需要修改Scheme中的配置（Edit Scheme -&gt; Run中 -&gt; Options -&gt; <code>Use custom working directory</code>选项，然后自定义项目目录）；</strong></li>
+<li>屏蔽OpenCV代码注释警告：Build Settings中的<code>Documentation Comments</code>配置为NO；</li>
+<li><strong>OpenCV使用<code>imshow()</code>展示图像时，即使没有使用<code>nameWindow()</code>，也能正常显示；若希望之后可以使用相同的窗口执行某些操作（例如移动、调整大小、关闭该窗口），需要通过<code>nameWindow()</code>使用相同名称，引用它来执行此操作；</strong>
+<ul>
+<li>OpenCV：在imshow() 之前使用namedWindow() 的必要性讨论？：<code>https://dontla.blog.csdn.net/article/details/122809469</code></li>
 </ul>
 </li>
 </ul>
@@ -205,8 +281,77 @@ int main(int argc, const char * argv[]) {
 </ul>
 </li>
 <li>
-<p>5、测试代码（Python3）</p>
-<pre><code class="language-python">import cv2
+<p>5、支持Python3</p>
+<ul>
+<li>
+<p>若使用brew安装了OpenCV，再使用pip直接安装<code>opencv-python</code>或<code>opencv-contrib-python</code>，会造成重复安装，brew安装的OpenCV本身就可以支持Python；</p>
+<pre><code class="language-shell"># opencv-python只包含了主要模块的包；
+pip install opencv-python
+
+# opencv-contrib-python包含了主要模块以及扩展模块；
+# 扩展模块主要是一些带专利的收费算法（如shift特征检测），
+# 以及一些在测试的新的算法（稳定后会合并到主要模块）；
+pip install opencv-contrib-python
+</code></pre>
+</li>
+<li>
+<p><strong>方式：将OpenCV安装路径下（<code>XX/Cellar/opencv/&lt;版本号&gt;/lib/pythonXX/site-packages/XX</code>）的<code>cv2.cpython-XX-darwin.so</code>文件，软链接到所需要的Python环境下的<code>site-packages</code>目录，并重命名为<code>cv.so</code>；</strong></p>
+<pre><code class="language-shell"># .so文件的具体路径
+/opt/homebrew/Cellar/opencv/4.7.0_1/lib/python3.11/site-packages/cv2/python-3.11/cv2.cpython-311-darwin.so
+
+# 所需要的Python环境下的site-packages目录的具体路径
+/Users/scott/.pyenv/versions/3.11.1/lib/python3.11/site-packages
+
+# 进行软链接
+ln -s /opt/homebrew/Cellar/opencv/4.7.0_1/lib/python3.11/site-packages/cv2/python-3.11/cv2.cpython-311-darwin.so /Users/scott/.pyenv/versions/3.11.1/lib/python3.11/site-packages
+</code></pre>
+<ul>
+<li>
+<p><strong>a. 此时虽然可以<code>import cv2</code>，但是运行时还会报numpy错误，还需要安装numpy库；</strong></p>
+<pre><code class="language-shell">scott@localhost Desktop % python   
+Python 3.11.1 (main, Feb  4 2023, 17:21:52) [Clang 14.0.0 (clang-1400.0.29.202)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import cv2
+ModuleNotFoundError: No module named 'numpy'
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+ImportError: numpy.core.multiarray failed to import
+&gt;&gt;&gt; 
+&gt;&gt;&gt; exit()
+</code></pre>
+<pre><code class="language-plain_text">pip install numpy
+
+scott@localhost Desktop % python           
+Python 3.11.1 (main, Feb  4 2023, 17:21:52) [Clang 14.0.0 (clang-1400.0.29.202)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import cv2
+&gt;&gt;&gt; 
+</code></pre>
+</li>
+<li>
+<p><strong>b. brew安装OpenCV时会安装numpy（XX/Cellar目录下），但这个是C++版本的；</strong></p>
+</li>
+<li>
+<p>补充：</p>
+<ul>
+<li>PyCharm Cleaning System Cache：选择File -&gt; Invalidate Caches/Restart；</li>
+<li><code>site-packages</code>为第三方库的安装目录；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>参考：</p>
+<ul>
+<li><strong>Mac 安装opencv,并与Python做关联：<code>https://blog.csdn.net/Ashimar_a/article/details/80089582</code></strong></li>
+<li>Opencv-contrib-python与opencv-python有何不同？：<code>https://www.zhihu.com/question/344438707/answer/816909254</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>6、测试代码（Python3）</p>
+<pre><code class="language-py">import cv2
 
 print(cv2.__version__)
 
@@ -220,6 +365,139 @@ cv2.destroyAllWindows()
 </code></pre>
 </li>
 </ul>
+<h4><a id="%E4%BA%8C%E3%80%81%E8%A1%A5%E5%85%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、补充</h4>
+<h5><a id="1%E3%80%81opencv%E7%9A%84%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1、OpenCV的常见模块</h5>
+<ul>
+<li>1）<strong><code>core</code></strong>
+<ul>
+<li>核心功能模块，主要包含OpenCV库的基础数据结构、基本操作；</li>
+</ul>
+</li>
+<li>2）<strong><code>imgcodecs</code></strong>
+<ul>
+<li>图像文件读取与保存模块，主要用于图像文件读取与保存；</li>
+</ul>
+</li>
+<li>3）<strong><code>highgui</code></strong>
+<ul>
+<li>高层GUI，包含创建和操作显示图像的窗口、处理鼠标事件及键盘命令、提高图形交互可视化界面等；</li>
+</ul>
+</li>
+<li>4）<strong><code>imgproc</code></strong>
+<ul>
+<li>该模块名称是由image和process两个组合而成，是重要的图像处理模块，主要包含：图像滤波、几何变换、直方图、特征检测、目标检测等；</li>
+</ul>
+</li>
+<li>5）<code>ml</code>
+<ul>
+<li>机器学习模块，主要包括：统计分类、回归、数据聚类等；</li>
+</ul>
+</li>
+<li>参考：
+<ul>
+<li>【OpenCV之路】了解 OpenCV 的模块：<code>https://blog.csdn.net/magic_ll/article/details/122252025</code></li>
+</ul>
+</li>
+</ul>
+<h5><a id="2%E3%80%81opencv%E7%9A%84mat" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2、OpenCV的Mat</h5>
+<ul>
+<li>
+<p>1）属性、方法：</p>
+<ul>
+<li>
+<p><code>mat.dims</code>：Mat矩阵的维数，若为二维矩阵，则值为2；</p>
+</li>
+<li>
+<p><code>mat.rows</code>：Mat矩阵的行数；</p>
+</li>
+<li>
+<p><code>mat.cols</code>：Mat矩阵的列数；</p>
+</li>
+<li>
+<p><strong><code>mat.size</code>：Mat矩阵的大小；</strong><code>mat.size.width==mat.cols，mat.size.height==mat.rows</code>；</p>
+</li>
+<li>
+<p><code>mat.channels()</code>：Mat矩阵中的单个元素的通道数；如RGB像素点，值为3；</p>
+</li>
+<li>
+<p><strong><code>mat.depth()</code>：Mat矩阵中的单个元素的通道的精度；</strong> 值为0~7的数字，分别代表不同的位数，对应关系如下：</p>
+<pre><code class="language-cpp">#define CV_8U   0
+#define CV_8S   1
+#define CV_16U  2
+#define CV_16S  3
+#define CV_32S  4
+#define CV_32F  5
+#define CV_64F  6
+#define CV_16F  7
+</code></pre>
+</li>
+<li>
+<p><strong><code>mat.elemSize()</code>：Mat矩阵中的单个元素的，数据大小的个数；</strong></p>
+<ul>
+<li><strong>以8位（一个字节）为一个单位，乘以通道数和8位的整数倍；</strong></li>
+<li>Mat中的数据类型是<code>CV_8UC1</code>，则值为1；<code>CV_8UC3</code>或<code>CV_8SC3</code>，则值为3；<code>CV_16UC3</code>或<code>CV_16SC3</code>，则值为6；</li>
+</ul>
+</li>
+<li>
+<p><code>mat.elemSize1()</code>：Mat矩阵中的单个元素的，其中一个通道的，数据大小的个数；</p>
+<ul>
+<li>mat.elemSize1() = mat.elemSize() / mat.channels()</li>
+</ul>
+</li>
+<li>
+<p><code>mat.step</code>：Mat矩阵的每一行的，数据大小的个数，可以理解为“步长”；</p>
+</li>
+<li>
+<p><strong><code> mat.type()</code>：；</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>2）其他：</p>
+<ul>
+<li><strong>对于RGB，<code>0000000</code>表示黑，<code>FFFFFF</code>表示白；对于GRAY，<code>0</code>表示白，<code>255</code>表示黑；</strong></li>
+</ul>
+</li>
+</ul>
+<h5><a id="3%E3%80%81ios%E4%B8%AD%E4%BD%BF%E7%94%A8opencv%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%88apple-m1%E8%AE%BE%E5%A4%87%EF%BC%8C%E6%A8%A1%E6%8B%9F%E5%99%A8%E8%BF%90%E8%A1%8C%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3、iOS中使用OpenCV注意事项（Apple M1设备，模拟器运行）</h5>
+<pre><code class="language-rb">platform :ios, '15.0'
+use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
+
+inhibit_all_warnings!
+
+target 'OpenCViOSDemo' do
+  
+  # Pods for OpenCViOSDemo
+  pod 'PureLayout'
+  pod 'OpenCV'
+  
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+      
+      # 问题：
+      # pod OpenCV引入是静态库.framework（armv7 armv7s i386 x86_64 arm64），
+      # 模拟器编译后，App的二进制文件变成x86_64架构（即使Xcode不是Rosetta 2模式），
+      # 这将导致PureLayout（被编译成arm6架构）无法被正常使用，
+      # 模拟器运行报错：-[UICollectionView autoPinEdgesToSuperviewEdges]: unrecognized selector sent to instance，
+      # 真机运行正常；
+      #
+      # 解决方法：
+      # config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+      # 或
+      # Xcode设置为Rosetta 2模式
+      
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
+    
+  end
+end
+</code></pre>
 
       </div>
 

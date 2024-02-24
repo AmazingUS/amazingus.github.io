@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -163,7 +163,7 @@
 </li>
 <li>
 <p>Python文本头部结构信息</p>
-<pre><code class="language-python"> #!/usr/bin/env python3
+<pre><code class="language-py"> #!/usr/bin/env python3
  # -*- coding: utf-8 -*-
  
  'a test module'   # 表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释
@@ -176,7 +176,7 @@
 </li>
 <li>
 <p>sys模块有一个argv变量（list）存储命令行执行时的所有参数，argv至少有一个元素（第一个元素永远是该.py文件的名称）</p>
-<pre><code class="language-python"> def test():
+<pre><code class="language-py"> def test():
  	args = sys.argv
  	if len(args) == 1:
  		print('Hello, world!')
@@ -250,7 +250,7 @@
 </li>
 <li>
 <p>可以通过在定义公开的函数中，调用私有的函数、变量的方式（在模块中没有私有访问限制的问题），让外界可以间接使用私有的函数、变量</p>
-<pre><code class="language-python"> def _private_1(name):
+<pre><code class="language-py"> def _private_1(name):
  	return 'Hello, %s' % name
  def _private_2(name):
  	return 'Hi, %s' % name
@@ -273,7 +273,7 @@
 </li>
 <li>
 <p>若Python2、3都存在，则python3对应的pip命令为“pip3”</p>
-<pre><code class="language-python"> # 生成图片缩略图:
+<pre><code class="language-py"> # 生成图片缩略图:
  &gt;&gt;&gt; from PIL import Image
  &gt;&gt;&gt; im = Image.open('/Users/ls/Desktop/a.jpg')
  &gt;&gt;&gt; print(im.format, im.size, im.mode)
@@ -302,7 +302,7 @@
 </li>
 <li>
 <p>创建实例通过“类()”实现</p>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
      def __init__(self, name, score):  # 这个对象拥有name和score这两属性（Property）
          self.name = name
          self.score = score
@@ -316,7 +316,7 @@
  &gt;&gt;&gt; lisa.print_score()
  Lisa Simpson: 87
 </code></pre>
-<pre><code class="language-python"> &gt;&gt;&gt; bart
+<pre><code class="language-py"> &gt;&gt;&gt; bart
  &lt;__main__.Student object at 0x1024f82b0&gt;
  &gt;&gt;&gt; Student
  &lt;class '__main__.Student'&gt;
@@ -324,7 +324,7 @@
 </li>
 <li>
 <p>和静态语言不同，Python允许对实例变量自由地绑定属性；也就是说，对于两个实例，虽然它们都是同一个类的不同实例，但可以让它们拥有的属性可能不同</p>
-<pre><code class="language-python"> &gt;&gt;&gt; bart.intro = 'test'
+<pre><code class="language-py"> &gt;&gt;&gt; bart.intro = 'test'
  &gt;&gt;&gt; bart.intro
  'test'
  &gt;&gt;&gt; lisa.intro
@@ -357,7 +357,7 @@
 <li>只能内部可以访问，外部不能直接访问（但是通过特殊手段，还是可以间接访问的）</li>
 <li>上面定义的Student类，外部代码是可以自由地修改一个实例的name、score属性</li>
 </ul>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
      def __init__(self, name, score):
          self.__name = name
          self.__score = score
@@ -376,7 +376,7 @@
 </li>
 <li>
 <p>通过定义方法去访问私有属性，而不是通过定义属性为公有的去直接访问，可以对参数做检查，避免传入无效的参数</p>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
  	def __init__(self, name, score):
  		self.__name = name
  		self._score = score
@@ -402,7 +402,7 @@
 </li>
 <li>
 <p>通过特殊手段，还是可以间接访问私有属性；比如__name，Python解释器对外把__name修改为_Student__name（不同版本的Python修改的结果可能不一样），所以仍然可以通过_Student__name来访问原来的__name私有属性</p>
-<pre><code class="language-python"> &gt;&gt;&gt; bart._Student__name
+<pre><code class="language-py"> &gt;&gt;&gt; bart._Student__name
  'Bart Simpson'
 </code></pre>
 </li>
@@ -423,7 +423,7 @@
 </li>
 <li>
 <p>Python的“file-like object”就是一种鸭子类型，不需要传入真正的文件对象，只需要是任何实现了read()方法的对象即可</p>
-<pre><code class="language-python"> class Animal(object):
+<pre><code class="language-py"> class Animal(object):
  	def run(self):
  		print('Animal is running...')
  class Dog(Animal):
@@ -462,7 +462,7 @@
 </li>
 <li>
 <p><strong>注：可以使用isinstance()函数进行数据类型检查，进而判断一个对象是否是“Iterable”、“Iterator”</strong></p>
-<pre><code class="language-python"> &gt;&gt;&gt; type(123)
+<pre><code class="language-py"> &gt;&gt;&gt; type(123)
  &lt;class 'int'&gt;
  &gt;&gt;&gt; type('123')
  &lt;class 'str'&gt;
@@ -471,7 +471,7 @@
  &gt;&gt;&gt; type(abs)
  &lt;class 'builtin_function_or_method'&gt;
 </code></pre>
-<pre><code class="language-python"> &gt;&gt;&gt; type(123) == type(456)
+<pre><code class="language-py"> &gt;&gt;&gt; type(123) == type(456)
  True
  &gt;&gt;&gt; type(123) == int
  True
@@ -503,7 +503,7 @@
 </li>
 <li>
 <p>比如，进行数据类型检查，判断一个对象是否是“Iterable”、“Iterator”</p>
-<pre><code class="language-python"> &gt;&gt;&gt; import testpy
+<pre><code class="language-py"> &gt;&gt;&gt; import testpy
  &gt;&gt;&gt; a = Animal()
  &gt;&gt;&gt; d = Dog()
  &gt;&gt;&gt; c = Cat()
@@ -528,7 +528,7 @@
 <ul>
 <li>
 <p>可以获取一个对象的所有属性和方法，返回一个包含字符串的list</p>
-<pre><code class="language-python"> &gt;&gt;&gt; dir('ABC')
+<pre><code class="language-py"> &gt;&gt;&gt; dir('ABC')
  &gt;&gt;&gt; dir(a)
 </code></pre>
 </li>
@@ -539,7 +539,7 @@
 <ul>
 <li>
 <p>数获取一个对象的长度，实际上在该函数内部会自动调用该对象的__len__()方法</p>
-<pre><code class="language-python"> &gt;&gt;&gt; len('ABC')
+<pre><code class="language-py"> &gt;&gt;&gt; len('ABC')
  3
  &gt;&gt;&gt; 'ABC'.__len__()
  3
@@ -566,7 +566,7 @@
 </li>
 <li>
 <p>上述的三个函数也可以作用于对象的方法</p>
-<pre><code class="language-python"> class MyObject(object):
+<pre><code class="language-py"> class MyObject(object):
      def __init__(self):
          self.x = 9
      def power(self):
@@ -597,7 +597,7 @@
  &gt;&gt;&gt; getattr(obj, 'z', 404) 
  404
 </code></pre>
-<pre><code class="language-python"> &gt;&gt;&gt; hasattr(obj, 'power')
+<pre><code class="language-py"> &gt;&gt;&gt; hasattr(obj, 'power')
  True
  &gt;&gt;&gt; getattr(obj, 'power')
  &lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10215e630&gt;&gt;
@@ -611,7 +611,7 @@
 </li>
 <li>
 <p>应用：若从文件流对象fp中读取数据，需要先判断fp是否存在read()方法，若存在说明该对象确实是文件流，返回文件流，否则无法读取返回None</p>
-<pre><code class="language-python"> def readImage(fp):
+<pre><code class="language-py"> def readImage(fp):
  	if hasattr(fp, 'read'):
  		return readData(fp)
  	return None
@@ -627,7 +627,7 @@
 </li>
 <li>
 <p><strong>最好不要让实例属性和类属性使用相同的名称，若名称相同，则实例变量访问的是实例属性，而不是类属性（实例方法、类方法同理）</strong></p>
-<pre><code class="language-python"> class Student(object):
+<pre><code class="language-py"> class Student(object):
      name = 'Student'  # 绑定类属性
  
  &gt;&gt;&gt; Student.name  # 访问类属性

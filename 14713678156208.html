@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -171,7 +171,7 @@ pod repo add master https://git.oschina.net/akuandev/Specs.git
 <h4><a id="%E4%B8%89%E3%80%81%E5%8D%B8%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、卸载</h4>
 <ul>
 <li>
-<p>使用gem卸载CocoaPods的相关包后，还需要进行以下操作：清理镜像索引文件、删除pod执行文件、重启终端；</p>
+<p>1、使用gem卸载CocoaPods的相关包后，还需要进行以下操作：清理镜像索引文件、删除pod执行文件、重启终端；</p>
 <pre><code class="language-shell"># 1、删除cocoapods
 gem list | grep cocoapods # 查找与cocoapods相关的包
 sudo gem uninstall &lt;PACKAGE&gt; # 删除上面查找到的cocoapods的相关包
@@ -192,13 +192,13 @@ rm /usr/local/bin/pod # 删除可执行文件pod
 <h4><a id="%E5%9B%9B%E3%80%81pod%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、pod命令</h4>
 <ul>
 <li>
-<p>使用CocoaPods前，需要在工程目录下创建一个名为<code>Podfile</code>的文本文件（描述需要使用哪些第三方框架及使用这些框架的Target），也可以使用<code>pod init</code>命令创建；</p>
+<p>1、使用CocoaPods前，需要在工程目录下创建一个名为<code>Podfile</code>的文本文件（描述需要使用哪些第三方框架及使用这些框架的Target），也可以使用<code>pod init</code>命令创建；</p>
 </li>
 <li>
-<p>执行 <code>pod install</code> 或 <code>pod update</code> 命令时，CocoaPods默认每次都会，先进行主动更新CocoaPods的镜像索引文件，加参数 <code>--no-repo-update</code> 则略过此步，以加速执行速度；<strong>（注：新版本的<code>pod install</code>是不再进行主动更新）</strong></p>
+<p>2、执行 <code>pod install</code> 或 <code>pod update</code> 命令时，CocoaPods默认每次都会，先进行主动更新CocoaPods的镜像索引文件，加参数 <code>--no-repo-update</code> 则略过此步，以加速执行速度；<strong>（注：新版本的<code>pod install</code>是不再进行主动更新）</strong></p>
 </li>
 <li>
-<p>添加参数 <code>--no-repo-update</code> 执行后，有时报以下类似错误 <code>Unable to satisfy the following requirements: - `XXXX`, `~&gt; 2.4` required by `Podfile` </code> ，这是由于本地的镜像索引文件过时导致的；此时应不加该参数执行，或主动更新镜像索引文件 <code>pod repo update</code>（若更新失败，可删除镜像索引文件，重新执行 <code>pod setup</code> ）；</p>
+<p>3、添加参数 <code>--no-repo-update</code> 执行后，有时报以下类似错误 <code>Unable to satisfy the following requirements: - `XXXX`, `~&gt; 2.4` required by `Podfile` </code> ，这是由于本地的镜像索引文件过时导致的；此时应不加该参数执行，或主动更新镜像索引文件 <code>pod repo update</code>（若更新失败，可删除镜像索引文件，重新执行 <code>pod setup</code> ）；</p>
 <pre><code class="language-ruby">pod [COMMAND] help # 查看命令帮助
 
 # 搜索类库，例如pod search AFNetworking
@@ -210,23 +210,30 @@ pod update [--no-repo-update]
 </code></pre>
 </li>
 <li>
-<p><strong>若执行pod相关命令报以下类似警告 <code>...target overrides the `OTHER_LDFLAGS` build setting defined...</code> ，则说明pod自动生成的一些配置信息没有生效，这是由于工程自身的配置信息覆盖掉pod自动生成的配置信息；</strong></p>
+<p>4、<strong>若执行pod相关命令报以下类似警告 <code>...target overrides the `OTHER_LDFLAGS` build setting defined...</code> ，则说明pod自动生成的一些配置信息没有生效，这是由于工程自身的配置信息覆盖掉pod自动生成的配置信息；</strong></p>
 <ul>
-<li>相关原理：
+<li>
+<p>1）相关原理：</p>
 <ul>
-<li>CocoaPods根据所需要相关类库信息自动生成一个新的名为Pods.xcodeproj工程，然后编译出一个libPods.a的静态库文件，引入到原有工程中，并自动设置相关配置信息（比如<code>Header Search Paths</code>、<code>Library Search Paths</code>、<code>Other Linker Flags</code>），同时也创建一个和原有工程同名的工程组文件<code>*.xcworkspace</code>；</li>
-<li>Xcode工程文件的配置信息（比如经常修改的<code>Header Search Paths等</code>）可以在多个地方可以修改：
+<li>
+<p>a. CocoaPods根据所需要相关类库信息自动生成一个新的名为Pods.xcodeproj工程，然后编译出一个libPods.a的静态库文件，引入到原有工程中，并自动设置相关配置信息（比如<code>Header Search Paths</code>、<code>Library Search Paths</code>、<code>Other Linker Flags</code>），同时也创建一个和原有工程同名的工程组文件<code>*.xcworkspace</code>；</p>
+</li>
+<li>
+<p>b. Xcode工程文件的配置信息（比如经常修改的<code>Header Search Paths等</code>）可以在多个地方可以修改：</p>
 <ul>
-<li>a. <code>Project</code> 中的 <code>Configurations</code>（需创建*.xcconfig文件；有Project级别、Target级别）</li>
-<li>b. <code>Project</code> 中的 <code>Build Settings</code> ；</li>
-<li>c. <code>Target</code> 中的 <code>Build Settings</code> ；</li>
+<li>a）<code>Project</code> 中的 <code>Configurations</code>（需创建*.xcconfig文件；有Project级别、Target级别）</li>
+<li>b）<code>Project</code> 中的 <code>Build Settings</code> ；</li>
+<li>c）<code>Target</code> 中的 <code>Build Settings</code> ；</li>
 <li>优先级依次变高，相同的配置项优先级高的会覆盖优先级低的，若要继承优先级低的配置则需要使用<code>$(inherited)</code>表示；</li>
 </ul>
 </li>
-<li>pod自动生成的配置信息就是配置在 <code>Project</code> 中的 <code>Configurations</code> 的 <code>Target级别*.xcconfig文件</code> ；</li>
+<li>
+<p>c. pod自动生成的配置信息就是配置在 <code>Project</code> 中的 <code>Configurations</code> 的 <code>Target级别*.xcconfig文件</code> ；</p>
+</li>
 </ul>
 </li>
-<li><strong>解决办法：</strong>
+<li>
+<p>2）<strong>解决办法：</strong></p>
 <ul>
 <li><strong>a. 方法一：删除是相同项的工程自身的配置信息；</strong></li>
 <li><strong>b. 方法二：使用<code>$(inherited)</code>继承优先级低的pod自动生成的配置信息；</strong></li>
@@ -235,12 +242,12 @@ pod update [--no-repo-update]
 </ul>
 </li>
 <li>
-<p><strong>当pod某个版本的某个三方库后，若下次还是pod该版本的这个三方库，则CocoaPods会使用之前缓存的；可以清除缓存，重新下载该版本的这个三方库；</strong></p>
+<p>5、<strong>当pod某个版本的某个三方库后，若下次还是pod该版本的这个三方库，则CocoaPods会使用之前缓存的；可以清除缓存，重新下载该版本的这个三方库；</strong></p>
 <pre><code class="language-shell">pod cache list // 查看本地缓存
 
 pod cache clean --all
 pod cache clean 'AFNetworking' // 删除时，有多个版本会提示选择
-pod cache clear 'AFNetworking' --all // 删除所有版本的AFNetworking
+pod cache clean 'AFNetworking' --all // 删除所有版本的AFNetworking
 </code></pre>
 </li>
 </ul>
@@ -253,10 +260,10 @@ pod cache clear 'AFNetworking' --all // 删除所有版本的AFNetworking
 <h4><a id="%E5%85%AD%E3%80%81podfile%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>六、Podfile文件</h4>
 <ul>
 <li>
-<p>之前Podfile文件需要自己手动创建，现在可以执行 <code>pod init</code> 命令可自动创建该文件（需要当前的目录中有Xcode工程文件）；</p>
+<p>1、之前Podfile文件需要自己手动创建，现在可以执行 <code>pod init</code> 命令可自动创建该文件（需要当前的目录中有Xcode工程文件）；</p>
 </li>
 <li>
-<p>不同版本的CocoaPods的Podefile文件格式有所差异，同时要<strong>注意空格符</strong>、iOS版本等规范；最新的Podefile文件的格式如下：（<code>inhibit_all_warnings!</code>表示消除CocoaPods引入的类库中的警告）</p>
+<p>2、不同版本的CocoaPods的Podefile文件格式有所差异，同时要<strong>注意空格符</strong>、iOS版本等规范；最新的Podefile文件的格式如下：（<code>inhibit_all_warnings!</code>表示消除CocoaPods引入的类库中的警告）</p>
 <pre><code class="language-ruby">platform :ios, '8.0'
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -269,22 +276,110 @@ end
 </code></pre>
 </li>
 <li>
-<p>类库的版本格式：</p>
+<p>3、类库的版本格式：</p>
 <pre><code class="language-ruby">pod 'AFNetworking' # 不指定版本，使用最新版本  
 pod 'AFNetworking', '2.0' # 只使用2.0版本  
 pod 'AFNetworking', '&gt;= 2.0' # 使用大于等于2.0的版本  
 pod 'AFNetworking', '~&gt;0.1' # 使用大于等于0.1但小于1.0的版本  
 </code></pre>
 </li>
+<li>
+<p>4、<strong>忽略警告（全局、部分）：</strong></p>
+<pre><code class="language-ruby"># ignore all warnings from all pods
+inhibit_all_warnings!
+
+# ignore warnings from a specific pod
+pod 'AFNetworking', :inhibit_warnings =&gt; true
+</code></pre>
+<ul>
+<li>参考：<code>https://stackoverflow.com/questions/13208202/ignore-xcode-warnings-when-using-cocoapods/13209057#13209057</code></li>
+</ul>
+</li>
+<li>
+<p>5、<strong>frameworks类库类型：</strong></p>
+<ul>
+<li>
+<p>1）<strong><code>use_frameworks!</code>、<code>use_frameworks!(:linkage =&gt; :dynamic)</code>、<code>use_frameworks! :linkage =&gt; :dynamic</code>：</strong></p>
+<ul>
+<li><strong>生成frameworks，以动态库的形式被引入；</strong></li>
+</ul>
+</li>
+<li>
+<p>2）<strong><code>use_frameworks!(:linkage =&gt; :static) </code>、<code>use_frameworks! :linkage =&gt; :static</code>：</strong></p>
+<ul>
+<li><strong>生成frameworks，以静态库的形式被引入；</strong></li>
+<li><strong>此时，库引用的资源文件会加载到主Bundle中；</strong></li>
+</ul>
+</li>
+<li>
+<p>3）<strong>强制以静态库的形式被引入：</strong></p>
+<ul>
+<li><strong>库的.podspec描述文件，设置<code>s.static_framework = true</code>，则该库则以以静态库的形式被引入，忽略Podfile文件中的use_frameworks!配置；</strong></li>
+<li><strong>该方式常有用我们自己的类库；</strong></li>
+</ul>
+</li>
+<li>
+<p>4）设置特定库，以静态库的形式被引入：</p>
+<pre><code class="language-ruby">platform :ios, '11.0'
+
+target 'HQPDemo' do
+  use_frameworks!
+  
+  pod 'Alamofire'
+  pod 'SnapKit'
+  
+end
+
+$static_framework = [‘SnapKit’]
+
+pre_install do |installer|
+  installer.pod_targets.each do |pod|
+  
+    if $static_framework.include?(pod.name)
+      def pod.build_type;
+        Pod::Target::BuildType.static_framework
+      end
+    end
+    
+  end
+end
+</code></pre>
+<ul>
+<li><strong>该方式常有用其他类库，.podspec描述文件没有设置<code>s.static_framework = true</code>，且我们无法修改此文件；</strong></li>
+</ul>
+</li>
+<li>
+<p>5）参考：</p>
+<ul>
+<li><strong>iOS组件化-Pod库制作的常见问题：<code>https://juejin.cn/post/7012995777727299591</code></strong></li>
+<li><strong>Allow podfile to specify if dependency should be statically linked #7428：<code>https://github.com/CocoaPods/CocoaPods/issues/7428</code></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>6、<strong>修改各个类库的支持最低系统版本号（如<code>IPHONEOS_DEPLOYMENT_TARGET</code>）；</strong></p>
+<pre><code class="language-ruby">post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+    end
+    
+  end
+end
+</code></pre>
+</li>
 </ul>
 <h4><a id="%E4%B8%83%E3%80%81%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B1%BB%E5%BA%93%E6%94%AF%E6%8C%81cocoapods%EF%BC%88%E7%BC%96%E5%86%99-podspec%E6%96%87%E4%BB%B6%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>七、自己的类库支持CocoaPods（编写<code>.podspec</code>文件）</h4>
 <ul>
-<li>1、<code>.podspec</code>文件字段含义
+<li>
+<p>1、<code>.podspec</code>文件字段含义</p>
 <ul>
 <li><code>s.libraries</code>：依赖的系统库；</li>
 <li><code>s.frameworks</code>：依赖的系统框架；
 <ul>
-<li>如<code>s.frameworks = 'UIKit','AVFoundation'</code></li>
+<li>如<code>s.frameworks = 'UIKit', 'AVFoundation'</code></li>
 </ul>
 </li>
 <li><code>s.vendored_libraries</code>：依赖的非系统库（三方库），本地管理的；
@@ -304,6 +399,70 @@ pod 'AFNetworking', '~&gt;0.1' # 使用大于等于0.1但小于1.0的版本
 </li>
 <li><code>s.public_header_files</code>：暴露给外部的头文件；</li>
 <li><strong><code>s.static_framework</code>：是否将库为打成framework静态库（<code>MACH_O_TYPE</code>为<code>Static Library</code>），默认打成framework动态库（<code>MACH_O_TYPE</code>为<code>Dynamic Library</code>）；</strong></li>
+</ul>
+</li>
+<li>
+<p>2、文件匹配<code>*</code></p>
+<ul>
+<li><code>source_files = 'XYModule/Classes/AA/*'</code>：包含当前目录AA的文件</li>
+<li><code>source_files = 'XYModule/Classes/AA/**/*'</code>：包含当前目录AA及子目录的文件</li>
+</ul>
+</li>
+<li>
+<p>3、<code>source_files</code>、<code>resources</code>、<code>resource_bundles</code></p>
+<ul>
+<li><code>source_files</code>：可以存放代码、xib；</li>
+<li><code>resources</code>：可以存放xib、xcassets、图片、本地化文件等；</li>
+<li><code>resource_bundles</code>：可以存放xib、xcassets、图片、本地化文件等；</li>
+<li><strong>建议：xib、xcassets、图片、本地化文件等，都放到<code>resource_bundles</code>中；</strong></li>
+</ul>
+<pre><code class="language-ruby"># resources（可指定平台：s.ios.resources）
+s.resources = 'XYModule/Assets/ic_home@2x.png'
+s.resources = 'XYModule/Assets/ic_*'
+s.resources = 'XYModule/Assets/ic_home*', 'XYModule/Assets/ic_settings*' # 数组（可以省略[ ]，ruby语法）
+s.resources = ['XYModule/Assets/ic_home*', 'XYModule/Assets/ic_settings*']
+
+# 使用resource也可以，一样
+s.resource = ['XYModule/Assets/ic_home*', 'XYModule/Assets/ic_settings*']
+
+# 会被打成Assets.car；但若是非.framework库，则会编译出错（Assets.car重复，和主项目的冲突）
+s.resource = 'XYModule/Assets/Media.xcassets'
+</code></pre>
+<pre><code class="language-ruby"># resource_bundles（可指定平台：s.ios.resource_bundles）
+s.resource_bundles = {
+    'XYModule' =&gt; 'XYModule/Assets/ic_*'
+}
+s.resource_bundles = { # ❌ （字典中的数组，不可以省略[]，ruby语法）
+    'XYModule' =&gt; 'XYModule/Assets/ic_home*', 'XYModule/Assets/ic_settings*'
+}
+s.resource_bundles = {
+    'XYModule' =&gt; ['XYModule/Assets/ic_home*', 'XYModule/Assets/ic_settings*']
+}
+s.resource_bundles = { # 生成两个bundle：XYModule1、XYModule2
+    'XYModule1' =&gt; 'XYModule/Assets/ic_home*',
+    'XYModule2' =&gt; 'XYModule/Assets/ic_settings*'
+}
+
+# 使用resource_bundle也可以，一样
+s.resource_bundle = {
+    'XYModule1' =&gt; 'XYModule/Assets/ic_home*',
+    'XYModule2' =&gt; 'XYModule/Assets/ic_settings*'
+}
+
+# 会被打成Assets.car；
+# 由于其存放在XYModule中，需用uiImage的init?(named name: String, in bundle: Bundle?, ...等方法读取
+s.resource_bundles = {
+    'XYModule' =&gt; 'XYModule/Assets/Media.xcassets' # 会被打成Assets.car
+}
+</code></pre>
+<ul>
+<li>参考：
+<ul>
+<li><strong>组件化之podspec文件：<code>https://www.jianshu.com/p/58979216ed4f</code></strong></li>
+<li><strong>Podspec Syntax Reference：<code>https://guides.cocoapods.org/syntax/podspec.html</code></strong></li>
+<li><strong>iOS中Pod库资源引用探究：<code>https://juejin.cn/post/7063314733415268366</code></strong></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

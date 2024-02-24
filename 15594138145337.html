@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -148,7 +148,7 @@
 <ul>
 <li>C++的.hpp头文件的内部一般写C++类、类的变量、类的方法的申明，而.cpp源文件内则写在.hpp头文件中申明的方法的实现；</li>
 <li><strong>Xcode默认根据<code>文件类型（According to File Type）</code>，来选择编译模式；</strong></li>
-<li><strong>若需要使用一些C++的标准库，需要导入libc++库；Xcode10和iOS12中已移除废弃多年的libstdc++库，由libc++库（llvm优化过，并全面支持C++11）代替；</strong></li>
+<li><strong>若需要使用一些C++的标准库，需要导入libc++库；Xcode10和iOS12中已移除废弃多年的<code>libstdc++</code>库，由<code>libc++</code>库（llvm优化过，并全面支持C++11）代替；</strong></li>
 </ul>
 </li>
 </ul>
@@ -251,7 +251,7 @@
 }
 @end
 </code></pre>
-<pre><code class="language-C++">// CPlusCplus5.hpp
+<pre><code class="language-cpp">// CPlusCplus5.hpp
 #ifndef CPlusCplus5_hpp
 #define CPlusCplus5_hpp
 
@@ -270,7 +270,7 @@ public:
 
 #endif /* CPlusCplus5_hpp */
 </code></pre>
-<pre><code class="language-C++">// CPlusCplus5.mm
+<pre><code class="language-cpp">// CPlusCplus5.mm
 #include &quot;CPlusCplus5.hpp&quot;
 #import &quot;Obj6.h&quot;
 
@@ -358,12 +358,14 @@ void CPlusPlus5::cPlusPlus5_test2() {
 </li>
 <li>
 <p>三种使用方式：</p>
-<pre><code class="language-C++">std::cout &lt;&lt; x;
+<pre><code class="language-cpp">std::cout &lt;&lt; x;
 </code></pre>
-<pre><code class="language-C++">using namespace std;
+<pre><code class="language-cpp">using namespace std;
+
 cout &lt;&lt; x;
 </code></pre>
-<pre><code class="language-C++">using std::cout;
+<pre><code class="language-cpp">using std::cout;
+
 cout &lt;&lt; x;
 </code></pre>
 </li>

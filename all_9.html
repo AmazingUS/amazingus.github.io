@@ -38,7 +38,7 @@
                 <ul id="main-menu" class="left">
                   
                   <li id="">
-                    <a target="self" href="index.html">Home</a>
+                    <a target="_self" href="index.html">Home</a>
                   </li>
                   
                   <li id="">
@@ -181,7 +181,7 @@
 <li>不论A、B是否为负数，截取总是从左向右开始；截取后的数据类型和之前的数据类型相同</li>
 <li>注意无法对数字进行截取</li>
 </ul>
-<pre><code class="language-python"> &gt;&gt;&gt; L = ['Michael', 'Search', 'Tracy', 'Bob', 'Jack']
+<pre><code class="language-py"> &gt;&gt;&gt; L = ['Michael', 'Search', 'Tracy', 'Bob', 'Jack']
  &gt;&gt;&gt; L[1:3]
  ['Search', 'Tracy']
  &gt;&gt;&gt; L[-2:-1]
@@ -362,15 +362,15 @@
                
 			  <div class="mweb_toc"><ul>
 <li><a href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0">一、概述</a></li>
-<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AAssh-key">二、使用多个SSH Key</a></li>
+<li><a href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E5%A4%9A%E4%B8%AAssh-key">二、使用多个ssh Key</a></li>
 <li><a href="#%E4%B8%89%E3%80%81sshconfig%E6%96%87%E4%BB%B6">三、.ssh/config文件</a></li>
 </ul>
 </div>
 <h4><a id="%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、概述</h4>
 <ul>
-<li>执行 <code>ssh-keygen -t rsa -C &quot;xx@email.com&quot;</code>，回车确认，默认在~/.ssh/目录中生成名称为“id_rsa”的private key和“id_rsa_pub”的public key；<strong>注意：每次执行生成的key是不一样的；</strong></li>
-<li><strong>对于不同的网站（如github.com、gitee.com等），虽然是不同的账号，一般使用同一个key进行认证，也可以使用不同的key（配置.ssh/config）；</strong></li>
-<li><strong>对于同一网站，若需要使用不同的账号，就需要配置不同的key（配置.ssh/config），同一个key只能用于一个账号；</strong></li>
+<li>1、执行 <code>ssh-keygen -t rsa -C &quot;xx@email.com&quot;</code>，回车确认，默认在~/.ssh/目录中生成名称为“id_rsa”的private key和“id_rsa_pub”的public key；<strong>注意：每次执行生成的key是不一样的；</strong></li>
+<li>2、<strong>对于不同的网站（如github.com、gitee.com等），虽然是不同的账号，一般使用同一个key进行认证，也可以使用不同的key（配置.ssh/config）；</strong></li>
+<li>3、<strong>对于同一网站，若需要使用不同的账号，就需要配置不同的key（配置.ssh/config），同一个key只能用于一个账号；</strong></li>
 </ul>
  
             </div>
